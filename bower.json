@@ -1,0 +1,28 @@
+{
+  "name": "wiziofront",
+  "version": "0.0.1",
+  "homepage": "https://github.com/CBillings92/wiziofront",
+  "authors": [
+    "Cameron Billings <Cameron.billings92@gmail.com>"
+  ],
+  "description": "wizio-front-end",
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "angular-jwt": "~0.0.9"
+  }
+}
