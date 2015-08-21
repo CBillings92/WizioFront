@@ -1,9 +1,11 @@
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
+angular.module('UserCreateApp', []);
 
 angular.module('MainApp', [
     'BlogApp',
     'LandingPageApp',
+    'UserCreateApp',
     'ui.router',
     'ngStorage',
     'ngResource',

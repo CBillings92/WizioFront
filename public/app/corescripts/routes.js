@@ -24,6 +24,15 @@ angular.module('MainApp')
                       controller: 'blogctrl'
                     }
                   }
+                })
+                .state('UserCreate', {
+                  url: '/createacct',
+                  views: {
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/accountcreateform.html',
+                      controller: 'UserCreateCtrl'
+                    }
+                  }
                 });
                 $urlRouterProvider.otherwise('/');
         }
