@@ -1,6 +1,8 @@
+angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
 
 angular.module('MainApp', [
+    'BlogApp',
     'LandingPageApp',
     'ui.router',
     'ngStorage',

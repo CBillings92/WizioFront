@@ -15,6 +15,15 @@ angular.module('MainApp')
                             controller: 'landingpagectrl'
                         }
                     }
+                })
+                .state('Blog', {
+                  url: '/blog',
+                  views: {
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/blog.html',
+                      controller: 'blogctrl'
+                    }
+                  }
                 });
                 $urlRouterProvider.otherwise('/');
         }
