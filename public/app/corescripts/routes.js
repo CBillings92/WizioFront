@@ -5,7 +5,10 @@ angular.module('MainApp')
         '$locationProvider',
         '$httpProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-            console.dir("test2");
+            var navbar = {
+                templateUrl: 'public/viewtemplates/public/navbar.html',
+                controller: 'NavbarCtrl'
+            };
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -19,9 +22,20 @@ angular.module('MainApp')
                 .state('AccountCreate', {
                     url: '/createaccount',
                     views: {
+                        "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/accountcreate.html',
                             controller: 'AccountCreateCtrl'
+                        }
+                    }
+                })
+                .state('Login', {
+                    url: '/login',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/login.html',
+                            controller: 'LoginCtrl'
                         }
                     }
                 });
