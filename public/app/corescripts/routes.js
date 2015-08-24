@@ -15,6 +15,15 @@ angular.module('MainApp')
                             controller: 'landingpagectrl'
                         }
                     }
+                })
+                .state('AccountCreate', {
+                    url: '/createaccount',
+                    views: {
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/accountcreate.html',
+                            controller: 'AccountCreateCtrl'
+                        }
+                    }
                 });
                 $urlRouterProvider.otherwise('/');
         }

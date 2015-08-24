@@ -1,11 +1,16 @@
 angular.module('LandingPageApp', []);
+angular.module('AccountCreateApp', []);
+angular.module('SharedResourcesApp', []);
 
 angular.module('MainApp', [
     'LandingPageApp',
+    'AccountCreateApp',
     'ui.router',
     'ngStorage',
     'ngResource',
     'ngLodash',
+    'SharedResourcesApp',
+    'ui.bootstrap'
 ])
 .run([
     '$rootScope',

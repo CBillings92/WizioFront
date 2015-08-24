@@ -26,6 +26,7 @@
     "angular-jwt": "~0.0.9",
     "ngstorage": "~0.3.9",
     "angular-resource": "~1.4.4",
-    "ng-lodash": "~0.2.3"
+    "ng-lodash": "~0.2.3",
+    "angular-bootstrap": "~0.13.3"
   }
 }
