@@ -61,10 +61,6 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
                             controller: 'BrokerAddInfoCtrl'
                         }
-                    },
-                    data: {
-                        requireLogin: true,
-                        userType: 3
                     }
                 });
             $urlRouterProvider.otherwise('/');
