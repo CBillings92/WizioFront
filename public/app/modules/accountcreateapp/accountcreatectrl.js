@@ -1,8 +1,9 @@
 angular.module('AccountCreateApp')
 .controller('AccountCreateCtrl', [
     '$scope',
+    '$state',
     'registration',
-    function($scope, registration){
+    function($scope, $state, registration){
         $scope.radioModel = {
             realtor: false,
             tenant: true,
@@ -17,23 +18,23 @@ angular.module('AccountCreateApp')
             };
             console.dir("in setUserObj");
             if($scope.radioModel === "tenant"){
-                console.dir($scope.radioModel);
+                userData.userType = 1;
             } else if ($scope.radioModel === "realtor"){
-                console.dir($scope.radioModel);
+                userData.userType = 2;
             } else if ($scope.radioModel === "broker"){
-                console.dir($scope.radioModel);
+                userData.userType = 3;
             } else {
                 alert("No user selected!");
             }
 
-            registration.save(userData, function(status, data){
-                console.dir("in registration");
+            registration.save(userData, function(data){
+                console.dir(data);
                 if(data.userType === 1){
 
                 } else if (data.userType === 2){
 
-                } else {
-
+                } else if (data.userType === 3) {
+                    $state.go('BrokerAdditionalInfo');
                 }
             });
         };

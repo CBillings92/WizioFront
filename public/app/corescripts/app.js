@@ -3,12 +3,14 @@ angular.module('AccountCreateApp', []);
 angular.module('SharedResourcesApp', []);
 angular.module('NavbarApp', []);
 angular.module('LoginApp', []);
+angular.module('BrokerApp', []);
 
 angular.module('MainApp', [
         'LandingPageApp',
         'AccountCreateApp',
         'NavbarApp',
         'LoginApp',
+        'BrokerApp',
         'ui.router',
         'ngStorage',
         'ngResource',

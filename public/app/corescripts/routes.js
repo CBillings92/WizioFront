@@ -9,6 +9,9 @@ angular.module('MainApp')
                 templateUrl: 'public/viewtemplates/public/navbar.html',
                 controller: 'NavbarCtrl'
             };
+            var requireLogin = {
+                requireLogin: true
+            };
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -48,8 +51,20 @@ angular.module('MainApp')
                             controller: 'AccountCtrl'
                         }
                     },
+                    data: requireLogin
+                })
+                .state('BrokerAdditionalInfo', {
+                    url: '/brokerInfo',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
+                            controller: 'BrokerAddInfoCtrl'
+                        }
+                    },
                     data: {
-                        requireLogin: true
+                        requireLogin: true,
+                        userType: 3
                     }
                 });
             $urlRouterProvider.otherwise('/');
