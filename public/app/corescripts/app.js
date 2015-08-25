@@ -1,33 +1,14 @@
+angular.module('AccountCreateApp', []);
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
-angular.module('UserCreateApp', []);
-
-angular.module('MainApp', [
-    'BlogApp',
-    'LandingPageApp',
-    'UserCreateApp',
-    'ui.router',
-    'ngStorage',
-    'ngResource',
-    'ngLodash',
-])
-.run([
-    '$rootScope',
-    '$state',
-    '$http',
-    '$localStorage',
-    function($rootScope, $state, $http, $cookies, $localStorage){
-        console.dir("test");
-    }
-]);
-angular.module('AccountCreateApp', []);
-angular.module('SharedResourcesApp', []);
-angular.module('NavbarApp', []);
 angular.module('LoginApp', []);
+angular.module('NavbarApp', []);
+angular.module('SharedResourcesApp', []);
 
 angular.module('MainApp', [
         'LandingPageApp',
         'AccountCreateApp',
+        'BlogApp',
         'NavbarApp',
         'LoginApp',
         'ui.router',

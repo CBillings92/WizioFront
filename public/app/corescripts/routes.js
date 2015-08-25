@@ -28,14 +28,6 @@ angular.module('MainApp')
                     }
                   }
                 })
-                .state('UserCreate', {
-                  url: '/createacct',
-                  views: {
-                    "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/accountcreateform.html',
-                      controller: 'UserCreateCtrl'
-                    }
-                  }
                 .state('AccountCreate', {
                     url: '/createaccount',
                     views: {
