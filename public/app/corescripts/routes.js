@@ -38,7 +38,47 @@ angular.module('MainApp')
                             controller: 'LoginCtrl'
                         }
                     }
+                })
+                .state('UserAccount', {
+                    url: '/account',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/account.html',
+                            controller: 'AccountCtrl'
+                        }
+                    },
+                    data: {
+                        requireLogin: true
+                    }
                 });
-                $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/');
+
+            $httpProvider.interceptors.push([
+                '$q',
+                '$location',
+                '$localStorage',
+                function($q, $location, $localStorage) {
+                    return {
+                        request: function(config) {
+                            config.headers = config.headers || {};
+                            if ($localStorage.token) {
+                                config.headers.Authorization = $localStorage.token;
+                                console.dir(config.headers);
+                            }
+                            return config;
+                        },
+                        responseError: function(response) {
+                            if (response.status === 401 || response.status === 403) {
+                                //$cookie.remove('token', []);
+                                $location.path('/login');
+                            }
+                            return $q.reject(response);
+                        }
+
+                    };
+                }
+
+            ]);
         }
     ]);
