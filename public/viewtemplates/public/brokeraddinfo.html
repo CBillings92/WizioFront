@@ -1,7 +1,7 @@
 <div>
     <div class='container'>
         <div class='row'>
-            <form class='col-md-9' ng-submit='createBrokerInfo()'>
+            <form class='col-md-9'>
                 <h3>Broker Info:</h3>
                 <div class='form-group'>
                     <label class='control-label'>Broker Business Name:</label>
@@ -12,7 +12,7 @@
                     <input class='form-control' ng-model='licenseID' type='text'>
                 </div>
             </div>
-            <input class='btn btn-primary' for='createAcct' type='submit'>
+            <input class='btn btn-primary' for='createAcct' ng-click="createBrokerInfo()" type='submit'>
         </form>
     </div>
 </div>
