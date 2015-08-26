@@ -1,13 +1,16 @@
-angular.module('LandingPageApp', []);
 angular.module('AccountCreateApp', []);
-angular.module('SharedResourcesApp', []);
-angular.module('NavbarApp', []);
+angular.module('BlogApp', []);
+angular.module('LandingPageApp', []);
 angular.module('LoginApp', []);
 angular.module('BrokerApp', []);
+angular.module('NavbarApp', []);
+angular.module('SharedResourcesApp', []);
+
 
 angular.module('MainApp', [
         'LandingPageApp',
         'AccountCreateApp',
+        'BlogApp',
         'NavbarApp',
         'LoginApp',
         'BrokerApp',

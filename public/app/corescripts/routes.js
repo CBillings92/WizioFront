@@ -22,6 +22,15 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Blog', {
+                  url: '/blog',
+                  views: {
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/blog.html',
+                      controller: 'blogctrl'
+                    }
+                  }
+                })
                 .state('AccountCreate', {
                     url: '/createaccount',
                     views: {
