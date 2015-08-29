@@ -5,7 +5,13 @@ angular.module('MainApp')
         '$locationProvider',
         '$httpProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-            console.dir("test2");
+            var navbar = {
+                templateUrl: 'public/viewtemplates/public/navbar.html',
+                controller: 'NavbarCtrl'
+            };
+            var requireLogin = {
+                requireLogin: true
+            };
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -15,7 +21,84 @@ angular.module('MainApp')
                             controller: 'landingpagectrl'
                         }
                     }
+                })
+                .state('Blog', {
+                  url: '/blog',
+                  views: {
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/blog.html',
+                      controller: 'blogctrl'
+                    }
+                  }
+                })
+                .state('AccountCreate', {
+                    url: '/createaccount',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/accountcreate.html',
+                            controller: 'AccountCreateCtrl'
+                        }
+                    }
+                })
+                .state('Login', {
+                    url: '/login',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/login.html',
+                            controller: 'LoginCtrl'
+                        }
+                    }
+                })
+                .state('UserAccount', {
+                    url: '/account',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/account.html',
+                            controller: 'AccountCtrl'
+                        }
+                    },
+                    data: requireLogin
+                })
+                .state('BrokerAdditionalInfo', {
+                    url: '/brokerInfo',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
+                            controller: 'BrokerAddInfoCtrl'
+                        }
+                    }
                 });
-                $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/');
+
+            $httpProvider.interceptors.push([
+                '$q',
+                '$location',
+                '$localStorage',
+                function($q, $location, $localStorage) {
+                    return {
+                        request: function(config) {
+                            config.headers = config.headers || {};
+                            if ($localStorage.token) {
+                                config.headers.Authorization = $localStorage.token;
+                                console.dir(config.headers);
+                            }
+                            return config;
+                        },
+                        responseError: function(response) {
+                            if (response.status === 401 || response.status === 403) {
+                                //$cookie.remove('token', []);
+                                $location.path('/login');
+                            }
+                            return $q.reject(response);
+                        }
+
+                    };
+                }
+
+            ]);
         }
     ]);

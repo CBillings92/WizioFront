@@ -2,7 +2,10 @@
 <html ng-app="MainApp">
   <head>
     <title>Wizio!</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" media="screen" charset="utf-8">
 
@@ -14,12 +17,21 @@
     <script type="text/javascript" src="../bower_components/ng-lodash/build/ng-lodash.js"></script>
     <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.js"></script>
     <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 
     <script type="text/javascript" src="/app/corescripts/app.js"></script>
     <script type="text/javascript" src="/app/corescripts/routes.js"></script>
     <script type="text/javascript" src="/app/modules/landingpageapp/landingpagectrl.js"></script>
     <script type="text/javascript" src="/app/modules/landingpageapp/landingpageservices.js"></script>
     <script type="text/javascript" src="/app/modules/landingpageapp/landingpagefactories.js"></script>
+    <script type="text/javascript" src="/app/modules/blogApp/blogController.js"></script>
+    <script type="text/javascript" src="/app/modules/accountcreateapp/accountcreatectrl.js"></script>
+    <script type="text/javascript" src="/app/modules/sharedfactories/sharedresources.js"></script>
+    <script type="text/javascript" src="/app/modules/sharedfactories/sharedfactories.js"></script>
+    <script type="text/javascript" src="/app/modules/navbarapp/navbarctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/loginapp/loginctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/brokerapp/controllers/brokeraddinfoctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/brokerapp/brokerResource.js"></script>
   </head>
   <body>
       <div ui-view = "navbar">
