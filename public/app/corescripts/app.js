@@ -4,10 +4,12 @@ angular.module('LandingPageApp', []);
 angular.module('LoginApp', []);
 angular.module('BrokerApp', []);
 angular.module('NavbarApp', []);
+angular.module('ApartmentsApp', []);
 angular.module('SharedResourcesApp', []);
 
 
 angular.module('MainApp', [
+        'ApartmentsApp',
         'LandingPageApp',
         'AccountCreateApp',
         'BlogApp',

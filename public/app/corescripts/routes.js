@@ -22,6 +22,16 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('ApartmentsDisplay', {
+                    url: '/apartments',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartmentsdisplay.html',
+                            controller:'ApartmentsDisplayCtrl'
+                        }
+                    }
+                })
                 .state('Blog', {
                   url: '/blog',
                   views: {
@@ -62,6 +72,7 @@ angular.module('MainApp')
                     },
                     data: requireLogin
                 })
+
                 .state('BrokerAdditionalInfo', {
                     url: '/brokerInfo',
                     views: {
