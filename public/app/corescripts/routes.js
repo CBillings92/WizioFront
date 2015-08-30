@@ -22,6 +22,16 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('ApartmentDetails', {
+                  url:'/apartmentdetails',
+                  views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/apartmentdetailspage.html',
+                      controller: 'ApartmentDetailsCtrl'
+                    }
+                  }
+                })
                 .state('ApartmentsDisplay', {
                     url: '/apartments',
                     views: {

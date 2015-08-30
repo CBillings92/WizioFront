@@ -1,4 +1,5 @@
 angular.module('AccountCreateApp', []);
+angular.module('ApartmentDetailsApp', []);
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
 angular.module('LoginApp', []);
@@ -11,6 +12,7 @@ angular.module('SharedServicesApp', []);
 
 angular.module('MainApp', [
         'ApartmentsApp',
+        'ApartmentDetailsApp',
         'LandingPageApp',
         'AccountCreateApp',
         'BlogApp',
@@ -59,6 +61,7 @@ angular.module('MainApp', [
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
                 } else if (!$localStorage.token || jwtHelper.isTokenExpired($localStorage.token)) {
+                  alert('kdfjslkjfslkdfjsfdj');
                     $rootScope.isLoggedIn = false;
                 } else {
                     $rootScope.isLoggedIn = true;
