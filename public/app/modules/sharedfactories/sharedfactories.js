@@ -1,4 +1,4 @@
-angular.module('SharedResourcesApp')
+angular.module('SharedFactoriesApp')
 .factory('Auth', [
         '$state',
         '$localStorage',

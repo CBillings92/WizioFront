@@ -28,18 +28,18 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/apartmentsdisplay.html',
-                            controller:'ApartmentsDisplayCtrl'
+                            controller: 'ApartmentsDisplayCtrl'
                         }
                     }
                 })
                 .state('Blog', {
-                  url: '/blog',
-                  views: {
-                    "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/blog.html',
-                      controller: 'blogctrl'
+                    url: '/blog',
+                    views: {
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/blog.html',
+                            controller: 'blogctrl'
+                        }
                     }
-                  }
                 })
                 .state('AccountCreate', {
                     url: '/createaccount',
@@ -73,37 +73,45 @@ angular.module('MainApp')
                     data: requireLogin
                 })
 
-                .state('BrokerAdditionalInfo', {
-                    url: '/brokerInfo',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
-                            controller: 'BrokerAddInfoCtrl'
-                        }
+            .state('BrokerAdditionalInfo', {
+                url: '/brokerInfo',
+                views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                        templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
+                        controller: 'BrokerAddInfoCtrl'
                     }
-                });
+                }
+            });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([
                 '$q',
                 '$location',
                 '$localStorage',
-                function($q, $location, $localStorage) {
+                '$injector',
+                function($q, $location, $localStorage, $injector) {
                     return {
                         request: function(config) {
                             config.headers = config.headers || {};
-                            if ($localStorage.token) {
-                                config.headers.Authorization = $localStorage.token;
-                                console.dir(config.headers);
+                            console.dir(config.headers);
+                            if (config.headers.searchCheck) {
+                                delete config.headers.searchCheck;
+                                return config;
+                            } else {
+                                if ($localStorage.token) {
+                                    config.headers.Authorization = $localStorage.token;
+                                }
+                                return config;
                             }
-                            return config;
+
                         },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 //$cookie.remove('token', []);
-                                $location.path('/login');
+                                alert('Authentication Failed');
                             }
+                            $injector.get('$state').transitionTo('Login');
                             return $q.reject(response);
                         }
 

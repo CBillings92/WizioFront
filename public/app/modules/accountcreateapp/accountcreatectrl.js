@@ -1,22 +1,14 @@
 angular.module('AccountCreateApp')
 .controller('AccountCreateCtrl', [
-    '$rootScope',
     '$scope',
     '$state',
-    '$localStorage',
     'registration',
-    function($rootScope, $scope, $state, $localStorage, registration){
+    function($scope, $state, registration){
         $scope.radioModel = {
             realtor: false,
             tenant: true,
             broker: false
         };
-    function successAuth(res){
-        console.dir("in success auth!");
-        $localStorage.token = res;
-        $rootScope.isLoggedIn = true;
-        $state.go('UserAccount');
-    }
         $scope.setUserObject = function(){
             var userData = {
                 firstName: $scope.firstName,
@@ -37,12 +29,11 @@ angular.module('AccountCreateApp')
 
             registration.save(userData, function(data){
                 console.dir(data);
-                if(userData.userType === 1){
-                    successAuth(data.data);
+                if(data.userType === 1){
 
-                } else if (userData.userType === 2){
+                } else if (data.userType === 2){
 
-                } else if (userData.userType === 3) {
+                } else if (data.userType === 3) {
                     $state.go('BrokerAdditionalInfo');
                 }
             });
