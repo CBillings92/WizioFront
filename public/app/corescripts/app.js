@@ -5,7 +5,8 @@ angular.module('LoginApp', []);
 angular.module('BrokerApp', []);
 angular.module('NavbarApp', []);
 angular.module('ApartmentsApp', []);
-angular.module('SharedResourcesApp', []);
+angular.module('SharedFactoriesApp', []);
+angular.module('SharedServicesApp', []);
 
 
 angular.module('MainApp', [
@@ -16,11 +17,12 @@ angular.module('MainApp', [
         'NavbarApp',
         'LoginApp',
         'BrokerApp',
+        'SharedFactoriesApp',
+        'SharedServicesApp',
         'ui.router',
         'ngStorage',
         'ngResource',
         'ngLodash',
-        'SharedResourcesApp',
         'ui.bootstrap',
         'angular-jwt'
     ])
