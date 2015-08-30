@@ -1,35 +1,60 @@
 #landingpagelogo {
   width: 10em;
+  position: relative;
+  z-index: 2;
 }
+
+#demo {
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
 #signinbtn {
   width: 6em;
 }
 .entersite-section {
   padding: 50px 0;
-  background-color: #cdc9c9;
-  margin-left: -1em;
+  background-color: #dde0cd;
+  position: relative;
 }
 .descrip-section {
-  background-color: #ececec;
+  background-color: #dde0cd;
+  position: relative;
+  padding: 20px;
 }
 
-.container-full {
-  margin: 0 auto;
+.demo-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-section h1 {
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.demo-section #bck {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
+  height: auto;
+  opacity: 0.6;
 }
 
-.login-section {
-  background: url("../../viewtemplates/images/bck.png");
-  background-repeat: no-repeat;
+.signup-section h3{
+  color: white;
 }
 
-.form-input {
-  width: 15em;
+.signup-section {
+  position: relative;
+  background-color: #6e6e6e;
+  padding: 25px;
 }
 
-.form-bck {
-  background-color: black;
-  margin-left: 25em;
-  margin-right: 30em;
-  opacity: 0.8;
+.input-group {
+  padding-right: 22em;
 }
