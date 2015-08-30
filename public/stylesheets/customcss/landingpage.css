@@ -1,0 +1,35 @@
+#landingpagelogo {
+  width: 10em;
+}
+#signinbtn {
+  width: 6em;
+}
+.entersite-section {
+  padding: 50px 0;
+  background-color: #cdc9c9;
+  margin-left: -1em;
+}
+.descrip-section {
+  background-color: #ececec;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.login-section {
+  background: url("../../viewtemplates/images/bck.png");
+  background-repeat: no-repeat;
+}
+
+.form-input {
+  width: 15em;
+}
+
+.form-bck {
+  background-color: black;
+  margin-left: 25em;
+  margin-right: 30em;
+  opacity: 0.8;
+}

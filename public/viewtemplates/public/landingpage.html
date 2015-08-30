@@ -1,3 +1,94 @@
-<div>
-    Test
-</div>
+<div class="container-fluid">
+  <div class="login-section">
+    <div class="row">
+    </br></br></br>
+    <center><img src="public/viewtemplates/images/logo.png"
+      id="landingpagelogo"></center>
+    </div><!--logo row-->
+
+    <div class="row">
+    <center><h1>Apartments Without a Realtor</h1></center>
+    </div><!--Slogan row-->
+
+    <div class="row">
+    <center><h3>Start your apartment search today.</center></h3>
+    </div><!--Search slogan row-->
+    </br>
+
+    <!--FORM-->
+    <div class="form-bck">
+      <div class="col-md-offset-4 form-group">
+        <label class='control-label'>First Name:</label>
+        <input class='form-control form-input' ng-model='firstName' type='text'>
+      </div>
+
+      <div class="col-md-offset-4 form-group">
+        <label class='control-label'>Last Name:</label>
+        <input class="form-control form-input" ng-model='lastName' type='text'>
+      </div>
+
+      <div class="col-md-offset-4 form-group">
+        <label class='control-label'>Email:</label>
+        <input class="form-control form-input" name='email' ng-model='email'
+        required='true' type='email'>
+        <span ng-show='createAcct.email.$invalid'>
+          <span ng-show="createAcct.email.$error.email">Invalid email address
+          </span>
+          <span ng-show="createAcct.email.$error.required">Invalid email address
+          </span>
+        </span>
+      </div>
+
+      <div class="col-md-offset-4 form-group">
+        <label class='control-label'>Set Password:</label>
+        <input class="form-control form-input" ng-model="password"
+        type="password"/>
+        <label class='control-label'>Confirm Password:</label>
+        <input class="form-control form-input" name="password"
+        ng-model="passwordConfirm" type="password"/>
+      </div>
+
+      <center><input class="btn btn-success btn-lg" value="Sign In"
+        id="signinbtn"></center>
+    </br>
+  </div><!--form background-->
+</div><!--login section-->
+
+  <div class="descrip-section row">
+    <center><h1>What is Wizio?</h1></center>
+    <p><h3>Founded in January of 2015, Wizio utilizes cutting-edge technology to
+      offer an automated realtor service that connects quality tenants to
+      landlords and property managers faster and cheaper than ever before.
+      The software as a service provides virtual reality apartment showings,
+      automated lease generation and submission, and tenant screening. Wizio
+      aims to enhance the process for everyone by bringing affordable automation
+      to the apartment rental market.</p></h3>
+  </div><!--descrip section -->
+
+  <div class="entersite-section row">
+    </br>
+    <center><input class="btn btn-success btn-lg" value="Enter Site"></center>
+  </div><!--enter site-->
+
+  <div class="row">
+    <center><h1>Explore Virtual Real Estate</h1></center>
+  </div><!--virtual slogan-->
+
+  <div class="row">
+    <div class="hidden-xs hidden-sm">
+    </br>
+    <center><iframe width="640px" height="385px"
+    src="https://www.youtube.com/embed/5oCTsArsOr4"
+    frameborder="0" allowfullscreen>
+    </iframe></center>
+    </div><!--mobile hidden-->
+
+    <div class="hidden-md hidden-lg">
+    </br>
+    <center><iframe width="380px" height="320px"
+    src="https://www.youtube.com/embed/5oCTsArsOr4"
+    frameborder="0" allowfullscreen>
+    </iframe></center>
+    </div><!--desktop hidden-->
+  </div><!--row-->
+</div><!--container-->
