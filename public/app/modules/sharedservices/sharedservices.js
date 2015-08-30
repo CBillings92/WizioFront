@@ -59,4 +59,28 @@ angular.module('SharedServicesApp')
                 search: searchApartment
             };
         }
+    ])
+    .service('UserRegistration', [
+        '$state',
+        'registration',
+        function($state, registration){
+            function registerUser(user, callback){
+                console.dir("in setUserObj");
+                registration.save(user, function(data){
+                    console.dir(data);
+                    console.dir(user);
+                    if(user.userType === 1){
+                        $state.go('ApartmentsDisplay');
+                    } else if (user.userType === 2){
+
+                    } else if (user.userType === 3) {
+                        $state.go('BrokerAdditionalInfo');
+                    }
+                });
+            }
+            return {
+                saveUser: registerUser
+            };
+        }
+
     ]);
