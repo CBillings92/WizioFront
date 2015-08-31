@@ -1,46 +1,48 @@
-<div class='container'>
-    <div class='row'>
-        <form class='col-md-9' ng-submit='setUserObject()'>
-            <h3>User Info:</h3>
-            <div class='form-group'>
-                <label class='control-label'>First Name:</label>
+<div class="body container">
+  <div class="row">
+    <form ng-submit='setUserObject()'>
+            <div class="col-lg-offset-3 col-lg-6 form-group">
+                <label class='control-label'><h4>First Name:</h4></label>
                 <input class='form-control' ng-model='firstName' type='text'>
             </div>
-            <div class='form-group'>
-                <label class='control-label'>Last Name:</label>
+            <div class="col-lg-offset-3 col-lg-6 form-group">
+                <label class='control-label'><h4>Last Name:</h4></label>
                 <input class='form-control' ng-model='lastName' type='text'>
             </div>
-            <div class='form-group'>
-                <label class='control-label'>Email:</label>
+            <div class="col-lg-offset-3 col-lg-6 form-group">
+                <label class='control-label'><h4>Email:</h4></label>
                 <input class='form-control' name='email' ng-model='email' required='true' type='email'>
                 <span ng-show='createAcct.email.$invalid'>
                     <span ng-show="createAcct.email.$error.email">Invalid email address</span>
                     <span ng-show="createAcct.email.$error.required">Invalid email address</span>
                 </span>
             </div>
-            <div class='form-group'>
-                <label class='control-label'>Set Password:</label>
-                <input class="form-control" ng-model="password" type="password"/>
-                <label class='control-label'>Confirm Password:</label>
-                <input class="form-control" name="password" ng-model="passwordConfirm" type="password"/>
-            </div>
-            <div>
-                <div class="form-group">
-                    <div>
 
-                        <label>
-                            I am a...
-                        </label>
-                    </div>
-
-                    <div class="btn-group">
-                        <label btn-radio="'broker'" class="btn btn-primary" ng-model="radioModel">Broker</label>
-                        <label btn-radio="'realtor'" class="btn btn-primary" ng-model="radioModel">Realtor</label>
-                        <label btn-radio="'tenant'" class="btn btn-primary" ng-model="radioModel" style="margin-left:15px;">Tenant</label>
-                    </div>
-                </div>
+            <div class="col-lg-offset-3 col-lg-6 form-group">
+              <label class='control-label'><h4>Set Password:</h4></label>
+              <input class="form-control" ng-model="password" type="password"/>
+              <label class="control-label"><h4>Confirm Password:</h4></label>
+              <input class="form-control" name="password" ng-model="passwordConfirm" type="password"/>
             </div>
-            <input class='btn btn-primary' for='createAcct' type='submit'>
+
+            <div class="col-lg-offset-3 col-lg-6 form-group">
+              <center><label>
+                <h4>I am a...</h4>
+              </label></center>
+
+                <center><div class="btn-group">
+                  <label btn-radio="'broker'" class="btn btn-success btn-lg" ng-model="radioModel">Broker</label>
+                  <label btn-radio="'realtor'" class="btn btn-success btn-lg" ng-model="radioModel">Realtor</label>
+                  <label btn-radio="'tenant'" class="btn btn-success btn-lg" ng-model="radioModel">Tenant</label>
+                </div></center><!-- btn-group -->
+            </div><!-- form-group -->
+          </br>
+          <div class="col-lg-offset-3 col-lg-6">
+            <center><input class="btn btn-success btn-lg" for='createAcct' type='submit'></center>
+        </br>
+        </div>
+
+      </br></br>
         </form>
     </div>
 </div>

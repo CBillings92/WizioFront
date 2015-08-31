@@ -1,17 +1,17 @@
-<div class='container'>
+<div class="container body">
   <div class='row'>
     <form class='col-md-6' >
       <div class='form-group' >
-        <label class='controle-label'>Email:</label>
+        <label class='control-label'><h3>Email:</h3></label>
         <input type='text' ng-model='email' class='form-control col-md-6'>
       </div>
       <div class='form-group'>
-        <label class='controle-label'>Password:</label>
+        <label class='control-label'><h3>Password:</h3></label>
         <input type='password' ng-model='password' class="form-control">
       </div>
       <div class='form-group'>
         <!--<button ng-click="createAcct()" class="btn btn-warning">Create Account</button>-->
-        <button class="btn btn-submit" ng-click="requestLogin()">Login</button>&nbsp;&nbsp;<a href="#/sendresetpassemail">forgot password?</a>
+        <button class="btn btn-success btn-lg" ng-click="requestLogin()">Login</button>&nbsp;&nbsp;<a href="#/sendresetpassemail">forgot password?</a>
       </div>
     </form>
   </div>
