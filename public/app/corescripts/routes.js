@@ -45,6 +45,7 @@ angular.module('MainApp')
                 .state('Blog', {
                     url: '/blog',
                     views: {
+                        "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/blog.html',
                             controller: 'blogctrl'
