@@ -14,19 +14,22 @@
   width: 6em;
 }
 .entersite-section {
-  padding: 50px 0;
+  padding: 50px;
   background-color: #dde0cd;
   position: relative;
+  opacity: 0.9;
 }
 .descrip-section {
   background-color: #dde0cd;
   position: relative;
   padding: 20px;
+  opacity: 0.9;
 }
 
 .demo-section {
   position: relative;
   overflow: hidden;
+  background-color: #6e6e6e;
 }
 
 .demo-section h1 {
@@ -53,8 +56,5 @@
   position: relative;
   background-color: #6e6e6e;
   padding: 25px;
-}
-
-.input-group {
-  padding-right: 22em;
+  opacity: 0.9;
 }

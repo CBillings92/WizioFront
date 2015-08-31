@@ -25,7 +25,7 @@
 <!-- demo section -->
 
     <div class="entersite-section row">
-        <div class="col-lg-offset-3">
+        <div class="col-lg-6 col-lg-offset-3">
             <center>
                 <div class="input-group">
                     <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
@@ -36,7 +36,8 @@
                     </div>
                     <div class="input-group-btn">
                         <button class="btn btn-success" ng-click="search()" href="" type="button">
-                            Search to Enter Site
+                            <span class="glyphicon glyphicon-search"></span>
+                            <span class="hidden-xs">Search Apartments to Enter Site</span>
                         </button>
                     </div>
                 </div>
@@ -97,22 +98,17 @@
             </div>
         </div>
 <!--row-->
-        <div>
             <div class="form-group">
-                <div>
+              <center><label>
+                <h3>I am a...</h3>
+              </label></center>
 
-                    <label>
-                        I am a...
-                    </label>
-                </div>
-
-                <div class="btn-group">
-                    <label btn-radio="'broker'" class="btn btn-primary" ng-model="radioModel">Broker</label>
-                    <label btn-radio="'realtor'" class="btn btn-primary" ng-model="radioModel">Realtor</label>
-                    <label btn-radio="'tenant'" class="btn btn-primary" ng-model="radioModel" style="margin-left:15px;">Tenant</label>
-                </div>
-            </div>
-        </div>
+                <center><div class="btn-group">
+                  <label btn-radio="'broker'" class="btn btn-success btn-lg" ng-model="radioModel">Broker</label>
+                  <label btn-radio="'realtor'" class="btn btn-success btn-lg" ng-model="radioModel">Realtor</label>
+                  <label btn-radio="'tenant'" class="btn btn-success btn-lg" ng-model="radioModel">Tenant</label>
+                </div></center><!-- btn-group -->
+            </div><!-- form-group -->
 
         <center><input class="btn btn-success btn-lg" id="signinbtn" ng-click="registerUser()" value="Sign Up"></center>
     </div>
