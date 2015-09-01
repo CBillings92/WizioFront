@@ -1,5 +1,22 @@
-<div class="body" ng-repeat = "apartment in $sessionStore.apartments">
-    <div class="">
-        {{apartment.street}}
-    </div>
-</div>
+<div class="container" ng-repeat="apartment in $sessionStore.apartments">
+  <div class="col-md-offset-2">
+    <article class="media">
+      <h2 class="full-width">
+        <div class="wrap">
+          {{apartment.houseNum}} {{apartment.street}} {{apartment.unitNum}}
+        </div><!-- wrap -->
+      </h2>
+
+      <div class="media-body">
+      </br>
+        <h3>{{apartment.city}}, {{apartment.state}} {{apartment.zip}}</h3>
+      </br>
+        <a href="#/apartments/{{apartment.id}}/{{apartment.street}}/{{apartment.state}}">
+          <button class="btn btn-success">More</button>
+        </a>
+      </br></br>
+      </div><!-- media body -->
+  </article>
+</div><!-- col-md-8 -->
+</div><!-- row -->
+</br>
