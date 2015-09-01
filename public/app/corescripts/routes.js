@@ -72,6 +72,16 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('CreateApartment', {
+                    url: '/createapartment',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/createapartment.html',
+                            controller: 'CreateApartmentCtrl'
+                        }
+                    }
+                })
                 .state('UserAccount', {
                     url: '/account',
                     views: {
