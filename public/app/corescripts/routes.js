@@ -103,7 +103,38 @@ angular.module('MainApp')
                         controller: 'BrokerAddInfoCtrl'
                     }
                 }
-            });
+            })
+            .state('Apartment1', {
+                url: '/apartment/1',
+                views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                        templateUrl: 'public/viewtemplates/public/apartment1.html',
+                        controller: 'Apartment1Ctrl'
+                    }
+                }
+            })
+            .state('Apartment2', {
+                url: '/apartment/2',
+                views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                        templateUrl: 'public/viewtemplates/public/apartment2.html',
+                        controller: 'Apartment2Ctrl'
+                    }
+                }
+            })
+            .state('Apartment3', {
+                url: '/apartment/3',
+                views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                        templateUrl: 'public/viewtemplates/public/apartment3.html',
+                        controller: 'Apartment3Ctrl'
+                    }
+                }
+            })
+            ;
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

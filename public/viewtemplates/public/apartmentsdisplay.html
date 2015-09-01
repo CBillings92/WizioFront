@@ -1,6 +1,7 @@
 <div class="container" ng-repeat="apartment in $sessionStore.apartments">
-  <div class="col-md-offset-2">
+  <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
     <article class="media">
+        <img class="pull-left" src="https://gyazo.com/8417ab5a5546ff53e1133c5009253f56" id="aptPicture"></img>
       <h2 class="full-width">
         <div class="wrap">
           {{apartment.houseNum}} {{apartment.street}} {{apartment.unitNum}}
@@ -11,7 +12,7 @@
       </br>
         <h3>{{apartment.city}}, {{apartment.state}} {{apartment.zip}}</h3>
       </br>
-        <a href="#/apartments/{{apartment.id}}/{{apartment.street}}/{{apartment.state}}">
+        <a href="#/apartment/{{apartment.id}}">
           <button class="btn btn-success">More</button>
         </a>
       </br></br>
