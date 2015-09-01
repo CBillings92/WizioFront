@@ -18,6 +18,7 @@
   background-color: #dde0cd;
   position: relative;
   opacity: 0.9;
+  z-index: 1;
 }
 .descrip-section {
   background-color: #dde0cd;
@@ -44,7 +45,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   opacity: 0.5;
 }
 
