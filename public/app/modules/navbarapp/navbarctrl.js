@@ -4,13 +4,13 @@ angular.module('NavbarApp')
         '$scope',
         '$state',
         '$http',
-        'ApartmentSearch',
-        function($rootScope, $scope, $state, $http, ApartmentSearch) {
+        'ApartmentSearchSvc',
+        function($rootScope, $scope, $state, $http, ApartmentSearchSvc) {
             $scope.goToLogin = function() {
                 $state.go('Login');
             };
             $scope.search = function() {
-                ApartmentSearch.search($scope.searchString);
+                ApartmentSearchSvc.search($scope.searchString);
             };
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
