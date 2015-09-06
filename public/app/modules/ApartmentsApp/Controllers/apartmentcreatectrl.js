@@ -6,10 +6,10 @@ angular.module('ApartmentsApp')
         '$state',
         'geocoder',
         'lodash',
-        'ApartmentsResource',
+        'ApartmentResource',
         //Pass $scope into the function as a way to allow our code to work when utilizing minification.
         //See the last 3 sections of this site. Starts with: "The benefit to the longhand version is that..." https://thinkster.io/egghead/scope-vs-scope/
-        function($scope, $sessionStorage, $rootScope, $state, geocoder, lodash, ApartmentsResource) {
+        function($scope, $sessionStorage, $rootScope, $state, geocoder, lodash, ApartmentResource) {
             //save sessionStorage variable into $scope.$storage for sessionStorage
 
             $scope.$storage = $sessionStorage;
@@ -119,7 +119,7 @@ angular.module('ApartmentsApp')
                             apartmentObj.longitude = parseFloat(results[0].geometry.location.K.toFixed(6));
                             console.dir(apartmentObj);
                             //save apartment to database using apartment factory
-                            ApartmentsResource.save({action: 'save'}, apartmentObj, function(data, status) {
+                            ApartmentResource.save({action: 'save'}, apartmentObj, function(data, status) {
                                 $scope.apartment = data;
                                 console.dir(data);
                                 $state.go('MyAccount');
