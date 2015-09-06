@@ -23,7 +23,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('ApartmentDetails', {
-                  url:'/apartmentdetails',
+                  url:'/apartmentdetails/:id',
                   views: {
                     "navbar": navbar,
                     "maincontent": {
@@ -104,6 +104,7 @@ angular.module('MainApp')
                     }
                 }
             })
+            /*
             .state('Apartment1', {
                 url: '/apartment/1',
                 views: {
@@ -134,6 +135,7 @@ angular.module('MainApp')
                     }
                 }
             })
+            */
             ;
             $urlRouterProvider.otherwise('/');
 

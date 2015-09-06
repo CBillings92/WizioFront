@@ -1,7 +1,7 @@
 angular.module('ApartmentsApp')
-.factory('ApartmentsResource', [
+.factory('ApartmentResource', [
     '$resource',
     function($resource){
-        return $resource('http://localhost:4000/api/apartment/:action', {action: '@action'});
+        return $resource('http://localhost:4000/api/apartment/:id', {id: '@id'});
     }
 ]);

@@ -1,8 +1,9 @@
 angular.module('SharedServicesApp')
-    .service('ApartmentSearch', [
+    .service('ApartmentSearchSvc', [
         '$rootScope',
+        '$sessionStorage',
         'Search',
-        function($rootScope, Search) {
+        function($rootScope, $sessionStorage, Search) {
             function searchApartment(searchString) {
                 //store reused javascript regular expression in re
                 //regular expression checks for any non-decimal character
@@ -51,6 +52,9 @@ angular.module('SharedServicesApp')
                         searchString: queryParams.string
                     }, function(results, status) {
                         $rootScope.$broadcast('searchFinished', results);
+                        $sessionStorage.apartmentSearch = results;
+                        console.dir(results);
+                        console.dir(status);
                         return "search complete";
                     });
                 }

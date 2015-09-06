@@ -4,8 +4,8 @@ angular.module('LandingPageApp')
         '$http',
         '$state',
         'UserRegistration',
-        'ApartmentSearch',
-        function($scope, $http, $state, UserRegistration, ApartmentSearch) {
+        'ApartmentSearchSvc',
+        function($scope, $http, $state, UserRegistration, ApartmentSearchSvc) {
             console.dir("landing page controller");
             $scope.radioModel = {
                 realtor: false,
@@ -13,8 +13,7 @@ angular.module('LandingPageApp')
                 broker: false
             };
             $scope.search = function() {
-                $state.go('ApartmentsDisplay');
-                //ApartmentSearch.search($scope.searchString);
+                ApartmentSearchSvc.search($scope.searchString);
             };
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
