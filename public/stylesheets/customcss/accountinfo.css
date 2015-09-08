@@ -1,0 +1,21 @@
+.info {
+  background-color: rgb(43, 182, 115);
+  opacity: 0.8;
+  padding: 25px;
+}
+
+.avatar {
+  width: 7em;
+  position: relative;
+  z-index: 2;
+  border-radius: 50%;
+}
+
+.fullopc {
+  z-index: 2;
+  position: relative;
+}
+
+h3 {
+  color: white;
+}
