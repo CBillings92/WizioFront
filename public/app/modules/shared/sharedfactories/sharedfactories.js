@@ -1,5 +1,5 @@
 angular.module('SharedFactoriesApp')
-    .factory('Auth', [
+    .factory('AuthFct', [
         '$state',
         '$localStorage',
         '$http',
