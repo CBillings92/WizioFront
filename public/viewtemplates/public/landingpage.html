@@ -1,6 +1,13 @@
 <div class="container-fluid">
     <div class="demo-section row">
-        <center><img id="landingpagelogo" src="public/viewtemplates/images/logo.png"></center>
+      <div class="col-md-11">
+        <img id="landingpagelogo" src="public/viewtemplates/images/logo.png">
+      </div>
+
+      <div class="col-md-1">
+        <a class="btn btn-success btn-lg" href="#/login"
+        id="login" ng-hide="isLoggedIn">Login</a>
+      </div>
 
         <center>
             <h1>Explore Real Estate Virtually</h1>
@@ -113,7 +120,8 @@
                 </div></center><!-- btn-group -->
             </div><!-- form-group -->
 
-        <center><input class="btn btn-success btn-lg" id="signinbtn" ng-click="registerUser()" value="Sign Up"></center>
+        <center><input class="btn btn-success btn-lg" id="signinbtn" ng-click="registerUser()" value="Sign Up">
+        </br>
     </div>
 <!--signup-section-->
 
