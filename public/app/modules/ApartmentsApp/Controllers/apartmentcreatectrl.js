@@ -119,7 +119,7 @@ angular.module('ApartmentsApp')
                             apartmentObj.longitude = parseFloat(results[0].geometry.location.K.toFixed(6));
                             console.dir(apartmentObj);
                             //save apartment to database using apartment factory
-                            ApartmentResource.save({action: 'save'}, apartmentObj, function(data, status) {
+                            ApartmentResource.save(null, apartmentObj, function(data, status) {
                                 $scope.apartment = data;
                                 console.dir(data);
                                 $state.go('MyAccount');
