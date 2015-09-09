@@ -53,7 +53,8 @@ angular.module('ApartmentDetailsApp')
                         bodyText: 'Are you sure you want to delete this customer?'
                     };
                     ModalSvc.showModal(modalDefaults, modalOptions).then(function(result){
-                        console.dir("WTF IS HAPPENING");
+                        console.dir(result);
+
                     });
                 } else {
 
