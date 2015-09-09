@@ -91,6 +91,7 @@ angular.module('SharedServicesApp')
     .service('ModalSvc', [
         '$modal',
         function($modal){
+            //refer to angular-ui documentation for modal docs
             var modalDefaults = {
                 backdrop: true,
                 keyboard: true,
