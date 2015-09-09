@@ -1,0 +1,108 @@
+<div class="details container-fluid">
+  <div class="row">
+      <center>
+      <h2>{{apartment.houseNum}} {{apartment.street}} {{apartment.city}} {{apartment.state}}</h2>
+  </center>
+    <div class="col-lg-6">
+
+      <div class="hidden-xs hidden-sm">
+      <center><iframe width="600px" height="385px"
+      src="https://www.youtube.com/embed/lBPXTFAEgwo"
+      frameborder="0" allowfullscreen id="demo">
+      </iframe></center>
+      </div><!--mobile hidden-->
+
+      <div class="hidden-md hidden-lg">
+      <center><iframe width="380px" height="320px"
+      src="https://www.youtube.com/embed/lBPXTFAEgwo"
+      frameborder="0" allowfullscreen id="demo">
+      </iframe></center>
+      </div><!--desktop hidden-->
+    </div><!-- col-md-3 -->
+
+    <div clss="col-lg-6">
+    </br>
+      <center><button class="btn btn-success">Apply For Apartment</button>
+      <button class="btn btn-success">Setup in Person Tour</button></center>
+    </br></br>
+      <p><h3>Description:</h3>
+      </br>
+        <h4>Beautiful modern apartment. Newly refurbished! Naturally well-lit 3 bedroom 2
+        bathroom apartment in Old Town neighborhood. Close to the green line, Northeastern University, the Prudential Mall and walking distance to Whole Foods.
+        Hardwood flooring throughout.
+        Pet-friendly. 3600/month, 1 month security deposit. Utilities not included.</h4> </p>
+    </br>
+    </div><!--col-md-3-->
+  </div><!-- row -->
+
+  <div class="row">
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="badge">{{apartment.houseNum}} {{apartment.street}}</span>
+          Street
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.unitNum}}</span>
+          Unit
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.city}}</span>
+          City
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.state}}</span>
+          State
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.zip}}</span>
+          Zipcode
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.beds}}</span>
+          Beds
+        </li>
+      </ul><!-- ul -->
+    </div><!-- col-md-6 -->
+
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span class="badge">{{apartment.baths}}</span>
+          Baths
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.livingSpaces}}</span>
+          Living Spaces
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.maxResidency}}</span>
+          Max Residency
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.costPerMonth}}</span>
+          Cost Per Month
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.renovated}}</span>
+          Newly Renovated
+        </li>
+
+        <li class="list-group-item">
+          <span class="badge">{{apartment.pets}}</span>
+          Pet Policy
+        </li>
+      </ul><!-- list group -->
+    </div><!-- col-md-6 -->
+  </div><!-- row -->
+
+</div><!--container -->

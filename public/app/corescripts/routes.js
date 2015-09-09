@@ -22,14 +22,35 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('Blog', {
-                  url: '/blog',
-                  views: {
-                    "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/blog.html',
-                      controller: 'blogctrl'
+                .state('ApartmentDetails', {
+                    url: '/apartmentdetails/:id',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartmentdetailspage.html',
+                            controller: 'ApartmentDetailsCtrl'
+                        }
                     }
-                  }
+                })
+                .state('ApartmentsDisplay', {
+                    url: '/apartments',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartmentsdisplay.html',
+                            controller: 'ApartmentsDisplayCtrl'
+                        }
+                    }
+                })
+                .state('Blog', {
+                    url: '/blog',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/blog.html',
+                            controller: 'blogctrl'
+                        }
+                    }
                 })
                 .state('AccountCreate', {
                     url: '/createaccount',
@@ -51,18 +72,47 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('UserAccount', {
-                    url: '/account',
+                .state('CreateApartment', {
+                    url: '/createapartment',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/account.html',
+                            templateUrl: 'public/viewtemplates/public/createapartment.html',
+                            controller: 'CreateApartmentCtrl'
+                        }
+                    }
+                })
+                .state('UserAccount', {
+                    url: '/account',
+                    abstract: true,
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/account/accountmain.html',
                             controller: 'AccountCtrl'
                         }
                     },
                     data: requireLogin
                 })
-                .state('BrokerAdditionalInfo', {
+                .state('UserAccount.Dashboard',{
+                    url: '/dashboard',
+                    views: {
+                        accountInfo: {
+                            templateUrl: 'public/viewtemplates/public/account/accountInfo.html',
+                            controller: "AccountInfoCtrl"
+                        },
+                        appliedApartments: {
+                            templateUrl: 'public/viewtemplates/public/account/appliedApartments.html',
+                            controller: "appliedApartmentsCtrl"
+                        },
+                        suggestedApartments: {
+                            templateUrl: 'public/viewtemplates/public/account/suggestedApartments.html',
+                            controller: "SuggestedApartmentsCtrl"
+                        }
+                    }
+                })
+
+            .state('BrokerAdditionalInfo', {
                     url: '/brokerInfo',
                     views: {
                         "navbar": navbar,
@@ -71,28 +121,69 @@ angular.module('MainApp')
                             controller: 'BrokerAddInfoCtrl'
                         }
                     }
-                });
+                })
+                /*
+                .state('Apartment1', {
+                    url: '/apartment/1',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartment1.html',
+                            controller: 'Apartment1Ctrl'
+                        }
+                    }
+                })
+                .state('Apartment2', {
+                    url: '/apartment/2',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartment2.html',
+                            controller: 'Apartment2Ctrl'
+                        }
+                    }
+                })
+                .state('Apartment3', {
+                    url: '/apartment/3',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/apartment3.html',
+                            controller: 'Apartment3Ctrl'
+                        }
+                    }
+                })
+                */
+            ;
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([
                 '$q',
                 '$location',
                 '$localStorage',
-                function($q, $location, $localStorage) {
+                '$injector',
+                function($q, $location, $localStorage, $injector) {
                     return {
                         request: function(config) {
                             config.headers = config.headers || {};
-                            if ($localStorage.token) {
-                                config.headers.Authorization = $localStorage.token;
-                                console.dir(config.headers);
+                            console.dir(config.headers);
+                            if (config.headers.searchCheck) {
+                                delete config.headers.searchCheck;
+                                return config;
+                            } else {
+                                if ($localStorage.token) {
+                                    config.headers.Authorization = $localStorage.token;
+                                }
+                                return config;
                             }
-                            return config;
+
                         },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 //$cookie.remove('token', []);
-                                $location.path('/login');
+                                alert('Authentication Failed');
                             }
+                            $injector.get('$state').transitionTo('Login');
                             return $q.reject(response);
                         }
 

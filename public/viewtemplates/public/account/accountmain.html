@@ -1,0 +1,14 @@
+<div class="container-fluid" ng-controller="AccountCtrl">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div ui-view="accountInfo"></div>
+      </div>
+    </div><!-- row -->
+    <div class="row pad">
+      <div class="col-md-5 col-md-offset-1 appl">
+        <div ui-view="appliedApartments"></div>
+      </div>
+
+        <div class="col-md-5 sugges" ui-view="suggestedApartments"></div>
+    </div>
+</div>
