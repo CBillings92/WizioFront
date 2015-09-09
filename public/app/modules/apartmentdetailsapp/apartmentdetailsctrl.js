@@ -43,7 +43,8 @@ angular.module('ApartmentDetailsApp')
                         backdrop: true,
                         keyboard: true,
                         modalFade: true,
-                        templateUrl: 'public/viewtemplates/public/landingpage.html'
+                        templateUrl: 'public/viewtemplates/public/profileform.html',
+                        controller: 'ProfileCtrl'
                     };
                     var modalOptions = {
                         closeButtonText: 'Cancel',
