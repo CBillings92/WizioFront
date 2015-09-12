@@ -7,6 +7,7 @@ angular.module('LoginApp', []);
 angular.module('BrokerApp', []);
 angular.module('NavbarApp', []);
 angular.module('ApartmentsApp', []);
+angular.module('SharedControllersApp', []);
 angular.module('SharedFactoriesApp', []);
 angular.module('SharedServicesApp', []);
 
@@ -21,6 +22,7 @@ angular.module('MainApp', [
         'NavbarApp',
         'LoginApp',
         'BrokerApp',
+        'SharedControllersApp',
         'SharedFactoriesApp',
         'SharedServicesApp',
         'ui.router',

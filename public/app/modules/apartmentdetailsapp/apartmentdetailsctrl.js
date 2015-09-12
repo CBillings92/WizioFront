@@ -3,12 +3,12 @@ angular.module('ApartmentDetailsApp')
         '$scope',
         '$stateParams',
         '$sessionStorage',
+        '$modal',
         'lodash',
         'ApartmentGetSetSvc',
         'ApartmentResource',
         'AuthFct',
-        'ModalSvc',
-        function($scope, $stateParams, $sessionStorage, lodash, ApartmentGetSetSvc, ApartmentResource, AuthFct, ModalSvc) {
+        function($scope, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, ApartmentResource, AuthFct) {
             //LOAD APARTMENT DATA START
             //get apartment ID from URL
             var apartmentURLID = $stateParams.id;
@@ -39,26 +39,18 @@ angular.module('ApartmentDetailsApp')
             $scope.apply = function() {
                 var user = AuthFct.getTokenClaims();
                 if (user.ProfileId === null) {
-                    var modalDefaults = {
-                        backdrop: true,
-                        keyboard: true,
-                        modalFade: true,
-                        templateUrl: 'public/viewtemplates/public/profileform.html',
-                        controller: 'ProfileCtrl'
-                    };
-                    var modalOptions = {
-                        closeButtonText: 'Cancel',
-                        actionButtonText: 'Delete Customer',
-                        headerText: 'Delete ',
-                        bodyText: 'Are you sure you want to delete this customer?'
-                    };
-                    ModalSvc.showModal(modalDefaults, modalOptions).then(function(result){
-                        console.dir(result);
-
+                    var modalInstance = $modal.open({
+                        templateUrl: 'public/viewtemplates/public/createprofilemodal.html',
+                        controller: 'ProfileCreateModalCtrl',
+                        size: 'md',
                     });
-                } else {
+                    modalInstance.result.then(function() {
+                        console.dir("IN RESULT");
+                    }, function() {
+                        console.dir("IN MODAL DISMISSED");
+                    });
+            } else {
 
-                }
-            };
-        }
-    ]);
+            }
+        };
+    }]);
