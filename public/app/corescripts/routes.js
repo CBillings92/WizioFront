@@ -72,6 +72,26 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('SendResetEmail', {
+                  url: '/sendresetpassemail',
+                  views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
+                      controller: 'LoginCtrl'
+                    }
+                  }
+                })
+                .state('UpdatePassword',{
+                  url: '/resetpassword/:token',
+                  views: {
+                    "navbar": navbar,
+                    "maincontent": {
+                      templateUrl: 'public/viewtemplates/public/resetpassword.html',
+                      controller: 'LoginCtrl'
+                    }
+                  }
+                })
                 .state('CreateApartment', {
                     url: '/createapartment',
                     views: {
@@ -132,7 +152,7 @@ angular.module('MainApp')
                     }
                 }
             })
-            ;
+            ; //Is this semicolon supposed to be here???? from Chris Canal
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([
