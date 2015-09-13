@@ -55,10 +55,13 @@ angular.module('SellerApp')
                     }
                 });
                 modalInstance.result.then(function(result) {
+                    //Could probably utilize async on front end here...
                     console.dir(profile);
                     profile.annualIncome = "123";
                     if (result === "saveAndApply") {
                         ProfileResource.save(profile, function(status, data) {
+                            console.dir(status);
+                            console.dir(data);
                             if (status === 200) {
                                 ApplicationResource.save(application, function(status, data) {
                                     if (status === 200) {
