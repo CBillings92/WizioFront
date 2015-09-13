@@ -1,8 +1,9 @@
 angular.module('SharedFactoriesApp')
     .factory('Search', [
         '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/search/:flag/:searchString", {
+        'WizioConfig',
+        function($resource, WizioConfig) {
+            return $resource(WizioConfig.baseAPIURL + "search/:flag/:searchString", {
                 flag: "@flag",
                 searchString: "@searchString"
             });
@@ -10,7 +11,8 @@ angular.module('SharedFactoriesApp')
     ])
     .factory('registration', [
         '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/user/registration");
+        'WizioConfig',
+        function($resource, WizioConfig) {
+            return $resource(WizioConfig.baseAPIURL + "user/registration");
         }
     ]);

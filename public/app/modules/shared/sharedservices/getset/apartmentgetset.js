@@ -1,31 +1,64 @@
 angular.module('SharedServicesApp')
     .service('ApartmentGetSetSvc', [
         '$sessionStorage',
+        '$stateParams',
         'ApartmentResource',
-        function($sessionStorage, ApartmentResource) {
+        'lodash',
+        function($sessionStorage, $stateParams, ApartmentResource, lodash) {
             var apartmentSelected = null;
-            var set = function(apartment, variableName) {
-                if (variableName) {
-                    $sessionStorage[variableName] = apartment;
+            var sessionStorageVarContainer = [];
+            var set = function(apartment, sessionStorageVar) {
+                if (sessionStorageVar) {
+                    $sessionStorage[sessionStorageVar] = apartment;
+                    if(lodash.indexOf(sessionStorageVarContainer, sessionStorageVar)===-1){
+                        sessionStorageVarContainer.push(sessionStorageVar);
+                    }
                 }
 
                 apartmentSelected = apartment;
             };
-            var get = function(apartmentId) {
-                /*if(apartmentSelected !== null){
+            var get = function(sessionStorageVar) {
+                if(sessionStorageVar){
+                    apartmentSelected = $sessionStorage[sessionStorageVar];
                     return apartmentSelected;
-                } else {
-                    ApartmentResource.query({action: 'findbyid'})
-                }*/
+                }
                 return apartmentSelected;
             };
             var reset = function() {
                 apartmentSelected = null;
             };
+            var checkApartment = function(callback){
+                //LOAD APARTMENT DATA START
+                //get apartment ID from URL
+                var apartmentURLID = $stateParams.id;
+                //get apartment data from apartmentGetSet service
+                var apartment = apartmentSelected;
+                //get apartment ID from session storage if it exists
+                var apartmentSessionStorageID = null;
+                if ($sessionStorage.apartmentSelected) {
+                    apartmentSessionStorageID = $sessionStorage.apartmentSelected.id;
+                }
+                //check if apartment from apartmentGetSet and sessionStorage match apartment requested in URL
+                if (apartment !== null && apartment.id === apartmentURLID && apartmentSessionStorageID === apartmentURLID) {
+                    callback(apartment);
+                } else if (apartmentSessionStorageID == apartmentURLID) {
+                    apartmentSelected = $sessionStorage.apartmentSelected;
+                    callback(apartmentSelected);
+                } else {
+                    ApartmentResource.get({
+                        id: apartmentURLID
+                    }, function(data) {
+                        apartmentSelected = data;
+                        console.dir(data);
+                        callback(apartmentSelected);
+                    });
+                }
+            };
             return {
                 set: set,
                 get: get,
-                reset: reset
+                reset: reset,
+                checkApartment: checkApartment
             };
         }
     ]);

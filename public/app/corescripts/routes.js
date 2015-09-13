@@ -127,8 +127,8 @@ angular.module('MainApp')
                 views: {
                     "navbar": navbar,
                     "maincontent": {
-                        templateUrl: 'public/viewtemplates/public/profileform.html',
-                        controller: 'ProfileCtrl'
+                        templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                        controller: 'ProfileFormCtrl'
                     }
                 }
             })
