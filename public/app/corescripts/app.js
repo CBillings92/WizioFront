@@ -10,6 +10,7 @@ angular.module('ApartmentsApp', []);
 angular.module('SharedControllersApp', []);
 angular.module('SharedFactoriesApp', []);
 angular.module('SharedServicesApp', []);
+angular.module('SellerApp', []);
 
 
 angular.module('MainApp', [
@@ -25,6 +26,7 @@ angular.module('MainApp', [
         'SharedControllersApp',
         'SharedFactoriesApp',
         'SharedServicesApp',
+        'SellerApp',
         'ui.router',
         'ngStorage',
         'ngResource',

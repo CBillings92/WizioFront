@@ -61,8 +61,6 @@ angular.module('ApartmentsApp')
                 };
 
                 function latitude(address) {
-                    //storing passed in address into a local variable address
-                    address = "175 Amory Street Jamaica Plain MA 02130";
 
                     var geocoder = new google.maps.Geocoder();
                     geocoder.geocode({

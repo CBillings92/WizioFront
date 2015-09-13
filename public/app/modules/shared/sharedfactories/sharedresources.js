@@ -13,4 +13,10 @@ angular.module('SharedFactoriesApp')
         function($resource) {
             return $resource("http://localhost:4000/api/user/registration");
         }
+    ])
+    .factory('ApplicationResource', [
+        '$resource',
+        function($resource){
+            return $resource("http://localhost:4000/api/profile");
+        }
     ]);
