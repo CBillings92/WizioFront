@@ -152,7 +152,48 @@ angular.module('MainApp')
                     }
                 }
             })
-            ; //Is this semicolon supposed to be here???? from Chris Canal
+                .state('Profile.Create', {
+                    url: '/create',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            controller: 'ProfileFormCtrl'
+                        }
+                    }
+                })
+                .state('Profile.Edit', {
+                    url: '/edit',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            controller: 'ProfileEditCtrl'
+                        }
+                    }
+                })
+                .state('Apartment', {
+                    url: '/apartment',
+                    abstract: true
+                })
+                .state('Apartment.Application', {
+                    url:'/application',
+                    abstract: true,
+                    data: {
+                        requireLogin: true
+                    }
+                })
+                .state('Apartment.Application.New', {
+                    url: '/new',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            controller: 'ApplicationFormNewCtrl'
+                        }
+                    }
+                }); //Is this semicolon supposed to be here???? from Chris Canal
+                // Yes from Mallory Loomis ;)
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

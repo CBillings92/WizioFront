@@ -1,4 +1,4 @@
-angular.module('SellerApp')
+angular.module('BuyerApp')
     .controller('ProfileFormCtrl', [
         '$scope',
         '$modal',
