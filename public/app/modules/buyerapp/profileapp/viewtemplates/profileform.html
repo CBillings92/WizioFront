@@ -53,6 +53,14 @@
                         <input class='form-control' ng-model="previousEmployer2" type='text'>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6" ng-repeat="email in applicationEmailCounter track by $index">
+                        <label class='control-label'>
+                            <h4>email</h4>
+                        </label>
+                        <input class='form-control' type='text' ng-model="applicationEmails[email.index]">
+                    </div>
+                </div>
 
             </div>
             <div class="col-lg-6">

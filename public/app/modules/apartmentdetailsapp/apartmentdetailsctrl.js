@@ -1,6 +1,7 @@
 angular.module('ApartmentDetailsApp')
     .controller('ApartmentDetailsCtrl', [
         '$scope',
+        '$state',
         '$stateParams',
         '$sessionStorage',
         '$modal',
@@ -8,27 +9,54 @@ angular.module('ApartmentDetailsApp')
         'ApartmentGetSetSvc',
         'ApartmentResource',
         'AuthFct',
-        function($scope, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, ApartmentResource, AuthFct) {
+        function($scope, $state, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, ApartmentResource, AuthFct) {
+            //modal function
+            var modal = function(templateUrl, controller, size){
+                var modalInstance = $modal.open({
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    size: size
+                });
+                return modalInstance;
+            };
+            //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
             });
             //LOAD APARTMENT DATA end
             $scope.apply = function() {
+                //get user data
                 var user = AuthFct.getTokenClaims();
+                //set apartment data and store that data in sessionStorage variable
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
+                //If the user doesn't have a profile
                 if (user.ProfileId === null) {
-                    var modalInstance = $modal.open({
-                        templateUrl: 'public/viewtemplates/public/createprofilemodal.html',
-                        controller: 'ProfileCreateModalCtrl',
-                        size: 'md',
-                    });
-                    modalInstance.result.then(function() {
-                        console.dir("IN RESULT");
+                    //call modal function
+                    var modalInstanceCreate = modal('public/viewtemplates/public/createprofilemodal.html', 'ProfileCreateModalCtrl', 'md');
+
+                    modalInstanceCreate.result.then(function(result) {
+                        $state.go('Profile.Create');
                     }, function() {
-                        console.dir("IN MODAL DISMISSED");
+
                     });
                 } else {
+                    //call modal function
+                    var modalInstanceVerify = modal('public/app/modules/buyerapp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
 
+                    modalInstanceVerify.result.then(function(result) {
+                        switch(result){
+                            case "ok":
+                                $state.go('ApartmentApplication');
+                                break;
+                            case "edit":
+                                $state.go('Profile.Edit');
+                                break;
+                            default:
+                                alert('ERROR');
+                        }
+                    }, function() {
+                        alert('MODAL DISMISSED');
+                    });
                 }
             };
         }
