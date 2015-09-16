@@ -71,6 +71,7 @@ angular.module('SellerApp')
                         ProfileResource.save(profile, function(status, data) {
                             console.dir(status);
                             console.dir(data);
+
                         });
                     } else if (result === "save") {
 
