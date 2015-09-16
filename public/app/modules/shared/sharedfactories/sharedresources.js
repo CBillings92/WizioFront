@@ -15,11 +15,4 @@ angular.module('SharedFactoriesApp')
         function($resource, WizioConfig) {
             return $resource(WizioConfig.baseAPIURL + "user/registration");
         }
-    ])
-    .factory('ApplicationResource', [
-        '$resource',
-        'WizioConfig',
-        function($resource, WizioConfig){
-            return $resource(WizioConfig.baseAPIURL + "profile");
-        }
     ]);

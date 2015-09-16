@@ -52,7 +52,7 @@ angular.module('MainApp', [
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 var requireLogin = null;
                 //check if the state being navigated to requires login
-                if (toState && toState.data.requireLogin) {
+                if (toState && toState.data.requireLogin !== undefined) {
                     requireLogin = toState.data.requireLogin;
                 }
                 //if state requires login, if token exists, if its expired, login

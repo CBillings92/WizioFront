@@ -21,8 +21,18 @@ angular.module('SharedServicesApp')
                 if(sessionStorageVar){
                     apartmentSelected = $sessionStorage[sessionStorageVar];
                     return apartmentSelected;
+                } else if(apartmentSelected === null || apartmentSelected.id !== $stateParams.id){
+                    ApartmentResource.get({
+                        id: apartmentURLID
+                    }, function(data) {
+                        apartmentSelected = data;
+                        console.dir(data);
+                        callback(apartmentSelected);
+                    });
+                } else {
+                    return apartmentSelected;
                 }
-                return apartmentSelected;
+
             };
             var reset = function() {
                 apartmentSelected = null;

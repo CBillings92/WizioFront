@@ -73,24 +73,24 @@ angular.module('MainApp')
                     }
                 })
                 .state('SendResetEmail', {
-                  url: '/sendresetpassemail',
-                  views: {
-                    "navbar": navbar,
-                    "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
-                      controller: 'LoginCtrl'
+                    url: '/sendresetpassemail',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
+                            controller: 'LoginCtrl'
+                        }
                     }
-                  }
                 })
-                .state('UpdatePassword',{
-                  url: '/resetpassword/:token',
-                  views: {
-                    "navbar": navbar,
-                    "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/resetpassword.html',
-                      controller: 'LoginCtrl'
+                .state('UpdatePassword', {
+                    url: '/resetpassword/:token',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/resetpassword.html',
+                            controller: 'LoginCtrl'
+                        }
                     }
-                  }
                 })
                 .state('CreateApartment', {
                     url: '/createapartment',
@@ -114,7 +114,7 @@ angular.module('MainApp')
                     },
                     data: requireLogin
                 })
-                .state('UserAccount.Dashboard',{
+                .state('UserAccount.Dashboard', {
                     url: '/dashboard',
                     views: {
                         accountInfo: {
@@ -131,8 +131,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-
-            .state('BrokerAdditionalInfo', {
+                .state('BrokerAdditionalInfo', {
                     url: '/brokerInfo',
                     views: {
                         "navbar": navbar,
@@ -142,17 +141,54 @@ angular.module('MainApp')
                         }
                     }
                 })
-            .state('CreateProfile', {
-                url: '/createprofile',
-                views: {
-                    "navbar": navbar,
-                    "maincontent": {
-                        templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                        controller: 'ProfileFormCtrl'
+                .state('Profile', {
+                    url: '/profile',
+                    abstract: true,
+                    data: {
+                        requireLogin: true
                     }
-                }
-            })
-            ; //Is this semicolon supposed to be here???? from Chris Canal
+                })
+                .state('Profile.Create', {
+                    url: '/create',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            controller: 'ProfileFormCtrl'
+                        }
+                    }
+                })
+                .state('Profile.Edit', {
+                    url: '/edit',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            controller: 'ProfileEditCtrl'
+                        }
+                    }
+                })
+                .state('Apartment', {
+                    url: '/apartment',
+                    abstract: true
+                })
+                .state('Apartment.Application', {
+                    url:'/application',
+                    abstract: true,
+                    data: {
+                        requireLogin: true
+                    }
+                })
+                .state('Apartment.Application.New', {
+                    url: '/new',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            controller: 'ProfileEditCtrl'
+                        }
+                    }
+                }); //Is this semicolon supposed to be here???? from Chris Canal
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

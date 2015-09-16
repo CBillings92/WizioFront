@@ -7,12 +7,19 @@ angular.module('SellerApp')
         'ProfileResource',
         'ApplicationResource',
         function($scope, $modal, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
-            var apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
+            $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
+            var apartment = $scope.apartment;
             var user = AuthFct.getTokenClaims();
-            console.dir(apartment);
+            console.dir(user);
+            //for ng-repeat on profile form for emails. Check # of bedrooms
+            $scope.applicationEmailCounter = [];
+            for (var i = 0; i < $scope.apartment.beds; i++) {
+                $scope.applicationEmailCounter.push(i);
+            }
 
             $scope.apply = function() {
                 var profile = {
+                    UserID: user.id,
                     annualIncome: $scope.annualIncome,
                     currentEmployer1: $scope.currentEmployer1,
                     currentEmployerLOE1: $scope.currentEmployerLOE1,
@@ -44,8 +51,10 @@ angular.module('SellerApp')
                     employmentStatus: $scope.employmentStatus,
                     desiredMoveInDate: $scope.desiredMoveInDate
                 };
+                //collect emails from form.
+                $scope.appicationEmails = [];
                 var modalInstance = $modal.open({
-                    templateUrl: 'public/app/modules/sellerapp/profileapp/viewtemplates/profilesavemodal.html',
+                    templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilesavemodal.html',
                     controller: 'ProfileSaveModalCtrl',
                     size: 'md',
                     resolve: {
@@ -62,14 +71,6 @@ angular.module('SellerApp')
                         ProfileResource.save(profile, function(status, data) {
                             console.dir(status);
                             console.dir(data);
-                            if (status === 200) {
-                                ApplicationResource.save(application, function(status, data) {
-                                    if (status === 200) {
-                                        alert('Application successful');
-                                        $state.go('account');
-                                    }
-                                });
-                            }
                         });
                     } else if (result === "save") {
 

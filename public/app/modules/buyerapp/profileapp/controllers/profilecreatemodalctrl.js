@@ -5,8 +5,8 @@ angular.module('SellerApp')
         '$state',
         function($scope, $modalInstance, $state) {
             $scope.ok = function() {
-                $modalInstance.close();
-                $state.go('CreateProfile');
+                $modalInstance.close('ok');
+                
             };
 
             $scope.cancel = function() {
