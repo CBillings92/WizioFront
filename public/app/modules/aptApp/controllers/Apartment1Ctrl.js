@@ -1,5 +1,5 @@
-angular.module('ApartmentsApp')
-  .controller('Apartment1Ctrl', [
+angular.module('aptApp')
+  .controller('apartment1Ctrl', [
     '$scope',
     function($scope){
         $scope.apartment = {

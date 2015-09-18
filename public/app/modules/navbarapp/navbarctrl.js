@@ -1,16 +1,16 @@
-angular.module('NavbarApp')
-    .controller('NavbarCtrl', [
+angular.module('navbarApp')
+    .controller('navbarCtrl', [
         '$rootScope',
         '$scope',
         '$state',
         '$http',
-        'ApartmentSearchSvc',
-        function($rootScope, $scope, $state, $http, ApartmentSearchSvc) {
+        'apartmentSearchSvc',
+        function($rootScope, $scope, $state, $http, apartmentSearchSvc) {
             $scope.goToLogin = function() {
                 $state.go('Login');
             };
             $scope.search = function() {
-                ApartmentSearchSvc.search($scope.searchString);
+                apartmentSearchSvc.search($scope.searchString);
             };
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {

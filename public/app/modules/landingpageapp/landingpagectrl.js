@@ -1,19 +1,18 @@
-angular.module('LandingPageApp')
-    .controller('landingpagectrl', [
+angular.module('landingPageApp')
+    .controller('landingPageCtrl', [
         '$scope',
         '$http',
         '$state',
-        'UserRegistration',
-        'ApartmentSearchSvc',
-        function($scope, $http, $state, UserRegistration, ApartmentSearchSvc) {
-            console.dir("landing page controller");
+        'userRegistration',
+        'apartmentSearchSvc',
+        function($scope, $http, $state, userRegistration, apartmentSearchSvc) {
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
                 broker: false
             };
             $scope.search = function() {
-                ApartmentSearchSvc.search($scope.searchString);
+                apartmentSearchSvc.search($scope.searchString);
             };
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
@@ -49,7 +48,7 @@ angular.module('LandingPageApp')
                     user.userType = 3;
                 }
 
-                UserRegistration.saveUser(user);
+                userRegistration.saveUser(user);
             };
 
         }

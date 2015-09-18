@@ -1,5 +1,5 @@
-angular.module('BuyerApp')
-    .controller('DashBuyerMainCtrl', [
+angular.module('buyerApp')
+    .controller('dashBuyerMainCtrl', [
         '$scope',
         '$timeout',
         'AuthFct',

@@ -1,32 +1,31 @@
-angular.module('AccountApp', []);
-angular.module('AccountCreateApp', []);
-angular.module('ApartmentDetailsApp', []);
-angular.module('BlogApp', []);
-angular.module('LandingPageApp', []);
-angular.module('LoginApp', []);
-angular.module('BrokerApp', []);
-angular.module('NavbarApp', []);
-angular.module('ApartmentsApp', []);
-angular.module('SharedControllersApp', []);
-angular.module('SharedFactoriesApp', []);
-angular.module('SharedServicesApp', []);
-angular.module('BuyerApp', []);
+angular.module('accountCreateApp', []);
+angular.module('aptApp', []);
+angular.module('aptDetailsApp', []);
+angular.module('blogApp', []);
+angular.module('buyerApp', []);
+angular.module('landingPageApp', []);
+angular.module('loginApp', []);
+angular.module('navbarApp', []);
+angular.module('sellerApp', []);
+angular.module('sharedControllersApp', []);
+angular.module('sharedFactoriesApp', []);
+angular.module('sharedServicesApp', []);
+
 
 
 angular.module('MainApp', [
-        'AccountApp',
-        'ApartmentsApp',
-        'ApartmentDetailsApp',
-        'LandingPageApp',
-        'AccountCreateApp',
-        'BuyerApp',
-        'BlogApp',
-        'NavbarApp',
-        'LoginApp',
-        'BrokerApp',
-        'SharedControllersApp',
-        'SharedFactoriesApp',
-        'SharedServicesApp',
+        'accountCreateApp',
+        'aptApp',
+        'aptDetailsApp',
+        'blogApp',
+        'buyerApp',
+        'navbarApp',
+        'landingPageApp',
+        'loginApp',
+        'sellerApp',
+        'sharedControllersApp',
+        'sharedFactoriesApp',
+        'sharedServicesApp',
         'ui.router',
         'ngStorage',
         'ngResource',

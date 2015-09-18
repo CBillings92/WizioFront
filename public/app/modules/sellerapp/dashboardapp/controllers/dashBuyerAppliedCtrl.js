@@ -1,5 +1,5 @@
 angular.module('sellerApp')
-.controller('dashAptPostedCtrl', [
+.controller('dashBuyerAppliedCtrl', [
     '$scope',
     function($scope){
 

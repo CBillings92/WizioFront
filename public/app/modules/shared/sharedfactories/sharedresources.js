@@ -1,5 +1,5 @@
-angular.module('SharedFactoriesApp')
-    .factory('Search', [
+angular.module('sharedFactoriesApp')
+    .factory('search', [
         '$resource',
         function($resource) {
             return $resource("http://localhost:4000/api/search/:flag/:searchString", {

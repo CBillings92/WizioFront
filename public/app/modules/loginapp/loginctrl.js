@@ -1,5 +1,5 @@
-angular.module('LoginApp')
-.controller('LoginCtrl', [
+angular.module('loginApp')
+.controller('loginCtrl', [
     '$rootScope',
     '$scope',
     '$state',
@@ -34,10 +34,10 @@ angular.module('LoginApp')
                 console.dir(passwordobj);
                 updatepassword.save(passwordobj, function(data, status){
                   alert('Your password has been reset!');
-                  $state.go('Login');
+                  $state.go('login');
                 }, function(err){
                   alert('This link to reset your password has expired. Please select forgot password and try again');
-                  $state.go('Login');
+                  $state.go('login');
                 });
             } else {
               $scope.password = '';

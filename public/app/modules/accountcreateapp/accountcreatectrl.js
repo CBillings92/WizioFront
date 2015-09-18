@@ -1,9 +1,9 @@
-angular.module('AccountCreateApp')
-.controller('AccountCreateCtrl', [
+angular.module('accountCreateApp')
+.controller('accountCreateCtrl', [
     '$scope',
     '$state',
-    'UserRegistration',
-    function($scope, $state, UserRegistration){
+    'userRegistration',
+    function($scope, $state, userRegistration){
         $scope.radioModel = {
             realtor: false,
             tenant: true,
@@ -25,7 +25,7 @@ angular.module('AccountCreateApp')
                 user.userType = 3;
             }
 
-            UserRegistration.saveUser(user);
+            userRegistration.saveUser(user);
         };
 
     }

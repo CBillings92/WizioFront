@@ -1,5 +1,5 @@
-angular.module('SharedServicesApp')
-    .service('ApartmentGetSetSvc', [
+angular.module('sharedServicesApp')
+    .service('apartmentGetSetSvc', [
         '$sessionStorage',
         '$stateParams',
         'ApartmentResource',
@@ -49,7 +49,6 @@ angular.module('SharedServicesApp')
                         id: apartmentURLID
                     }, function(data) {
                         apartmentSelected = data;
-                        console.dir(data);
                         callback(apartmentSelected);
                     });
                 }

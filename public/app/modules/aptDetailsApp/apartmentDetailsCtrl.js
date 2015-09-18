@@ -1,5 +1,5 @@
-angular.module('apartmentDetailsApp')
-    .controller('apartmentDetailsCtrl', [
+angular.module('aptDetailsApp')
+    .controller('aptDetailsCtrl', [
         '$scope',
         '$stateParams',
         '$sessionStorage',
@@ -18,8 +18,8 @@ angular.module('apartmentDetailsApp')
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
                 if (user.ProfileId === null) {
                     var modalInstance = $modal.open({
-                        templateUrl: 'public/viewtemplates/public/createprofilemodal.html',
-                        controller: 'ProfileCreateModalCtrl',
+                        templateUrl: 'public/viewtemplates/public/createProfileModal.html',
+                        controller: 'profileCreateModalCtrl',
                         size: 'md',
                     });
                     modalInstance.result.then(function() {

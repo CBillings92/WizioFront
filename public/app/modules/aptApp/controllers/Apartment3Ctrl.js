@@ -1,4 +1,4 @@
-angular.module('ApartmentsApp')
+angular.module('aptApp')
   .controller('Apartment3Ctrl', [
     '$scope',
     function($scope){

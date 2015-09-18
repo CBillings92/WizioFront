@@ -1,4 +1,4 @@
-angular.module('BuyerApp')
+angular.module('buyerApp')
 .controller('ProfileSaveModalCtrl', [
     '$scope',
     '$modalInstance',

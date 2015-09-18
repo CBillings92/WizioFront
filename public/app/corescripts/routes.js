@@ -7,189 +7,184 @@ angular.module('MainApp')
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
             var navbar = {
                 templateUrl: 'public/viewtemplates/public/navbar.html',
-                controller: 'NavbarCtrl'
+                controller: 'navbarCtrl'
             };
             var requireLogin = {
                 requireLogin: true
             };
             $stateProvider
-                .state('LandingPage', {
+                .state('landingPage', {
                     url: '/',
                     views: {
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/landingpage.html',
-                            controller: 'landingpagectrl'
+                            templateUrl: 'public/viewtemplates/public/landingPage.html',
+                            controller: 'landingPageCtrl'
                         }
                     }
                 })
-                .state('ApartmentDetails', {
-                    url: '/apartmentdetails/:id',
+                .state('aptDetails', {
+                    url: '/aptDetails/:id',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/apartmentdetailspage.html',
-                            controller: 'ApartmentDetailsCtrl'
+                            templateUrl: 'public/viewtemplates/public/aptDetails.html',
+                            controller: 'aptDetailsCtrl'
                         }
                     }
                 })
-                .state('ApartmentsDisplay', {
-                    url: '/apartments',
+                .state('aptDisplay', {
+                    url: '/aptDisplay',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/apartmentsdisplay.html',
-                            controller: 'ApartmentsDisplayCtrl'
+                            templateUrl: 'public/viewtemplates/public/aptDisplay.html',
+                            controller: 'aptDisplayCtrl'
                         }
                     }
                 })
-                .state('Blog', {
+                .state('blog', {
                     url: '/blog',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/blog.html',
-                            controller: 'blogctrl'
+                            controller: 'blogCtrl'
                         }
                     }
                 })
-                .state('AccountCreate', {
-                    url: '/createaccount',
+                .state('accountCreate', {
+                    url: '/accountCreate',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/accountcreate.html',
-                            controller: 'AccountCreateCtrl'
+                            templateUrl: 'public/viewtemplates/public/accountCreate.html',
+                            controller: 'accountCreateCtrl'
                         }
                     }
                 })
-                .state('Login', {
+                .state('login', {
                     url: '/login',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/login.html',
-                            controller: 'LoginCtrl'
+                            controller: 'loginCtrl'
                         }
                     }
                 })
-                .state('SendResetEmail', {
-                  url: '/sendresetpassemail',
+                .state('sendResetEmail', {
+                  url: '/sendResetEmail',
                   views: {
                     "navbar": navbar,
                     "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
-                      controller: 'LoginCtrl'
+                      templateUrl: 'public/viewtemplates/public/sendResetEmail.html',
+                      controller: 'loginCtrl'
                     }
                   }
                 })
-                .state('UpdatePassword',{
-                  url: '/resetpassword/:token',
+                .state('updatePassword',{
+                  url: '/resetPassword/:token',
                   views: {
                     "navbar": navbar,
                     "maincontent": {
-                      templateUrl: 'public/viewtemplates/public/resetpassword.html',
-                      controller: 'LoginCtrl'
+                      templateUrl: 'public/viewtemplates/public/resetPassword.html',
+                      controller: 'loginCtrl'
                     }
                   }
                 })
-                .state('CreateApartment', {
-                    url: '/createapartment',
+                .state('createApt', {
+                    url: '/createApt',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/createapartment.html',
-                            controller: 'CreateApartmentCtrl'
+                            templateUrl: 'public/viewtemplates/public/createApt.html',
+                            controller: 'createApartmentCtrl'
                         }
                     }
                 })
-                .state('UserAccount', {
-                    url: '/account',
+                .state('buyerAccount', {
+                    url: '/buyerAccount',
                     abstract: true,
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/account/accountmain.html',
-                            controller: 'AccountCtrl'
+                            templateUrl: 'public/viewtemplates/private/buyer/accountMain.html',
+                            controller: 'dashBuyerMainCtrl'
                         }
                     },
                     data: requireLogin
                 })
-                .state('UserAccount.Dashboard',{
+                .state('buyerAccount.dashboard',{
                     url: '/dashboard',
                     views: {
                         accountInfo: {
-                            templateUrl: 'public/viewtemplates/public/account/accountInfo.html',
-                            controller: "AccountInfoCtrl"
+                            templateUrl: 'public/viewtemplates/private/buyer/accountInfo.html',
+                            controller: "dashBuyerInfoCtrl"
                         },
                         appliedApartments: {
-                            templateUrl: 'public/viewtemplates/public/account/appliedApartments.html',
-                            controller: "appliedApartmentsCtrl"
-                        },
-                        suggestedApartments: {
-                            templateUrl: 'public/viewtemplates/public/account/suggestedApartments.html',
-                            controller: "SuggestedApartmentsCtrl"
+                            templateUrl: 'public/viewtemplates/public/account/appliedApts.html',
+                            controller: "dashAppliedCtrl"
                         }
                     }
                 })
-
-            .state('BrokerAdditionalInfo', {
+            .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
-                            controller: 'BrokerAddInfoCtrl'
+                            templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
+                            controller: 'brokerAddInfoCtrl'
                         }
                     }
                 })
-            .state('CreateProfile', {
-                url: '/createprofile',
+            .state('createProfile', {
+                url: '/createProfile',
                 views: {
                     "navbar": navbar,
                     "maincontent": {
-                        templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                        controller: 'ProfileFormCtrl'
+                        templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileForm.html',
+                        controller: 'profileFormCtrl'
                     }
                 }
             })
-                .state('Profile.Create', {
+                .state('profile.create', {
                     url: '/create',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileFormCtrl'
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileForm.html',
+                            controller: 'profileFormCtrl'
                         }
                     }
                 })
-                .state('Profile.Edit', {
+                .state('profile.edit', {
                     url: '/edit',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileEditCtrl'
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileForm.html',
+                            controller: 'profileEditCtrl'
                         }
                     }
                 })
-                .state('Apartment', {
+                .state('apartment', {
                     url: '/apartment',
                     abstract: true
                 })
-                .state('Apartment.Application', {
+                .state('apartment.application', {
                     url:'/application',
                     abstract: true,
                     data: {
                         requireLogin: true
                     }
                 })
-                .state('Apartment.Application.New', {
+                .state('apartment.application.new', {
                     url: '/new',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
-                            controller: 'ApplicationFormNewCtrl'
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationForm.html',
+                            controller: 'applicationFormNewCtrl'
                         }
                     }
                 }); //Is this semicolon supposed to be here???? from Chris Canal

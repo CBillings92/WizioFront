@@ -1,5 +1,5 @@
-angular.module('ApartmentsApp')
-    .controller('CreateApartmentCtrl', [
+angular.module('aptApp')
+    .controller('createApartmentCtrl', [
         '$scope',
         '$sessionStorage',
         '$rootScope',

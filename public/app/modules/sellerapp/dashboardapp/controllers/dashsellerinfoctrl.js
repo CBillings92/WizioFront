@@ -1,5 +1,5 @@
-angular.module('SellerApp')
-.controller('DashSellerInfoCtrl.js', [
+angular.module('sellerApp')
+.controller('dashSellerInfoCtrl.js', [
     '$scope',
     function($scope){
         $scope.$on('AccountInfoBroadcast', function(event, data){

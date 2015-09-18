@@ -1,11 +1,11 @@
-angular.module('ApartmentsApp')
-.controller('ApartmentsDisplayCtrl', [
+angular.module('aptApp')
+.controller('aptDisplayCtrl', [
     '$scope',
     '$sessionStorage',
     '$state',
     'lodash',
-    'ApartmentGetSetSvc',
-    function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc){
+    'apartmentGetSetSvc',
+    function($scope, $sessionStorage, $state, lodash, apartmentGetSetSvc){
         //collect data from event emitter
         $scope.sessionStorage = $sessionStorage;
         $scope.$on('searchFinished', function(event, data){
@@ -18,7 +18,7 @@ angular.module('ApartmentsApp')
             var apartment = lodash.find($scope.apartmentSearch, {id: id});
             if(apartment !== undefined){
                 ApartmentGetSetSvc.set(apartment, "apartmentSelected");
-                $state.go('ApartmentDetails', {id: id});
+                $state.go('apartmentDetails', {id: id});
             } else {
                 alert('Error: Apartment not loaded properly');
             }
