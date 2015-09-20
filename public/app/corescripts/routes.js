@@ -178,7 +178,36 @@ angular.module('MainApp')
                     views: {
                         "profilepage": {
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileEditCtrl'
+                            controller: 'ProfileFormCtrl'
+                        }
+                    }
+                })
+                .state('Application', {
+                    url: '/application',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: "public/app/modules/applicationapp/applicationmain.html"
+                        }
+                    },
+                    abstract: true,
+                    data: requireLogin
+                })
+                .state('Application.New', {
+                    url: '/new',
+                    views: {
+                        'ApplicationPage':{
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            controller: 'ApplicationFormCtrl'
+                        }
+                    }
+                })
+                .state('Application.Edit', {
+                    url: '/edit',
+                    views: {
+                        'ApplicationPage': {
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            controller: 'ApplicationFormCtrl'
                         }
                     }
                 })
@@ -187,28 +216,11 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/apartmentapp/'
+                            templateUrl: 'public/app/modules/ApartmentApp/viewtemplates/apartmentmain.html'
                         }
                     },
                     abstract: true
-                })
-                .state('Apartment.Application', {
-                    url:'/application',
-                    abstract: true,
-                    data: {
-                        requireLogin: true
-                    }
-                })
-                .state('Apartment.Application.New', {
-                    url: '/new',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
-                            controller: 'ApplicationFormNewCtrl'
-                        }
-                    }
-                }); //Is this semicolon supposed to be here???? from Chris Canal
+                });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

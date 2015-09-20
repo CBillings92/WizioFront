@@ -1,5 +1,5 @@
 angular.module('ApplicationApp')
-.controller('ApplicationFormNewCtrl', [
+.controller('ApplicationFormCtrl', [
     $scope,
     function($scope) {
         alert('test');
