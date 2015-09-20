@@ -7,8 +7,10 @@ angular.module('SellerApp')
         'ProfileResource',
         'ApplicationResource',
         function($scope, $modal, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
+            //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
+            //get user information
             var user = AuthFct.getTokenClaims();
             console.dir(user);
             //for ng-repeat on profile form for emails. Check # of bedrooms

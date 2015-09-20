@@ -8,11 +8,4 @@ angular.module('SharedFactoriesApp')
                 searchString: "@searchString"
             });
         }
-    ])
-    .factory('registration', [
-        '$resource',
-        'WizioConfig',
-        function($resource, WizioConfig) {
-            return $resource(WizioConfig.baseAPIURL + "user/registration");
-        }
     ]);

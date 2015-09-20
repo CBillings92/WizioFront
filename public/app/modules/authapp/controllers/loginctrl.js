@@ -1,4 +1,4 @@
-angular.module('LoginApp')
+angular.module('AuthApp')
 .controller('LoginCtrl', [
     '$rootScope',
     '$scope',
@@ -10,10 +10,11 @@ angular.module('LoginApp')
     'updatepassword',
     function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, sendresetpassemail, updatepassword){
         function successAuth(res){
+            console.dir(res);
             console.dir("in success auth!");
-            $localStorage.token = res;
+            $localStorage.token = res.data;
             $rootScope.isLoggedIn = true;
-            $state.go('Home');
+            $state.go('UserAccount.Dashboard');
         }
         $scope.sendResetEmail = function(){
             var emailobj = {};
@@ -24,7 +25,7 @@ angular.module('LoginApp')
             }, function(err){
                 alert('Sorry, that email is not associated with a Wizio Account');
             });
-        }
+        };
         $scope.resetPassword = function() {
             if($scope.password === $scope.passwordConfirm){
                 var passwordobj = {};
@@ -44,7 +45,7 @@ angular.module('LoginApp')
               $scope.passwordConfirm = '';
               alert("Passwords do not match");
             }
-        }
+        };
         $scope.requestLogin = function(){
             var userData = {
                 email: $scope.email,

@@ -6,7 +6,7 @@ angular.module('MainApp')
         '$httpProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
             var navbar = {
-                templateUrl: 'public/viewtemplates/public/navbar.html',
+                templateUrl: 'public/app/modules/navbarapp/viewtemplates/navbar.html',
                 controller: 'NavbarCtrl'
             };
             var requireLogin = {
@@ -75,7 +75,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/login.html',
+                            templateUrl: 'public/app/modules/authapp/viewtemplates/login.html',
                             controller: 'LoginCtrl'
                         }
                     }
@@ -154,6 +154,12 @@ angular.module('MainApp')
                 .state('Profile', {
                     url: '/profile',
                     abstract: true,
+                    views:{
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilemain.html'
+                        }
+                    },
                     data: {
                         requireLogin: true
                     }
@@ -161,8 +167,7 @@ angular.module('MainApp')
                 .state('Profile.Create', {
                     url: '/create',
                     views: {
-                        "navbar": navbar,
-                        "maincontent": {
+                        "profilepage": {
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileFormCtrl'
                         }
@@ -171,8 +176,7 @@ angular.module('MainApp')
                 .state('Profile.Edit', {
                     url: '/edit',
                     views: {
-                        "navbar": navbar,
-                        "maincontent": {
+                        "profilepage": {
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileEditCtrl'
                         }
@@ -180,6 +184,12 @@ angular.module('MainApp')
                 })
                 .state('Apartment', {
                     url: '/apartment',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/apartmentapp/'
+                        }
+                    },
                     abstract: true
                 })
                 .state('Apartment.Application', {
@@ -224,7 +234,7 @@ angular.module('MainApp')
                         },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
-                                //$cookie.remove('token', []);
+                                delete $localStorage.token;
                                 alert('Authentication Failed');
                             }
                             $injector.get('$state').transitionTo('Login');

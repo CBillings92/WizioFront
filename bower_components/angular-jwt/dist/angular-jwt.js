@@ -85,10 +85,11 @@ angular.module('angular-jwt',
         }
       }
       return decodeURIComponent(escape(window.atob(output))); //polifyll https://github.com/davidchambers/Base64.js
-    }
+  };
 
 
     this.decodeToken = function(token) {
+        console.dir(token);
       var parts = token.split('.');
 
       if (parts.length !== 3) {
@@ -101,7 +102,7 @@ angular.module('angular-jwt',
       }
 
       return JSON.parse(decoded);
-    }
+  };
 
     this.getTokenExpirationDate = function(token) {
       var decoded;

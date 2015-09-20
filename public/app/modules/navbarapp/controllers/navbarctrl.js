@@ -5,13 +5,22 @@ angular.module('NavbarApp')
         '$state',
         '$http',
         'ApartmentSearchSvc',
-        function($rootScope, $scope, $state, $http, ApartmentSearchSvc) {
+        'AuthFct',
+        function($rootScope, $scope, $state, $http, ApartmentSearchSvc, AuthFct) {
             $scope.goToLogin = function() {
                 $state.go('Login');
             };
             $scope.search = function() {
                 ApartmentSearchSvc.search($scope.searchString);
             };
+            $scope.logout = function(success) {
+                AuthFct.logout(function(){
+                    $state.go('LandingPage');
+                });
+
+            };
+
+            //for smart search
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     headers: {

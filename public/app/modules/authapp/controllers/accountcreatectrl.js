@@ -1,4 +1,4 @@
-angular.module('AccountCreateApp')
+angular.module('AuthApp')
 .controller('AccountCreateCtrl', [
     '$scope',
     '$state',
