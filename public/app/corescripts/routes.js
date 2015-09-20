@@ -6,7 +6,7 @@ angular.module('MainApp')
         '$httpProvider',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
             var navbar = {
-                templateUrl: 'public/viewtemplates/public/navbar.html',
+                templateUrl: 'public/app/modules/navbarapp/viewtemplates/navbar.html',
                 controller: 'NavbarCtrl'
             };
             var trueRequiredLogin = {
@@ -75,7 +75,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/login.html',
+                            templateUrl: 'public/app/modules/authapp/viewtemplates/login.html',
                             controller: 'LoginCtrl'
                         }
                     },
@@ -160,13 +160,20 @@ angular.module('MainApp')
                 .state('Profile', {
                     url: '/profile',
                     abstract: true,
-                    data: trueRequiredLogin
+                    views:{
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilemain.html'
+                        }
+                    },
+                    data: {
+                        requireLogin: true
+                    }
                 })
                 .state('Profile.Create', {
                     url: '/create',
                     views: {
-                        "navbar": navbar,
-                        "maincontent": {
+                        "profilepage": {
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileFormCtrl'
                         }
@@ -176,33 +183,52 @@ angular.module('MainApp')
                 .state('Profile.Edit', {
                     url: '/edit',
                     views: {
-                        "navbar": navbar,
-                        "maincontent": {
+                        "profilepage": {
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileEditCtrl'
+                            controller: 'ProfileFormCtrl'
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('Apartment', {
-                    url: '/apartment',
-                    abstract: true,
-                    data: trueRequiredLogin
-                })
-                .state('Apartment.Application', {
-                    url:'/application',
-                    abstract: true
-                })
-                .state('Apartment.Application.New', {
-                    url: '/new',
+                .state('Application', {
+                    url: '/application',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
+                            templateUrl: "public/app/modules/applicationapp/applicationmain.html"
+                        }
+                    },
+                    abstract: true,
+                    data: requireLogin
+                })
+                .state('Application.New', {
+                    url: '/new',
+                    views: {
+                        'ApplicationPage':{
                             templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
-                            controller: 'ApplicationFormNewCtrl'
+                            controller: 'ApplicationFormCtrl'
                         }
                     }
-                }); //Is this semicolon supposed to be here???? from Chris Canal
+                })
+                .state('Application.Edit', {
+                    url: '/edit',
+                    views: {
+                        'ApplicationPage': {
+                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            controller: 'ApplicationFormCtrl'
+                        }
+                    }
+                })
+                .state('Apartment', {
+                    url: '/apartment',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/ApartmentApp/viewtemplates/apartmentmain.html'
+                        }
+                    },
+                    abstract: true
+                });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([
@@ -228,7 +254,7 @@ angular.module('MainApp')
                         },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
-                                //$cookie.remove('token', []);
+                                delete $localStorage.token;
                                 alert('Authentication Failed');
                             }
                             $injector.get('$state').transitionTo('Login');

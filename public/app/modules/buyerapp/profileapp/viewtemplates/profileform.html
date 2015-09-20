@@ -1,74 +1,126 @@
-<div class="container">
-    <div class="row">
-        <form>
-            <div class=" col-lg-12 form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Annual Income</h4>
-                        </label>
-                        <input class='form-control' ng-model="annualIncome" type='text'>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Employment Status</h4>
-                        </label>
-                        <input class='form-control' ng-model="employmentStatus" type='text'>
-                    </div>
-                </div>
+<form class="form-horizontal">
+    <fieldset>
 
-            </div>
-            <div class="col-lg-12 form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Current Employer</h4>
-                        </label>
-                        <input class='form-control' ng-model="currentEmployer1" type='text'>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Current Employer</h4>
-                        </label>
-                        <input class='form-control' ng-model="currentEmployer2" type='text'>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Previous Employer</h4>
-                        </label>
-                        <input class='form-control' ng-model="previousEmployer1" type='text'>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class='control-label'>
-                            <h4>Previous Employer 2</h4>
-                        </label>
-                        <input class='form-control' ng-model="previousEmployer2" type='text'>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6" ng-repeat="email in applicationEmailCounter track by $index">
-                        <label class='control-label'>
-                            <h4>email</h4>
-                        </label>
-                        <input class='form-control' type='text' ng-model="applicationEmails[email.index]">
-                    </div>
-                </div>
+<!-- Form Name -->
+        <legend>Form Name</legend>
 
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="annualIncome">Annual Income</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="annualIncome" name="annualIncome" placeholder="12345.00" required="" type="text">
+                <span class="help-block">If you're supported by a third party please leave this field 0</span>
             </div>
-            <div class="col-lg-6">
-                <input class="btn btn-success btn-lg" ng-click='apply()' type='submit'>
-            </div>
+        </div>
 
-        </br>
-    </br>
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployer1">Current Employer 1</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployer1" name="currentEmployer1" placeholder="placeholder" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployerLOE1">Current Employer 1 Length of Employment</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployerLOE1" name="currentEmployerLOE1" placeholder="placeholder" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployerPosition1">Current Employer 1 Position</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployerPosition1" name="currentEmployerPosition1" placeholder="Accountant" type="text">
+                <span class="help-block">Your title at your current employer</span>
+            </div>
+        </div>
+
+<!-- Prepended checkbox -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="prependedcheckbox">Prepended Checkbox</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox">
+                    </span>
+                    <input class="form-control" id="prependedcheckbox" name="prependedcheckbox" placeholder="placeholder" type="text">
+                </div>
+                <p class="help-block">help</p>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployer2">Current Employer 2</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployer2" name="currentEmployer2" placeholder="placeholder" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployerLOE2">Current Employer 2 Length of Employment</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployerLOE2" name="currentEmployerLOE2" placeholder="placeholder" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currentEmployerPosition2">Current Employer 2 Position</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="currentEmployerPosition2" name="currentEmployerPosition2" placeholder="Application Development" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+<!-- Multiple Radios (inline) -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="creditScoreCheck">I grant permission for ...... to request a credit check.</label>
+            <div class="col-md-4">
+                <label class="radio-inline" for="creditScoreCheck-0">
+                    <input checked="checked" id="creditScoreCheck-0" name="creditScoreCheck" type="radio" value="Yes">
+                    Yes
+                </label>
+                <label class="radio-inline" for="creditScoreCheck-1">
+                    <input id="creditScoreCheck-1" name="creditScoreCheck" type="radio" value="No">
+                    No
+                </label>
+            </div>
+        </div>
+
+<!-- Select Multiple -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="pets">Will you be living with pets? Please select all that apply</label>
+            <div class="col-md-4">
+                <select class="form-control" id="pets" multiple="multiple" name="pets">
+                    <option value="Dog">Dog</option>
+                    <option value="Dogs">Dogs</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Cats">Cats</option>
+                    <option value="Small Animal">Small Animal</option>
+                    <option value="Small Animals">Small Animals</option>
+                    <option value="Children">Children</option>
+                </select>
+            </div>
+        </div>
+
+<!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="DOB">Date of Birth</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" id="DOB" name="DOB" placeholder="placeholder" required="" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <button type="submit" ng-click="apply()" class="btn btn-warning col-md-offset-5 col-md-1">Submit</button>
+
+    </fieldset>
 </form>
-</div>
-</div>

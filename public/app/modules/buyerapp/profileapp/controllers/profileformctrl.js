@@ -2,22 +2,21 @@ angular.module('SellerApp')
     .controller('ProfileFormCtrl', [
         '$scope',
         '$modal',
+        '$state',
         'ApartmentGetSetSvc',
         'AuthFct',
         'ProfileResource',
         'ApplicationResource',
-        function($scope, $modal, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
+        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
+            //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
+            //get user information
             var user = AuthFct.getTokenClaims();
             console.dir(user);
             //for ng-repeat on profile form for emails. Check # of bedrooms
-            $scope.applicationEmailCounter = [];
-            for (var i = 0; i < $scope.apartment.beds; i++) {
-                $scope.applicationEmailCounter.push(i);
-            }
-
             $scope.apply = function() {
+                var currentState = $state.current.name;
                 var profile = {
                     UserID: user.id,
                     annualIncome: $scope.annualIncome,
@@ -51,34 +50,42 @@ angular.module('SellerApp')
                     employmentStatus: $scope.employmentStatus,
                     desiredMoveInDate: $scope.desiredMoveInDate
                 };
+                console.dir(currentState);
                 //collect emails from form.
-                $scope.appicationEmails = [];
-                var modalInstance = $modal.open({
-                    templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilesavemodal.html',
-                    controller: 'ProfileSaveModalCtrl',
-                    size: 'md',
-                    resolve: {
-                        apartment: function() {
-                            return apartment;
+                if (currentState === "Profile.Edit") {
+                    alert('hurr');
+                } else if (currentState === "Profile.Create") {
+                    
+                    $scope.appicationEmails = [];
+                    var modalInstance = $modal.open({
+                        templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilesavemodal.html',
+                        controller: 'ProfileSaveModalCtrl',
+                        size: 'md',
+                        resolve: {
+                            apartment: function() {
+                                return apartment;
+                            }
                         }
-                    }
-                });
-                modalInstance.result.then(function(result) {
-                    //Could probably utilize async on front end here...
-                    console.dir(profile);
-                    profile.annualIncome = "123";
-                    if (result === "saveAndApply") {
-                        ProfileResource.save(profile, function(status, data) {
-                            console.dir(status);
-                            console.dir(data);
+                    });
+                    modalInstance.result.then(function(result) {
+                        //Could probably utilize async on front end here...
+                        console.dir(profile);
+                        profile.annualIncome = "123";
+                        if (result === "saveAndApply") {
 
-                        });
-                    } else if (result === "save") {
+                            ProfileResource.save(profile, function(status, data) {
+                                $state.go('Application.New');
+                            });
+                        } else if (result === "save") {
+                            ProfileResource.save(profile, function(status, data) {
 
-                    }
-                }, function() {
-                    console.dir("IN MODAL DISMISSED");
-                });
+                            });
+                        }
+                    }, function() {
+                        console.dir("IN MODAL DISMISSED");
+                    });
+                }
+
                 /*ApplicationResource.save(function(status, data){
 
                 });*/
