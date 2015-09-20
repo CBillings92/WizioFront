@@ -50,9 +50,9 @@ angular.module('MainApp', [
             }
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                var requireLogin = null;
+                var requireLogin = false;
                 //check if the state being navigated to requires login
-                if (toState && toState.data.requireLogin !== undefined) {
+                if (toState && toState.data.requireLogin !== false) {
                     requireLogin = toState.data.requireLogin;
                 }
                 //if state requires login, if token exists, if its expired, login
@@ -67,7 +67,7 @@ angular.module('MainApp', [
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
                 } else if (!$localStorage.token || jwtHelper.isTokenExpired($localStorage.token)) {
-                    alert('kdfjslkjfslkdfjsfdj');
+                    alert('Welcome to Wizio');
                     $rootScope.isLoggedIn = false;
                 } else {
                     $rootScope.isLoggedIn = true;

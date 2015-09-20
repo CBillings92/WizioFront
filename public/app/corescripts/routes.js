@@ -9,10 +9,10 @@ angular.module('MainApp')
                 templateUrl: 'public/viewtemplates/public/navbar.html',
                 controller: 'NavbarCtrl'
             };
-            var requireLogin = {
+            var trueRequiredLogin = {
                 requireLogin: true
             };
-            var noRequiredLogin = {
+            var falseRequiredLogin = {
                 requireLogin: false
             };
             $stateProvider
@@ -24,7 +24,7 @@ angular.module('MainApp')
                             controller: 'landingpagectrl'
                         }
                     },
-                    data: noRequiredLogin
+                    data: falseRequiredLogin
                 })
                 .state('ApartmentDetails', {
                     url: '/apartmentdetails/:id',
@@ -35,7 +35,7 @@ angular.module('MainApp')
                             controller: 'ApartmentDetailsCtrl'
                         }
                     },
-                    data: noRequiredLogin
+                    data: falseRequiredLogin
                 })
                 .state('ApartmentsDisplay', {
                     url: '/apartments',
@@ -46,7 +46,7 @@ angular.module('MainApp')
                             controller: 'ApartmentsDisplayCtrl'
                         }
                     },
-                    data: noRequiredLogin
+                    data: falseRequiredLogin
                 })
                 .state('Blog', {
                     url: '/blog',
@@ -57,7 +57,7 @@ angular.module('MainApp')
                             controller: 'blogctrl'
                         }
                     },
-                    data: noRequiredLogin
+                    data: falseRequiredLogin
                 })
                 .state('AccountCreate', {
                     url: '/createaccount',
@@ -68,7 +68,7 @@ angular.module('MainApp')
                             controller: 'AccountCreateCtrl'
                         }
                     },
-                    data: noRequiredLogin
+                    data: falseRequiredLogin
                 })
                 .state('Login', {
                     url: '/login',
@@ -78,7 +78,8 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/login.html',
                             controller: 'LoginCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('SendResetEmail', {
                     url: '/sendresetpassemail',
@@ -88,7 +89,8 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
                             controller: 'LoginCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('UpdatePassword', {
                     url: '/resetpassword/:token',
@@ -98,7 +100,8 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/resetpassword.html',
                             controller: 'LoginCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('CreateApartment', {
                     url: '/createapartment',
@@ -108,7 +111,8 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/createapartment.html',
                             controller: 'CreateApartmentCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('UserAccount', {
                     url: '/account',
@@ -120,7 +124,7 @@ angular.module('MainApp')
                             controller: 'AccountCtrl'
                         }
                     },
-                    data: requireLogin
+                    data: trueRequiredLogin
                 })
                 .state('UserAccount.Dashboard', {
                     url: '/dashboard',
@@ -139,7 +143,8 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/account/suggestedApartments.html',
                             controller: "SuggestedApartmentsCtrl"
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('BrokerAdditionalInfo', {
                     url: '/brokerInfo',
@@ -149,14 +154,13 @@ angular.module('MainApp')
                             templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
                             controller: 'BrokerAddInfoCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Profile', {
                     url: '/profile',
                     abstract: true,
-                    data: {
-                        requireLogin: true
-                    }
+                    data: trueRequiredLogin
                 })
                 .state('Profile.Create', {
                     url: '/create',
@@ -166,7 +170,8 @@ angular.module('MainApp')
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileFormCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Profile.Edit', {
                     url: '/edit',
@@ -176,18 +181,17 @@ angular.module('MainApp')
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileEditCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Apartment', {
                     url: '/apartment',
-                    abstract: true
+                    abstract: true,
+                    data: trueRequiredLogin
                 })
                 .state('Apartment.Application', {
                     url:'/application',
-                    abstract: true,
-                    data: {
-                        requireLogin: true
-                    }
+                    abstract: true
                 })
                 .state('Apartment.Application.New', {
                     url: '/new',
