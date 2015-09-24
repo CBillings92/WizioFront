@@ -1,5 +1,5 @@
-angular.module('SharedFactoriesApp')
-    .factory('Search', [
+angular.module('SharedFactoryApp')
+    .factory('SearchResource', [
         '$resource',
         'WizioConfig',
         function($resource, WizioConfig) {

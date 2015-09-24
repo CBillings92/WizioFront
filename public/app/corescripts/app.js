@@ -1,34 +1,30 @@
+angular.module('UnitApp', []);
 angular.module('AccountApp', []);
-angular.module('AccountCreateApp', []);
-angular.module('ApartmentDetailsApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
-angular.module('BrokerApp', []);
 angular.module('NavbarApp', []);
-angular.module('ApartmentsApp', []);
 angular.module('SharedControllersApp', []);
-angular.module('SharedFactoriesApp', []);
-angular.module('SharedServicesApp', []);
+angular.module('SharedFactoryApp', []);
+angular.module('SharedServiceApp', []);
 angular.module('SellerApp', []);
 
 
 angular.module('MainApp', [
-        'AccountApp',
-        'ApartmentsApp',
-        'ApartmentDetailsApp',
+        //change to UnitApp
+
         'ApplicationApp',
+        'AccountApp',
         'AuthApp',
         'LandingPageApp',
-        'AccountCreateApp',
         'BlogApp',
         'NavbarApp',
-        'BrokerApp',
         'SharedControllersApp',
-        'SharedFactoriesApp',
-        'SharedServicesApp',
+        'SharedFactoryApp',
+        'SharedServiceApp',
         'SellerApp',
+        'UnitApp',
         'ui.router',
         'ngStorage',
         'ngResource',
@@ -42,7 +38,8 @@ angular.module('MainApp', [
         '$http',
         '$localStorage',
         'jwtHelper',
-        function($rootScope, $state, $http, $localStorage, jwtHelper) {
+        'AuthFct',
+        function($rootScope, $state, $http, $localStorage, jwtHelper, AuthFct) {
             //on angular app instantiaion check if a localStorage token exists and
             //if it's expired. Assign isLoggedIn to $rootScope accordingly
             if (!$localStorage.token) {
@@ -51,6 +48,8 @@ angular.module('MainApp', [
                 $rootScope.isLoggedIn = false;
                 delete $localStorage.token;
             } else {
+                $rootScope.userType = AuthFct.getTokenClaims().userType;
+                console.dir($rootScope.userType);
                 $rootScope.isLoggedIn = true;
             }
             //Watch for angular app state changes

@@ -1,4 +1,4 @@
-angular.module('SharedFactoriesApp')
+angular.module('SharedFactoryApp')
     .factory('geocoder', [
         '$q',
         function($q) {
@@ -24,33 +24,5 @@ angular.module('SharedFactoriesApp')
             return {
                 getLatLong: getLatLong
             };
-        }
-    ])
-    .factory('sendresetpassemail', [
-        '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/user/forgotpassword");
-        }
-
-    ])
-    .factory('updatepassword', [
-        '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/user/updatepassword");
-        }
-    ])
-    .factory('Search', [
-        '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/search/:flag/:searchString", {
-                flag: "@flag",
-                searchString: "@searchString"
-            });
-        }
-    ])
-    .factory('registration', [
-        '$resource',
-        function($resource) {
-            return $resource("http://localhost:4000/api/user/registration");
         }
     ]);

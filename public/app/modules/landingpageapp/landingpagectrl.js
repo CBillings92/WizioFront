@@ -1,12 +1,11 @@
 angular.module('LandingPageApp')
-    .controller('landingpagectrl', [
+    .controller('LandingPageCtrl', [
         '$scope',
         '$http',
         '$state',
-        'UserRegistration',
+        'UserRegistrationSvc',
         'ApartmentSearchSvc',
-        function($scope, $http, $state, UserRegistration, ApartmentSearchSvc) {
-            console.dir("landing page controller");
+        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc) {
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
@@ -49,7 +48,7 @@ angular.module('LandingPageApp')
                     user.userType = 3;
                 }
 
-                UserRegistration.saveUser(user);
+                UserRegistrationSvc.saveUser(user);
             };
 
         }
