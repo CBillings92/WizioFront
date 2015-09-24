@@ -13,6 +13,7 @@ angular.module('LandingPageApp')
             };
             $scope.search = function() {
                 ApartmentSearchSvc.search($scope.searchString);
+                $state.go('AptDisplay');
             };
             $scope.getLocation = function(val) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {

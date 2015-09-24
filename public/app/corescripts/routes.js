@@ -27,17 +27,6 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('UnitDetails', {
-                    url: '/UnitDetails/:id',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'aptDetailsPage.html',
-                            controller: 'UnitDetailCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
                 .state('AptDisplay', {
                     url: '/aptDisplay',
                     views: {
@@ -227,16 +216,37 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('Apartment', {
-                    url: '/apartment',
+                .state('Unit', {
+                    url: '/unit',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/UnitApp/viewtemplates/UnitMain.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitMain.html'
                         }
                     },
                     abstract: true
-                });
+                })
+                .state('Unit.Create', {
+                    url: '/create',
+                    views: {
+                        'navbar': navbar,
+                        'UnitMain': {
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitCreate.html',
+                            controller: 'UnitCreateCtrl'
+                        }
+                    }
+                })
+                .state('Unit.Details', {
+                    url: '/details/:id',
+                    views: {
+                        "navbar": navbar,
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'aptDetailsPage.html',
+                            controller: 'UnitDetailCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

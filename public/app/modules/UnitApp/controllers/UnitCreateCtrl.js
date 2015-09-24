@@ -36,7 +36,7 @@ angular.module('UnitApp')
 
             }
 
-            $scope.addApartment = function() {
+            $scope.addUnit = function() {
                 //Build out the address by pulling values in text inputs from HTML
                 //Appending spaces between each variable and storing it in local address variable
                 var address = $scope.street + ' ' + $scope.city + ' ' + $scope.state + ' ' + $scope.zip;
@@ -66,6 +66,7 @@ angular.module('UnitApp')
                     geocoder.geocode({
                         'address': address
                     }, function(results, status) {
+                        console.dir(status);
                         if (status == google.maps.GeocoderStatus.OK) {
                             //console log the results from GoogleAPI so we can see
                             //console.dir(trial);
@@ -113,8 +114,8 @@ angular.module('UnitApp')
                             console.dir(zip);
                             apartmentObj.zip = parseData(zip);
                             apartmentObj.concatAddress = results[0].formatted_address;
-                            apartmentObj.latitude = parseFloat(results[0].geometry.location.G.toFixed(6));
-                            apartmentObj.longitude = parseFloat(results[0].geometry.location.K.toFixed(6));
+                            apartmentObj.latitude = parseFloat(results[0].geometry.location.L.toFixed(6));
+                            apartmentObj.longitude = parseFloat(results[0].geometry.location.H.toFixed(6));
                             console.dir(apartmentObj);
                             //save apartment to database using apartment factory
                             UnitResource.save(null, apartmentObj, function(data, status) {

@@ -16,5 +16,5 @@ angular.module('MainApp')
     AccountViewsURL: 'public/app/modules/AccountApp/viewtemplates/',
     AccountDashboardViewsURL: 'public/app/modules/AccountApp/dashboardapp/viewtemplates/',
     AccountAuthViewsURL: 'public/app/modules/AccountApp/authapp/viewtemplates/',
-    UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates'
+    UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/'
 });

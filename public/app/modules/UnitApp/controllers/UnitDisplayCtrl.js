@@ -18,7 +18,7 @@ angular.module('UnitApp')
             var apartment = lodash.find($scope.apartmentSearch, {id: id});
             if(apartment !== undefined){
                 ApartmentGetSetSvc.set(apartment, "apartmentSelected");
-                $state.go('apartmentDetails', {id: id});
+                $state.go('Unit.Details', {id: id});
             } else {
                 alert('Error: Apartment not loaded properly');
             }
