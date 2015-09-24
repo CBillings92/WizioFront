@@ -14,7 +14,7 @@ angular.module('AuthApp')
             console.dir("in success auth!");
             $localStorage.token = res.data;
             $rootScope.isLoggedIn = true;
-            $state.go('UserAccount.Dashboard');
+            $state.go('Account.Dashboard');
         }
         $scope.sendResetEmail = function(){
             var emailobj = {};

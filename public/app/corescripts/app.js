@@ -1,6 +1,5 @@
 angular.module('UnitApp', []);
-angular.module('BuyerApp', []);
-angular.module('AccountCreateApp', []);
+angular.module('AccountApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
@@ -16,6 +15,7 @@ angular.module('MainApp', [
         //change to UnitApp
 
         'ApplicationApp',
+        'AccountApp',
         'AuthApp',
         'LandingPageApp',
         'BlogApp',
@@ -38,7 +38,8 @@ angular.module('MainApp', [
         '$http',
         '$localStorage',
         'jwtHelper',
-        function($rootScope, $state, $http, $localStorage, jwtHelper) {
+        'AuthFct',
+        function($rootScope, $state, $http, $localStorage, jwtHelper, AuthFct) {
             //on angular app instantiaion check if a localStorage token exists and
             //if it's expired. Assign isLoggedIn to $rootScope accordingly
             if (!$localStorage.token) {
@@ -47,6 +48,8 @@ angular.module('MainApp', [
                 $rootScope.isLoggedIn = false;
                 delete $localStorage.token;
             } else {
+                $rootScope.userType = AuthFct.getTokenClaims().userType;
+                console.dir($rootScope.userType);
                 $rootScope.isLoggedIn = true;
             }
             //Watch for angular app state changes

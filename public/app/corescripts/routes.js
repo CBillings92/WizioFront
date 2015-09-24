@@ -66,7 +66,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AuthViewsURL + '/accountCreate.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + '/accountCreate.html',
                             controller: 'AccountCreateCtrl'
                         }
                     },
@@ -77,7 +77,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AuthViewsURL + 'Login.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + 'Login.html',
                             controller: 'AuthLoginCtrl'
                         }
                     },
@@ -88,7 +88,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AuthViewsURL + 'sendresetpassemail.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + 'sendresetpassemail.html',
                             controller: 'AuthLoginCtrl'
                         }
                     },
@@ -99,7 +99,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AuthViewsURL + 'resetpassword.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + 'resetpassword.html',
                             controller: 'AuthLoginCtrl'
                         }
                     },
@@ -116,31 +116,43 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('BuyerAccount', {
-                    url: '/b/account',
+                .state('Account', {
+                    url: '/account',
                     abstract: true,
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/private/buyer/accountMain.html',
-                            controller: 'dashBuyerMainCtrl'
+                            templateUrl: WizioConfig.AccountViewsURL + 'AccountMain.html',
+                            controller: 'AccountMainCtrl'
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('BuyerAccount.Dashboard',{
+                .state('Account.Dashboard',{
                     url: '/dashboard',
-                    templateUrl: 'public/viewtemplates/public/account/accountmain.html',
-                    controller: 'AccountCtrl',
+                    templateUrl: 'public/viewtemplates/public/account/DashboardMain.html',
+                    controller: 'DashboardMainCtrl',
                     views: {
-                        accountInfo: {
-                            templateUrl: 'public/viewtemplates/private/buyer/accountInfo.html',
-                            controller: "dashBuyerInfoCtrl"
+                        topHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+                            controllerProvider: function($rootScope){
+                                if($rootScope.userType === "2"){
+                                    return 'DashboardUserInfoCtrl';
+                                } else {
+                                    alert("in else");
+                                    return 'FakeCtrl';
+                                }
+                            }
+
                         },
-                        appliedApartments: {
+                        /*leftSplit: {
                             templateUrl: 'public/viewtemplates/public/account/appliedApts.html',
                             controller: "dashAppliedCtrl"
-                        }
+                        },
+                        rightSplit: {
+                            templateUrl: '',
+                            controller: ''
+                        }*/
                     },
                     data: trueRequiredLogin
                 })
@@ -161,7 +173,7 @@ angular.module('MainApp')
                     views:{
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilemain.html'
+                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilemain.html'
                         }
                     },
                     data: trueRequiredLogin
@@ -170,7 +182,7 @@ angular.module('MainApp')
                     url: '/create',
                     views: {
                         "profilepage": {
-                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileFormCtrl'
                         }
                     },
@@ -180,7 +192,7 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         "profilepage": {
-                            templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profileform.html',
+                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
                             controller: 'ProfileFormCtrl'
                         }
                     },

@@ -1,4 +1,4 @@
-angular.module('BuyerApp')
+angular.module('AccountApp')
     .controller('ProfileFormCtrl', [
         '$scope',
         '$modal',
@@ -58,7 +58,7 @@ angular.module('BuyerApp')
                     
                     $scope.appicationEmails = [];
                     var modalInstance = $modal.open({
-                        templateUrl: 'public/app/modules/BuyerApp/profileapp/viewtemplates/profilesavemodal.html',
+                        templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilesavemodal.html',
                         controller: 'ProfileSaveModalCtrl',
                         size: 'md',
                         resolve: {

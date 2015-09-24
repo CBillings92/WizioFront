@@ -1,4 +1,4 @@
-angular.module('BuyerApp')
+angular.module('AccountApp')
     .controller('ProfileCreateModalCtrl', [
         '$scope',
         '$modalInstance',

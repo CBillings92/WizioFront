@@ -41,7 +41,7 @@ angular.module('UnitApp')
                     });
                 } else {
                     //call modal function
-                    var modalInstanceVerify = modal('public/app/modules/buyerapp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
+                    var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
 
                     modalInstanceVerify.result.then(function(result) {
                         switch(result){

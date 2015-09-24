@@ -1,5 +1,5 @@
-angular.module('BuyerApp')
-    .controller('dashBuyerMainCtrl', [
+angular.module('AccountApp')
+    .controller('AccountUserInfoCtrl', [
         '$scope',
         '$timeout',
         'AuthFct',
@@ -11,5 +11,11 @@ angular.module('BuyerApp')
                 $scope.$broadcast('AccountInfoBroadcast', accountInfo);
             });
             //get all the other apartment information
+        }
+    ])
+    .controller('AccountMainCtrl', [
+        '$scope',
+        function($scope){
+            alert('why');
         }
     ]);
