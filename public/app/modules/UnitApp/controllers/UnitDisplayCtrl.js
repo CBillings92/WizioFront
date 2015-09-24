@@ -1,5 +1,5 @@
-angular.module('ApartmentsApp')
-.controller('ApartmentsDisplayCtrl', [
+angular.module('UnitApp')
+.controller('UnitDisplayCtrl', [
     '$scope',
     '$sessionStorage',
     '$state',
@@ -18,7 +18,7 @@ angular.module('ApartmentsApp')
             var apartment = lodash.find($scope.apartmentSearch, {id: id});
             if(apartment !== undefined){
                 ApartmentGetSetSvc.set(apartment, "apartmentSelected");
-                $state.go('ApartmentDetails', {id: id});
+                $state.go('apartmentDetails', {id: id});
             } else {
                 alert('Error: Apartment not loaded properly');
             }

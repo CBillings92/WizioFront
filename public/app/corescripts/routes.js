@@ -4,9 +4,10 @@ angular.module('MainApp')
         '$urlRouterProvider',
         '$locationProvider',
         '$httpProvider',
-        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+        'WizioConfig',
+        function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, WizioConfig) {
             var navbar = {
-                templateUrl: 'public/app/modules/navbarapp/viewtemplates/navbar.html',
+                templateUrl: WizioConfig.NavbarViewsURL + 'Navbar.html',
                 controller: 'NavbarCtrl'
             };
             var trueRequiredLogin = {
@@ -20,30 +21,30 @@ angular.module('MainApp')
                     url: '/',
                     views: {
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/landingpage.html',
-                            controller: 'landingpagectrl'
+                            templateUrl: 'public/viewtemplates/public/landingPage.html',
+                            controller: 'LandingPageCtrl'
                         }
                     },
                     data: falseRequiredLogin
                 })
-                .state('ApartmentDetails', {
-                    url: '/apartmentdetails/:id',
+                .state('UnitDetails', {
+                    url: '/UnitDetails/:id',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/apartmentdetailspage.html',
-                            controller: 'ApartmentDetailsCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'aptDetailsPage.html',
+                            controller: 'UnitDetailCtrl'
                         }
                     },
                     data: falseRequiredLogin
                 })
-                .state('ApartmentsDisplay', {
-                    url: '/apartments',
+                .state('AptDisplay', {
+                    url: '/aptDisplay',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/apartmentsdisplay.html',
-                            controller: 'ApartmentsDisplayCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'aptDisplay.html',
+                            controller: 'UnitDisplayCtrl'
                         }
                     },
                     data: falseRequiredLogin
@@ -54,17 +55,18 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/blog.html',
-                            controller: 'blogctrl'
+                            controller: 'BlogCtrl'
                         }
                     },
                     data: falseRequiredLogin
                 })
+                //auth-ify this
                 .state('AccountCreate', {
-                    url: '/createaccount',
+                    url: '/accountCreate',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/accountcreate.html',
+                            templateUrl: WizioConfig.AuthViewsURL + '/accountCreate.html',
                             controller: 'AccountCreateCtrl'
                         }
                     },
@@ -75,8 +77,8 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/authapp/viewtemplates/login.html',
-                            controller: 'LoginCtrl'
+                            templateUrl: WizioConfig.AuthViewsURL + 'Login.html',
+                            controller: 'AuthLoginCtrl'
                         }
                     },
                     data: falseRequiredLogin
@@ -86,8 +88,8 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/sendresetpassemail.html',
-                            controller: 'LoginCtrl'
+                            templateUrl: WizioConfig.AuthViewsURL + 'sendresetpassemail.html',
+                            controller: 'AuthLoginCtrl'
                         }
                     },
                     data: falseRequiredLogin
@@ -97,62 +99,58 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/resetpassword.html',
-                            controller: 'LoginCtrl'
+                            templateUrl: WizioConfig.AuthViewsURL + 'resetpassword.html',
+                            controller: 'AuthLoginCtrl'
                         }
                     },
                     data: falseRequiredLogin
                 })
-                .state('CreateApartment', {
-                    url: '/createapartment',
+                .state('createApt', {
+                    url: '/createApt',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/createapartment.html',
-                            controller: 'CreateApartmentCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitCreateCtrl.html',
+                            controller: 'UnitCreateCtrl'
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('UserAccount', {
-                    url: '/account',
+                .state('BuyerAccount', {
+                    url: '/b/account',
                     abstract: true,
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/account/accountmain.html',
-                            controller: 'AccountCtrl'
+                            templateUrl: 'public/viewtemplates/private/buyer/accountMain.html',
+                            controller: 'dashBuyerMainCtrl'
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('UserAccount.Dashboard', {
+                .state('BuyerAccount.Dashboard',{
                     url: '/dashboard',
                     templateUrl: 'public/viewtemplates/public/account/accountmain.html',
                     controller: 'AccountCtrl',
                     views: {
                         accountInfo: {
-                            templateUrl: 'public/viewtemplates/public/account/accountInfo.html',
-                            controller: "AccountInfoCtrl"
+                            templateUrl: 'public/viewtemplates/private/buyer/accountInfo.html',
+                            controller: "dashBuyerInfoCtrl"
                         },
                         appliedApartments: {
-                            templateUrl: 'public/viewtemplates/public/account/appliedApartments.html',
-                            controller: "appliedApartmentsCtrl"
-                        },
-                        suggestedApartments: {
-                            templateUrl: 'public/viewtemplates/public/account/suggestedApartments.html',
-                            controller: "SuggestedApartmentsCtrl"
+                            templateUrl: 'public/viewtemplates/public/account/appliedApts.html',
+                            controller: "dashAppliedCtrl"
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('BrokerAdditionalInfo', {
+            .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/brokeraddinfo.html',
-                            controller: 'BrokerAddInfoCtrl'
+                            templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
+                            controller: 'brokerAddInfoCtrl'
                         }
                     },
                     data: trueRequiredLogin
@@ -166,9 +164,7 @@ angular.module('MainApp')
                             templateUrl: 'public/app/modules/buyerapp/profileapp/viewtemplates/profilemain.html'
                         }
                     },
-                    data: {
-                        requireLogin: true
-                    }
+                    data: trueRequiredLogin
                 })
                 .state('Profile.Create', {
                     url: '/create',
@@ -199,7 +195,7 @@ angular.module('MainApp')
                         }
                     },
                     abstract: true,
-                    data: requireLogin
+                    data: trueRequiredLogin
                 })
                 .state('Application.New', {
                     url: '/new',
@@ -224,7 +220,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/ApartmentApp/viewtemplates/apartmentmain.html'
+                            templateUrl: 'public/app/modules/UnitApp/viewtemplates/UnitMain.html'
                         }
                     },
                     abstract: true

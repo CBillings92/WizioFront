@@ -4,10 +4,9 @@ angular.module('AuthApp')
     '$localStorage',
     '$http',
     '$rootScope',
-    'registration',
-    'AuthRegisterResource',
+    'AuthRegistrationResource',
     'AuthLoginResource',
-    function($state, $localStorage, $http, $rootScope, registration, AuthRegisterResource, AuthLoginResource) {
+    function($state, $localStorage, $http, $rootScope, AuthRegistrationResource, AuthLoginResource) {
         function urlBase64Decode(str) {
             var output = str.replace('-', '+').replace('_', '/');
             switch (output.length % 4) {
@@ -27,7 +26,7 @@ angular.module('AuthApp')
 
         return {
             signup: function(data, success, error) {
-                AuthRegisterUser.save(null, data, function(status, data) {
+                AuthRegistrationResource.save(null, data, function(status, data) {
                     console.log(data);
                 });
             },

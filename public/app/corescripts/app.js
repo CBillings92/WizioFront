@@ -1,34 +1,30 @@
-angular.module('AccountApp', []);
+angular.module('UnitApp', []);
+angular.module('BuyerApp', []);
 angular.module('AccountCreateApp', []);
-angular.module('ApartmentDetailsApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
-angular.module('BrokerApp', []);
 angular.module('NavbarApp', []);
-angular.module('ApartmentsApp', []);
 angular.module('SharedControllersApp', []);
-angular.module('SharedFactoriesApp', []);
-angular.module('SharedServicesApp', []);
+angular.module('SharedFactoryApp', []);
+angular.module('SharedServiceApp', []);
 angular.module('SellerApp', []);
 
 
 angular.module('MainApp', [
-        'AccountApp',
-        'ApartmentsApp',
-        'ApartmentDetailsApp',
+        //change to UnitApp
+
         'ApplicationApp',
         'AuthApp',
         'LandingPageApp',
-        'AccountCreateApp',
         'BlogApp',
         'NavbarApp',
-        'BrokerApp',
         'SharedControllersApp',
-        'SharedFactoriesApp',
-        'SharedServicesApp',
+        'SharedFactoryApp',
+        'SharedServiceApp',
         'SellerApp',
+        'UnitApp',
         'ui.router',
         'ngStorage',
         'ngResource',

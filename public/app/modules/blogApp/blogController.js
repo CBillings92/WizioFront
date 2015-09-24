@@ -1,5 +1,5 @@
 angular.module('BlogApp')
-.controller('blogctrl', [
+.controller('BlogCtrl', [
 '$scope',
 function($scope){
 $scope.blogData = [{id:1}, {id:2}];

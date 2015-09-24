@@ -1,5 +1,5 @@
-angular.module('ApartmentDetailsApp')
-    .controller('ApartmentDetailsCtrl', [
+angular.module('UnitApp')
+    .controller('UnitDetailCtrl', [
         '$scope',
         '$state',
         '$stateParams',

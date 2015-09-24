@@ -1,14 +1,14 @@
 angular.module('AuthApp')
-.controller('LoginCtrl', [
+.controller('AuthLoginCtrl', [
     '$rootScope',
     '$scope',
     '$state',
     '$localStorage',
     '$stateParams',
     'AuthFct',
-    'sendresetpassemail',
-    'updatepassword',
-    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, sendresetpassemail, updatepassword){
+    'AuthResetPasswordResource',
+    'AuthUpdatePasswordResource',
+    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource){
         function successAuth(res){
             console.dir(res);
             console.dir("in success auth!");
@@ -19,7 +19,7 @@ angular.module('AuthApp')
         $scope.sendResetEmail = function(){
             var emailobj = {};
             emailobj.email = $scope.email;
-            sendresetpassemail.save(null, emailobj, function(data, status){
+            AuthResetPasswordResource.save(null, emailobj, function(data, status){
                     alert('An email has been sent to '+emailobj.email+' with insturctions on how to reset your password');
                     $state.go('Home');
             }, function(err){
@@ -33,12 +33,12 @@ angular.module('AuthApp')
                 passwordobj.token = $stateParams.token;
                 console.log('------------------');
                 console.dir(passwordobj);
-                updatepassword.save(passwordobj, function(data, status){
+                AuthUpdatePasswordResource.save(passwordobj, function(data, status){
                   alert('Your password has been reset!');
-                  $state.go('Login');
+                  $state.go('login');
                 }, function(err){
                   alert('This link to reset your password has expired. Please select forgot password and try again');
-                  $state.go('Login');
+                  $state.go('login');
                 });
             } else {
               $scope.password = '';

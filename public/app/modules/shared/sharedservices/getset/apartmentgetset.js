@@ -1,10 +1,10 @@
-angular.module('SharedServicesApp')
+angular.module('SharedServiceApp')
     .service('ApartmentGetSetSvc', [
         '$sessionStorage',
         '$stateParams',
-        'ApartmentResource',
+        'UnitResource',
         'lodash',
-        function($sessionStorage, $stateParams, ApartmentResource, lodash) {
+        function($sessionStorage, $stateParams, UnitResource, lodash) {
             var apartmentSelected = null;
             var sessionStorageVarContainer = [];
             var set = function(apartment, sessionStorageVar) {
@@ -22,7 +22,7 @@ angular.module('SharedServicesApp')
                     apartmentSelected = $sessionStorage[sessionStorageVar];
                     return apartmentSelected;
                 } else if(apartmentSelected === null || apartmentSelected.id !== $stateParams.id){
-                    ApartmentResource.get({
+                    UnitResource.get({
                         id: apartmentURLID
                     }, function(data) {
                         apartmentSelected = data;
@@ -55,11 +55,10 @@ angular.module('SharedServicesApp')
                     apartmentSelected = $sessionStorage.apartmentSelected;
                     callback(apartmentSelected);
                 } else {
-                    ApartmentResource.get({
+                    UnitResource.get({
                         id: apartmentURLID
                     }, function(data) {
                         apartmentSelected = data;
-                        console.dir(data);
                         callback(apartmentSelected);
                     });
                 }

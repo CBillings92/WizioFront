@@ -1,15 +1,15 @@
-angular.module('ApartmentsApp')
-    .controller('CreateApartmentCtrl', [
+angular.module('UnitApp')
+    .controller('UnitCreateCtrl', [
         '$scope',
         '$sessionStorage',
         '$rootScope',
         '$state',
         'geocoder',
         'lodash',
-        'ApartmentResource',
+        'UnitResource',
         //Pass $scope into the function as a way to allow our code to work when utilizing minification.
         //See the last 3 sections of this site. Starts with: "The benefit to the longhand version is that..." https://thinkster.io/egghead/scope-vs-scope/
-        function($scope, $sessionStorage, $rootScope, $state, geocoder, lodash, ApartmentResource) {
+        function($scope, $sessionStorage, $rootScope, $state, geocoder, lodash, UnitResource) {
             //save sessionStorage variable into $scope.$storage for sessionStorage
 
             $scope.$storage = $sessionStorage;
@@ -117,7 +117,7 @@ angular.module('ApartmentsApp')
                             apartmentObj.longitude = parseFloat(results[0].geometry.location.K.toFixed(6));
                             console.dir(apartmentObj);
                             //save apartment to database using apartment factory
-                            ApartmentResource.save(null, apartmentObj, function(data, status) {
+                            UnitResource.save(null, apartmentObj, function(data, status) {
                                 $scope.apartment = data;
                                 console.dir(data);
                                 $state.go('MyAccount');

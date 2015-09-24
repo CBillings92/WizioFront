@@ -1,10 +1,8 @@
-angular.module('SellerApp')
-.controller('DashSellerInfoCtrl.js', [
+angular.module('BuyerApp')
+.controller('dashBuyerInfoCtrl.js', [
     '$scope',
     function($scope){
         $scope.$on('AccountInfoBroadcast', function(event, data){
-            console.dir("IN $SCOPE.ON");
-            console.dir(data);
             $scope.accountInfo = data;
         });
 

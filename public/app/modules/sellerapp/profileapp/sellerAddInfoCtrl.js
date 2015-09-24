@@ -1,5 +1,5 @@
-angular.module('BrokerApp')
-.controller('BrokerAddInfoCtrl', [
+angular.module('SellerApp')
+.controller('sellerAddInfoCtrl', [
     '$scope',
     'brokerResource',
     function($scope, brokerResource){
