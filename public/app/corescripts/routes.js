@@ -270,6 +270,14 @@ angular.module('MainApp')
                             }
 
                         },
+                        response: function(response){
+                            if(response.data.token){
+                                $localStorage.token = response.data.token;
+                                return response;
+                            } else {
+                                return response;
+                            }
+                        },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 delete $localStorage.token;
