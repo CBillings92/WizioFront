@@ -39,14 +39,15 @@ angular.module('MainApp', [
         '$localStorage',
         'jwtHelper',
         'AuthFct',
-        function($rootScope, $state, $http, $localStorage, jwtHelper, AuthFct) {
+        'TokenSvc',
+        function($rootScope, $state, $http, $localStorage, jwtHelper, AuthFct, TokenSvc) {
             //on angular app instantiaion check if a localStorage token exists and
             //if it's expired. Assign isLoggedIn to $rootScope accordingly
-            if (!$localStorage.token) {
+            if (!TokenSvc.getToken()) {
                 $rootScope.isLoggedIn = false;
-            } else if (jwtHelper.isTokenExpired($localStorage.token)){
+            } else if (tokenSvc.checkExp){
                 $rootScope.isLoggedIn = false;
-                delete $localStorage.token;
+                TokenSvc.deleteToken;
             } else {
                 $rootScope.userType = AuthFct.getTokenClaims().userType;
                 console.dir($rootScope.userType);
@@ -54,32 +55,30 @@ angular.module('MainApp', [
             }
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-                var requireLogin = false;
-                var token = $localStorage.tokens;
-                var isTokenExpired = jwtHelper.isTokenExpired(token);
-
                 //check if the state being navigated to requires login
                 if (toState && toState.data.requireLogin !== undefined) {
                     requireLogin = true;
                 }
+                //if token has no data in it or is null, delete
                 if (token.data === null){
-                    delete $localStorage.token;
+                    TokenSvc.deleteToken();
                 }
-                if(isTokenExpired){
-                    delete $localStorage.token;
+                //check if token is expired
+                if(TokenSvc.checkExp){
+                    TokenSvc.deleteToken();
                 }
                 //if state requires login, if token exists, if its expired, login
-                if (requireLogin === true && token && isTokenExpired) {
+                if (requireLogin === true && TokenSvc.getToken() && TokenSvc.checkExp()) {
                     event.preventDefault();
                     alert('Token is expired. Please login again');
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
-                } else if (requireLogin === true && !token) {
+                } else if (requireLogin === true && !TokenSvc.getToken()) {
                     alert('Please login');
                     event.preventDefault();
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
-                } else if (!token || isTokenExpired) {
+                } else if (!TokenSvc.getToken() || TokenSvc.CheckExp()) {
                     $rootScope.isLoggedIn = false;
                 } else {
                     $rootScope.isLoggedIn = true;

@@ -254,31 +254,26 @@ angular.module('MainApp')
                 '$location',
                 '$localStorage',
                 '$injector',
-                'jwtHelper',
-                function($q, $location, $localStorage, $injector, jwtHelper) {
+                'TokenSvc',
+                function($q, $location, $localStorage, $injector, TokenSvc) {
                     return {
                         request: function(config) {
                             config.headers = config.headers || {};
-                            console.dir(config.headers);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;
                             } else {
-                                if ($localStorage.token) {
-                                    config.headers.Authorization = $localStorage.token;
+                                if (TokenSvc.getToken()) {
+                                    config.headers.Authorization = TokenSvc.getToken();
                                 }
                                 return config;
                             }
 
                         },
                         response: function(response){
-
                             if(response.data.token){
-                                console.dir("____________________________");
-                                console.dir(jwtHelper.decodeToken(response.data.token));
-                                console.dir(response);
-                                console.dir("_______________________________");
-                                $localStorage.token = response.data.token;
+                                TokenSvc.storeToken(response.data.token);
+                                //$localStorage.token = response.data.token;
                                 return response;
                             } else {
                                 return response;
@@ -286,7 +281,7 @@ angular.module('MainApp')
                         },
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
-                                delete $localStorage.token;
+                                TokenSvc.deleteToken();
                                 alert('Authentication Failed');
                             }
                             $injector.get('$state').transitionTo('Login');

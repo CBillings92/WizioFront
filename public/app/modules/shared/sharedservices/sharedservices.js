@@ -98,20 +98,44 @@ angular.module('SharedServiceApp')
                 }
                 return jwtHelper.decodeToken($localStorage.token);
             };
+            //returns true if the token is expired
             var checkExp = function(token){
                 if(token){
                     return jwtHelper.isTokenExpired(token);
-                }
-                if($localStorage.token){
+                } else if($localStorage.token){
                     return jwtHelper.isTokenExpired($localStorage.token);
                 }
                 return true;
-
             };
+            var storeToken = function(token){
+                if(token){
+                    $localStorage.token = token;
+                    return true;
+                }
+                return false;
+            };
+            var getToken = function(){
+                if($localStorage.token){
+                    return $localStorage.token;
+                } else {
+                    return false;
+                }
+            }
+            var deleteToken = function(){
+                if($localStorage.token){
+                    delete $localStorage.token;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
 
             return {
                 decode: decode,
-                checkExp: checkExp
+                checkExp: checkExp,
+                storeToken: storeToken,
+                getToken: getToken,
+                deleteToken: deleteToken
             };
         }
     ]);
