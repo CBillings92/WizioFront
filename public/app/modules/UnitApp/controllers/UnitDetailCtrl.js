@@ -27,6 +27,7 @@ angular.module('UnitApp')
             //LOAD APARTMENT DATA end
             $scope.apply = function() {
                 if(TokenSvc.checkExp()){
+                    TokenSvc.deleteToken();
                     alert('Please login');
                     return $state.go('Login');
                 }

@@ -8,10 +8,11 @@ angular.module('AuthApp')
     'AuthFct',
     'AuthResetPasswordResource',
     'AuthUpdatePasswordResource',
-    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource){
+    'TokenSvc',
+    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         function successAuth(res){
-            console.dir(res);
-            console.dir("in success auth!");
+            console.log("IN HERE");
+            TokenSvc.storeToken(res);
             $rootScope.isLoggedIn = true;
             $state.go('Account.Dashboard');
         }
@@ -50,6 +51,7 @@ angular.module('AuthApp')
                 email: $scope.email,
                 password: $scope.password
             };
+            console.log("IN THERE");
             AuthFct.signin(userData, successAuth, function(){
                 $rootScope.error = "Failed to sign in!";
                 $state.go('Home');

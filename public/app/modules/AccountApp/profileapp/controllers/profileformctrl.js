@@ -7,7 +7,8 @@ angular.module('AccountApp')
         'AuthFct',
         'ProfileResource',
         'ApplicationResource',
-        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
+        'TokenSvc',
+        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource, TokenSvc) {
             //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
@@ -55,7 +56,7 @@ angular.module('AccountApp')
                 if (currentState === "Profile.Edit") {
                     alert('hurr');
                 } else if (currentState === "Profile.Create") {
-                    
+
                     $scope.appicationEmails = [];
                     var modalInstance = $modal.open({
                         templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilesavemodal.html',
@@ -70,14 +71,15 @@ angular.module('AccountApp')
                     modalInstance.result.then(function(result) {
                         //Could probably utilize async on front end here...
                         console.dir(profile);
-                        profile.annualIncome = "123";
                         if (result === "saveAndApply") {
-
                             ProfileResource.save(profile, function(status, data) {
+                                var token = TokenSvc.decodeToken();
+                                console.dir(token);
                                 $state.go('Application.New');
                             });
                         } else if (result === "save") {
                             ProfileResource.save(profile, function(status, data) {
+
 
                             });
                         }

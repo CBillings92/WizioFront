@@ -5,6 +5,7 @@
         <legend>Form Name</legend>
 
 <!-- Text input-->
+    <!--needs checks for integer only values -->
         <div class="form-group">
             <label class="col-md-4 control-label" for="annualIncome">Annual Income</label>
             <div class="col-md-4">
@@ -44,10 +45,6 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="prependedcheckbox">Prepended Checkbox</label>
             <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="checkbox">
-                    </span>
                     <input class="form-control" ng-model="prependedcheckbox" name="prependedcheckbox" placeholder="placeholder" type="text">
                 </div>
                 <p class="help-block">help</p>
@@ -80,6 +77,113 @@
                 <span class="help-block">help</span>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="PreviousEmployer1">Previous Employer 1</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="previousEmployer1" name="PreviousEmployer1" placeholder="PreviousEmployer1" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="PreviousEmployerLOE1">Previous Employer Length of Employment 1</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="PreviousEmployerLOE1" name="PreviousEmployerLOE1" placeholder="PreviousEmployerLOE1" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="PreviousEmployerPosition1">Previous Employer Position 1</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="previousEmployerPosition1" name="PreviousEmployerPosition1" placeholder="PreviousEmployerPosition1" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="CreditScore">Credit Score</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="creditScore" name="CreditScore" placeholder="CreditScore" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="MaritalStatus">Marital Status</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="maritalStatus" name="MaritalStatus" placeholder="MaritalStatus" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="EmergencyContact">Emergency Contact</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="emergencyContact" name="EmergencyContact" placeholder="EmergencyContact" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="EmergencyContactNum">Emergency Contact Number</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="emergencyContactNum" name="EmergencyContactNum" placeholder="EmergencyContactNum" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="PhoneNumber">Phone Number</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="phoneNumber" name="PhoneNumber" placeholder="PhoneNumber" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="SocialSecurityNumber">Social Security Number</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="socialSecurityNumber" name="SocialSecurityNumber" placeholder="SocialSecurityNumber" type="text">
+                <span class="help-block">stored securely</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="CurrentBank">Current Bank</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="currentBank" name="CurrentBank" placeholder="CurrentBank" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="CurrentTenancyAddress">Current Residence Address</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="currentTenancyAddress" name="CurrentTenancyAddress" placeholder="CurrentTenancyAddress" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="CurrentPM">Current Residence Property Manager or Landlord</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="currentPM" name="CurrentPM" placeholder="CurrentPM" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="CurrentPMContace">Current Residence Property Manager or Landlord Phone</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="currentPMContace" name="CurrentPMContace" placeholder="CurrentPMContace" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="EmploymentStatus">Employment Status</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="employmentStatus" name="EmploymentStatus" placeholder="EmploymentStatus" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="desiredMoveInDate">Desired Move In Date</label>
+            <div class="col-md-4">
+                <input class="form-control input-md" ng-model="desiredMoveInDate" name="desiredMoveInDate" placeholder="desiredMoveInDate" type="text">
+                <span class="help-block">help</span>
+            </div>
+        </div>
+
+
 
 <!-- Multiple Radios (inline) -->
     <!--

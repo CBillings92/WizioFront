@@ -45,7 +45,7 @@ angular.module('MainApp', [
             //if it's expired. Assign isLoggedIn to $rootScope accordingly
             if (!TokenSvc.getToken()) {
                 $rootScope.isLoggedIn = false;
-            } else if (tokenSvc.checkExp){
+            } else if (TokenSvc.checkExp){
                 $rootScope.isLoggedIn = false;
                 TokenSvc.deleteToken;
             } else {
@@ -56,17 +56,17 @@ angular.module('MainApp', [
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 //check if the state being navigated to requires login
-                if (toState && toState.data.requireLogin !== undefined) {
+                if (toState && toState.data.requireLogin === true) {
                     requireLogin = true;
-                }
-                //if token has no data in it or is null, delete
-                if (token.data === null){
-                    TokenSvc.deleteToken();
+                } else {
+                    requireLogin = false;
                 }
                 //check if token is expired
                 if(TokenSvc.checkExp){
                     TokenSvc.deleteToken();
                 }
+                console.dir(requireLogin);
+                console.dir(TokenSvc.getToken());
                 //if state requires login, if token exists, if its expired, login
                 if (requireLogin === true && TokenSvc.getToken() && TokenSvc.checkExp()) {
                     event.preventDefault();
@@ -74,6 +74,7 @@ angular.module('MainApp', [
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
                 } else if (requireLogin === true && !TokenSvc.getToken()) {
+                    console.dir("RIGHT WHER THE PROBLEM IS");
                     alert('Please login');
                     event.preventDefault();
                     $rootScope.isLoggedIn = false;

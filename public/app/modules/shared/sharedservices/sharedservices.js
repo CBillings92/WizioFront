@@ -108,6 +108,7 @@ angular.module('SharedServiceApp')
                 return true;
             };
             var storeToken = function(token){
+                console.dir(token);
                 if(token){
                     $localStorage.token = token;
                     return true;
