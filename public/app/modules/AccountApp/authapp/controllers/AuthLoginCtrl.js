@@ -12,7 +12,6 @@ angular.module('AuthApp')
         function successAuth(res){
             console.dir(res);
             console.dir("in success auth!");
-            $localStorage.token = res.data;
             $rootScope.isLoggedIn = true;
             $state.go('Account.Dashboard');
         }
