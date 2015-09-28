@@ -9,7 +9,8 @@ angular.module('UnitApp')
         'ApartmentGetSetSvc',
         'UnitResource',
         'AuthFct',
-        function($scope, $state, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, UnitResource, AuthFct) {
+        'TokenSvc',
+        function($scope, $state, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, UnitResource, AuthFct, TokenSvc) {
             //modal function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
@@ -25,6 +26,10 @@ angular.module('UnitApp')
             });
             //LOAD APARTMENT DATA end
             $scope.apply = function() {
+                if(TokenSvc.checkExp()){
+                    alert('Please login');
+                    return $state.go('Login');
+                }
                 //get user data
                 var user = AuthFct.getTokenClaims();
                 //set apartment data and store that data in sessionStorage variable
