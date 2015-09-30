@@ -275,7 +275,6 @@ angular.module('MainApp')
                                 console.dir(response.data.token);
 
                                 TokenSvc.storeToken(response.data.token);
-                                //$localStorage.token = response.data.token;
                                 return response;
                             } else {
                                 return response;

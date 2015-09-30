@@ -10,7 +10,20 @@ angular.module('UnitApp')
         'UnitResource',
         'AuthFct',
         'TokenSvc',
-        function($scope, $state, $stateParams, $sessionStorage, $modal, lodash, ApartmentGetSetSvc, UnitResource, AuthFct, TokenSvc) {
+        'ProfileResource',
+        function(
+            $scope,
+            $state,
+            $stateParams,
+            $sessionStorage,
+            $modal,
+            lodash,
+            ApartmentGetSetSvc,
+            UnitResource,
+            AuthFct,
+            TokenSvc,
+            ProfileResource
+        ) {
             //modal function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({

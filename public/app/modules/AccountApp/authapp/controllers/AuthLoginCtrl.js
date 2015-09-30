@@ -11,8 +11,6 @@ angular.module('AuthApp')
     'TokenSvc',
     function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         function successAuth(res){
-            console.log("IN HERE");
-            TokenSvc.storeToken(res);
             $rootScope.isLoggedIn = true;
             $state.go('Account.Dashboard');
         }

@@ -33,8 +33,6 @@ angular.module('AuthApp')
             },
             signin: function(data, success, error) {
                 AuthLoginResource.save(data, function(data){
-                    TokenSvc.storeToken(data.token);
-                    console.dir(data);
                     success(data);
                 });
             },

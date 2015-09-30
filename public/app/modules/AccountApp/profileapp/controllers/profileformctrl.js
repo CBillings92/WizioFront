@@ -73,7 +73,7 @@ angular.module('AccountApp')
                         console.dir(profile);
                         if (result === "saveAndApply") {
                             ProfileResource.save(profile, function(status, data) {
-                                var token = TokenSvc.decodeToken();
+                                //var token = TokenSvc.decodeToken();
                                 console.dir(token);
                                 $state.go('Application.New');
                             });
