@@ -52,7 +52,7 @@ angular.module('AuthApp')
             console.log("IN THERE");
             AuthFct.signin(userData, successAuth, function(){
                 $rootScope.error = "Failed to sign in!";
-                $state.go('Home');
+                $state.go('Login');
             });
         };
 

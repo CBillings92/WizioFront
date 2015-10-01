@@ -59,7 +59,8 @@ angular.module('MainApp', [
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 //check if the state being navigated to requires login
-
+                token = TokenSvc.getToken();
+                tokenIsExp = TokenSvc.checkExp();
                 if (toState && toState.data.requireLogin === true) {
                     requireLogin = true;
                 } else {

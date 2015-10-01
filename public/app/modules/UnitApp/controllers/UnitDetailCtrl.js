@@ -11,6 +11,7 @@ angular.module('UnitApp')
         'AuthFct',
         'TokenSvc',
         'ProfileResource',
+        'FlexGetSetSvc',
         function(
             $scope,
             $state,
@@ -22,7 +23,8 @@ angular.module('UnitApp')
             UnitResource,
             AuthFct,
             TokenSvc,
-            ProfileResource
+            ProfileResource,
+            FlexGetSetSvc
         ) {
             //modal function
             var modal = function(templateUrl, controller, size){
@@ -60,22 +62,33 @@ angular.module('UnitApp')
                     });
                 } else {
                     //call modal function
-                    var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
+                    ProfileResource.get({id: user.ProfileId}, function(data){
+                        if(data){
+                            console.dir(data);
+                            var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
 
-                    modalInstanceVerify.result.then(function(result) {
-                        switch(result){
-                            case "ok":
-                                $state.go('ApartmentApplication');
-                                break;
-                            case "edit":
-                                $state.go('Profile.Edit');
-                                break;
-                            default:
-                                alert('ERROR');
+                            modalInstanceVerify.result.then(function(result) {
+                                switch(result){
+                                    case "ok":
+                                        $state.go('ApartmentApplication');
+                                        break;
+                                    case "edit":
+                                        console.dir(data);
+                                        FlexGetSetSvc.set(data);
+                                        console.dir(FlexGetSetSvc.get());
+                                        $state.go('Profile.Edit');
+                                        break;
+                                    default:
+                                        alert('ERROR');
+                                }
+                            }, function() {
+                                alert('MODAL DISMISSED');
+                            });
+                        } else {
+                            //handle
                         }
-                    }, function() {
-                        alert('MODAL DISMISSED');
-                    });
+                    })
+
                 }
             };
         }
