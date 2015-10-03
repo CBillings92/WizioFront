@@ -1,6 +1,6 @@
 angular.module('MainApp')
 .constant('WizioConfig', {
-    baseAPIURL: 'http://localhost:4000/api/',
+    baseAPIURL: 'http://172.16.0.3:4000/api/',
     //
     //angular app URLs - views
     //
