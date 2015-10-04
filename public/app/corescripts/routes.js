@@ -111,16 +111,24 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
+                            templateUrl: WizioConfig.AccountViewsURL + 'AccountMain.html',
                             controller: 'AccountMainCtrl'
                         }
                     },
                     data: trueRequiredLogin
                 })
                 .state('Account.Dashboard',{
+                    //url: '/dashboard',
+                    abstract:true,
+                    views: {
+                        "AccountMain": {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
+                            controller: 'DashboardMainCtrl',
+                        }
+                    }
+                })
+                .state('Account.Dashboard.Main', {
                     url: '/dashboard',
-                    templateUrl: 'public/viewtemplates/public/account/DashboardMain.html',
-                    controller: 'DashboardUserInfoCtrl',
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',

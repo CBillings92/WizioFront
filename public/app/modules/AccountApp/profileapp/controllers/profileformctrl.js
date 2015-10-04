@@ -29,7 +29,7 @@ angular.module('AccountApp')
                     currentEmployerPosition1: $scope.currentEmployerPosition1,
                     currentEmployer2: $scope.currentEmployer2,
                     currentEmployerLOE2: $scope.currentEmployerLOE2,
-                    currentEmployerPosition: $scope.currentEmployerPosition,
+                    currentEmployerPosition2: $scope.currentEmployerPosition2,
                     previousEmployer1: $scope.previousEmployer1,
                     previousEmployerLOE1: $scope.previousEmployerLOE1,
                     previousEmployerPosition1: $scope.previousEmployerPosition1,

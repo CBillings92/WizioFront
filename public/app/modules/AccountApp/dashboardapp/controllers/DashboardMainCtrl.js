@@ -1,5 +1,5 @@
-angular.module('AccountApp')
-    .controller('DashboardUserInfoCtrl', [
+angular.module('AccountApp')    
+    .controller('DashboardMainCtrl', [
         '$scope',
         '$timeout',
         'AuthFct',
@@ -12,11 +12,6 @@ angular.module('AccountApp')
                 $scope.$broadcast('AccountInfoBroadcast', accountInfo);
             });
             //get all the other apartment information
-        }
-    ])
-    .controller('DashboardMainCtrl', [
-        '$scope',
-        function($scope){
             alert('why');
         }
     ]);

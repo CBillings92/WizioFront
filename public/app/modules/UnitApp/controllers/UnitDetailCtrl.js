@@ -51,6 +51,7 @@ angular.module('UnitApp')
                 //set apartment data and store that data in sessionStorage variable
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
                 //If the user doesn't have a profile
+                console.dir(user.ProfileId);
                 if (user.ProfileId === null) {
                     //call modal function
                     var modalInstanceCreate = modal('public/viewtemplates/public/createprofilemodal.html', 'ProfileCreateModalCtrl', 'md');
