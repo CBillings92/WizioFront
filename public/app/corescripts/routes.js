@@ -111,7 +111,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AccountViewsURL + 'AccountMain.html',
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
                             controller: 'AccountMainCtrl'
                         }
                     },
@@ -120,12 +120,12 @@ angular.module('MainApp')
                 .state('Account.Dashboard',{
                     url: '/dashboard',
                     templateUrl: 'public/viewtemplates/public/account/DashboardMain.html',
-                    controller: 'DashboardMainCtrl',
+                    controller: 'DashboardUserInfoCtrl',
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controllerProvider: function($rootScope){
-                                if($rootScope.userType === "2"){
+                                if($rootScope.userType == 1){
                                     return 'DashboardUserInfoCtrl';
                                 } else {
                                     alert("in else");
@@ -246,7 +246,7 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
-                })
+                });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

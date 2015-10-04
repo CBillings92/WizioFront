@@ -13,7 +13,7 @@ angular.module('MainApp')
     BuyerDashboardViewsURL: 'public/app/modules/AccountApp/dashboard/viewtemplates/',
     landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
-    AccountViewsURL: 'public/app/modules/AccountApp/viewtemplates/',
+    AccountViewsURL: 'public/app/modules/AccountApp/main/',
     AccountDashboardViewsURL: 'public/app/modules/AccountApp/dashboardapp/viewtemplates/',
     AccountAuthViewsURL: 'public/app/modules/AccountApp/authapp/viewtemplates/',
     UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/'

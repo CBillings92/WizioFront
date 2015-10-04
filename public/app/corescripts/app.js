@@ -53,6 +53,7 @@ angular.module('MainApp', [
                 TokenSvc.deleteToken();
             } else {
                 $rootScope.userType = AuthFct.getTokenClaims().userType;
+                console.dir($rootScope.userType);
                 $rootScope.isLoggedIn = true;
             }
 

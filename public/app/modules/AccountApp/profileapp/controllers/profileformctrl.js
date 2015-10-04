@@ -8,10 +8,13 @@ angular.module('AccountApp')
         'ProfileResource',
         'ApplicationResource',
         'TokenSvc',
-        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource, TokenSvc) {
+        'FlexGetSetSvc',
+        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource, TokenSvc, FlexGetSetSvc) {
             //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
+            console.dir(FlexGetSetSvc.get());
+            $scope.profile = FlexGetSetSvc.get();
             //get user information
             var user = AuthFct.getTokenClaims();
             console.dir(user);
@@ -54,7 +57,8 @@ angular.module('AccountApp')
                 console.dir(currentState);
                 //collect emails from form.
                 if (currentState === "Profile.Edit") {
-                    alert('hurr');
+                    console.dit(FlexGetSetSvc.get());
+                    $scope.profile = FlexGetSetSvc.get();
                 } else if (currentState === "Profile.Create") {
 
                     $scope.appicationEmails = [];
