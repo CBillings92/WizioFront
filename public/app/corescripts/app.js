@@ -3,6 +3,7 @@ angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
+angular.module('CampaignApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
@@ -22,6 +23,7 @@ angular.module('MainApp', [
         'AuthApp',
         'BlogApp',
         'LandingPageApp',
+        'CampaignApp',
         'NavbarApp',
         'SellerApp',
         'SharedControllersApp',
