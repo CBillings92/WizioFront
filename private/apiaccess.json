@@ -1,0 +1,36 @@
+{
+    "AWSRestAPI": {
+        "about": "This JSON object contains the information neccessary to post data to the Wizio S3 bucket",
+        "key": "",
+        "policy": {
+            "Version": "2012-10-17",
+            "Statement": [{
+                "Sid": "AddCannedAcl",
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": [
+                        "arn:aws:iam::226250774235:root"
+                    ]
+                },
+                "Action": [
+                    "s3:PutObject",
+                    "s3:PutObjectAcl"
+                ],
+                "Resource": [
+                    "arn:aws:s3:::wiziouservideos/*"
+                ],
+                "Condition": {
+                    "StringEquals": {
+                        "s3:x-amz-acl": [
+                            "private"
+                        ]
+                    }
+                }
+            }]
+        },
+        "bucketname": "wiziouservideos.s3.amazonaws.com",
+        "Content-Length": "1000000000",
+        "HTTPstatuscode": "100-continue",
+        "dialect": "mysql"
+    }
+}

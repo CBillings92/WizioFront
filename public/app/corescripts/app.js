@@ -1,29 +1,32 @@
-angular.module('UnitApp', []);
 angular.module('AccountApp', []);
+angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
+angular.module('SellerApp', []);
 angular.module('SharedControllersApp', []);
 angular.module('SharedFactoryApp', []);
 angular.module('SharedServiceApp', []);
-angular.module('SellerApp', []);
+angular.module('UnitApp', []);
+
 
 
 angular.module('MainApp', [
         //change to UnitApp
 
-        'ApplicationApp',
         'AccountApp',
+        'AmazonS3UploadApp',
+        'ApplicationApp',
         'AuthApp',
-        'LandingPageApp',
         'BlogApp',
+        'LandingPageApp',
         'NavbarApp',
+        'SellerApp',
         'SharedControllersApp',
         'SharedFactoryApp',
         'SharedServiceApp',
-        'SellerApp',
         'UnitApp',
         'ui.router',
         'ngStorage',

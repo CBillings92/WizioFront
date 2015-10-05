@@ -22,7 +22,8 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/landingPage.html',
-                            controller: 'LandingPageCtrl'
+                            controller: 'AmazonS3UploadCtrl',
+                            directive: 'file'
                         }
                     },
                     data: falseRequiredLogin
