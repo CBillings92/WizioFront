@@ -1,7 +1,8 @@
 angular.module('UnitApp')
 .factory('UnitResource', [
     '$resource',
-    function($resource){
-        return $resource('http://localhost:4000/api/apartment/:id', {id: '@id'});
+    'WizioConfig',
+    function($resource, WizioConfig){
+        return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
     }
 ]);

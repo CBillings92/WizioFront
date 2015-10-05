@@ -118,14 +118,22 @@ angular.module('MainApp')
                     data: trueRequiredLogin
                 })
                 .state('Account.Dashboard',{
+                    //url: '/dashboard',
+                    abstract:true,
+                    views: {
+                        "AccountMain": {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
+                            controller: 'DashboardMainCtrl',
+                        }
+                    }
+                })
+                .state('Account.Dashboard.Main', {
                     url: '/dashboard',
-                    templateUrl: 'public/viewtemplates/public/account/DashboardMain.html',
-                    controller: 'DashboardMainCtrl',
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controllerProvider: function($rootScope){
-                                if($rootScope.userType === "2"){
+                                if($rootScope.userType == 1){
                                     return 'DashboardUserInfoCtrl';
                                 } else {
                                     alert("in else");
@@ -246,7 +254,7 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
-                })
+                });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([
@@ -272,8 +280,9 @@ angular.module('MainApp')
                         },
                         response: function(response){
                             if(response.data.token){
+                                console.dir(response.data.token);
+
                                 TokenSvc.storeToken(response.data.token);
-                                //$localStorage.token = response.data.token;
                                 return response;
                             } else {
                                 return response;

@@ -6,7 +6,8 @@ angular.module('AuthApp')
     '$rootScope',
     'AuthRegistrationResource',
     'AuthLoginResource',
-    function($state, $localStorage, $http, $rootScope, AuthRegistrationResource, AuthLoginResource) {
+    'TokenSvc',
+    function($state, $localStorage, $http, $rootScope, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
         function urlBase64Decode(str) {
             var output = str.replace('-', '+').replace('_', '/');
             switch (output.length % 4) {
@@ -32,7 +33,6 @@ angular.module('AuthApp')
             },
             signin: function(data, success, error) {
                 AuthLoginResource.save(data, function(data){
-                    console.dir(data);
                     success(data);
                 });
             },
