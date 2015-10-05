@@ -3,6 +3,7 @@ angular.module('AccountApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
+angular.module('CampaignApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SharedControllersApp', []);
@@ -19,6 +20,7 @@ angular.module('MainApp', [
         'AuthApp',
         'LandingPageApp',
         'BlogApp',
+        'CampaignApp',
         'NavbarApp',
         'SharedControllersApp',
         'SharedFactoryApp',

@@ -254,6 +254,44 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('Campaign', {
+                    url: '/campaign',
+                    abstract: true,
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
+                            controller: 'CampaignMainCtrl'
+                        }
+                    }
+                })
+                .state('Campaign.VideoUpload', {
+                    url: '/apartmentshare',
+                    abstract: true,
+                    views: {
+                        "CampaignMain": {
+                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + "/VideoUploadMain.html",
+                            controller: 'VideoUploadMainCtrl'
+                        }
+                    }
+                })
+                .state('Campaign.VideoUpload.Main', {
+                    url: '/main',
+                    views: {
+                        "MainContent1": {
+                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',
+                            controller: 'VideoUploadSplashCtrl'
+                        }
+                    }
+                })
+                .state('Campaign.VideoUpload.Form', {
+                    url: '/form',
+                    views: {
+                        "VideoUploadMain" : {
+                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadForm.html',
+                            controller: 'VideoUploadFormCtrl'
+                        }
+                    }
                 });
             $urlRouterProvider.otherwise('/');
 
