@@ -101,15 +101,22 @@ angular.module('SharedServiceApp')
             //returns true if the token is expired
             var checkExp = function(token){
                 if(token){
+                    console.log("WHY AM I IN HERE");
+                    console.log(token);
                     return jwtHelper.isTokenExpired(token);
                 } else if($localStorage.token){
+                    console.dir(jwtHelper.isTokenExpired($localStorage.token));
                     return jwtHelper.isTokenExpired($localStorage.token);
                 }
-                return true;
+                console.log("NO IF STATEMENTS WORK");
+                return false;
             };
             var storeToken = function(token){
+                console.dir(token);
                 if(token){
+                    console.dir(token);
                     $localStorage.token = token;
+                    console.dir($localStorage.token);
                     return true;
                 }
                 return false;
@@ -120,7 +127,7 @@ angular.module('SharedServiceApp')
                 } else {
                     return false;
                 }
-            }
+            };
             var deleteToken = function(){
                 if($localStorage.token){
                     delete $localStorage.token;
@@ -128,7 +135,7 @@ angular.module('SharedServiceApp')
                 } else {
                     return false;
                 }
-            }
+            };
 
             return {
                 decode: decode,

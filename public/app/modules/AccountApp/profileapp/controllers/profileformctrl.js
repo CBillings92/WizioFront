@@ -7,10 +7,14 @@ angular.module('AccountApp')
         'AuthFct',
         'ProfileResource',
         'ApplicationResource',
-        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource) {
+        'TokenSvc',
+        'FlexGetSetSvc',
+        function($scope, $modal, $state, ApartmentGetSetSvc, AuthFct, ProfileResource, ApplicationResource, TokenSvc, FlexGetSetSvc) {
             //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
+            console.dir(FlexGetSetSvc.get());
+            $scope.profile = FlexGetSetSvc.get();
             //get user information
             var user = AuthFct.getTokenClaims();
             console.dir(user);
@@ -25,7 +29,7 @@ angular.module('AccountApp')
                     currentEmployerPosition1: $scope.currentEmployerPosition1,
                     currentEmployer2: $scope.currentEmployer2,
                     currentEmployerLOE2: $scope.currentEmployerLOE2,
-                    currentEmployerPosition: $scope.currentEmployerPosition,
+                    currentEmployerPosition2: $scope.currentEmployerPosition2,
                     previousEmployer1: $scope.previousEmployer1,
                     previousEmployerLOE1: $scope.previousEmployerLOE1,
                     previousEmployerPosition1: $scope.previousEmployerPosition1,
@@ -53,9 +57,10 @@ angular.module('AccountApp')
                 console.dir(currentState);
                 //collect emails from form.
                 if (currentState === "Profile.Edit") {
-                    alert('hurr');
+                    console.dit(FlexGetSetSvc.get());
+                    $scope.profile = FlexGetSetSvc.get();
                 } else if (currentState === "Profile.Create") {
-                    
+
                     $scope.appicationEmails = [];
                     var modalInstance = $modal.open({
                         templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilesavemodal.html',
@@ -70,14 +75,15 @@ angular.module('AccountApp')
                     modalInstance.result.then(function(result) {
                         //Could probably utilize async on front end here...
                         console.dir(profile);
-                        profile.annualIncome = "123";
                         if (result === "saveAndApply") {
-
                             ProfileResource.save(profile, function(status, data) {
+                                //var token = TokenSvc.decodeToken();
+                                console.dir(token);
                                 $state.go('Application.New');
                             });
                         } else if (result === "save") {
                             ProfileResource.save(profile, function(status, data) {
+
 
                             });
                         }

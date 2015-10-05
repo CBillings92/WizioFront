@@ -1,11 +1,14 @@
-<div class="">
-    <div class="col-md-12" ui-view="topHorizontal">
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <div ui-view="topHorizontal"></div>
+      </div>
+    </div><!-- row -->
+    <div class="row pad">
+      <div class="col-md-5 col-md-offset-1 appl">
+        <div ui-view="leftSplit"></div>
+      </div>
 
-    </div>
-    <div class="col-md-6" ui-view="leftSplit">
-
-    </div>
-    <div class="col-md-6" ui-view="rightSplit">
-
+        <div class="col-md-5 sugges" ui-view="rightSplit"></div>
     </div>
 </div>

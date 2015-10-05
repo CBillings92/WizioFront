@@ -1,5 +1,5 @@
-angular.module('AccountApp')
-    .controller('AccountUserInfoCtrl', [
+angular.module('AccountApp')    
+    .controller('DashboardMainCtrl', [
         '$scope',
         '$timeout',
         'AuthFct',
@@ -8,14 +8,10 @@ angular.module('AccountApp')
             var accountInfo = AuthFct.getTokenClaims();
             //set timeout to wait for child controllers to load.
             $timeout(function() {
+                console.dir("in here");
                 $scope.$broadcast('AccountInfoBroadcast', accountInfo);
             });
             //get all the other apartment information
-        }
-    ])
-    .controller('AccountMainCtrl', [
-        '$scope',
-        function($scope){
             alert('why');
         }
     ]);

@@ -5,12 +5,8 @@ angular.module('SellerApp')
     '$state',
     'ProfileResource',
     'AuthFct',
-    function($scope, $modalInstance, $state, ProfileResource, AuthFct){
-        var user = AuthFct.getTokenClaims();
-        ProfileResource.get({id: user.ProfileId}, function(data){
-            $scope.profile = data;
-        });
-        
+    'FlexGetSetSvc',
+    function($scope, $modalInstance, $state, ProfileResource, AuthFct, FlexGetSetSvc){
         $scope.ok = function() {
             $modalInstance.close('ok');
         };
