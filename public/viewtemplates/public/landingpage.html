@@ -1,13 +1,12 @@
 <div class="container-fluid">
     <div class="demo-section row">
-      <div class="col-md-11">
-        <img id="landingpagelogo" src="public/viewtemplates/images/logo.png">
-      </div>
+        <div class="col-md-11">
+            <img id="landingpagelogo" src="public/viewtemplates/images/logo.png">
+        </div>
 
-      <div class="col-md-1">
-        <a class="btn btn-success btn-lg" href="#/login"
-        id="login" ng-hide="isLoggedIn">Login</a>
-      </div>
+        <div class="col-md-1">
+            <a class="btn btn-success btn-lg" href="#/login" id="login" ng-hide="isLoggedIn">Login</a>
+        </div>
 
         <center>
             <h1>Explore Real Estate Virtually</h1>
@@ -18,31 +17,30 @@
                 <iframe allowfullscreen frameborder="0" height="385px" id="demo" src="https://www.youtube.com/embed/lBPXTFAEgwo" width="640px"></iframe>
             </center>
         </div>
-<!--mobile hidden-->
+        <!--mobile hidden-->
 
         <div class="hidden-md hidden-lg">
             <center>
                 <iframe allowfullscreen frameborder="0" height="320px" id="demo" src="https://www.youtube.com/embed/lBPXTFAEgwo" width="380px"></iframe>
             </center>
         </div>
-<!--desktop hidden-->
+        <!--desktop hidden-->
 
         <img id="bck" src="public/viewtemplates/images/bos.jpg">
     </div>
-<!-- demo section -->
+    <!-- demo section -->
 
     <div class="entersite-section row">
         <div class="col-lg-6 col-lg-offset-3">
-          <label class="hidden-md hidden-lg">
-            Search Apartments to Enter Site </label>
+            <label class="hidden-md hidden-lg">
+                Search Apartments to Enter Site </label>
             <center>
                 <div class="input-group">
 
                     <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
                     <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                     <div ng-show="noResults">
-                        <i class="glyphicon glyphicon-remove"></i>
-                        No Results Found
+                        <i class="glyphicon glyphicon-remove"></i> No Results Found
                     </div>
                     <div class="input-group-btn">
                         <button class="btn btn-success" ng-click="search()" href="" type="button">
@@ -54,10 +52,10 @@
             </center>
         </div>
     </div>
-<!--enter site-->
+    <!--enter site-->
 
     <div class="signup-section row">
-<!--FORM-->
+        <!--FORM-->
         <center>
             <h3>Start your apartment search today.</center>
         </h3>
@@ -77,7 +75,7 @@
                 <input class="form-control" ng-model='lastName' type='text'>
             </div>
         </div>
-<!-- row-->
+        <!-- row-->
 
         <div class="row">
             <div class="col-lg-4 form-group">
@@ -97,43 +95,73 @@
                 <label class='control-label'>
                     <h3>Set Password:</h3>
                 </label>
-                <input class="form-control form-input" ng-model="password" type="password"/>
+                <input class="form-control form-input" ng-model="password" type="password" />
             </div>
 
             <div class="col-lg-4">
                 <label class='control-label'>
                     <h3>Confirm Password:</h3>
                 </label>
-                <input class="form-control form-input" name="password" ng-model="passwordConfirm" type="password"/>
+                <input class="form-control form-input" name="password" ng-model="passwordConfirm" type="password" />
             </div>
         </div>
-<!--row-->
-            <div class="form-group">
-              <center><label>
-                <h3>I am a...</h3>
-              </label></center>
+        <!--row-->
+        <div class="form-group">
+            <center>
+                <label>
+                    <h3>I am a...</h3>
+                </label>
+            </center>
 
-                <center><div class="btn-group">
-                  <label btn-radio="'broker'" class="btn btn-success btn-lg" ng-model="radioModel">Broker</label>
-                  <label btn-radio="'realtor'" class="btn btn-success btn-lg" ng-model="radioModel">Realtor</label>
-                  <label btn-radio="'tenant'" class="btn btn-success btn-lg" ng-model="radioModel">Tenant</label>
-                </div></center><!-- btn-group -->
-            </div><!-- form-group -->
+            <center>
+                <div class="btn-group">
+                    <label btn-radio="'broker'" class="btn btn-success btn-lg" ng-model="radioModel">Broker</label>
+                    <label btn-radio="'realtor'" class="btn btn-success btn-lg" ng-model="radioModel">Realtor</label>
+                    <label btn-radio="'tenant'" class="btn btn-success btn-lg" ng-model="radioModel">Tenant</label>
+                </div>
+            </center>
+            <!-- btn-group -->
+        </div>
+        <!-- form-group -->
 
-        <center><input class="btn btn-success btn-lg" id="signinbtn" ng-click="registerUser()" value="Sign Up">
-        </br>
+        <center>
+            <input class="btn btn-success btn-lg" id="signinbtn" ng-click="registerUser()" value="Sign Up">
+            </br>
     </div>
-<!--signup-section-->
+    </br>
+    <!--signup-section-->
 
     <div class="descrip-section row">
         <center>
             <h1>What is Wizio?</h1>
         </center>
         <p>
-            <h3>Founded in January of 2015, Wizio utilizes cutting-edge technology to offer an automated realtor service that connects quality tenants to landlords and property managers faster and cheaper than ever before. The software as a service provides virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
+            <h3>Founded in January of 2015, Wizio utilizes cutting-edge technology to offer an automated realtor service that connects quality tenants to landlords and property managers faster and cheaper than ever before. The software as a service provides
+                virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
         </h3>
     </div>
-<!--descrip section -->
+    <!--descrip section -->
 
 </div>
 <!--container-->
+
+<!--AWS-Upload-section-->
+<div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Upload Your Video File</h3>
+            </div>
+            <div class="panel-body">
+                <input class="bottom-marg-15 ng-isolate-scope" type="file" name="file" file=""></input>
+                <!-- Progress Bar -->
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
+                        {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+                    </div>
+                </div>
+                <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+            </div>
+        </div>
+    </div>
+</div>

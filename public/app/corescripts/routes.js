@@ -22,7 +22,8 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/landingPage.html',
-                            controller: 'LandingPageCtrl'
+                            controller: 'AmazonS3UploadCtrl',
+                            directive: 'file'
                         }
                     },
                     data: falseRequiredLogin
@@ -246,7 +247,7 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
-                })
+                });
             $urlRouterProvider.otherwise('/');
 
             $httpProvider.interceptors.push([

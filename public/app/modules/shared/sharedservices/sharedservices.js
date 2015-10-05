@@ -120,7 +120,7 @@ angular.module('SharedServiceApp')
                 } else {
                     return false;
                 }
-            }
+            };
             var deleteToken = function(){
                 if($localStorage.token){
                     delete $localStorage.token;
@@ -128,7 +128,7 @@ angular.module('SharedServiceApp')
                 } else {
                     return false;
                 }
-            }
+            };
 
             return {
                 decode: decode,
