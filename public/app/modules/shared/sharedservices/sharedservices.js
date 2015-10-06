@@ -145,4 +145,9 @@ angular.module('SharedServiceApp')
                 deleteToken: deleteToken
             };
         }
-    ]);
+    ])
+    .service('ModalSvc', [
+        function(){
+            
+        }
+    ])

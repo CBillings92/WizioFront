@@ -22,7 +22,7 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/landingPage.html',
-                            controller: 'AmazonS3UploadCtrl',
+                            controller: 'LandingPageCtrl',
                             directive: 'file'
                         }
                     },
