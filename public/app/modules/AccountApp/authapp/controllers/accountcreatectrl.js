@@ -2,13 +2,15 @@ angular.module('AuthApp')
 .controller('AccountCreateCtrl', [
     '$scope',
     '$state',
-    'userRegistration',
-    function($scope, $state, userRegistration){
+    '$modalInstance',
+    'UserRegistrationSvc',
+    function($scope, $state, $modalInstance, UserRegistrationSvc){
         $scope.radioModel = {
             realtor: false,
             tenant: true,
             broker: false
         };
+
 
         $scope.setUserObject = function(){
             var user = {
@@ -25,7 +27,21 @@ angular.module('AuthApp')
                 user.userType = 3;
             }
 
-            userRegistration.saveUser(user);
+            userRegistration.saveUser(user, function(data){
+                if($state.current.name === "Campaign.VideoUpload.Main"){
+                    $modalInstance.close('ok');
+                } else {
+                    $state.go('Account.Dashboard');
+                }
+            });
+        };
+
+        $scope.cancel = function(){
+            if($state.current.name === "CAmpaign.VideoUpload.Main"){
+                $modalInstance.dismiss();
+            } else {
+                $state.go('Home');
+            }
         };
 
     }
