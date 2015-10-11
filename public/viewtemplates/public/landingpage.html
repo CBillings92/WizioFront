@@ -144,24 +144,3 @@
 
 </div>
 <!--container-->
-
-<!--AWS-Upload-section-->
-<div>
-    <div class="col-md-8">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Upload Your Video File</h3>
-            </div>
-            <div class="panel-body">
-                <input file ng-model="file" type="file" name="file"></input file>
-                <!-- Progress Bar -->
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
-                        {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
-                    </div>
-                </div>
-                <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
-            </div>
-        </div>
-    </div>
-</div>

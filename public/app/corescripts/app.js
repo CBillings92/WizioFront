@@ -1,3 +1,4 @@
+//CREATE ALL TOP LEVEL APPS (create, not start)
 angular.module('AccountApp', []);
 angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
@@ -13,7 +14,8 @@ angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
 
 
-
+//LOAD 'MainApp' ANGULAR module
+//LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
 angular.module('MainApp', [
         //change to UnitApp
 
@@ -37,6 +39,7 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
+    //ON APP START AND DURING APP RUN
     .run([
         '$rootScope',
         '$state',
@@ -51,13 +54,16 @@ angular.module('MainApp', [
             var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
 
+            //if no token exists, assign isLoggedIn to false
+            //if token is expired, assign isLoggedIn to false
+            //else, assign isLoggedInto to true
             if (!token) {
                 $rootScope.isLoggedIn = false;
             } else if (tokenIsExp){
                 $rootScope.isLoggedIn = false;
                 TokenSvc.deleteToken();
             } else {
-                $rootScope.userType = AuthFct.getTokenClaims().userType;
+                $rootScope.userType = TokenSvc.decode().userType;
                 console.dir($rootScope.userType);
                 $rootScope.isLoggedIn = true;
             }

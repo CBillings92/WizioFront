@@ -47,7 +47,7 @@ angular.module('UnitApp')
                     return $state.go('Login');
                 }
                 //get user data
-                var user = AuthFct.getTokenClaims();
+                var user = TokenSvc.decode();
                 //set apartment data and store that data in sessionStorage variable
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
                 //If the user doesn't have a profile

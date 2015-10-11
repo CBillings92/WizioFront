@@ -22,7 +22,7 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/landingPage.html',
-                            controller: 'AmazonS3UploadCtrl',
+                            controller: 'LandingPageCtrl',
                             directive: 'file'
                         }
                     },
@@ -46,18 +46,6 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/blog.html',
                             controller: 'BlogCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
-                //auth-ify this
-                .state('AccountCreate', {
-                    url: '/accountCreate',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + '/accountCreate.html',
-                            controller: 'AccountCreateCtrl'
                         }
                     },
                     data: falseRequiredLogin
@@ -128,6 +116,17 @@ angular.module('MainApp')
                         }
                     }
                 })
+                //auth-ify this
+                .state('Account.Create', {
+                    url: '/create',
+                    views: {
+                        "AccountMain": {
+                            templateUrl: WizioConfig.AccountAuthViewsURL + '/AuthCreateAcctForm.html',
+                            controller: 'AuthCreateAcctCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Account.Dashboard.Main', {
                     url: '/dashboard',
                     views: {
@@ -154,6 +153,7 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
+
             .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {

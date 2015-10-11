@@ -71,15 +71,7 @@ angular.module('SharedServiceApp')
             function registerUser(user, callback) {
                 console.dir("in setUserObj");
                 AuthRegistrationResource.save(user, function(data) {
-                    console.dir(data);
-                    console.dir(user);
-                    if (user.userType === 1) {
-                        $state.go('apartmentsDisplay');
-                    } else if (user.userType === 2) {
-
-                    } else if (user.userType === 3) {
-                        $state.go('sellerAdditionalInfo');
-                    }
+                    callback(data);
                 });
             }
             return {
