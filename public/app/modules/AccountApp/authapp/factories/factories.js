@@ -36,7 +36,7 @@ angular.module('AuthApp')
                 tokenClaims = {};
                 delete $localStorage.token;
                 $rootScope.isLoggedIn = false;
-                success();
+                $state.go('LandingPage');
             },
             isLoggedin: isLoggedin
         };

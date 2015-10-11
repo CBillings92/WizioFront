@@ -21,9 +21,8 @@ angular.module('MainApp')
                     url: '/',
                     views: {
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/landingPage.html',
+                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
                             controller: 'LandingPageCtrl',
-                            directive: 'file'
                         }
                     },
                     data: falseRequiredLogin
@@ -133,11 +132,11 @@ angular.module('MainApp')
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controllerProvider: function($rootScope){
+                                //CHANGE-NEEDED: Implement user types -CB
                                 if($rootScope.userType == 1){
                                     return 'DashboardUserInfoCtrl';
                                 } else {
-                                    alert("in else");
-                                    return 'FakeCtrl';
+                                    return 'DashboardUserInfoCtrl';
                                 }
                             }
 
@@ -318,6 +317,7 @@ angular.module('MainApp')
 
                         },
                         response: function(response){
+                            console.dir(response);
                             if(response.data.token){
                                 console.dir(response.data.token);
 

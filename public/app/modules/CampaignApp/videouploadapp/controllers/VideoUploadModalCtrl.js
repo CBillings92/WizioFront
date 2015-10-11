@@ -2,54 +2,45 @@ angular.module('CampaignApp')
 .controller('VideoUploadModalCtrl', [
     '$scope',
     '$modalInstance',
-    function($scope, $modalInstance){
+    'SmartSearchSvc',
+    'UnitResource'
+    function($scope, $modalInstance, SmartSearchSvc){
+        $scope.getLocation = function(val){
+            return SmartSearchSvc.smartSearch(val);
+        }
+
         $scope.sizeLimit = 5368709120; // 5GB in Bytes
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.upload = function() {
-            console.log("The upload function gets hit");
+
             AWS.config.update({
                 accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
                 secretAccessKey: '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'
             });
-            console.log("Still running 1a");
             AWS.config.region = 'us-east-1';
             var bucket = new AWS.S3({
                 params: {
                     Bucket: "wiziouservideos"
                 }
             });
-            console.log("Still running 1b");
-            console.dir(bucket);
-
-            console.log("scope.file:");
-            console.log($scope.file);
-            console.dir($scope.file);
 
             if ($scope.file) {
                 // Perform File Size Check First
                 var fileSize = Math.round(parseInt($scope.file.size));
-                console.log("Still running 2");
                 if (fileSize > $scope.sizeLimit) {
                     toastr.error('Sorry, your attachment is too big. <br/> Maximum ' + $scope.fileSizeLabel() + ' file attachment allowed', 'File Too Large');
                     return false;
                 }
                 // Prepend Unique String To Prevent Overwrites
                 var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
-                console.log("Still running 3");
-                console.log(uniqueFileName);
-
                 var params = {
                     Key: uniqueFileName,
                     ContentType: $scope.file.type,
                     Body: $scope.file,
                     ServerSideEncryption: 'AES256'
                 };
-                console.log("Still running 4 Here are params:");
-                console.dir(params);
-
                 bucket.putObject(params, function(err, data) {
-                    console.log("Inside put objects function");
                         if (err) {
                             toastr.error(err.message, err.code);
                             $modalInstance.dismiss();

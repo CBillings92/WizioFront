@@ -84,6 +84,7 @@ angular.module('SharedServiceApp')
         '$localStorage',
         'jwtHelper',
         function($localStorage, jwtHelper){
+            //decode auth token for front end. Retrieves user information
             var decode = function(token){
                 if(token){
                     return jwtHelper.decodeToken(token);
@@ -93,22 +94,15 @@ angular.module('SharedServiceApp')
             //returns true if the token is expired
             var checkExp = function(token){
                 if(token){
-                    console.log("WHY AM I IN HERE");
-                    console.log(token);
                     return jwtHelper.isTokenExpired(token);
                 } else if($localStorage.token){
-                    console.dir(jwtHelper.isTokenExpired($localStorage.token));
                     return jwtHelper.isTokenExpired($localStorage.token);
                 }
-                console.log("NO IF STATEMENTS WORK");
                 return false;
             };
             var storeToken = function(token){
-                console.dir(token);
                 if(token){
-                    console.dir(token);
                     $localStorage.token = token;
-                    console.dir($localStorage.token);
                     return true;
                 }
                 return false;
@@ -128,7 +122,7 @@ angular.module('SharedServiceApp')
                     return false;
                 }
             };
-
+            //return all functions
             return {
                 decode: decode,
                 checkExp: checkExp,
@@ -137,4 +131,32 @@ angular.module('SharedServiceApp')
                 deleteToken: deleteToken
             };
         }
-    ]);
+    ])
+    .service('SmartSearchSvc', [
+        '$http',
+        function($http){
+            //accepts a search string, makes a request to the google API
+            //and returns the formatted address to the controller
+            var smartSearch = function(val){
+                return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+                    headers: {
+                        searchCheck: true
+                    },
+                    params: {
+                        address: val,
+                        sensor: false,
+                        components: "state:MA"
+                    }
+                }).then(function(response) {
+                    return response.data.results.map(function(item) {
+                        return item.formatted_address;
+
+                    });
+                });
+            }
+            //return all functions
+            return {
+                smartSearch: smartSearch
+            }
+        }
+    ])
