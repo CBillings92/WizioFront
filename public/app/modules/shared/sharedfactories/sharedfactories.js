@@ -25,4 +25,4 @@ angular.module('SharedFactoryApp')
                 getLatLong: getLatLong
             };
         }
-    ]);
+    ])

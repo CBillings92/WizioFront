@@ -11,7 +11,7 @@ angular.module('AccountApp')
                     email: $scope.email,
                     password: $scope.password
                 };
-                userRegistrationSvc.saveUser(user, function(data) {
+                UserRegistrationSvc.saveUser(user, function(data) {
                     $state.go('Account.Dashboard');
                 });
             };

@@ -19,7 +19,7 @@ angular.module('MainApp')
     CampaignMainViewsURL: 'public/app/modules/CampaignApp/main/',
     CampaignVideoUploadViewsURL: 'public/app/modules/CampaignApp/videouploadapp/viewtemplates/',
     //Landing Page App
-    landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+    landingPageAppViewsURL: 'public/app/modules/LandingPageApp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
     //Account App

@@ -12,7 +12,7 @@ angular.module('AccountApp')
     function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         function successAuth(res){
             $rootScope.isLoggedIn = true;
-            $state.go('Account.Dashboard');
+            $state.go('Account.Dashboard.Main');
         }
         $scope.sendResetEmail = function(){
             var emailobj = {};
