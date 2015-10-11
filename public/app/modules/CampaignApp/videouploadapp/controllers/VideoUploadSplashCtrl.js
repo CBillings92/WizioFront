@@ -1,37 +1,60 @@
 angular.module('CampaignApp')
-.controller('VideoUploadSplashCtrl', [
-    '$scope',
-    '$state',
-    '$modal',
-    'WizioConfig',
-    function($scope, $state, $modal, WizioConfig){
-        var viewtemplates = {
-            topHorizontal1: true,
-            topHorizontal2: true,
-            mainContent1: false,
-            mainContent2: true,
-            bottomHorizontal: true
-        };
-        $scope.$emit('ViewTemplatesSelector', viewtemplates);
+    .controller('VideoUploadSplashCtrl', [
+        '$scope',
+        '$state',
+        '$modal',
+        'WizioConfig',
+        'AuthFct',
+        function($scope, $state, $modal, WizioConfig, AuthFct) {
+            var viewtemplates = {
+                topHorizontal1: true,
+                topHorizontal2: true,
+                mainContent1: false,
+                mainContent2: true,
+                bottomHorizontal: true
+            };
+            $scope.$emit('ViewTemplatesSelector', viewtemplates);
 
-        var modal = function(templateUrl, controller, size){
-            var modalInstance = $modal.open({
-                templateUrl: templateUrl,
-                controller: controller,
-                size: size
-            });
-            return modalInstance;
-        };
+            var modal = function(templateUrl, controller, size) {
+                var modalInstance = $modal.open({
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    size: size
+                });
+                return modalInstance;
+            };
 
-        $scope.uploadVideo = function(){
-            var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'accountcreate.html', 'AccountCreateCtrl', 'md');
+            $scope.uploadVideo = function() {
+                if (AuthFct.isLoggedin()) {
+                    var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'md');
 
-            modalInstanceSignup.result.then(function(result) {
-                alert('DONE');
-            }, function() {
-                alert('CANCELED');
-            });
-            //$state.go('Campaign.VideoUpload.Form');
-        };
-    }
-]);
+                    modalInstanceUploadForm.result.then(function(result) {
+                        if (result === 'ok') {
+                            alert('success!');
+                        }
+                    }, function() {
+                        alert('CANCELLED');
+                    });
+                } else {
+                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md');
+
+                    modalInstanceSignup.result.then(function(result) {
+                        if (result === 'ok') {
+                            var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'md');
+
+                            modalInstanceUploadForm.result.then(function(result) {
+                                if (result === 'ok') {
+
+                                }
+                            }, function() {
+                                alert('CANCELLED');
+                            });
+                        }
+                    }, function() {
+                        alert('CANCELED');
+                    });
+
+                }
+            };
+        }
+    ]);

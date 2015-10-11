@@ -16,7 +16,7 @@ angular.module('AccountApp')
             console.dir(FlexGetSetSvc.get());
             $scope.profile = FlexGetSetSvc.get();
             //get user information
-            var user = AuthFct.getTokenClaims();
+            var user = TokenSvc.decode();
             console.dir(user);
             //for ng-repeat on profile form for emails. Check # of bedrooms
             $scope.apply = function() {

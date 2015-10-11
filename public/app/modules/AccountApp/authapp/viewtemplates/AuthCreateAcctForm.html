@@ -2,7 +2,7 @@
     <div class="row">
 
         <form ng-submit='setUserObject()'>
-            <div class="col-lg-12 form-group">
+            <div class="col-lg-offset-3 col-lg-6 form-group">
                 <label class='control-label'>
                     <h4>First Name:</h4>
                 </label>
@@ -35,29 +35,12 @@
                 </label>
                 <input class="form-control" name="password" ng-model="passwordConfirm" type="password"/>
             </div>
-
-            <div class="col-lg-offset-3 col-lg-6 form-group">
-                <center>
-                    <label>
-                        <h4>I am a...</h4>
-                    </label>
-                </center>
-                <center>
-                    <div class="btn-group">
-                        <label btn-radio="'broker'" class="btn btn-success btn-lg" ng-model="radioModel">Broker</label>
-                        <label btn-radio="'realtor'" class="btn btn-success btn-lg" ng-model="radioModel">Realtor</label>
-                        <label btn-radio="'tenant'" class="btn btn-success btn-lg" ng-model="radioModel">Tenant</label>
-                    </div>
-                </center>
-<!-- btn-group -->
-            </div>
 <!-- form-group -->
         </br>
         <div class="col-lg-offset-3 col-lg-6">
             <center>
-                <a href="#/login">
+                
                     <input class="btn btn-success btn-lg" for='createAcct' ng-click="setUserObj()" type='submit'>
-                </a>
             </center>
         </br>
     </div>

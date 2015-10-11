@@ -1,4 +1,4 @@
-angular.module('AuthApp')
+angular.module('AccountApp')
 .controller('AuthLoginCtrl', [
     '$rootScope',
     '$scope',

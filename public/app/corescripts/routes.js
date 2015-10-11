@@ -50,18 +50,6 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                //auth-ify this
-                .state('AccountCreate', {
-                    url: '/accountCreate',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + '/accountCreate.html',
-                            controller: 'AccountCreateCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
                 .state('Login', {
                     url: '/login',
                     views: {
@@ -128,6 +116,17 @@ angular.module('MainApp')
                         }
                     }
                 })
+                //auth-ify this
+                .state('Account.Create', {
+                    url: '/create',
+                    views: {
+                        "AccountMain": {
+                            templateUrl: WizioConfig.AccountAuthViewsURL + '/AuthCreateAcctForm.html',
+                            controller: 'AuthCreateAcctCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Account.Dashboard.Main', {
                     url: '/dashboard',
                     views: {
@@ -154,6 +153,7 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
+
             .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {
