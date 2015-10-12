@@ -134,7 +134,8 @@ angular.module('SharedServiceApp')
     ])
     .service('SmartSearchSvc', [
         '$http',
-        function($http){
+        'FlexGetSetSvc',
+        function($http, FlexGetSetSvc){
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
             var smartSearch = function(val){
@@ -148,15 +149,17 @@ angular.module('SharedServiceApp')
                         components: "state:MA"
                     }
                 }).then(function(response) {
+                    console.dir(response);
+                    FlexGetSetSvc.set(response);
                     return response.data.results.map(function(item) {
                         return item.formatted_address;
 
                     });
                 });
-            }
+            };
             //return all functions
             return {
                 smartSearch: smartSearch
-            }
+            };
         }
-    ])
+    ]);
