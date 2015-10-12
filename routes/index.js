@@ -7,5 +7,10 @@ router.get('/', function(req, res, next) {
         title: 'Express'
     });
 });
+router.get('/test', function(req, res, next) {
+    res.render('sdfa', {
+        title: 'Express'
+    });
+});
 
 module.exports = router;

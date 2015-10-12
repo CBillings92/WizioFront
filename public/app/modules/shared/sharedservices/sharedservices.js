@@ -6,33 +6,6 @@ angular.module('SharedServiceApp')
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString) {
-                //store reused javascript regular expression in re
-                //regular expression checks for any non-decimal character
-                var re = /\D/;
-                //initialize empty javascript object for storing query params
-                var queryParams = {};
-
-                //check if the searched string has any non-decimal characters (anything not 0-9)
-                if (searchString.match(re) === null) {
-                    //if search string only has numbers, build queryParams obj
-                    //ZIP CODE SEARCHED
-                    queryParams = {
-                        string: searchString,
-                        flag: "zip"
-                    };
-                    //call a GET request to search API passing in the search string from queryParams
-                    //store results in local storage
-                    //$scope.$storage.apartments =
-                    SearchResource.query(null, {
-                        flag: queryParams.flag,
-                        searchString: queryParams.string
-                    }, function(results, status) {
-                        console.dir(results);
-                        $rootScope.$broadcast('searchFinished', results);
-                        return "search complete";
-                    });
-                } else {
-                    //NOT ZIP SEARCHED
                     queryParams = {
                         //call a GET request to search API passing in the search string from queryParams
                         //store results in local storage
@@ -41,21 +14,24 @@ angular.module('SharedServiceApp')
                     };
 
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
-                        console.dir(data);
+                        SearchResource.save(data, function(data, status){
+                            console.dir(data);
+                            console.dir(status);
+                        })
                     });
                     /*            //$scope.$storage.apartments =
                                 SearchResource.query(null, {
                                     flag: queryParams.flag,
                                     searchString: queryParams.string
                                 }, function(results, status) {
-                                    $rootScope.$broadcast('searchFinished', results);
+                                    $rootScope.$sbroadcast('searchFinished', results);
                                     $sessionStorage.apartmentSearch = results;
                                     console.dir(results);
                                     console.dir(status);
                                     return "search complete";
                                 });
                                 */
-                }
+                //}
             }
             return {
                 searchApartment: searchApartment

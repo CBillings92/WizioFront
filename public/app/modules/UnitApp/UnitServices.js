@@ -47,7 +47,7 @@ angular.module('UnitApp')
                 //if no match found, send address to google API to get get GeocodeData
                 if (searchStringFound === false) {
                     console.dir("MODIFIED SEARCH");
-                    googleAPIDataRaw = getGeocodeData(apartmentAddress, function(err, data) {
+                    getGeocodeData(apartmentAddress, function(err, data) {
                         if (err) {
                             //handle error
                         }
@@ -60,10 +60,6 @@ angular.module('UnitApp')
                     return callback(null, apartmentObj)
                 }
             }
-
-
-
-
             //HELPER FUNCTIONS
             //findSearchString: Check if the search string exists in the
             //google API data (see if the user modified the smart search suggestion)
