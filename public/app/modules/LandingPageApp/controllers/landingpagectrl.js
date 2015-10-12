@@ -15,7 +15,7 @@ angular.module('LandingPageApp')
             };
             $scope.search = function() {
                 ApartmentSearchSvc.search($scope.searchString);
-                //$state.go('AptDisplay');
+                $state.go('AptDisplay');
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
