@@ -14,7 +14,7 @@ angular.module('LandingPageApp')
                 broker: false
             };
             $scope.search = function() {
-                ApartmentSearchSvc.search($scope.searchString);
+                ApartmentSearchSvc.searchApartment($scope.searchString);
                 $state.go('AptDisplay');
             };
             $scope.getLocation = function(val) {
