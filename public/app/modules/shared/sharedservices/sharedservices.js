@@ -6,23 +6,12 @@ angular.module('SharedServiceApp')
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString) {
-                /*    UnitCreateSvc.parseGeocodeData(searchString, null, function(data){
-                        console.dir(data);
-                    }); */
                 //store reused javascript regular expression in re
                 //regular expression checks for any non-decimal character
                 var re = /\D/;
                 //initialize empty javascript object for storing query params
                 var queryParams = {};
-                //store the current URL of the web app in local variable currenLocation
-                /*var currentLocation = window.location.href;
-                //check if the current URL is the search results page. If it isn't
-                //redirect user to the search results page
-                var getUrl = window.location;
-                var baseUrl = getUrl.protocol + "//" + getUrl.host;
-                if (currentLocation !== baseUrl + "/#/apartments") {
-                    window.location.href = baseUrl + "/#/apartments";
-                }*/
+
                 //check if the searched string has any non-decimal characters (anything not 0-9)
                 if (searchString.match(re) === null) {
                     //if search string only has numbers, build queryParams obj
