@@ -6,7 +6,8 @@ angular.module('LandingPageApp')
         'UserRegistrationSvc',
         'ApartmentSearchSvc',
         'SmartSearchSvc',
-        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc) {
+        'UnitCreateSvc',
+        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
@@ -14,10 +15,10 @@ angular.module('LandingPageApp')
             };
             $scope.search = function() {
                 ApartmentSearchSvc.search($scope.searchString);
-                $state.go('AptDisplay');
+                //$state.go('AptDisplay');
             };
             $scope.getLocation = function(val) {
-                return SmartSearchSvc.smartSearch(val)
+                return SmartSearchSvc.smartSearch(val);
             };
             $scope.registerUser = function() {
                 var user = {

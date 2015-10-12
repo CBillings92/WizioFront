@@ -23,10 +23,12 @@ angular.module('UnitApp')
             var googleAPIData = lodash.filter(FlexGetSetSvc.get().data.results, function(item){
                 return item.formatted_address === apartmentAddress;
             });
-            console.dir(googleAPIData);
-            googleAPIData = lodash.filter(FlexGetSetSvc.get().data.results, function(item){
-               return item['formatted address'] === apartmentAddress;
-           });
+            if(googleAPIData.length === 0){
+                googleAPIData = lodash.filter(FlexGetSetSvc.get().data.results, function(item){
+                   return item['formatted address'] === apartmentAddress;
+               });
+            }
+
            console.dir(googleAPIData);
 
             console.dir(apartmentAddress);

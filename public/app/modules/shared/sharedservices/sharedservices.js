@@ -3,8 +3,12 @@ angular.module('SharedServiceApp')
         '$rootScope',
         '$sessionStorage',
         'SearchResource',
-        function($rootScope, $sessionStorage, SearchResource) {
+        'UnitCreateSvc',
+        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString) {
+                UnitCreateSvc.parseGeocodeData(searchString, null, function(data){
+                    console.dir(data);
+                });
                 //store reused javascript regular expression in re
                 //regular expression checks for any non-decimal character
                 var re = /\D/;
