@@ -33,24 +33,35 @@ angular.module('MainApp', [
         'SharedServiceApp',
         'UnitApp',
         'ui.router',
+        'ngFacebook',
         'ngStorage',
         'ngResource',
         'ngLodash',
         'ui.bootstrap',
         'angular-jwt'
     ])
+    .config(function($facebookProvider){
+        $facebookProvider.setAppId('439701646205204');
+    })
     //ON APP START AND DURING APP RUN
     .run([
         '$rootScope',
         '$state',
         '$http',
         '$localStorage',
+        '$window',
         'jwtHelper',
         'AuthFct',
         'TokenSvc',
-        function($rootScope, $state, $http, $localStorage, jwtHelper, AuthFct, TokenSvc) {
-            //on angular app instantiaion check if a localStorage token exists and
-            //if it's expired. Assign isLoggedIn to $rootScope accordingly
+        function($rootScope, $state, $http, $localStorage, $window, jwtHelper, AuthFct, TokenSvc) {
+            // Load the SDK asynchronously
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
             var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
 

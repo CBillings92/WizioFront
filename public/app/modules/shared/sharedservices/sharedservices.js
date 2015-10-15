@@ -14,10 +14,11 @@ angular.module('SharedServiceApp')
                     };
 
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
+                        console.dir(data);
                         SearchResource.save(data, function(data, status){
                             console.dir(data);
                             console.dir(status);
-                        })
+                        });
                     });
                     /*            //$scope.$storage.apartments =
                                 SearchResource.query(null, {

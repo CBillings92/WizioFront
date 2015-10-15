@@ -36,7 +36,7 @@ angular.module('UnitApp')
                 } else {
                     return callback(searchType);
                 }
-            }
+            };
             var parseGeocodeData = function(apartmentAddress, apartmentParams, callback) {
                 //get raw data from Smart Search stored in FlexGetSetSvc
                 var googleAPIDataRaw = FlexGetSetSvc.get();
@@ -53,13 +53,13 @@ angular.module('UnitApp')
                         }
                         var apartmentObj = lodashParseAPIData(data, apartmentParams);
                         return callback(null, apartmentObj);
-                    })
+                    });
                 } else {
                     console.dir("NON MODIFIED SEARCH");
                     var apartmentObj = lodashParseAPIData(searchStringFound, apartmentParams);
-                    return callback(null, apartmentObj)
+                    return callback(null, apartmentObj);
                 }
-            }
+            };
             //HELPER FUNCTIONS
             //findSearchString: Check if the search string exists in the
             //google API data (see if the user modified the smart search suggestion)
@@ -78,17 +78,17 @@ angular.module('UnitApp')
                 switch (googleAPIData.length) {
                     case 0:
                         return false;
-                        break;
+
                     default:
                         return googleAPIData;
-                        break;
+
                 }
             }
             //Used to select between long_name and short_name in the googleAPI data
             function parseData(array) {
-                if (array[0].long_name) {
+                if (typeof array[0].long_name != 'undefined') {
                     return array[0].long_name;
-                } else if (array[0].short_name) {
+                } else if (typeof array[0].short_name != 'undefined') {
                     return array[0].short_name;
                 } else {
                     return "na";
@@ -145,9 +145,9 @@ angular.module('UnitApp')
                 if (administrative_area_level_3.length > 0) {
                     apartmentObj.administrative_area_level_3 = parseData(administrative_area_level_3);
                 }
-
-                apartmentObj.state = parseData(state);
-                apartmentObj.zip = parseData(zip);
+                if(zip.length > 0){
+                    apartmentObj.zip = parseData(zip);
+                }
 
                 //convert the google API data geometry object that contains the
                 //latitude and logitude into an array

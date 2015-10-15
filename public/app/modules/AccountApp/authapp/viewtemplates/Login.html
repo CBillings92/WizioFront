@@ -18,6 +18,9 @@
                 <a href="" class="btn btn-success btn-lg" ng-click="requestLogin()">Login</a> &nbsp;&nbsp;
                 <a href="#/sendresetpassemail">forgot password?</a>
             </div>
+
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
         </form>
     </div>
 </div>
