@@ -4,7 +4,6 @@ angular.module('UnitApp')
         '$sessionStorage',
         '$rootScope',
         '$state',
-        'geocoder',
         'lodash',
         'UnitResource',
         'SmartSearchSvc',
@@ -12,7 +11,7 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         //Pass $scope into the function as a way to allow our code to work when utilizing minification.
         //See the last 3 sections of this site. Starts with: "The benefit to the longhand version is that..." https://thinkster.io/egghead/scope-vs-scope/
-        function($scope, $sessionStorage, $rootScope, $state, geocoder, lodash, UnitResource, SmartSearchSvc, UnitCreateSvc, FlexGetSetSvc) {
+        function($scope, $sessionStorage, $rootScope, $state, lodash, UnitResource, SmartSearchSvc, UnitCreateSvc, FlexGetSetSvc) {
             //save sessionStorage variable into $scope.$storage for sessionStorage
 
             $scope.$storage = $sessionStorage;
@@ -42,8 +41,8 @@ angular.module('UnitApp')
                 };
                 //send geocoding API data from smart search
                 //to get parsed and then save the data to the DB
-                UnitCreateSvc.parseGeocodeData(address, apartmentParams, function(apartment){
-                    UnitResource.save(null, apartment, function(data, status) {
+                UnitCreateSvc.parseGeocodeData(address, apartmentParams, function(err, apartment){
+                    UnitResource.save(apartment, function(data, status) {
                         console.dir(data);
                         $state.go('Account.Dashboard');
                     });
