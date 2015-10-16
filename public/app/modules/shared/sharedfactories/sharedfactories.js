@@ -1,5 +1,5 @@
 angular.module('SharedFactoryApp')
-    .factory('geocoder', [
+    .factory('GeocoderFct', [
         '$q',
         function($q) {
             //function which takes an address
@@ -20,7 +20,6 @@ angular.module('SharedFactoryApp')
                 //return the deferred promise.
                 return deferred.promise;
             };
-            console.log(getLatLong);
             return {
                 getLatLong: getLatLong
             };

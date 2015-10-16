@@ -3,18 +3,23 @@ angular.module('LandingPageApp')
         '$scope',
         '$http',
         '$state',
+        '$facebook',
         'UserRegistrationSvc',
         'ApartmentSearchSvc',
         'SmartSearchSvc',
         'UnitCreateSvc',
-        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
+        function($scope, $http, $state, $facebook, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
+
+
+                //$facebook.login();
+
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
                 broker: false
             };
             $scope.search = function() {
-                ApartmentSearchSvc.search($scope.searchString);
+                ApartmentSearchSvc.searchApartment($scope.searchString);
                 $state.go('AptDisplay');
             };
             $scope.getLocation = function(val) {
@@ -75,7 +80,7 @@ angular.module('LandingPageApp')
                     console.dir(params);
 
                     bucket.putObject(params, function(err, data) {
-                        console.log("Inside put objects function");
+                            console.log("Inside put objects function");
                             if (err) {
                                 toastr.error(err.message, err.code);
                                 return false;
