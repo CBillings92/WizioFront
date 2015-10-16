@@ -100,6 +100,9 @@ angular.module('UnitApp')
                 var apartmentObj = {};
                 console.dir(googleAPIData);
                 apartmentObj.topLevelType = googleAPIData[0].types[0];
+
+                //if apartment parameters are passed in for apartment creation
+                //append them to apartmentObj for being returned.
                 if (apartmentParams) {
                     for (var prop in apartmentParams) {
                         apartmentObj[prop] = apartmentParams[prop];
@@ -149,20 +152,29 @@ angular.module('UnitApp')
                     apartmentObj.zip = parseData(zip);
                 }
 
+                //HANDLE LATITUDE AND LONGITUDE
                 //convert the google API data geometry object that contains the
                 //latitude and logitude into an array
                 var coords = lodash.values(googleAPIData[0].geometry.location);
 
                 //store latitude and longitude onto the apartmetn after converting
                 //it to a number and forcing only 6 decimal places
-                var latitude = parseFloat(coords[0].toFixed(6));
-                var longitude = parseFloat(coords[1].toFixed(6));
-                apartmentObj.latitude = latitude;
-                apartmentObj.longitude = longitude;
-
-                console.dir(apartmentObj);
+                var latitude = null;
+                var longitude = null;
+                //check if latitude and longitude are strings or numbers.
+                //if not numbers or strings, ignore latitude and longitude
+                if(typeof coords[0] === String || typeof coords[0] === Number){
+                    latitude = parseFloat(coords[0].toFixed(6));
+                    apartmentObj.latitude = latitude;
+                }
+                if(typeof coords[1] === String || typeof coords[0] === Number){
+                    longitude = parseFloat(coords[1].toFixed(6));
+                    apartmentObj.longitude = longitude;
+                }
                 return apartmentObj;
             }
+
+            //return functions 
             return {
                 getGeocodeData: getGeocodeData,
                 addressSearchType: addressSearchType,

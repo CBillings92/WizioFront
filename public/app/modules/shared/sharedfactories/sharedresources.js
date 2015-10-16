@@ -3,6 +3,14 @@ angular.module('SharedFactoryApp')
         '$resource',
         'WizioConfig',
         function($resource, WizioConfig) {
-            return $resource(WizioConfig.baseAPIURL + "search/");
+            return $resource(WizioConfig.baseAPIURL + "search/",
+            {},
+            {
+                save: {
+                    method: 'POST',
+                    isArray: true
+                }
+            }
+        );
         }
     ]);

@@ -121,7 +121,7 @@ angular.module('SharedServiceApp')
                     params: {
                         address: val,
                         sensor: false,
-                        components: "state:MA"
+                        components: "country:US"
                     }
                 }).then(function(response) {
                     console.dir(response);
