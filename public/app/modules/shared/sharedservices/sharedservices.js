@@ -6,33 +6,16 @@ angular.module('SharedServiceApp')
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString) {
-                    queryParams = {
-                        //call a GET request to search API passing in the search string from queryParams
-                        //store results in local storage
-                        string: searchString,
-                        flag: "mix"
-                    };
-
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
                         console.dir(data);
                         SearchResource.save(data, function(data, status){
+                            $rootScope.$broadcast('searchFinished', data);
+                            $sessionStorage.apartmentSearch = data;
                             console.dir(data);
                             console.dir(status);
+                            return "search complete";
                         });
                     });
-                    /*            //$scope.$storage.apartments =
-                                SearchResource.query(null, {
-                                    flag: queryParams.flag,
-                                    searchString: queryParams.string
-                                }, function(results, status) {
-                                    $rootScope.$sbroadcast('searchFinished', results);
-                                    $sessionStorage.apartmentSearch = results;
-                                    console.dir(results);
-                                    console.dir(status);
-                                    return "search complete";
-                                });
-                                */
-                //}
             }
             return {
                 searchApartment: searchApartment
