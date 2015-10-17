@@ -236,7 +236,7 @@ angular.module('MainApp')
                     url: '/details/:id',
                     views: {
                         "UnitMain": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'aptDetailsPage.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',
                             controller: 'UnitDetailCtrl'
                         }
                     },
@@ -246,7 +246,7 @@ angular.module('MainApp')
                     url: '/display',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'aptDisplay.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitDisplay.html',
                             controller: 'UnitDisplayCtrl'
                         }
                     }
