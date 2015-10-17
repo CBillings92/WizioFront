@@ -5,15 +5,19 @@ angular.module('AccountApp')
     '$state',
     '$localStorage',
     '$stateParams',
+    '$facebook',
     'AuthFct',
     'AuthResetPasswordResource',
     'AuthUpdatePasswordResource',
     'TokenSvc',
-    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
+    function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         function successAuth(res){
             $rootScope.isLoggedIn = true;
             $state.go('Account.Dashboard.Main');
         }
+        $scope.facebookLogin = function(){
+            $facebook.login();
+        };
         $scope.sendResetEmail = function(){
             var emailobj = {};
             emailobj.email = $scope.email;

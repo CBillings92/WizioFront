@@ -40,7 +40,7 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
-    .config(function($facebookProvider){
+    .config(function($facebookProvider) {
         $facebookProvider.setAppId('439701646205204');
     })
     //ON APP START AND DURING APP RUN
@@ -50,18 +50,39 @@ angular.module('MainApp', [
         '$http',
         '$localStorage',
         '$window',
+        '$facebook',
         'jwtHelper',
         'AuthFct',
         'TokenSvc',
-        function($rootScope, $state, $http, $localStorage, $window, jwtHelper, AuthFct, TokenSvc) {
-            // Load the SDK asynchronously
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+        function($rootScope, $state, $http, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+
+            //FACEBOOK SDK
+            // Load the Facebook SDK asynchronously
+            (function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+            $facebook.getLoginStatus().then(function(data){
+                console.dir(data);
+                $facebook.cachedApi('/me/friends').then(function(data2){
+                    console.dir(data2);
+                });
+                if(data.status === "not authorized"){
+                    $rootScope.isLoggedIn = false;
+                } else if (data.status === "connected") {
+                    $facebook.api('/me').then(function(user){
+
+                    });
+                } else {
+                    //can't connect to facebook
+                }
+            });
+
             var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
 
@@ -70,7 +91,7 @@ angular.module('MainApp', [
             //else, assign isLoggedInto to true
             if (!token) {
                 $rootScope.isLoggedIn = false;
-            } else if (tokenIsExp){
+            } else if (tokenIsExp) {
                 $rootScope.isLoggedIn = false;
                 TokenSvc.deleteToken();
             } else {
@@ -90,7 +111,7 @@ angular.module('MainApp', [
                     requireLogin = false;
                 }
                 //check if token is expired
-                if(tokenIsExp){
+                if (tokenIsExp) {
                     TokenSvc.deleteToken();
                 }
                 //if state requires login, if token exists, if its expired, login

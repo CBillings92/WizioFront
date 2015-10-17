@@ -3,25 +3,26 @@ angular.module('LandingPageApp')
         '$scope',
         '$http',
         '$state',
-        '$facebook',
         'UserRegistrationSvc',
         'ApartmentSearchSvc',
         'SmartSearchSvc',
         'UnitCreateSvc',
-        function($scope, $http, $state, $facebook, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
-
-
-                //$facebook.login();
+        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
 
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
                 broker: false
             };
+
+            //smart search functionality
             $scope.search = function() {
+                //service in shared/services
+                //pass in search string
                 ApartmentSearchSvc.searchApartment($scope.searchString);
                 $state.go('AptDisplay');
             };
+            //smart search/typeahead functionality
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
@@ -34,6 +35,8 @@ angular.module('LandingPageApp')
                 };
                 UserRegistrationSvc.saveUser(user);
             };
+
+            //All of chris' stuff....
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
