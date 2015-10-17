@@ -12,7 +12,7 @@ angular.module('AccountApp')
                     password: $scope.password
                 };
                 UserRegistrationSvc.saveUser(user, function(data) {
-                    $state.go('Account.Dashboard');
+                    $state.go('Account.Dashboard.Main');
                 });
             };
 

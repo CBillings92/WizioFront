@@ -41,16 +41,16 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-click="logout()" ng-show="isLoggedIn">
-          <a href="#">Logout</a>
+          <a href="">Logout</a>
         </li>
         <li ng-click="goToLogin()" ng-hide="isLoggedIn">
-          <a href="#">Login</a>
+          <a href="">Login</a>
         </li>
-        <li ng-hide="isLoggedIn">
-          <a href="#/createAccount">Create Account</a>
+        <li ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
+          <a href="">Create Account</a>
         </li>
-        <li ng-show="isLoggedIn">
-          <a href="#/account/dashboard">My Account</a>
+        <li ng-click="goToLogin()" ng-show="isLoggedIn">
+          <a href="">My Account</a>
         </li>
        </ul>
 
