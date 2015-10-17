@@ -49,6 +49,17 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('About', {
+                    url: '/about',
+                    views: {
+                        "navbar": navbar,
+                        "maincontent": {
+                            templateUrl: 'public/viewtemplates/public/about.html',
+                            controller: 'BlogCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Login', {
                     url: '/login',
                     views: {
@@ -81,17 +92,6 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
-                })
-                .state('createApt', {
-                    url: '/createApt',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitCreateCtrl.html',
-                            controller: 'UnitCreateCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
                 })
                 .state('Account', {
                     url: '/account',
