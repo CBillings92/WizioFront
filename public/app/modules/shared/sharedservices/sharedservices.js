@@ -12,7 +12,6 @@ angular.module('SharedServiceApp')
                             $rootScope.$broadcast('searchFinished', data);
                             $sessionStorage.apartmentSearch = data;
                             console.dir(data);
-                            console.dir(status);
                             return "search complete";
                         });
                     });

@@ -27,17 +27,6 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('AptDisplay', {
-                    url: '/aptDisplay',
-                    views: {
-                        "navbar": navbar,
-                        "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'aptDisplay.html',
-                            controller: 'UnitDisplayCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
                 .state('Blog', {
                     url: '/blog',
                     views: {
@@ -237,7 +226,6 @@ angular.module('MainApp')
                 .state('Unit.Create', {
                     url: '/create',
                     views: {
-                        'navbar': navbar,
                         'UnitMain': {
                             templateUrl: WizioConfig.UnitViewsURL + 'UnitCreate.html',
                             controller: 'UnitCreateCtrl'
@@ -247,13 +235,21 @@ angular.module('MainApp')
                 .state('Unit.Details', {
                     url: '/details/:id',
                     views: {
-                        "navbar": navbar,
                         "UnitMain": {
                             templateUrl: WizioConfig.UnitViewsURL + 'aptDetailsPage.html',
                             controller: 'UnitDetailCtrl'
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('Unit.Display', {
+                    url: '/display',
+                    views: {
+                        'UnitMain': {
+                            templateUrl: WizioConfig.UnitViewsURL + 'aptDisplay.html',
+                            controller: 'UnitDisplayCtrl'
+                        }
+                    }
                 })
                 .state('Campaign', {
                     url: '/campaign',
