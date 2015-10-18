@@ -26,7 +26,6 @@ angular.module('UnitApp')
             ProfileResource,
             FlexGetSetSvc
         ) {
-
             var cities = [
                 {
                     city : 'Toronto',
@@ -63,7 +62,7 @@ angular.module('UnitApp')
                     zoom: 4,
                     center: new google.maps.LatLng(40.0000, -98.0000),
                     mapTypeId: google.maps.MapTypeId.TERRAIN
-                }
+                };
 
             $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -87,7 +86,7 @@ angular.module('UnitApp')
 
                 $scope.markers.push(marker);
 
-            }
+            };
 
             for (i = 0; i < cities.length; i++){
                 createMarker(cities[i]);
@@ -96,8 +95,7 @@ angular.module('UnitApp')
             $scope.openInfoWindow = function(e, selectedMarker){
                 e.preventDefault();
                 google.maps.event.trigger(selectedMarker, 'click');
-            }
-
+            };
             //modal function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
@@ -160,7 +158,7 @@ angular.module('UnitApp')
                         } else {
                             //handle
                         }
-                    })
+                    });
 
                 }
             };

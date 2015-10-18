@@ -44,6 +44,8 @@ angular.module('UnitApp')
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
                 var searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
+                console.dir(searchStringFound);
+                console.dir(googleAPIDataRaw);
                 //if no match found, send address to google API to get get GeocodeData
                 if (searchStringFound === false) {
                     console.dir("MODIFIED SEARCH");
@@ -174,7 +176,7 @@ angular.module('UnitApp')
                 return apartmentObj;
             }
 
-            //return functions 
+            //return functions
             return {
                 getGeocodeData: getGeocodeData,
                 addressSearchType: addressSearchType,

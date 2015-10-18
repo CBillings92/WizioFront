@@ -42,9 +42,10 @@ angular.module('UnitApp')
                 //send geocoding API data from smart search
                 //to get parsed and then save the data to the DB
                 UnitCreateSvc.parseGeocodeData(address, apartmentParams, function(err, apartment){
+                    console.dir(apartment);
                     UnitResource.save(apartment, function(data, status) {
                         console.dir(data);
-                        $state.go('Account.Dashboard');
+                        $state.go('Account.Dashboard.Main');
                     });
                 });
             };

@@ -13,7 +13,7 @@ angular.module('NavbarApp')
             };
             $scope.search = function() {
                 ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('AptDisplay');
+                $state.go('Unit.Display');
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
