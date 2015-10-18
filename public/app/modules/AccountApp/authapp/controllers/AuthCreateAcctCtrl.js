@@ -16,6 +16,7 @@ angular.module('AccountApp')
                 });
             };
 
+
             $scope.cancel = function() {
                 $state.go('Home');
             };

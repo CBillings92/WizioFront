@@ -171,10 +171,11 @@ angular.module('UnitApp')
                     longitude = parseFloat(coords[1].toFixed(6));
                     apartmentObj.longitude = longitude;
                 }
+                console.dir(apartmentObj);
                 return apartmentObj;
             }
 
-            //return functions 
+            //return functions
             return {
                 getGeocodeData: getGeocodeData,
                 addressSearchType: addressSearchType,

@@ -67,21 +67,48 @@ angular.module('MainApp', [
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-            $facebook.getLoginStatus().then(function(data){
-                console.dir(data);
-                $facebook.cachedApi('/me/friends').then(function(data2){
-                    console.dir(data2);
+            function broadcast(user, fbLoginStatus, loginStatus){
+                var fbData = {
+                    user: user,
+                    fbLoginStatus: fbLoginStatus,
+                    loginStatus: loginStatus,
+                    facebook: true
+                };
+                AuthFct.signin(fbData, function(data, status){
+                    //do stuff with data?
+                    $rootScope.isLoggedIn = true;
                 });
-                if(data.status === "not authorized"){
-                    $rootScope.isLoggedIn = false;
-                } else if (data.status === "connected") {
-                    $facebook.api('/me').then(function(user){
 
-                    });
-                } else {
-                    //can't connect to facebook
-                }
-            });
+                //$rootScop.broadcast('fbLoginBroadcast', fbData);
+            }
+            function facebookAuth(){
+                $facebook.getLoginStatus().then(function(fbLoginStatus){
+                    console.dir(fbLoginStatus);
+                    switch(fbLoginStatus.status){
+                        case "not authorized":
+                            $rootScope.isLoggedIn = false;
+                            break;
+                        case "connected":
+                            $facebook.api('/me').then(function(user){
+                                return broadcast(user, fbLoginStatus, true);
+                            });
+                            break;
+                        default:
+                            $rootScope.isLoggedIn = false;
+                    }
+                });
+            }
+
+            //IF user is not authorized, assign isLoggedIn to false
+                //this will be over written later if they are a standard user
+            //if user is connected, get user information and pass to server
+                //server will check if user exists in DB if not create user
+                //Server will send back Wizio Token
+                //Front end will store facebook token expiry in localStorage
+            //anytime user makes a request at a protected path
+                //1: Check if user is authenticated in front end
+                //2: Check if the Facebook auth token expired
+                //3: Send token and request to DB if hasn't expired.
 
             var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
@@ -90,10 +117,11 @@ angular.module('MainApp', [
             //if token is expired, assign isLoggedIn to false
             //else, assign isLoggedInto to true
             if (!token) {
-                $rootScope.isLoggedIn = false;
+                //if no token, check if user is logged into facebook
+                facebookAuth();
             } else if (tokenIsExp) {
-                $rootScope.isLoggedIn = false;
                 TokenSvc.deleteToken();
+                facebookAuth();
             } else {
                 $rootScope.userType = TokenSvc.decode().userType;
                 console.dir($rootScope.userType);
