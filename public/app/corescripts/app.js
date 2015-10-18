@@ -128,6 +128,10 @@ angular.module('MainApp', [
                 $rootScope.isLoggedIn = true;
             }
 
+            $facebook.login().then(function(data){
+                console.dir(data);
+            });
+
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 //check if the state being navigated to requires login

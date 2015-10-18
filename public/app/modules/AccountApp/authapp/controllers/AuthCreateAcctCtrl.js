@@ -2,8 +2,9 @@ angular.module('AccountApp')
     .controller('AuthCreateAcctCtrl', [
         '$scope',
         '$state',
+        '$facebook',
         'UserRegistrationSvc',
-        function($scope, $state, UserRegistrationSvc) {
+        function($scope, $state, $facebook, UserRegistrationSvc) {
             $scope.setUserObject = function() {
                 var user = {
                     firstName: $scope.firstName,
@@ -16,6 +17,24 @@ angular.module('AccountApp')
                 });
             };
 
+            $scope.createFacebookUser = function(){
+                    $facebook.login().then(function(data){
+                        switch(data.status){
+                            case "connected":
+                                $facebook.api('/me').then(function(user){
+                                    console.dir(user);
+                                    UserRegistrationSvc.saveUser(user, function(data){
+                                        $state.go('Account.Dashboard.Main');
+                                    });
+                                });
+                                break;
+                            case "not_authorized":
+                                alert('Facebook error');
+                                break;
+                        }
+                    });
+
+            };
 
             $scope.cancel = function() {
                 $state.go('Home');
