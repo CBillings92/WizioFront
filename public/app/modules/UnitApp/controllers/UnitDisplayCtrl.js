@@ -15,7 +15,9 @@ angular.module('UnitApp')
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
 
             $scope.$on('searchFinished', function(event, data) {
+                console.log('------This is the data from the search------');
                 console.dir(data);
+                console.log('------This is the data from the search------');
                 $scope.apartmentSearch = data;
             });
             console.dir($scope.sessionStorage.apartmentSearch);

@@ -26,58 +26,65 @@ angular.module('UnitApp')
             ProfileResource,
             FlexGetSetSvc
         ) {
-            var cities = [
-                {
-                    city : 'Toronto',
-                    desc : 'This is the best city in the world!',
-                    lat : 43.7000,
-                    long : -79.4000
-                },
-                {
-                    city : 'New York',
-                    desc : 'This city is aiiiiite!',
-                    lat : 40.6700,
-                    long : -73.9400
-                },
-                {
-                    city : 'Chicago',
-                    desc : 'This is the second best city in the world!',
-                    lat : 41.8819,
-                    long : -87.6278
-                },
-                {
-                    city : 'Los Angeles',
-                    desc : 'This city is live!',
-                    lat : 34.0500,
-                    long : -118.2500
-                },
-                {
-                    city : 'Las Vegas',
-                    desc : 'Sin City...\'nuff said!',
-                    lat : 36.0800,
-                    long : -115.1522
-                }
-            ];
             var mapOptions = {
-                    zoom: 4,
-                    center: new google.maps.LatLng(40.0000, -98.0000),
-                    mapTypeId: google.maps.MapTypeId.TERRAIN
+                    //default options for map, centered on Boston with a zoom
+                    //that fits most of the city: four corners jamaica plain to
+                    //sommerville to airport to southboston & seaport
+                    zoom: 12,
+                    center: new google.maps.LatLng(42.3601, -71.0589),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
-            $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var setMapOptions = function(unitList){
+                //test for case of only one apartment and turn into array if only one.
+                if (!(Array.isArray(unitList))){
+                    unitList = [unitList];
+                }
+                //I am averaging all lats and longitudes to find where the best
+                //place to center the map is
+
+                var averageLatitude = null;
+                var averageLongitude = null;
+                for (i = 0; i < unitList.length; i++){
+                    averageLatitude += unitList[i].latitude;
+                    averageLongitude += unitList[i].longitude;
+                }
+                averageLatitude = averageLatitude/(unitList.length);
+                averageLongitude = averageLongitude/(unitList.length);
+                mapOptions = {
+                        //so this should center the map properly, I still haven't
+                        //figured out how we should zoom
+                        zoom: 12,
+                        center: new google.maps.LatLng(averageLatitude, averageLongitude),
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    };
+            };
+
+
+
+
+
 
             $scope.markers = [];
 
-            var infoWindow = new google.maps.InfoWindow();
+            var createMapMarkers = function(unitList){
+                //test for case of only one apartment and turn into array if only one.
+                if (!(Array.isArray(unitList))){
+                    unitList = [unitList];
+                }
+                for (i = 0; i < unitList.length; i++){
+                    createMarker(unitList[i]);
+                }
+            };
 
-            var createMarker = function (info){
+            var createMarker = function (unitData){
 
                 var marker = new google.maps.Marker({
                     map: $scope.map,
-                    position: new google.maps.LatLng(info.lat, info.long),
-                    title: info.city
+                    position: new google.maps.LatLng(unitData.latitude, unitData.longitude),
+                    title: unitData.street
                 });
-                marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+                marker.content = '<div class="infoWindowContent">' + unitData.neighborhood + '</div>';
 
                 google.maps.event.addListener(marker, 'click', function(){
                     infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
@@ -88,14 +95,17 @@ angular.module('UnitApp')
 
             };
 
-            for (i = 0; i < cities.length; i++){
-                createMarker(cities[i]);
-            }
+
+
+
+            var infoWindow = new google.maps.InfoWindow();
 
             $scope.openInfoWindow = function(e, selectedMarker){
                 e.preventDefault();
                 google.maps.event.trigger(selectedMarker, 'click');
             };
+
+
             //modal function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
@@ -108,6 +118,11 @@ angular.module('UnitApp')
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
+                console.log('---------------where are you apartment-------');
+                console.dir($scope.apartment);
+                setMapOptions($scope.apartment);
+                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                createMapMarkers($scope.apartment);
             });
             //LOAD APARTMENT DATA end
             $scope.apply = function() {

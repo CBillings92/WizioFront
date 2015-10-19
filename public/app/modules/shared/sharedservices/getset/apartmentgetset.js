@@ -41,6 +41,10 @@ angular.module('SharedServiceApp')
                 //LOAD APARTMENT DATA START
                 //get apartment ID from URL
                 var apartmentURLID = $stateParams.id;
+                console.log('----------stateParams id-----------');
+                console.dir($stateParams.id);
+                console.log('----------apartmentSelected-----------');
+                console.dir(apartmentSelected);
                 //get apartment data from apartmentGetSet service
                 var apartment = apartmentSelected;
                 //get apartment ID from session storage if it exists
@@ -63,11 +67,15 @@ angular.module('SharedServiceApp')
                     });
                 }
             };
+            var map = function(unitArray){
+                
+            };
             return {
                 set: set,
                 get: get,
                 reset: reset,
-                checkApartment: checkApartment
+                checkApartment: checkApartment,
+                map:map
             };
         }
     ]);
