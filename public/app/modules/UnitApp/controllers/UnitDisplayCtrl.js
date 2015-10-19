@@ -20,6 +20,7 @@ angular.module('UnitApp')
                 console.log('------This is the data from the search------');
                 $scope.apartmentSearch = data;
             });
+            console.log('This is the apartment search object----------------');
             console.dir($scope.sessionStorage.apartmentSearch);
 
 
