@@ -22,5 +22,11 @@
     </div>
     <!-- col-md-8 -->
 </div>
+<div>
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
 <!-- row -->
 </br>
