@@ -15,6 +15,7 @@ angular.module('SharedFactoryApp')
                     //if google maps geocodes successfully resolve promise passing lat/long data through it
                     if (status === google.maps.GeocoderStatus.OK) {
                         deferred.resolve(results[0].geometry.location);
+                        console.log('---------------------------------');
                     }
                 });
                 //return the deferred promise.
@@ -24,4 +25,4 @@ angular.module('SharedFactoryApp')
                 getLatLong: getLatLong
             };
         }
-    ])
+    ]);
