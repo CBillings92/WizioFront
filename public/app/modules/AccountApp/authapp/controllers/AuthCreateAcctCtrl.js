@@ -10,7 +10,8 @@ angular.module('AccountApp')
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
                     email: $scope.email,
-                    password: $scope.password
+                    password: $scope.password,
+                    accountType: "local"
                 };
                 UserRegistrationSvc.saveUser(user, function(data) {
                     $state.go('Account.Dashboard');
@@ -23,6 +24,7 @@ angular.module('AccountApp')
                             case "connected":
                                 $facebook.api('/me').then(function(user){
                                     console.dir(user);
+                                    user.accountType = "facebook";
                                     UserRegistrationSvc.saveUser(user, function(data){
                                         $state.go('Account.Dashboard.Main');
                                     });
