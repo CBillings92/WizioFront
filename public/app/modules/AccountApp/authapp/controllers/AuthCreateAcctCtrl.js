@@ -17,7 +17,6 @@ angular.module('AccountApp')
                     $state.go('Account.Dashboard');
                 });
             };
-
             $scope.createFacebookUser = function(){
                     $facebook.login().then(function(data){
                         switch(data.status){
