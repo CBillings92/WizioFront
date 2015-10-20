@@ -14,22 +14,17 @@ angular.module('UnitApp')
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
 
+            //display maps and markers
+            displayMaps();
+
             $scope.$on('searchFinished', function(event, data) {
                 console.log('------This is the data from the search------');
                 console.dir(data);
                 console.log('------This is the data from the search------');
                 $scope.apartmentSearch = data;
 
-                var mapOptions = MapFct.makeMap();
-                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                console.dir($scope.map);
-                var markers = MapFct.makeMarkers($scope.map);
-                console.dir(markers);
-
-                $scope.openInfoWindow = function(e, selectedMarker) {
-                    e.preventDefault();
-                    google.maps.event.trigger(selectedMarker, 'click');
-                };
+                //display maps and markers
+                displayMaps();
             });
             console.log('This is the apartment search object----------------');
             console.dir($scope.sessionStorage.apartmentSearch);
@@ -49,5 +44,19 @@ angular.module('UnitApp')
                 }
                 console.dir(apartment);
             };
+
+            //houses the map and marker creation functionality
+            function displayMaps(){
+                var mapOptions = MapFct.makeMap();
+                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                console.dir($scope.map);
+                var markers = MapFct.makeMarkers($scope.map);
+                console.dir(markers);
+
+                $scope.openInfoWindow = function(e, selectedMarker) {
+                    e.preventDefault();
+                    google.maps.event.trigger(selectedMarker, 'click');
+                };
+            }
         }
     ]);
