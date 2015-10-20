@@ -1,31 +1,37 @@
-<div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch    ">
-    <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
-        <article class="media">
-            <img class="pull-left" src="https://gyazo.com/8417ab5a5546ff53e1133c5009253f56" id="aptPicture"></img>
-            <h2 class="full-width">
-                <div class="wrap">
-                    {{apartment.houseNum}} {{apartment.street}} {{apartment.unitNum}}
-                </div>
-                <!-- wrap -->
-            </h2>
-
-            <div class="media-body">
-                </br>
-                <h3>{{apartment.neighborhood}}, {{apartment.locality}}, {{apartment.state}} {{apartment.zip}}</h3>
-                </br>
-                <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
-                </br>
-                </br>
-            </div>
-            <!-- media body -->
-        </article>
+<div class="">
+    <div class="" style="margin-bottom:15px;">
+        <input class="btn" ng-click="tabToggle()" type="submit" autoFocus value="Maps View"> </input>
+        <input class="btn" ng-click="tabToggle()" type="submit" value="List View">
     </div>
-    <!-- col-md-8 -->
+    <div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
+        <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
+            <article class="media">
+                <img class="pull-left" src="https://gyazo.com/8417ab5a5546ff53e1133c5009253f56" id="aptPicture"></img>
+                <h2 class="full-width">
+                    <div class="wrap">
+                        {{apartment.houseNum}} {{apartment.street}} {{apartment.unitNum}}
+                    </div>
+                    <!-- wrap -->
+                </h2>
+
+                <div class="media-body">
+                    </br>
+                    <h3>{{apartment.neighborhood}}, {{apartment.locality}}, {{apartment.state}} {{apartment.zip}}</h3>
+                    </br>
+                    <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
+                    </br>
+                    </br>
+                </div>
+                <!-- media body -->
+            </article>
+        </div>
+        <!-- col-md-8 -->
+    </div>
 </div>
-<div>
+<div ng-show="mapshow">
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
     </div>
 </div>
 <!-- row -->

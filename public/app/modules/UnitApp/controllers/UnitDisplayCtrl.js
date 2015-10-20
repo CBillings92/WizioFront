@@ -13,10 +13,14 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
+            $scope.mapshow = true;
 
             //display maps and markers
             displayMaps();
 
+            $scope.tabToggle = function(){
+                $scope.mapshow = !$scope.mapshow;
+            };
             $scope.$on('searchFinished', function(event, data) {
                 console.log('------This is the data from the search------');
                 console.dir(data);
