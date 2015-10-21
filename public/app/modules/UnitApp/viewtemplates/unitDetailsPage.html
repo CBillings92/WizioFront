@@ -101,5 +101,11 @@
       </ul><!-- list group -->
     </div><!-- col-md-6 -->
   </div><!-- row -->
+  <div>
+      <div id="map"></div>
+      <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+           <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+      </div>
+  </div>
 
 </div><!--container -->

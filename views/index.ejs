@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap and LESS -->
     <link href="../public/build/styles.css" rel="stylesheet">
+    <link href="../public/stylesheets/siteCSSforTesting/mapTest.css" rel="stylesheet">
 
     <!--jquery-->
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
@@ -116,9 +117,21 @@
     <!-- SELLER APPLICATION END-->
 
     <!--ACCOUNT JAVASCRIPT END-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-</head>
 
+    <!--GOOGLE API STUFF-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false" type="text/javascript"></script>  Might not need components-->
+</head>
+<!-- Start of Async HubSpot Analytics Code -->
+ <script type="text/javascript">
+   (function(d,s,i,r) {
+     if (d.getElementById(i)){return;}
+     var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+     n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/1721151.js';
+     e.parentNode.insertBefore(n, e);
+   })(document,"script","hs-analytics",300000);
+ </script>
+<!-- End of Async HubSpot Analytics Code -->
 
 <body class="bckcolor">
     <div ui-view="navbar">

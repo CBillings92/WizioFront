@@ -20,7 +20,7 @@ angular.module('LandingPageApp')
                 //service in shared/services
                 //pass in search string
                 ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('AptDisplay');
+                $state.go('Unit.Display');
             };
             //smart search/typeahead functionality
             $scope.getLocation = function(val) {

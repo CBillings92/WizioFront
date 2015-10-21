@@ -12,7 +12,6 @@ angular.module('SharedServiceApp')
                             $rootScope.$broadcast('searchFinished', data);
                             $sessionStorage.apartmentSearch = data;
                             console.dir(data);
-                            console.dir(status);
                             return "search complete";
                         });
                     });
@@ -104,7 +103,7 @@ angular.module('SharedServiceApp')
                     params: {
                         address: val,
                         sensor: false,
-                        components: "country:US"
+                        components: 'country:US|administrative_area:MA'
                     }
                 }).then(function(response) {
                     console.dir(response);

@@ -155,23 +155,45 @@ angular.module('UnitApp')
                 //HANDLE LATITUDE AND LONGITUDE
                 //convert the google API data geometry object that contains the
                 //latitude and logitude into an array
-                var coords = lodash.values(googleAPIData[0].geometry.location);
+                var coords = null;
+                var latitude = null;
+                var longitude = null;
+
+                if (googleAPIData[0].geometry.hasOwnProperty('location')){
+                    coords = lodash.values(googleAPIData[0].geometry.location);
+
+                } else if (googleAPIData[0].geometry.hasOwnProperty('viewport')){
+
+                    if (googleAPIData[0].geometry.viewport.hasOwnProperty('northeast')){
+                        coords = lodash.values(googleAPIData[0].geometry.viewport.northeast);
+
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('northwest')){
+                        coords = lodash.values(googleAPIData[0].geometry.viewport.northwest);
+
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southeast')){
+                        coords = lodash.values(googleAPIData[0].geometry.viewport.southeast);
+
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southwest')){
+                        coords = lodash.values(googleAPIData[0].geometry.viewport.southwest);
+                    }
+                }
 
                 //store latitude and longitude onto the apartmetn after converting
                 //it to a number and forcing only 6 decimal places
-                var latitude = null;
-                var longitude = null;
                 //check if latitude and longitude are strings or numbers.
                 //if not numbers or strings, ignore latitude and longitude
-                if(typeof coords[0] === String || typeof coords[0] === Number){
+
+                //Dear Cameron, I didn't understand why these conditionals where
+                //neccessary, they where breaking the lat long, so I fixed them
+                //I wanted to remove them though.
+                if((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)){
                     latitude = parseFloat(coords[0].toFixed(6));
                     apartmentObj.latitude = latitude;
                 }
-                if(typeof coords[1] === String || typeof coords[0] === Number){
+                if((typeof coords[1]) === (typeof 'Hello') || (typeof coords[1]) === (typeof 3.14)){
                     longitude = parseFloat(coords[1].toFixed(6));
                     apartmentObj.longitude = longitude;
                 }
-                console.dir(apartmentObj);
                 return apartmentObj;
             }
 

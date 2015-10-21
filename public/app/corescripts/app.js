@@ -137,7 +137,7 @@ angular.module('MainApp', [
                 //check if the state being navigated to requires login
                 token = TokenSvc.getToken();
                 tokenIsExp = TokenSvc.checkExp();
-                if (toState && toState.data.requireLogin === true) {
+                if (toState && toState.hasOwnProperty('requireLogin') && toState.data.requireLogin === true) {
                     requireLogin = true;
                 } else {
                     requireLogin = false;

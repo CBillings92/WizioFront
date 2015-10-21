@@ -5,6 +5,8 @@ angular.module('AccountApp')
         '$facebook',
         'UserRegistrationSvc',
         function($scope, $state, $facebook, UserRegistrationSvc) {
+
+            //Set a standard, local user object to save for local authentication
             $scope.setUserObject = function() {
                 var user = {
                     firstName: $scope.firstName,
@@ -14,7 +16,7 @@ angular.module('AccountApp')
                     accountType: "local"
                 };
                 UserRegistrationSvc.saveUser(user, function(data) {
-                    $state.go('Account.Dashboard');
+                    $state.go('Account.Dashboard.Main');
                 });
             };
             $scope.createFacebookUser = function(){

@@ -12,13 +12,32 @@ angular.module('NavbarApp')
                 $state.go('Login');
             };
             $scope.search = function() {
-                ApartmentSearchSvc.search($scope.searchString);
+                ApartmentSearchSvc.searchApartment($scope.searchString);
+                $state.go('Unit.Display');
+            };
+            $scope.getLocation = function(val) {
+                return SmartSearchSvc.smartSearch(val);
             };
             $scope.logout = function(success) {
                 AuthFct.logout();
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
+            };
+            $scope.createUnit = function(val) {
+                $state.go('Unit.Create');
+            };
+            $scope.goHome = function(val) {
+                $state.go('LandingPage');
+            };
+            $scope.goAbout = function(val) {
+                $state.go('About');
+            };
+            $scope.goBlog = function(val) {
+                $state.go('Blog');
+            };
+            $scope.goAccoutCreate = function(val) {
+                $state.go('Account.Create');
             };
         }
     ]);

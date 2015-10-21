@@ -9,6 +9,7 @@ angular.module('UnitApp')
         'ApartmentGetSetSvc',
         'UnitResource',
         'AuthFct',
+        'MapFct',
         'TokenSvc',
         'ProfileResource',
         'FlexGetSetSvc',
@@ -22,6 +23,7 @@ angular.module('UnitApp')
             ApartmentGetSetSvc,
             UnitResource,
             AuthFct,
+            MapFct,
             TokenSvc,
             ProfileResource,
             FlexGetSetSvc
@@ -38,6 +40,10 @@ angular.module('UnitApp')
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
+                
+                var mapOptions = MapFct.makeMap();
+                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                var markers = MapFct.makeMarkers($scope.map);
             });
             //LOAD APARTMENT DATA end
             $scope.apply = function() {
@@ -88,7 +94,7 @@ angular.module('UnitApp')
                         } else {
                             //handle
                         }
-                    })
+                    });
 
                 }
             };
