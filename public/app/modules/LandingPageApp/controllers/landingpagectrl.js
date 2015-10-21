@@ -18,6 +18,9 @@ angular.module('LandingPageApp')
                 tenant: true,
                 broker: false
             };
+            $scope.goToUploadPage = function() {
+                $state.go('Campaign.VideoUpload.Main');
+            };
             $scope.search = function() {
                 ApartmentSearchSvc.searchApartment($scope.searchString);
                 $state.go('Unit.Display');
