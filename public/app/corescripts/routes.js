@@ -65,7 +65,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + 'sendresetpassemail.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + 'sendResetEmail.html',
                             controller: 'AuthLoginCtrl'
                         }
                     },
@@ -76,7 +76,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + 'resetpassword.html',
+                            templateUrl: WizioConfig.AccountAuthViewsURL + 'resetPassword.html',
                             controller: 'AuthLoginCtrl'
                         }
                     },

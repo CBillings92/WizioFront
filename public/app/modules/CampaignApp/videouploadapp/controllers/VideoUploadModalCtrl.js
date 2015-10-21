@@ -74,7 +74,7 @@ angular.module('CampaignApp')
 
         $scope.fileSizeLabel = function() {
             // Convert Bytes To MB
-            return Math.round($scope.sizeLimit / (1024 * 1024 * 1024)) + 'GB';
+            return Math.round($scope.sizeLimit / (1073741824)) + 'GB';
         };
 
         $scope.uniqueString = function() {
