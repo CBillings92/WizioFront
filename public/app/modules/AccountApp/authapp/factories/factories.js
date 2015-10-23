@@ -28,8 +28,9 @@ angular.module('AuthApp')
                 });
             },
             signin: function(data, success, error) {
-                AuthLoginResource.save(data, function(data){
-                    success(data);
+                AuthLoginResource.save(data, function(data, status){
+                    console.dir(status);
+                    success(data, status);
                 });
             },
             logout: function(success) {

@@ -75,8 +75,15 @@ angular.module('MainApp', [
                     facebook: true
                 };
                 AuthFct.signin(fbData, function(data, status){
+                    console.dir(data);
+                    console.dir(status);
                     //do stuff with data?
+                    if(status === 403){
+                        $rootScope.isLoggedIn = false;
+                        return;
+                    }
                     $rootScope.isLoggedIn = true;
+                    return;
                 });
 
                 //$rootScop.broadcast('fbLoginBroadcast', fbData);
@@ -128,9 +135,7 @@ angular.module('MainApp', [
                 $rootScope.isLoggedIn = true;
             }
 
-            $facebook.login().then(function(data){
-                console.dir(data);
-            });
+
 
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {

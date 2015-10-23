@@ -314,8 +314,6 @@ angular.module('MainApp')
                         },
                         response: function(response){
                             if(response.data.token){
-                                console.dir(response.data.token);
-
                                 TokenSvc.storeToken(response.data.token);
                                 return response;
                             } else {
@@ -325,6 +323,10 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
+                                if(response.data.facebook){
+                                    alert("Facebook Login Error: Please login again with facebook.");
+                                    return $q.reject(response);
+                                }
                                 alert('Authentication Failed');
                             }
                             $injector.get('$state').transitionTo('Login');

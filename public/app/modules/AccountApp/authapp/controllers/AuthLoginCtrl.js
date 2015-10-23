@@ -11,11 +11,10 @@ angular.module('AccountApp')
     'AuthUpdatePasswordResource',
     'TokenSvc',
     function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
-        function successAuth(res){
-            $rootScope.isLoggedIn = true;
-            $state.go('Account.Dashboard.Main');
-        }
         $scope.facebookLogin = function(){
+            $facebook.api('/me').then(function(user){
+                return broadcast(user, fbLoginStatus, true);
+            });
             $facebook.login();
         };
         $scope.sendResetEmail = function(){
@@ -54,7 +53,12 @@ angular.module('AccountApp')
                 password: $scope.password
             };
             console.log("IN THERE");
-            AuthFct.signin(userData, successAuth, function(){
+            AuthFct.signin(userData,
+                function(res){
+                    $rootScope.isLoggedIn = true;
+                    $state.go('Account.Dashboard.Main');
+                },
+                function(){
                 $rootScope.error = "Failed to sign in!";
                 $state.go('Login');
             });
