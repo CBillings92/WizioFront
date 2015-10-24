@@ -67,37 +67,41 @@ angular.module('MainApp', [
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-            function broadcast(user, fbLoginStatus, loginStatus){
-                var fbData = {
-                    user: user,
-                    fbLoginStatus: fbLoginStatus,
-                    loginStatus: loginStatus,
-                    facebook: true
-                };
-                AuthFct.signin(fbData, function(data, status){
-                    console.dir(data);
-                    console.dir(status);
-                    //do stuff with data?
-                    if(status === 403){
-                        $rootScope.isLoggedIn = false;
-                        return;
-                    }
-                    $rootScope.isLoggedIn = true;
-                    return;
-                });
+            //set container object for auth objects
+            $rootScope.authObjects = {};
 
-                //$rootScop.broadcast('fbLoginBroadcast', fbData);
-            }
+            //handle facebook authentication on initial application launch
             function facebookAuth(){
+                //get the login status of the user
+                //--if they are "connected", get their user information and send
+                //----that to the server to search for credentials and get a token
+                //--if they are "not authorized" set variables for authentication
                 $facebook.getLoginStatus().then(function(fbLoginStatus){
                     console.dir(fbLoginStatus);
                     switch(fbLoginStatus.status){
                         case "not authorized":
                             $rootScope.isLoggedIn = false;
+                            $rootScope.authObjects.facebookConnected = false;
                             break;
                         case "connected":
+                            $rootScope.authObjects.facebookConnected = true;
                             $facebook.api('/me').then(function(user){
-                                return broadcast(user, fbLoginStatus, true);
+                                var fbData = {
+                                    user: user,
+                                    fbLoginStatus: fbLoginStatus,
+                                    facebook: true
+                                };
+                                AuthFct.signin(fbData, function(data, status){
+                                    console.dir(data);
+                                    console.dir(status);
+                                    //do stuff with data?
+                                    if(status === 403){
+                                        $rootScope.isLoggedIn = false;
+                                        return;
+                                    }
+                                    $rootScope.isLoggedIn = true;
+                                    return;
+                                });
                             });
                             break;
                         default:
@@ -140,6 +144,7 @@ angular.module('MainApp', [
             //Watch for angular app state changes
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
                 //check if the state being navigated to requires login
+                var requireLogin = null;
                 token = TokenSvc.getToken();
                 tokenIsExp = TokenSvc.checkExp();
                 if (toState && toState.hasOwnProperty('requireLogin') && toState.data.requireLogin === true) {
@@ -153,20 +158,22 @@ angular.module('MainApp', [
                 }
                 //if state requires login, if token exists, if its expired, login
                 console.dir(token);
-                if (requireLogin === true && token && tokenIsExp) {
-                    event.preventDefault();
-                    alert('Session is expired. Please login again');
-                    $rootScope.isLoggedIn = false;
-                    return $state.go('Login');
-                } else if (requireLogin === true && !token) {
+
+                if (requireLogin === true && !token) {
                     alert('Please login');
                     event.preventDefault();
+                    if($rootScope.authObjects.facebookConnected){
+                        facebookAuth();
+                    }
                     $rootScope.isLoggedIn = false;
                     return $state.go('Login');
-                } else if (!token || tokenIsExp) {
-                    $rootScope.isLoggedIn = false;
+                } else if (!token) {
+                    if($rootScope.authObjects.facebookConnected){
+                        facebookAuth();
+                    }
+                    return $rootScope.isLoggedIn = false;
                 } else {
-                    $rootScope.isLoggedIn = true;
+                    return $rootScope.isLoggedIn = true;
                 }
                 return;
             });

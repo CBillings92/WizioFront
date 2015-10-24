@@ -12,6 +12,10 @@ angular.module('AccountApp')
     'TokenSvc',
     function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         $scope.facebookLogin = function(){
+            if($rootScope.authObjects.facebookConnected){
+                alert('Already logged in with email!');
+                return $state.go('Account.Dashboard');
+            };
             $facebook.login().then(function(data){
                 if(data.status === "connected"){
                     $facebook.api('/me').then(function(userdata){
