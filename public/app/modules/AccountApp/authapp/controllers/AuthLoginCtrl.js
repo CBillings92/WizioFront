@@ -12,10 +12,31 @@ angular.module('AccountApp')
     'TokenSvc',
     function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
         $scope.facebookLogin = function(){
-            $facebook.api('/me').then(function(user){
-                return broadcast(user, fbLoginStatus, true);
+            $facebook.login().then(function(data){
+                if(data.status === "connected"){
+                    $facebook.api('/me').then(function(userdata){
+                        var fbData = {
+                            user: userdata,
+                            facebook: true
+                        };
+                        AuthFct.signup(fbData, function(data, status){
+                            console.dir(data);
+                            console.dir(status);
+                            //do stuff with data?
+                            if(status === 403){
+                                $rootScope.isLoggedIn = false;
+                                return;
+                            }
+                            $rootScope.isLoggedIn = true;
+                            return;
+                        });
+                    });
+                } else {
+                    alert("Can't autehtnicate Facebook credentials");
+                }
             });
-            $facebook.login();
+
+
         };
         $scope.sendResetEmail = function(){
             var emailobj = {};
