@@ -45,9 +45,12 @@ angular.module('LandingPageApp')
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
                     email: $scope.email,
-                    password: $scope.password
+                    password: $scope.password,
+                    accountType: "local"
                 };
-                UserRegistrationSvc.saveUser(user);
+                UserRegistrationSvc.saveUser(user, function(data) {
+                    $state.go('Account.Dashboard.Main');
+                });
             };
 
             //All of chris' stuff....
