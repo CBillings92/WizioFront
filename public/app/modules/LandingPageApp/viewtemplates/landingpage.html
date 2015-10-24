@@ -32,6 +32,11 @@
 
     <div class="entersite-section row">
         <div class="col-lg-6 col-lg-offset-3">
+            <div class="" ng-repeat="neighborhood in neighborhoods">
+                <input type="button" name="name" ng-click="localeButtonClick(neighborhood)" value="{{neighborhood}}">
+            </div>
+        </div>
+        <div class="col-lg-6 col-lg-offset-3">
             <label class="hidden-md hidden-lg">
                 Search Apartments to Enter Site </label>
             <center>

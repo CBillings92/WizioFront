@@ -15,12 +15,26 @@ angular.module('LandingPageApp')
                 broker: false
             };
 
+            $scope.neighborhoods = [
+                'Boston',
+                'Allston',
+                'Brighton',
+                'Jamaica Plain',
+                'Back Bay',
+                'Beacon Hill',
+            ];
+
+            $scope.localeButtonClick = function(neighborhood){
+                ApartmentSearchSvc.searchApartment(neighborhood);
+                return $state.go('Unit.Display');
+            };
+
             //smart search functionality
             $scope.search = function() {
                 //service in shared/services
                 //pass in search string
                 ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('Unit.Display');
+                return $state.go('Unit.Display');
             };
             //smart search/typeahead functionality
             $scope.getLocation = function(val) {

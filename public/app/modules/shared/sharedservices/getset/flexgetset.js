@@ -19,6 +19,9 @@ angular.module('SharedServiceApp')
             if(sessionStorageVar){
                 return $sessionStorage[sessionStorageVar];
             }
+            if(dataStore.length === 0){
+                return [];
+            }
             return dataStore[0];
         };
         var reset = function(sessionStorageVar){
