@@ -31,6 +31,10 @@ angular.module('LandingPageApp')
             };
 
             //smart search functionality
+            $scope.goToUploadPage = function() {
+                $state.go('Campaign.VideoUpload.Main');
+            };
+
             $scope.search = function() {
                 //service in shared/services
                 //pass in search string
