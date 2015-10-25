@@ -262,7 +262,6 @@ angular.module('MainApp')
                     }
                 })
                 .state('Campaign.VideoUpload', {
-                    url: '/apartmentshare',
                     abstract: true,
                     views: {
                         "CampaignMain": {
@@ -272,7 +271,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('Campaign.VideoUpload.Main', {
-                    url: '/main',
+                    url: '/apartmentshare',
                     views: {
                         "MainContent1": {
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',

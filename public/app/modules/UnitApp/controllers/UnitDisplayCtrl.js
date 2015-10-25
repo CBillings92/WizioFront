@@ -29,10 +29,6 @@ angular.module('UnitApp')
                 console.dir(data);
                 console.log('------This is the data from the search------');
                 $scope.apartmentSearch = data;
-                if(data.length === 0){
-                    alert('FUCK YOU');
-                }
-
                 //display maps and markers
                 displayMaps();
             });
