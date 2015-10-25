@@ -25,16 +25,19 @@ angular.module('LandingPageApp')
             ];
 
             $scope.localeButtonClick = function(neighborhood){
-                ApartmentSearchSvc.searchApartment(neighborhood);
-                return $state.go('Unit.Display');
+                ApartmentSearchSvc.searchApartment(neighborhood, function(err, data){
+                    return $state.go('Unit.Display');
+                });
             };
 
             //smart search functionality
             $scope.search = function() {
                 //service in shared/services
                 //pass in search string
-                ApartmentSearchSvc.searchApartment($scope.searchString);
-                return $state.go('Unit.Display');
+                ApartmentSearchSvc.searchApartment($scope.searchString, function(err, data){
+                    return $state.go('Unit.Display');
+                });
+
             };
             //smart search/typeahead functionality
             $scope.getLocation = function(val) {

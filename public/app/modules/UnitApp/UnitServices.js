@@ -188,7 +188,7 @@ angular.module('UnitApp')
                 //check if latitude and longitude are strings or numbers.
                 //if not numbers or strings, ignore latitude and longitude
 
-                //Dear Cameron, I didn't understand why these conditionals where
+                //Dear Cameron, I didn't understand why these conditionals were
                 //neccessary, they where breaking the lat long, so I fixed them
                 //I wanted to remove them though.
                 if((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)){

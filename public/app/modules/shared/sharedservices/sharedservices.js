@@ -5,14 +5,14 @@ angular.module('SharedServiceApp')
         'SearchResource',
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
-            function searchApartment(searchString) {
+            function searchApartment(searchString, callback) {
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
                         console.dir(data);
                         SearchResource.save(data, function(data, status){
+                            console.dir(data);
                             $rootScope.$broadcast('searchFinished', data);
                             $sessionStorage.apartmentSearch = data;
-                            console.dir(data);
-                            return "search complete";
+                            return callback(null, data);
                         });
                     });
             }
