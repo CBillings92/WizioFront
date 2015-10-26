@@ -44,7 +44,12 @@ angular.module('SharedFactoryApp')
                 };
 
                 var setMapOptions = function(unitList) {
+                    console.dir(unitList);
 
+                    if(unitList.constructor !== Array){
+                        unitList = [unitList];
+                        console.dir(unitList);
+                    }
                     if(unitList.length === 0){
                         return mapOptions;
                     }
@@ -75,6 +80,7 @@ angular.module('SharedFactoryApp')
                 var unitList = null;
                 if($state.current.name === "Unit.Details"){
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
+                    console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display"){
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
