@@ -1,0 +1,17 @@
+p {
+    text-align: justify;
+}
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #DDE0CC; /* old IE */
+    background-color: #DDE0CC; /* Modern Browsers */
+}
+.col-centered{
+float: none;
+margin: 0 auto;
+}
+.padded {
+padding:10px;
+}

@@ -34,7 +34,7 @@ angular.module('NavbarApp')
                 $state.go('About');
             };
             $scope.goBlog = function(val) {
-                $state.go('Blog');
+                $state.go('Blog.List');
             };
             $scope.goAccoutCreate = function(val) {
                 $state.go('Account.Create');
