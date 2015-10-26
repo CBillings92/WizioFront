@@ -28,15 +28,30 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Blog', {
-                    url: '/blog',
+                    abstract: true,
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/blog.html',
-                            controller: 'BlogCtrl'
+                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogMain.html',
+                            controller: 'BlogMainCtrl'
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('Blog.List', {
+                    url: "/blog",
+                    views: {
+                        "BlogMain": {
+                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogDetail.html',
+                            controller: 'BlogListCtrl'
+                        }
+                    }
+                })
+                .state('Blog.Detail', {
+                    url: "/blog/:articleUrl",
+                    views: {
+
+                    }
                 })
                 .state('About', {
                     url: '/about',
@@ -105,9 +120,9 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('Account.Dashboard',{
+                .state('Account.Dashboard', {
                     //url: '/dashboard',
-                    abstract:true,
+                    abstract: true,
                     views: {
                         "AccountMain": {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
@@ -131,9 +146,9 @@ angular.module('MainApp')
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controllerProvider: function($rootScope){
+                            controllerProvider: function($rootScope) {
                                 //CHANGE-NEEDED: Implement user types -CB
-                                if($rootScope.userType == 1){
+                                if ($rootScope.userType == 1) {
                                     return 'DashboardUserInfoCtrl';
                                 } else {
                                     return 'DashboardUserInfoCtrl';
@@ -167,7 +182,7 @@ angular.module('MainApp')
                 .state('Profile', {
                     url: '/profile',
                     abstract: true,
-                    views:{
+                    views: {
                         "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilemain.html'
@@ -209,7 +224,7 @@ angular.module('MainApp')
                 .state('Application.New', {
                     url: '/new',
                     views: {
-                        'ApplicationPage':{
+                        'ApplicationPage': {
                             templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
@@ -294,7 +309,7 @@ angular.module('MainApp')
                 .state('Campaign.VideoUpload.Form', {
                     url: '/form',
                     views: {
-                        "VideoUploadMain" : {
+                        "VideoUploadMain": {
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadForm.html',
                             controller: 'VideoUploadFormCtrl'
                         }
@@ -321,11 +336,12 @@ angular.module('MainApp')
                                 }
                                 return config;
                             }
-
                         },
+
                         response: function(response){
                             if(response.data.token){
                                 console.dir(response.data.token);
+
                                 TokenSvc.storeToken(response.data.token);
                                 return response;
                             } else {
@@ -335,7 +351,7 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                if(response.data.facebook){
+                                if (response.data.facebook) {
                                     alert("Facebook Login Error: Please login again with facebook.");
                                     return $q.reject(response);
                                 }
