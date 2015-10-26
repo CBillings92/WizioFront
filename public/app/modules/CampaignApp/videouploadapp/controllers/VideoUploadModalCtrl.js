@@ -5,7 +5,8 @@ angular.module('CampaignApp')
     'SmartSearchSvc',
     'UnitResource',
     'UnitCreateSvc',
-    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc){
+    'TokenSvc',
+    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc){
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
@@ -14,9 +15,8 @@ angular.module('CampaignApp')
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.upload = function() {
-            var apartment = $scope.apartmentAddress;
-            UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(parsedApartment){
-                UnitResource.save(null, parsedApartment, function(data, status) {
+            UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(err, parsedApartment){
+                UnitResource.save(parsedApartment, function(data, status) {
                     AWS.config.update({
                         accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
                         secretAccessKey: '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'
@@ -24,19 +24,25 @@ angular.module('CampaignApp')
                     AWS.config.region = 'us-east-1';
                     var bucket = new AWS.S3({
                         params: {
-                            Bucket: "wiziouservideos"
+                            Bucket:"wiziouservideos"
                         }
                     });
 
                     if ($scope.file) {
                         // Perform File Size Check First
+
                         var fileSize = Math.round(parseInt($scope.file.size));
                         if (fileSize > $scope.sizeLimit) {
                             toastr.error('Sorry, your attachment is too big. <br/> Maximum ' + $scope.fileSizeLabel() + ' file attachment allowed', 'File Too Large');
                             return false;
                         }
                         // Prepend Unique String To Prevent Overwrites
-                        var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
+                        var userinfo = TokenSvc.decode();
+                        var apartment = $scope.apartmentAddress;
+                        apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
+                        var uniqueFileName = userinfo.email + '-' + apartment;
+
+                        console.dir(apartment);
                         var params = {
                             Key: uniqueFileName,
                             ContentType: $scope.file.type,

@@ -44,9 +44,11 @@ angular.module('UnitApp')
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
                 var markers = MapFct.makeMarkers($scope.map);
+
             });
             //LOAD APARTMENT DATA end
             $scope.apply = function() {
+
                 if(TokenSvc.checkExp()){
                     TokenSvc.deleteToken();
                     alert('Please login');
@@ -54,6 +56,7 @@ angular.module('UnitApp')
                 }
                 //get user data
                 var user = TokenSvc.decode();
+                console.dir(user);
                 //set apartment data and store that data in sessionStorage variable
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
                 //If the user doesn't have a profile

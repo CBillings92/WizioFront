@@ -50,12 +50,14 @@ angular.module('SharedServiceApp')
             };
             //returns true if the token is expired
             var checkExp = function(token) {
+                console.dir($localStorage.token);
                 if (token) {
                     return jwtHelper.isTokenExpired(token);
                 } else if ($localStorage.token) {
+                    console.dir(jwtHelper.isTokenExpired($localStorage.token));
                     return jwtHelper.isTokenExpired($localStorage.token);
                 }
-                return false;
+                return true;
             };
             var storeToken = function(token) {
                 if (token) {
