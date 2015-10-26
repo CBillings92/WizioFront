@@ -266,6 +266,7 @@ angular.module('MainApp')
                     url: '/campaign',
                     abstract: true,
                     views: {
+                        "navbar": navbar,
                         "maincontent": {
                             templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
                             controller: 'CampaignMainCtrl'
@@ -324,6 +325,7 @@ angular.module('MainApp')
                         },
                         response: function(response){
                             if(response.data.token){
+                                console.dir(response.data.token);
                                 TokenSvc.storeToken(response.data.token);
                                 return response;
                             } else {
