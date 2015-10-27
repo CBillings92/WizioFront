@@ -33,8 +33,10 @@ angular.module('NavbarApp')
             $scope.goAbout = function() {
                 $state.go('About');
             };
-            $scope.goBlog = function() {
-                $state.go('Blog');
+
+            $scope.goBlog = function(val) {
+                $state.go('Blog.List');
+
             };
             $scope.goAccoutCreate = function() {
                 $state.go('Account.Create');
