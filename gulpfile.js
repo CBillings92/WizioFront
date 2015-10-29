@@ -43,14 +43,13 @@ gulp.task('less', function(callback) {
 );
 */
 gulp.task('sass', function() {
-    gulp.src('./public/stylesheets/sass/**/*.scss')
+    gulp.src('./public/stylesheets/sass/stylessass.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/stylesheets/compiledsass/'));
 });
 // CSS concat, auto-prefix and minify
 gulp.task('styles', ['sass'], function() {
-  gulp.src(['./public/stylesheets/compiledsass/sasstrial.css'])
-    .pipe(concat('sasstrial.css'))
+  gulp.src(['./public/stylesheets/compiledsass/stylessass.css'])
     .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./public/build/'));
