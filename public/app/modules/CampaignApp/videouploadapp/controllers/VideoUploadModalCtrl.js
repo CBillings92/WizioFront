@@ -5,9 +5,8 @@ angular.module('CampaignApp')
     'SmartSearchSvc',
     'UnitResource',
     'UnitCreateSvc',
-    'UserResource',
     'TokenSvc',
-    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, UserResource, TokenSvc){
+    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc){
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
