@@ -44,6 +44,7 @@ angular.module('UnitApp')
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
                 console.dir(googleAPIDataRaw);
+                console.dir(apartmentAddress);
                 var searchStringFound = false;
                 if(googleAPIDataRaw.length !== 0){
                     searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
