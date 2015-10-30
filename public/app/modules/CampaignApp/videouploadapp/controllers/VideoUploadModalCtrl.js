@@ -11,12 +11,12 @@ angular.module('CampaignApp')
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
-        var apartmentAddress = $scope.apartmentAddress;
+
         $scope.sizeLimit = 5368709120; // 5GB in Bytes
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.upload = function() {
-            UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(err, parsedApartment){
+            UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, null, function(err, parsedApartment){
                 UnitResource.save(parsedApartment, function(data, status) {
 
                     //store saved apartment data to use in AssignmentResource
