@@ -43,13 +43,13 @@ gulp.task('less', function(callback) {
 );
 */
 gulp.task('sass', function() {
-    gulp.src('./public/stylesheets/sass/stylessass.scss')
+    return gulp.src('./public/stylesheets/sass/stylessass.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/stylesheets/compiledsass/'));
 });
 // CSS concat, auto-prefix and minify
-gulp.task('styles', ['sass'], function() {
-  gulp.src(['./public/stylesheets/compiledsass/stylessass.css'])
+gulp.task('styles', ['sass'], function(cb) {
+  return gulp.src(['./public/stylesheets/compiledsass/stylessass.css'])
     .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
     .pipe(gulp.dest('./public/build/'));
@@ -70,13 +70,13 @@ gulp.task('default', [
   'styles'
   ],
   function(){
+      gulp.watch(['./public/stylesheets/*.scss', './public/stylesheets/sass/*.scss',
+      './public/stylesheets/sass/**/*.scss'], function() {
+        gulp.run('styles');
+      });
     gulp.watch('./public/app/**/*.js', function() {
-      gulp.run('jshint', 'scripts');
+        gulp.run('jshint', 'scripts');
     });
-    gulp.watch(['./public/stylesheets/*.scss', './public/stylesheets/sass/*.scss',
-    './public/stylesheets/sass/**/*.scss'], function() {
-      gulp.run('sass');
-      gulp.run('styles');
-    });
+
   }
 );
