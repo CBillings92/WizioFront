@@ -6,7 +6,8 @@ angular.module('CampaignApp')
     'UnitResource',
     'UnitCreateSvc',
     'TokenSvc',
-    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc){
+    'AssignmentResource',
+    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, AssignmentResource){
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
@@ -17,6 +18,10 @@ angular.module('CampaignApp')
         $scope.upload = function() {
             UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(err, parsedApartment){
                 UnitResource.save(parsedApartment, function(data, status) {
+
+                    //store saved apartment data to use in AssignmentResource
+                    //call later
+                    var finalApartmentData = data;
                     AWS.config.update({
                         accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
                         secretAccessKey: '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'
@@ -57,7 +62,14 @@ angular.module('CampaignApp')
                                 } else {
                                     // Upload Successfully Finished
                                     toastr.success('File Uploaded Successfully', 'Done');
-
+                                    var updateData = {
+                                        email: userinfo.email,
+                                        apartmentID: finalApartmentData.id,
+                                        S3VideoID: uniqueFileName
+                                    };
+                                    AssignmentResource.save(updateData, function(data, status){
+                                        console.dir(data);
+                                    });
                                     // Reset The Progress Bar
                                     setTimeout(function() {
                                         $scope.uploadProgress = 0;
