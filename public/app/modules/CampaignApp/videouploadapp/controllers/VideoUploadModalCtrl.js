@@ -11,12 +11,12 @@ angular.module('CampaignApp')
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
-        var apartmentAddress = $scope.apartmentAddress;
+
         $scope.sizeLimit = 5368709120; // 5GB in Bytes
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.upload = function() {
-            UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(err, parsedApartment){
+            UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, null, function(err, parsedApartment){
                 UnitResource.save(parsedApartment, function(data, status) {
 
                     //store saved apartment data to use in AssignmentResource
@@ -43,6 +43,7 @@ angular.module('CampaignApp')
                         }
                         // Prepend Unique String To Prevent Overwrites
                         var userinfo = TokenSvc.decode();
+                        console.dir(userinfo);
                         var apartment = $scope.apartmentAddress;
                         apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
                         var uniqueFileName = userinfo.email + '-' + apartment;
@@ -63,10 +64,11 @@ angular.module('CampaignApp')
                                     // Upload Successfully Finished
                                     toastr.success('File Uploaded Successfully', 'Done');
                                     var updateData = {
-                                        email: userinfo.email,
-                                        apartmentID: finalApartmentData.id,
-                                        S3VideoID: uniqueFileName
+                                        UserId: userinfo.id,
+                                        ApartmentId: finalApartmentData.id,
+                                        S3VideoId: uniqueFileName
                                     };
+                                    console.dir(updateData);
                                     AssignmentResource.save(updateData, function(data, status){
                                         console.dir(data);
                                     });
