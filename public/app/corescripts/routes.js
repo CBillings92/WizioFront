@@ -215,7 +215,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: "public/app/modules/applicationapp/applicationmain.html"
+                            templateUrl: WizioConfig.ApplicationViewsURL + "applicationmain.html"
                         }
                     },
                     abstract: true,
@@ -225,7 +225,7 @@ angular.module('MainApp')
                     url: '/new',
                     views: {
                         'ApplicationPage': {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
                     }
@@ -234,7 +234,7 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'ApplicationPage': {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
                     }
