@@ -1,4 +1,62 @@
-<h4>
-Thanks for being awesome Katie! We are excited to be working with you.
-I wish you the best of luck with your endeavors on the wizio site!
-</h4>
+<div class="styleguide-nav">
+  <h4>Typography</h4>
+    <ul>
+      <li><a href="#heading-styles">Headings</a></li>
+      <li><a href="#copy-styles">Copy</a></li>
+      <li><a href="#link-styles">Links</a></li>
+    </ul>
+  <h4>Components</h4>
+  <h4>Structures</h4>
+</div>
+<div class="styleguide">
+  <div class="styleguide-section">
+    <h2>About</h2>
+    Add stuff in about the about section here.
+  </div>
+  <div class="styleguide-section">
+    <h2>Typography</h2>
+    <div class="styleguide-subsection">
+      <h3>Headings</h3>
+      <p class="styleguide-subsection__desc">
+        This is where the heading description would go.
+      </p>
+      <div class="live-example">
+        <h1>This is an h1</h1>
+        <h2>This is an h2</h2>
+        <h3>This is an h3</h3>
+        <h4>This is an h4</h4>
+        <h5>This is an h5</h5>
+        <h6>This is an h6</h6>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+
+    <div class="styleguide-section">
+    <h2>Components</h2>
+    <div class="styleguide-subsection">
+      <h3>Example</h3>
+      <div class="live-example"></div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+
+    <div class="styleguide-section">
+    <h2>Structures</h2>
+    <div class="styleguide-subsection">
+      <h3>Example</h3>
+      <div class="live-example">
+        <p>Random example</p>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".live-example").each(
+    function() {
+     $(this).parent().find(".code code").text($(this).html());
+    }
+  )
+</script>

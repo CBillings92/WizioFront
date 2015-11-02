@@ -1,0 +1,43 @@
+$styleguide-nav-width: 200px;
+
+.styleguide-nav {
+  width: $styleguide-nav-width;
+  float: left;
+  background-color: $gray;
+  position: fixed;
+  padding: 15px;
+}
+
+.styleguide {
+  margin-left: $styleguide-nav-width;
+  background-color: $white;
+  padding: 0 15px;
+}
+
+.styleguide-section {
+
+  margin-bottom: 50px;
+
+  > h2 {
+    padding-top: 10px;
+    position: relative;
+
+    &:after {
+      content: '';
+      color: $gray;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      border-width: 0 0 1px;
+      border-style: solid;
+    }
+  }
+}
+
+.code {
+  background-color: $black;
+  color: $white;
+  border: none;
+}
+
