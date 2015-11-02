@@ -70,7 +70,7 @@ angular.module('SharedServiceApp')
                 if ($localStorage.token) {
                     return $localStorage.token;
                 } else {
-                    return false;
+                    return 'No Token';
                 }
             };
             var deleteToken = function() {

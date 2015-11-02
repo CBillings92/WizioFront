@@ -5,6 +5,9 @@ angular.module('MainApp')
     //angular app URLs - views
     //
     modulesURL: 'public/app/modules',
+    //AdminPanel App
+    AdminPanelAppMainViewsURL: 'public/app/modules/AdminPanelApp/main/',
+    AdminPanelAppViewsURL: 'public/app/modules/AdminPanelApp/viewtemplates/',
     //AuthApp
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App

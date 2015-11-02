@@ -11,8 +11,13 @@ angular.module('MainApp')
                 controller: 'NavbarCtrl'
             };
             var trueRequiredLogin = {
-                requireLogin: true
+                requireLogin: true,
+                userType: 1
             };
+            var trueRequiredAdmin = {
+                requireLogin: true,
+                userType: 0
+            }
             var falseRequiredLogin = {
                 requireLogin: false
             };
@@ -63,6 +68,41 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('AdminPanel', {
+                    abstract: true,
+                    views: {
+                        'navbar': navbar,
+                        'maincontent': {
+                            templateUrl: WizioConfig.AdminPanelAppMainViewsURL + 'AdminPanelMain.html',
+                            controller: 'AdminPanelMainCtrl'
+                        }
+                    },
+                    data: {
+                        requireLogin: true,
+                        userType: 0
+                    }
+                })
+                .state('AdminPanel.Main', {
+                    url: '/wizioadminpanel',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminSearchUnit.html',
+                            controller: 'AdminSearchUnitCtrl',
+                        },
+                        'AdminLeft': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateUnit.html',
+                            controller: 'AdminUpdateUnitCtrl',
+                        }/*
+                        'AdminRight': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
+                            controller:
+                        },
+                        'AdminBottom': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
+                            controller:
+                        }*/
+                    }
                 })
                 .state('Styleguide', {
                     url: '/about/styleguide',
