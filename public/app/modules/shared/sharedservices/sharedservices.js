@@ -27,6 +27,7 @@ angular.module('SharedServiceApp')
         function($state, AuthRegistrationResource) {
             function registerUser(user, callback) {
                 console.dir("in setUserObj");
+                console.dir(user);
                 AuthRegistrationResource.save(user, function(data) {
                     callback(data);
                 });
