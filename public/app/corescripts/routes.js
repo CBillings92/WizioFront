@@ -93,11 +93,11 @@ angular.module('MainApp')
                         'AdminLeft': {
                             templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateUnit.html',
                             controller: 'AdminUpdateUnitCtrl',
-                        }/*
-                        'AdminRight': {
-                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
-                            controller:
                         },
+                        'AdminRight': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateAssignment.html',
+                            controller: 'AdminUpdateAssignmentCtrl'
+                        }/*,
                         'AdminBottom': {
                             templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
                             controller:
