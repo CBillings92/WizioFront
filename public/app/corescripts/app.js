@@ -132,6 +132,7 @@ angular.module('MainApp', [
             var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
 
+            console.dir(token);
             //if no token exists, assign isLoggedIn to false
             //if token is expired, assign isLoggedIn to false
             //else, assign isLoggedInto to true
@@ -208,7 +209,6 @@ angular.module('MainApp', [
                             }
                     }
                 } else {
-                    alert("Doesn't require login")
                     return;
                 }
             });
