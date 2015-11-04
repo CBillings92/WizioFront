@@ -1,6 +1,6 @@
 angular.module('ApplicationApp')
 .controller('ApplicationFormCtrl', [
-    $scope,
+    '$scope',
     function($scope) {
         alert('test');
     }

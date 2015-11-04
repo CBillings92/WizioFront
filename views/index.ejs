@@ -91,6 +91,11 @@
     <script type="text/javascript" src="/app/modules/UnitApp/controllers/UnitCreateCtrl.js"></script>
     <script type="text/javascript" src="/app/modules/UnitApp/controllers/UnitDetailCtrl.js"></script>
 <!-- =================================================================================-->
+<!-- ===================================APPLICATION APP======================================-->
+    <script type="text/javascript" src="/app/modules/ApplicationApp/WaitlistApp/controllers/WaitlistCreateModalCtrl.js"></script>
+    <script type="text/javascript" src="app/modules/ApplicationApp/applicationresource.js"></script>
+    <script type="text/javascript" src="app/modules/ApplicationApp/ApplicationFormApp/controllers/applicationformctrl.js"></script>
+<!-- =================================================================================-->
 
 <!-- ===================================PROFILE APP======================================-->
     <!--NEW FORMAT INJECTIONS -->
@@ -110,6 +115,15 @@
     <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/controllers/VideoUploadModalCtrl.js"></script>
     <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/services/services.js"></script>
 <!--=======================================================================================-->
+<!-- ===================================ADMIN PANEL APP======================================-->
+    <script type="text/javascript" src="/app/modules/AdminPanelApp/main/AdminPanelMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminUpdateUnitCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminSearchUnitCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminUpdateAssignmentCtrl.js"></script>
+    <script type="text/javascript" src='app/modules/AdminPanelApp/resources.js'>
+
+    </script>
+<!--=======================================================================================-->
 
 <!-- ===================================BLOG APP======================================-->
     <script type="text/javascript" src="/app/modules/BlogApp/controllers/BlogMain.js"></script>
@@ -117,11 +131,16 @@
     <link href="../public/stylesheets/blogStyle.css" rel="stylesheet">
 <!--=======================================================================================-->
 
+<!-- ===================================ABOUT US APP======================================-->
+    <script type="text/javascript" src="/app/modules/aboutUsApp/controllers/AboutMain.js"></script>
+    <script type="text/javascript" src="/app/modules/aboutUsApp/controllers/AboutListCtrl.js"></script>
+<!--=======================================================================================-->
+
 
     <!--Settings App-->
     <!--BUYER APPLICATION-->
     <!--APPLICATION APP -->
-    <script type="text/javascript" src="app/modules/applicationapp/resources/applicationresource.js"></script>
+
     <!-- APPLICATION APP END -->
     <!-- SELLER APPLICATION END-->
 
@@ -142,6 +161,18 @@
    })(document,"script","hs-analytics",300000);
  </script>
 <!-- End of Async HubSpot Analytics Code -->
+<!-- Start of Google Analytics Code -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-69688409-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- End of Google Analytics Code -->
 
 <body class="bckcolor">
     <div ui-view="navbar">

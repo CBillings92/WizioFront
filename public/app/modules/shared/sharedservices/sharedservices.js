@@ -27,6 +27,7 @@ angular.module('SharedServiceApp')
         function($state, AuthRegistrationResource) {
             function registerUser(user, callback) {
                 console.dir("in setUserObj");
+                console.dir(user);
                 AuthRegistrationResource.save(user, function(data) {
                     callback(data);
                 });
@@ -70,7 +71,7 @@ angular.module('SharedServiceApp')
                 if ($localStorage.token) {
                     return $localStorage.token;
                 } else {
-                    return false;
+                    return 'No Token';
                 }
             };
             var deleteToken = function() {

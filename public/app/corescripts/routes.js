@@ -11,8 +11,13 @@ angular.module('MainApp')
                 controller: 'NavbarCtrl'
             };
             var trueRequiredLogin = {
-                requireLogin: true
+                requireLogin: true,
+                userType: 1
             };
+            var trueRequiredAdmin = {
+                requireLogin: true,
+                userType: 0
+            }
             var falseRequiredLogin = {
                 requireLogin: false
             };
@@ -58,11 +63,46 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/about.html',
-                            controller: 'BlogCtrl'
+                            templateUrl: 'public/app/modules/aboutUsApp/viewtemplates/aboutUs.html',
+                            controller: 'AboutListCtrl'
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('AdminPanel', {
+                    abstract: true,
+                    views: {
+                        'navbar': navbar,
+                        'maincontent': {
+                            templateUrl: WizioConfig.AdminPanelAppMainViewsURL + 'AdminPanelMain.html',
+                            controller: 'AdminPanelMainCtrl'
+                        }
+                    },
+                    data: {
+                        requireLogin: true,
+                        userType: 0
+                    }
+                })
+                .state('AdminPanel.Main', {
+                    url: '/wizioadminpanel',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminSearchUnit.html',
+                            controller: 'AdminSearchUnitCtrl',
+                        },
+                        'AdminLeft': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateUnit.html',
+                            controller: 'AdminUpdateUnitCtrl',
+                        },
+                        'AdminRight': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateAssignment.html',
+                            controller: 'AdminUpdateAssignmentCtrl'
+                        }/*,
+                        'AdminBottom': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
+                            controller:
+                        }*/
+                    }
                 })
                 .state('Styleguide', {
                     url: '/about/styleguide',
@@ -190,8 +230,8 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('Profile.Create', {
-                    url: '/create',
+                .state('Profile.', {
+                    url: '/',
                     views: {
                         "profilepage": {
                             templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
@@ -215,7 +255,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: "public/app/modules/applicationapp/applicationmain.html"
+                            templateUrl: WizioConfig.ApplicationViewsURL + "applicationmain.html"
                         }
                     },
                     abstract: true,
@@ -225,7 +265,7 @@ angular.module('MainApp')
                     url: '/new',
                     views: {
                         'ApplicationPage': {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
                     }
@@ -234,7 +274,7 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'ApplicationPage': {
-                            templateUrl: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/applicationform.html',
+                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
                     }
@@ -249,7 +289,7 @@ angular.module('MainApp')
                     },
                     abstract: true
                 })
-                .state('Unit.Create', {
+                .state('Unit.', {
                     url: '/create',
                     views: {
                         'UnitMain': {
