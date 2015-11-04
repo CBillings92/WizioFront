@@ -2,18 +2,44 @@ angular.module('AccountApp')
     .controller('AuthCreateAcctCtrl', [
         '$scope',
         '$state',
+        '$facebook',
         'UserRegistrationSvc',
-        function($scope, $state, UserRegistrationSvc) {
-            $scope.setUserObject = function() {
+        function($scope, $state, $facebook, UserRegistrationSvc) {
+
+            //Set a standard, local user object to save for local authentication
+            $scope.setUserObj = function() {
+                console.dir("in here");
                 var user = {
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
                     email: $scope.email,
-                    password: $scope.password
+                    password: $scope.password,
+                    accountType: "local",
+                    userType: 1
                 };
+                console.dir(user);
                 UserRegistrationSvc.saveUser(user, function(data) {
                     $state.go('Account.Dashboard.Main');
                 });
+            };
+            $scope.createFacebookUser = function(){
+                    $facebook.login().then(function(data){
+                        switch(data.status){
+                            case "connected":
+                                $facebook.api('/me').then(function(user){
+                                    console.dir(user);
+                                    user.accountType = "facebook";
+                                    UserRegistrationSvc.saveUser(user, function(data){
+                                        $state.go('Account.Dashboard.Main');
+                                    });
+                                });
+                                break;
+                            case "not_authorized":
+                                alert('Facebook error');
+                                break;
+                        }
+                    });
+
             };
 
             $scope.cancel = function() {

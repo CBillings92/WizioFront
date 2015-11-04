@@ -2,7 +2,7 @@ angular.module('AccountApp')
 .service('AuthCreateUserSvc', [
     function(){
         var createUser = function(user, userType){
-            var user = {
+            user = {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,

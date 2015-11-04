@@ -13,6 +13,9 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
+            if($scope.apartmentSearch.length === 0){
+                alert('No apartments found!');
+            }
             $scope.mapshow = true;
 
             //display maps and markers
@@ -26,7 +29,6 @@ angular.module('UnitApp')
                 console.dir(data);
                 console.log('------This is the data from the search------');
                 $scope.apartmentSearch = data;
-
                 //display maps and markers
                 displayMaps();
             });

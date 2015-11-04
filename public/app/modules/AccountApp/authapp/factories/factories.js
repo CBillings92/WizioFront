@@ -23,13 +23,14 @@ angular.module('AuthApp')
 
         return {
             signup: function(data, success, error) {
-                AuthRegistrationResource.save(null, data, function(status, data) {
-                    console.log(data);
+                AuthRegistrationResource.save(null, data, function(data, status) {
+                    success(status);
                 });
             },
             signin: function(data, success, error) {
-                AuthLoginResource.save(data, function(data){
-                    success(data);
+                AuthLoginResource.save(data, function(data, status){
+                    console.dir(status);
+                    success(data, status);
                 });
             },
             logout: function(success) {

@@ -5,18 +5,23 @@ angular.module('CampaignApp')
     'SmartSearchSvc',
     'UnitResource',
     'UnitCreateSvc',
-    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc){
+    'TokenSvc',
+    'AssignmentResource',
+    function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, AssignmentResource){
         $scope.getLocation = function(val){
             return SmartSearchSvc.smartSearch(val);
         };
-        var apartmentAddress = $scope.apartmentAddress;
+
         $scope.sizeLimit = 5368709120; // 5GB in Bytes
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.upload = function() {
-            var apartment = $scope.apartmentAddress;
-            UnitCreateSvc.parseGeocodeData(apartmentAddress, null, function(parsedApartment){
-                UnitResource.save(null, parsedApartment, function(data, status) {
+            UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, null, function(err, parsedApartment){
+                UnitResource.save(parsedApartment, function(data, status) {
+
+                    //store saved apartment data to use in AssignmentResource
+                    //call later
+                    var finalApartmentData = data;
                     AWS.config.update({
                         accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
                         secretAccessKey: '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'
@@ -24,19 +29,26 @@ angular.module('CampaignApp')
                     AWS.config.region = 'us-east-1';
                     var bucket = new AWS.S3({
                         params: {
-                            Bucket: "wiziouservideos"
+                            Bucket:"wiziouservideos"
                         }
                     });
 
                     if ($scope.file) {
                         // Perform File Size Check First
+
                         var fileSize = Math.round(parseInt($scope.file.size));
                         if (fileSize > $scope.sizeLimit) {
                             toastr.error('Sorry, your attachment is too big. <br/> Maximum ' + $scope.fileSizeLabel() + ' file attachment allowed', 'File Too Large');
                             return false;
                         }
                         // Prepend Unique String To Prevent Overwrites
-                        var uniqueFileName = $scope.uniqueString() + '-' + $scope.file.name;
+                        var userinfo = TokenSvc.decode();
+                        console.dir(userinfo);
+                        var apartment = $scope.apartmentAddress;
+                        apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
+                        var uniqueFileName = userinfo.email + '-' + apartment;
+
+                        console.dir(apartment);
                         var params = {
                             Key: uniqueFileName,
                             ContentType: $scope.file.type,
@@ -51,7 +63,15 @@ angular.module('CampaignApp')
                                 } else {
                                     // Upload Successfully Finished
                                     toastr.success('File Uploaded Successfully', 'Done');
-
+                                    var updateData = {
+                                        UserId: userinfo.id,
+                                        ApartmentId: finalApartmentData.id,
+                                        S3VideoId: uniqueFileName
+                                    };
+                                    console.dir(updateData);
+                                    AssignmentResource.save(updateData, function(data, status){
+                                        console.dir(data);
+                                    });
                                     // Reset The Progress Bar
                                     setTimeout(function() {
                                         $scope.uploadProgress = 0;

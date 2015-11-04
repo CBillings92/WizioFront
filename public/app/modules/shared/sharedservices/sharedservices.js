@@ -5,14 +5,14 @@ angular.module('SharedServiceApp')
         'SearchResource',
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
-            function searchApartment(searchString) {
+            function searchApartment(searchString, callback) {
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
                         console.dir(data);
                         SearchResource.save(data, function(data, status){
+                            console.dir(data);
                             $rootScope.$broadcast('searchFinished', data);
                             $sessionStorage.apartmentSearch = data;
-                            console.dir(data);
-                            return "search complete";
+                            return callback(null, data);
                         });
                     });
             }
@@ -27,6 +27,7 @@ angular.module('SharedServiceApp')
         function($state, AuthRegistrationResource) {
             function registerUser(user, callback) {
                 console.dir("in setUserObj");
+                console.dir(user);
                 AuthRegistrationResource.save(user, function(data) {
                     callback(data);
                 });
@@ -50,12 +51,14 @@ angular.module('SharedServiceApp')
             };
             //returns true if the token is expired
             var checkExp = function(token) {
+                console.dir($localStorage.token);
                 if (token) {
                     return jwtHelper.isTokenExpired(token);
                 } else if ($localStorage.token) {
+                    console.dir(jwtHelper.isTokenExpired($localStorage.token));
                     return jwtHelper.isTokenExpired($localStorage.token);
                 }
-                return false;
+                return true;
             };
             var storeToken = function(token) {
                 if (token) {
@@ -68,7 +71,7 @@ angular.module('SharedServiceApp')
                 if ($localStorage.token) {
                     return $localStorage.token;
                 } else {
-                    return false;
+                    return 'No Token';
                 }
             };
             var deleteToken = function() {

@@ -24,20 +24,25 @@ angular.module('NavbarApp')
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
-            $scope.createUnit = function(val) {
+            $scope.createUnit = function() {
                 $state.go('Unit.Create');
             };
-            $scope.goHome = function(val) {
+            $scope.goHome = function() {
                 $state.go('LandingPage');
             };
-            $scope.goAbout = function(val) {
+            $scope.goAbout = function() {
                 $state.go('About');
             };
+
             $scope.goBlog = function(val) {
-                $state.go('Blog');
+                $state.go('Blog.List');
+
             };
-            $scope.goAccoutCreate = function(val) {
+            $scope.goAccoutCreate = function() {
                 $state.go('Account.Create');
+            };
+            $scope.goAccountDashboard = function(){
+                $state.go('Account.Dashboard.Main');
             };
         }
     ]);

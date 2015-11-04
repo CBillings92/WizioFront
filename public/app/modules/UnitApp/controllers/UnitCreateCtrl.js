@@ -30,6 +30,7 @@ angular.module('UnitApp')
 
                 //Create apartment object that will get sent through request body and stored in database
                 var apartmentParams= {
+                    unitNum: $scope.unitNum,
                     beds: $scope.beds,
                     baths: $scope.baths,
                     livingSpaces: $scope.livingRooms,

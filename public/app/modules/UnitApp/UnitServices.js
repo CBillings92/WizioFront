@@ -43,7 +43,13 @@ angular.module('UnitApp')
                 //check if search string matches any google API raw data passed
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
-                var searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
+                console.dir(googleAPIDataRaw);
+                console.dir(apartmentAddress);
+                var searchStringFound = false;
+                if(googleAPIDataRaw.length !== 0){
+                    searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
+                }
+
                 //if no match found, send address to google API to get get GeocodeData
                 if (searchStringFound === false) {
                     console.dir("MODIFIED SEARCH");
@@ -183,7 +189,7 @@ angular.module('UnitApp')
                 //check if latitude and longitude are strings or numbers.
                 //if not numbers or strings, ignore latitude and longitude
 
-                //Dear Cameron, I didn't understand why these conditionals where
+                //Dear Cameron, I didn't understand why these conditionals were
                 //neccessary, they where breaking the lat long, so I fixed them
                 //I wanted to remove them though.
                 if((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)){
@@ -194,7 +200,6 @@ angular.module('UnitApp')
                     longitude = parseFloat(coords[1].toFixed(6));
                     apartmentObj.longitude = longitude;
                 }
-
                 return apartmentObj;
             }
 

@@ -5,15 +5,43 @@ angular.module('AccountApp')
     '$state',
     '$localStorage',
     '$stateParams',
+    '$facebook',
     'AuthFct',
     'AuthResetPasswordResource',
     'AuthUpdatePasswordResource',
     'TokenSvc',
-    function($rootScope, $scope, $state, $localStorage, $stateParams, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
-        function successAuth(res){
-            $rootScope.isLoggedIn = true;
-            $state.go('Account.Dashboard.Main');
-        }
+    function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
+        $scope.facebookLogin = function(){
+            if($rootScope.authObjects.facebookConnected){
+                alert('Already logged in with email!');
+                return $state.go('Account.Dashboard');
+            }
+            $facebook.login().then(function(data){
+                if(data.status === "connected"){
+                    $facebook.api('/me').then(function(userdata){
+                        var fbData = {
+                            user: userdata,
+                            facebook: true
+                        };
+                        AuthFct.signup(fbData, function(data, status){
+                            console.dir(data);
+                            console.dir(status);
+                            //do stuff with data?
+                            if(status === 403){
+                                $rootScope.isLoggedIn = false;
+                                return;
+                            }
+                            $rootScope.isLoggedIn = true;
+                            return;
+                        });
+                    });
+                } else {
+                    alert("Can't autehtnicate Facebook credentials");
+                }
+            });
+
+
+        };
         $scope.sendResetEmail = function(){
             var emailobj = {};
             emailobj.email = $scope.email;
@@ -50,7 +78,12 @@ angular.module('AccountApp')
                 password: $scope.password
             };
             console.log("IN THERE");
-            AuthFct.signin(userData, successAuth, function(){
+            AuthFct.signin(userData,
+                function(res){
+                    $rootScope.isLoggedIn = true;
+                    $state.go('Account.Dashboard.Main');
+                },
+                function(){
                 $rootScope.error = "Failed to sign in!";
                 $state.go('Login');
             });

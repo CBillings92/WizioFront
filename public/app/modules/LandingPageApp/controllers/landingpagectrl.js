@@ -3,25 +3,47 @@ angular.module('LandingPageApp')
         '$scope',
         '$http',
         '$state',
-        '$facebook',
         'UserRegistrationSvc',
         'ApartmentSearchSvc',
         'SmartSearchSvc',
         'UnitCreateSvc',
-        function($scope, $http, $state, $facebook, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
-
-
-                //$facebook.login();
+        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
 
             $scope.radioModel = {
                 realtor: false,
                 tenant: true,
                 broker: false
             };
-            $scope.search = function() {
-                ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('Unit.Display');
+
+            $scope.neighborhoods = [
+                'Boston',
+                'Allston',
+                'Brighton',
+                'Jamaica Plain',
+                'Back Bay',
+                'Beacon Hill',
+            ];
+
+            $scope.localeButtonClick = function(neighborhood){
+                ApartmentSearchSvc.searchApartment(neighborhood, function(err, data){
+                    return $state.go('Unit.Display');
+                });
             };
+
+            //smart search functionality
+            $scope.goToUploadPage = function() {
+                $state.go('Campaign.VideoUpload.Main');
+            };
+
+            $scope.search = function() {
+                //service in shared/services
+                //pass in search string
+                ApartmentSearchSvc.searchApartment($scope.searchString, function(err, data){
+                    return $state.go('Unit.Display');
+                });
+
+            };
+            //smart search/typeahead functionality
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
@@ -30,10 +52,16 @@ angular.module('LandingPageApp')
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
                     email: $scope.email,
-                    password: $scope.password
+                    password: $scope.password,
+                    accountType: "local",
+                    userType: 1
                 };
-                UserRegistrationSvc.saveUser(user);
+                UserRegistrationSvc.saveUser(user, function(data) {
+                    $state.go('Account.Dashboard.Main');
+                });
             };
+
+            //All of chris' stuff....
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};

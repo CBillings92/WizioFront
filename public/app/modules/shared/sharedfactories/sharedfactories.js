@@ -44,10 +44,16 @@ angular.module('SharedFactoryApp')
                 };
 
                 var setMapOptions = function(unitList) {
-                    //test for case of only one apartment and turn into array if only one.
-                    if (!(Array.isArray(unitList))) {
+                    console.dir(unitList);
+
+                    if(unitList.constructor !== Array){
                         unitList = [unitList];
+                        console.dir(unitList);
                     }
+                    if(unitList.length === 0){
+                        return mapOptions;
+                    }
+
                     //I am averaging all lats and longitudes to find where the best
                     //place to center the map is
 
@@ -74,6 +80,7 @@ angular.module('SharedFactoryApp')
                 var unitList = null;
                 if($state.current.name === "Unit.Details"){
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
+                    console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display"){
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
