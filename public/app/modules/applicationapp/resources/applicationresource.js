@@ -3,6 +3,6 @@ angular.module('ApplicationApp')
     '$resource',
     'WizioConfig',
     function($resource, WizioConfig){
-        return $resource(WizioConfig.baseAPIURL + 'application');
+        return $resource(WizioConfig.baseAPIURL + 'application/:item', {item: '@item'});
     }
-]);
+])

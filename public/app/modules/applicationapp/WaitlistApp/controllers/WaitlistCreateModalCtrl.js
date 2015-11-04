@@ -2,7 +2,9 @@ angular.module('ApplicationApp')
 .controller('WaitlistCreateModalCtrl', [
     '$scope',
     'FlexGetSetSvc',
-    function($scope, FlexGetSetSvc){
+    'TokenSvc',
+    'ApplicationResource',
+    function($scope, FlexGetSetSvc, TokenSvc, ApplicationResource){
 
         $scope.apartment = FlexGetSetSvc.get('ApartmentWaitlistingTo');
         console.dir($scope.apartment.beds);
@@ -26,22 +28,18 @@ angular.module('ApplicationApp')
          waitlistArray.push(userObj);
        }
 
-
-       $scope.waitlistSignup = function(){
-           var apartmentObj = {
-               apartmentId: $scope.apartment.id,
-               apartmentMaxResidency: $scope.apartment.maxResidency
-           };
-           requestInfoOutbound.apartmentInfo = apartmentObj;
-           requestInfoOutbound.users = waitlistArray;
-           console.dir(requestInfoOutbound);
-           waitlist.save(requestInfoOutbound, function(result, status){
-               console.dir(result);
-           });
-       };
-
-        $scope.ok = function() {
-            $modalInstance.close('ok');
+        $scope.waitlistSignup = function() {
+            var apartmentObj = {
+                apartmentId: $scope.apartment.id,
+                apartmentMaxResidency: $scope.apartment.maxResidency
+            };
+            requestInfoOutbound.apartmentInfo = apartmentObj;
+            requestInfoOutbound.users = waitlistArray;
+            requestInfoOutbound.owner = TokenSvc.decode().id;
+            console.dir(requestInfoOutbound);
+            ApplicationResource.save({item: 'waitlist'}, requestInfoOutbound, function(result, status){
+                $modalInstance.close('ok');
+            });
 
         };
 

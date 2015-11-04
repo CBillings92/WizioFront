@@ -284,7 +284,8 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitMain.html'
+                            templateUrl: WizioConfig.UnitMainViewsURL + 'UnitMain.html',
+                            controller: 'UnitMainCtrl'
                         }
                     },
                     abstract: true

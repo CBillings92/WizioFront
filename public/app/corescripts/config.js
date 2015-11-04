@@ -30,6 +30,7 @@ angular.module('MainApp')
     AccountViewsURL: 'public/app/modules/AccountApp/main/',
     AccountDashboardViewsURL: 'public/app/modules/AccountApp/dashboardapp/viewtemplates/',
     AccountAuthViewsURL: 'public/app/modules/AccountApp/authapp/viewtemplates/',
+    UnitMainViewsURL: 'public/app/modules/UnitApp/main/',
     //Unit App
-    UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/'
+    UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/',
 });
