@@ -14,8 +14,10 @@ angular.module('AccountApp')
                     lastName: $scope.lastName,
                     email: $scope.email,
                     password: $scope.password,
-                    accountType: "local"
+                    accountType: "local",
+                    userType: 1
                 };
+                console.dir(user);
                 UserRegistrationSvc.saveUser(user, function(data) {
                     $state.go('Account.Dashboard.Main');
                 });

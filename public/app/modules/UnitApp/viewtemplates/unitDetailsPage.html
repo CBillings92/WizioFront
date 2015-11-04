@@ -18,8 +18,11 @@
 
     <div clss="col-lg-6">
     </br>
-      <center><button class="btn btn-success" ng-click="apply()">Apply For Apartment</button>
-      <button class="btn btn-success">Setup in Person Tour</button></center>
+      <center>
+          <button ng-show="available" class="btn btn-success" ng-click="apply()">Apply For Apartment</button>
+          <button ng-hide="available" class="btn btn-success" ng-click="waitlist()">Get on Waitlist</button>
+          <button class="btn btn-success">Setup in Person Tour</button>
+      </center>
     </br></br>
       <p><h3>Description:</h3>
       </br>
