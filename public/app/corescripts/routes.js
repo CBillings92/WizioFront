@@ -63,8 +63,8 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/about.html',
-                            controller: 'BlogCtrl'
+                            templateUrl: 'public/app/modules/aboutUsApp/viewtemplates/aboutUs.html',
+                            controller: 'AboutListCtrl'
                         }
                     },
                     data: falseRequiredLogin
@@ -230,8 +230,8 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('Profile.Create', {
-                    url: '/create',
+                .state('Profile.', {
+                    url: '/',
                     views: {
                         "profilepage": {
                             templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
@@ -289,7 +289,7 @@ angular.module('MainApp')
                     },
                     abstract: true
                 })
-                .state('Unit.Create', {
+                .state('Unit.', {
                     url: '/create',
                     views: {
                         'UnitMain': {
