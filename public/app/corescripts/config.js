@@ -5,11 +5,15 @@ angular.module('MainApp')
     //angular app URLs - views
     //
     modulesURL: 'public/app/modules',
+    //AdminPanel App
+    AdminPanelAppMainViewsURL: 'public/app/modules/AdminPanelApp/main/',
+    AdminPanelAppViewsURL: 'public/app/modules/AdminPanelApp/viewtemplates/',
     //AuthApp
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App
-    ApplicationViewsURL: 'public/app/modules/applicationapp/viewtemplates/',
-    ApplicationFormViewsURL: 'public/app/modules/applicationapp/viewtemplates/',
+    ApplicationViewsURL: 'public/app/modules/ApplicationApp/Main/',
+    ApplicationFormViewsURL: 'public/app/modules/ApplicationApp/ApplicationFormApp/viewtemplates',
+    ApplicationWaitlistViewsURL: 'public/app/modules/ApplicationApp/WaitlistApp/viewtemplates/',
     //Blog App
     BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
     BuyerViewsURL: 'public/app/modules/AccountApp/viewtemplates/',
