@@ -9,14 +9,15 @@ angular.module('AuthApp')
     'TokenSvc',
     function($state, $localStorage, $http, $rootScope, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
         var isLoggedin = function(){
-            var tokenExp = null;
+            var tokenExp = true;
             var token = TokenSvc.getToken();
 
             if(token !== "No Token"){
-                var tokenExp = TokenSvc.checkExp(token);
+                tokenExp = TokenSvc.checkExp(token);
             }
 
             console.dir(token);
+            console.dir(tokenExp);
             if(token === "No Token" && tokenExp){
                 console.dir(token);
                 console.dir(!tokenExp);

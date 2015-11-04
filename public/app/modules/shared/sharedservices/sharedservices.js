@@ -42,36 +42,14 @@ angular.module('SharedServiceApp')
         '$localStorage',
         'jwtHelper',
         function($localStorage, jwtHelper) {
-            function noTokenAssign(){
-                if((typeof token) == 'undefined'){
-                    return token = "No Token"
-                }
-            }
             //decode auth token for front end. Retrieves user information
-            var decode = function(token) {
-                token = noTokenAssign();
-                if (token !== "No Token") {
-                    return jwtHelper.decodeToken(token);
-                }
+            var decode = function() {
                 return jwtHelper.decodeToken($localStorage.token);
             };
             //returns true if the token is expired
-            var checkExp = function(token) {
-                console.dir(token)
-                //assign an undefined token to "No Token"
-                token = noTokenAssign();
-
+            var checkExp = function() {
                 //If the token exists
-                if (token !== "No Token") {
-                    //if the token is expired delete the tokens return true
-                    if(jwtHelper.isTokenExpired(token)){
-                        delete $localStorage.token;
-                        delete token;
-                        return true;
-                    };
-                //if $localStorage.token exists check if it's expired
-                } else if ($localStorage.token) {
-                    console.dir(jwtHelper.isTokenExpired($localStorage.token));
+                if ($localStorage.token) {
                     if(jwtHelper.isTokenExpired($localStorage.token)){
                         delete $localStorage.token;
                         return true;
