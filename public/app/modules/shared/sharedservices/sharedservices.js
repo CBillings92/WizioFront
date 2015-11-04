@@ -42,22 +42,44 @@ angular.module('SharedServiceApp')
         '$localStorage',
         'jwtHelper',
         function($localStorage, jwtHelper) {
+            function noTokenAssign(){
+                if((typeof token) == 'undefined'){
+                    return token = "No Token"
+                }
+            }
             //decode auth token for front end. Retrieves user information
             var decode = function(token) {
-                if (token) {
+                token = noTokenAssign();
+                if (token !== "No Token") {
                     return jwtHelper.decodeToken(token);
                 }
                 return jwtHelper.decodeToken($localStorage.token);
             };
             //returns true if the token is expired
             var checkExp = function(token) {
-                console.dir($localStorage.token);
-                if (token) {
-                    return jwtHelper.isTokenExpired(token);
+                console.dir(token)
+                //assign an undefined token to "No Token"
+                token = noTokenAssign();
+
+                //If the token exists
+                if (token !== "No Token") {
+                    //if the token is expired delete the tokens return true
+                    if(jwtHelper.isTokenExpired(token)){
+                        delete $localStorage.token;
+                        delete token;
+                        return true;
+                    };
+                //if $localStorage.token exists check if it's expired
                 } else if ($localStorage.token) {
                     console.dir(jwtHelper.isTokenExpired($localStorage.token));
-                    return jwtHelper.isTokenExpired($localStorage.token);
+                    if(jwtHelper.isTokenExpired($localStorage.token)){
+                        delete $localStorage.token;
+                        return true;
+                    };
+                    //if not expired return false
+                    return false;
                 }
+                //if token does equal "No Token" return that token is expired
                 return true;
             };
             var storeToken = function(token) {
