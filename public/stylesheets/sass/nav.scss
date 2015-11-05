@@ -2,12 +2,52 @@
   width: 100px;
 }
 
-li {
-	border: 1px solid red;
+.transparent-nav {
+	background-color: transparent;
 }
 
-
-.navbar-nav > li > a {
-	text-transform: uppercase;
+.navbar {
+	border-bottom: 1px solid red;
+	margin-bottom: 0;
 }
 
+#navbar {
+	height: 28px !important;
+}
+
+nav {
+	height: 80px;
+	font-family: 'Roboto', sans-serif;
+
+	.container {
+	padding-top: 20px;
+}
+
+.navbar-nav > li {
+	a {
+		text-transform: uppercase;
+		font-size: 20px;
+		padding: 10px 40px 10px 0;
+		color: #000;
+	}
+	a:hover {
+		background-color: transparent;
+	}
+
+	a:active {
+		color: #7a9ed2;
+	}
+}
+
+#btn-signup {
+	width: 130px;
+	background-color: #7a9ed2;
+	height: 38px;
+	border-radius: 5px;
+
+	a {
+		padding: 10px 15px 10px 15px;
+		color: #fff;
+		text-align: center;
+	}
+}
