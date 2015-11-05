@@ -24,7 +24,10 @@ angular.module('UnitApp')
             FlexGetSetSvc,
             WizioConfig
         ) {
+            //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
+
+            //HELPER FUNCTION -- Check if token is expired
             var checkToken = function(){
                 if(TokenSvc.checkExp()){
                     TokenSvc.deleteToken();
@@ -33,7 +36,7 @@ angular.module('UnitApp')
                 }
                 return;
             }
-            //modal function
+            //HELPER FUNCTION -- modal creation function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
                     templateUrl: templateUrl,
@@ -42,21 +45,26 @@ angular.module('UnitApp')
                 });
                 return modalInstance;
             };
+
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
 
+                //create the google maps
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                //create the markers for the map
                 var markers = MapFct.makeMarkers($scope.map);
             });
+
+            //WAITLIST for the apartment
             $scope.waitlist = function(){
                 //check if token is expired, if so route to login
                 checkToken();
                 //store the current apartment in sessionStorage with the
                 //appropriate session storage variable
                 FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                //Create a moda instance with the correct template and controller
+                //Create a modal instance with the modal helper function with the correct template and controller
                 var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
 
                 //on modal instance close/button click go to user dashboard
@@ -65,7 +73,7 @@ angular.module('UnitApp')
                 })
             }
             //LOAD APARTMENT DATA end
-            $scope.apply = function() {
+            /*$scope.apply = function() {
 
                 checkToken();
 
@@ -115,6 +123,6 @@ angular.module('UnitApp')
                     });
 
                 }
-            };
+            };*/
         }
     ]);

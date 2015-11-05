@@ -1,8 +1,11 @@
 angular.module('ApplicationApp')
 .controller('WaitlistCreateModalCtrl', [
     '$scope',
+    '$modalInstance',
     'FlexGetSetSvc',
-    function($scope, FlexGetSetSvc){
+    'TokenSvc',
+    'ApplicationResource',
+    function($scope, $modalInstance, FlexGetSetSvc, TokenSvc, ApplicationResource){
 
         $scope.apartment = FlexGetSetSvc.get('ApartmentWaitlistingTo');
         console.dir($scope.apartment.beds);
@@ -12,7 +15,8 @@ angular.module('ApplicationApp')
            users: null,
            owner: null
            };
-        var waitlistArray = [];
+        $scope.waitlistArray = [];
+        $scope.trial = [];
 
         //create an array of user objects to store emails in for roomates.
         //subtracting one to account for the fact that we already have the]
@@ -23,25 +27,23 @@ angular.module('ApplicationApp')
          };
          //push a userObj with enough slots for the waitlist for the apartment
          $scope.apartmentSlotsModal.push(userObj);
-         waitlistArray.push(userObj);
        }
 
+        $scope.waitlistSignup = function() {
+            console.dir($scope.waitlistArray);
+            var apartmentObj = {
+                apartmentId: $scope.apartment.id,
+                apartmentMaxResidency: $scope.apartment.maxResidency
+            };
+            requestInfoOutbound.apartmentInfo = apartmentObj;
+            requestInfoOutbound.users = $scope.waitlistArray;
+            requestInfoOutbound.owner = TokenSvc.decode().id;
+            console.dir(requestInfoOutbound);
+            ApplicationResource.save(requestInfoOutbound, function(result, status){
+                console.dir(result);
 
-       $scope.waitlistSignup = function(){
-           var apartmentObj = {
-               apartmentId: $scope.apartment.id,
-               apartmentMaxResidency: $scope.apartment.maxResidency
-           };
-           requestInfoOutbound.apartmentInfo = apartmentObj;
-           requestInfoOutbound.users = waitlistArray;
-           console.dir(requestInfoOutbound);
-           waitlist.save(requestInfoOutbound, function(result, status){
-               console.dir(result);
-           });
-       };
-
-        $scope.ok = function() {
-            $modalInstance.close('ok');
+                $modalInstance.close('ok');
+            });
 
         };
 
