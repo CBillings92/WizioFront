@@ -31,7 +31,8 @@ angular.module('SharedFactoryApp')
         '$sessionStorage',
         '$stateParams',
         '$state',
-        function(ApartmentGetSetSvc, $sessionStorage, $stateParams, $state) {
+        'WizioConfig',
+        function(ApartmentGetSetSvc, $sessionStorage, $stateParams, $state, WizioConfig) {
             var makeMap = function() {
 
                 //default options for map, centered on Boston with a zoom
@@ -119,10 +120,10 @@ angular.module('SharedFactoryApp')
                         position: new google.maps.LatLng(unitData.latitude, unitData.longitude),
                         title: unitData.street
                     });
-                    marker.content = '<div class="infoWindowContent">' + unitData.neighborhood + '</div>';
+                    marker.content = '<div class="infoWindowContent"> <a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'"> <img class="pull-left "'+"src = http://img.youtube.com/vi/"+unitData.youtubeVRID+"/0.jpg " + ' style="width:160px;height:120px;"</img></div>';
                     var infoWindow = new google.maps.InfoWindow();
                     google.maps.event.addListener(marker, 'click', function() {
-                        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                        infoWindow.setContent('<p><a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'">' + marker.title + '</p>' + marker.content);
                         infoWindow.open(map, marker);
                     });
 
