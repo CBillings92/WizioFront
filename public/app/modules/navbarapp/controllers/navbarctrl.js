@@ -21,9 +21,6 @@ angular.module('NavbarApp')
             $scope.logout = function(success) {
                 AuthFct.logout();
             };
-            $scope.getLocation = function(val) {
-                return SmartSearchSvc.smartSearch(val);
-            };
             $scope.createUnit = function() {
                 $state.go('Unit.Create');
             };
