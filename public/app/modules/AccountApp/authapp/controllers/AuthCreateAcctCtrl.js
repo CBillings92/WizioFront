@@ -3,12 +3,13 @@ angular.module('AccountApp')
         '$scope',
         '$state',
         '$facebook',
+        '$location',
         'UserRegistrationSvc',
-        function($scope, $state, $facebook, UserRegistrationSvc) {
+        'RerouteGetSetSvc',
+        function($scope, $state, $facebook, $location, UserRegistrationSvc, RerouteGetSetSvc) {
 
             //Set a standard, local user object to save for local authentication
             $scope.setUserObj = function() {
-                console.dir("in here");
                 var user = {
                     firstName: $scope.firstName,
                     lastName: $scope.lastName,
@@ -17,9 +18,13 @@ angular.module('AccountApp')
                     accountType: "local",
                     userType: 1
                 };
-                console.dir(user);
                 UserRegistrationSvc.saveUser(user, function(data) {
-                    $state.go('Account.Dashboard.Main');
+                    var rerouteURL = RerouteGetSetSvc.get();
+                    if(rerouteURL.length !== 0){
+                        console.dir(rerouteURL);
+                        return $location.path(rerouteURL);
+                    }
+                    return $state.go('Account.Dashboard.Main');
                 });
             };
             $scope.createFacebookUser = function(){
@@ -30,7 +35,11 @@ angular.module('AccountApp')
                                     console.dir(user);
                                     user.accountType = "facebook";
                                     UserRegistrationSvc.saveUser(user, function(data){
-                                        $state.go('Account.Dashboard.Main');
+                                        var rerouteURL = RerouteGetSetSvc.get();
+                                        if(rerouteURL.length !== 0){
+                                            return $location.path(rerouteURL);
+                                        }
+                                        return $state.go('Account.Dashboard.Main');
                                     });
                                 });
                                 break;

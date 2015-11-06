@@ -3,6 +3,7 @@ angular.module('UnitApp')
         '$scope',
         '$state',
         '$modal',
+        '$location',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
@@ -10,11 +11,13 @@ angular.module('UnitApp')
         'TokenSvc',
         'ProfileResource',
         'FlexGetSetSvc',
+        'RerouteGetSetSvc',
         'WizioConfig',
         function(
             $scope,
             $state,
             $modal,
+            $location,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
@@ -22,6 +25,7 @@ angular.module('UnitApp')
             TokenSvc,
             ProfileResource,
             FlexGetSetSvc,
+            RerouteGetSetSvc,
             WizioConfig
         ) {
             //For displaying (ng-show) Apply or Waitlist button
@@ -29,13 +33,8 @@ angular.module('UnitApp')
 
             //HELPER FUNCTION -- Check if token is expired
             var checkToken = function(){
-                if(TokenSvc.checkExp()){
-                    TokenSvc.deleteToken();
-                    alert('Please login');
-                    return $state.go('Login');
-                }
-                return;
-            }
+
+            };
             //HELPER FUNCTION -- modal creation function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
@@ -61,7 +60,12 @@ angular.module('UnitApp')
             //WAITLIST for the apartment
             $scope.waitlist = function(){
                 //check if token is expired, if so route to login
-                checkToken();
+                if(TokenSvc.checkExp()){
+                    TokenSvc.deleteToken();
+                    RerouteGetSetSvc.set($location.path());
+                    alert('Please login');
+                    return $state.go('Login');
+                }
                 //store the current apartment in sessionStorage with the
                 //appropriate session storage variable
                 FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
@@ -70,9 +74,9 @@ angular.module('UnitApp')
 
                 //on modal instance close/button click go to user dashboard
                 modalInstanceWaitlist.result.then(function(result){
-                    $state.go('Account.Dashboard.Main')
-                })
-            }
+                    $state.go('Account.Dashboard.Main');
+                });
+            };
             //LOAD APARTMENT DATA end
             /*$scope.apply = function() {
 

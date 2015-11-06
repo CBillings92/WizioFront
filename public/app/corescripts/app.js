@@ -220,6 +220,11 @@ angular.module('MainApp', [
                             }
                     }
                 } else {
+                    if(token === 'No Token' || token === null || token === 'undefined'){
+                        $rootScope.isLoggedIn = false;
+                    } else {
+                        $rootScope.isLoggedIn = true;
+                    }
                     return;
                 }
             });

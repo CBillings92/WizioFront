@@ -5,7 +5,6 @@ angular.module('AccountApp')
     '$modalInstance',
     'UserRegistrationSvc',
     function($scope, $state, $modalInstance, UserRegistrationSvc){
-        console.dir('in the right place');
         $scope.setUserObject = function(){
             var user = {
                 firstName: $scope.firstName,
@@ -13,9 +12,7 @@ angular.module('AccountApp')
                 email: $scope.email,
                 password: $scope.password
             };
-            console.dir('SO CLOSE');
             UserRegistrationSvc.saveUser(user, function(data){
-                console.dir("hello");
                 $modalInstance.close('ok');
             });
         };

@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <form>
+        <form ng-submit="setUserObj()">
             <div class="col-lg-offset-3 col-lg-6 col-md-6 form-group">
                 <label class='control-label'>
                     <h4>First Name:</h4>
@@ -36,7 +36,7 @@
             <!-- form-group -->
             <div class="col-lg-offset-3 col-lg-6 col-md-6">
                 <center>
-                    <input class="btn btn-success btn-lg" for='createAcct' ng-submit="setUserObj()" type='submit'>
+                    <input class="btn btn-success btn-lg" for='createAcct' type='submit'>
                 </center>
                 </br>
             </div>

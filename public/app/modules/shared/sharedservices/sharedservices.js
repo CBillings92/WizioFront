@@ -39,9 +39,10 @@ angular.module('SharedServiceApp')
 
     ])
     .service('TokenSvc', [
+        '$rootScope',
         '$localStorage',
         'jwtHelper',
-        function($localStorage, jwtHelper) {
+        function($rootScope, $localStorage, jwtHelper) {
             //decode auth token for front end. Retrieves user information
             var decode = function() {
                 return jwtHelper.decodeToken($localStorage.token);
@@ -53,7 +54,7 @@ angular.module('SharedServiceApp')
                     if(jwtHelper.isTokenExpired($localStorage.token)){
                         delete $localStorage.token;
                         return true;
-                    };
+                    }
                     //if not expired return false
                     return false;
                 }
@@ -62,6 +63,7 @@ angular.module('SharedServiceApp')
             };
             var storeToken = function(token) {
                 if (token) {
+                    $rootScope.isLoggedIn = true;
                     $localStorage.token = token;
                     return true;
                 }

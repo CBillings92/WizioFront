@@ -6,15 +6,20 @@ angular.module('AccountApp')
     '$localStorage',
     '$stateParams',
     '$facebook',
+    '$location',
     'AuthFct',
     'AuthResetPasswordResource',
     'AuthUpdatePasswordResource',
     'TokenSvc',
-    function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc){
+    'RerouteGetSetSvc',
+    function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc){
         $scope.facebookLogin = function(){
             if($rootScope.authObjects.facebookConnected){
                 alert('Already logged in with email!');
-                return $state.go('Account.Dashboard');
+                if(RerouteGetSetSvc.get().length !== 0){
+                    return $location.path(RerouteGetSetSvc.get());
+                }
+                return $state.go('Account.Dashboard.Main');
             }
             $facebook.login().then(function(data){
                 if(data.status === "connected"){
@@ -77,11 +82,15 @@ angular.module('AccountApp')
                 email: $scope.email,
                 password: $scope.password
             };
-            console.log("IN THERE");
             AuthFct.signin(userData,
                 function(res){
                     $rootScope.isLoggedIn = true;
-                    $state.go('Account.Dashboard.Main');
+                    var rerouteURL = RerouteGetSetSvc.get();
+                    if(rerouteURL.length !== 0){
+                        console.dir(rerouteURL);
+                        return $location.path(rerouteURL);
+                    }
+                    return $state.go('Account.Dashboard.Main');
                 },
                 function(){
                 $rootScope.error = "Failed to sign in!";

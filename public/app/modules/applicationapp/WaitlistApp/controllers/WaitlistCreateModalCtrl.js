@@ -8,7 +8,6 @@ angular.module('ApplicationApp')
     function($scope, $modalInstance, FlexGetSetSvc, TokenSvc, ApplicationResource){
 
         $scope.apartment = FlexGetSetSvc.get('ApartmentWaitlistingTo');
-        console.dir($scope.apartment.beds);
         $scope.apartmentSlotsModal = [];
         var requestInfoOutbound = {
            apartmentInfo: null,
@@ -30,7 +29,6 @@ angular.module('ApplicationApp')
        }
 
         $scope.waitlistSignup = function() {
-            console.dir($scope.waitlistArray);
             var apartmentObj = {
                 apartmentId: $scope.apartment.id,
                 apartmentMaxResidency: $scope.apartment.maxResidency
@@ -40,7 +38,6 @@ angular.module('ApplicationApp')
             requestInfoOutbound.owner = TokenSvc.decode().id;
             console.dir(requestInfoOutbound);
             ApplicationResource.save(requestInfoOutbound, function(result, status){
-                console.dir(result);
 
                 $modalInstance.close('ok');
             });
@@ -51,4 +48,4 @@ angular.module('ApplicationApp')
             $modalInstance.dismiss('cancel');
         };
     }
-])
+]);

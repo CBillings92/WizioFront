@@ -17,7 +17,7 @@ angular.module('MainApp')
             var trueRequiredAdmin = {
                 requireLogin: true,
                 userType: 0
-            }
+            };
             var falseRequiredLogin = {
                 requireLogin: false
             };
