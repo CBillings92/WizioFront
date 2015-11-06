@@ -1,6 +1,6 @@
 <div class="" ng-repeat="waitlist in trial2 track by $index">
-    <div class="" ng-repeat"instances in trial2[waitlist[$index]]">
-        {{instances.Apartment.concatAddr}}
+    {{waitlist[$index].Apartment.concatAddr}}
+    <div class="" ng-repeat="item in waitlist">
+        {{item.ContactEmail}}
     </div>
-    test
 </div>

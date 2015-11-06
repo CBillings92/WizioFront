@@ -36,6 +36,7 @@ angular.module('ApplicationApp')
             requestInfoOutbound.apartmentInfo = apartmentObj;
             requestInfoOutbound.users = $scope.waitlistArray;
             requestInfoOutbound.owner = TokenSvc.decode().id;
+            requestInfoOutbound.ownerEmail = TokenSvc.decode().email;
             console.dir(requestInfoOutbound);
             ApplicationResource.save(requestInfoOutbound, function(result, status){
 
