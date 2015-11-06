@@ -1,6 +1,6 @@
 angular.module('MainApp')
 .constant('WizioConfig', {
-    baseAPIURL: 'http://172.16.0.3:4000/api/',
+    baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
 
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     frontEndURL: 'http://172.16.0.2:3000/',

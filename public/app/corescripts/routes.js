@@ -29,7 +29,8 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
                             controller: 'LandingPageCtrl',
-                        }
+                        },
+
                     },
                     data: falseRequiredLogin
                 })
