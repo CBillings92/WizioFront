@@ -1,7 +1,7 @@
 <div class="">
     <div class="" style="margin-bottom:15px;">
-        <input class="btn" ng-click="tabToggle()" type="submit" autoFocus value="Maps View"> </input>
-        <input class="btn" ng-click="tabToggle()" type="submit" value="List View">
+        <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View"> </input>
+        <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View">
     </div>
     <div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
         <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">

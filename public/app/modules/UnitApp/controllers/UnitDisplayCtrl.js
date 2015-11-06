@@ -17,12 +17,14 @@ angular.module('UnitApp')
                 alert('No apartments found!');
             }
             $scope.mapshow = true;
+            $scope.maphidden = false;
 
             //display maps and markers
             displayMaps();
 
             $scope.tabToggle = function(){
                 $scope.mapshow = !$scope.mapshow;
+                $scope.maphidden = !$scope.maphidden;
             };
             $scope.$on('searchFinished', function(event, data) {
                 console.log('------This is the data from the search------');
