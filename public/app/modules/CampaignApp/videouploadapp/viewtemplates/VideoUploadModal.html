@@ -2,20 +2,28 @@
     <div class="row">
         <h1>Upload Apartment</h1>
         <form ng-submit='setUserObject()' style='margin-bottom:20px;'>
-
-            <div class="col-lg-offset-1 col-lg-10 form-group">
-                <label class='control-label'>
-                    <h4>Apartment Address:</h4>
-                </label>
-                <input class="form-control" ng-model="apartmentAddress" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-                <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                <div ng-show="noResults">
-                    <i class="glyphicon glyphicon-remove"></i>
-                    No Results Found
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-2">
+                        <label class='control-label'>
+                            Apartment Address:*
+                        </label>
+                        <input class="form-control" ng-model="apartmentAddress" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                        <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                        <div ng-show="noResults">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            No Results Found
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="control-label">Unit Number:*</label>
+                        <input class="form-control" ng-model="apartment.unitNum" type="text">
+                    </div>
                 </div>
+
             </div>
             <div class="">
-
+<!--
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-4 col-md-offset-2">
@@ -41,7 +49,7 @@
                     </div>
                 </div>
             </div>
-
+-->
             <div class="col-lg-offset-1 col-lg-10 form-group">
                 <label class='control-label'>
                     <h4>Upload Your Video File:</h4>

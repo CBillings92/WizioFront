@@ -43,7 +43,7 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
-    .config(function($facebookProvider, $sceDelegateProvider) {
+    .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
         $sceDelegateProvider.resourceUrlWhitelist([
           // Allow same origin resource loads.
@@ -54,7 +54,7 @@ angular.module('MainApp', [
           'https://www.youtube.com/watch?v=*&feature=youtu.be',
           'http://www.youtube.com/embed/**'
         ]);
-    })
+    }])
     //ON APP START AND DURING APP RUN
     .run([
         '$rootScope',

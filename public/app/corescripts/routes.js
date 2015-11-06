@@ -197,10 +197,10 @@ angular.module('MainApp')
                             }
 
                         },
-                        /*leftSplit: {
-                            templateUrl: 'public/viewtemplates/public/account/appliedApts.html',
-                            controller: "dashAppliedCtrl"
-                        },
+                        leftSplit: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
+                            controller: "DashboardWaitlistCtrl"
+                        },/*
                         rightSplit: {
                             templateUrl: '',
                             controller: ''

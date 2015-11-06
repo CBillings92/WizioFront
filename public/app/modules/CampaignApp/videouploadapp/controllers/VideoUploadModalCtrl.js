@@ -16,8 +16,9 @@ angular.module('CampaignApp')
         $scope.uploadProgress = 0;
         $scope.creds = {};
         $scope.landlord = {};
+        $scope.apartment = {};
         $scope.upload = function() {
-            UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, null, function(err, parsedApartment){
+            UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment){
                 parsedApartment.landlordInfo = $scope.landlord;
                 UnitResource.save(parsedApartment, function(data, status) {
 
