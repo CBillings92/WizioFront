@@ -4,36 +4,30 @@
             <br>
             <div class="hidden-xs hidden-sm">
                 <center>
-                    <iframe allowfullscreen frameborder="0" height="385px" id="demo" src="https://www.youtube.com/embed/jelKn_NmovU" width="640px"></iframe>
+                    <iframe allowfullscreen frameborder="0" height="385px" id="demo" src="https://www.youtube.com/embed/jxMcAiONe7M" width="640px"></iframe>
                 </center>
             </div>
             <!--mobile hidden-->
 
             <div class="hidden-md hidden-lg">
                 <center>
-                    <iframe allowfullscreen frameborder="0" height="320px" id="demo" src="https://www.youtube.com/embed/hnPmYdkb1VI" width="380px"></iframe>
+                    <iframe allowfullscreen frameborder="0" height="320px" id="demo" src="https://www.youtube.com/embed/jxMcAiONe7M" width="380px"></iframe>
                 </center>
             </div>
-
-            <h1 class="landing-title">See The Space.</h1>
-            <h2 style="text-align:center;color:#6F6F72">Search Wizio to view apartment spaces with clarity.</h2>
-            <br>
-            <div class="row" style="margin-left: auto;margin-right: auto; width: 50%;">
-                <div class=" col-md-12 col-lg-10 col-sm-12 center-block col-centered">
-                    <form ng-submit="search()" role="search">
-                        <div class="col-md-6 col-lg-6 col-sm-6 form-group">
-                            <input style="min-width: 150px;" class="form-control" placeholder="Search Here" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"></input>
-                        </div>
-                        <div class="col-md-6 col-lg-6 col-sm-6">
-                            <button style="display:inline-block; min-width: 150px;" class="btn btn-success nav-search" ng-click="search()" type="button">Find your place</button>
-                            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                            <div ng-show="noResults">
-                                <i class="glyphicon glyphicon-remove"></i> No Results Found
-                            </div>
-                        </div>
+            <div>
+                <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
+                    <center>
+                        <h1>Want to Join Our Cause?</h1>
+                    </center>
+                    <p>
+                        <h4 class="subtitlelanding">  All you have to do is make a video tour of your apartment using your smart phone and upload it to wizio. Click the button below:</p>
+                    </h3>
+                    <center>
+                        <button type="button" name="name" class="btn btn-success nav-search" value="Learn More & Upload!" ng-click="goToUploadPage()">Learn More & Upload!</button>
+                    </center>
                 </div>
-                </form>
             </div>
+
             <br>
             <!--desktop hidden   -->
         </div>
@@ -46,28 +40,43 @@
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
             <center>
-                <h1>What is Wizio?</h1>
-            </center>
-            <p>
-                <h4 style="color:#6F6F72;">Founded in January of 2015, Wizio utilizes cutting-edge technology to offer an automated realtor service that connects quality tenants to landlords and property managers faster and cheaper than ever before. The software as a service provides
-                    virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
-            </h4>
+                <h1 class="landing-title">See The Space.</h1>
+                <h2 style="text-align:center;color:#6F6F72">Search Wizio to view apartment spaces with clarity.</h2>
+                <br>
+
+                <!--Search Bar   -->
+                <div class="row" style="margin-left: auto;margin-right: auto; width: 50%;">
+                    <div class=" col-md-12 col-lg-10 col-sm-12 center-block col-centered">
+                        <form ng-submit="search()" role="search">
+                            <div class="col-md-6 col-lg-6 col-sm-6 form-group">
+                                <input style="min-width: 150px;" class="form-control" placeholder="Search Here" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"></input>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                                <button style="display:inline-block; min-width: 150px;" class="btn btn-success nav-search" ng-click="search()" type="button">Find your place</button>
+                                <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
         </div>
         <div style="divider">&nbsp
         </div>
-        <div>
-            <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
+
+        <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
                 <center>
-                    <h1>Want to Join Our Cause?</h1>
+                    <h1>What is Wizio?</h1>
                 </center>
                 <p>
-                    <h4 class="subtitlelanding">All you have to do is take a video tour of your apartment and upload it to our site. Click the button below:</p>
-                </h3>
-                <center>
-                    <button type="button" name="name" class="btn btn-success nav-search" value="Learn More & Upload!" ng-click="goToUploadPage()">Learn More & Upload!</button>
-                </center>
-            </div>
+                    <h4 style="color:#6F6F72;">Founded in January of 2015, Wizio utilizes cutting-edge technology to offer an automated realtor service that connects quality tenants to landlords and property managers faster and cheaper than ever before. The software as a service provides
+                        virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
+                    </h4>
         </div>
+        <div style="divider">&nbsp
+        </div>
+
         <!--descrip section -->
     </div>
 
