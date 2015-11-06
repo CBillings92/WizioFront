@@ -25,6 +25,7 @@ angular.module('MainApp')
                 .state('LandingPage', {
                     url: '/',
                     views: {
+                        "navbar": navbar,
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
                             controller: 'LandingPageCtrl',
