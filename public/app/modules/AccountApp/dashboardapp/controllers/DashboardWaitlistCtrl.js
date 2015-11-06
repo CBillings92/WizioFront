@@ -22,6 +22,12 @@ angular.module('AccountApp')
             console.dir($scope.trial);
             $scope.trial2 = lodash.values($scope.trial);
             console.dir($scope.trial2);
+            for(i = 0; i< $scope.trial2.length; i++){
+                $scope.trial2[i].push(lodash.pluck($scope.trial2[i].User, "email"));
+                console.dir($scope.trial2);
+            }
+            console.dir($scope.trial2[0]);
+            $scope.trial3 = $scope.trial2[0];
 
         });
     }
