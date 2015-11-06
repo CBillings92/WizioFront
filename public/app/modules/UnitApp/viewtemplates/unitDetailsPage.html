@@ -3,14 +3,14 @@
     <div class="col-lg-6">
       <div class="hidden-xs hidden-sm">
       <center><iframe width="600px" height="385px"
-      src="https://www.youtube.com/embed/5oCTsArsOr4"
+      ng-src="{{apartment.youtubeLink}}"
       frameborder="0" allowfullscreen id="demo">
       </iframe></center>
       </div><!--mobile hidden-->
 
       <div class="hidden-md hidden-lg">
       <center><iframe width="380px" height="320px"
-      src="https://www.youtube.com/embed/5oCTsArsOr4"
+      ng-src="{{apartment.youtubeLink}}"
       frameborder="0" allowfullscreen id="demo">
       </iframe></center>
       </div><!--desktop hidden-->
@@ -110,5 +110,4 @@
            <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
       </div>
   </div>
-
 </div><!--container -->

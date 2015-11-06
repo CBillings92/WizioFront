@@ -49,6 +49,7 @@ angular.module('UnitApp')
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
+                $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/'+$scope.apartment.youtubeVRID+'?autoplay=0';
 
                 //create the google maps
                 var mapOptions = MapFct.makeMap();

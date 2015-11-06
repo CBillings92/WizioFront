@@ -43,8 +43,17 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
-    .config(function($facebookProvider) {
+    .config(function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
+        $sceDelegateProvider.resourceUrlWhitelist([
+          // Allow same origin resource loads.
+          'self',
+          // Allow loading from our assets domain.  Notice the difference between * and **.
+          'https://youtu.be/**',
+          'https://www.youtube.com/watch?v=**',
+          'https://www.youtube.com/watch?v=*&feature=youtu.be',
+          'http://www.youtube.com/embed/**'
+        ]);
     })
     //ON APP START AND DURING APP RUN
     .run([
