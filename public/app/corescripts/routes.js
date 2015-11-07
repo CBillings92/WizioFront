@@ -65,7 +65,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutUsApp/viewtemplates/aboutUs.html',
+                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
                         }
                     },
