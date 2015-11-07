@@ -7,7 +7,7 @@ angular.module('MainApp')
         'WizioConfig',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, WizioConfig) {
             var navbar = {
-                templateUrl: WizioConfig.NavbarViewsURL + 'Navbar.html',
+                templateUrl: WizioConfig.NavbarViewsURL + 'navbar.html',
                 controller: 'NavbarCtrl'
             };
             var trueRequiredLogin = {

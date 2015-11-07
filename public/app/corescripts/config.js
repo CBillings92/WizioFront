@@ -1,6 +1,6 @@
 angular.module('MainApp')
 .constant('WizioConfig', {
-    baseAPIURL: 'http://172.16.0.3:4000/api/',
+    baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
 
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     frontEndURL: 'http://172.16.0.2:3000/',
@@ -19,9 +19,9 @@ angular.module('MainApp')
     ApplicationWaitlistViewsURL: 'public/app/modules/ApplicationApp/WaitlistApp/viewtemplates/',
     //Blog App
     BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
-    BuyerViewsURL: 'public/app/modules/AccountApp/viewtemplates/',
+    BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',
 
-    BuyerDashboardViewsURL: 'public/app/modules/AccountApp/dashboard/viewtemplates/',
+    BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
     //Campaign App
     CampaignMainViewsURL: 'public/app/modules/CampaignApp/main/',
     CampaignVideoUploadViewsURL: 'public/app/modules/CampaignApp/videouploadapp/viewtemplates/',
@@ -30,9 +30,9 @@ angular.module('MainApp')
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
     //Account App
-    AccountViewsURL: 'public/app/modules/AccountApp/main/',
-    AccountDashboardViewsURL: 'public/app/modules/AccountApp/dashboardapp/viewtemplates/',
-    AccountAuthViewsURL: 'public/app/modules/AccountApp/authapp/viewtemplates/',
+    AccountViewsURL: 'public/app/modules/accountapp/main/',
+    AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboardapp/viewtemplates/',
+    AccountAuthViewsURL: 'public/app/modules/accountapp/authapp/viewtemplates/',
     UnitMainViewsURL: 'public/app/modules/UnitApp/main/',
     //Unit App
     UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/',
