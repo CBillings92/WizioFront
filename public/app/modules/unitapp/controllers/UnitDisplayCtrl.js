@@ -11,6 +11,8 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
+            console.dir($scope.apartmentSearch);
+            console.dir($sessionStorage.apartmentSearch);
             if($scope.apartmentSearch.length === 0){
                 alert('No apartments found!');
             }

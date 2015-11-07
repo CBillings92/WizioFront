@@ -4,14 +4,13 @@ angular.module('SharedServiceApp')
         '$sessionStorage',
         'SearchResource',
         'UnitCreateSvc',
-        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
+        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc, callback) {
             function searchApartment(searchString, callback) {
+                    //second argument is apartmentparams, which is null.
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
-                        console.dir(data);
                         SearchResource.save(data, function(data, status){
-                            console.dir(data);
-                            $rootScope.$broadcast('searchFinished', data);
                             $sessionStorage.apartmentSearch = data;
+                            $rootScope.$broadcast('searchFinished', data);
                             return callback(null, data);
                         });
                     });
@@ -71,6 +70,10 @@ angular.module('SharedServiceApp')
             };
             var getToken = function() {
                 if ($localStorage.token) {
+                    if(jwtHelper.isTokenExpired($localStorage.token)){
+                        delete $localStorage.token;
+                        return 'No Token';
+                    }
                     return $localStorage.token;
                 } else {
                     return 'No Token';

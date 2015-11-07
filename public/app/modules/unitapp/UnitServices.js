@@ -43,8 +43,6 @@ angular.module('UnitApp')
                 //check if search string matches any google API raw data passed
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
-                console.dir(googleAPIDataRaw);
-                console.dir(apartmentAddress);
                 var searchStringFound = false;
                 if(googleAPIDataRaw.length !== 0){
                     searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
@@ -52,16 +50,16 @@ angular.module('UnitApp')
 
                 //if no match found, send address to google API to get get GeocodeData
                 if (searchStringFound === false) {
-                    console.dir("MODIFIED SEARCH");
                     getGeocodeData(apartmentAddress, function(err, data) {
                         if (err) {
                             //handle error
+                            return callback("no address info found", null);
                         }
+                        //this builds an apartment object for storing in DB
                         var apartmentObj = lodashParseAPIData(data, apartmentParams);
                         return callback(null, apartmentObj);
                     });
                 } else {
-                    console.dir("NON MODIFIED SEARCH");
                     var apartmentObj = lodashParseAPIData(searchStringFound, apartmentParams);
                     return callback(null, apartmentObj);
                 }
@@ -73,18 +71,21 @@ angular.module('UnitApp')
             // RETURN false
             //else RETURN TRUE
             function findSearchString(searchString, googleAPIDataRaw) {
+                //search for the search string in the smart search google API results
                 var googleAPIData = lodash.filter(googleAPIDataRaw.data.results, function(item) {
                     return item.formatted_address === searchString;
                 });
+                //if there was no search string match found, search for it in
+                //different object. Google API stores it in two different ways
                 if (googleAPIData.length === 0) {
                     googleAPIData = lodash.filter(googleAPIDataRaw.data.results, function(item) {
                         return item['formatted address'] === searchString;
                     });
                 }
+                //if the search string wasn't found return false
                 switch (googleAPIData.length) {
                     case 0:
                         return false;
-
                     default:
                         return googleAPIData;
 

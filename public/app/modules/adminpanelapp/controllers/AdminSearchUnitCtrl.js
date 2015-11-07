@@ -19,4 +19,4 @@ angular.module('AdminPanelApp')
             return SmartSearchSvc.smartSearch(val);
         };
     }
-])
+]);
