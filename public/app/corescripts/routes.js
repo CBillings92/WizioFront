@@ -49,7 +49,7 @@ angular.module('MainApp')
                     url: "/blog",
                     views: {
                         "BlogMain": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogDetail.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogDetail.html',
                             controller: 'BlogListCtrl'
                         }
                     }
