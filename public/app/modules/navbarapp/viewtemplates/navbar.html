@@ -1,7 +1,7 @@
-<nav class="navbar" ng-class="transparent-nav: true" role="navigation">
+<nav class="navbar" ng-class="{transparent_nav: false}" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
+      <button class="navbar-toggle" data-target="#wizio-navigation" data-toggle="collapse" type="button">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -9,42 +9,45 @@
       </button>
 
       <a class="navbar-brand" ng-click="goHome()">
-        <img id="navbarlogo" src="/public/ViewTemplates/Images/logo.png"></img>
+        <img id="navbarlogo" src="/public/ViewTemplates/Images/wizio_logo.png"></img>
       </a>
     </div><!--navbar header -->
 
 <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar">
+    <div class="collapse navbar-collapse" id="wizio-navigation">
 
-      <!-- <form class="navbar-form navbar-left" ng-submit="search()" role="search">
+      <form id="navbar-search" class="navbar-form navbar-left" ng-submit="search()" role="search">
         <div class="form-group">
-            <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+            <input class="nav-search" 
+                   placeholder="Search by area"
+                   ng-model="searchString" 
+                   type="text" 
+                   typeahead-loading="loadingLocations" 
+                   typeahead-min-length="5" 
+                   typeahead-no-results="noResults" 
+                   typeahead="address for address in getLocation($viewValue)">
             <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
             <div ng-show="noResults">
                 <i class="glyphicon glyphicon-remove"></i> No Results Found
             </div>
         </div>
-        <button class="btn btn-success" ng-click="search()" type="submit">Search</button>
-      </form> -->
+        <button class="btn btn-search" ng-click="search()" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
 
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li ng-click="goHome()">
-          <a href="">Home</a>
-        </li> -->
-        <!-- <li ng-click="createUnit()">
-          <a href="">Create Apartment</a>
-        </li> -->
-        <li ng-click="goAbout()" ng-class="active: ">
+        <li ng-click="goAbout()" ng-class="{active: false}">
           <a href="">About</a>
         </li>
-        <li ng-click="goBlog()">
+        <li ng-click="goBlog()" ng-class="{active: false}">
           <a href="">Blog</a>
         </li>
 
         <li ng-click="goToLogin()" ng-hide="isLoggedIn">
           <a href="">Sign In</a>
         </li>
-        <li ng-click="goAccountDashboard()" ng-show="isLoggedIn">
+        <li ng-click="goAccountDashboard()" ng-class="{active: false}" ng-show="isLoggedIn">
           <a href="">Account</a>
         </li>
         
@@ -56,15 +59,6 @@
         </li>
         
       </ul>
-<!-- 
-      <ul class="nav navbar-nav navbar-right">
-        
-        
-        
-        <li ng-click="goAccountDashboard()" ng-show="isLoggedIn">
-          <a href="">My Account</a>
-        </li>
-       </ul> -->
 
     </div>
 <!-- /.navbar-collapse -->

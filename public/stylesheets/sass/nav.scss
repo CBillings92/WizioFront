@@ -1,53 +1,111 @@
-#navbarlogo {
-  width: 100px;
-}
-
-.transparent-nav {
-	background-color: transparent;
-}
-
-.navbar {
-	border-bottom: 1px solid red;
-	margin-bottom: 0;
-}
-
-#navbar {
-	height: 28px !important;
+body {
+	background-color: grey;
+	font-family: 'Roboto', sans-serif;
 }
 
 nav {
-	height: 80px;
-	font-family: 'Roboto', sans-serif;
+    height: 80px;
+    font-family: 'Roboto', sans-serif;
 
-	.container {
-	padding-top: 20px;
+    .container {
+        padding-top: 20px;
+    }
 }
 
-.navbar-nav > li {
-	a {
-		text-transform: uppercase;
-		font-size: 20px;
-		padding: 10px 40px 10px 0;
-		color: #000;
+.navbar {
+    background-color: #fff;
+    margin-bottom: 0;
+
+     .icon-bar {
+		color: #F8993A;
 	}
-	a:hover {
+    .navbar-brand {
+        padding: 0 0 0 15px;
+
+        img {
+        	width: 160px;
+        }
+    }
+    #wizio-navigation {
+	    height: 28px !important;
+	}
+	.navbar-nav > li > a {
+        text-transform: uppercase;
+        font-size: 20px;
+        padding: 10px 40px 10px 0;
+        color: #000;
+    }
+
+	.navbar-nav > li:hover > a {
+		color: #7a9ed2;
 		background-color: transparent;
 	}
 
-	a:active {
-		color: #7a9ed2;
-	}
+    .navbar-nav > li.active > a {
+        background-color: transparent;
+        color: #7a9ed2;
+    }
+
+  
+	
+}
+
+// This class is responsible for changing background
+// color of navigation based on page user is on
+.transparent_nav {
+    background-color: transparent;
 }
 
 #btn-signup {
-	width: 130px;
-	background-color: #7a9ed2;
-	height: 38px;
-	border-radius: 5px;
+    width: 130px;
+    background-color: #7a9ed2;
+    height: 38px;
+    border-radius: 5px;
 
-	a {
-		padding: 10px 15px 10px 15px;
-		color: #fff;
-		text-align: center;
+    a {
+        padding: 10px 15px 10px 15px;
+        color: #fff;
+        text-align: center;
+    }
+}
+
+#navbar-search {
+	margin-top: 2px;
+	margin-left: 30px;
+
+    input {
+        padding-left: 5px;
+        width: 200px;
+        border-radius: 0;
+    	height: 35px;
+    }
+
+    ::-webkit-input-placeholder,
+    :-moz-placeholder,
+    ::-moz-placeholder,
+    :-ms-input-placeholder {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
+    }
+    .btn-search {
+	    margin-left: -5px;
+	    border-radius: 0;
+	    color: #fff;
+	    padding: 5px 9px;
+	    background-color: #7a9ed2;
+	    height: 35px;
+	    font-size: 17px;
 	}
 }
+
+
+@media (min-width: 1200px) {
+	#navbar-search {
+
+	    input {
+	        width: 250px;
+	    }
+	}
+}
+
+
