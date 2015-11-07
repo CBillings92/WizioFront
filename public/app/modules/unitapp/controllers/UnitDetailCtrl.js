@@ -4,6 +4,7 @@ angular.module('UnitApp')
         '$state',
         '$modal',
         '$location',
+        '$sessionStorage',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
@@ -18,6 +19,7 @@ angular.module('UnitApp')
             $state,
             $modal,
             $location,
+            $sessionStorage,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
@@ -30,11 +32,6 @@ angular.module('UnitApp')
         ) {
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
-
-            //HELPER FUNCTION -- Check if token is expired
-            var checkToken = function(){
-
-            };
             //HELPER FUNCTION -- modal creation function
             var modal = function(templateUrl, controller, size){
                 var modalInstance = $modal.open({
@@ -45,10 +42,13 @@ angular.module('UnitApp')
                 return modalInstance;
             };
 
+
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
-                $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/'+$scope.apartment.youtubeVRID+'?autoplay=0';
+                $sessionStorage.apartmentSelected = $scope.apartment;
+                console.dir($scope.apartment);
+                $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/'+$scope.apartment.Assignments[0].youtubeId +'?autoplay=0';
 
                 //create the google maps
                 var mapOptions = MapFct.makeMap();

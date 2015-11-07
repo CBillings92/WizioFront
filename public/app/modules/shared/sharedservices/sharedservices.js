@@ -4,7 +4,7 @@ angular.module('SharedServiceApp')
         '$sessionStorage',
         'SearchResource',
         'UnitCreateSvc',
-        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc, callback) {
+        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString, callback) {
                     //second argument is apartmentparams, which is null.
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {

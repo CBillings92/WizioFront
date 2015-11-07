@@ -12,8 +12,10 @@ angular.module('NavbarApp')
                 $state.go('Login');
             };
             $scope.search = function() {
-                ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('Unit.Display');
+                ApartmentSearchSvc.searchApartment($scope.searchString, function(err, results){
+                    $state.go('Unit.Display');
+                });
+
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
