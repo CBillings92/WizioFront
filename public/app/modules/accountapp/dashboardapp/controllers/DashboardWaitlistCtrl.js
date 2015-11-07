@@ -10,7 +10,7 @@ angular.module('AccountApp')
         var applicationIdArray = lodash.pluck(user.waitlists, "ApplicationId");
         applicationIdObject = {
             ApplicationId: applicationIdArray,
-            UserId: user.id
+            //UserId: user.id
         };
         ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
             var buildingWaitlists = lodash.groupBy(data, "ApplicationId");

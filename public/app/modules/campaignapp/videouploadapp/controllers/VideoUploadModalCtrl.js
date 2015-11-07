@@ -94,10 +94,10 @@ angular.module('CampaignApp')
                                         toastr.success('File Uploaded Successfully', 'Done');
                                         var updateData = {
                                             UserId: userinfo.id,
-                                            ApartmentId: finalApartmentData.id,
-                                            S3VideoId: uniqueFileName
+                                            ApartmentId: data.id,
+                                            S3VideoId: $scope.assignment.youtubeId,
+                                            youtubeId: $scope.assignment.youtubeId
                                         };
-                                        console.dir(updateData);
                                         AssignmentResource.save(updateData, function(data, status){
                                             console.dir(data);
                                         });
