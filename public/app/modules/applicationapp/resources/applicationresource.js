@@ -3,7 +3,7 @@ angular.module('ApplicationApp')
     '$resource',
     'WizioConfig',
     function($resource, WizioConfig){
-        return $resource(WizioConfig.baseAPIURL + 'application/:item', {item: '@item'},
+        return $resource(WizioConfig.baseAPIURL + 'application/:item/:action', {item: '@item', action: '@action'},
         {
             save: {
                 method: 'POST',

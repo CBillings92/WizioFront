@@ -47,7 +47,6 @@ angular.module('UnitApp')
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
                 $sessionStorage.apartmentSelected = $scope.apartment;
-                console.dir($scope.apartment);
                 $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/'+$scope.apartment.Assignments[0].youtubeId +'?autoplay=0';
 
                 //create the google maps

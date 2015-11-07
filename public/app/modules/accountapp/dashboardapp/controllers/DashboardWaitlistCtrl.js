@@ -9,26 +9,27 @@ angular.module('AccountApp')
         console.dir(user);
         var applicationIdArray = lodash.pluck(user.waitlists, "ApplicationId");
         applicationIdObject = {
-            ApplicationId: applicationIdArray
+            ApplicationId: applicationIdArray,
+            UserId: user.id
         };
         ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
-            $scope.waitlists = data;
-            console.dir(data);
-            $scope.waitlistEmails = lodash.pluck(data, "ContactEmail");
-            console.dir($scope.waitlistEmails);
-            var uniqueAppIds = lodash.uniq(lodash.pluck(data,"ApplicationId"));
-            console.dir(uniqueAppIds);
-            $scope.trial = lodash.groupBy(data, "ApplicationId");
-            console.dir($scope.trial);
-            $scope.trial2 = lodash.values($scope.trial);
-            console.dir($scope.trial2);
-            for(i = 0; i< $scope.trial2.length; i++){
-                $scope.trial2[i].push(lodash.pluck($scope.trial2[i].User, "email"));
-                console.dir($scope.trial2);
+            var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
+            $scope.waitlists = lodash.values(buildingWaitlists);
+            if($scope.waitlists.length > 0){
+                $scope.waitlistsExist = true;
             }
-            console.dir($scope.trial2[0]);
-            $scope.trial3 = $scope.trial2[0];
-
+            console.dir($scope.waitlists);
         });
+        $scope.removeFromWaitlist = function(value){
+            var dataPasser = {
+                ApplicationId: $scope.waitlists[value][0].ApplicationId,
+                UserId: user.id
+            };
+            console.dir(dataPasser);
+            ApplicationResource.save({item: 'user', action: 'remove'}, dataPasser, function(data, status){
+                $scope.waitlists.splice(value);
+                alert("DONE!");
+            });
+        };
     }
 ]);

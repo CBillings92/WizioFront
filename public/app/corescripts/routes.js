@@ -112,6 +112,10 @@ angular.module('MainApp')
                         'AdminBottom': {
                             templateUrl: WizioConfig.AdminPanelAppViewsURL + 'admincreateunit.html',
                             controller: 'AdminCreateUnitCtrl'
+                        },
+                        'AdminSecondBottom':{
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'admincreateassignment.html',
+                            controller: 'AdminCreateAssignmentCtrl'
                         }
                     }
                 })
