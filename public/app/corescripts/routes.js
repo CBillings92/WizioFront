@@ -39,7 +39,7 @@ angular.module('MainApp')
                     views: {
                         "navbar": navbar,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogMain.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogMain.html',
                             controller: 'BlogMainCtrl'
                         }
                     },
