@@ -70,6 +70,7 @@ angular.module('SharedFactoryApp')
                     mapOptions = {
                         //so this should center the map properly, I still haven't
                         //figured out how we should zoom
+                        scrollwheel:false,
                         zoom: 12,
                         center: new google.maps.LatLng(averageLatitude, averageLongitude),
                         mapTypeId: google.maps.MapTypeId.ROADMAP

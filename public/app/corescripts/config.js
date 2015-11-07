@@ -1,15 +1,26 @@
 angular.module('MainApp')
 .constant('WizioConfig', {
 
-    //baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
-    //baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
+    //BACK END SERVER URL
+    //
+    //The following line should be uncometed before testing on vagrant on your local machine
     baseAPIURL: 'http://172.16.0.3:4000/api/',
+    //
+    //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
+    //baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
+
+    //FRONT END SERVER URL
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
+    //
+    //The following line should be uncometed before testing on vagrant on your local machine
+    frontEndURL: 'http://172.16.0.2:3000/',
+    //
+    //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
 
-    frontEndURL: 'http://172.16.0.2:3000/',
-    // 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
-    //
+
+
+
     //angular app URLs - views
     //
     modulesURL: 'public/app/modules',
