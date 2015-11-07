@@ -9,6 +9,19 @@ angular.module('SharedServiceApp')
                     //second argument is apartmentparams, which is null.
                     UnitCreateSvc.parseGeocodeData(searchString, null, function(err, data) {
                         SearchResource.save(data, function(data, status){
+                            for(i = 0; i<data.length; i++){
+                                var left = Math.floor((Math.random() * 13) + 4);
+                                var right = Math.floor((Math.random() * 13) + 4);
+
+                                var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                                var houseNumLow = houseNumInt - left;
+                                var houseNumHigh = houseNumInt + right;
+                                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+                                data[i].concatAddr = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
+
+
+                            }
+                            console.dir((data[0].concatAddr).replace(/(^\d+)(.+$)/i,'$1'));
                             $sessionStorage.apartmentSearch = data;
                             $rootScope.$broadcast('searchFinished', data);
                             return callback(null, data);
