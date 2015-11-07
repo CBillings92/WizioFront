@@ -9,31 +9,31 @@ angular.module('MainApp')
     //
     modulesURL: 'public/app/modules',
     //AdminPanel App
-    AdminPanelAppMainViewsURL: 'public/app/modules/AdminPanelApp/main/',
-    AdminPanelAppViewsURL: 'public/app/modules/AdminPanelApp/viewtemplates/',
+    AdminPanelAppMainViewsURL: 'public/app/modules/adminpanelapp/main/',
+    AdminPanelAppViewsURL: 'public/app/modules/adminpanelapp/viewtemplates/',
     //AuthApp
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App
-    ApplicationViewsURL: 'public/app/modules/ApplicationApp/Main/',
-    ApplicationFormViewsURL: 'public/app/modules/ApplicationApp/ApplicationFormApp/viewtemplates',
-    ApplicationWaitlistViewsURL: 'public/app/modules/ApplicationApp/WaitlistApp/viewtemplates/',
+    ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
+    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates',
+    ApplicationWaitlistViewsURL: 'public/app/modules/applicationapp/waitlistapp/viewtemplates/',
     //Blog App
     BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
     BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',
 
     BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
     //Campaign App
-    CampaignMainViewsURL: 'public/app/modules/CampaignApp/main/',
-    CampaignVideoUploadViewsURL: 'public/app/modules/CampaignApp/videouploadapp/viewtemplates/',
+    CampaignMainViewsURL: 'public/app/modules/campaignapp/main/',
+    CampaignVideoUploadViewsURL: 'public/app/modules/campaignapp/videouploadapp/viewtemplates/',
     //Landing Page App
-    landingPageAppViewsURL: 'public/app/modules/LandingPageApp/viewtemplates/',
+    landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
     //Account App
     AccountViewsURL: 'public/app/modules/accountapp/main/',
     AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboardapp/viewtemplates/',
     AccountAuthViewsURL: 'public/app/modules/accountapp/authapp/viewtemplates/',
-    UnitMainViewsURL: 'public/app/modules/UnitApp/main/',
+    UnitMainViewsURL: 'public/app/modules/unitapp/main/',
     //Unit App
-    UnitViewsURL: 'public/app/modules/UnitApp/viewtemplates/',
+    UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
 });
