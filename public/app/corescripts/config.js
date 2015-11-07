@@ -2,11 +2,11 @@ angular.module('MainApp')
 var backURL=process.env.BACKURL || '172.16.0.3'
 var frontURL=process.env.FRONTURL || '172.16.0.2'
 .constant('WizioConfig', {
-    baseAPIURL: backURL,
+    baseAPIURL: backURL
     //'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
 
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
-    frontEndURL: frontURL,
+    frontEndURL: frontURL
     // 'http://172.16.0.2:3000/',
     //
     //angular app URLs - views
