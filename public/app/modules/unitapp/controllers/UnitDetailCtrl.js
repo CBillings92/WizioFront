@@ -30,6 +30,7 @@ angular.module('UnitApp')
             RerouteGetSetSvc,
             WizioConfig
         ) {
+
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
             //HELPER FUNCTION -- modal creation function
@@ -46,6 +47,16 @@ angular.module('UnitApp')
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
+
+                var user = TokenSvc.getToken();
+                if(user !== 'No Token' && user !== null && user !== 'undefined'){
+                    console.dir(user);
+                    user = TokenSvc.decode();
+                    var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
+                    console.dir(waitlistedCheck);
+                    console.dir(user);
+                }
+
                 $sessionStorage.apartmentSelected = $scope.apartment;
                 $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/'+$scope.apartment.Assignments[0].youtubeId +'?autoplay=0';
 

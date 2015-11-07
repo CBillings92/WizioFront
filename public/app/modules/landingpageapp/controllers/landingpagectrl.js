@@ -25,7 +25,8 @@ angular.module('LandingPageApp')
             ];
 
             $scope.localeButtonClick = function(neighborhood){
-                ApartmentSearchSvc.searchApartment(neighborhood, function(err, data){
+                //SECOND ARG IS UNIT NUM
+                ApartmentSearchSvc.searchApartment(neighborhood, null, function(err, data){
                     return $state.go('Unit.Display');
                 });
             };
@@ -38,7 +39,8 @@ angular.module('LandingPageApp')
             $scope.search = function() {
                 //service in shared/services
                 //pass in search string
-                ApartmentSearchSvc.searchApartment($scope.searchString, function(err, data){
+                //SECOND ARG UNIT NUM
+                ApartmentSearchSvc.searchApartment($scope.searchString, null, function(err, data){
                     return $state.go('Unit.Display');
                 });
 
