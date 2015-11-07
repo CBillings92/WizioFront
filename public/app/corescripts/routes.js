@@ -45,7 +45,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogMain.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogMain.html',
                             controller: 'BlogMainCtrl'
                         }
                     },
@@ -56,7 +56,7 @@ angular.module('MainApp')
                   "footer": footer,
                     views: {
                         "BlogMain": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogDetail.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogDetail.html',
                             controller: 'BlogListCtrl'
                         }
                     }
@@ -73,7 +73,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                        "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutUsApp/viewtemplates/aboutUs.html',
+                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
                         }
                     },
