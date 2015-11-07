@@ -108,11 +108,11 @@ angular.module('MainApp')
                         'AdminRight': {
                             templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateAssignment.html',
                             controller: 'AdminUpdateAssignmentCtrl'
-                        }/*,
+                        },
                         'AdminBottom': {
-                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
-                            controller:
-                        }*/
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'admincreateunit.html',
+                            controller: 'AdminCreateUnitCtrl'
+                        }
                     }
                 })
                 .state('Styleguide', {
@@ -402,6 +402,7 @@ angular.module('MainApp')
                         },
 
                         response: function(response){
+                            console.dir(response);
                             if(response.data.token){
                                 console.dir(response.data.token);
 

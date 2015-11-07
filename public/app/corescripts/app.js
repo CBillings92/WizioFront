@@ -61,14 +61,13 @@ angular.module('MainApp', [
     .run([
         '$rootScope',
         '$state',
-        '$http',
         '$localStorage',
         '$window',
         '$facebook',
         'jwtHelper',
         'AuthFct',
         'TokenSvc',
-        function($rootScope, $state, $http, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+        function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
 
             //FACEBOOK SDK
             // Load the Facebook SDK asynchronously
@@ -142,8 +141,13 @@ angular.module('MainApp', [
                 facebookConnected: false
             };
 
-            var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
+            var tokenIsExp = null;
+            if(token){
+                tokenIsExp = TokenSvc.checkExp();
+            }
+
+
 
             console.dir(token);
             //if no token exists, assign isLoggedIn to false
@@ -172,6 +176,8 @@ angular.module('MainApp', [
                     consoe.dir("why");
                     if($rootScope.authObjects.facebookConnected === true){
                         facebookAuth();
+                    } else {
+                        $state.go('Login');
                     }
                 }
                 //HELPER FUNCTION: Check if to-state requires login and if so
@@ -187,7 +193,7 @@ angular.module('MainApp', [
                     }
                 }
                 //HELPER FUNCTION: Check token expiry. If expired, delete token
-                function checkTokenExpiry(){
+                function isTokenExpired(){
                     if (TokenSvc.checkExp()) {
                         TokenSvc.deleteToken();
                     }
@@ -196,12 +202,15 @@ angular.module('MainApp', [
                 //Assign to-state requirements
                 //---assign requireLogin and user
                 assignToStateReqs();
-                //Check if token is expired
-                checkTokenExpiry();
+
 
                 //get token object from service
                 var token = TokenSvc.getToken();
-                var user = TokenSvc.decode();
+                var user = null;
+                if(token !== 'No Token'){
+                    user = TokenSvc.decode();
+                }
+
                 //if state requires login, if token exists, if its expired, login
                 if(requireLogin === true){
 
