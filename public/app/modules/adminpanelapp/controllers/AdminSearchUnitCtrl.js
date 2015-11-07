@@ -8,7 +8,8 @@ angular.module('AdminPanelApp')
         $scope.search = function() {
             //service in shared/services
             //pass in search string
-            ApartmentSearchSvc.searchApartment($scope.searchString, function(err, data){
+            //SECOND ARG IS UNIT NUM
+            ApartmentSearchSvc.searchApartment($scope.searchString, $scope.unitNum, function(err, data){
                 console.dir(data);
                 console.dir(err);
                 $scope.$emit('passToSiblingAdminApp', {name:'updateUnitData', data: data});
