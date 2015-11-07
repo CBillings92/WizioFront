@@ -31,6 +31,8 @@ angular.module('MainApp')
     landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
+    //Footer Views
+    FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Account App
     AccountViewsURL: 'public/app/modules/accountapp/main/',
     AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboardapp/viewtemplates/',

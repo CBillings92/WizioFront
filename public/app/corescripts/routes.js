@@ -10,6 +10,10 @@ angular.module('MainApp')
                 templateUrl: WizioConfig.NavbarViewsURL + 'navbar.html',
                 controller: 'NavbarCtrl'
             };
+            var footer = {
+                  templateUrl: WizioConfig.FooterViewsURL + 'footer.html',
+                  controller: 'FooterCtrl'
+            };
             var trueRequiredLogin = {
                 requireLogin: true,
                 userType: 1
@@ -26,10 +30,11 @@ angular.module('MainApp')
                     url: '/',
                     views: {
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
-                            controller: 'LandingPageCtrl',
-                        },
+                            controller: 'LandingPageCtrl'
+                        }
 
                     },
                     data: falseRequiredLogin
@@ -38,6 +43,7 @@ angular.module('MainApp')
                     abstract: true,
                     views: {
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/blogapp/viewtemplates/blogMain.html',
                             controller: 'BlogMainCtrl'
@@ -47,6 +53,7 @@ angular.module('MainApp')
                 })
                 .state('Blog.List', {
                     url: "/blog",
+                  "footer": footer,
                     views: {
                         "BlogMain": {
                             templateUrl: 'public/app/modules/blogapp/viewtemplates/blogDetail.html',
@@ -64,6 +71,7 @@ angular.module('MainApp')
                     url: '/about',
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
@@ -75,6 +83,7 @@ angular.module('MainApp')
                     abstract: true,
                     views: {
                         'navbar': navbar,
+                         "footer": footer,
                         'maincontent': {
                             templateUrl: WizioConfig.AdminPanelAppMainViewsURL + 'AdminPanelMain.html',
                             controller: 'AdminPanelMainCtrl'
@@ -110,6 +119,7 @@ angular.module('MainApp')
                     url: '/about/styleguide',
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/styleguide.html',
                             //The blog controller for the styleguide is temporary
@@ -119,8 +129,10 @@ angular.module('MainApp')
                 })
                 .state('Login', {
                     url: '/login',
+
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'Login.html',
                             controller: 'AuthLoginCtrl'
@@ -132,6 +144,7 @@ angular.module('MainApp')
                     url: '/sendresetpassemail',
                     views: {
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'sendResetEmail.html',
                             controller: 'AuthLoginCtrl'
@@ -143,6 +156,7 @@ angular.module('MainApp')
                     url: '/resetpassword/:token',
                     views: {
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'resetPassword.html',
                             controller: 'AuthLoginCtrl'
@@ -155,6 +169,7 @@ angular.module('MainApp')
                     abstract: true,
                     views: {
                         "navbar": navbar,
+                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountViewsURL + 'AccountMain.html',
                             controller: 'AccountMainCtrl'
@@ -214,6 +229,7 @@ angular.module('MainApp')
                     url: '/brokerInfo',
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
                             controller: 'brokerAddInfoCtrl'
@@ -226,6 +242,7 @@ angular.module('MainApp')
                     abstract: true,
                     views: {
                         "navbar": navbar,
+                      "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilemain.html'
                         }
@@ -256,6 +273,7 @@ angular.module('MainApp')
                     url: '/application',
                     views: {
                         "navbar": navbar,
+                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.ApplicationViewsURL + "applicationmain.html"
                         }
@@ -285,6 +303,7 @@ angular.module('MainApp')
                     url: '/unit',
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.UnitMainViewsURL + 'UnitMain.html',
                             controller: 'UnitMainCtrl'
@@ -325,6 +344,7 @@ angular.module('MainApp')
                     abstract: true,
                     views: {
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
                             controller: 'CampaignMainCtrl'

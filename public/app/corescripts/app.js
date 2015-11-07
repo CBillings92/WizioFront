@@ -14,6 +14,7 @@ angular.module('SharedControllersApp', []);
 angular.module('SharedFactoryApp', []);
 angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
+angular.module('FooterApp', []);
 
 
 //LOAD 'MainApp' ANGULAR module
@@ -35,6 +36,7 @@ angular.module('MainApp', [
         'SharedFactoryApp',
         'SharedServiceApp',
         'UnitApp',
+        'FooterApp',
         'ui.router',
         'ngFacebook',
         'ngStorage',

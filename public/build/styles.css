@@ -5505,3 +5505,9 @@ h3 {
 .body {
     padding-top: 70px;
 }
+.linker a:hover {
+  color:#FA9A29;
+}
+.linker a {
+  color:white;
+}
