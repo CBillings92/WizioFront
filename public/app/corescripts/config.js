@@ -4,7 +4,7 @@ angular.module('MainApp')
     //BACK END SERVER URL
     //
     //The following line should be uncometed before testing on vagrant on your local machine
-    baseAPIURL: 'http://cbprodtestserver-zh7mseyghz.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //baseAPIURL: 'http://172.16.0.3:4000/api/',
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
@@ -18,7 +18,7 @@ angular.module('MainApp')
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-    frontEndURL: ' http://cbNewPullTest-psymumtbca.elasticbeanstalk.com/',
+    frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
 
 
 
