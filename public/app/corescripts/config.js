@@ -1,7 +1,7 @@
 angular.module('MainApp')
 .constant('WizioConfig', {
     
-    baseAPIURL: 'http://liveserver-pu7s9gucbn.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://cbprodtestserver-zh7mseyghz.elasticbeanstalk.com/api/',
     // baseAPIURL: 'http://172.16.0.3:4000/api/',
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
@@ -13,8 +13,7 @@ angular.module('MainApp')
     //frontEndURL: 'http://172.16.0.2:3000/',
     //
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
-    frontEndURL: 'http://frontlive-efhsvwppy7.elasticbeanstalk.com',
-
+    frontEndURL: 'http://MatanTest-mafm6fpfxx.elasticbeanstalk.com',
 
 
 
