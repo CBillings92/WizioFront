@@ -18,7 +18,7 @@ angular.module('MainApp')
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-    frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
+    frontEndURL: 'http://wizio.co/',
 
 
 
