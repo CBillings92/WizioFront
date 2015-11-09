@@ -109,3 +109,46 @@ nav {
 }
 
 
+// TEMP FOR FOOTER
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 330px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 330px;
+    background-color: #8C9BB3;
+    padding-top: 40px;
+    color: #fff;
+    h2 { 
+    	font-weight: 700;
+    }
+    a {
+    	color: #fff;
+    }
+    .fa{
+		font-size: 40px;
+		padding-right: 15px;	
+    }
+	img {
+		max-width: 200px;
+	}
+	#social-links {
+		padding-top: 20px;
+	}
+	h3 {
+			font-weight: 400;
+		}
+
+}
+
+
