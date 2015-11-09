@@ -25,7 +25,6 @@ angular.module('CampaignApp')
             };
 
             $scope.uploadVideo = function() {
-                console.dir(AuthFct.isLoggedin());
                 if (AuthFct.isLoggedin()) {
                     var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
 

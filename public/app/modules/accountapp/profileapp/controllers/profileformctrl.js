@@ -13,11 +13,9 @@ angular.module('AccountApp')
             //get apartment information
             $scope.apartment = ApartmentGetSetSvc.get('apartmentApplyingTo');
             var apartment = $scope.apartment;
-            console.dir(FlexGetSetSvc.get());
             $scope.profile = FlexGetSetSvc.get();
             //get user information
             var user = TokenSvc.decode();
-            console.dir(user);
             //for ng-repeat on profile form for emails. Check # of bedrooms
             $scope.apply = function() {
                 var currentState = $state.current.name;
@@ -54,10 +52,8 @@ angular.module('AccountApp')
                     employmentStatus: $scope.employmentStatus,
                     desiredMoveInDate: $scope.desiredMoveInDate
                 };
-                console.dir(currentState);
                 //collect emails from form.
                 if (currentState === "Profile.Edit") {
-                    console.dit(FlexGetSetSvc.get());
                     $scope.profile = FlexGetSetSvc.get();
                 } else if (currentState === "Profile.Create") {
 
@@ -74,11 +70,11 @@ angular.module('AccountApp')
                     });
                     modalInstance.result.then(function(result) {
                         //Could probably utilize async on front end here...
-                        console.dir(profile);
+
                         if (result === "saveAndApply") {
                             ProfileResource.save(profile, function(status, data) {
                                 //var token = TokenSvc.decodeToken();
-                                console.dir(token);
+
                                 $state.go('Application.New');
                             });
                         } else if (result === "save") {
@@ -88,7 +84,6 @@ angular.module('AccountApp')
                             });
                         }
                     }, function() {
-                        console.dir("IN MODAL DISMISSED");
                     });
                 }
 

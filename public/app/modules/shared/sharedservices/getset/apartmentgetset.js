@@ -26,7 +26,6 @@ angular.module('SharedServiceApp')
                         id: apartmentURLID
                     }, function(data) {
                         apartmentSelected = data;
-                        console.dir(data);
                         callback(apartmentSelected);
                     });
                 } else {
@@ -41,10 +40,6 @@ angular.module('SharedServiceApp')
                 //LOAD APARTMENT DATA START
                 //get apartment ID from URL
                 var apartmentURLID = $stateParams.id;
-                console.log('----------stateParams id-----------');
-                console.dir($stateParams.id);
-                console.log('----------apartmentSelected-----------');
-                console.dir(apartmentSelected);
                 //get apartment data from apartmentGetSet service
                 var apartment = apartmentSelected;
                 //get apartment ID from session storage if it exists

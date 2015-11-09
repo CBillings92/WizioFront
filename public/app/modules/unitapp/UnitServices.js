@@ -57,6 +57,7 @@ angular.module('UnitApp')
                         }
                         //this builds an apartment object for storing in DB
                         var apartmentObj = lodashParseAPIData(data, apartmentParams);
+
                         return callback(null, apartmentObj);
                     });
                 } else {
@@ -104,8 +105,8 @@ angular.module('UnitApp')
 
             function lodashParseAPIData(googleAPIData, apartmentParams) {
                 //set empty apartmentObj object. Will store apartment info
+
                 var apartmentObj = {};
-                console.dir(googleAPIData);
                 apartmentObj.topLevelType = googleAPIData[0].types[0];
 
                 //if apartment parameters are passed in for apartment creation

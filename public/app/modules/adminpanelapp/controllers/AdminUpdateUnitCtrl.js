@@ -14,10 +14,8 @@ angular.module('AdminPanelApp')
         $scope.petPolicy = ["Dogs Only", "Cats Only", "Dogs & Cats", "Small Animals", "None"];
 
         $scope.$on('updateUnitData', function(event, data){
-            console.dir(data);
             $scope.apartment = data[0];
 
-            console.dir($scope.bedsSelected);
         });
 
 
@@ -41,9 +39,8 @@ angular.module('AdminPanelApp')
                 youtubeVRID: $scope.apartment.youtubeID
             };
             AdminPanelResource.save({item: 'unit', action: 'update'}, $scope.apartment, function(data, status) {
-                console.dir(data);
                 $state.go('Account.Dashboard.Main');
             });
         };
     }
-])
+]);

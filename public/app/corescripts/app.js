@@ -88,7 +88,7 @@ angular.module('MainApp', [
             //--if they are "not authorized" set variables for authentication
             function facebookAuth(){
                 $facebook.getLoginStatus().then(function(fbLoginStatus){
-                    console.dir(fbLoginStatus);
+
                     switch(fbLoginStatus.status){
                         case "not authorized":
                             $rootScope.isLoggedIn = false;
@@ -105,8 +105,7 @@ angular.module('MainApp', [
                                     facebook: true
                                 };
                                 AuthFct.signin(fbData, function(data, status){
-                                    console.dir(data);
-                                    console.dir(status);
+
                                     //do stuff with data?
                                     if(status === 403){
                                         $rootScope.isLoggedIn = false;
@@ -147,9 +146,6 @@ angular.module('MainApp', [
                 tokenIsExp = TokenSvc.checkExp();
             }
 
-
-
-            console.dir(token);
             //if no token exists, assign isLoggedIn to false
             //if token is expired, assign isLoggedIn to false
             //else, assign isLoggedInto to true
@@ -173,7 +169,6 @@ angular.module('MainApp', [
                 var requestedStateUserType = null;
                 //HELPER FUNCTION: Check if user is connected with facebook
                 function checkFBConnection(){
-                    consoe.dir("why");
                     if($rootScope.authObjects.facebookConnected === true){
                         facebookAuth();
                     } else {

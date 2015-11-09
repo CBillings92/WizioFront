@@ -1,6 +1,5 @@
 angular.module('AmazonS3UploadApp')
     .directive('file', function() {
-        console.log("The AWS upload directive is being loaded");
         return {
             restrict: 'AE',
             scope: {

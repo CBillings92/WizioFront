@@ -9,25 +9,24 @@ angular.module('AccountApp')
         function($scope, $state, $facebook, $location, UserRegistrationSvc, RerouteGetSetSvc) {
 
             //Set a standard, local user object to save for local authentication
+            $scope.user = {};
             $scope.setUserObj = function() {
-                var user = {
-                    firstName: $scope.firstName,
-                    lastName: $scope.lastName,
-                    email: $scope.email,
-                    password: $scope.password,
-                    accountType: "local",
-                    userType: 1
-                };
-                UserRegistrationSvc.saveUser(user, function(data) {
-                    var rerouteURL = RerouteGetSetSvc.get();
-                    if(rerouteURL.length !== 0){
-                        console.dir(rerouteURL);
-                        return $location.path(rerouteURL);
-                    }
-                    return $state.go('Account.Dashboard.Main');
-                });
+                if($scope.user.password === $scope.user.passwordConfirm){
+                    $scope.user.accountType = 'local';
+                    $scope.user.userType = 1;
+                    UserRegistrationSvc.saveUser($scope.user, function(data) {
+                        var rerouteURL = RerouteGetSetSvc.get();
+                        if(rerouteURL.length !== 0){
+                            return $location.path(rerouteURL);
+                        }
+                        return $state.go('Account.Dashboard.Main');
+                    });
+                } else {
+                    alert("Passwords don't match!");
+                }
+
             };
-            $scope.createFacebookUser = function(){
+            /*$scope.createFacebookUser = function(){
                     $facebook.login().then(function(data){
                         switch(data.status){
                             case "connected":
@@ -49,7 +48,7 @@ angular.module('AccountApp')
                         }
                     });
 
-            };
+            };*/
 
             $scope.cancel = function() {
                 $state.go('Home');

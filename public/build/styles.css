@@ -2638,7 +2638,9 @@ textarea.input-lg, select[multiple].input-lg {
     outline-offset: -2px;
 }
 .btn:hover, .btn:focus, .btn.focus {
-    color: #333333;
+    background-color: white;
+    color:#FA9A29;
+    border-color: #FA9A29;
     text-decoration: none;
 }
 .btn:active, .btn.active {
@@ -5510,4 +5512,9 @@ h3 {
 }
 .linker a {
   color:white;
+}
+.larger-button {
+    color:white;
+    background-color:#FA9A29;
+    font-size:150%;
 }

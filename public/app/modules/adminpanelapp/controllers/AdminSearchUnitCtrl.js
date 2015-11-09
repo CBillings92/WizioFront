@@ -4,14 +4,11 @@ angular.module('AdminPanelApp')
     'ApartmentSearchSvc',
     'SmartSearchSvc',
     function ($scope, ApartmentSearchSvc, SmartSearchSvc) {
-        console.dir("WHY2");
         $scope.search = function() {
             //service in shared/services
             //pass in search string
             //SECOND ARG IS UNIT NUM
             ApartmentSearchSvc.searchApartment($scope.searchString, $scope.unitNum, function(err, data){
-                console.dir(data);
-                console.dir(err);
                 $scope.$emit('passToSiblingAdminApp', {name:'updateUnitData', data: data});
             });
         };

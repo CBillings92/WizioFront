@@ -1,88 +1,98 @@
 <div class="details container-fluid">
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="hidden-xs hidden-sm">
-      <center><iframe width="600px" height="385px"
-      ng-src="{{apartment.youtubeLink}}"
-      frameborder="0" allowfullscreen id="demo">
-      </iframe></center>
-      </div><!--mobile hidden-->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="hidden-xs hidden-sm">
+                <center>
+                    <iframe allowfullscreen frameborder="0" height="385px" id="demo" ng-src="{{apartment.youtubeLink}}" width="600px"></iframe>
+                </center>
+            </div>
+            <!--mobile hidden-->
 
-      <div class="hidden-md hidden-lg">
-      <center><iframe width="380px" height="320px"
-      ng-src="{{apartment.youtubeLink}}"
-      frameborder="0" allowfullscreen id="demo">
-      </iframe></center>
-      </div><!--desktop hidden-->
-    </div><!-- col-md-3 -->
+            <div class="hidden-md hidden-lg">
+                <center>
+                    <iframe allowfullscreen frameborder="0" height="320px" id="demo" ng-src="{{apartment.youtubeLink}}" width="380px"></iframe>
+                </center>
+            </div>
+            <!--desktop hidden-->
+        </div>
+        <!-- col-md-3 -->
 
-    <div clss="col-lg-6">
+        <div clss="col-lg-6"></br>
+        <center>
+            <button class="btn btn-success" ng-click="apply()" ng-show="available">Apply For Apartment</button>
+            <button class="btn btn-success" ng-click="waitlist()" ng-hide="waitlisted || available">Get on Waitlist</button>
+            <button class="btn btn-success" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
+            <button class="btn btn-success">Setup in Person Tour</button>
+        </center>
     </br>
-      <center>
-          <button ng-show="available" class="btn btn-success" ng-click="apply()">Apply For Apartment</button>
-          <button ng-hide="waitlisted || available" class="btn btn-success" ng-click="waitlist()">Get on Waitlist</button>
-          <button ng-show="waitlisted" class="btn btn-success" ng-disabled>You're Waitlisted</button>
-          <button class="btn btn-success">Setup in Person Tour</button>
-      </center>
-    </br></br>
-      <p></br></p>
-    </br>
-    </div><!--col-md-3-->
-  </div><!-- row -->
+</br>
+<p></br>
+</p>
+</br>
+</div>
+<!--col-md-3-->
+</div>
+<!-- row -->
 
-  <div class="row">
-    <div class="col-md-6">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span class="badge">{{apartment.concatAddr}}</span>
-          Address
-        </li>
+<div class="row">
+<div class="col-md-6">
+<ul class="list-group">
+<li class="list-group-item">
+<span class="badge">{{apartment.hiddenAddress}}</span>
+Address
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.beds}}</span>
-          Beds
-        </li>
-      </ul><!-- ul -->
-    </div><!-- col-md-6 -->
+<li class="list-group-item">
+<span class="badge">{{apartment.beds}}</span>
+Beds
+</li>
+</ul>
+<!-- ul -->
+</div>
+<!-- col-md-6 -->
 
-    <div class="col-md-6">
-      <ul class="list-group">
-        <li class="list-group-item">
-          <span class="badge">{{apartment.baths}}</span>
-          Baths
-        </li>
+<div class="col-md-6">
+<ul class="list-group">
+<li class="list-group-item">
+<span class="badge">{{apartment.baths}}</span>
+Baths
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.livingSpaces}}</span>
-          Living Spaces
-        </li>
+<li class="list-group-item">
+<span class="badge">{{apartment.livingSpaces}}</span>
+Living Spaces
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.maxResidency}}</span>
-          Max Residency
-        </li>
+<li class="list-group-item">
+<span class="badge">{{apartment.maxResidency}}</span>
+Max Residency
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.costPerMonth}}</span>
-          Cost Per Month
-        </li>
+<li class="list-group-item">
+<span class="badge">{{apartment.costPerMonth}}</span>
+Cost Per Month
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.renovated}}</span>
-          Newly Renovated
-        </li>
+<li class="list-group-item">
+<span class="badge">{{apartment.renovated}}</span>
+Newly Renovated
+</li>
 
-        <li class="list-group-item">
-          <span class="badge">{{apartment.pets}}</span>
-          Pet Policy
-        </li>
-      </ul><!-- list group -->
-    </div><!-- col-md-6 -->
-  </div><!-- row -->
-  <div>
-      <div id="map"></div>
-      <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-           <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-      </div>
-  </div>
-</div><!--container -->
+<li class="list-group-item">
+<span class="badge">{{apartment.pets}}</span>
+Pet Policy
+</li>
+</ul>
+<!-- list group -->
+</div>
+<!-- col-md-6 -->
+</div>
+<!-- row -->
+<div>
+<div id="map"></div>
+<div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+<a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+</div>
+</div>
+</div>
+<!--container -->

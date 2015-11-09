@@ -406,9 +406,7 @@ angular.module('MainApp')
                         },
 
                         response: function(response){
-                            console.dir(response);
                             if(response.data.token){
-                                console.dir(response.data.token);
 
                                 TokenSvc.storeToken(response.data.token);
                                 return response;

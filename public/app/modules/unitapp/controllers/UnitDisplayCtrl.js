@@ -11,8 +11,6 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
-            console.dir($scope.apartmentSearch);
-            console.dir($sessionStorage.apartmentSearch);
             if($scope.apartmentSearch.length === 0){
                 alert('No apartments found!');
             }
@@ -27,6 +25,18 @@ angular.module('UnitApp')
                 $scope.maphidden = !$scope.maphidden;
             };
             $scope.$on('searchFinished', function(event, data) {
+                for(i = 0; i < data.length; i++){
+                    var left = Math.floor((data[i].apartment.concatAddr.charCodeAt(5) /19) + 4);
+                    var right = Math.floor((data[i].apartment.concatAddr.charCodeAt(3) /19) + 4);
+                    var houseNumInt = parseInt((data[i].apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                    var houseNumLow = houseNumInt - left;
+                    if(houseNumInt < 15){
+                        houseNumLow = 1;
+                    }
+                    var houseNumHigh = houseNumInt + right;
+                    var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+                    data[i].apartment.hiddenAddress = houseNumRange + data[i].apartment.concatAddr.replace(/^\d+/, '');
+                }
                 $scope.apartmentSearch = data;
                 //display maps and markers
                 displayMaps();
@@ -43,7 +53,6 @@ angular.module('UnitApp')
                 } else {
                     alert('Error: Apartment not loaded properly');
                 }
-                console.dir(apartment);
             };
 
             //houses the map and marker creation functionality

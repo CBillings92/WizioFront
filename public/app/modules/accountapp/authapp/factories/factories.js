@@ -16,11 +16,7 @@ angular.module('AuthApp')
                 tokenExp = TokenSvc.checkExp(token);
             }
 
-            console.dir(token);
-            console.dir(tokenExp);
             if(token === "No Token" && tokenExp){
-                console.dir(token);
-                console.dir(!tokenExp);
                 return false;
             } else {
                 return true;
@@ -35,7 +31,6 @@ angular.module('AuthApp')
             },
             signin: function(data, success, error) {
                 AuthLoginResource.save(data, function(data, status){
-                    console.dir(status);
                     success(data, status);
                 });
             },

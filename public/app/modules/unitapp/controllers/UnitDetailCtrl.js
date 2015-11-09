@@ -43,18 +43,46 @@ angular.module('UnitApp')
                 return modalInstance;
             };
 
+            //Chris made this so that the apartment details controller would
+            //display null if there is nothing in the field that is trying to be
+            //displayed.
+            var checkForNulls = function(apartmentField){
+                if (apartmentField === null){
+                    return "Unknown";
+                } else {
+                    return apartmentField;
+                }
+            };
 
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 $scope.apartment = result;
+                $scope.apartment.concatAddr = checkForNulls($scope.apartment.concatAddr);
+                $scope.apartment.beds = checkForNulls($scope.apartment.beds);
+                $scope.apartment.baths = checkForNulls($scope.apartment.baths);
+                $scope.apartment.livingSpaces = checkForNulls($scope.apartment.livingSpaces);
+                $scope.apartment.maxResidency = checkForNulls($scope.apartment.maxResidency);
+                $scope.apartment.costPerMonth = checkForNulls($scope.apartment.costPerMonth);
+                $scope.apartment.renovated = checkForNulls($scope.apartment.renovated);
+                $scope.apartment.pets = checkForNulls($scope.apartment.pets);
+
+                var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) /19) + 4);
+                var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) /19) + 4);
+                var houseNumInt = parseInt(($scope.apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                var houseNumLow = houseNumInt - left;
+                if(houseNumInt < 15){
+                    houseNumLow = 1;
+                }
+                var houseNumHigh = houseNumInt + right;
+                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+                $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
+
+
 
                 var user = TokenSvc.getToken();
                 if(user !== 'No Token' && user !== null && user !== 'undefined'){
-                    console.dir(user);
                     user = TokenSvc.decode();
                     var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
-                    console.dir(waitlistedCheck);
-                    console.dir(user);
                 }
 
                 $sessionStorage.apartmentSelected = $scope.apartment;

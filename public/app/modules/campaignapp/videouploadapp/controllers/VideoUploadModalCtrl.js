@@ -25,7 +25,6 @@ angular.module('CampaignApp')
 
             $scope.setDate = function(year, month, day) {
                 $scope.dt = new Date(year, month, day);
-                console.dir(dt);
             };
 
             $scope.dateOptions = {
@@ -43,9 +42,8 @@ angular.module('CampaignApp')
             $scope.landlord = {};
             $scope.apartment = {};
             $scope.upload = function() {
-                console.dir($scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear());
+                $scope.apartment.leaseActualEnd = $scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear();
                 UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment){
-                    parsedApartment.landlordInfo = $scope.landlord;
                     UnitResource.save(parsedApartment, function(data, status) {
 
                         //store saved apartment data to use in AssignmentResource
@@ -72,12 +70,11 @@ angular.module('CampaignApp')
                             }
                             // Prepend Unique String To Prevent Overwrites
                             var userinfo = TokenSvc.decode();
-                            console.dir(userinfo);
                             var apartment = $scope.apartmentAddress;
                             apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
-                            var uniqueFileName = userinfo.email + '-' + apartment;
+                            var uniqueFileName = userinfo.email + '-' + apartment + "unitNum:" + $scope.apartment.unitNum + "___" + (Math.floor((Math.random() * 80)+10));
 
-                            console.dir(apartment);
+                            
                             var params = {
                                 Key: uniqueFileName,
                                 ContentType: $scope.file.type,
@@ -92,14 +89,14 @@ angular.module('CampaignApp')
                                     } else {
                                         // Upload Successfully Finished
                                         toastr.success('File Uploaded Successfully', 'Done');
+                                        
                                         var updateData = {
                                             UserId: userinfo.id,
-                                            ApartmentId: data.id,
-                                            S3VideoId: $scope.assignment.youtubeId,
-                                            youtubeId: $scope.assignment.youtubeId
+                                            ApartmentId: finalApartmentData.id,
+                                            S3VideoId: uniqueFileName
                                         };
                                         AssignmentResource.save(updateData, function(data, status){
-                                            console.dir(data);
+                                            
                                         });
                                         // Reset The Progress Bar
                                         setTimeout(function() {

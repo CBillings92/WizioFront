@@ -2,35 +2,41 @@ angular.module('SharedServiceApp')
     .service('ApartmentSearchSvc', [
         '$rootScope',
         '$sessionStorage',
+        '$state',
+        'ApartmentGetSetSvc',
         'SearchResource',
         'UnitCreateSvc',
-        function($rootScope, $sessionStorage, SearchResource, UnitCreateSvc) {
+        function($rootScope, $sessionStorage, $state, ApartmentGetSetSvc, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString, unitNum, callback) {
-                    //second argument is apartmentparams, which is null.
-                    UnitCreateSvc.parseGeocodeData(searchString, {unitNum: unitNum}, function(err, data) {
-                        console.dir(data);
-                        SearchResource.save(data, function(data, status){
-                            console.dir(data);
-                            for(i = 0; i<data.length; i++){
-                                var left = Math.floor((Math.random() * 13) + 4);
-                                var right = Math.floor((Math.random() * 13) + 4);
-
+                //second argument is apartmentparams, which is null.
+                UnitCreateSvc.parseGeocodeData(searchString, {
+                    unitNum: unitNum
+                }, function(err, data) {
+                    if ($state.current.name === 'AdminPanel.Main') {
+                        data.adminSearch = true;
+                    }
+                    SearchResource.save(data, function(data, status) {
+                        //data is array of apartments we get back from search
+                        if ($state.current.name !== 'AdminPanel.Main') {
+                            for (i = 0; i < data.length; i++) {
+                                var left = Math.floor((data[i].concatAddr.charCodeAt(5) / 19) + 4);
+                                var right = Math.floor((data[i].concatAddr.charCodeAt(3) / 19) + 4);
                                 var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
                                 var houseNumLow = houseNumInt - left;
-                                if(houseNumInt < 15){
+                                if (houseNumInt < 15) {
                                     houseNumLow = 1;
                                 }
-
                                 var houseNumHigh = houseNumInt + right;
                                 var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                                data[i].concatAddr = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
-
+                                data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
                             }
-                            $sessionStorage.apartmentSearch = data;
-                            $rootScope.$broadcast('searchFinished', data);
-                            return callback(null, data);
-                        });
+                        }
+
+                        $sessionStorage.apartmentSearch = data;
+                        $rootScope.$broadcast('searchFinished', data);
+                        return callback(null, data);
                     });
+                });
             }
             return {
                 searchApartment: searchApartment
@@ -42,8 +48,6 @@ angular.module('SharedServiceApp')
         'AuthRegistrationResource',
         function($state, AuthRegistrationResource) {
             function registerUser(user, callback) {
-                console.dir("in setUserObj");
-                console.dir(user);
                 AuthRegistrationResource.save(user, function(data) {
                     callback(data);
                 });
@@ -67,7 +71,7 @@ angular.module('SharedServiceApp')
             var checkExp = function() {
                 //If the token exists
                 if ($localStorage.token) {
-                    if(jwtHelper.isTokenExpired($localStorage.token)){
+                    if (jwtHelper.isTokenExpired($localStorage.token)) {
                         delete $localStorage.token;
                         return true;
                     }
@@ -87,7 +91,7 @@ angular.module('SharedServiceApp')
             };
             var getToken = function() {
                 if ($localStorage.token) {
-                    if(jwtHelper.isTokenExpired($localStorage.token)){
+                    if (jwtHelper.isTokenExpired($localStorage.token)) {
                         delete $localStorage.token;
                         return 'No Token';
                     }
@@ -131,7 +135,6 @@ angular.module('SharedServiceApp')
                         components: 'country:US|administrative_area:MA'
                     }
                 }).then(function(response) {
-                    console.dir(response);
                     FlexGetSetSvc.set(response);
                     return response.data.results.map(function(item) {
                         return item.formatted_address;

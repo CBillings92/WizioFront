@@ -24,7 +24,6 @@ angular.module('AdminPanelApp')
 
             $scope.setDate = function(year, month, day) {
                 $scope.dt = new Date(year, month, day);
-                console.dir(dt);
             };
 
             $scope.dateOptions = {
@@ -42,11 +41,9 @@ angular.module('AdminPanelApp')
             $scope.landlord = {};
             $scope.apartment = {};
             $scope.upload = function() {
-                console.dir($scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear());
                 UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment){
                     parsedApartment.landlordInfo = $scope.landlord;
                     UnitResource.save(parsedApartment, function(data, status) {
-                        console.dir(data.id);
                         //store saved apartment data to use in AssignmentResource
                         //call later
                         var finalApartmentData = data;
@@ -71,12 +68,10 @@ angular.module('AdminPanelApp')
                             }
                             // Prepend Unique String To Prevent Overwrites
                             var userinfo = TokenSvc.decode();
-                            console.dir(userinfo);
                             var apartment = $scope.apartmentAddress;
                             apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
-                            var uniqueFileName = userinfo.email + '-' + apartment;
+                            var uniqueFileName = userinfo.email + '-' + apartment + (Math.floor((Math.random() * 80)+10));
 
-                            console.dir(apartment);
                             var params = {
                                 Key: uniqueFileName,
                                 ContentType: $scope.file.type,
@@ -98,7 +93,6 @@ angular.module('AdminPanelApp')
                                             youtubeId: $scope.assignment.youtubeId
                                         };
                                         AssignmentResource.save(updateData, function(data, status){
-                                            console.dir(data);
                                         });
                                         // Reset The Progress Bar
                                         setTimeout(function() {
