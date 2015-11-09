@@ -1,17 +1,41 @@
-$styleguide-nav-width: 200px;
+.styleguide-nav, .styleguide {
+  margin-top: -28px;
+}
 
 .styleguide-nav {
-  width: $styleguide-nav-width;
-  float: left;
   background-color: $gray;
   position: fixed;
-  padding: 15px;
+  color: $white;
+
+  > h2 {
+    padding-top: 10px;
+    position: relative;
+
+    &:after {
+      content: '';
+      color: $white;
+      opacity: 0.3;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      border-width: 0 0 1px;
+      border-style: solid;
+    }
+  }
+}
+
+.styleguide-nav__list {
+  list-style: none;
+  padding-left: 15px;
+
+  a {
+    color: $white;
+  }
 }
 
 .styleguide {
-  margin-left: $styleguide-nav-width;
   background-color: $white;
-  padding: 0 15px;
 }
 
 .styleguide-section {
@@ -25,6 +49,7 @@ $styleguide-nav-width: 200px;
     &:after {
       content: '';
       color: $gray;
+      opacity: 0.3;
       width: 100%;
       position: absolute;
       left: 0;
@@ -41,3 +66,22 @@ $styleguide-nav-width: 200px;
   border: none;
 }
 
+div[class^='color__box'], div[class*=' color__box']{
+  height: 100px;
+}
+
+.color__box--orange {
+  background-color: $orange;
+}
+.color__box--gray {
+  background-color: $gray;
+}
+.color__box--red {
+  background-color: $red;
+}
+.color__box--blue {
+  background-color: $blue;
+}
+.color__box--light-orange {
+  background-color: $light-orange;
+}
