@@ -1,3 +1,4 @@
-@import 'nav';
+@import "default";
 
-h1 { color:black}
+@import "nav";
+@import "styleguide";

@@ -2,9 +2,10 @@
 <html ng-app="MainApp">
 
 <head>
-    <title>Wizio!</title>
+    <title>Wizio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<<<<<<< HEAD
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 
@@ -12,6 +13,16 @@
     <link href="../public/stylesheets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../public/stylesheets/siteCSSforTesting/mapTest.css" rel="stylesheet">
     <link href="../public/build/stylessass.css" rel="stylesheet">
+=======
+    <!-- Bootstrap -->
+    <link href="../public/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="../public/build/stylessass.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,500' rel='stylesheet' type='text/css'>
+>>>>>>> scout-dev
 
     <!--jquery-->
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
@@ -70,6 +81,9 @@
     <script type="text/javascript" src="/app/modules/shared/sharedServices/sharedServices.js"></script>
     <script type="text/javascript" src="/app/modules/shared/sharedServices/getset/apartmentgetset.js"></script>
     <script type="text/javascript" src="/app/modules/shared/sharedServices/getset/flexgetset.js"></script>
+<!-- =================================================================================-->
+<!-- ===================================FOOTER APP======================================-->
+<script type="text/javascript" src="/app/modules/footerapp/controllers/footerctrl.js"></script>
 <!-- =================================================================================-->
 <!-- ===================================ACCOUNT APP======================================-->
     <script type="text/javascript" src="/app/modules/AccountApp/authapp/factories/resources.js"></script>
@@ -186,7 +200,9 @@
     <div ui-view="maincontent">
 
     </div>
+    <div class="" ui-view='footer'>
 
+    </div>
 </body>
 
 </html>
