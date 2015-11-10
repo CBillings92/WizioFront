@@ -82,7 +82,7 @@
         This is the copy style.
       </p>
       <div class="live-example">
-        <p class="copy">I am copy. I am copy. I am copy.</p>
+        <p>I am copy. I am copy. I am copy.</p>
       </div>
       <pre class="code"><code></code></pre>
     </div>
@@ -110,6 +110,9 @@
 </div>
 
 <script>
+  /* copy the code from the example, and put it beneath the live example in a code block
+    so that the code that the person sees when looking at the site is always the
+    same code that is used in the live example */
   $(".live-example").each(
     function() {
      $(this).parent().find(".code code").text($(this).html());
