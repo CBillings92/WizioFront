@@ -22,6 +22,8 @@ angular.module('MainApp')
     //Campaign App
     CampaignMainViewsURL: 'public/app/modules/CampaignApp/main/',
     CampaignVideoUploadViewsURL: 'public/app/modules/CampaignApp/videouploadapp/viewtemplates/',
+    //Footer Views
+    FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Landing Page App
     landingPageAppViewsURL: 'public/app/modules/LandingPageApp/viewtemplates/',
     //Navbar Views

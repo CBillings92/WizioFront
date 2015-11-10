@@ -7,6 +7,7 @@ angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
+angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
@@ -27,6 +28,7 @@ angular.module('MainApp', [
         'AuthApp',
         'AboutUsApp',
         'BlogApp',
+        'FooterApp',
         'LandingPageApp',
         'CampaignApp',
         'NavbarApp',
