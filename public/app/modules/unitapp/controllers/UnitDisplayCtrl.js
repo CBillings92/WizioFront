@@ -45,6 +45,7 @@ angular.module('UnitApp')
                 var apartment = lodash.find($scope.apartmentSearch, {
                     id: id
                 });
+                console.dir(apartment);
                 if (apartment !== undefined) {
                     ApartmentGetSetSvc.set(apartment, "apartmentSelected");
                     $state.go('Unit.Details', {
