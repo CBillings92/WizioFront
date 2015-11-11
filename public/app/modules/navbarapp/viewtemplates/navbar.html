@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-left">
             <li><form class="navbar-form navbar-left" ng-submit="search()" role="search">
                 <div class="form-group">
-                    <input style="display:inline-block; max-width:250px" class="form-control" ng-model="searchString" placeholder="Search by Area" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                    <input style="display:inline-block; max-width:250px" class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
                     <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                     <div ng-show="noResults">
                         <i class="glyphicon glyphicon-remove"></i> No Results Found

@@ -11,11 +11,11 @@
 
                 <label class='control-label'>
                     <h4>First Name:</h4>
+                <label class='control-label'>
                 </label>
                 <input class='form-control' ng-model='user.firstName' required type='text'>
             </div>
             <div class="col-lg-offset-3 col-lg-6 col-md-6 form-group">
-                <label class='control-label'>
                     <h4>Last Name:</h4>
                 </label>
                 <input class='form-control' ng-model='user.lastName' required type='text'>
@@ -33,7 +33,8 @@
 
             <div class="col-lg-offset-3 col-lg-6 col-md-6 form-group">
                 <label class='control-label'>
-                    <h4>Set Password (Must be at least 6 characters):</h4>
+                    <h4 stye="padding-bottom: -10px;">Set Password:</h4>
+                    <small style="margine-top: -10px;">(Must be at least 6 characters)</small>
                 </label>
                 <input class="form-control" ng-minlength="6" ng-model="user.password" required type="password"/>
                 <label class="control-label">

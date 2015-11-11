@@ -253,7 +253,7 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('Profile.', {
+                .state('Profile.Create', {
                     url: '/',
                     views: {
                         "profilepage": {
@@ -261,7 +261,6 @@ angular.module('MainApp')
                             controller: 'ProfileFormCtrl'
                         }
                     },
-                    data: trueRequiredLogin
                 })
                 .state('Profile.Edit', {
                     url: '/edit',
@@ -271,7 +270,6 @@ angular.module('MainApp')
                             controller: 'ProfileFormCtrl'
                         }
                     },
-                    data: trueRequiredLogin
                 })
                 .state('Application', {
                     url: '/application',
@@ -301,7 +299,7 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
-                    }
+                    },
                 })
                 .state('Unit', {
                     url: '/unit',
@@ -315,14 +313,15 @@ angular.module('MainApp')
                     },
                     abstract: true
                 })
-                .state('Unit.', {
+                .state('Unit.Create', {
                     url: '/create',
                     views: {
                         'UnitMain': {
                             templateUrl: WizioConfig.UnitViewsURL + 'UnitCreate.html',
                             controller: 'UnitCreateCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Unit.Details', {
                     url: '/details/:id',
@@ -341,7 +340,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.UnitViewsURL + 'unitDisplay.html',
                             controller: 'UnitDisplayCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign', {
                     url: '/campaign',
@@ -353,7 +353,7 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
                             controller: 'CampaignMainCtrl'
                         }
-                    }
+                    },
                 })
                 .state('Campaign.VideoUpload', {
                     abstract: true,
@@ -362,7 +362,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + "/VideoUploadMain.html",
                             controller: 'VideoUploadMainCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign.VideoUpload.Main', {
                     url: '/apartmentshare',
@@ -371,7 +372,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',
                             controller: 'VideoUploadSplashCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign.VideoUpload.Form', {
                     url: '/form',

@@ -4,21 +4,31 @@ angular.module('MainApp')
     //BACK END SERVER URL
     //
     //The following line should be uncometed before testing on vagrant on your local machine
-    baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
-    //baseAPIURL: 'http://172.16.0.3:4000/api/',
-    //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
-    //baseAPIURL: 'http://beta-aqbvfzrbbx.elasticbeanstalk.com/api/',
+    /*
+    PRODUCTION URL
+        baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
+    */
+    /*
+    LOCAL URL
+
+    */
+    baseAPIURL: 'http://172.16.0.3:4000/api/',
+    /*
+    LIVETESTER URL
+        baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
+    */
+
 
     //FRONT END SERVER URL
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     //
     //The following line should be uncometed before testing on vagrant on your local machine
-    //frontEndURL: 'http://172.16.0.2:3000/',
+    frontEndURL: 'http://172.16.0.2:3000/',
     //
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-    frontEndURL: 'http://wizio.co/',
+    //frontEndURL: 'http://wizio.co/',
 
 
 

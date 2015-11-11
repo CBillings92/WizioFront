@@ -94,9 +94,11 @@ angular.module('UnitApp')
                 //create the markers for the map
                 var markers = MapFct.makeMarkers($scope.map);
             });
-
-            //WAITLIST for the apartment
             $scope.waitlist = function(){
+                alert('Feature still under development and coming soon!');
+            };
+            //WAITLIST for the apartment
+            /*$scope.waitlist = function(){
                 //check if token is expired, if so route to login
                 if(TokenSvc.checkExp()){
                     TokenSvc.deleteToken();
@@ -114,7 +116,7 @@ angular.module('UnitApp')
                 modalInstanceWaitlist.result.then(function(result){
                     $state.go('Account.Dashboard.Main');
                 });
-            };
+            };*/
             //LOAD APARTMENT DATA end
             /*$scope.apply = function() {
 
