@@ -36,11 +36,11 @@ angular.module('CampaignApp')
                         alert('CANCELLED');
                     });
                 } else {
-                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md');
+                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'sm');
 
                     modalInstanceSignup.result.then(function(result) {
                         if (result === 'ok') {
-                            var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'md');
+                            var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
 
                             modalInstanceUploadForm.result.then(function(result) {
                                 if (result === 'ok') {

@@ -15,7 +15,7 @@ angular.module('MainApp')
 
 
     //LIVETESTER URL
-        baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL

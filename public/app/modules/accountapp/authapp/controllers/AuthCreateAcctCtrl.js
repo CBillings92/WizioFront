@@ -15,6 +15,9 @@ angular.module('AccountApp')
                     $scope.user.accountType = 'local';
                     $scope.user.userType = 1;
                     UserRegistrationSvc.saveUser($scope.user, function(data) {
+                        if(data.status === "ERR"){
+                            alert("Email already in use! Please try another or login");
+                        }
                         var rerouteURL = RerouteGetSetSvc.get();
                         if(rerouteURL.length !== 0){
                             return $location.path(rerouteURL);

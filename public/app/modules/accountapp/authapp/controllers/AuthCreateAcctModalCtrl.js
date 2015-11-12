@@ -12,7 +12,12 @@ angular.module('AccountApp')
                 $scope.user.accountType = 'local';
                 $scope.user.userType = 1;
                 UserRegistrationSvc.saveUser($scope.user, function(data) {
-                    return $modalInstance.close('ok');
+                    if(data.status === "ERR"){
+                        alert("Email already in use! Please try another or login");
+                    } else {
+                        return $modalInstance.close('ok');
+                    }
+
                 });
             } else {
                 alert("Passwords don't match!");

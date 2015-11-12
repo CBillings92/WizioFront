@@ -52,7 +52,7 @@ angular.module('UnitApp')
                         id: id
                     });
                 } else {
-                    alert('Error: Apartment not loaded properly');
+                    alert('Error: Apartment not loaded properly. Please try searching again');
                 }
             };
 

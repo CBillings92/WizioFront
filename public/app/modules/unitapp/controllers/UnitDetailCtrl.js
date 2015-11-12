@@ -79,10 +79,13 @@ angular.module('UnitApp')
 
 
 
-                var user = TokenSvc.getToken();
-                if(user !== 'No Token' && user !== null && user !== 'undefined'){
+                var user = TokenSvc.decode();
+                console.dir(user);
+                if(user && user !== 'No Token' && user !== 'undefined'){
                     user = TokenSvc.decode();
-                    var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
+                    if(user.waitlists.length > 0){
+                        var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
+                    }
                 }
 
                 $sessionStorage.apartmentSelected = $scope.apartment;

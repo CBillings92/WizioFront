@@ -125,7 +125,7 @@ angular.module('SharedFactoryApp')
                         position: new google.maps.LatLng(unitData.latitude, unitData.longitude),
                         title: unitData.hiddenAddress
                     });
-                    marker.content = '<div class="infoWindowContent"> <a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'"> <img class="pull-left "'+"src = http://img.youtube.com/vi/"+unitData.Assignments[0].youtubeId+"/0.jpg " + ' style="width:160px;height:120px;"</img></div>';
+                    marker.content = '<div class="infoWindowContent"> <a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'"> <img class="pull-left "'+"src =http://img.youtube.com/vi/"+unitData.Assignments[0].youtubeId+"/0.jpg " + ' style="width:160px;height:120px;"</img></div>';
                     var infoWindow = new google.maps.InfoWindow();
                     google.maps.event.addListener(marker, 'click', function() {
                         infoWindow.setContent('<p><a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'">' + marker.title + '</p>' + marker.content);
