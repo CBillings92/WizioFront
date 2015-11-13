@@ -4,9 +4,10 @@ angular.module('AccountApp')
         '$state',
         '$facebook',
         '$location',
+        '$modal',
         'UserRegistrationSvc',
         'RerouteGetSetSvc',
-        function($scope, $state, $facebook, $location, UserRegistrationSvc, RerouteGetSetSvc) {
+        function($scope, $state, $facebook, $location, $modal, UserRegistrationSvc, RerouteGetSetSvc) {
 
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
@@ -29,6 +30,25 @@ angular.module('AccountApp')
                 }
 
             };
+            console.dir($modal);
+            $scope.login = function(){
+                var modal = function(templateUrl, controller, size) {
+                    var modalInstance = $modal.open({
+                        templateUrl: templateUrl,
+                        controller: controller,
+                        size: size
+                    });
+                    return modalInstance;
+                };
+            var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'AuthLogin.html', 'AuthLoginCtrl', 'lg');
+
+            modalInstanceUploadForm.result.then(function(result) {
+                if (result === 'ok') {
+                    alert('success!');
+                }
+            }, function() {
+            });
+        };
             /*$scope.createFacebookUser = function(){
                     $facebook.login().then(function(data){
                         switch(data.status){

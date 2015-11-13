@@ -33,10 +33,9 @@ angular.module('CampaignApp')
                             alert('success!');
                         }
                     }, function() {
-                        alert('CANCELLED');
                     });
                 } else {
-                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'sm');
+                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md');
 
                     modalInstanceSignup.result.then(function(result) {
                         if (result === 'ok') {
@@ -47,11 +46,24 @@ angular.module('CampaignApp')
 
                                 }
                             }, function() {
-                                alert('CANCELLED');
+                            });
+                        } else if (result === 'login') {
+                            var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
+
+                            modalInstanceLoginForm.result.then(function(result){
+                                if(result === 'ok') {
+                                    var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
+
+                                    modalInstanceUploadForm.result.then(function(result) {
+                                        if (result === 'ok') {
+
+                                        }
+                                    }, function() {
+                                    });
+                                }
                             });
                         }
                     }, function() {
-                        alert('CANCELED');
                     });
 
                 }

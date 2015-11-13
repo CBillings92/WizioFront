@@ -10,12 +10,12 @@ angular.module('MainApp')
     */
 
     //LOCAL URL
-    //baseAPIURL: 'http://172.16.0.3:4000/api/',
+    baseAPIURL: 'http://172.16.0.3:4000/api/',
 
 
 
     //LIVETESTER URL
-    baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
+    //baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL

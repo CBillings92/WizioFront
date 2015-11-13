@@ -178,9 +178,6 @@ angular.module('MainApp', [
                 //HELPER FUNCTION: Check if to-state requires login and if so
                 //what userType it requires for access.
                 function assignToStateReqs(){
-                    console.dir(toState);
-                    console.dir(toState.data);
-                    console.dir(toState.data.requireLogin);
                     if (toState && toState.data.requireLogin === true) {
                         requireLogin = true;
                         requestedStateUserType = toState.data.userType;
