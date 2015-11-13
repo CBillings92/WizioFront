@@ -1,23 +1,13 @@
-<div class="container-fluid">
+<div class="container-fluid" style="padding:10px;">
     <div class="row">
         <center>
-            <h4>Have an account already? Login here:</h4>
-            <center>
-                <input class="btn btn-success btn-lg" for='createAcct' ng-click="login()" type='button' value="login">
-            </center>
+            <h4>Have an account already?</h4>
+            <input class="btn btn-success" for='createAcct' ng-click="login()" type='button' value="Sign in">
         </center>
-        <form ng-submit="setUserObj()">
+        <form ng-submit="setUserObj()" style="padding-top:10px;">
             <center select="">
                 <h1>Signup</h1>
             </center>
-            <div class="col-lg-offset-1 col-md-10 form-group">
-                <div class='form-group'>
-                    <center style="padding-top:10px;">
-                        <!--<button ng-click="createAcct()" class="btn btn-warning">Create Account</button>-->
-                        <!--<a href="" class="btn btn-success btn-lg" ng-click="createFacebookUser()">Sign up with Facebook</a> &nbsp;&nbsp;-->
-                    </center>
-                </div>
-            </div>
             <div class="col-lg-offset-1 col-md-10 form-group">
                 <label class='control-label'>
                     <h4>First Name:</h4>
@@ -52,7 +42,7 @@
             <input class="form-control" name="password" ng-minlength="6" ng-model="user.passwordConfirm" required type="password"/>
         </div>
         <!-- form-group -->
-        <div class="col-lg-offset-1 col-md-10">
+        <div class="col-lg-offset-1 col-md-10" style="padding-bottom: 10px; margin-bottom:10px;">
             <center>
                 <input class="btn btn-success btn-lg" for='createAcct' type='submit'>
             </center>
