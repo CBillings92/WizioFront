@@ -30,7 +30,6 @@ angular.module('AccountApp')
                 }
 
             };
-            console.dir($modal);
             $scope.login = function(){
                 var modal = function(templateUrl, controller, size) {
                     var modalInstance = $modal.open({
