@@ -14,14 +14,14 @@ angular.module('MainApp')
 
 
     //LIVETESTER URL
-    baseAPIURL: 'http://liveTester-yg2en8awjg.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     //
     //The following line should be uncometed before testing on vagrant on your local machine
-    frontEndURL: 'http://cbFrontTest-hxksmjd6ja.elasticbeanstalk.com/',
+    frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
     //
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
