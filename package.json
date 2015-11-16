@@ -27,5 +27,6 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "should": "^7.1.1"
   }
 }
