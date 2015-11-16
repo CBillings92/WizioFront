@@ -7,8 +7,8 @@ angular.module('MainApp')
     /*
     PRODUCTION URL
 
-    */
-     baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/'
+    */                  
+    baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //LOCAL URL
     //baseAPIURL: 'http://172.16.0.3:4000/api/',
 
