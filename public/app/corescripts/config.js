@@ -8,20 +8,21 @@ angular.module('MainApp')
     PRODUCTION URL
 
     */
+     baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/'
     //LOCAL URL
     //baseAPIURL: 'http://172.16.0.3:4000/api/',
 
 
 
     //LIVETESTER URL
-    baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
+    //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
     //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
     //
     //The following line should be uncometed before testing on vagrant on your local machine
-    frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
+    frontEndURL: 'http://beta.wizio.co/',
     //
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
