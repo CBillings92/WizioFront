@@ -1,12 +1,43 @@
-body {
-  font: 100% Helvetica, sans-serif;
-  background-color: #efefef; }
-
-h3 {
+h2 {
   color: black; }
 
-span {
-  color: blue; }
+#navbarlogo {
+  width: 8em;
+  margin-left: 10%; }
+
+#landingpagelogo {
+  padding-top: 5px;
+  width: 12em;
+  position: relative;
+  z-index: 2; }
+
+button.nav-search {
+  background-color: white;
+  color: #FA9A29;
+  border-color: #FA9A29; }
+
+#landing-title {
+  color: black;
+  text-align: center; }
+
+h2 {
+  color: #6F6F72;
+  text-align: center;
+  margin: 0; }
+
+#divider {
+  height: 50px; }
+
+h4 {
+  color: #6F6F72; }
+
+#subtitlelanding {
+  color: #6F6F72;
+  text-align: center;
+  margin: 0; }
+
+#about-header {
+  color: orange; }
 
 h1 {
   color: black; }
