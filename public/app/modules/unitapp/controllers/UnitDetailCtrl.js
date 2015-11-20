@@ -94,29 +94,46 @@ angular.module('UnitApp')
                 //create the markers for the map
                 var markers = MapFct.makeMarkers($scope.map);
             });
-            $scope.waitlist = function(){
-                alert('Feature still under development and coming soon!');
-            };
             //WAITLIST for the apartment
-            /*$scope.waitlist = function(){
+            $scope.waitlist = function(){
                 //check if token is expired, if so route to login
                 if(TokenSvc.checkExp()){
                     TokenSvc.deleteToken();
                     RerouteGetSetSvc.set($location.path());
                     alert('Please login');
-                    return $state.go('Login');
-                }
-                //store the current apartment in sessionStorage with the
-                //appropriate session storage variable
-                FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                //Create a modal instance with the modal helper function with the correct template and controller
-                var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
 
-                //on modal instance close/button click go to user dashboard
-                modalInstanceWaitlist.result.then(function(result){
-                    $state.go('Account.Dashboard.Main');
-                });
-            };*/
+                    var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
+
+                    modalInstanceLoginForm.result.then(function (result) {
+                        if(result === 'ok'){
+                            //store the current apartment in sessionStorage with the
+                            //appropriate session storage variable
+                            FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
+                            //Create a modal instance with the modal helper function with the correct template and controller
+                            var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
+
+                            //on modal instance close/button click go to user dashboard
+                            modalInstanceWaitlist.result.then(function(result){
+                                $state.go('Account.Dashboard.Main');
+                            });
+                        }
+                    });
+                } else {
+                    //store the current apartment in sessionStorage with the
+                    //appropriate session storage variable
+                    FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
+                    //Create a modal instance with the modal helper function with the correct template and controller
+                    var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
+
+                    //on modal instance close/button click go to user dashboard
+                    modalInstanceWaitlist.result.then(function(result){
+                        $state.go('Account.Dashboard.Main');
+                    });
+                }
+            };
+            $scope.setupTour = function(){
+                alert("Feature still under development and is due to arrive in our full product launch!");
+            };
             //LOAD APARTMENT DATA end
             /*$scope.apply = function() {
 

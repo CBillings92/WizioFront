@@ -408,7 +408,7 @@ angular.module('MainApp')
                         },
 
                         response: function(response){
-                            if(response.data.token){
+                            if(typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token){
 
                                 TokenSvc.storeToken(response.data.token);
                                 return response;

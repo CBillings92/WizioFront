@@ -28,7 +28,7 @@ angular.module('MainApp')
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-    fonrtEndUrl: 'http://172.16.0.2:3000/',
+    frontEndURL: 'http://172.16.0.2:3000/',
 
 
 
