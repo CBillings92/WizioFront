@@ -6,7 +6,16 @@ $light-orange: #F7AA63;
 $gray: #706f72;
 $red: #BA5125;
 $blue: #7A9DD1;
+$blue-gray: #8E9BB2;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 300px;
+}
 
 h1 {
   font-family: "Roboto Slab";
@@ -29,7 +38,7 @@ h4 {
   font-size: 18px;
 }
 
-p {
+p, li {
   font-family: "Roboto";
   font-size: 16px;
 }
