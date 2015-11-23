@@ -6,11 +6,17 @@ $light-orange: #F7AA63;
 $gray: #706f72;
 $red: #BA5125;
 $blue: #7A9DD1;
+$blue-gray: #8E9BB2;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
   font-family: "Roboto";
   -webkit-font-smoothing:antialiased;
-  margin: 0 auto;
+  margin: 0 auto 300px;
 }
 
 
@@ -38,7 +44,7 @@ h5 {
   line-height: 1.2;
 }
 
-p {
+p, li {
   font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;

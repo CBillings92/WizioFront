@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
     "should": "^7.1.1"
   }
 }
