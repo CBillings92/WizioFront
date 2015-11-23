@@ -1,7 +1,7 @@
 <nav class="navbar" ng-class="{transparent_nav: false}" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle" data-target="#wizio-navigation" data-toggle="collapse" type="button">
+      <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -14,27 +14,29 @@
     </div><!--navbar header -->
 
 <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="wizio-navigation">
+    <div class="collapse navbar-collapse" id="navbar">
 
-      <form id="navbar-search" class="navbar-form navbar-left hidden-sm" ng-submit="search()" role="search">
-        <div class="form-group">
-            <input class="nav-search" 
-                   placeholder="Search by area"
-                   ng-model="searchString" 
-                   type="text" 
-                   typeahead-loading="loadingLocations" 
-                   typeahead-min-length="5" 
-                   typeahead-no-results="noResults" 
-                   typeahead="address for address in getLocation($viewValue)">
-            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-            <div ng-show="noResults">
-                <i class="glyphicon glyphicon-remove"></i> No Results Found
-            </div>
-        </div>
-        <button class="btn btn-search" ng-click="search()" type="submit">
-          <i class="fa fa-search"></i>
-        </button>
-      </form>
+      <ul class="nav navbar-nav navbar-left">  
+        <form id="navbar-search" class="navbar-form navbar-left hidden-sm" ng-submit="search()" role="search">
+          <div class="form-group">
+              <input class="nav-search" 
+                     placeholder="Search by area"
+                     ng-model="searchString" 
+                     type="text" 
+                     typeahead-loading="loadingLocations" 
+                     typeahead-min-length="5" 
+                     typeahead-no-results="noResults" 
+                     typeahead="address for address in getLocation($viewValue)">
+              <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+              <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+              </div>
+          </div>
+          <button class="btn btn-search" ng-click="search()" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li ng-click="goAbout()" ng-class="{active: false}">
@@ -60,8 +62,10 @@
         
       </ul>
 
+
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-<!-- /.navbar-collapse -->
-  </div><!-- close container -->
+    <!-- close container -->
 </nav>
 <!--End Navbar-->

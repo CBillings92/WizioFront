@@ -1,0 +1,37 @@
+<div class="">
+    <div class="" style="margin-bottom:15px;">
+        <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View"> </input>
+        <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View">
+    </div>
+    <div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
+        <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
+            <article class="media">
+                <img class="pull-left" ng-src="http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)"></img>
+                <h2 class="full-width">
+                    <div class="wrap">
+                        <h1>{{apartment.hiddenAddress}}</h1>
+                    </div>
+                    <!-- wrap -->
+                </h2>
+
+                <div class="media-body">
+                    </br>
+                    </br>
+                    <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
+                    </br>
+                    </br>
+                </div>
+                <!-- media body -->
+            </article>
+        </div>
+        <!-- col-md-8 -->
+    </div>
+</div>
+<div ng-show="mapshow">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
+<!-- row -->
+</br>
