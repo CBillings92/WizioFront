@@ -27,6 +27,7 @@
 .home-hero__text {
   position: absolute;
   top: 50%;
+  z-index: 1000;
   // have to account for the search bar height too
   transform: translateY(calc(-50% - 40px));
   color: $white;
@@ -181,7 +182,7 @@
     margin-bottom: 190px;
   }
 }
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 990px) {
   .home-pin {
     top: -308px;
     height: 857px;
@@ -206,22 +207,22 @@
 }
 @media (min-width: 991px) and (max-width: 1259px) {
   .home-pin {
-    background-size: 1306px;
-    background-position: right -80px top;
+    background-size: 1304px;
+    background-position: right -113px top;
     top: -335px;
   }
   .home-pin__orange {
     height: 603px;
-    margin-top: 309px;
+    margin-top: 331px;
   }
   .home-pin__orange__right,
   .home-pin__orange__left {
     background-color: $light-orange;
     height: 100%;
-    width: calc(50% - 648px);
+    width: calc(50% - 575px);
   }
   .home-pin__orange__right {
-    float: right;
+    display: none;
   }
   .home-pin__orange__left {
     float: left;
@@ -245,13 +246,13 @@
 }
 @media (min-width: 1260px) {
   .home-pin {
-    top: -391px;
-    background-size: 1306px;
+    top: -329px;
+    background-size: 1307px;
     background-position: center;
   }
   .home-pin__orange {
     height: 603px;
-    margin-top: 390px;
+    margin-top: 328px;
   }
   .home-pin__orange__right,
   .home-pin__orange__left {
