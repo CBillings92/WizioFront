@@ -115,7 +115,7 @@
   margin-top: -10px;
   position: relative;
   z-index: 100;
-  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("../viewtemplates/images/home/floor_and_shoes.jpg");
+  background-image: url("../viewtemplates/images/home/homepage_bottom.jpg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -243,22 +243,27 @@
       padding-left: 60px;
     }
   }
-}
-@media (min-width: 1260px) {
+  .home-landlord {
+    margin-top: -62px;
+    padding-top: 240  px;
+  }
+// }
+// @media (min-width: 1260px) {
   .home-pin {
-    top: -329px;
-    background-size: 1307px;
+    top: -330px;
+    background-size: 1296px;
     background-position: center;
+    height: 932px;
   }
   .home-pin__orange {
-    height: 603px;
-    margin-top: 328px;
+    height: 602px;
+    margin-top: 330px;
   }
   .home-pin__orange__right,
   .home-pin__orange__left {
     background-color: $light-orange;
     height: 100%;
-    width: calc(50% - 648px);
+    width: calc(50% - 644px);
   }
   .home-pin__orange__right {
     float: right;
