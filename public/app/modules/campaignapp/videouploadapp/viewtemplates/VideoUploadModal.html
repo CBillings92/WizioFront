@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding:20px;">
     <div class="row">
         <h1>Upload Apartment</h1>
-        <form ng-submit='setUserObject()' style='margin-bottom:20px;'>
+        <form ng-submit='upload()' style='margin-bottom:20px;'>
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6 col-md-offset-2">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-4">
                             <label class="control-label">Lease end date:</label>
-                            <input type="date" class="form-control" uib-datepicker-popup ng-model="dt" is-open="status.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+                            <input input="text" class="form-control" ng-model="apartment.leaseActualEnd" ng-required="true" placeholder="08/31/2016" />
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <div class="container-fluid background-fixer bckcolor">
     <div class="demo-section row ">
-        <div id="signup-section" class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;">
+        <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" id="signup-section" style="background-color:white;">
             <h1 style="padding-top:10px; padding-bottom:10px;">Welcome to the Wizio beta!</h1>
             <div class="hidden-xs hidden-sm">
                 <center>
@@ -22,10 +22,11 @@
 
                     </center>
                     <p>
-                        <h4 class="subtitlelanding">  All you have to do is make a video tour of your apartment using your smart phone and upload it to wizio. Click the button below to learn more:</p>
+                        <h4 class="subtitlelanding">
+                            All you have to do is make a video tour of your apartment using your smart phone and upload it to wizio. Click the button below to learn more:</p>
                     </h3>
                     <center>
-                        <button type="button" name="name" class="btn larger-button" value="Learn More & Upload!" ng-click="goToUploadPage()" >Learn More & Upload!</button>
+                        <button class="btn larger-button" name="name" ng-click="goToUploadPage()" type="button" value="Learn More & Upload!">Learn More & Upload!</button>
                     </center>
                 </div>
             </div>
@@ -51,35 +52,39 @@
                     <div class=" col-md-12 col-lg-10 col-sm-12 center-block col-centered">
                         <form ng-submit="search()" role="search">
                             <div class="col-md-6 col-lg-6 col-sm-6 form-group">
-                                <input style="min-width: 150px;" popover-trigger="focus" popover="Try typing 'Boston', hit tab then enter!" class="form-control" placeholder="Search Here" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"></input>
+                                <input class="form-control" ng-model="searchString" placeholder="Search Here" popover-trigger="focus" popover="Try typing 'Boston', hit tab then enter!" style="min-width: 150px;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"></input>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-6">
-                                <button style="display:inline-block; min-width: 150px;" class="btn btn-success nav-search" ng-click="search()" type="button">Find your place</button>
+                                <button class="btn btn-success nav-search" ng-click="search()" style="display:inline-block; min-width: 150px;" type="button">Find your place</button>
                                 <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                                 <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    No Results Found
                                 </div>
                             </div>
-                    </div>
-                    </form>
-                </div>
-        </div>
-        <div style="divider">&nbsp
-        </div>
+                            <div class="">
 
-        <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div style="divider">&nbsp
+            </div>
+
+            <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
                 <center>
                     <h1>What is Wizio?</h1>
                 </center>
                 <p>
                     <h4 style="color:#6F6F72;">Founded in January of 2015, Wizio is an online apartment marketplace utilizing crowd-sourced data to automate the rental search, application, and leasing process. The software as a service provides virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
-                    </h4>
-        </div>
-        <div style="divider">&nbsp
+                </h4>
+            </div>
+            <div style="divider">&nbsp
+            </div>
+
+            <!--descrip section -->
         </div>
 
-        <!--descrip section -->
     </div>
-
-</div>
-<!--container-->
+    <!--container-->

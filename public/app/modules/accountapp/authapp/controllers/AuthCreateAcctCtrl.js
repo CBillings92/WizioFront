@@ -18,6 +18,7 @@ angular.module('AccountApp')
                     UserRegistrationSvc.saveUser($scope.user, function(data) {
                         if(data.status === "ERR"){
                             alert("Email already in use! Please try another or login");
+                            return $state.go('Account.Create');
                         }
                         var rerouteURL = RerouteGetSetSvc.get();
                         if(rerouteURL.length !== 0){
@@ -30,7 +31,6 @@ angular.module('AccountApp')
                 }
 
             };
-            console.dir($modal);
             $scope.login = function(){
                 var modal = function(templateUrl, controller, size) {
                     var modalInstance = $modal.open({

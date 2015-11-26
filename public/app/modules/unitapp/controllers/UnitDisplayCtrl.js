@@ -26,16 +26,16 @@ angular.module('UnitApp')
             };
             $scope.$on('searchFinished', function(event, data) {
                 for(i = 0; i < data.length; i++){
-                    var left = Math.floor((data[i].apartment.concatAddr.charCodeAt(5) /19) + 4);
-                    var right = Math.floor((data[i].apartment.concatAddr.charCodeAt(3) /19) + 4);
-                    var houseNumInt = parseInt((data[i].apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                    var left = Math.floor((data[i].concatAddr.charCodeAt(5) /19) + 4);
+                    var right = Math.floor((data[i].concatAddr.charCodeAt(3) /19) + 4);
+                    var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
                     var houseNumLow = houseNumInt - left;
                     if(houseNumInt < 15){
                         houseNumLow = 1;
                     }
                     var houseNumHigh = houseNumInt + right;
                     var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                    data[i].apartment.hiddenAddress = houseNumRange + data[i].apartment.concatAddr.replace(/^\d+/, '');
+                    data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
                 }
                 $scope.apartmentSearch = data;
                 //display maps and markers
