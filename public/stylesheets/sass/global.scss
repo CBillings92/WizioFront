@@ -114,7 +114,8 @@ p, li {
 
   &:hover,
   &:focus,
-  &:active {
+  &:active,
+  &:active:hover {
     background-color: darken($blue, 5%);
   }
 }
