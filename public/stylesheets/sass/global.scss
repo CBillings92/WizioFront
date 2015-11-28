@@ -80,7 +80,9 @@ p {
 }
 
 /* override bootstrap */
-$navbar-margin-bottom: 0px;
+.navbar {
+  margin-bottom: 0px;
+}
 
 .btn-success {
   border: none;
