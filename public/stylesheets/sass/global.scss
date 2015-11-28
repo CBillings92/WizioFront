@@ -90,7 +90,8 @@ $navbar-margin-bottom: 0px;
 
   &:hover,
   &:focus,
-  &:active {
+  &:active,
+  &:active:hover {
     background-color: darken($blue, 5%);
   }
 }
