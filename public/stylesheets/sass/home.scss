@@ -45,10 +45,10 @@
 
 .home-search {
   position: relative;
+  z-index: 500;
+  margin-top: -80px;
   height: 80px;
   width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 .home-search__background {
@@ -171,7 +171,7 @@
   .home-pin {
     position: absolute;
     width: 100%;
-    top: -335px;
+    top: -331px;
     background-image: url("../viewtemplates/images/home/pin.svg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -185,7 +185,7 @@
 }
 @media (min-width: 768px) and (max-width: 990px) {
   .home-pin {
-    top: -308px;
+    top: -305px;
     height: 857px;
     background-size: 1200px;
     background-position: right -80px top;
@@ -213,7 +213,7 @@
   .home-pin {
     background-size: 1304px;
     background-position: right -113px top;
-    top: -335px;
+    top: -331px;
   }
   .home-pin__orange {
     height: 603px;
