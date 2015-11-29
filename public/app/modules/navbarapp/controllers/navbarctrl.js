@@ -10,18 +10,23 @@ angular.module('NavbarApp')
         'SmartSearchSvc',
         'WizioConfig',
         function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, WizioConfig) {
-            var modal = function(templateUrl, controller, size) {
+            var modal = function(templateUrl, controller, size, accountType) {
                 var modalInstance = $modal.open({
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size
+                    size: size,
+                    resolve: {
+                        data: function(){
+                            return accountType;
+                        }
+                    }
                 });
                 return modalInstance;
             };
             $scope.goToLogin = function() {
                 //$state.go('Login');
 
-                modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
+                var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
 
                 modalInstanceLoginForm.result.then(function(result) {
 
@@ -59,7 +64,7 @@ angular.module('NavbarApp')
             };
             $scope.goAccoutCreate = function() {
                 //create the Account Type modal
-                var modalInstanceAccountType = modal(WizioConfig.AccountAuthViewsURL + 'AccountTypeModal.html', 'AccountTypeModalCtrl', 'md');
+                var modalInstanceAccountType = modal(WizioConfig.AccountAuthViewsURL + 'AccountTypeModal.html', 'AccountTypeModalCtrl', 'md', 'Tenant');
 
                 modalInstanceAccountType.result.then(function(result) {
                     //if the user selects to sign up as a tenant, load the account creation form
@@ -78,7 +83,19 @@ angular.module('NavbarApp')
                             }
                         });
                     } else if (result === "landlordSignup") {
+                        var modalLLSignup= modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md', 'Landlord');
+                        //if the user selects the login button instead of creating an account, bring them to login modal
+                        modalLLSignup.result.then(function(result) {
+                            if (result === 'login') {
+                                var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
 
+                                modalInstanceLoginForm.result.then(function(result) {
+                                    if (result === 'ok') {
+
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
 
