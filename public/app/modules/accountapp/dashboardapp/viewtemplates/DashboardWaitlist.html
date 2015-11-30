@@ -6,6 +6,27 @@
         <h3>
             {{waitlist[$index].Apartment.concatAddr}}
         </h3>
+        <h4>
+            Beds: {{waitlist[$index].Apartment.beds}}
+        </h4>
+        <h4>
+            Baths: {{waitlist[$index].Apartment.Baths}}
+        </h4>
+        <h4>
+            Living Spaces: {{waitlist[$index].Apartment.livingSpaces}}
+        </h4>
+        <h4>
+            Pets: {{waitlist[$index].Apartment.pets}}
+        </h4>
+        <h4>
+            Cost per Month: {{waitlist[$index].Apartment.costPerMonth}}
+        </h4>
+        <h4>
+            Utilities Included: {{waitlist[$index].Apartment.utilities}}
+        </h4>
+        <h4>
+            Pets Allowed: {{waitlist[$index].Apartment.pets}}
+        </h4>
         <div class="" ng-repeat="item in waitlist">
             <ul>
                 <li>{{item.ContactEmail}}</li>
