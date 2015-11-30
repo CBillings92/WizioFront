@@ -223,7 +223,7 @@ angular.module('MainApp')
                         leftSplit: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
                             controllerProvider: function($rootScope){
-                                if($rootScope.userType === 1){
+                                if($rootScope.userType === 1 || $rootScope.userType === 0){
                                     return "DashboardWaitlistCtrl";
                                 }
                             }

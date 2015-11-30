@@ -9,7 +9,7 @@ angular.module('AccountApp')
         };
         //go to claimApartments form
         $scope.claimApartments = function(){
-            $state.go('')
+            $state.go('Unit.Claim');
         };
         //indexNum comes fromt HTML form
         //open email now modal. Shoud allow landlords to select who to email
