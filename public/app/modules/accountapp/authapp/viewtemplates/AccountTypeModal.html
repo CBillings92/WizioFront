@@ -1,10 +1,7 @@
-<div class="container">
-    <div class="row" style="padding:30px;">
-        <h1>Account Type</h1>
-        <center>
-            <input type="button" name="name" class="btn btn-lg btn-large col-md-5" style="height:125px; width:200px;" value="Tenant" ng-click="tenantSignup()">
-            <input type="button" name="name" class="btn btn-lg btn-large col-md-5" style="height:125px; width:200px;" value="Landlord" ng-click="landlordSignup()">
-        </center>
-
+<div class="container-fluid acct-modal">
+    <h2>Sign Up</h2>
+    <div class="account-type-buttons">
+        <button class="btn" ng-click="tenantSignup()">I am a potential Tenant who is looking to find my perfect place</button>
+        <button class="btn" ng-click="landlordSignup()">I am a Real Estate Professional looking to add listings to your site</button>
     </div>
 </div>

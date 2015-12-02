@@ -1,0 +1,88 @@
+$account-padding: 30px 0;
+
+.acct-modal-btn {
+	border: 0;
+	padding: 4px 10px;
+	border-radius: 20px;
+	text-transform: uppercase;
+	font-weight: 400;
+
+	&__orange {
+		background: $orange;
+	}
+}
+
+.acct-modal {
+	
+	h2 {
+		font-size: 2rem;
+		color: $gray;
+	}
+
+	&-controls {
+		max-width: 220px;
+		margin: 0 auto;
+		padding: $account-padding;
+
+	}
+
+	.form-control {
+		background: none;
+		box-shadow: none;
+		border-radius: 0;
+		outline: 0;
+		border: 0;
+		border-bottom: 2px solid $gray;
+		padding: 3px 6px;
+		&:focus {
+			color: $orange;
+			border-bottom-color: $orange;
+		}
+	}
+
+}
+
+.login-block {
+
+
+	.forgot-password {
+		text-align: center;
+		font-size: 1.3rem;
+		a:link, a:visited {
+			color: $gray;
+		}
+	}
+
+	.btn {
+		width: 100%;
+		margin: 20px 0;
+	}
+}
+
+.account-type-buttons {
+	margin: $account-padding;
+	text-align: center;
+
+	.btn {
+		width: 40%;
+		border: 2px solid $gray;
+		color: $gray;
+		white-space: normal;
+		background: $white;
+		border-radius: 10px;
+		font-size: 1.6rem;
+		text-align: left;
+		margin-right: 10px;
+		
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover, &:active, &:focus {
+			background: $gray;
+			color: $white;
+		}
+	}
+
+}
+

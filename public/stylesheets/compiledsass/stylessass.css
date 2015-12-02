@@ -5886,7 +5886,7 @@ p, li {
   background-color: #7A9DD1;
   font-weight: 500;
   font-size: 16px; }
-  .btn-success:hover, .btn-success:focus, .btn-success:active {
+  .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success:active:hover {
     background-color: #678fca; }
 
 #navbarlogo {
@@ -5970,10 +5970,11 @@ div[class^='color__box'], div[class*=' color__box'] {
   background-color: #8E9BB2;
   padding-top: 40px;
   color: #ffffff; }
-  .footer a {
-    color: #ffffff; }
+  .footer a, .footer h2 {
+    color: #ffffff;
+    font-family: 'Roboto', san-serif; }
   .footer h2 {
-    font-weight: 700; }
+    font-size: 30px; }
   .footer img {
     max-width: 200px; }
   .footer .fa {
@@ -6007,8 +6008,64 @@ div[class^='color__box'], div[class*=' color__box'] {
   .footer {
     height: 700px; } }
 
-h2 {
-  color: black; }
+.acct-modal-btn {
+  border: 0;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  font-weight: 400; }
+  .acct-modal-btn__orange {
+    background: #f79739; }
+
+.acct-modal h2 {
+  font-size: 2rem;
+  color: #706f72; }
+
+.acct-modal-controls {
+  max-width: 220px;
+  margin: 0 auto;
+  padding: 30px 0; }
+
+.acct-modal .form-control {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid #706f72;
+  padding: 3px 6px; }
+  .acct-modal .form-control:focus {
+    color: #f79739;
+    border-bottom-color: #f79739; }
+
+.login-block .forgot-password {
+  text-align: center;
+  font-size: 1.3rem; }
+  .login-block .forgot-password a:link, .login-block .forgot-password a:visited {
+    color: #706f72; }
+
+.login-block .btn {
+  width: 100%;
+  margin: 20px 0; }
+
+.account-type-buttons {
+  margin: 30px 0;
+  text-align: center; }
+  .account-type-buttons .btn {
+    width: 40%;
+    border: 2px solid #706f72;
+    color: #706f72;
+    white-space: normal;
+    background: #ffffff;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    text-align: left;
+    margin-right: 10px; }
+    .account-type-buttons .btn:last-child {
+      margin-right: 0; }
+    .account-type-buttons .btn:hover, .account-type-buttons .btn:active, .account-type-buttons .btn:focus {
+      background: #706f72;
+      color: #ffffff; }
 
 #navbarlogo {
   width: 8em;

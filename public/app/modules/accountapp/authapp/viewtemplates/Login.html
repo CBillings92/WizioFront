@@ -1,33 +1,19 @@
-<div class="container">
-    <div class='row'>
-        <form class='col-md-6 col-sm-6'>
-            <center>
-                <h1>Login:</h1>
-            </center>
-            <div class='form-group'>
-                <label class='control-label'>
-                    <h4>Email:</h4>
-                </label>
-                <input type='text' ng-model='email' class='form-control col-md-6'>
+<div class="container-fluid acct-modal">
+    <form class="login-block">
+        <h2>Log In</h2>
+        <div class="acct-modal-controls">
+            <div class="form-group">
+                <input type="text" ng-model="email" placeholder="Email" class="form-control" />
             </div>
-            <div class='form-group'>
-                <label class='control-label'>
-                    <h4>Password:</h4>
-                </label>
-                <input type='password' ng-model='password' class="form-control">
+            <div class="form-group">
+                <input type="password" ng-model="password" placeholder="Password" class="form-control" />
             </div>
-            <div class='form-group'>
-                <!--<button ng-click="createAcct()" class="btn btn-warning">Create Account</button>-->
-                <a href="" class="btn btn-success btn-lg nav-search" ng-click="requestLogin()">Login</a> &nbsp;&nbsp;
-                <a href="#/sendresetpassemail" style="color:#6F6F72">forgot password?</a>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg acct-modal-btn acct-modal-btn__orange" ng-click="requestLogin()">Log In</button>
+                <p class="forgot-password"><a href="#/sendresetpassemail">Forgot password?</a></p>
             </div>
-            <div class='form-group'>
-                <!--<button ng-click="createAcct()" class="btn btn-warning">Create Account</button>-->
-                <!--<a href="" class="btn btn-success btn-lg" ng-click="facebookLogin()">Login with Facebook</a>--> &nbsp;&nbsp;
-            </div>
-
-            <!--<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-            </fb:login-button>-->
-        </form>
-    </div>
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+        </div>
+    </form>
 </div>
