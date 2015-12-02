@@ -1,3 +1,5 @@
+$orange-transparancy-hover: 0.9;
+
 .about-wrapper {
 	position: relative;
 	width: 100%;
@@ -28,8 +30,12 @@
 		padding: 50px 0;
 
 		&__heading {
-			max-width: 60%;
+			max-width: 80%;
 			word-break: keep-all;
+		}
+
+		&__subheading {
+			font-size: 20px;
 		}
 
 		@media (min-width: $screen-sm-min) {
@@ -53,6 +59,10 @@
 				left: 0;
 				right: 0;
 				@include vertical-center-transform();
+			}
+
+			&__subheading {
+				font-size: 27px;
 			}
 
 		}
@@ -80,8 +90,8 @@
 			}
 
 			@media (min-width: $screen-md-min) {
-				bottom: 34%;
-				right: 2%;
+				bottom: 35%;
+				right: 1.78%;
 				transform: scale(2);
 			}
 
@@ -153,6 +163,7 @@
 			@media (min-width: $screen-md-min) {
 				&:before {
 					font-size: 12rem;
+					margin-top: -21px;
 				}
 
 				padding-left: 80px;
@@ -220,7 +231,7 @@
 				left: 0;
 				right: 0;
 				bottom: 0;
-				background: rgba($orange, 0.7);
+				background: rgba($orange, $orange-transparancy-hover);
 
 				.outline-btn {
 					display: block;
