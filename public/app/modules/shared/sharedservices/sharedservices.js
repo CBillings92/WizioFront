@@ -165,7 +165,7 @@ angular.module('SharedServiceApp')
                 backdrop: true,
                 keyboard: true,
                 modalFade: true,
-                templateUrl: "/public/app/modules/accountapp/authapp/viewtemplates/Login.html"
+                templateUrl: "/public/app/modules/shared/viewtemplates/defaultmodal.html"
             };
 
             var modalOptions = {
