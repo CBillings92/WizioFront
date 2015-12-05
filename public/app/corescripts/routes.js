@@ -15,8 +15,11 @@ angular.module('MainApp')
                   controller: 'FooterCtrl'
             };
             var trueRequiredLogin = {
+                requireLogin: true
+            };
+            var trueRequiredLandlord = {
                 requireLogin: true,
-                userType: 1
+                userType: 2
             };
             var trueRequiredAdmin = {
                 requireLogin: true,
@@ -207,19 +210,23 @@ angular.module('MainApp')
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controllerProvider: function($rootScope) {
-                                //CHANGE-NEEDED: Implement user types -CB
-                                if ($rootScope.userType == 1) {
-                                    return 'DashboardUserInfoCtrl';
-                                } else {
-                                    return 'DashboardUserInfoCtrl';
+                            controller: 'DashboardUserInfoCtrl'
+                        },
+                        midHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
+                            controllerProvider: function($rootScope){
+                                if($rootScope.userType === 2){
+                                    return "DashboardLLUnitListCtrl";
                                 }
                             }
-
                         },
                         leftSplit: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
-                            controller: "DashboardWaitlistCtrl"
+                            controllerProvider: function($rootScope){
+                                if($rootScope.userType === 1 || $rootScope.userType === 0){
+                                    return "DashboardWaitlistCtrl";
+                                }
+                            }
                         },/*
                         rightSplit: {
                             templateUrl: '',
@@ -228,7 +235,6 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-
             .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {
@@ -342,6 +348,16 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('Unit.Claim', {
+                    url: '/claim',
+                    views: {
+                        'UnitMain': {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitClaimForm.html',
+                            controller: 'UnitClaimFormCtrl'
+                        }
+                    },
+                    data: trueRequiredLandlord
                 })
                 .state('Campaign', {
                     url: '/campaign',

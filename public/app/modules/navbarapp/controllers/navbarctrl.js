@@ -8,23 +8,37 @@ angular.module('NavbarApp')
         'ApartmentSearchSvc',
         'AuthFct',
         'SmartSearchSvc',
+        'ModalSvc',
         'WizioConfig',
-        function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, WizioConfig) {
-            var modal = function(templateUrl, controller, size) {
-                var modalInstance = $modal.open({
+        function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+            var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
+                return {
+                    closeButtonText: closeButtonText,
+                    actionButtonText: actionButtonText,
+                    headerText: headerText,
+                    bodyText: bodyText,
+                };
+            };
+            var modalDefaults = function(templateUrl, controller, accountType) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size
-                });
-                return modalInstance;
+                    resolve: {
+                        data: function() {
+                            return accountType;
+                        }
+                    }
+                };
             };
             $scope.goToLogin = function() {
-                //$state.go('Login');
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
 
-                modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
-
-                modalInstanceLoginForm.result.then(function(result) {
-
+                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                    return;
                 });
             };
             $scope.search = function() {
@@ -53,35 +67,52 @@ angular.module('NavbarApp')
                 $state.go('About');
             };
 
-            $scope.goBlog = function(val) {
-                $state.go('Blog.List');
-
-            };
+            $scope.goBlog = function(val) {};
             $scope.goAccoutCreate = function() {
-                //create the Account Type modal
-                var modalInstanceAccountType = modal(WizioConfig.AccountAuthViewsURL + 'AccountTypeModal.html', 'AccountTypeModalCtrl', 'md');
 
-                modalInstanceAccountType.result.then(function(result) {
-                    //if the user selects to sign up as a tenant, load the account creation form
+                //shorten the authViews URL variable so we don't need to type wizioconfig.yada every time...
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                /*
+                    create variables by using local function above that will be used to
+                    create the modals with the correct templateUrl, controller, and if
+                    applicable, data
+                */
+                var modalDefaultsAccountType = modalDefaults(authViews + 'AccountTypeModal.html', 'AccountTypeModalCtrl');
+
+                var modalDefaultsTenantSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Tenant');
+
+                var modalDefaultsLandlordSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Landlord');
+
+                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
+                //show modal for choosing account type
+                ModalSvc.showModal(modalDefaultsAccountType, {}).then(function(result) {
+                    /*
+                    if they choose "Tenant", show account create form and pass 'Tenant' to controller as data
+                    */
                     if (result === 'tenantSignup') {
-                        var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md');
-                        //if the user selects the login button instead of creating an account, bring them to login modal
-                        modalInstanceSignup.result.then(function(result) {
-                            if (result === 'login') {
-                                var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
-
-                                modalInstanceLoginForm.result.then(function(result) {
-                                    if (result === 'ok') {
-
-                                    }
+                        ModalSvc.showModal(modalDefaultsTenantSignup, {}).then(function(result) {
+                            //if they choose to login instead of create an account, load login modal
+                            if (result === "login") {
+                                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                    return;
                                 });
+                            } else {
+                                return;
                             }
                         });
-                    } else if (result === "landlordSignup") {
-
+                    } else if (result === 'landlordSignup') {
+                        ModalSvc.showModal(modalDefaultsLandlordSignup, {}).then(function(result) {
+                            if (result === 'login') {
+                                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                    return;
+                                });
+                            } else {
+                                return;
+                            }
+                        });
                     }
                 });
-
 
             };
             $scope.goAccountDashboard = function() {
