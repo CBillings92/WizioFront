@@ -7,18 +7,29 @@
         <li>Enter All Unit Numbers at That Address</li>
         <li>Search!</li>
     </ol>
-    <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-    <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-    <div ng-show="noResults">
-        <i class="glyphicon glyphicon-remove"></i>
-        No Results Found
-    </div>
-    <label class="control-label" for="">Unit Num</label>
-    <input class="form-control" name="name" ng-model="unitNum" type="text" value="">
-    <button class="btn btn-success" href="" ng-click="search()" type="button">
-        <span class="glyphicon glyphicon-search"></span>
-        <span class="hidden-xs hidden-sm">Search Apartments to Enter Site</span>
-    </button>
+    <form class="" action="index.html" method="post">
+        <div class="" ng-repeat="address in apartmentObjArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+            <label class="control-label" style="padding-top:10px;">Apartment Address</label>
+            <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+            <div ng-show="noResults">
+                <i class="glyphicon glyphicon-remove"></i>
+                No Results Found
+            </div>
+            <label class="control-label" style="padding-top:10px;" for="">Unit Number(s)</label>
+            <div class="form-group">
+                <div class="" ng-repeat = "unit in address.unitNumArray track by $index">
+                    <div class="col-md-12" style="padding:10px;">
+                        <label class="control-label">Unit Num:</label>
+                        <input type="text" class="form-control col-md-4" ng-model="address.unitNumArray[$index]">
+                    </div>
+                </div>
+            </div>
+            <button type="button" name="button" class="btn" ng-click="addUnit($index)">Add Single Unit</button>
+            <button type="button" name="button" class="btn" ng-click="addRange($index)">Add Range Of Units</button>
+        </div>
+        <button type="button" class="btn" ng-click="addAddress()" style="margin-top:10px;">Add Address</button>
+    </form>
 </div>
 <div class="modal-footer">
     <button class="btn" data-ng-click="modalOptions.close()" type="button">{{modalOptions.closeButtonText}}</button>

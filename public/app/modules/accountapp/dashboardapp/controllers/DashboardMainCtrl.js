@@ -19,7 +19,7 @@ angular.module('AccountApp')
                 headerText: "Apartment Claims",
                 bodyText: "We notice you haven't claimed any apartments yet. Let us walk you through the process!"
             };
-            var modalDefaults = function(size, templateUrl, controller, data) {
+            var modalDefaults = function(size, templateUrl, controller, modalData) {
                 return {
                     backdrop: true,
                     keyboard: true,
@@ -28,8 +28,8 @@ angular.module('AccountApp')
                     templateUrl: templateUrl,
                     controller: controller,
                     resolve: {
-                        data: function() {
-                            return data;
+                        modalData: function() {
+                            return modalData;
                         }
                     }
                 };
@@ -41,7 +41,7 @@ angular.module('AccountApp')
                         actionButtonText: "Search",
                     };
                     var UnitViews = WizioConfig.UnitViewsURL;
-                    var modalDefaultsUnitSearch = modalDefaults('md', UnitViews + 'UnitClaimSearch.html', 'UnitClaimSearchCtrl');
+                    var modalDefaultsUnitSearch = modalDefaults('md', UnitViews + 'UnitClaimSearch.html', 'UnitClaimSearchCtrl', modalOptionsUnitSearch);
 
                     ModalSvc.showModal(modalDefaultsUnitSearch, modalOptionsUnitSearch).then(function(result){
 

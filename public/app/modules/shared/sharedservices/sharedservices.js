@@ -142,7 +142,7 @@ angular.module('SharedServiceApp')
                     }
                 }).then(function(response) {
                     if ($state.current.name === "Unit.Claim") {
-                        FlexGetSetSvc.set(response, 'ApartmentClaims', true);
+                        ApartmentClaimGetSetSvc.set(response.data, 'ApartmentClaims');
                     } else {
                         FlexGetSetSvc.set(response);
                     }
@@ -182,6 +182,8 @@ angular.module('SharedServiceApp')
             };
 
             this.show = function(customModalDefaults, customModalOptions) {
+                console.dir(customModalDefaults);
+                console.dir(customModalOptions);
                 var tempModalDefaults = {};
                 var tempModalOptions = {};
 
