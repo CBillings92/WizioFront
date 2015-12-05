@@ -220,11 +220,11 @@ angular.module('MainApp')
                         leftSplit: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
                             controller: "DashboardWaitlistCtrl"
-                        },/*
+                        },
                         rightSplit: {
-                            templateUrl: '',
-                            controller: ''
-                        }*/
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
+                            controller: "DashboardFavoriteCtrl"
+                        }
                     },
                     data: trueRequiredLogin
                 })

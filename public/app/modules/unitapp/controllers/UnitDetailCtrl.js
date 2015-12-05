@@ -13,6 +13,7 @@ angular.module('UnitApp')
         'ProfileResource',
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
+        'FavoriteResource',
         'WizioConfig',
         function(
             $scope,
@@ -28,6 +29,7 @@ angular.module('UnitApp')
             ProfileResource,
             FlexGetSetSvc,
             RerouteGetSetSvc,
+            FavoriteResource,
             WizioConfig
         ) {
 
@@ -94,11 +96,11 @@ angular.module('UnitApp')
                 //create the markers for the map
                 var markers = MapFct.makeMarkers($scope.map);
             });
-            $scope.waitlist = function(){
-                alert('Feature still under development and coming soon!');
-            };
-            //WAITLIST for the apartment
             /*$scope.waitlist = function(){
+                alert('Feature still under development and coming soon!');
+            }; */
+            //WAITLIST for the apartment
+            $scope.waitlist = function(){
                 //check if token is expired, if so route to login
                 if(TokenSvc.checkExp()){
                     TokenSvc.deleteToken();
@@ -116,9 +118,25 @@ angular.module('UnitApp')
                 modalInstanceWaitlist.result.then(function(result){
                     $state.go('Account.Dashboard.Main');
                 });
-            };*/
+            };
+            //FAVORITE for the apartment
+            $scope.favorite = function(){
+                console.dir("HELLO");
+                var user = TokenSvc.decode();
+                if (user !== "No Token"){
+                    var favObj = {
+                        UserId: user.id,
+                        ApartmentId: $scope.apartment.id
+                    }
+                    FavoriteResource.save(favObj, function(response){
+
+                    });
+                }
+
+
+            };
             //LOAD APARTMENT DATA end
-            /*$scope.apply = function() {
+            $scope.apply = function() {
 
                 checkToken();
 
@@ -168,6 +186,6 @@ angular.module('UnitApp')
                     });
 
                 }
-            };*/
+            };
         }
     ]);

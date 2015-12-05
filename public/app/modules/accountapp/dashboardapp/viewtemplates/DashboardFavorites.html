@@ -1,0 +1,12 @@
+<div class="">
+    <h2>Favorites:</h2>
+    <h3 ng-hide="favoriteExist">You currently don't have any favorites</h3>
+</div>
+    <div class="" ng-repeat="favorite in favorites track by $index">
+        <h3>
+            {{favorite[$index].Favorite.concatAddr}}
+        </h3>
+        <div class="" style="padding:10px;">
+            <button class="btn btn-success" ng-click="removeFromFavorite($index)">remove this favorite</button>
+        </div>
+    </div>
