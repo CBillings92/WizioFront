@@ -84,6 +84,7 @@ angular.module('CampaignApp')
                                 })
                                 .on('httpUploadProgress', function(progress) {
                                     $scope.uploadProgress = Math.round(progress.loaded / progress.total * 100);
+                                    console.dir(Math.round(progress.loaded / progress.total * 100));
                                     $scope.$digest();
                                 });
                         } else {

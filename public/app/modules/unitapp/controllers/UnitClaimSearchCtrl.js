@@ -16,16 +16,15 @@ angular.module('UnitApp')
         $scope.apartmentObjArray[0] = new Apartment(null, null);
 
         $scope.getLocation = function(val) {
-            console.dir(SmartSearchSvc.smartSearch());
+            console.dir(SmartSearchSvc.smartSearch(val));
             return SmartSearchSvc.smartSearch(val);
         };
 
         $scope.addUnit = function(apartmentIndex){
             $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
         };
-
         $scope.addRange = function(apartmentIndex){
-            
+
             for(var i = 0; i < $scope.highNum; i++){
                 $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
             }
