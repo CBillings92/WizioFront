@@ -144,7 +144,6 @@ angular.module('MainApp', [
             var tokenIsExp = null;
             if(token){
                 tokenIsExp = TokenSvc.checkExp();
-                console.dir(TokenSvc.checkExp());
             }
 
             //if no token exists, assign isLoggedIn to false
