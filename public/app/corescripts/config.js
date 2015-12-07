@@ -9,9 +9,9 @@ angular.module('MainApp')
 
     */
     //PRODUCTION
-    //baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //LOCAL URL
-    baseAPIURL: 'http://172.16.0.3:4000/api/',
+    //baseAPIURL: 'http://172.16.0.3:4000/api/',
 
 
 
@@ -26,9 +26,9 @@ angular.module('MainApp')
     //frontEndURL: 'http://beta.wizio.co/',
     //
     //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
-    //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
+    frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-    frontEndURL: 'http://172.16.0.2:3000/',
+    //frontEndURL: 'http://172.16.0.2:3000/',
 
 
 
