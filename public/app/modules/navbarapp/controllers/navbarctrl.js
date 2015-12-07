@@ -11,6 +11,7 @@ angular.module('NavbarApp')
         'ModalSvc',
         'WizioConfig',
         function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+            $scope.isCollapsed = false;
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
                     closeButtonText: closeButtonText,

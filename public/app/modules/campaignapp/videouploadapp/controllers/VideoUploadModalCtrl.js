@@ -33,6 +33,10 @@ angular.module('CampaignApp')
                         var bucket = new AWS.S3({
                             params: {
                                 Bucket: "wiziouservideos"
+
+                            },
+                            httpOptions: {
+                                timeout: 1000000000000
                             }
                         });
 
@@ -75,10 +79,11 @@ angular.module('CampaignApp')
 
                                         });
                                         // Reset The Progress Bar
-                                        setTimeout(function() {
+                                        /*setTimeout(function() {
+                                        console.dir("TIMEOUT");
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
-                                        }, 10000);
+                                        }, 100000000);*/
                                         $modalInstance.close('ok');
                                     }
                                 })

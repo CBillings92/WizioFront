@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/">
-                <img style="margin-top:-.6em;" id="navbarlogo" src="/public/viewtemplates/images/logo.png"></img>
+                <img id="navbarlogo" src="/public/viewtemplates/images/logo.png" style="margin-top:-.6em;"></img>
             </a>
         </div>
         <!--navbar header -->
@@ -16,17 +16,59 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left">
-            <li><form class="navbar-form navbar-left" ng-submit="search()" role="search">
-                <div class="form-group">
-                    <input style="display:inline-block; max-width:250px" class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-                    <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                    <div ng-show="noResults">
-                        <i class="glyphicon glyphicon-remove"></i> No Results Found
-                    </div>
-                    <button style="display:inline-block;" class="btn btn-success nav-search" type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </form></li>
-        </ul>
+                <li>
+                    <form class="navbar-form navbar-left" ng-submit="search()" role="search">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block; max-width:250px" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                No Results Found
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li class="drop-down">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Beds
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="drop-down">
+                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Baths
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">1</a>
+                        </li>
+                        <li>
+                            <a href="#">2</a>
+                        </li>
+                        <li>
+                            <a href="#">3</a>
+                        </li>
+                    </ul>
+                </li>
+                <li></li>
+                <li>
+                    <button class="btn btn-success nav-search" style="display:inline-block;" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-click="goHome()">
                     <a href="">Home</a>
@@ -56,4 +98,5 @@
     </div>
     <!-- close container -->
 </nav>
+
 <!--End Navbar-->
