@@ -8,6 +8,26 @@ $red: #BA5125;
 $blue: #7A9DD1;
 $blue-gray: #8E9BB2;
 
+/**
+  Mixins
+**/
+
+@mixin vertical-center-transform() {
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin center-transform() {
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/**
+  Styles
+**/
+
 html {
   position: relative;
   min-height: 100%;
@@ -94,7 +114,8 @@ p, li {
 
   &:hover,
   &:focus,
-  &:active {
+  &:active,
+  &:active:hover {
     background-color: darken($blue, 5%);
   }
 }
