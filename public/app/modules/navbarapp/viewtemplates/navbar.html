@@ -17,56 +17,21 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left">
                 <li>
+                    <a class="" type="button" data-toggle="collapse" data-target="#searchFiltersCollapse" aria-expanded="false" href="#" aria-controls="searchFiltersCollapse">Filters</a>
+                </li>
+                <li>
                     <form class="navbar-form navbar-left" ng-submit="search()" role="search">
                         <div class="form-group">
-                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block; max-width:250px" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
                             <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                             <div ng-show="noResults">
-                                <i class="glyphicon glyphicon-remove"></i>
-                                No Results Found
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
                             </div>
                         </div>
+                        <button class="btn btn-success nav-search" style="display:inline-block;" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </form>
-                </li>
-                <li class="drop-down">
-                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Beds
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="drop-down">
-                    <a aria-expanded="false" aria-haspopup="true" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button">Baths
-                        <span class="caret"></span>
-                    </a>
-
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li></li>
-                <li>
-                    <button class="btn btn-success nav-search" style="display:inline-block;" type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -98,5 +63,41 @@
     </div>
     <!-- close container -->
 </nav>
+<div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="dropdown">
+                <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                    <option value="">Please select</option>
+                    <option value=0>Studio</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5+</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="BathsSelect" id="labelLeft">Baths:</label>
+            <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                <option value="">Please select</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3+</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
+            <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+        </div>
+        <div class="form-group">
+
+            <label class="label-lg" for="maxPriceFilter" style="color: black">Min Price: </label>
+            <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+        </div>
+    </form>
+</div>
 
 <!--End Navbar-->

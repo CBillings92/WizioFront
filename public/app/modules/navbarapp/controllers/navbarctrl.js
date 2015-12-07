@@ -34,6 +34,12 @@ angular.module('NavbarApp')
                     }
                 };
             };
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            }
             $scope.goToLogin = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
@@ -44,7 +50,7 @@ angular.module('NavbarApp')
             };
             $scope.search = function() {
                 //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, function(err, results) {
+                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
                     $state.go('Unit.Display');
                 });
 

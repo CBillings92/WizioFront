@@ -382,7 +382,7 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Campaign.VideoUpload.Main', {
-                    url: '/apartmentshare',
+                    url: '/apartmentupload',
                     views: {
                         "MainContent1": {
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',
