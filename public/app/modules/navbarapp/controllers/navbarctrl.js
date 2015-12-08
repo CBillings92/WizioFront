@@ -14,7 +14,8 @@ angular.module('NavbarApp')
                 var modalInstance = $modal.open({
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size
+                    size: size,
+                    animation: false
                 });
                 return modalInstance;
             };
@@ -75,6 +76,8 @@ angular.module('NavbarApp')
 
                                     }
                                 });
+                            } else if (result == 'backStep') {
+                                $scope.goAccoutCreate();
                             }
                         });
                     } else if (result === "landlordSignup") {

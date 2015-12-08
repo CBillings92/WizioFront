@@ -9,6 +9,11 @@ angular.module('AccountApp')
         function($scope, $state, $modal, $modalInstance, WizioConfig, UserRegistrationSvc) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
+
+            $scope.backStep = function() {
+                $modalInstance.close('backStep');
+            }
+
             $scope.setUserObj = function() {
                 if ($scope.user.password === $scope.user.passwordConfirm) {
                     $scope.user.accountType = 'local';

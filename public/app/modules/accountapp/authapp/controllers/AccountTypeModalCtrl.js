@@ -11,11 +11,12 @@ angular.module('AccountApp')
             });
             return modalInstance;
         };
-        $scope.tenantSignup = function(){
-            $modalInstance.close('tenantSignup');
-        };
-        $scope.landlordSignup = function(){
-            $modalInstance.close('landlordSignup');
+        
+        $scope.singleModel = 2;
+
+        $scope.nextStep = function(accountType) {
+            exitCode = (accountType == 'tenant') ? 'tenantSignup' : 'landlordSignup';
+            $modalInstance.close(exitCode);
         };
     }
 ]);
