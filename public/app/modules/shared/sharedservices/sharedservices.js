@@ -7,7 +7,7 @@ angular.module('SharedServiceApp')
         'SearchResource',
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, $state, ApartmentGetSetSvc, SearchResource, UnitCreateSvc) {
-            function searchApartment(searchString, unitNum, callback) {
+            function searchApartment(searchString, unitNum, filters, callback) {
                 //second argument is apartmentparams, which is null.
                 UnitCreateSvc.parseGeocodeData(searchString, {
                     unitNum: unitNum
@@ -15,6 +15,8 @@ angular.module('SharedServiceApp')
                     if ($state.current.name === 'AdminPanel.Main') {
                         data.adminSearch = true;
                     }
+                    data.filters = filters;
+                    //send POST to /api/search with the apartment data for searching
                     SearchResource.save(data, function(data, status) {
                         //data is array of apartments we get back from search
                         if ($state.current.name !== 'AdminPanel.Main') {

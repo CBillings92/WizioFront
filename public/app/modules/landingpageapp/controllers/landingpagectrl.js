@@ -14,7 +14,12 @@ angular.module('LandingPageApp')
                 tenant: true,
                 broker: false
             };
-
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            }
             $scope.neighborhoods = [
                 'Boston',
                 'Allston',
@@ -40,7 +45,8 @@ angular.module('LandingPageApp')
                 //service in shared/services
                 //pass in search string
                 //SECOND ARG UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, function(err, data){
+                //THIRD ARG FILTERS
+                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, data){
                     return $state.go('Unit.Display');
                 });
 
