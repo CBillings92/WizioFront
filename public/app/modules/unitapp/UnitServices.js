@@ -1,7 +1,7 @@
 angular.module('UnitApp')
     .service('UnitObjectSvc', [
-        function(){
-            var Apartment = function(address, unitNum, beds, baths, livingSpaces, maxResidency, costPerMonth, renovated, pets, youtubeVRID){
+        function() {
+            var Apartment = function(address, unitNum, beds, baths, livingSpaces, maxResidency, costPerMonth, renovated, pets, youtubeVRID) {
                 this.address = address;
                 this.unitNum = unitNum;
                 this.beds = beds;
@@ -13,7 +13,7 @@ angular.module('UnitApp')
                 this.pets = pets;
                 this.youtubeVRID = youtubeVRID;
             };
-            Apartment.prototype.saveToDB = function(){
+            Apartment.prototype.saveToDB = function() {
 
             };
 
@@ -64,7 +64,7 @@ angular.module('UnitApp')
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
                 var searchStringFound = false;
-                if(googleAPIDataRaw.length !== 0){
+                if (googleAPIDataRaw.length !== 0) {
                     searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
                 }
 
@@ -141,14 +141,14 @@ angular.module('UnitApp')
                 //how the data is structured
                 apartmentObj.formattedAddress = googleAPIData[0].formatted_address;
                 //search for street_number in google API data
-                function filterComponents(stringToFind){
-                    return lodash.filter(addressComponents, function(item){
+                function filterComponents(stringToFind) {
+                    return lodash.filter(addressComponents, function(item) {
                         return item.types[0] === stringToFind;
                     });
                 }
 
-                function checkExistance(data, keyName){
-                    if(data && data.length > 0){
+                function checkExistance(data, keyName) {
+                    if (data && data.length > 0) {
                         apartmentObj[keyName] = parseData(data);
                     }
                 }
@@ -177,21 +177,21 @@ angular.module('UnitApp')
                 var latitude = null;
                 var longitude = null;
 
-                if (googleAPIData[0].geometry.hasOwnProperty('location')){
+                if (googleAPIData[0].geometry.hasOwnProperty('location')) {
                     coords = lodash.values(googleAPIData[0].geometry.location);
 
-                } else if (googleAPIData[0].geometry.hasOwnProperty('viewport')){
+                } else if (googleAPIData[0].geometry.hasOwnProperty('viewport')) {
 
-                    if (googleAPIData[0].geometry.viewport.hasOwnProperty('northeast')){
+                    if (googleAPIData[0].geometry.viewport.hasOwnProperty('northeast')) {
                         coords = lodash.values(googleAPIData[0].geometry.viewport.northeast);
 
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('northwest')){
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('northwest')) {
                         coords = lodash.values(googleAPIData[0].geometry.viewport.northwest);
 
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southeast')){
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southeast')) {
                         coords = lodash.values(googleAPIData[0].geometry.viewport.southeast);
 
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southwest')){
+                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southwest')) {
                         coords = lodash.values(googleAPIData[0].geometry.viewport.southwest);
                     }
                 }
@@ -204,11 +204,11 @@ angular.module('UnitApp')
                 //Dear Cameron, I didn't understand why these conditionals were
                 //neccessary, they where breaking the lat long, so I fixed them
                 //I wanted to remove them though.
-                if((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)){
+                if ((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)) {
                     latitude = parseFloat(coords[0].toFixed(6));
                     apartmentObj.latitude = latitude;
                 }
-                if((typeof coords[1]) === (typeof 'Hello') || (typeof coords[1]) === (typeof 3.14)){
+                if ((typeof coords[1]) === (typeof 'Hello') || (typeof coords[1]) === (typeof 3.14)) {
                     longitude = parseFloat(coords[1].toFixed(6));
                     apartmentObj.longitude = longitude;
                 }

@@ -5,8 +5,17 @@ angular.module('SharedServiceApp')
         var dataStore = [];
         var set = function(data, sessionStorageVar){
             if(sessionStorageVar){
-                $sessionStorage[sessionStorageVar] = data;
-                dataStore.push(data);
+                console.dir(sessionStorageVar);
+                console.dir($sessionStorage.sessionStorageVar);
+                if($sessionStorage[sessionStorageVar]){
+                    console.dir("IN HERE");
+                    $sessionStorage[sessionStorageVar].push = data;
+                    dataStore.push(data);
+                } else {
+                    $sessionStorage[sessionStorageVar] = [];
+                    $sessionStorage[sessionStorageVar] = data;
+                    dataStore.push(data);
+                }
                 return;
             }
             dataStore.push(data);

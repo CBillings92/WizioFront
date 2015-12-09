@@ -127,10 +127,11 @@ angular.module('SharedServiceApp')
         '$http',
         '$state',
         'FlexGetSetSvc',
-        function($http, $state, FlexGetSetSvc) {
+        'ApartmentClaimGetSetSvc',
+        function($http, $state, FlexGetSetSvc, ApartmentClaimGetSetSvc) {
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
-            var smartSearch = function(val) {
+            var smartSearch = function(val, searchBarType) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     headers: {
                         searchCheck: true
@@ -141,14 +142,14 @@ angular.module('SharedServiceApp')
                         components: 'country:US|administrative_area:MA'
                     }
                 }).then(function(response) {
-                    if ($state.current.name === "Unit.Claim") {
+                    console.dir(searchBarType);
+                    if (searchBarType === "UnitClaim") {
                         ApartmentClaimGetSetSvc.set(response.data, 'ApartmentClaims');
                     } else {
                         FlexGetSetSvc.set(response);
                     }
                     return response.data.results.map(function(item) {
                         return item.formatted_address;
-
                     });
                 });
             };
