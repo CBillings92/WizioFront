@@ -122,3 +122,28 @@ p {
     background-color: darken($blue, 5%);
   }
 }
+.form-control:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: none;
+}
+.form-control {
+  border: none;
+
+  & :focus {
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: $blue;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: $blue;
+  background-repeat: repeat-x;
+}
