@@ -5,27 +5,31 @@ angular.module("AboutUsApp")
             $scope.members = [{
                 name: "Chris Canal",
                 title: "CEO",
-                picture: "radish.png",
+                picture: "chriscanal.png",
                 twitter: "chriscanal4",
                 linkedin: "chriscanal",
+                email: "",
             }, {
                 name: "Cameron Billings",
                 title: "CTO",
-                picture: "radish.png",
+                picture: "cameronbillings.png",
                 twitter: "CamBillings_",
                 linkedin: "cameronbillings",
+                email: "",
             }, {
-                name: "Devon Billings",
+                name: "Devon Grodkiewicz",
                 title: "COO/CMO",
-                picture: "radish.png",
+                picture: "devongrodkiewicz.jpg",
                 twitter: "dsgrod",
                 linkedin: "dsgrod",
+                email: "",
             }, {
                 name: "Trent Duffy",
-                title: "CMS-Cheif of Misc Stuff",
-                picture: "radish.png",
+                title: "CMS-Chief of Misc Stuff",
+                picture: "trentduffy.png",
                 twitter: "trentolol",
                 linkedin: "trentduffy",
+                email: "",
             }];
 
             
