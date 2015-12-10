@@ -143,14 +143,20 @@
     margin-bottom: 20px;
   }
   .home-blurb__header {
-    margin-bottom: 4px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .home-blurb__desc {
+    margin-bottom: 0;
+    margin-top: 0;
   }
   .home-sign-up {
     margin-bottom: 40px;
   }
   .home-tenants__header {
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 29px;
+    line-height: 1.2;
 
     &:after {
       bottom: -22px;
