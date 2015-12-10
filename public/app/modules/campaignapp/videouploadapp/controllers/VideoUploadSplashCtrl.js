@@ -5,7 +5,8 @@ angular.module('CampaignApp')
         '$modal',
         'WizioConfig',
         'AuthFct',
-        function($scope, $state, $modal, WizioConfig, AuthFct) {
+        'ModalSvc',
+        function($scope, $state, $modal, WizioConfig, AuthFct, ModalSvc) {
             var viewtemplates = {
                 topHorizontal1: true,
                 topHorizontal2: true,
@@ -15,55 +16,85 @@ angular.module('CampaignApp')
             };
             $scope.$emit('ViewTemplatesSelector', viewtemplates);
 
-            var modal = function(templateUrl, controller, size) {
-                var modalInstance = $modal.open({
+            var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
+                return {
+                    closeButtonText: closeButtonText,
+                    actionButtonText: actionButtonText,
+                    headerText: headerText,
+                    bodyText: bodyText,
+                };
+            };
+            var modalDefaults = function(size, templateUrl, controller, accountType) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    size: size,
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size
+                    resolve: {
+                        data: function() {
+                            return accountType;
+                        }
+                    }
+                };
+            };
+            var displayUploadModal = function() {
+                var campaignViews = WizioConfig.CampaignVideoUploadViewsURL;
+
+                var modalDefaultsUploadForm = modalDefaults('lg', campaignViews + 'VideoUploadModal.html', 'VideoUploadModalCtrl');
+                ModalSvc.showModal(modalDefaultsUploadForm, {}).then(function(result) {
+                    switch(result){
+                        case 'ok':
+                            alert('success');
+                            break;
+                        default:
+                            return;
+                    }
                 });
-                return modalInstance;
+            };
+            var displaySignupModal = function(callback){
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                var modalDefaultsSignup = modalDefaults('md', authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl');
+
+                ModalSvc.showModal(modalDefaultsSignup, {}).then(function(result) {
+                    if (result === 'ok') {
+                        callback('ok');
+                    } else {
+                        callback('login');
+                    }
+                });
+            };
+            var displayLoginModal = function(callback){
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                var modalDefaultsLogin = modalDefaults('md', authViews + 'Login.html', 'AuthLoginModalCtrl');
+
+                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result){
+                    callback(result);
+                });
             };
 
             $scope.uploadVideo = function() {
                 if (AuthFct.isLoggedin()) {
-                    var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
+                    displayUploadModal();
 
-                    modalInstanceUploadForm.result.then(function(result) {
-                        if (result === 'ok') {
-                            alert('success!');
-                        }
-                    }, function() {
-                    });
                 } else {
-                    var modalInstanceSignup = modal(WizioConfig.AccountAuthViewsURL + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'md');
-
-                    modalInstanceSignup.result.then(function(result) {
-                        if (result === 'ok') {
-                            var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
-
-                            modalInstanceUploadForm.result.then(function(result) {
-                                if (result === 'ok') {
-
-                                }
-                            }, function() {
-                            });
-                        } else if (result === 'login') {
-                            var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
-
-                            modalInstanceLoginForm.result.then(function(result){
-                                if(result === 'ok') {
-                                    var modalInstanceUploadForm = modal(WizioConfig.CampaignVideoUploadViewsURL + 'VideoUploadModal.html', 'VideoUploadModalCtrl', 'lg');
-
-                                    modalInstanceUploadForm.result.then(function(result) {
-                                        if (result === 'ok') {
-
-                                        }
-                                    }, function() {
-                                    });
-                                }
-                            });
+                    displaySignupModal(function(result){
+                        switch(result){
+                            case 'ok':
+                                displayUploadModal();
+                            break;
+                            case 'login':
+                                displayLoginModal(function(result){
+                                    switch(result){
+                                        case 'ok':
+                                            displayUploadModal();
+                                        break;
+                                        default:
+                                        return;
+                                    }
+                                });
                         }
-                    }, function() {
                     });
 
                 }
