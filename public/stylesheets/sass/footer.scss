@@ -48,6 +48,9 @@
     margin-top: 30px;
 }
 
+body {
+    margin-bottom: 300px; // footer height
+}
 @media (max-width: 767px) {
     /* Set the fixed height of the footer here
        for mobile screens */
