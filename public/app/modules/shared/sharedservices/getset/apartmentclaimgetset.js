@@ -1,19 +1,30 @@
 angular.module('SharedServiceApp')
+//service used for the Apartment Claim process for landlords
+//Standard getter and setter methods found elsewhere. However stores
+//multiple objects received from the google API in a sessionStorage variable
+//instead of just one at a time
 .service('ApartmentClaimGetSetSvc', [
     '$sessionStorage',
     function($sessionStorage){
+        //store
         var dataStore = [];
+        /*
+            data is the results of a google Geocding api Search
+            sessionStorageVar = STRING --- name of the variable to be set in session storage
+        */
         var set = function(data, sessionStorageVar){
+            /*
+                if a session storage variable name was passed in, check to see
+                if that variable has been set yet in session storage. If so, push
+                data into it. Otherwise create the variable than push.
+            */
             if(sessionStorageVar){
-                console.dir(sessionStorageVar);
-                console.dir($sessionStorage.sessionStorageVar);
-                if($sessionStorage[sessionStorageVar]){
-                    console.dir("IN HERE");
-                    $sessionStorage[sessionStorageVar].push = data;
+                if(typeof($sessionStorage[sessionStorageVar]) != 'undefined'){
+                    $sessionStorage[sessionStorageVar].push(data);
                     dataStore.push(data);
                 } else {
                     $sessionStorage[sessionStorageVar] = [];
-                    $sessionStorage[sessionStorageVar] = data;
+                    $sessionStorage[sessionStorageVar].push(data);
                     dataStore.push(data);
                 }
                 return;
