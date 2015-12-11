@@ -65,16 +65,10 @@ angular.module('UnitApp')
             $scope.search = function() {
                 var finalArray = [];
                 for(i = 0; i < $scope.apartmentObjArray.length; i++){
-                    console.dir(i);
-                    console.dir("__________________________________")
                     for(j = 0; j < $scope.apartmentObjArray[i].unitNumArray.length; j++){
                         var apartment = $scope.apartmentObjArray[i].fullApartment;
-                        console.dir(j);
-                        console.dir(apartment.unitNums[j]);
-                        var unitNum = apartment.unitNums[j];
-                        console.dir(unitNum);
-                        apartment.unitNum = unitNum;
-                        console.dir(apartment.unitNums[j]);
+                        console.dir($scope.apartmentObjArray[i].unitNumArray[j]);
+                        apartment.unitNum = $scope.apartmentObjArray[i].unitNumArray[j];
                         console.dir(apartment);
                     }
                     //console.dir(finalArray);
