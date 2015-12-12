@@ -38,7 +38,6 @@
 
     <script type="text/javascript" src="../bower_components/jasmine-core/lib/jasmine-core.js"></script>
 
-
     <!--<script type="text/javascript" src="../public/build/scripts.js"></script>-->
     <!-- ===================================CORE SCRIPTS APP======================================-->
 
@@ -63,6 +62,8 @@
         <!--apartment display controller-->
         <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitDisplayCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/unitapp/main/UnitMainCtrl.js"></script>
+        <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitClaimFormCtrl.js"></script>
+        <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitClaimSearchCtrl.js"></script>
 
     <!-- =================================================================================-->
     <!-- ===================================SHARED APP======================================-->
@@ -70,6 +71,7 @@
         <script type="text/javascript" src="/app/modules/shared/sharedfactories/sharedresources.js"></script>
         <script type="text/javascript" src="/app/modules/shared/sharedservices/sharedservices.js"></script>
         <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/apartmentgetset.js"></script>
+        <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/apartmentclaimgetset.js"></script>
         <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/flexgetset.js"></script>
         <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/reroutegetset.js"></script>
 
@@ -79,14 +81,14 @@
         <script type="text/javascript" src="/app/modules/accountapp/authapp/factories/factories.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/main/AccountMainCtrl.js"></script>
         <!--login controller-->
-        <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthLoginCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthLoginModalCtrl.js"></script>
+        <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AccountTypeModalCtrl.js"></script>
         <!--account creation controller-->
-        <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthCreateAcctCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthCreateAcctModalCtrl.js"></script>
         <!--Dashboard App-->
         <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardMainCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardUserInfoCtrl.js"></script>
+        <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardLLUnitListCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardWaitlistCtrl.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/authapp/factories/services.js"></script>
         <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/resources/resources.js"></script>
@@ -189,7 +191,7 @@
     <!--ACCOUNT JAVASCRIPT END-->
 
     <!--GOOGLE API STUFF-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>  -->
     <!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false" type="text/javascript"></script>  Might not need components-->
 </head>
@@ -228,7 +230,6 @@
 
 <body>
     <div ui-view="navbar">
-
     </div>
     <div ui-view="maincontent">
 

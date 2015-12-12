@@ -166,7 +166,8 @@ angular.module('MainApp', [
             $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
 
                 var requireLogin = null;
-                var requestedStateUserType = null;
+                var adminRequired = null;
+                var landlordRequired = null;
                 //HELPER FUNCTION: Check if user is connected with facebook
                 function checkFBConnection(){
                     if($rootScope.authObjects.facebookConnected === true){
@@ -180,6 +181,11 @@ angular.module('MainApp', [
                 function assignToStateReqs(){
                     if (toState && toState.data.requireLogin === true) {
                         requireLogin = true;
+                        if(toState.data.userType === 0){
+                            adminRequired = true;
+                        } else if (toState.data.userType === 2){
+                            landlordRequired = true;
+                        }
                         requestedStateUserType = toState.data.userType;
                         return;
                     } else {
@@ -217,11 +223,15 @@ angular.module('MainApp', [
                         break;
                         default:
                             $rootScope.isLoggedIn = true;
-                            if(user.userType === requestedStateUserType || user.userType === 0){
-                                return;
-                            } else {
+                            if(adminRequired && user.userType !== 0){
                                 alert('Access Denied');
                                 event.preventDefault();
+                                return;
+                            } else if (landlordRequired && user.userType !== 2) {
+                                alert('Access Denied');
+                                event.preventDefault();
+                                return;
+                            } else {
                                 return;
                             }
                     }

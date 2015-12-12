@@ -1,4 +1,24 @@
 angular.module('UnitApp')
+    .service('UnitObjectSvc', [
+        function(){
+            var Apartment = function(address, unitNum, beds, baths, livingSpaces, maxResidency, costPerMonth, renovated, pets, youtubeVRID){
+                this.address = address;
+                this.unitNum = unitNum;
+                this.beds = beds;
+                this.baths = baths;
+                this.livingSpaces = livingSpaces;
+                this.maxResidency = maxResidency;
+                this.costPerMonth = costPerMonth;
+                this.renovated = renovated;
+                this.pets = pets;
+                this.youtubeVRID = youtubeVRID;
+            };
+            Apartment.prototype.saveToDB = function(){
+
+            };
+
+        }
+    ])
     .service('UnitCreateSvc', [
         'lodash',
         'FlexGetSetSvc',
@@ -121,44 +141,34 @@ angular.module('UnitApp')
                 //how the data is structured
                 apartmentObj.formattedAddress = googleAPIData[0].formatted_address;
                 //search for street_number in google API data
-                var streetNumber = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "street_number";
-                });
-                //search for street in google API data
-                var street = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "route";
-                });
-                //search for locality in google API data
-                var locality = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "locality";
-                });
-                var administrative_area_level_3 = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "administrative_area_level_3";
-                });
-                var state = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "administrative_area_level_1";
-                });
-                var zip = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "postal_code";
-                });
-                var neighborhood = lodash.filter(addressComponents, function(item) {
-                    return item.types[0] === "neighborhood";
-                });
-                if (streetNumber.length > 0 && street.length > 0) {
+                function filterComponents(stringToFind){
+                    return lodash.filter(addressComponents, function(item){
+                        return item.types[0] === stringToFind;
+                    });
+                }
+
+                function checkExistance(data, keyName){
+                    if(data && data.length > 0){
+                        apartmentObj[keyName] = parseData(data);
+                    }
+                }
+
+                var streetNumber = filterComponents("street_number");
+                var street = filterComponents("route");
+                var locality = filterComponents("locality");
+                var administrative_area_level_3 = filterComponents("administrative_area_level_3");
+                var state = filterComponents("state");
+                var neighborhood = filterComponents("neighborhood");
+                var zip = filterComponents("zip");
+
+                if (streetNumber && streetNumber.length > 0 && street.length > 0) {
                     apartmentObj.street = parseData(streetNumber) + " " + parseData(street);
                 }
-                if (neighborhood.length > 0) {
-                    apartmentObj.neighborhood = parseData(neighborhood);
-                }
-                if (locality.length > 0) {
-                    apartmentObj.locality = parseData(locality);
-                }
-                if (administrative_area_level_3.length > 0) {
-                    apartmentObj.administrative_area_level_3 = parseData(administrative_area_level_3);
-                }
-                if(zip.length > 0){
-                    apartmentObj.zip = parseData(zip);
-                }
+                checkExistance(street, "route");
+                checkExistance(neighborhood, "neighborhood");
+                checkExistance(locality, "locality");
+                checkExistance(administrative_area_level_3, "administrative_area_level_3");
+                checkExistance(zip, "zip");
 
                 //HANDLE LATITUDE AND LONGITUDE
                 //convert the google API data geometry object that contains the

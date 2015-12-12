@@ -22,13 +22,16 @@
             <button class="btn btn-success" ng-click="apply()" ng-show="available">Apply For Apartment</button>
             <button class="btn btn-success" ng-click="waitlist()" ng-hide="waitlisted || available">Get on Waitlist</button>
             <button class="btn btn-success" ng-disabled ng-show="waitlisted">You're Waitlisted!</button>
-            <button class="btn btn-success" ng-click="waitlist()">Setup in Person Tour</button>
-            <button class="btn btn-success" ng-click="favorite()" ng-hide="favorited || available">Add to your Favorites</button>
-            <button class="btn btn-success" ng-disabled ng-show="waitlisted" >Added to Favorites!</button>
+            <button class="btn btn-success" ng-click="setupTour()">Setup in Person Tour</button>
+            <button class="btn btn-success" ng-click="favorite()" ng-hide="favorited">Add to your Favorites</button>
+            <button class="btn btn-success" ng-disabled ng-show="favorited" >Added to Favorites!</button>
         </center>
     </br>
 </br>
-<p></br>
+<p>
+    Ranges are applied to apartment addresses for the privacy of those whom currently live there.
+    While going through the application process, you'll receive the information regarding the exact
+    address of the apartment.
 </p>
 </br>
 </div>

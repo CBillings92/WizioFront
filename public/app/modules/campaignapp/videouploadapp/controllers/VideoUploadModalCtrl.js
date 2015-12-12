@@ -12,38 +12,14 @@ angular.module('CampaignApp')
                 return SmartSearchSvc.smartSearch(val);
             };
 
-
-            $scope.toggleMin = function() {
-                $scope.minDate = $scope.minDate ? null : new Date();
-            };
-            $scope.toggleMin();
-            $scope.maxDate = new Date(2020, 5, 22);
-
-            $scope.open = function($event) {
-                $scope.status.opened = true;
-            };
-
-            $scope.setDate = function(year, month, day) {
-                $scope.dt = new Date(year, month, day);
-            };
-
-            $scope.dateOptions = {
-                formatYear: 'yy',
-                startingDay: 1
-            };
-
-            $scope.status = {
-                opened: false
-            };
-
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
             $scope.landlord = {};
             $scope.apartment = {};
             $scope.upload = function() {
-                $scope.apartment.leaseActualEnd = $scope.dt.getMonth() + 1 + "/" + $scope.dt.getDate() + "/" + $scope.dt.getFullYear();
-                UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment){
+                console.dir($scope.apartment);
+                UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment) {
                     UnitResource.save(parsedApartment, function(data, status) {
 
                         //store saved apartment data to use in AssignmentResource
@@ -56,7 +32,11 @@ angular.module('CampaignApp')
                         AWS.config.region = 'us-east-1';
                         var bucket = new AWS.S3({
                             params: {
-                                Bucket:"wiziouservideos"
+                                Bucket: "wiziouservideos"
+
+                            },
+                            httpOptions: {
+                                timeout: 1000000000000
                             }
                         });
 
@@ -72,9 +52,9 @@ angular.module('CampaignApp')
                             var userinfo = TokenSvc.decode();
                             var apartment = $scope.apartmentAddress;
                             apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
-                            var uniqueFileName = userinfo.email + '-' + apartment + "unitNum:" + $scope.apartment.unitNum + "___" + (Math.floor((Math.random() * 80)+10));
+                            var uniqueFileName = userinfo.email + '-' + apartment + "unitNum:" + $scope.apartment.unitNum + "___" + (Math.floor((Math.random() * 80) + 10));
 
-                            
+
                             var params = {
                                 Key: uniqueFileName,
                                 ContentType: $scope.file.type,
@@ -89,20 +69,21 @@ angular.module('CampaignApp')
                                     } else {
                                         // Upload Successfully Finished
                                         toastr.success('File Uploaded Successfully', 'Done');
-                                        
+
                                         var updateData = {
                                             UserId: userinfo.id,
                                             ApartmentId: finalApartmentData.id,
                                             S3VideoId: uniqueFileName
                                         };
-                                        AssignmentResource.save(updateData, function(data, status){
-                                            
+                                        AssignmentResource.save(updateData, function(data, status) {
+
                                         });
                                         // Reset The Progress Bar
-                                        setTimeout(function() {
+                                        /*setTimeout(function() {
+                                        console.dir("TIMEOUT");
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
-                                        }, 10000);
+                                        }, 100000000);*/
                                         $modalInstance.close('ok');
                                     }
                                 })

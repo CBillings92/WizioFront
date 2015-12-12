@@ -94,10 +94,6 @@ angular.module('AccountApp')
                 AuthFct.signin(userData,
                     function(res) {
                         $rootScope.isLoggedIn = true;
-                        var rerouteURL = RerouteGetSetSvc.get();
-                        if (rerouteURL.length !== 0) {
-                            return $location.path(rerouteURL);
-                        }
                         return $modalInstance.close('ok');
 
                     },

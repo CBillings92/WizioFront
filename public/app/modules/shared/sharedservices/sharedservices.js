@@ -7,7 +7,7 @@ angular.module('SharedServiceApp')
         'SearchResource',
         'UnitCreateSvc',
         function($rootScope, $sessionStorage, $state, ApartmentGetSetSvc, SearchResource, UnitCreateSvc) {
-            function searchApartment(searchString, unitNum, callback) {
+            function searchApartment(searchString, unitNum, filters, callback) {
                 //second argument is apartmentparams, which is null.
                 UnitCreateSvc.parseGeocodeData(searchString, {
                     unitNum: unitNum
@@ -15,6 +15,8 @@ angular.module('SharedServiceApp')
                     if ($state.current.name === 'AdminPanel.Main') {
                         data.adminSearch = true;
                     }
+                    data.filters = filters;
+                    //send POST to /api/search with the apartment data for searching
                     SearchResource.save(data, function(data, status) {
                         //data is array of apartments we get back from search
                         if ($state.current.name !== 'AdminPanel.Main') {
@@ -65,7 +67,7 @@ angular.module('SharedServiceApp')
         function($rootScope, $localStorage, jwtHelper) {
             //decode auth token for front end. Retrieves user information
             var decode = function() {
-                if($localStorage.token && !jwtHelper.isTokenExpired($localStorage.token)){
+                if ($localStorage.token && !jwtHelper.isTokenExpired($localStorage.token)) {
                     return jwtHelper.decodeToken($localStorage.token);
                 } else {
                     return "No Token";
@@ -125,8 +127,9 @@ angular.module('SharedServiceApp')
     ])
     .service('SmartSearchSvc', [
         '$http',
+        '$state',
         'FlexGetSetSvc',
-        function($http, FlexGetSetSvc) {
+        function($http, $state, FlexGetSetSvc) {
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
             var smartSearch = function(val) {
@@ -140,7 +143,11 @@ angular.module('SharedServiceApp')
                         components: 'country:US|administrative_area:MA'
                     }
                 }).then(function(response) {
-                    FlexGetSetSvc.set(response);
+                    if ($state.current.name === "Unit.Claim") {
+                        ApartmentClaimGetSetSvc.set(response.data, 'ApartmentClaims');
+                    } else {
+                        FlexGetSetSvc.set(response);
+                    }
                     return response.data.results.map(function(item) {
                         return item.formatted_address;
 
@@ -151,5 +158,55 @@ angular.module('SharedServiceApp')
             return {
                 smartSearch: smartSearch
             };
+        }
+    ])
+    .service('ModalSvc', [
+        '$modal',
+        function($modal) {
+            var modalDefaults = {
+                backdrop: true,
+                keyboard: true,
+                modalFade: true,
+                templateUrl: "/public/app/modules/shared/viewtemplates/defaultmodal.html"
+            };
+
+            var modalOptions = {
+                closeButtonText: "Close",
+                actionButtonText: "OK",
+                headerText: "Proceed?",
+                bodyText: "perform this action"
+            };
+
+            this.showModal = function(customModalDefaults, customModalOptions) {
+                if (!customModalDefaults) customModalDefaults = {};
+                customModalDefaults.backdrop = 'static';
+                return this.show(customModalDefaults, customModalOptions);
+            };
+
+            this.show = function(customModalDefaults, customModalOptions) {
+                console.dir(customModalDefaults);
+                console.dir(customModalOptions);
+                var tempModalDefaults = {};
+                var tempModalOptions = {};
+
+                //Map angular-ui modal custom defaults to modal defaults defined in service
+                angular.extend(tempModalDefaults, modalDefaults, customModalDefaults);
+
+                //Map modal.html $scope custom properties to defaults defined in service
+                angular.extend(tempModalOptions, modalOptions, customModalOptions);
+                if (!tempModalDefaults.controller) {
+                    tempModalDefaults.controller = function($scope, $modalInstance) {
+                        $scope.modalOptions = tempModalOptions;
+                        $scope.modalOptions.ok = function(result) {
+                            $modalInstance.close(result);
+                        };
+                        $scope.modalOptions.close = function(result) {
+                            $modalInstance.dismiss('cancel');
+                        };
+                    };
+                }
+                return $modal.open(tempModalDefaults).result;
+            };
+
         }
     ]);
