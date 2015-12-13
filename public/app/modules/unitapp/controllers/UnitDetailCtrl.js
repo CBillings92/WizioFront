@@ -66,6 +66,7 @@ angular.module('UnitApp')
                 });
                 //assign result (apartment) to $scope
                 $scope.apartment = result;
+                console.dir($scope.apartment);
 
                 var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) /19) + 4);
                 var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) /19) + 4);

@@ -22,7 +22,7 @@ angular.module('CampaignApp')
                 var userinfo = TokenSvc.decode();
                 var apartment = ApartmentModel.build($scope.apartment);
 
-                $scope.apartment.description = new DescriptionModel(
+                apartment.description = new DescriptionModel(
                     userinfo.id,
                     null,
                     $scope.apartment.description.DescriptionText);
