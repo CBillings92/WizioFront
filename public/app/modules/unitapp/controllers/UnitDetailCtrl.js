@@ -101,14 +101,17 @@ angular.module('UnitApp')
                 var markers = MapFct.makeMarkers($scope.map);
 
                 //check to see if apartment has been favorited
-/*
-                if (user) {
-                        if (lodash.find(user.favortes.ApartmentId, $scope.apartment.id)) {
+
+                if (user && user.favorites.length !== 0) {
+                    console.dir(user);
+                        if (lodash.find(user.favorites, $scope.apartment.id) !== -1) {
                              $scope.favorited = true;
                          } else {
                              $scope.favorited = false;
                          }
-                }*/
+                } else {
+                    $scope.favorited = false;
+                }
 
 
 
