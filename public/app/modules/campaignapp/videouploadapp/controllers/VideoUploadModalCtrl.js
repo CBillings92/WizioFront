@@ -13,7 +13,6 @@ angular.module('CampaignApp')
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
-            console.dir(instance);
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
@@ -23,7 +22,7 @@ angular.module('CampaignApp')
                 var userinfo = TokenSvc.decode();
                 var apartment = ApartmentModel.build($scope.apartment);
 
-                $scope.apartment.description = new DescriptionModel(
+                apartment.description = new DescriptionModel(
                     userinfo.id,
                     null,
                     $scope.apartment.description.DescriptionText);

@@ -65,6 +65,7 @@ angular.module('UnitApp')
                 $scope.apartment.costPerMonth = checkForNulls($scope.apartment.costPerMonth);
                 $scope.apartment.renovated = checkForNulls($scope.apartment.renovated);
                 $scope.apartment.pets = checkForNulls($scope.apartment.pets);
+                console.dir(result);
 
                 var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) /19) + 4);
                 var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) /19) + 4);
