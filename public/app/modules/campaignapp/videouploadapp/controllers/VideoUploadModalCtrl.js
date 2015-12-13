@@ -13,7 +13,6 @@ angular.module('CampaignApp')
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
-            console.dir(instance);
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
@@ -27,8 +26,6 @@ angular.module('CampaignApp')
                     userinfo.id,
                     null,
                     $scope.apartment.description.DescriptionText);
-
-                    console.dir(apartment);
 
                 UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, apartment, function(err, parsedApartment) {
                     UnitResource.save(parsedApartment, function(data, status) {
