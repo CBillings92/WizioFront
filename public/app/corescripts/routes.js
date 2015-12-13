@@ -206,6 +206,7 @@ angular.module('MainApp')
                                     return "DashboardLLUnitListCtrl";
                                 }
                             }
+                            //controller: 'DashboardLLUnitListCtrl'
                         },
                         leftSplit: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',

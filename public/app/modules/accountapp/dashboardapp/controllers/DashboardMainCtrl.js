@@ -3,9 +3,8 @@ angular.module('AccountApp')
         '$scope',
         '$timeout',
         'TokenSvc',
-        'ModalSvc',
         'WizioConfig',
-        function($scope, $timeout, TokenSvc, ModalSvc, WizioConfig) {
+        function($scope, $timeout, TokenSvc, WizioConfig) {
             //get account/user info from the currently active token.
             var accountInfo = TokenSvc.decode();
             //set timeout to wait for child controllers to load.
@@ -13,7 +12,7 @@ angular.module('AccountApp')
                 $scope.$broadcast('AccountInfoBroadcast', accountInfo);
             });
             //if no units are claimed, start claim process
-            var modalOptions = {
+            /*var modalOptions = {
                 closeButtonText: "Close",
                 actionButtonText: "OK",
                 headerText: "Apartment Claims",
@@ -47,7 +46,7 @@ angular.module('AccountApp')
 
                     });
                 }
-            });
+            });*/
             //get all the other apartment information
         }
     ]);
