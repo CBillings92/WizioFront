@@ -16,6 +16,8 @@ angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
 angular.module('FooterApp', []);
 
+angular.module('Models', []);
+
 
 //LOAD 'MainApp' ANGULAR module
 //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -37,6 +39,7 @@ angular.module('MainApp', [
         'SharedServiceApp',
         'UnitApp',
         'FooterApp',
+        'Models',
         'ui.router',
         'ngFacebook',
         'ngStorage',
