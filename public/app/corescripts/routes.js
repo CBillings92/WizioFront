@@ -134,19 +134,6 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('Login', {
-                    url: '/login',
-
-                    views: {
-                        "navbar": navbar,
-                       "footer": footer,
-                        "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + 'Login.html',
-                            controller: 'AuthLoginCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
                 .state('SendResetEmail', {
                     url: '/sendresetpassemail',
                     views: {
@@ -441,7 +428,7 @@ angular.module('MainApp')
                                 }
                                 alert('Authentication Failed');
                             }
-                            $injector.get('$state').transitionTo('Login');
+                            //$injector.get('$state').transitionTo('Login');
                             return $q.reject(response);
                         }
 

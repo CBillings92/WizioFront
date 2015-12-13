@@ -12,7 +12,6 @@ angular.module('AccountApp')
             //UserId: user.id
         };
         ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
-            console.dir(data);
             var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
             $scope.waitlists = lodash.values(buildingWaitlists);
             if($scope.waitlists.length > 0){

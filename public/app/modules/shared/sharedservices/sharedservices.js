@@ -184,8 +184,6 @@ angular.module('SharedServiceApp')
             };
 
             this.show = function(customModalDefaults, customModalOptions) {
-                console.dir(customModalDefaults);
-                console.dir(customModalOptions);
                 var tempModalDefaults = {};
                 var tempModalOptions = {};
 

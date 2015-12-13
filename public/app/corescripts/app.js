@@ -176,7 +176,9 @@ angular.module('MainApp', [
                     if($rootScope.authObjects.facebookConnected === true){
                         facebookAuth();
                     } else {
-                        $state.go('Login');
+                        alert('Authentication Failed');
+                        event.preventDefault();
+                        return;
                     }
                 }
                 //HELPER FUNCTION: Check if to-state requires login and if so
