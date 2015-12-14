@@ -16,7 +16,6 @@
             <!--desktop hidden-->
         </div>
         <!-- col-md-3 -->
-
         <div clss="col-lg-6"></br>
         <center>
             <button class="btn btn-success" ng-click="apply()" ng-show="available">Apply</button>
@@ -40,66 +39,69 @@
 <div class="row">
 <div class="col-md-6">
 <ul class="list-group">
-<li class="list-group-item">
-<span class="badge">{{apartment.hiddenAddress}}</span>
-Address
-</li>
-<li class="list-group-item">
-<span class="badge">{{apartment.neighborhood}}</span>
-Neighborhood
-</li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.beds}}</span>
-Beds
-</li>
-</ul>
-<!-- ul -->
-</div>
-<!-- col-md-6 -->
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.hiddenAddress}}</span>
+                    Address
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.neighborhood}}</span>
+                    Neighborhood
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.beds}}</span>
+                    Beds
+                </li>
+            </ul>
+            <!-- ul -->
+        </div>
+        <!-- col-md-6 -->
 
-<div class="col-md-6">
-<ul class="list-group">
-<li class="list-group-item">
-<span class="badge">{{apartment.baths}}</span>
-Baths
-</li>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.baths}}</span>
+                    Baths
+                </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.livingSpaces}}</span>
-Living Spaces
-</li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.livingSpaces}}</span>
+                    Living Spaces
+                </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.maxResidency}}</span>
-Max Residency
-</li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.maxResidency}}</span>
+                    Max Residency
+                </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.costPerMonth}}</span>
-Cost Per Month
-</li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.costPerMonth}}</span>
+                    Cost Per Month
+                </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.renovated}}</span>
-Newly Renovated
-</li>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.renovated}}</span>
+                    Newly Renovated
+                </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.pets}}</span>
-Pet Policy
-</li>
-</ul>
-<!-- list group -->
-</div>
-<!-- col-md-6 -->
-</div>
-<!-- row -->
-<div>
-<div id="map"></div>
-<div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-<a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-</div>
-</div>
+                <li class="list-group-item">
+                    <span class="badge">{{apartment.pets}}</span>
+                    Pet Policy
+                </li>
+            </ul>
+            <!-- list group -->
+        </div>
+        <!-- col-md-6 -->
+    </div>
+    <!-- row -->
+    <div>
+        <div id="map"></div>
+        <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+            <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+        </div>
+    </div>
 </div>
 <!--container -->

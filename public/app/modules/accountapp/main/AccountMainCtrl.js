@@ -1,7 +1,7 @@
 angular.module('AccountApp')
-.controller('AccountMainCtrl',[
+.controller('AccountMainCtrl', [
     '$scope',
     function($scope){
-
+        console.dir("HELLO");
     }
 ]);

@@ -16,6 +16,8 @@ angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
 angular.module('FooterApp', []);
 
+angular.module('Models', []);
+
 
 //LOAD 'MainApp' ANGULAR module
 //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -37,6 +39,7 @@ angular.module('MainApp', [
         'SharedServiceApp',
         'UnitApp',
         'FooterApp',
+        'Models',
         'ui.router',
         'ngFacebook',
         'ngStorage',
@@ -159,90 +162,5 @@ angular.module('MainApp', [
                 $rootScope.userType = TokenSvc.decode().userType;
                 $rootScope.isLoggedIn = true;
             }
-
-
-
-            //Watch for angular app state changes
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-
-                var requireLogin = null;
-                var adminRequired = null;
-                var landlordRequired = null;
-                //HELPER FUNCTION: Check if user is connected with facebook
-                function checkFBConnection(){
-                    if($rootScope.authObjects.facebookConnected === true){
-                        facebookAuth();
-                    } else {
-                        $state.go('Login');
-                    }
-                }
-                //HELPER FUNCTION: Check if to-state requires login and if so
-                //what userType it requires for access.
-                function assignToStateReqs(){
-                    if (toState && toState.data.requireLogin === true) {
-                        requireLogin = true;
-                        if(toState.data.userType === 0){
-                            adminRequired = true;
-                        } else if (toState.data.userType === 2){
-                            landlordRequired = true;
-                        }
-                        requestedStateUserType = toState.data.userType;
-                        return;
-                    } else {
-                        requireLogin = false;
-                        return;
-                    }
-                }
-                //HELPER FUNCTION: Check token expiry. If expired, delete token
-                function isTokenExpired(){
-                    if (TokenSvc.checkExp()) {
-                        TokenSvc.deleteToken();
-                    }
-                }
-
-                //Assign to-state requirements
-                //---assign requireLogin and user
-                assignToStateReqs();
-
-
-                //get token object from service
-                var token = TokenSvc.getToken();
-                var user = null;
-                if(token !== 'No Token'){
-                    user = TokenSvc.decode();
-                }
-
-                //if state requires login, if token exists, if its expired, login
-                if(requireLogin === true){
-
-                    switch(token){
-                        case 'No Token':
-                            alert('Please login');
-                            event.preventDefault();
-                            checkFBConnection();
-                        break;
-                        default:
-                            $rootScope.isLoggedIn = true;
-                            if(adminRequired && user.userType !== 0){
-                                alert('Access Denied');
-                                event.preventDefault();
-                                return;
-                            } else if (landlordRequired && user.userType !== 2) {
-                                alert('Access Denied');
-                                event.preventDefault();
-                                return;
-                            } else {
-                                return;
-                            }
-                    }
-                } else {
-                    if(token === 'No Token' || token === null || token === 'undefined'){
-                        $rootScope.isLoggedIn = false;
-                    } else {
-                        $rootScope.isLoggedIn = true;
-                    }
-                    return;
-                }
-            });
         }
     ]);
