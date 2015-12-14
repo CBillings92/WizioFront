@@ -9,11 +9,10 @@
       </button>
 
       <a class="navbar-brand" ng-click="goHome()">
-        <img id="navbarlogo" src="/public/ViewTemplates/Images/brand_assets/wizio_logo.png"></img>
+        <img id="navbarlogo" src="/public/ViewTemplates/Images/brand_assets/wizio_logo.png" />
       </a>
     </div><!--navbar header -->
 
-<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar">
 
       <ul class="nav navbar-nav navbar-left">  
@@ -24,9 +23,9 @@
                      ng-model="searchString" 
                      type="text" 
                      typeahead-loading="loadingLocations" 
-                     typeahead-min-length="5" 
+                     typeahead-min-length="3" 
                      typeahead-no-results="noResults" 
-                     typeahead="address for address in getLocation($viewValue)">
+                     typeahead="address for address in getLocation($viewValue)" />
               <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
               <div ng-show="noResults">
                   <i class="glyphicon glyphicon-remove"></i> No Results Found
@@ -58,14 +57,49 @@
         </li>
         <li ng-click="logout()" ng-show="isLoggedIn">
           <a href="">Logout</a>
-        </li>
-        
+        </li>        
       </ul>
-
-
-        </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- close container -->
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- close container -->
 </nav>
+
+<div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="dropdown">
+                <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                    <option value="">Please select</option>
+                    <option value=0>Studio</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5+</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="BathsSelect" id="labelLeft">Baths:</label>
+            <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                <option value="">Please select</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3+</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
+            <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+        </div>
+        <div class="form-group">
+
+            <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price: </label>
+            <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+        </div>
+    </form>
+</div>
+
 <!--End Navbar-->

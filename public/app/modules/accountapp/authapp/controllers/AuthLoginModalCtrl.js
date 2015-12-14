@@ -8,12 +8,29 @@ angular.module('AccountApp')
         '$facebook',
         '$location',
         '$modalInstance',
+        'ModalSvc',
         'AuthFct',
         'AuthResetPasswordResource',
         'AuthUpdatePasswordResource',
         'TokenSvc',
         'RerouteGetSetSvc',
-        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, $modalInstance, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc) {
+        'WizioConfig',
+        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, $modalInstance, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig) {
+            var modalDefaults = function(templateUrl, controller, accountType) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    resolve: {
+                        data: function() {
+                            return accountType;
+                        }
+                    }
+                };
+            };
+            var authViews = WizioConfig.AccountAuthViewsURL;
             /*    $scope.facebookLogin = function(){
                     if($rootScope.authObjects.facebookConnected){
                         alert('Already logged in with email!');
@@ -52,12 +69,16 @@ angular.module('AccountApp')
                 AuthResetPasswordResource.save(emailobj, function(responseObj) {
                     if (responseObj.status === "ERR") {
                         alert("A password reset email could not be sent to this email. Please make sure you're using the right email");
-
+                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                            return;
+                        });
                     } else {
                         alert('An email has been sent to ' + emailobj.email + ' with instructions on how to reset your password');
+                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                            return;
+                        });
                     }
-
-                    $state.go('Login');
+                    return;
                 });
                 /*AuthResetPasswordResource.save(null, emailobj, function(data, status){
                         alert('An email has been sent to '+emailobj.email+' with insturctions on how to reset your password');
@@ -66,6 +87,7 @@ angular.module('AccountApp')
                     alert('Sorry, that email is not associated with a Wizio Account');
                 });*/
             };
+            var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             $scope.resetPassword = function() {
                 if ($scope.password === $scope.passwordConfirm) {
                     var passwordobj = {};
@@ -74,11 +96,16 @@ angular.module('AccountApp')
                     AuthUpdatePasswordResource.save(passwordobj, function(responseObj) {
                         if (responseObj.status !== "ERR") {
                             alert('Password updated for your account!');
+                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                return;
+                            });
                         } else {
                             alert("Password cannot be updated at this time");
+                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                return;
+                            });
                         }
-
-                        $state.go('Login');
+                        return;
                     });
                 } else {
                     $scope.password = '';
@@ -99,7 +126,9 @@ angular.module('AccountApp')
                     },
                     function() {
                         $rootScope.error = "Failed to sign in!";
-                        $state.go('Login');
+                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                            return;
+                        });
                     });
             };
 
