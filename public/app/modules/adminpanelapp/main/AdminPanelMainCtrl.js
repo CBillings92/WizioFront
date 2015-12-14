@@ -4,6 +4,6 @@ angular.module('AdminPanelApp')
     function ($scope) {
         $scope.$on('passToSiblingAdminApp', function(event, data){
                 $scope.$broadcast(data.name, data.data);
-        })
+        });
     }
-])
+]);

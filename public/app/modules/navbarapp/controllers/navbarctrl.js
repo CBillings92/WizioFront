@@ -39,7 +39,7 @@ angular.module('NavbarApp')
                 baths: null,
                 minPrice: null,
                 maxPrice: null
-            }
+            };
             $scope.goToLogin = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
