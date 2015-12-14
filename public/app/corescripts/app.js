@@ -7,6 +7,7 @@ angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
+angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
@@ -14,6 +15,7 @@ angular.module('SharedControllersApp', []);
 angular.module('SharedFactoryApp', []);
 angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
+angular.module('FooterApp', []);
 
 
 //LOAD 'MainApp' ANGULAR module
@@ -27,6 +29,7 @@ angular.module('MainApp', [
         'AuthApp',
         'AboutUsApp',
         'BlogApp',
+        'FooterApp',
         'LandingPageApp',
         'CampaignApp',
         'NavbarApp',
@@ -35,6 +38,7 @@ angular.module('MainApp', [
         'SharedFactoryApp',
         'SharedServiceApp',
         'UnitApp',
+        'FooterApp',
         'ui.router',
         'ngFacebook',
         'ngStorage',
@@ -43,21 +47,29 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
-    .config(function($facebookProvider) {
+    .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
-    })
+        $sceDelegateProvider.resourceUrlWhitelist([
+          // Allow same origin resource loads.
+          'self',
+          // Allow loading from our assets domain.  Notice the difference between * and **.
+          'https://youtu.be/**',
+          'https://www.youtube.com/watch?v=**',
+          'https://www.youtube.com/watch?v=*&feature=youtu.be',
+          'http://www.youtube.com/embed/**'
+        ]);
+    }])
     //ON APP START AND DURING APP RUN
     .run([
         '$rootScope',
         '$state',
-        '$http',
         '$localStorage',
         '$window',
         '$facebook',
         'jwtHelper',
         'AuthFct',
         'TokenSvc',
-        function($rootScope, $state, $http, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+        function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
 
             //FACEBOOK SDK
             // Load the Facebook SDK asynchronously
@@ -78,7 +90,7 @@ angular.module('MainApp', [
             //--if they are "not authorized" set variables for authentication
             function facebookAuth(){
                 $facebook.getLoginStatus().then(function(fbLoginStatus){
-                    console.dir(fbLoginStatus);
+
                     switch(fbLoginStatus.status){
                         case "not authorized":
                             $rootScope.isLoggedIn = false;
@@ -95,8 +107,7 @@ angular.module('MainApp', [
                                     facebook: true
                                 };
                                 AuthFct.signin(fbData, function(data, status){
-                                    console.dir(data);
-                                    console.dir(status);
+
                                     //do stuff with data?
                                     if(status === 403){
                                         $rootScope.isLoggedIn = false;
@@ -131,10 +142,12 @@ angular.module('MainApp', [
                 facebookConnected: false
             };
 
-            var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
+            var tokenIsExp = null;
+            if(token){
+                tokenIsExp = TokenSvc.checkExp();
+            }
 
-            console.dir(token);
             //if no token exists, assign isLoggedIn to false
             //if token is expired, assign isLoggedIn to false
             //else, assign isLoggedInto to true
@@ -158,9 +171,10 @@ angular.module('MainApp', [
                 var requestedStateUserType = null;
                 //HELPER FUNCTION: Check if user is connected with facebook
                 function checkFBConnection(){
-                    consoe.dir("why");
                     if($rootScope.authObjects.facebookConnected === true){
                         facebookAuth();
+                    } else {
+                        $state.go('Login');
                     }
                 }
                 //HELPER FUNCTION: Check if to-state requires login and if so
@@ -176,7 +190,7 @@ angular.module('MainApp', [
                     }
                 }
                 //HELPER FUNCTION: Check token expiry. If expired, delete token
-                function checkTokenExpiry(){
+                function isTokenExpired(){
                     if (TokenSvc.checkExp()) {
                         TokenSvc.deleteToken();
                     }
@@ -185,12 +199,15 @@ angular.module('MainApp', [
                 //Assign to-state requirements
                 //---assign requireLogin and user
                 assignToStateReqs();
-                //Check if token is expired
-                checkTokenExpiry();
+
 
                 //get token object from service
                 var token = TokenSvc.getToken();
-                var user = TokenSvc.decode();
+                var user = null;
+                if(token !== 'No Token'){
+                    user = TokenSvc.decode();
+                }
+
                 //if state requires login, if token exists, if its expired, login
                 if(requireLogin === true){
 
@@ -211,6 +228,11 @@ angular.module('MainApp', [
                             }
                     }
                 } else {
+                    if(token === 'No Token' || token === null || token === 'undefined'){
+                        $rootScope.isLoggedIn = false;
+                    } else {
+                        $rootScope.isLoggedIn = true;
+                    }
                     return;
                 }
             });

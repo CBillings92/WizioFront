@@ -7,17 +7,25 @@ angular.module('MainApp')
         'WizioConfig',
         function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, WizioConfig) {
             var navbar = {
-                templateUrl: WizioConfig.NavbarViewsURL + 'Navbar.html',
+                templateUrl: WizioConfig.NavbarViewsURL + 'navbar.html',
                 controller: 'NavbarCtrl'
+            };
+            var footer = {
+                  templateUrl: WizioConfig.FooterViewsURL + 'footer.html',
+                  controller: 'FooterCtrl'
             };
             var trueRequiredLogin = {
                 requireLogin: true,
                 userType: 1
             };
+            var footer = {
+                  templateUrl: WizioConfig.FooterViewsURL + 'footer.html',
+                  controller: 'FooterCtrl'
+            };
             var trueRequiredAdmin = {
                 requireLogin: true,
                 userType: 0
-            }
+            };
             var falseRequiredLogin = {
                 requireLogin: false
             };
@@ -25,19 +33,24 @@ angular.module('MainApp')
                 .state('LandingPage', {
                     url: '/',
                     views: {
+                        "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
-                            controller: 'LandingPageCtrl',
+                            controller: 'LandingPageCtrl'
                         }
+
                     },
                     data: falseRequiredLogin
                 })
                 .state('Blog', {
                     abstract: true,
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogMain.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogMain.html',
                             controller: 'BlogMainCtrl'
                         }
                     },
@@ -45,9 +58,10 @@ angular.module('MainApp')
                 })
                 .state('Blog.List', {
                     url: "/blog",
+                  "footer": footer,
                     views: {
                         "BlogMain": {
-                            templateUrl: 'public/app/modules/BlogApp/viewtemplates/blogDetail.html',
+                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogDetail.html',
                             controller: 'BlogListCtrl'
                         }
                     }
@@ -61,9 +75,11 @@ angular.module('MainApp')
                 .state('About', {
                     url: '/about',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutUsApp/viewtemplates/aboutUs.html',
+                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
                         }
                     },
@@ -72,7 +88,9 @@ angular.module('MainApp')
                 .state('AdminPanel', {
                     abstract: true,
                     views: {
+                        'footer': footer,
                         'navbar': navbar,
+                         "footer": footer,
                         'maincontent': {
                             templateUrl: WizioConfig.AdminPanelAppMainViewsURL + 'AdminPanelMain.html',
                             controller: 'AdminPanelMainCtrl'
@@ -97,17 +115,23 @@ angular.module('MainApp')
                         'AdminRight': {
                             templateUrl: WizioConfig.AdminPanelAppViewsURL + 'AdminUpdateAssignment.html',
                             controller: 'AdminUpdateAssignmentCtrl'
-                        }/*,
+                        },
                         'AdminBottom': {
-                            templateUrl: WizioConfig.AdminPanelAppViewsURL + '',
-                            controller:
-                        }*/
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'admincreateunit.html',
+                            controller: 'AdminCreateUnitCtrl'
+                        },
+                        'AdminSecondBottom':{
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'admincreateassignment.html',
+                            controller: 'AdminCreateAssignmentCtrl'
+                        }
                     }
                 })
                 .state('Styleguide', {
                     url: '/about/styleguide',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/styleguide.html',
                             //The blog controller for the styleguide is temporary
@@ -117,8 +141,11 @@ angular.module('MainApp')
                 })
                 .state('Login', {
                     url: '/login',
+
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'Login.html',
                             controller: 'AuthLoginCtrl'
@@ -129,7 +156,9 @@ angular.module('MainApp')
                 .state('SendResetEmail', {
                     url: '/sendresetpassemail',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'sendResetEmail.html',
                             controller: 'AuthLoginCtrl'
@@ -140,7 +169,9 @@ angular.module('MainApp')
                 .state('UpdatePassword', {
                     url: '/resetpassword/:token',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'resetPassword.html',
                             controller: 'AuthLoginCtrl'
@@ -152,7 +183,9 @@ angular.module('MainApp')
                     url: '/account',
                     abstract: true,
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountViewsURL + 'AccountMain.html',
                             controller: 'AccountMainCtrl'
@@ -196,10 +229,10 @@ angular.module('MainApp')
                             }
 
                         },
-                        /*leftSplit: {
-                            templateUrl: 'public/viewtemplates/public/account/appliedApts.html',
-                            controller: "dashAppliedCtrl"
-                        },
+                        leftSplit: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
+                            controller: "DashboardWaitlistCtrl"
+                        },/*
                         rightSplit: {
                             templateUrl: '',
                             controller: ''
@@ -211,7 +244,9 @@ angular.module('MainApp')
             .state('sellerDashboard', {
                     url: '/brokerInfo',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
                             controller: 'brokerAddInfoCtrl'
@@ -223,14 +258,16 @@ angular.module('MainApp')
                     url: '/profile',
                     abstract: true,
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                      "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilemain.html'
                         }
                     },
                     data: trueRequiredLogin
                 })
-                .state('Profile.', {
+                .state('Profile.Create', {
                     url: '/',
                     views: {
                         "profilepage": {
@@ -238,7 +275,6 @@ angular.module('MainApp')
                             controller: 'ProfileFormCtrl'
                         }
                     },
-                    data: trueRequiredLogin
                 })
                 .state('Profile.Edit', {
                     url: '/edit',
@@ -248,12 +284,13 @@ angular.module('MainApp')
                             controller: 'ProfileFormCtrl'
                         }
                     },
-                    data: trueRequiredLogin
                 })
                 .state('Application', {
                     url: '/application',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.ApplicationViewsURL + "applicationmain.html"
                         }
@@ -277,26 +314,30 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.ApplicationFormViewsURL + 'applicationform.html',
                             controller: 'ApplicationFormCtrl'
                         }
-                    }
+                    },
                 })
                 .state('Unit', {
                     url: '/unit',
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitMain.html'
+                            templateUrl: WizioConfig.UnitMainViewsURL + 'UnitMain.html',
+                            controller: 'UnitMainCtrl'
                         }
                     },
                     abstract: true
                 })
-                .state('Unit.', {
+                .state('Unit.Create', {
                     url: '/create',
                     views: {
                         'UnitMain': {
                             templateUrl: WizioConfig.UnitViewsURL + 'UnitCreate.html',
                             controller: 'UnitCreateCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Unit.Details', {
                     url: '/details/:id',
@@ -315,18 +356,21 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.UnitViewsURL + 'unitDisplay.html',
                             controller: 'UnitDisplayCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign', {
                     url: '/campaign',
                     abstract: true,
                     views: {
+                        'footer': footer,
                         "navbar": navbar,
+                       "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
                             controller: 'CampaignMainCtrl'
                         }
-                    }
+                    },
                 })
                 .state('Campaign.VideoUpload', {
                     abstract: true,
@@ -335,7 +379,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + "/VideoUploadMain.html",
                             controller: 'VideoUploadMainCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign.VideoUpload.Main', {
                     url: '/apartmentshare',
@@ -344,7 +389,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',
                             controller: 'VideoUploadSplashCtrl'
                         }
-                    }
+                    },
+                    data: falseRequiredLogin
                 })
                 .state('Campaign.VideoUpload.Form', {
                     url: '/form',
@@ -379,8 +425,7 @@ angular.module('MainApp')
                         },
 
                         response: function(response){
-                            if(response.data.token){
-                                console.dir(response.data.token);
+                            if(typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token){
 
                                 TokenSvc.storeToken(response.data.token);
                                 return response;
@@ -392,7 +437,7 @@ angular.module('MainApp')
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
                                 if (response.data.facebook) {
-                                    alert("Facebook Login Error: Please login again with facebook.");
+                                    //alert("Facebook Login Error: Please login again with facebook.");
                                     return $q.reject(response);
                                 }
                                 alert('Authentication Failed');

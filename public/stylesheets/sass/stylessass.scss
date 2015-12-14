@@ -1,1 +1,10 @@
-h1 { color:black}
+@import "../bootstrap/sass/_bootstrap";
+@import "global";
+
+@import "nav";
+@import "styleguide";
+@import "footer";
+
+@import "aboutsass";
+@import "navcss";
+@import "landingcss";
