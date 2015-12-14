@@ -12,8 +12,6 @@ angular.module('AccountApp')
             return modalInstance;
         };
         
-        $scope.singleModel = 2;
-
         $scope.nextStep = function(accountType) {
             exitCode = (accountType == 'tenant') ? 'tenantSignup' : 'landlordSignup';
             $modalInstance.close(exitCode);
