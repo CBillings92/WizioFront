@@ -1,6 +1,4 @@
 nav {
-    height: 80px;
-
     .container {
         padding-top: 20px;
     }
@@ -9,9 +7,8 @@ nav {
 .navbar {
     background-color: $white;
     margin-bottom: 0;
-
     .icon-bar {
-		color: $orange;
+		background-color: $orange;
 	}
     .navbar-brand {
         padding: 0 0 0 15px;
@@ -20,9 +17,6 @@ nav {
         	width: 160px;
         }
     }
-    #navbar {
-	    height: 28px !important;
-	}
 	.navbar-nav > li > a {
         text-transform: uppercase;
         font-size: 20px;
@@ -37,6 +31,13 @@ nav {
         background-color: transparent;
         color: $blue;
     }
+    .navbar-collapse {
+        padding-bottom: 5px;
+    }
+}
+
+.navbar-toggle {
+    margin-top: 0;
 }
 
 // This class is responsible for changing background
