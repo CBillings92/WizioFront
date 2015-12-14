@@ -19,7 +19,7 @@ angular.module('LandingPageApp')
                 baths: null,
                 minPrice: null,
                 maxPrice: null
-            }
+            };
             $scope.neighborhoods = [
                 'Boston',
                 'Allston',

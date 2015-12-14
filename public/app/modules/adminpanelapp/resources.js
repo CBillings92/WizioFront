@@ -5,4 +5,4 @@ angular.module('AdminPanelApp')
     function($resource, WizioConfig){
         return $resource(WizioConfig.baseAPIURL + 'admin/:item/:action', {item: '@item', action: '@action'});
     }
-])
+]);
