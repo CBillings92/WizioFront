@@ -14,6 +14,12 @@ angular.module('AccountApp')
                 $modalInstance.close('backStep');
             }
 
+            $scope.hasRegistered = false
+
+            $scope.closeModal = function() {
+                return $modalInstance.close('ok');
+            }
+
             $scope.setUserObj = function() {
                 if ($scope.user.password === $scope.user.passwordConfirm) {
                     $scope.user.accountType = 'local';
@@ -22,7 +28,7 @@ angular.module('AccountApp')
                         if (data.status === "ERR") {
                             alert("Email already in use! Please try another or login");
                         } else {
-                            return $modalInstance.close('ok');
+                            $scope.hasRegistered = true;
                         }
 
                     });
