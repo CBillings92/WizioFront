@@ -24,7 +24,7 @@
             <button class="btn btn-success" ng-disabled ng-show="waitlisted">You're Waitlisted!</button>
             <button class="btn btn-success" ng-click="setupTour()">Setup in Person Tour</button>
             <button class="btn btn-success" ng-click="favorite()" ng-hide="favorited">Add to your Favorites</button>
-            <button class="btn btn-success" ng-disabled ng-show="favorited" >Added to Favorites!</button>
+            <button class="btn btn-success" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite">Delete from favorites</button>
         </center>
     </br>
 </br>

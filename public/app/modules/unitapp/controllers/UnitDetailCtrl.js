@@ -13,7 +13,7 @@ angular.module('UnitApp')
         'ProfileResource',
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
-        'FavoriteResource',
+        'FavoriteModel',
         'ModalSvc',
         'WizioConfig',
         function(
@@ -30,7 +30,7 @@ angular.module('UnitApp')
             ProfileResource,
             FlexGetSetSvc,
             RerouteGetSetSvc,
-            FavoriteResource,
+            FavoriteModel,
             ModalSvc,
             WizioConfig
         ) {
@@ -171,25 +171,40 @@ angular.module('UnitApp')
 
                 var user = TokenSvc.decode();
                 if (user !== "No Token") {
-                    var favObj = {
-                        UserId: user.id,
-                        ApartmentId: $scope.apartment.id
-                    }
-                    FavoriteResource.save(favObj, function(response) {
+                    //create a new Favorite object
+                    var favorite = new FavoriteModel(user.id, $scope.apartment.id);
+                    //create empty modalOptions object
+                    var modalOptions = {};
+                    FavoriteModel.api().save(favorite, function(response) {
                         if (response.status === 'ERR') {
-                            var modalOptions = {
-                                closeButtonText: "Close",
-                                actionButtonText: "OK",
-                                headerText: "Error",
-                                bodyText: "You've already favorited this apartment!"
-
-                            }
-                            ModalSvc.showModal({}, modalOptions)
+                            //set modal text options
+                            modalOptions.closeButtonText = "Close";
+                            modalOptions.actionButtonText = "OK";
+                            modalOptions.headerText = "Error";
+                            modalOptions.bodyText = "You've already favorited this apartment!";
+                            //launch modal using ModalSvc (shaedservices)
+                            ModalSvc.showModal({}, modalOptions);
                         }
+                        //set modal text options
+                        modalOptions.closeButtonText = "Close";
+                        modalOptions.actionButtonText = "OK";
+                        modalOptions.headerText = "Success!";
+                        modalOptions.bodyText = "This apartment is favorited! You can view this apartment in your account page now.";
+                        //launch modal using ModalSvc (sharedservices)
+                        ModalSvc.showodal({}, modalOptions);
+                        //change button to favorited button
                         $scope.favorited =  true;
-                        console.dir(response);
                     });
                 }
+            };
+
+            $scope.deleteFavorite = function(){
+                //create a new Favorite object
+                var user = TokenSvc.decode();
+                var favorite = new FavoriteModel(user.id, $scope.apartment.id);
+                FavoriteModel.api().delete(favorite, function(result){
+                    console.dir(result);
+                });
             };
             $scope.setupTour = function() {
                 alert("Feature still under development and is due to arrive in our full product launch!");
