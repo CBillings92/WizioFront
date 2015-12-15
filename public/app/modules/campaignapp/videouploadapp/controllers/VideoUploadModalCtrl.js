@@ -6,20 +6,28 @@ angular.module('CampaignApp')
         'UnitResource',
         'UnitCreateSvc',
         'TokenSvc',
+        'DescriptionModel',
+        'ApartmentModel',
         'AssignmentResource',
-        function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, AssignmentResource) {
+        function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, DescriptionModel, ApartmentModel, AssignmentResource) {
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
-
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
             $scope.landlord = {};
             $scope.apartment = {};
             $scope.upload = function() {
-                console.dir($scope.apartment);
-                UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment) {
+                var userinfo = TokenSvc.decode();
+                var apartment = ApartmentModel.build($scope.apartment);
+
+                apartment.description = new DescriptionModel(
+                    userinfo.id,
+                    null,
+                    $scope.apartment.description.DescriptionText);
+
+                UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, apartment, function(err, parsedApartment) {
                     UnitResource.save(parsedApartment, function(data, status) {
 
                         //store saved apartment data to use in AssignmentResource
@@ -33,6 +41,10 @@ angular.module('CampaignApp')
                         var bucket = new AWS.S3({
                             params: {
                                 Bucket: "wiziouservideos"
+
+                            },
+                            httpOptions: {
+                                timeout: 1000000000000
                             }
                         });
 
@@ -45,10 +57,9 @@ angular.module('CampaignApp')
                                 return false;
                             }
                             // Prepend Unique String To Prevent Overwrites
-                            var userinfo = TokenSvc.decode();
                             var apartment = $scope.apartmentAddress;
                             apartment = apartment.replace(/[^0-9a-zA-Z]/g, '');
-                            var uniqueFileName = userinfo.email + '-' + apartment + "unitNum:" + $scope.apartment.unitNum + "___" + (Math.floor((Math.random() * 80) + 10));
+                            var uniqueFileName = userinfo.email + '-' + apartment + "unitNum:" + apartment.unitNum + "___" + (Math.floor((Math.random() * 80) + 10));
 
 
                             var params = {
@@ -75,10 +86,11 @@ angular.module('CampaignApp')
 
                                         });
                                         // Reset The Progress Bar
-                                        setTimeout(function() {
+                                        /*setTimeout(function() {
+                                        console.dir("TIMEOUT");
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
-                                        }, 10000);
+                                        }, 100000000);*/
                                         $modalInstance.close('ok');
                                     }
                                 })
