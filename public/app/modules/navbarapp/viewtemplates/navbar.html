@@ -22,7 +22,7 @@
                 <li>
                     <form class="navbar-form navbar-left" ng-submit="search()" role="search">
                         <div class="form-group">
-                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
                             <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                             <div ng-show="noResults">
                                 <i class="glyphicon glyphicon-remove"></i> No Results Found
