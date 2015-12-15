@@ -24,6 +24,15 @@ $blue-gray: #8E9BB2;
   transform: translate(-50%, -50%);
 }
 
+@mixin button-hover-state {
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:hover {
+    @content;
+  }
+}
+
 /**
   Styles
 **/
@@ -112,10 +121,7 @@ p, li {
   font-weight: 500;
   font-size: 16px;
 
-  &:hover,
-  &:focus,
-  &:active,
-  &:active:hover {
+  @include button-hover-state {
     background-color: darken($blue, 5%);
   }
 }

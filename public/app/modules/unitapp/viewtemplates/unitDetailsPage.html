@@ -1,42 +1,26 @@
-<div class="details container-fluid">
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="hidden-xs hidden-sm">
-                <center>
-                    <iframe allowfullscreen frameborder="0" height="385px" id="demo" ng-src="{{apartment.youtubeLink}}" width="600px"></iframe>
-                </center>
+<div class="unit-details">
+    {{ apartment }}
+    <div class="unit-details-action-btn-wrapper">
+        <button class="btn unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
+        <button class="btn unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
+        <button class="btn unit-details__action-btn" ng-click="setupTour()">See in person</button>
+        <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
+Apply</button>
+        <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
+ Apply</button>
+    </div>
+    <h2 class="unit-details__heading unit-details__orange container">{{ apartment.street }}</h2>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe allowfullscreen class="embed-responsive-item" ng-src="{{apartment.youtubeLink}}"></iframe>
+    </div>
+    <div class="container">
+        <div class="row unit-details-features">
+            <div class="col-xs-3 unit-details-feature">
+                <i class="fa fa-bed unit-details-feature__icon"></i>
+                <p class="unit-details-feature__desc">2 bed</p>
             </div>
-            <!--mobile hidden-->
-
-            <div class="hidden-md hidden-lg">
-                <center>
-                    <iframe allowfullscreen frameborder="0" height="320px" id="demo" ng-src="{{apartment.youtubeLink}}" width="380px"></iframe>
-                </center>
-            </div>
-            <!--desktop hidden-->
         </div>
-        <!-- col-md-3 -->
-
-        <div clss="col-lg-6"></br>
-        <center>
-            <button class="btn btn-success" ng-click="apply()" ng-show="available">Apply</button>
-            <button class="btn btn-success" ng-click="waitlist()" ng-hide="waitlisted || available">Apply</button>
-            <button class="btn btn-success" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-            <button class="btn btn-success" ng-click="setupTour()">Setup in Person Tour</button>
-        </center>
-    </br>
-</br>
-<p>
-    Ranges are applied to apartment addresses for the privacy of those whom currently live there.
-    While going through the application process, you'll receive the information regarding the exact
-    address of the apartment.
-</p>
-</br>
-</div>
-<!--col-md-3-->
-</div>
-<!-- row -->
-
+    </div>
 <div class="row">
 <div class="col-md-6">
 <ul class="list-group">
