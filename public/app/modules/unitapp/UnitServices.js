@@ -1,4 +1,24 @@
 angular.module('UnitApp')
+    .service('UnitObjectSvc', [
+        function(){
+            var Apartment = function(address, unitNum, beds, baths, livingSpaces, maxResidency, costPerMonth, renovated, pets, youtubeVRID){
+                this.address = address;
+                this.unitNum = unitNum;
+                this.beds = beds;
+                this.baths = baths;
+                this.livingSpaces = livingSpaces;
+                this.maxResidency = maxResidency;
+                this.costPerMonth = costPerMonth;
+                this.renovated = renovated;
+                this.pets = pets;
+                this.youtubeVRID = youtubeVRID;
+            };
+            Apartment.prototype.saveToDB = function(){
+
+            };
+
+        }
+    ])
     .service('UnitCreateSvc', [
         'lodash',
         'FlexGetSetSvc',
