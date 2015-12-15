@@ -27,10 +27,14 @@
     </br>
 </br>
 <p>
-    Ranges are applied to apartment addresses for the privacy of those whom currently live there.
-    While going through the application process, you'll receive the information regarding the exact
-    address of the apartment.
+    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
 </p>
+<div class="">
+    <h4>Description:</h4>
+    <p>
+        {{apartment.Descriptions[0].description}}
+    </p>
+</div>
 </br>
 </div>
 <!--col-md-3-->
@@ -38,17 +42,24 @@
 <!-- row -->
 
 <div class="row">
+
+<!-- row -->
+
+<div class="row">
 <div class="col-md-6">
 <ul class="list-group">
-<li class="list-group-item">
-<span class="badge">{{apartment.hiddenAddress}}</span>
-Address
-</li>
-
-<li class="list-group-item">
-<span class="badge">{{apartment.beds}}</span>
-Beds
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.hiddenAddress}}</span>
+        Address
+    </li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.neighborhood}}</span>
+        Neighborhood
+    </li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.beds}}</span>
+        Beds
+    </li>
 </ul>
 <!-- ul -->
 </div>
@@ -56,35 +67,35 @@ Beds
 
 <div class="col-md-6">
 <ul class="list-group">
-<li class="list-group-item">
-<span class="badge">{{apartment.baths}}</span>
-Baths
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.baths}}</span>
+        Baths
+    </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.livingSpaces}}</span>
-Living Spaces
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.livingSpaces}}</span>
+        Living Spaces
+    </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.maxResidency}}</span>
-Max Residency
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.maxResidency}}</span>
+        Max Residency
+    </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.costPerMonth}}</span>
-Cost Per Month
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.costPerMonth}}</span>
+        Cost Per Month
+    </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.renovated}}</span>
-Newly Renovated
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.renovated}}</span>
+        Newly Renovated
+    </li>
 
-<li class="list-group-item">
-<span class="badge">{{apartment.pets}}</span>
-Pet Policy
-</li>
+    <li class="list-group-item">
+        <span class="badge">{{apartment.pets}}</span>
+        Pet Policy
+    </li>
 </ul>
 <!-- list group -->
 </div>

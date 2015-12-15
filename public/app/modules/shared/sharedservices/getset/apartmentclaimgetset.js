@@ -1,20 +1,13 @@
 angular.module('SharedServiceApp')
-.service('FlexGetSetSvc', [
+.service('ApartmentClaimGetSetSvc', [
     '$sessionStorage',
-    '$sessionStorage',
-    function($sessionStorage, sessionStorage){
+    function($sessionStorage){
         var dataStore = [];
-        var set = function(data, sessionStorageVar, storeMultiple){
+        var set = function(data, sessionStorageVar){
             if(sessionStorageVar){
                 $sessionStorage[sessionStorageVar] = data;
-                if(!storeMultiple){
-                    dataStore = [];
-                }
                 dataStore.push(data);
                 return;
-            }
-            if(!storeMultiple){
-                dataStore = [];
             }
             dataStore.push(data);
             return;

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/">
-                <img style="margin-top:-.6em;" id="navbarlogo" src="/public/viewtemplates/images/logo.png"></img>
+                <img id="navbarlogo" src="/public/viewtemplates/images/logo.png" style="margin-top:-.6em;"></img>
             </a>
         </div>
         <!--navbar header -->
@@ -16,17 +16,24 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav navbar-left">
-            <li><form class="navbar-form navbar-left" ng-submit="search()" role="search">
-                <div class="form-group">
-                    <input style="display:inline-block; max-width:250px" class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-                    <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                    <div ng-show="noResults">
-                        <i class="glyphicon glyphicon-remove"></i> No Results Found
-                    </div>
-                    <button style="display:inline-block;" class="btn btn-success nav-search" type="submit"><i class="fa fa-search"></i></button>
-                </div>
-            </form></li>
-        </ul>
+                <li>
+                    <a class="" type="button" data-toggle="collapse" data-target="#searchFiltersCollapse" aria-expanded="false" href="#" aria-controls="searchFiltersCollapse">Filters</a>
+                </li>
+                <li>
+                    <form class="navbar-form navbar-left" ng-submit="search()" role="search">
+                        <div class="form-group">
+                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i> No Results Found
+                            </div>
+                        </div>
+                        <button class="btn btn-success nav-search" style="display:inline-block;" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-click="goHome()">
                     <a href="">Home</a>
@@ -56,4 +63,41 @@
     </div>
     <!-- close container -->
 </nav>
+<div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="dropdown">
+                <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                    <option value="">Please select</option>
+                    <option value=0>Studio</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5+</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="BathsSelect" id="labelLeft">Baths:</label>
+            <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                <option value="">Please select</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3+</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
+            <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+        </div>
+        <div class="form-group">
+
+            <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price: </label>
+            <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+        </div>
+    </form>
+</div>
+
 <!--End Navbar-->

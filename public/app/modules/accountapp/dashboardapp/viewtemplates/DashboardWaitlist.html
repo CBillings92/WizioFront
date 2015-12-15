@@ -5,6 +5,10 @@
     <div class="" ng-repeat="waitlist in waitlists track by $index">
         <h3>
             {{waitlist[$index].Apartment.concatAddr}}
+            Neighborhood: {{waitlist[$index].Apartment.neighborhood}}
+        </h3>
+        <h3>
+            {{waitlist[$index].Apartment.neighborhood}}       
         </h3>
         <h4>
             Beds: {{waitlist[$index].Apartment.beds}}
