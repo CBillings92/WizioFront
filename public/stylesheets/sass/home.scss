@@ -104,11 +104,12 @@
   margin-bottom: 10px;
 }
 .home-sign-up {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .home-sign-up__button,
 .home-landlord__button {
   padding-right: 60px;
+  width: 100%;
 
   .btn-success {
     border-radius: 6px;
@@ -160,8 +161,12 @@
     margin-bottom: 0;
     margin-top: 0;
   }
+  .home-blurb__desc,
+  .home-landlord__desc {
+    max-width: 400px;
+  }
   .home-sign-up {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   .home-tenants__header {
     margin-top: 40px;
@@ -178,6 +183,11 @@
   }
   .home-landlord__button {
     margin-bottom: 50px;
+  }
+  .home-blurb__header {
+    br {
+      display: none;
+    }
   }
 }
 @media (min-width: 768px) {
@@ -207,10 +217,7 @@
     background-position: right -80px top;
   }
   .home-blurbs {
-    margin-top: 52px;
-  }
-  .home-sign-up {
-    margin-top: 40px;
+    margin-top: 30px;
   }
   .home-blurb__header {
     font-size: 22px;
@@ -222,7 +229,7 @@
     margin-top: 34px;
   }
   .home-landlord {
-    margin-top: -96px;
+    margin-top: -30px;
   }
 }
 @media (min-width: 991px) and (max-width: 1259px) {
@@ -250,17 +257,17 @@
 }
 @media (min-width: 1170px) {
   .home-blurbs {
-    margin-top: 60px;
+    margin-top: 30px;
 
     div:nth-child(1) {
-      padding-right: 60px;
+      padding-right: 30px;
     }
     div:nth-child(2) {
-      padding-right: 60px;
-      padding-left: 60px;
+      padding-right: 65px;
+      padding-left: 65px;
     }
     div:nth-child(3) {
-      padding-left: 60px;
+      padding-left: 30px;
     }
   }
   .home-landlord {
