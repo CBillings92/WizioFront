@@ -27,10 +27,7 @@ angular.module('NavbarApp')
                     modalFade: true,
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size,
-                    animation: false
-                });
-                return modalInstance;
+                    animation: false,
                     resolve: {
                         data: function() {
                             return accountType;
