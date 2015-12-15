@@ -4,16 +4,56 @@ angular.module('NavbarApp')
         '$scope',
         '$state',
         '$http',
+        '$modal',
         'ApartmentSearchSvc',
         'AuthFct',
         'SmartSearchSvc',
-        function($rootScope, $scope, $state, $http, ApartmentSearchSvc, AuthFct, SmartSearchSvc) {
+        'ModalSvc',
+        'WizioConfig',
+        function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+            $scope.isCollapsed = false;
+            var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
+                return {
+                    closeButtonText: closeButtonText,
+                    actionButtonText: actionButtonText,
+                    headerText: headerText,
+                    bodyText: bodyText,
+                };
+            };
+            var modalDefaults = function(templateUrl, controller, accountType) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    resolve: {
+                        data: function() {
+                            return accountType;
+                        }
+                    }
+                };
+            };
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            };
             $scope.goToLogin = function() {
-                $state.go('Login');
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
+                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                    return;
+                });
             };
             $scope.search = function() {
-                ApartmentSearchSvc.searchApartment($scope.searchString);
-                $state.go('Unit.Display');
+                //SECOND ARG IS UNIT NUM
+                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+                    $state.go('Unit.Display');
+                });
+
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
@@ -34,14 +74,55 @@ angular.module('NavbarApp')
                 $state.go('About');
             };
 
-            $scope.goBlog = function(val) {
-                $state.go('Blog.List');
+            $scope.goBlog = function(val) {};
+            $scope.goAccoutCreate = function() {
+
+                //shorten the authViews URL variable so we don't need to type wizioconfig.yada every time...
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                /*
+                    create variables by using local function above that will be used to
+                    create the modals with the correct templateUrl, controller, and if
+                    applicable, data
+                */
+                var modalDefaultsAccountType = modalDefaults(authViews + 'AccountTypeModal.html', 'AccountTypeModalCtrl');
+
+                var modalDefaultsTenantSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Tenant');
+
+                var modalDefaultsLandlordSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Landlord');
+
+                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
+                //show modal for choosing account type
+                ModalSvc.showModal(modalDefaultsAccountType, {}).then(function(result) {
+                    /*
+                    if they choose "Tenant", show account create form and pass 'Tenant' to controller as data
+                    */
+                    if (result === 'tenantSignup') {
+                        ModalSvc.showModal(modalDefaultsTenantSignup, {}).then(function(result) {
+                            //if they choose to login instead of create an account, load login modal
+                            if (result === "login") {
+                                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                    return;
+                                });
+                            } else {
+                                return;
+                            }
+                        });
+                    } else if (result === 'landlordSignup') {
+                        ModalSvc.showModal(modalDefaultsLandlordSignup, {}).then(function(result) {
+                            if (result === 'login') {
+                                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                    return;
+                                });
+                            } else {
+                                return;
+                            }
+                        });
+                    }
+                });
 
             };
-            $scope.goAccoutCreate = function() {
-                $state.go('Account.Create');
-            };
-            $scope.goAccountDashboard = function(){
+            $scope.goAccountDashboard = function() {
                 $state.go('Account.Dashboard.Main');
             };
         }

@@ -4,14 +4,18 @@ angular.module('SharedServiceApp')
     '$sessionStorage',
     function($sessionStorage, sessionStorage){
         var dataStore = [];
-        var set = function(data, sessionStorageVar){
+        var set = function(data, sessionStorageVar, storeMultiple){
             if(sessionStorageVar){
                 $sessionStorage[sessionStorageVar] = data;
-                dataStore = [];
+                if(!storeMultiple){
+                    dataStore = [];
+                }
                 dataStore.push(data);
                 return;
             }
-            dataStore = [];
+            if(!storeMultiple){
+                dataStore = [];
+            }
             dataStore.push(data);
             return;
         };
