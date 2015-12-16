@@ -105,7 +105,7 @@ angular.module('UnitApp')
 
                 if (user && user.favorites.length !== 0) {
                     console.dir(user);
-                        if (lodash.find(user.favorites, $scope.apartment.id) !== -1) {
+                        if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
                              $scope.favorited = true;
                          } else {
                              $scope.favorited = false;
