@@ -63,13 +63,13 @@
 
 .unit-details-feature {
 	text-align: center;
-	color: $blue-gray;
+	color: #8B93A1;
 
 	// this is wrapped because sass compiles & directly to the class name and I want it to be & &__icon
 	.unit-details-feature {
 
 		&__icon {
-			font-size: 6rem;
+			width: 70%;
 		}
 
 		&__desc {
