@@ -18,7 +18,6 @@ angular.module('CampaignApp')
             $scope.landlord = {};
             $scope.apartment = {};
             $scope.upload = function() {
-                console.dir($scope.apartment);
                 UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment) {
                     UnitResource.save(parsedApartment, function(data, status) {
 
@@ -80,7 +79,6 @@ angular.module('CampaignApp')
                                         });
                                         // Reset The Progress Bar
                                         /*setTimeout(function() {
-                                        console.dir("TIMEOUT");
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
                                         }, 100000000);*/

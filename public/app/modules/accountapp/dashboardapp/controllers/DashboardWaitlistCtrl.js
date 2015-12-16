@@ -6,13 +6,11 @@ angular.module('AccountApp')
     'lodash',
     function($scope, ApplicationResource, TokenSvc, lodash){
         var user = TokenSvc.decode();
-        console.dir(user);
         var applicationIdArray = lodash.pluck(user.waitlists, "id");
         applicationIdObject = {
             ApplicationId: applicationIdArray,
             //UserId: user.id
         };
-        console.dir(applicationIdObject);
         ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
             if(data.length !== 0){
                 var buildingWaitlists = lodash.groupBy(data, "ApplicationId");

@@ -20,8 +20,6 @@ angular.module('AccountApp')
             });
         }
         $scope.removeFromFavorite = function(value){
-            console.dir($scope.favorites);
-            console.dir(value);
             var favorite = new FavoriteModel(user.id, $scope.favorites[value].ApartmentId);
             FavoriteModel.api().delete(favorite, function(data, status){
                 $scope.favorites.splice(value);

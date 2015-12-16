@@ -16,7 +16,6 @@ angular.module('UnitApp')
         $scope.apartmentObjArray[0] = new Apartment(null, null);
 
         $scope.getLocation = function(val) {
-            console.dir(SmartSearchSvc.smartSearch());
             return SmartSearchSvc.smartSearch(val);
         };
 
@@ -25,7 +24,7 @@ angular.module('UnitApp')
         };
 
         $scope.addRange = function(apartmentIndex){
-            
+
             for(var i = 0; i < $scope.highNum; i++){
                 $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
             }
@@ -34,7 +33,6 @@ angular.module('UnitApp')
         $scope.addAddress = function(){
             var apartment = new Apartment(null, null);
             $scope.apartmentObjArray.push(apartment);
-            console.dir($scope.apartmentObjArray);
         };
 
         $scope.search = function(){

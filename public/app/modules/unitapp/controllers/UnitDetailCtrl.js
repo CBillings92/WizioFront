@@ -84,7 +84,6 @@ angular.module('UnitApp')
                 $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
 
                 var user = TokenSvc.decode();
-                console.dir(user);
                 if (user && user !== 'No Token' && user !== 'undefined') {
                     user = TokenSvc.decode();
                     if (user.waitlists.length > 0) {
@@ -104,7 +103,6 @@ angular.module('UnitApp')
                 //check to see if apartment has been favorited
 
                 if (user && user.favorites.length !== 0) {
-                    console.dir(user);
                         if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
                              $scope.favorited = true;
                          } else {
@@ -204,7 +202,7 @@ angular.module('UnitApp')
                 var user = TokenSvc.decode();
                 var favorite = new FavoriteModel(user.id, $scope.apartment.id);
                 FavoriteModel.api().delete(favorite, function(result){
-                    console.dir(result);
+                    alert('Favorite removed');
                 });
             };
             $scope.setupTour = function() {
@@ -218,11 +216,9 @@ angular.module('UnitApp')
 
                 //get user data
                 var user = TokenSvc.decode();
-                console.dir(user);
                 //set apartment data and store that data in sessionStorage variable
                 ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
                 //If the user doesn't have a profile
-                console.dir(user.ProfileId);
                 if (user.ProfileId === null) {
                     //call modal function
                     var modalInstanceCreate = modal('public/viewtemplates/public/createprofilemodal.html', 'ProfileCreateModalCtrl', 'md');
@@ -238,7 +234,6 @@ angular.module('UnitApp')
                         id: user.ProfileId
                     }, function(data) {
                         if (data) {
-                            console.dir(data);
                             var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
 
                             modalInstanceVerify.result.then(function(result) {
@@ -247,9 +242,7 @@ angular.module('UnitApp')
                                         $state.go('ApartmentApplication');
                                         break;
                                     case "edit":
-                                        console.dir(data);
                                         FlexGetSetSvc.set(data);
-                                        console.dir(FlexGetSetSvc.get());
                                         $state.go('Profile.Edit');
                                         break;
                                     default:
