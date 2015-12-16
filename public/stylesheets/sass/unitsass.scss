@@ -1,13 +1,6 @@
 
 .unit-details {
 
-	&__heading {
-		@media (max-width: $screen-sm-max) {
-			font-size: 2.3rem;
-		}
-	}
-
-
 	&__orange {
 		color: $orange;
 	}
@@ -16,7 +9,7 @@
 	&__action-btn {
 		$action-btn-tint: 10%;
 		color: $blue;
-		border: 1px solid $blue;
+		border: 2px solid $blue;
 		background: $white;
 		@include button-hover-state {
 			color: darken($blue, $action-btn-tint);
@@ -40,6 +33,7 @@
 			border-radius: 0;
 			border-color: $gray;
 			border-left-width: 0;
+			border-width: 1px 1px 1px 0;
 			@include button-hover-state {
 				border-color: $gray;
 			}
@@ -61,15 +55,45 @@
 
 }
 
+.unit-details-header {
+	margin: 20px 0;
+
+	&__heading {
+		font-size: 2.3rem;
+		@media (min-width: $screen-sm-min) {
+			font-size: 3.8rem;
+		}
+	}
+
+	.unit-details-action-btn-wrapper {
+		float: right;
+		margin-top: 3px;
+	}	
+}
+
+.unit-details-features {
+	margin: 0 -25px;
+	@media (min-width: $screen-sm-min) {
+		margin: 10px 40px 0 -25px;
+	}
+}
+
+.unit-details-feature, 
+.unit-details-info {
+	max-width: 450px;
+}
+
 .unit-details-feature {
 	text-align: center;
 	color: #8B93A1;
+	height: 90px;
+	padding: 0 5px;
 
 	// this is wrapped because sass compiles & directly to the class name and I want it to be & &__icon
 	.unit-details-feature {
 
 		&__icon {
-			width: 70%;
+			width: 50%;
 		}
 
 		&__desc {
@@ -77,10 +101,78 @@
 		}
 
 	}
+}
 
+.unit-details-media-container {
+	@media (max-width: $screen-xs-max) {
+		padding: 0;
+	}
+}
+
+.unit-details-info {
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #666;
+
+	@media (min-width: $screen-sm-min) {
+		padding-bottom: 30px;
+		margin-bottom: 30px;
+	}
+
+	&__price {
+		font-weight: 400;
+		margin: 0 0 5px;
+		@media (min-width: $screen-md-min) {
+			font-size: 3.6rem;
+		}
+	}
+
+	&__heading {
+		font-weight: 300;
+		margin: 0 0 5px;
+	}
+
+	&__updated {
+		color: $blue-gray;
+		margin: 15px 0 0;
+	}
 
 }
 
 
+.unit-details-description {
+	p {
+		font-size: 1.7rem;
+		line-height: 2.3rem;
+	}
 
+	&__heading {
+		margin-top: 0;
+	}
 
+	.unit-details__action-btn {
+		padding-left: 25px;
+		padding-right: 25px;
+		margin: 10px 5px 0 0;
+	}
+}
+
+.unit-details-media-container-tabs {
+	@include clearfix();
+	list-style: none;
+	padding: 5px 0;
+	margin: 0;
+	border-bottom: 3px solid #eee;
+	li {
+		float: left;
+		text-align: center;
+		color: $gray;
+		width: 33%;
+		border-right: 1px solid #eee;
+		padding: 10px;
+		&:last-of-type {
+			border-right: 0;
+			width: 34%;
+		}
+	}
+}
