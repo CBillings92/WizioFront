@@ -27,6 +27,7 @@ angular.module('NavbarApp')
                     modalFade: true,
                     templateUrl: templateUrl,
                     controller: controller,
+                    animation: false,
                     resolve: {
                         data: function() {
                             return accountType;
@@ -104,6 +105,9 @@ angular.module('NavbarApp')
                                 ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                                     return;
                                 });
+
+                            } else if (result == 'backStep') {
+                                $scope.goAccoutCreate();
                             } else {
                                 return;
                             }

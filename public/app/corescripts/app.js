@@ -1,7 +1,7 @@
 //CREATE ALL TOP LEVEL APPS (create, not start)
 angular.module('AboutUsApp', []);
 angular.module('AdminPanelApp', []);
-angular.module('AccountApp', []);
+angular.module('AccountApp', ['ui.bootstrap.buttons']);
 angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);

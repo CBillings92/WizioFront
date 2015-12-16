@@ -10,6 +10,17 @@ angular.module('AccountApp')
         function($scope, $state, $modal, $modalInstance, data, WizioConfig, UserRegistrationSvc) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
+
+            $scope.backStep = function() {
+                $modalInstance.close('backStep');
+            }
+
+            $scope.hasRegistered = false
+
+            $scope.closeModal = function() {
+                return $modalInstance.close('ok');
+            }
+
             $scope.setUserObj = function() {
                 if ($scope.user.password === $scope.user.passwordConfirm) {
                     $scope.user.accountType = 'local';
@@ -22,7 +33,7 @@ angular.module('AccountApp')
                         if (data.status === "ERR") {
                             alert("Email already in use! Please try another or login");
                         } else {
-                            return $modalInstance.close('ok');
+                            $scope.hasRegistered = true;
                         }
 
                     });
