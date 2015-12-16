@@ -1,90 +1,93 @@
-<div class="container-fluid background-fixer bckcolor">
-    <div class="demo-section row ">
-        <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" id="signup-section" style="background-color:white;">
-            <h1 style="padding-top:10px; padding-bottom:10px;">Welcome to the Wizio beta!</h1>
-            <div class="hidden-xs hidden-sm">
-                <center>
-                    <iframe allowfullscreen frameborder="1" height="385px" id="demo" src="https://www.youtube.com/embed/PcZ9VfEun9M?rel=0" width="640px"></iframe>
-                </center>
+<div class="home-hero">
+    <div class="home-hero__video">
+        <video autoplay width="400" height="300" loop poster="public/viewtemplates/images/home/sequence.png">
+            <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
+            <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
+        </video>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="home-hero__text col-xs-9 col-xs-offset-0 col-lg-6 col-lg-offset-1">
+                <h2 class="home-hero__heading">Apartment clarity <br>at your fingertips</h2>
+                <h4 class="home-hero__subheading">Watch videos uploaded by real tenants like <br> you so you can find your perfect place.</h4>
             </div>
-            <!--mobile hidden-->
-
-            <div class="hidden-md hidden-lg">
-                <center>
-                    <iframe allowfullscreen frameborder="0" height="320px" id="demo" src="https://www.youtube.com/embed/PcZ9VfEun9M?rel=0" width="380px"></iframe>
-                </center>
-            </div>
-            <div>
-                <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
-                    <center>
-                        <h1>Want to Join Our Cause?</h1>
-                        <h4 style="color:black;">Be a part of the change!</h4 >
-
-                    </center>
-                    <p>
-                        <h4 class="subtitlelanding">
-                            All you have to do is make a video tour of your apartment using your smart phone and upload it to wizio. Click the button below to learn more:</p>
-                    </h3>
-                    <center>
-                        <button class="btn larger-button" name="name" ng-click="goToUploadPage()" type="button" value="Learn More & Upload!">Learn More & Upload!</button>
-                    </center>
-                </div>
-            </div>
-
-            <br>
-            <!--desktop hidden   -->
         </div>
-        <!--desktop    <img id="bck" src="public/viewtemplates/images/bos.jpg"> -->
     </div>
-    <div style="divider">&nbsp
-    </div>
-    <!-- demo section -->
+</div>
 
-    <div class="row">
-        <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
-            <center>
-                <h1 class="landing-title">See The Space</h1>
-                <h2 style="text-align:center;color:#6F6F72">Search Wizio to view apartment spaces with clarity</h2>
-                <br>
-
-                <!--Search Bar   -->
-                <div class="row" style="margin-left: auto;margin-right: auto; width: 50%;">
-                    <div class=" col-md-12 col-lg-10 col-sm-12 center-block col-centered">
-                        <form ng-submit="search()" role="search">
-                            <div class="col-md-6 col-lg-6 col-sm-6 form-group">
-                                <input class="form-control" ng-model="searchString" placeholder="Search Here" popover-trigger="focus" popover="Try typing 'Boston', hit tab then enter!" style="min-width: 150px;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"></input>
-                            </div>
-                            <div class="col-md-6 col-lg-6 col-sm-6">
-                                <button class="btn btn-success nav-search" ng-click="search()" style="display:inline-block; min-width: 150px;" type="button">Find your place</button>
-                                <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                                <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                    No Results Found
-                                </div>
-                            </div>
-                            <div class="">
-
-                            </div>
-                        </form>
+ <div class="home-search">
+        <div class="home-search__background"></div>
+        <div class="container">
+            <div class="row">
+                <div class="home-search__bar col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
+                    <div class="input-group">
+                        <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                        <!-- get rid of loading options icon for now because happens too quickly and makes button jump -->
+<!--                      <i class="fa fa-refresh" ng-show="loadingLocations"></i>
+ -->                       <div ng-show="noResults">
+                            <i class="fa fa-remove"></i> No Results Found
+                        </div>
+                        <div class="input-group-btn">
+                            <button class="btn btn-success" ng-click="search()" href="" type="button">
+                                <span class="fa fa-search"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="divider">&nbsp
-            </div>
+        </div>
+    </div>
 
-            <div class="col-md-8 col-lg-8 col-sm-12 center-block col-centered" style="background-color:white;padding-bottom:25px; padding-top:5px;">
-                <center>
-                    <h1>What is Wizio?</h1>
-                </center>
-                <p>
-                    <h4 style="color:#6F6F72;">Founded in January of 2015, Wizio is an online apartment marketplace utilizing crowd-sourced data to automate the rental search, application, and leasing process. The software as a service provides virtual reality apartment showings, automated lease generation and submission, and tenant screening. Wizio aims to enhance the process for everyone by bringing affordable automation to the apartment rental market.</p>
-                </h4>
+<div class="home-tenants">
+        <div class="home-pin">
+            <div class="home-pin__orange">
+                <div class="home-pin__orange__left">
+                </div>
+                <div class="home-pin__orange__right">
+                </div>
             </div>
-            <div style="divider">&nbsp
-            </div>
-
-            <!--descrip section -->
         </div>
 
+    <div class="container">
+        <div class="row">
+            <h2 class="home-tenants__header col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Designed by tenants for tenants</h2>
+        </div>
+        <div class="row">
+            <div class="home-blurbs">
+                <div class="home-blurb col-xs-12 col-sm-4 col-sm-offset-0 col-lg-3 col-lg-offset-1">
+                    <h3 class="home-blurb__header">Know the space <br>before signing</h3>
+                    <h5 class="home-blurb__desc">No fake photos here, only unbiased, tenant-uploaded or 360&deg; virtual reality video tours</h5>
+                </div>
+                <div class="home-blurb col-xs-12 col-sm-4">
+                    <h3 class="home-blurb__header">Actually understand your lease</h3>
+                    <h5 class="home-blurb__desc">Wizio’s online leasing process is easy, automated, & clearly explained at every step</h5>
+                </div>
+                <div class="home-blurb col-xs-12 col-sm-4 col-lg-3 ">
+                    <h3 class="home-blurb__header">Eliminate the <br> realtor fee</h3>
+                    <h5 class="home-blurb__desc">Our $800 fee is 1/3 the Boston average. Upload your current apartment & we make it $0</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row home-sign-up">
+            <div class="home-sign-up__button col-xs-4 col-sm-2 col-lg-offset-1">
+             <input type="button" class="btn btn-success btn-md" ng-click="registerUser()" value="Sign Up"/>
+            </div>
+        </div>
     </div>
-    <!--container-->
+</div>
+
+<div class="home-landlord">
+    <div class="container">
+        <div class="row">
+            <div class="home-blurb">
+                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6">Share your space</h2>
+                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">Be a part of the change! Make a video tour of your apartment & upload it to wizio.co with your smartphone. In exchange, we waive our fee. Click the button below to learn more.</h5>
+                <div class="home-landlord__button col-xs-4 col-sm-2 col-sm-offset-4 col-lg-offset-6">
+                    <input type="button" ng-click="registerUser()" class="btn btn-success btn-md" value="Learn More and Upload"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

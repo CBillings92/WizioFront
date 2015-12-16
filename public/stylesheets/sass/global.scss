@@ -7,7 +7,6 @@ $gray: #706f72;
 $red: #BA5125;
 $blue: #7A9DD1;
 $blue-gray: #8E9BB2;
-
 /**
   Mixins
 **/
@@ -36,7 +35,7 @@ html {
 body {
   font-family: "Roboto";
   -webkit-font-smoothing:antialiased;
-  margin: 0 auto 300px;
+  margin: 0 auto;
 }
 
 
@@ -64,7 +63,7 @@ h5 {
   line-height: 1.2;
 }
 
-p, li {
+p {
   font-family: "Roboto";
   font-size: 16px;
   font-weight: 400;
@@ -106,6 +105,10 @@ p, li {
 }
 
 /* override bootstrap */
+.navbar {
+  margin-bottom: 0px;
+}
+
 .btn-success {
   border: none;
   background-color: $blue;
@@ -134,4 +137,30 @@ p, li {
     color: $white;
     background-color: darken($orange, 5%);
   }
+}
+
+.form-control:focus {
+  border-color: transparent;
+  outline: 0;
+  box-shadow: none;
+}
+.form-control {
+  border: none;
+
+  & :focus {
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: $blue;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: $blue;
+  background-repeat: repeat-x;
 }

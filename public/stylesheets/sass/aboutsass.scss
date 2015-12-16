@@ -76,7 +76,7 @@ $orange-transparancy-hover: 0.9;
 
 		.pin-and-outline {
 			position: absolute;
-			transform-origin: bottom;
+			transform-origin: bottom right;
 			right: -250px;
 
 			@media (max-width: $screen-xs-max) {
@@ -84,15 +84,13 @@ $orange-transparancy-hover: 0.9;
 			}
 
 			@media (min-width: $screen-sm-min) {
-				bottom: 150px;
-				right: -95px;
-				transform: scale(1.2);
+				bottom: 34%;
+				right: 18.82%;
+				transform: scale(1.2) translate(50%, 0);
 			}
 
 			@media (min-width: $screen-md-min) {
-				bottom: 35%;
-				right: 1.78%;
-				transform: scale(2);
+				transform: scale(2) translate(50%, 0);
 			}
 
 			.pin {
