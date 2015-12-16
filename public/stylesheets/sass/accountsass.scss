@@ -9,7 +9,14 @@ $account-padding: 30px 0;
 
 	&__orange {
 		background: $orange;
+		&:active, &:focus, &:hover {
+			background: darken($orange, 5%);
+		}
 	}
+}
+
+.modal-content {
+	border: 0;
 }
 
 .acct-modal {
@@ -19,6 +26,7 @@ $account-padding: 30px 0;
 	}
 
 	.modal-title {
+		font-family: "Roboto Slab";
 		font-size: 2rem;
 		color: $gray;
 	}
