@@ -87,7 +87,6 @@ angular.module('CampaignApp')
                                         });
                                         // Reset The Progress Bar
                                         /*setTimeout(function() {
-                                        console.dir("TIMEOUT");
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
                                         }, 100000000);*/

@@ -15,6 +15,7 @@ angular.module('SharedFactoryApp', []);
 angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
 angular.module('FooterApp', []);
+angular.module('Models', []);
 
 angular.module('Models', []);
 
