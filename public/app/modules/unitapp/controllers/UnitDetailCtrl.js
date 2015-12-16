@@ -84,6 +84,7 @@ angular.module('UnitApp')
                 $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
 
                 var user = TokenSvc.decode();
+                console.dir(user);
                 if (user && user !== 'No Token' && user !== 'undefined') {
                     user = TokenSvc.decode();
                     if (user.waitlists.length > 0) {
