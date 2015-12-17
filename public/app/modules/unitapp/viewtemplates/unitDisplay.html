@@ -76,34 +76,60 @@
     </div>
 
     </div>
-    <!-- <li>
-        <a class="" type="button"  data-target="#searchFiltersCollapse" aria-expanded="false" href="#" aria-controls="searchFiltersCollapse">Filters</a>
-    </li> -->
 
-    
-    
 </div>
 
-<div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
-    <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
-        <article class="media">
-            <img class="pull-left" ng-src="http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)" />
-            <h2 class="full-width">
-                <div class="wrap">
-                    <h1>{{apartment.hiddenAddress}}</h1>
-                </div>
-            </h2>
-
-            <div class="media-body">
-                <br/>
-                <br/>
-                <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
-                <br/>
-                <br/>
+<div class="container apt-grid-view" ng-hide="mapshow">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="apartment in sessionStorage.apartmentSearch" >
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+          <div class="apt-tile__overlay">
+            <div class="apt-tile__header">
+                <span class="apt-tile__view-btn" ng-click="apartmentSelected(apartment.id)">View</span>
+                <i class="apt-tile__favorite-btn fa fa-heart-o"></i>
+                <span class="apt-tile__cost">${{apartment.costPerMonth}}</span>
             </div>
-        </article>
+            <div class="apt-tile__ammenities">
+                <div class="apt-tile__ammenity" ng-if="apartment.beds">
+                    <i class="fa fa-bed"></i>
+                    <span>{{apartment.beds}} bed</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.baths">
+                    <i class="fa fa-tint"></i>
+                    <span>{{apartment.baths}} bath</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.laundry">
+                    <i class="fa fa-tint"></i>
+                    <span>Laundry</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.dishwasher">
+                    <i class="fa fa-tint"></i>
+                    <span>Dishwasher</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.heatIncluded">
+                    <i class="fa fa-tint"></i>
+                    <span>heat included</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.heatIncluded">
+                    <i class="fa fa-tint"></i>
+                    <span>water included</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.elevator">
+                    <i class="fa fa-tint"></i>
+                    <span>elevator</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.fireplace">
+                    <i class="fa fa-tint"></i>
+                    <span>fireplace</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="apt-tile__info">
+          <span class="apt-tile__address">{{ apartment.street }} #{{ apartment.unitNum }} | {{ apartment.neighborhood}} </span>
+        </div>
     </div>
 </div>
+
 
 <div ng-show="mapshow">
     <div id="map"></div>
