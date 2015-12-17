@@ -17,3 +17,71 @@ h2 {
     margin-bottom: 0;
     margin-top: 0;
 }
+
+
+// **********************
+
+#search-searchbar { 
+    margin: 8px -15px;
+    width: 100%;
+    display: block;
+    padding:0;
+
+    input {
+        padding-left: 5px;
+        border-radius: 0;
+        height: 35px;
+        border: 1px solid #ccc;
+        box-shadow: none;
+        width: 400px;
+    }
+    ::-webkit-input-placeholder,
+    :-moz-placeholder,
+    ::-moz-placeholder,
+    :-ms-input-placeholder {
+        font-weight: 300;
+    }
+    .btn-search {
+        margin-left: -5px;
+        border-radius: 0;
+        color: $white;
+        padding: 5px 9px;
+        background-color: $blue;
+        height: 35px;
+        font-size: 17px;
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+.search-view-toggle {
+    height: 50px;
+    &__label {
+        padding-left: 5px;
+    }
+}
+
+.btn-search-bar {
+    border-radius: 0;
+    background-color: transparent;
+    height: 50px;
+    &.focus,
+    &:focus{
+        color: $white;
+    }
+    &.center_button {
+        border-right: 1px solid #eee;
+        border-left: 1px solid #eee;
+    }
+    &.filter_button {
+        &.focus,
+        &:focus{
+            color: $black;
+        }
+    }
+}
+
+.search_view_active {
+        background-color: $orange;
+        color: $white;
+    }

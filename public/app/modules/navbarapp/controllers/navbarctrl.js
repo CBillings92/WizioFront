@@ -36,12 +36,6 @@ angular.module('NavbarApp')
                     }
                 };
             };
-            $scope.filters = {
-                beds: null,
-                baths: null,
-                minPrice: null,
-                maxPrice: null
-            };
 
             $scope.isActive = function(route) {
                 return (route === $location.path());

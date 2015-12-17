@@ -1,37 +1,114 @@
-<div class="">
-    <div class="" style="margin-bottom:15px;">
-        <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View"> </input>
-        <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View">
-    </div>
-    <div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
-        <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
-            <article class="media">
-                <img class="pull-left" ng-src="http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)"></img>
-                <h2 class="full-width">
-                    <div class="wrap">
-                        <h1>{{apartment.hiddenAddress}}</h1>
-                    </div>
-                    <!-- wrap -->
-                </h2>
-
-                <div class="media-body">
-                    </br>
-                    </br>
-                    <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
-                    </br>
-                    </br>
-                </div>
-                <!-- media body -->
-            </article>
+<div class="row" style="border-top:3px solid #eee">
+    <div class="container">
+        <div class="col-sm-6">
+            <form id="search-searchbar" class="navbar-form" ng-submit="search()" role="search">
+              <div class="form-group">
+                  <input class="form-control nav-search" 
+                         placeholder="Search by area"
+                         ng-model="searchString" 
+                         type="text" 
+                         typeahead-loading="loadingLocations" 
+                         typeahead-min-length="3" 
+                         typeahead-no-results="noResults" 
+                         typeahead="address for address in getLocation($viewValue)" />
+                  <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                  <div ng-show="noResults">
+                      <i class="glyphicon glyphicon-remove"></i> No Results Found
+                  </div>
+              </div>
+              <button class="btn btn-search" ng-click="search()" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
         </div>
-        <!-- col-md-8 -->
+        
+        <div class="col-sm-offset-2 col-sm-4 search-view-toggle">
+            <button class="btn btn-search-bar pull-right" ng-click="tabToggleMap()" 
+                    ng-class="{search_view_active: mapshow}">
+                <i class="fa fa-map-o"></i><span class="search-view-toggle__label">Map</span>
+                    </button>
+            <button class="btn btn-search-bar pull-right center_button" ng-click="tabToggleGrid()"
+                    ng-class="{search_view_active: maphidden}">
+                <i class="fa fa-th-large"></i><span class="search-view-toggle__label">Grid</span></button>
+            <button class="btn btn-search-bar pull-right filter_button" ng-click="tabToggleFilters()">
+                <i class="fa fa-chevron-down"></i><span class="search-view-toggle__label">Filters</span>
+                    </button>
+        </div>
     </div>
 </div>
+
+<div class="row" ng-show="filterToggle">
+    <div class="container">
+        <div class="" id="searchFiltersCollapse" ui-view="search-filters" style="">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
+                <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+            </div>
+            <div class="form-group">
+                <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price: </label>
+                <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+            </div>
+            <div class="form-group">
+                <div class="dropdown">
+                    <!-- <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label> -->
+                    <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                        <option value="" disabled selected hidden># Beds</option>
+                        <option value=0>Studio</option>
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="BathsSelect" id="labelLeft">Baths:</label>
+                <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                    <option value="">Please select</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3+</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    </div>
+    <!-- <li>
+        <a class="" type="button"  data-target="#searchFiltersCollapse" aria-expanded="false" href="#" aria-controls="searchFiltersCollapse">Filters</a>
+    </li> -->
+
+    
+    
+</div>
+
+<div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
+    <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
+        <article class="media">
+            <img class="pull-left" ng-src="http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)" />
+            <h2 class="full-width">
+                <div class="wrap">
+                    <h1>{{apartment.hiddenAddress}}</h1>
+                </div>
+            </h2>
+
+            <div class="media-body">
+                <br/>
+                <br/>
+                <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
+                <br/>
+                <br/>
+            </div>
+        </article>
+    </div>
+</div>
+
 <div ng-show="mapshow">
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
     </div>
 </div>
-<!-- row -->
-</br>
+
