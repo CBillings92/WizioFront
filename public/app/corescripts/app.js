@@ -1,12 +1,13 @@
 //CREATE ALL TOP LEVEL APPS (create, not start)
 angular.module('AboutUsApp', []);
 angular.module('AdminPanelApp', []);
-angular.module('AccountApp', []);
+angular.module('AccountApp', ['ui.bootstrap.buttons']);
 angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
+angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
@@ -14,6 +15,10 @@ angular.module('SharedControllersApp', []);
 angular.module('SharedFactoryApp', []);
 angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
+angular.module('FooterApp', []);
+angular.module('Models', []);
+
+angular.module('Models', []);
 
 
 //LOAD 'MainApp' ANGULAR module
@@ -27,6 +32,7 @@ angular.module('MainApp', [
         'AuthApp',
         'AboutUsApp',
         'BlogApp',
+        'FooterApp',
         'LandingPageApp',
         'CampaignApp',
         'NavbarApp',
@@ -35,6 +41,8 @@ angular.module('MainApp', [
         'SharedFactoryApp',
         'SharedServiceApp',
         'UnitApp',
+        'FooterApp',
+        'Models',
         'ui.router',
         'ngFacebook',
         'ngStorage',
@@ -43,21 +51,29 @@ angular.module('MainApp', [
         'ui.bootstrap',
         'angular-jwt'
     ])
-    .config(function($facebookProvider) {
+    .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
-    })
+        $sceDelegateProvider.resourceUrlWhitelist([
+          // Allow same origin resource loads.
+          'self',
+          // Allow loading from our assets domain.  Notice the difference between * and **.
+          'https://youtu.be/**',
+          'https://www.youtube.com/watch?v=**',
+          'https://www.youtube.com/watch?v=*&feature=youtu.be',
+          'http://www.youtube.com/embed/**'
+        ]);
+    }])
     //ON APP START AND DURING APP RUN
     .run([
         '$rootScope',
         '$state',
-        '$http',
         '$localStorage',
         '$window',
         '$facebook',
         'jwtHelper',
         'AuthFct',
         'TokenSvc',
-        function($rootScope, $state, $http, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+        function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
 
             //FACEBOOK SDK
             // Load the Facebook SDK asynchronously
@@ -78,7 +94,7 @@ angular.module('MainApp', [
             //--if they are "not authorized" set variables for authentication
             function facebookAuth(){
                 $facebook.getLoginStatus().then(function(fbLoginStatus){
-                    console.dir(fbLoginStatus);
+
                     switch(fbLoginStatus.status){
                         case "not authorized":
                             $rootScope.isLoggedIn = false;
@@ -95,8 +111,7 @@ angular.module('MainApp', [
                                     facebook: true
                                 };
                                 AuthFct.signin(fbData, function(data, status){
-                                    console.dir(data);
-                                    console.dir(status);
+
                                     //do stuff with data?
                                     if(status === 403){
                                         $rootScope.isLoggedIn = false;
@@ -131,10 +146,12 @@ angular.module('MainApp', [
                 facebookConnected: false
             };
 
-            var tokenIsExp = TokenSvc.checkExp();
             var token = TokenSvc.getToken();
+            var tokenIsExp = null;
+            if(token){
+                tokenIsExp = TokenSvc.checkExp();
+            }
 
-            console.dir(token);
             //if no token exists, assign isLoggedIn to false
             //if token is expired, assign isLoggedIn to false
             //else, assign isLoggedInto to true
@@ -148,71 +165,5 @@ angular.module('MainApp', [
                 $rootScope.userType = TokenSvc.decode().userType;
                 $rootScope.isLoggedIn = true;
             }
-
-
-
-            //Watch for angular app state changes
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-
-                var requireLogin = null;
-                var requestedStateUserType = null;
-                //HELPER FUNCTION: Check if user is connected with facebook
-                function checkFBConnection(){
-                    consoe.dir("why");
-                    if($rootScope.authObjects.facebookConnected === true){
-                        facebookAuth();
-                    }
-                }
-                //HELPER FUNCTION: Check if to-state requires login and if so
-                //what userType it requires for access.
-                function assignToStateReqs(){
-                    if (toState && toState.data.requireLogin === true) {
-                        requireLogin = true;
-                        requestedStateUserType = toState.data.userType;
-                        return;
-                    } else {
-                        requireLogin = false;
-                        return;
-                    }
-                }
-                //HELPER FUNCTION: Check token expiry. If expired, delete token
-                function checkTokenExpiry(){
-                    if (TokenSvc.checkExp()) {
-                        TokenSvc.deleteToken();
-                    }
-                }
-
-                //Assign to-state requirements
-                //---assign requireLogin and user
-                assignToStateReqs();
-                //Check if token is expired
-                checkTokenExpiry();
-
-                //get token object from service
-                var token = TokenSvc.getToken();
-                var user = TokenSvc.decode();
-                //if state requires login, if token exists, if its expired, login
-                if(requireLogin === true){
-
-                    switch(token){
-                        case 'No Token':
-                            alert('Please login');
-                            event.preventDefault();
-                            checkFBConnection();
-                        break;
-                        default:
-                            $rootScope.isLoggedIn = true;
-                            if(user.userType === requestedStateUserType || user.userType === 0){
-                                return;
-                            } else {
-                                alert('Access Denied');
-                                event.preventDefault();
-                                return;
-                            }
-                    }
-                } else {
-                    return;
-                }
-            });
         }
     ]);

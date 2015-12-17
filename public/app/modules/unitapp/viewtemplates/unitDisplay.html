@@ -1,0 +1,39 @@
+<div class="" style="margin-bottom:15px;">
+    <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View" />
+    <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View" />
+</div>
+<div class="container" ng-hide="mapshow" style="display: block !important; margin-top: 100px;">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="apartment in sessionStorage.apartmentSearch" >
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+          <div class="apt-tile__overlay">
+            <div class="apt-tile__header">
+                <span class="apt-tile__view-btn" ng-click="apartmentSelected(apartment.id)">View</span>
+                <i class="apt-tile__favorite-btn fa fa-heart-o"></i>
+                <span class="apt-tile__cost">${{apartment.costPerMonth}}</span>
+            </div>
+            <div class="apt-tile__ammenities">
+                <div class="apt-tile__ammenity" ng-if="apartment.beds">
+                    <i class="fa fa-bed"></i>
+                    <span>{{apartment.beds}}</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="apartment.baths">
+                    <i class="fa fa-tint"></i>
+                    <span>{{apartment.baths}}</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="apt-tile__info">
+          <span class="apt-tile__address">{{ apartment.street }} #{{ apartment.unitNum }} | {{ apartment.neighborhood}} </span>
+        </div>
+
+    </div>
+</div>
+
+<div ng-show="mapshow" style="display:none;">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
+

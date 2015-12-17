@@ -15,7 +15,6 @@ angular.module('SharedFactoryApp')
                     //if google maps geocodes successfully resolve promise passing lat/long data through it
                     if (status === google.maps.GeocoderStatus.OK) {
                         deferred.resolve(results[0].geometry.location);
-                        console.log('---------------------------------');
                     }
                 });
                 //return the deferred promise.
@@ -31,24 +30,24 @@ angular.module('SharedFactoryApp')
         '$sessionStorage',
         '$stateParams',
         '$state',
-        function(ApartmentGetSetSvc, $sessionStorage, $stateParams, $state) {
+        'WizioConfig',
+        function(ApartmentGetSetSvc, $sessionStorage, $stateParams, $state, WizioConfig) {
             var makeMap = function() {
 
                 //default options for map, centered on Boston with a zoom
                 //that fits most of the city: four corners jamaica plain to
                 //sommerville to airport to southboston & seaport
                 var mapOptions = {
+                    scrollwheel: false,
                     zoom: 12,
                     center: new google.maps.LatLng(42.3601, -71.0589),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
 
                 var setMapOptions = function(unitList) {
-                    console.dir(unitList);
 
                     if(unitList.constructor !== Array){
                         unitList = [unitList];
-                        console.dir(unitList);
                     }
                     if(unitList.length === 0){
                         return mapOptions;
@@ -69,6 +68,7 @@ angular.module('SharedFactoryApp')
                     mapOptions = {
                         //so this should center the map properly, I still haven't
                         //figured out how we should zoom
+                        scrollwheel:false,
                         zoom: 12,
                         center: new google.maps.LatLng(averageLatitude, averageLongitude),
                         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -80,13 +80,9 @@ angular.module('SharedFactoryApp')
                 var unitList = null;
                 if($state.current.name === "Unit.Details"){
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
-                    console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display"){
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
-
-                console.log('---------------where are you apartment-------');
-                console.dir(unitList);
                 return setMapOptions(unitList);
             };
 
@@ -113,16 +109,26 @@ angular.module('SharedFactoryApp')
                 };
 
                 function createMarker(unitData) {
+                    var left = Math.floor((unitData.concatAddr.charCodeAt(5) /19) + 4);
+                    var right = Math.floor((unitData.concatAddr.charCodeAt(3) /19) + 4);
+                    var houseNumInt = parseInt((unitData.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                    var houseNumLow = houseNumInt - left;
+                    if(houseNumInt < 15){
+                        houseNumLow = 1;
+                    }
+                    var houseNumHigh = houseNumInt + right;
+                    var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+                    unitData.hiddenAddress = houseNumRange + unitData.concatAddr.replace(/^\d+/, '');
 
                     var marker = new google.maps.Marker({
                         map: map,
                         position: new google.maps.LatLng(unitData.latitude, unitData.longitude),
-                        title: unitData.street
+                        title: unitData.hiddenAddress
                     });
-                    marker.content = '<div class="infoWindowContent">' + unitData.neighborhood + '</div>';
+                    marker.content = '<div class="infoWindowContent"> <a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'"> <img class="pull-left "'+"src =http://img.youtube.com/vi/"+unitData.Assignments[0].youtubeId+"/0.jpg " + ' style="width:160px;height:120px;"</img></div>';
                     var infoWindow = new google.maps.InfoWindow();
                     google.maps.event.addListener(marker, 'click', function() {
-                        infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                        infoWindow.setContent('<p><a href="'+WizioConfig.frontEndURL+'#/unit/details/'+unitData.id+'">' + marker.title + '</p>' + marker.content);
                         infoWindow.open(map, marker);
                     });
 
