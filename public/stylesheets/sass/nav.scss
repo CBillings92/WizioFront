@@ -81,7 +81,6 @@
 
     input {
         padding-left: 5px;
-        // width: 200px;
         border-radius: 0;
         height: 35px;
         border: 1px solid #ccc;
@@ -130,12 +129,9 @@
                 font-size: 14px;
             }
         }
-        // .navbar-nav {
-        //     margin: 7.5px -15px;
-        // }
         .navbar-nav > li > a {
             font-size: 20px;
-            padding: 10px 20px 10px 20px;
+            padding: 10px 20px;
             color: $gray;
         }
     }
@@ -144,7 +140,6 @@
         border-radius: 5px;
         margin-right: 10px;
         &:hover {
-            // color: $white;
             border: 2px solid $orange;
         }
         &:hover > a {
@@ -166,28 +161,13 @@
     }
 
     #navbar-search {
-        // margin-top: 2px;
-        // margin-left: 30px;
         margin: 8px -15px;
         padding: 10px 15px;
 
         input {
             width: 200px;
         }
-        // ::-webkit-input-placeholder,
-        // :-moz-placeholder,
-        // ::-moz-placeholder,
-        // :-ms-input-placeholder {
-        //     font-weight: 300;
-        // }
         .btn-search {
-            // margin-left: -5px;
-            // border-radius: 0;
-            // color: $white;
-            // padding: 5px 9px;
-            // background-color: $blue;
-            // height: 35px;
-            // font-size: 17px;
             width: auto;
             margin-top: 0;
         }
