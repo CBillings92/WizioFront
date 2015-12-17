@@ -5,4 +5,11 @@ angular.module('AccountApp')
     function($resource, WizioConfig){
         return $resource(WizioConfig.baseAPIURL + 'assignment');
     }
+])
+.factory('FavoriteResource', [
+    '$resource',
+    'WizioConfig',
+    function($resource, WizioConfig){
+        return $resource(WizioConfig.baseAPIURL + 'user/favorite');
+    }
 ]);
