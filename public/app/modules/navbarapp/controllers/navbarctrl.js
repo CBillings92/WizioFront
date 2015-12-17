@@ -58,6 +58,7 @@ angular.module('NavbarApp')
             $scope.search = function() {
                 //SECOND ARG IS UNIT NUM
                 ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+                    console.dir(results);
                     $state.go('Unit.Display');
                 });
 
