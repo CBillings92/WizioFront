@@ -123,6 +123,22 @@ p {
   }
 }
 
+.btn-orange {
+  border: none;
+  background-color: $orange;
+  font-size: 16px;
+  color: $white;
+  border-radius: 30px;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:hover {
+    color: $white;
+    background-color: darken($orange, 5%);
+  }
+}
+
 .form-control:focus {
   border-color: transparent;
   outline: 0;
