@@ -2,7 +2,7 @@
     <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View" />
     <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View" />
 </div>
-<div class="container apt-grid-view" ng-hide="mapshow" style="display: block !important; margin-top: 100px;">
+<div class="container apt-grid-view" ng-hide="mapshow">
     <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="apartment in sessionStorage.apartmentSearch" >
         <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
           <div class="apt-tile__overlay">
@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<div ng-show="mapshow" style="display:none;">
+<div ng-show="mapshow">
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
