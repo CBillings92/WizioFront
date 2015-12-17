@@ -1,0 +1,122 @@
+.apt-grid-view {
+  .apt-tile {
+    float: left;
+    position: relative;
+    height: auto;
+  }
+  .apt-tile__image {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    > * {
+      transition: all 0s;
+      opacity: 1;
+    }
+    &:hover {
+      .apt-tile__overlay {
+        opacity: 1;
+      }
+      .apt-tile__overlay > * {
+        opacity: 1;
+      }
+    }
+  }
+  .apt-tile__overlay {
+    transition: opacity 0.15s ease-in-out;
+    position: absolute;
+    color: $white;
+    opacity: 0;
+    background-color: rgba($orange, 0.9);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 15px;
+  }
+  .apt-tile__header {
+    border-bottom: 1px solid $white;
+    padding-bottom: 15px;
+    font-size: 14px;
+  }
+  .apt-tile__view-btn {
+    border: 1px solid white;
+    padding: 5px 15px;
+    display:inline-block;
+    border-radius: 7px;
+    background-color: transparent;
+    color: $white;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: $white;
+      color: $orange;
+    }
+  }
+  .apt-tile__favorite-btn {
+    font-size: 25px !important;
+    margin-left: 20px;
+    position: relative;
+    top: 3px;
+  }
+  .apt-tile__cost {
+    font-weight: 500;
+    background-color: $white;
+    color: $orange;
+    padding: 10px;
+    line-height: 1;
+    border-radius: 20px;
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+  }
+  .apt-tile__info {
+    background-size: contain;
+    font-family: "Roboto Slab";
+    font-size: 14px;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    height: 20px;
+  }
+  .apt-tile__ammenities {
+    margin-top: 20px;
+  }
+  .apt-tile__ammenity {
+    width: 20%;
+    display: inline-block;
+    text-align: center;
+    i {
+      display: block;
+    }
+  }
+}
+@media (min-width: $screen-lg-min) {
+  .apt-grid-view {
+    .apt-tile__image {
+      height: 200px;
+    }
+  }
+}
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+  .apt-grid-view {
+    .apt-tile__image {
+      height: 200px;
+    }
+  }
+}
+@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+  .apt-grid-view {
+    .apt-tile__image {
+      height: 200px;
+    }
+  }
+}
+@media (max-width: $screen-xs-max) {
+  .apt-grid-view {
+    .apt-tile__image {
+      height: 200px;
+    }
+  }
+}
+
