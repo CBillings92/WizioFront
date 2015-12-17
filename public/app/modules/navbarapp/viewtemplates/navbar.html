@@ -1,4 +1,4 @@
-<nav class="navbar" ng-class="{transparent_nav: false}" role="navigation">
+<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
@@ -9,13 +9,15 @@
       </button>
 
       <a class="navbar-brand" ng-click="goHome()">
-        <img id="navbarlogo" src="/public/ViewTemplates/Images/brand_assets/wizio_logo.png" />
+        <img id="navbarlogo" 
+             ng-class="(isActive('/') || isActive('/about')) ? 'white_logo' : 'gray_logo'"
+             />
       </a>
     </div><!--navbar header -->
 
     <div class="collapse navbar-collapse" id="navbar">
-
-      <ul class="nav navbar-nav navbar-left">  
+      <ul class="nav navbar-nav navbar-left"
+          ng-hide="isActive('/') || isActive('/unit/display')"> 
         <form id="navbar-search" class="navbar-form navbar-left hidden-sm" ng-submit="search()" role="search">
           <div class="form-group">
               <input class="form-control nav-search" 
@@ -38,21 +40,20 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
+        <li id="btn-upload" ng-click="" ng-class="{active: false}">
+          <a href="">Upload</a>
+        </li>
         <li ng-click="goAbout()" ng-class="{active: false}">
           <a href="">About</a>
         </li>
-        <li ng-click="goBlog()" ng-class="{active: false}">
-          <a href="">Blog</a>
-        </li>
-
         <li ng-click="goToLogin()" ng-hide="isLoggedIn">
           <a href="">Sign In</a>
         </li>
         <li ng-click="goAccountDashboard()" ng-class="{active: false}" ng-show="isLoggedIn">
-          <a href="">Account</a>
+          <a href="">Activity</a>
         </li>
         
-        <li id="btn-signup" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
+        <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
           <a href="">Sign Up</a>
         </li>
         <li ng-click="logout()" ng-show="isLoggedIn">
