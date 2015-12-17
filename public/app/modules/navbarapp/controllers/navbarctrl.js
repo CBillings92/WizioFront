@@ -1,6 +1,7 @@
 angular.module('NavbarApp')
     .controller('NavbarCtrl', [
         '$rootScope',
+        '$location',
         '$scope',
         '$state',
         '$http',
@@ -10,7 +11,7 @@ angular.module('NavbarApp')
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
@@ -41,6 +42,11 @@ angular.module('NavbarApp')
                 minPrice: null,
                 maxPrice: null
             };
+
+            $scope.isActive = function(route) {
+                return (route === $location.path());
+            };
+
             $scope.goToLogin = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
@@ -61,9 +67,6 @@ angular.module('NavbarApp')
             };
             $scope.logout = function(success) {
                 AuthFct.logout();
-            };
-            $scope.getLocation = function(val) {
-                return SmartSearchSvc.smartSearch(val);
             };
             $scope.createUnit = function() {
                 $state.go('Unit.Create');
