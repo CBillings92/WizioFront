@@ -1,19 +1,37 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="topHorizontal"></div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div ui-view="topHorizontal"></div>
+    </div>
+  </div><!-- row -->
+  <div class="row" ng-hide="userType != 2">
+    <div class="col-md-10 col-md-offset-1">
+      <div ui-view="midHorizontal"></div>
+    </div>
+  </div><!-- row -->
+  <div class="row pad" ng-show="userType == 1 || userType == 0">
+    <div class="account">
+      <div class="account__waitlisted" ng-click="toggleWaitlisted()">
+        Waitlisted
       </div>
-    </div><!-- row -->
-    <div class="row" ng-hide="userType != 2">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="midHorizontal"></div>
-      </div>
-    </div><!-- row -->
-    <div class="row pad" ng-show="userType == 1 || userType == 0">
-      <div class="col-md-5 col-md-offset-1 appl">
-        <div ui-view="leftSplit"></div>
+      <div class="account__favorites" ng-click="toggleFavorites()">
+        <span class="w-icon w-heart"></span>
+        Favorites
       </div>
 
-        <div class="col-md-5 sugges" ui-view="rightSplit"></div>
+      <div class="account__grid" ng-click="toggleGridView()">
+        Grid
+      </div>
+      <div class="account__list" ng-click="toggleListView()">
+        <span class="w-icon w-heart"></span>
+        List
+      </div>
     </div>
+
+    <div ng-class="{'apt-grid-view': gridViewSelected, 'apt-list-view': listViewSelected}">
+
+      <div ng-show="waitlistedSelected" ui-view="waitlisted"></div>
+      <div ng-show="favoritesSelected" ui-view="favorites"></div>
+    </div>
+  </div>
 </div>

@@ -5,6 +5,46 @@ angular.module('AccountApp')
         'TokenSvc',
         'WizioConfig',
         function($scope, $timeout, TokenSvc, WizioConfig) {
+
+
+            $scope.waitlistedSelected = true;
+            $scope.favoritesSelected = false;
+
+            $scope.toggleWaitlisted = function(){
+                if (!$scope.waitlistedSelected) {
+                    $scope.waitlistedSelected = !$scope.waitlistedSelected;
+                    $scope.favoritesSelected = !$scope.favoritesSelected;
+                }
+            };
+            $scope.toggleFavorites = function(){
+                if (!$scope.favoritesSelected) {
+                    $scope.waitlistedSelected = !$scope.waitlistedSelected;
+                    $scope.favoritesSelected = !$scope.favoritesSelected;
+                }
+            };
+
+            $scope.gridViewSelected = true;
+            $scope.listViewSelected = false;
+
+            $scope.toggleGridView = function(){
+                if (!$scope.gridViewSelected) {
+                    $scope.gridViewSelected = !$scope.gridViewSelected;
+                    $scope.listViewSelected = !$scope.listViewSelected;
+                }
+            };
+            $scope.toggleListView = function(){
+                if (!$scope.listViewSelected) {
+                    $scope.gridViewSelected = !$scope.gridViewSelected;
+                    $scope.listViewSelected = !$scope.listViewSelected;
+                }
+            };
+
+
+
+
+
+
+
             //get account/user info from the currently active token.
             var accountInfo = TokenSvc.decode();
             //set timeout to wait for child controllers to load.

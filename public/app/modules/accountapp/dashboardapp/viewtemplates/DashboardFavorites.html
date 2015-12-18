@@ -1,4 +1,4 @@
-<div class="">
+<!-- <div class="">
     <h2>Favorites:</h2>
     <h3 ng-hide="favoritesExist">You currently don't have any favorites</h3>
 </div>
@@ -29,5 +29,60 @@
     </h4>
     <div class="" style="padding:10px;">
         <button class="btn btn-success" ng-click="removeFromFavorite($index)">remove this favorite</button>
+    </div>
+</div>
+ -->
+
+<div class="container apt-grid-view" ng-hide="mapshow">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="favorite in favorites track by $index">
+        {{favorite}}
+
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{favorite.Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+          <div class="apt-tile__overlay">
+            <div class="apt-tile__header">
+                <span class="apt-tile__view-btn" ng-click="apartmentSelected(favorite.Apartment.id)">View</span>
+                <i class="apt-tile__favorite-btn fa fa-heart-o"></i>
+                <span class="apt-tile__cost">${{favorite.Apartment.costPerMonth}}</span>
+            </div>
+            <div class="apt-tile__ammenities">
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.beds">
+                    <i class="fa fa-bed"></i>
+                    <span>{{favorite.Apartment.beds}} bed</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.baths">
+                    <i class="fa fa-tint"></i>
+                    <span>{{favorite.Apartment.baths}} bath</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.laundry">
+                    <i class="fa fa-tint"></i>
+                    <span>Laundry</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.dishwasher">
+                    <i class="fa fa-tint"></i>
+                    <span>Dishwasher</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.heatIncluded">
+                    <i class="fa fa-tint"></i>
+                    <span>heat included</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.heatIncluded">
+                    <i class="fa fa-tint"></i>
+                    <span>water included</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.elevator">
+                    <i class="fa fa-tint"></i>
+                    <span>elevator</span>
+                </div>
+                <div class="apt-tile__ammenity" ng-if="favorite.Apartment.fireplace">
+                    <i class="fa fa-tint"></i>
+                    <span>fireplace</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="apt-tile__info">
+          <span class="apt-tile__address">{{ favorite.Apartment.street }} #{{ favorite.Apartment.unitNum }} | {{ favorite.Apartment.neighborhood}} </span>
+        </div>
+
     </div>
 </div>
