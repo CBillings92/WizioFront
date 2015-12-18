@@ -89,18 +89,25 @@
   display: inline-block;
 }
 .apt-list__view {
-  top: -7px;
-  position: relative;
-  display: inline-block;
-  border: 1px solid $blue;
-  padding: 5px 10px;
-  border-radius: 6px;
-  text-align: center;
-  color: $blue;
-  cursor: pointer;
+  text-align: right;
+  padding-right: 0;
+
+  span {
+    top: -7px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid $blue;
+    padding: 5px 22%;
+    border-radius: 6px;
+    text-align: center;
+    color: $blue;
+    cursor: pointer;
+  }
   &:hover {
-    background-color: $blue;
-    color: $white;
+    span {
+      background-color: $blue;
+      color: $white;
+    }
   }
 }
 .account__waitlisted,
