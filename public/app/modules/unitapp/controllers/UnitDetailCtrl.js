@@ -31,6 +31,12 @@ angular.module('UnitApp')
             WizioConfig
         ) {
 
+            // MediaTabs
+            $scope.mediaTab = 'unitVideos';
+            $scope.selectMediaTab = function(tab) {
+                $scope.mediaTab = tab;
+            };
+
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
             //HELPER FUNCTION -- modal creation function

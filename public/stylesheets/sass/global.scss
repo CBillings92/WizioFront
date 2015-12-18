@@ -24,11 +24,12 @@ $blue-gray: #8E9BB2;
   transform: translate(-50%, -50%);
 }
 
-@mixin button-hover-state {
+@mixin button-hover-state($extraSelectors: '') {
   &:hover,
   &:focus,
   &:active,
-  &:active:hover {
+  &:active:hover,
+  #{$extraSelectors} {
     @content;
   }
 }

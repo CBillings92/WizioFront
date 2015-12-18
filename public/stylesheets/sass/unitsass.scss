@@ -1,5 +1,9 @@
 
 .unit-details {
+	padding-bottom: 60px;
+	@media (min-width: $screen-md-min) {
+		padding-bottom: 150px;
+	}
 
 	&__orange {
 		color: $orange;
@@ -12,8 +16,8 @@
 		border: 2px solid $blue;
 		background: $white;
 		@include button-hover-state {
-			color: darken($blue, $action-btn-tint);
-			border-color: darken($blue, $action-btn-tint);
+			background: $blue;
+			color: $white;
 		}
 
 		&__orange {
@@ -21,10 +25,18 @@
 			border-color: $orange;
 
 			@include button-hover-state {
-				color: darken($orange, $action-btn-tint);
-				border-color: darken($orange, $action-btn-tint);
+				background: $orange;
+				color: $white;
 			}
 
+		}
+
+
+		@media (min-width: $screen-md-min) {
+			padding-left: 25px;
+			padding-right: 25px;
+			margin: 10px 5px 0 0;
+			font-size: 1.5rem;
 		}
 
 		@media (max-width: $screen-xs-max) {
@@ -34,6 +46,9 @@
 			border-color: $gray;
 			border-left-width: 0;
 			border-width: 1px 1px 1px 0;
+			&:last-of-type {
+				width: 34%;
+			}
 			@include button-hover-state {
 				border-color: $gray;
 			}
@@ -56,12 +71,12 @@
 }
 
 .unit-details-header {
-	margin: 20px 0;
+	margin: 20px auto;
 
 	&__heading {
 		font-size: 2.3rem;
 		@media (min-width: $screen-sm-min) {
-			font-size: 3.8rem;
+			font-size: 4.2rem;
 		}
 	}
 
@@ -78,7 +93,7 @@
 	}
 }
 
-.unit-details-feature, 
+.unit-details-features, 
 .unit-details-info {
 	max-width: 450px;
 }
@@ -106,6 +121,16 @@
 .unit-details-media-container {
 	@media (max-width: $screen-xs-max) {
 		padding: 0;
+	}
+	@media (min-width: $screen-sm-min) {
+		margin-bottom: 80px;
+	}
+	@media (min-width: $screen-md-min) {
+		margin-bottom: 120px;
+	}
+	#map {
+		// this maintains a 16 / 9 aspect ratio
+		padding-bottom: percentage(9 / 16);
 	}
 }
 
@@ -150,26 +175,39 @@
 		margin-top: 0;
 	}
 
-	.unit-details__action-btn {
-		padding-left: 25px;
-		padding-right: 25px;
-		margin: 10px 5px 0 0;
-	}
 }
 
 .unit-details-media-container-tabs {
+	$tab-border-width: 3px;
 	@include clearfix();
 	list-style: none;
-	padding: 5px 0;
+	padding: 0;
 	margin: 0;
-	border-bottom: 3px solid #eee;
+	border-bottom: $tab-border-width solid #eee;
+
 	li {
 		float: left;
 		text-align: center;
-		color: $gray;
 		width: 33%;
 		border-right: 1px solid #eee;
-		padding: 10px;
+		padding: 0;
+
+		.unit-details-media-container-tab {
+			position: relative;
+			top: $tab-border-width;
+			color: $gray;
+			background: none;
+			width: 100%;
+			padding: 15px 10px;
+			font-size: 1.8rem;
+
+			@include button-hover-state("&.selected") {
+				color: $blue;
+				border-bottom: $tab-border-width solid $blue;
+			}
+
+		}
+
 		&:last-of-type {
 			border-right: 0;
 			width: 34%;
