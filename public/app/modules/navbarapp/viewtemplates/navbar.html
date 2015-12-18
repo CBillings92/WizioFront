@@ -1,68 +1,71 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid navshit">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">
-                <img id="navbarlogo" src="/public/viewtemplates/images/logo.png" style="margin-top:-.6em;"></img>
-            </a>
-        </div>
-        <!--navbar header -->
+<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a class="" type="button" data-toggle="collapse" data-target="#searchFiltersCollapse" aria-expanded="false" href="#" aria-controls="searchFiltersCollapse">Filters</a>
-                </li>
-                <li>
-                    <form class="navbar-form navbar-left" ng-submit="search()" role="search">
-                        <div class="form-group">
-                            <input class="form-control" ng-model="searchString" placeholder="Ex: Jamaica Plain" style="display:inline-block;" type="text" typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-                            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                            <div ng-show="noResults">
-                                <i class="glyphicon glyphicon-remove"></i> No Results Found
-                            </div>
-                        </div>
-                        <button class="btn btn-success nav-search" style="display:inline-block;" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-click="goHome()">
-                    <a href="">Home</a>
-                </li>
-                <li ng-click="goAbout()">
-                    <a href="">About</a>
-                </li>
-                <li ng-click="goBlog()">
-                    <a href="">Blog</a>
-                </li>
-                <li ng-click="logout()" ng-show="isLoggedIn">
-                    <a href="">Sign Out</a>
-                </li>
-                <li ng-click="goToLogin()" ng-hide="isLoggedIn">
-                    <a href="">Sign In</a>
-                </li>
-                <li ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
-                    <a href="">Sign Up</a>
-                </li>
-                <li ng-click="goAccountDashboard()" ng-show="isLoggedIn">
-                    <a href="">My Account</a>
-                </li>
-            </ul>
+      <a class="navbar-brand" ng-click="goHome()">
+        <img id="navbarlogo" 
+             ng-class="(isActive('/') || isActive('/about')) ? 'white_logo' : 'gray_logo'"
+             />
+      </a>
+    </div><!--navbar header -->
 
-        </div>
-        <!-- /.navbar-collapse -->
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="nav navbar-nav navbar-left"
+          ng-hide="isActive('/') || isActive('/unit/display')"> 
+        <form id="navbar-search" class="navbar-form navbar-left hidden-sm" ng-submit="search()" role="search">
+          <div class="form-group">
+              <input class="form-control nav-search" 
+                     placeholder="Search by area"
+                     ng-model="searchString" 
+                     type="text" 
+                     typeahead-loading="loadingLocations" 
+                     typeahead-min-length="3" 
+                     typeahead-no-results="noResults" 
+                     typeahead="address for address in getLocation($viewValue)" />
+              <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+              <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+              </div>
+          </div>
+          <button class="btn btn-search" ng-click="search()" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li id="btn-upload" ng-click="" ng-class="{active: false}">
+          <a href="">Upload</a>
+        </li>
+        <li ng-click="goAbout()" ng-class="{active: false}">
+          <a href="">About</a>
+        </li>
+        <li ng-click="goToLogin()" ng-hide="isLoggedIn">
+          <a href="">Sign In</a>
+        </li>
+        <li ng-click="goAccountDashboard()" ng-class="{active: false}" ng-show="isLoggedIn">
+          <a href="">Activity</a>
+        </li>
+        
+        <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
+          <a href="">Sign Up</a>
+        </li>
+        <li ng-click="logout()" ng-show="isLoggedIn">
+          <a href="">Logout</a>
+        </li>        
+      </ul>
     </div>
-    <!-- close container -->
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- close container -->
 </nav>
+
 <div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
     <form class="form-inline">
         <div class="form-group">

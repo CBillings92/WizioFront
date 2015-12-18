@@ -215,11 +215,11 @@ angular.module('MainApp')
                                     return "DashboardWaitlistCtrl";
                                 }
                             }
-                        },/*
+                        },
                         rightSplit: {
-                            templateUrl: '',
-                            controller: ''
-                        }*/
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
+                            controller: "DashboardFavoriteCtrl"
+                        }
                     },
                     data: trueRequiredLogin
                 })
@@ -415,6 +415,7 @@ angular.module('MainApp')
                             if(typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token){
 
                                 TokenSvc.storeToken(response.data.token);
+                                $injector.get('$state').reload();
                                 return response;
                             } else {
                                 return response;
@@ -428,9 +429,10 @@ angular.module('MainApp')
                                     return $q.reject(response);
                                 }
                                 alert('Authentication Failed');
+                                $injector.get('$state').transitionTo('Login');
                             }
-                            //$injector.get('$state').transitionTo('Login');
-                            return $q.reject(response);
+                            return response;
+//                            return $q.reject(response);
                         }
 
                     };

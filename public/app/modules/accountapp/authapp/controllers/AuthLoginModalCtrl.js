@@ -87,6 +87,10 @@ angular.module('AccountApp')
                     alert('Sorry, that email is not associated with a Wizio Account');
                 });*/
             };
+            $scope.closeModal = function() {
+                $modalInstance.close();
+            };
+
             var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             $scope.resetPassword = function() {
                 if ($scope.password === $scope.passwordConfirm) {

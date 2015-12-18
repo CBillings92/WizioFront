@@ -16,13 +16,32 @@ angular.module('UnitApp')
             }
             $scope.mapshow = true;
             $scope.maphidden = false;
+            $scope.filterToggle = true;
+
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            };
 
             //display maps and markers
             displayMaps();
 
-            $scope.tabToggle = function(){
-                $scope.mapshow = !$scope.mapshow;
-                $scope.maphidden = !$scope.maphidden;
+            $scope.tabToggleMap = function(){
+                if (!$scope.mapshow) {
+                    $scope.mapshow = !$scope.mapshow;
+                    $scope.maphidden = !$scope.maphidden;
+                }
+            };
+            $scope.tabToggleGrid = function(){
+                if (!$scope.maphidden) {
+                    $scope.mapshow = !$scope.mapshow;
+                    $scope.maphidden = !$scope.maphidden;
+                }
+            };
+            $scope.tabToggleFilters = function(){
+                $scope.filterToggle = !$scope.filterToggle;
             };
             $scope.$on('searchFinished', function(event, data) {
                 for(i = 0; i < data.length; i++){

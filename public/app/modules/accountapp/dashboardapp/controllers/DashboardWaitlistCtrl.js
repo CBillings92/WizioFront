@@ -11,17 +11,15 @@ angular.module('AccountApp')
             ApplicationId: applicationIdArray,
             //UserId: user.id
         };
-        ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
-
-            var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
-            $scope.waitlists = lodash.values(buildingWaitlists);
-            for(var i=0; i < $scope.waitlists.length; i++){
-                console.dir($scope.waitlists[i][0].Apartment);
-                $scope.waitlists[i][0].Apartment.pets = "Dogs and Cats";
-                $scope.waitlists[i][0].Apartment.utilities = "Hot Water";
-            }
-            if($scope.waitlists.length > 0){
-                $scope.waitlistsExist = true;
+        ApplicationResource.save({item: 'applicationid'}, applicationIdObject, function(data, status){
+            if(data.length !== 0){
+                var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
+                $scope.waitlists = lodash.values(buildingWaitlists);
+                if($scope.waitlists.length > 0){
+                    $scope.waitlistsExist = true;
+                }
+            } else {
+                $scope.waitlistsExist = false;
             }
         });
         $scope.removeFromWaitlist = function(value){
