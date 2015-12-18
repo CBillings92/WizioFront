@@ -1,4 +1,121 @@
-<h4>
-Thanks for being awesome Katie! We are excited to be working with you.
-I wish you the best of luck with your endeavors on the wizio site!
-</h4>
+<div class="styleguide-nav col-sm-3">
+  <h2>Colors</h2>
+    <ul class="styleguide-nav__list">
+      <li><a>Base Colors</a></li>
+      <li><a>Accent Colors</a></li>
+    </ul>
+  <h2>Typography</h2>
+    <ul class="styleguide-nav__list">
+      <li><a>Headings</a></li>
+      <li><a>Copy</a></li>
+    </ul>
+  <h2>Components</h2>
+  <h2>Structures</h2>
+</div>
+
+<div class="styleguide col-sm-9 col-sm-offset-3">
+  <div class="styleguide-section">
+    <h2>About</h2>
+    Add stuff in about the about section here.
+  </div>
+  <div class="styleguide-section">
+    <h2>Colors</h2>
+    <div class="styleguide-subsection">
+      <h3>Base Colors</h3>
+      <p class="styleguide-subsection__desc">
+        Here are the brand's base colors. This orange color should be used for the logo.
+      </p>
+      <div class="live-example row">
+        <div class="color col-xs-3">
+          <div class="color__box--orange">
+          </div>
+          <p>$orange<br/>#F79739</p>
+        </div>
+        <div class="color col-xs-3">
+          <div class="color__box--gray">
+          </div>
+          <p>$gray<br/>#706F72</p>
+        </div>
+      </div>
+    </div>
+    <div class="styleguide-subsection">
+      <h3>Accent Colors</h3>
+      <p class="styleguide-subsection__desc">
+        Here are the brand's accent colors. This orange color should be used for large areas of orange.
+      </p>
+      <div class="row">
+        <div class="color col-xs-3">
+          <div class="color__box--red">
+          </div>
+          <p>$red<br/>#BA5123</p>
+        </div>
+        <div class="color col-xs-3">
+          <div class="color__box--blue">
+          </div>
+          <p>$blue<br/>#7A9DD1</p>
+        </div>
+        <div class="color col-xs-3">
+          <div class="color__box--light-orange">
+          </div>
+          <p>$light-orange<br/>#F7AA63</p>
+        </div>
+      </div>
+    </div>
+  <div class="styleguide-section">
+    <h2>Typography</h2>
+    <div class="styleguide-subsection">
+      <h3>Headings</h3>
+      <p class="styleguide-subsection__desc">
+        These are the headings used throughout the site.
+      </p>
+      <div class="live-example">
+        <h1>This is an h1</h1>
+        <h2>This is an h2</h2>
+        <h3>This is an h3</h3>
+        <h4>This is an h4</h4>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styleguide-subsection">
+      <h3>Copy</h3>
+      <p class="styleguide-subsection__desc">
+        This is the copy style.
+      </p>
+      <div class="live-example">
+        <p>I am copy. I am copy. I am copy.</p>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+
+    <div class="styleguide-section">
+    <h2>Components</h2>
+    <div class="styleguide-subsection">
+      <h3>Example</h3>
+      <div class="live-example"></div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+
+    <div class="styleguide-section">
+    <h2>Structures</h2>
+    <div class="styleguide-subsection">
+      <h3>Example</h3>
+      <div class="live-example">
+        <p>Random example</p>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* copy the code from the example, and put it beneath the live example in a code block
+    so that the code that the person sees when looking at the site is always the
+    same code that is used in the live example */
+  $(".live-example").each(
+    function() {
+     $(this).parent().find(".code code").text($(this).html());
+    }
+  )
+</script>

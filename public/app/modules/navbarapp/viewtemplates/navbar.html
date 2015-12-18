@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
+<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" role="navigation">
+  <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
         <span class="sr-only">Toggle navigation</span>
@@ -7,55 +7,100 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#/">
-        <img id="navbarlogo" src="/public/ViewTemplates/Images/logo.png"></img>
+
+      <a class="navbar-brand" ng-click="goHome()">
+        <img id="navbarlogo"
+             ng-class="(isActive('/') || isActive('/about')) ? 'white_logo' : 'gray_logo'"
+             />
       </a>
     </div><!--navbar header -->
 
-<!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav">
-        <li ng-click="goHome()">
-          <a href="">Home</a>
-        </li>
-        <li ng-click="createUnit()">
-          <a href="">Create Apartment</a>
-        </li>
-        <li ng-click="goBlog()">
-          <a href="">Blog</a>
-        </li>
-        <li ng-click="goAbout()">
-          <a href="">About Us</a>
-        </li>
+      <ul class="nav navbar-nav navbar-left"
+          ng-hide="isActive('/') || isActive('/unit/display')">
+        <form id="navbar-search" class="navbar-form navbar-left" ng-submit="search()" role="search">
+          <div class="form-group">
+              <input class="form-control nav-search"
+                     placeholder="Search by area"
+                     ng-model="searchString"
+                     type="text"
+                     typeahead-loading="loadingLocations"
+                     typeahead-min-length="3"
+                     typeahead-no-results="noResults"
+                     typeahead="address for address in getLocation($viewValue)" />
+              <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+              <div ng-show="noResults">
+                  <i class="glyphicon glyphicon-remove"></i> No Results Found
+              </div>
+          </div>
+          <button class="btn btn-search" ng-click="search()" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
       </ul>
-      <form class="navbar-form navbar-left" ng-submit="search()" role="search">
-        <div class="form-group">
-            <input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-            <div ng-show="noResults">
-                <i class="glyphicon glyphicon-remove"></i> No Results Found
-            </div>
-        </div>
-        <button class="btn btn-success" ng-click="search()" type="submit">Search</button>
-      </form>
 
       <ul class="nav navbar-nav navbar-right">
+        <li id="btn-upload" ng-click="" ng-class="{active: false}">
+          <a href="">Upload</a>
+        </li>
+        <li ng-click="goAbout()" ng-class="{active: false}">
+          <a href="">About</a>
+        </li>
+        <li ng-click="goToLogin()" ng-hide="isLoggedIn">
+          <a href="">Sign In</a>
+        </li>
+        <li ng-click="goAccountDashboard()" ng-class="{active: false}" ng-show="isLoggedIn">
+          <a href="">Activity</a>
+        </li>
+
+        <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
+          <a href="">Sign Up</a>
+        </li>
         <li ng-click="logout()" ng-show="isLoggedIn">
           <a href="">Logout</a>
         </li>
-        <li ng-click="goToLogin()" ng-hide="isLoggedIn">
-          <a href="">Login</a>
-        </li>
-        <li ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
-          <a href="">Create Account</a>
-        </li>
-        <li ng-click="goAccountDashboard()" ng-show="isLoggedIn">
-          <a href="">My Account</a>
-        </li>
-       </ul>
-
+      </ul>
     </div>
-<!-- /.navbar-collapse -->
-  </div><!-- close container -->
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- close container -->
 </nav>
+
+<div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
+    <form class="form-inline">
+        <div class="form-group">
+            <div class="dropdown">
+                <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                    <option value="">Please select</option>
+                    <option value=0>Studio</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5+</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="BathsSelect" id="labelLeft">Baths:</label>
+            <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                <option value="">Please select</option>
+                <option value=1>1</option>
+                <option value=2>2</option>
+                <option value=3>3+</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
+            <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+        </div>
+        <div class="form-group">
+
+            <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price: </label>
+            <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+        </div>
+    </form>
+</div>
+
 <!--End Navbar-->
