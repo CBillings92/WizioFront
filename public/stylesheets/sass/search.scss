@@ -85,6 +85,13 @@ h2 {
     border-radius: 0;
     background-color: transparent;
     height: 50px;
+    transition: all 0.15s ease-in-out;
+    color: $gray;
+
+    &:hover {
+        background-color: $orange;
+        color: $white;
+    }
     &.focus,
     &:focus{
         color: $white;
@@ -94,8 +101,14 @@ h2 {
         border-left: 1px solid #eee;
     }
     &.filter_button {
+        background-color: $white;
+        color: $gray;
+        transition: color 0.15s ease-in-out;
         &.focus,
         &:focus{
+            color: $white;
+        }
+        &:hover {
             color: $black;
         }
     }
@@ -104,6 +117,10 @@ h2 {
 .search_view_active {
     background-color: $orange;
     color: $white;
+
+    &:hover {
+        color: $white;
+    }
 }
 
 .filter-row {
@@ -115,10 +132,10 @@ h2 {
 
         input, select {
             border-radius: 2px;
-            border: 1px solid #ccc;
+            border: 1px solid $gray;
             box-shadow: none;
             &:focus {
-                border: 1px solid #ccc;
+                border: 1px solid $gray;
             }
         }
         .form-group {
