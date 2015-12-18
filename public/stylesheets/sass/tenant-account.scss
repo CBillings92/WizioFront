@@ -3,8 +3,7 @@
 }
 .user-info {
   margin-top: 140px;
-  padding-bottom: 80px;
-  border-bottom: 1px solid $black;
+  padding-bottom: 50px;
   margin-bottom: 20px;
 }
 .user-info__name {
@@ -15,12 +14,20 @@
 .user-info__email {
   margin-top: 15px;
   font-size: 20px;
+  color: $gray;
+}
+
+.no_results {
+  padding-left: 15px;
 }
 .apt-list__image {
-  display: inline-block;
-  height: 100px;
-  background-size: cover;
-  background-position: center;
+    div {
+      width: 100%;
+      display: inline-block;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
 }
 .apt-list__item {
   margin-top: 4px;
@@ -33,14 +40,14 @@
         display: block;
         height: 1px;
         width: 100%;
-        background-color: $black;
+        background-color: #ccc;
         position: relative;
       }
     }
   }
 
   .apt-list__image {
-    margin-top: 0;
+    margin-top: 1;
   }
 }
 .apt-list__info {
@@ -59,10 +66,9 @@
     display: block;
     height: 1px;
     width: 100%;
-    margin-top: 2px;
-    background-color: $black;
+    background-color: #ccc;
     position: relative;
-    top: 30px;
+    top: 25px;
   }
 }
 .apt-list__cost {
@@ -83,14 +89,26 @@
   display: inline-block;
 }
 .apt-list__view {
-  top: -7px;
-  position: relative;
-  display: inline-block;
-  border: 1px solid $blue;
-  padding: 5px 10px;
-  border-radius: 6px;
-  text-align: center;
-  color: $blue;
+  text-align: right;
+  padding-right: 0;
+
+  span {
+    top: -7px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid $blue;
+    padding: 5px 22%;
+    border-radius: 6px;
+    text-align: center;
+    color: $blue;
+    cursor: pointer;
+  }
+  &:hover {
+    span {
+      background-color: $blue;
+      color: $white;
+    }
+  }
 }
 .account__waitlisted,
 .account__favorites {
@@ -100,6 +118,7 @@
   display: inline-block;
   margin-right: 20px;
   transition: color 0.15s ease-in-out;
+  color: $gray;
 
   &.active-option {
     color: $orange;
@@ -125,7 +144,7 @@
     margin-bottom: -6px;
     * {
       transition: stroke 0.15s ease-in-out;
-      stroke: $black;
+      stroke: $gray;
     }
   }
 }
@@ -145,13 +164,26 @@
   display: inline-block;
   margin-left: 20px;
   transition: color 0.15s ease-in-out;
+  color: $gray;
 
   &:hover {
     color: $blue;
   }
 }
 .account-filter-options {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+
+  border-top: 1px solid $gray;
+  margin: 0 15px 10px 15px;
+  padding: 20px 0;
+
+  .col-xs-12 {
+    padding: 0;
+  }
+}
+
+.apt-list-view {
+  margin: 0 15px 10px 15px;
 }
 
 @media (min-width: $screen-sm-min) {
