@@ -5,14 +5,12 @@
     position: absolute;
     z-index: 1000;
     width: 100%;
-    .container {
-        padding-top: 20px;
-    }
     .navbar-collapse {
         padding:0;
     }
     .navbar-toggle {
         margin-top: 0;
+        top: 4px;
     }
     .icon-bar {
         background-color: $orange;
@@ -23,9 +21,9 @@
         cursor: pointer;
     }
     .navbar-brand {
-        padding: 0 0 0 15px;
+        padding: 9px 0 0 15px;
         img {
-            width: 160px;
+            width: 112px;
             content: url('/public/ViewTemplates/Images/brand_assets/wizio_logo_gray.png');
         }
     }
@@ -43,7 +41,7 @@
             font-size: 16px;
         }
     }
-    .nav>li>a:focus, 
+    .nav>li>a:focus,
     .nav>li>a:hover {
         background-color: transparent !important;
     }
@@ -69,7 +67,7 @@
     }
 }
 
-#navbar-search { 
+#navbar-search {
     margin: 0;
     width: 100%;
     display: block;
@@ -109,6 +107,7 @@
 @media (min-width: $screen-sm-min) {
     .navbar {
         padding-bottom: 10px;
+        padding-top: 10px;
         .navbar-brand {
             .white_logo {
                 content: url('/public/ViewTemplates/Images/brand_assets/wizio_logo_white.png');
@@ -120,6 +119,7 @@
         .navbar-right {
             padding-right: 15px;
             padding-left: 15px;
+            padding-top: 6px;
             li {
                 width: auto;
                 display: block;
@@ -130,17 +130,24 @@
             }
         }
         .navbar-nav > li > a {
-            font-size: 20px;
-            padding: 10px 20px;
+            font-size: 15px;
+            padding: 6px 14px;
             color: $gray;
+            transition: color 0.15s ease-in-out;
+        }
+        .navbar-nav > li:last-child {
+            a {
+                padding-right: 0;
+            }
         }
     }
     #btn-upload {
         border: 2px solid $gray;
+        transition: border-color 0.15s ease-in-out;
         border-radius: 5px;
         margin-right: 10px;
         &:hover {
-            border: 2px solid $orange;
+            border-color: $orange;
         }
         &:hover > a {
             color: $orange;
@@ -153,10 +160,10 @@
             color: $white;
         }
         #btn-upload {
-            border: 2px solid $white;
+            border-color: $white;
         }
         #btn-upload:hover {
-            border: 2px solid $orange;
+            border-color: $orange;
         }
     }
 
