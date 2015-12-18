@@ -23,6 +23,16 @@ $blue-gray: #8E9BB2;
   transform: translate(-50%, -50%);
 }
 
+@mixin button-hover-state($extraSelectors: '') {
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:hover,
+  #{$extraSelectors} {
+    @content;
+  }
+}
+
 /**
   Styles
 **/
@@ -116,10 +126,7 @@ p {
   font-size: 16px;
   transition: background-color 0.15s ease-in-out;
 
-  &:hover,
-  &:focus,
-  &:active,
-  &:active:hover {
+  @include button-hover-state {
     background-color: darken($blue, 5%);
   }
 }

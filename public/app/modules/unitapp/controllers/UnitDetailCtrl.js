@@ -35,6 +35,28 @@ angular.module('UnitApp')
             WizioConfig
         ) {
 
+            // MediaTabs
+            $scope.mediaTab = 'unitVideos';
+            $scope.selectMediaTab = function(tab) {
+                $scope.mediaTab = tab;
+            };
+            $scope.range = function(n) {
+                return new Array(n);
+            };
+
+            var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+                width =  $(".unit-details-media-tab-content-picker-wrapper").width()
+                $(".unit-details-media-tab-content-picker-slider").scrollLeft(width * 0.5 * direction);
+            }
+
+            $scope.moveSliderBackward = function() {
+                moveSlider(-1);
+            }
+
+            $scope.moveSliderForward = function() {
+                moveSlider(1);
+            }
+
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
             //HELPER FUNCTION -- modal creation function
