@@ -13,6 +13,12 @@ angular.module('NavbarApp')
         'WizioConfig',
         function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            };
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
                     closeButtonText: closeButtonText,
