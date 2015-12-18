@@ -1,0 +1,70 @@
+<center>
+    <div id="formbg" method="post">
+
+        <form ng-submit="editUnit()">
+            <center>
+                <h1 class="col-md-12">UPDATE UNIT SEARCHED</h1>
+                <p>
+                    SEARCH For a unit then update any of its parameters here.
+                </p>
+                <h3>{{apartment.concatAddr}}</h3>
+            </center>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                        <select class="form-control" name="bedsSelect" ng-model="apartment.beds" ng-options='num for num in numBeds'></select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="bathsSelect" id="labelLeft">Baths:</label>
+                        <select class="form-control" name="bathsSelect" ng-model="apartment.baths" ng-options='num for num in numBaths'></select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="livingRoomsSelect" id="labelLeft">Living Rooms:</label>
+                        <select class="form-control" name="livingRoomsSelect" ng-model="apartment.livingSpaces" ng-options='num for num in numLivingrooms'></select>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="maxOccuSelect" id="labelLeft">Max Occupancy:</label>
+                        <select class="form-control" name="maxOccuSelect" ng-model="apartment.maxResidency" ng-options='num for num in maxResidency'></select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="control-label" for="renovatedSelect" id="labelLeft">Recently Redone:</label>
+                        <select class="form-control" name="renovatedSelect" ng-model="apartment.renovated" ng-options='num for num in renovatedSelect'></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="control-label" for="costSelect" id="labelLeft">Cost Per Month:</label>
+                        <input class="form-control" id="costPerMonth" ng-model="apartment.costPerMonth" placeholder="4200" type="text">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="" for="petPolicy" id="labelLeft">Pets:</label>
+                        <select class="form-control" name="petPolicy" ng-model="apartment.petPolicy" ng-options='num for num in petPolicy'></select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-grop">
+                <div class="col-md-12">
+                    <input class="btn btn-submit center-block" type="submit" value="Update Apartment!"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+</center>
+</br>
+<!--End Create Apartment Form -->

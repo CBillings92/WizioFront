@@ -1,0 +1,197 @@
+<center>
+    <div id="formbg" method="post">
+
+        <form ng-submit="addUnit()">
+            <center>
+                <h1 class="col-md-12">CREATE NEW APARTMENT FORM/h1>
+                </center>
+                <p>
+                    The basic create apartment form. 
+                </p>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label class="control-label" id="labelLeft">Street Address:</label>
+                            <input class="form-control" ng-model="apartmentAddress" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                            <div ng-show="noResults">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                No Results Found
+                            </div>
+
+                            <div class="col-md-2">
+                                <label class="control-label" id="labelLeft">Apartment Number:</label>
+                                <input class="form-control" id="aptNum" ng-model="unitNum" placeholder="23A" popover-trigger="focus" popover="Fill in your apartment number here." type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="control-label" for="bedsSelect" id="labelLeft">Beds:</label>
+                                <select class="form-control" name="bedsSelect" ng-model="beds">
+                                    <option value="">Please select</option>
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5+</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" for="bathsSelect" id="labelLeft">Baths:</label>
+                                <select class="form-control" name="bathsSelect" ng-model="baths">
+                                    <option value="">Please select</option>
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5+</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" for="livingRoomsSelect" id="labelLeft">Living Rooms:</label>
+                                <select class="form-control" name="livingRoomsSelect" ng-model="livingRooms">
+                                    <option value="">Please select</option>
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5+</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="" for="kitchenSelect" id="labelLeft">Kitchen:</label>
+                                <select class="form-control" name="kitchenSelect">
+                                    <option value="">Please select</option>
+                                    <option value=0>With Stove</option>
+                                    <option value=1>Without Stove</option>
+                                    <option value=2>No Kitchen</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" for="maxOccuSelect" id="labelLeft">Max Occupancy:</label>
+                                <select class="form-control" name="maxOccuSelect" ng-model="maxResidency">
+                                    <option value="">Please select</option>
+                                    <option value=0>0</option>
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5+</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="control-label" for="renovatedSelect" id="labelLeft">Recently Redone:</label>
+                                <select class="form-control" name="renovatedSelect" ng-model="renovated">
+                                    <option value="">Please select</option>
+                                    <option value=0>No</option>
+                                    <option value=1>Yes</option>
+                                    <option value=3>Unsure</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="costSelect" id="labelLeft">Cost Per Month:</label>
+                                <input class="form-control" id="costPerMonth" ng-model="costPerMonth" placeholder="4200" type="text">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="" for="petPolicy" id="labelLeft">Pets:</label>
+                                <select class="form-control" name="petPolicy" ng-model="petPolicy">
+                                    <option value="">Please select</option>
+                                    <option value=0>Dogs Only</option>
+                                    <option value=1>Cats Only</option>
+                                    <option value=2>Dogs & Cats</option>
+                                    <option value=3>Small Animals</option>
+                                    <option value=4>None</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+            <div class="form-group">
+                <center>
+                    <div class="btn-group">
+
+                        <label btn-radio="'tenant'" class="btn btn-submit" ng-click="tenantCheck = true; subletterCheck = false; neverLivedCheck = false;" ng-model="statusCheck" uncheckable>I am/was a tenant</label>
+                        <label btn-radio="'subletter'" class="btn btn-submit" ng-click="tenantCheck = false; subletterCheck = true; neverLivedCheck = false;" ng-model="statusCheck" uncheckable>I am/was a subletter</label>
+                        <label btn-radio="'neverLived'" class="btn btn-submit" ng-click="tenantCheck = false; subletterCheck = false; neverLivedCheck = true;" ng-model="statusCheck" uncheckable>I never lived here</label>
+
+                    </div>
+                </center>
+            </div>
+
+            <div class="col-md-12" ng-show="tenantCheck">
+                <h3>Please provide the start and end date of lease you were/are on</h3>
+            </div>
+            <div class="col-md-12" ng-show="subletterCheck">
+                <h3 class="center-block">Please provide your previous/current move in date and move out date:</h3>
+            </div>
+
+            <div class="row">
+                <div class="form-group" ng-show="tenantCheck">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">The lease began on:</label>
+                                <input class="form-control" ng-model="beginDateLease.value" type="date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="">The lease ends on:</label>
+                                <input class="form-control" ng-model="endDateLease.value" type="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-show="subletterCheck" style="">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">I started living here on:</label>
+                                <input class="form-control" ng-model="beginDateAssignment.value" type="date">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="">I stopped living here on:</label>
+                                <input class="form-control" ng-model="endDateAssignment.value" type="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            -->
+                    <div class="form-grop">
+                        <div class="col-md-12">
+                            <input class="btn btn-submit center-block" type="submit" value="Create Apartment!"></input>
+                        </div>
+                    </div>
+                </br>
+                <!--Submission button-->
+
+            </form>
+
+        </div>
+    </center>
+</br>
+<!--End Create Apartment Form -->
