@@ -3,8 +3,14 @@
     <h3 ng-hide="waitlistsExist">You currently aren't on any waitlists</h3>
 </div>
     <div class="" ng-repeat="waitlist in waitlists track by $index">
+        <img class="pull-left" ng-src="http://img.youtube.com/vi/{{waitlist[$index].Apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)"></img>
         <h3>
-            {{waitlist[$index].Apartment.concatAddr}}
+            Street: {{waitlist[$index].Apartment.street}}
+        </h3>
+        <h3>
+            Unit Num: {{waitlist[$index].Apartment.unitNum}}
+        </h3>
+        <h3>
             Neighborhood: {{waitlist[$index].Apartment.neighborhood}}
         </h3>
         <h3>
