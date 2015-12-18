@@ -86,9 +86,6 @@
     .navbar-nav > li > a {
         color: $gray;
     }
-    #navbar-search input {
-        border: 1px solid transparent;
-    }
 }
 
 #navbar-search {
@@ -134,6 +131,11 @@
 
 // *** All other screens larger than mobile ***
 @media (min-width: $screen-sm-min) {
+    .transparent_nav {
+        #navbar-search input {
+            border: 1px solid transparent;
+        }
+    }
     .navbar {
         padding-bottom: 10px;
         padding-top: 10px;
