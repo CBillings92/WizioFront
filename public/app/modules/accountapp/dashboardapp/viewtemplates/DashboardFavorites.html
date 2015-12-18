@@ -50,7 +50,8 @@
           </div>
         </div>
         <div class="apt-tile__info">
-          <span class="apt-tile__address">{{ favorite.Apartment.street }} #{{ favorite.Apartment.unitNum }} | {{ favorite.Apartment.neighborhood}} </span>
+          <span class="apt-tile__street">{{ favorite.Apartment.street }} #{{ favorite.Apartment.unitNum }}</span>
+          <span class="apt-tile__neighborhood">{{ favorite.Apartment.neighborhood}} </span>
         </div>
     </div>
 </div>
@@ -67,7 +68,7 @@
                 ${{favorite.Apartment.costPerMonth}}
             </div>
             <div class="apt-list__address col-xs-6 col-lg-5">
-                {{ favorite.Apartment.street }} #{{ wfavorite.Apartment.unitNum }} | {{ favorite.Apartment.neighborhood}} 
+                {{ favorite.Apartment.street }} #{{ wfavorite.Apartment.unitNum }}<br/>{{ favorite.Apartment.neighborhood}} 
             </div>
             <div class="apt-list__beds-baths col-xs-2">
                 {{favorite.Apartment.beds}} bed {{favorite.Apartment.baths}} bath

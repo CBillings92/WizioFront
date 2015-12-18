@@ -56,7 +56,8 @@
           </div>
         </div>
         <div class="apt-tile__info">
-          <span class="apt-tile__address">{{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }} | {{ waitlist[$index].Apartment.neighborhood}} </span>
+          <span class="apt-tile__street">{{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }}</span>
+          <span class="apt-tile__neighborhood">{{ waitlist[$index].Apartment.neighborhood}}</span>
         </div>
 
     </div>
@@ -72,7 +73,7 @@
                     ${{waitlist[$index].Apartment.costPerMonth}}
                 </div>
                 <div class="apt-list__address col-xs-6 col-lg-5">
-                    {{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }} | {{ waitlist[$index].Apartment.neighborhood}}
+                    {{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }}<br/>{{ waitlist[$index].Apartment.neighborhood}}
                 </div>
                 <div class="apt-list__beds-baths col-xs-2">
                     {{waitlist[$index].Apartment.beds}} bed {{waitlist[$index].Apartment.baths}} bath
