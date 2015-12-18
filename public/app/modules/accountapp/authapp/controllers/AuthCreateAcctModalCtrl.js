@@ -13,13 +13,13 @@ angular.module('AccountApp')
 
             $scope.backStep = function() {
                 $modalInstance.close('backStep');
-            }
+            };
 
-            $scope.hasRegistered = false
+            $scope.hasRegistered = false;
 
             $scope.closeModal = function() {
                 return $modalInstance.close('ok');
-            }
+            };
 
             $scope.setUserObj = function() {
                 if ($scope.user.password === $scope.user.passwordConfirm) {
