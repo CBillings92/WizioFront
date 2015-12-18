@@ -21,10 +21,13 @@
   padding-left: 15px;
 }
 .apt-list__image {
-  display: inline-block;
-  height: 100px;
-  background-size: cover;
-  background-position: center;
+    div {
+      width: 100%;
+      display: inline-block;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
 }
 .apt-list__item {
   margin-top: 4px;
@@ -37,7 +40,7 @@
         display: block;
         height: 1px;
         width: 100%;
-        background-color: $black;
+        background-color: #ccc;
         position: relative;
       }
     }
@@ -63,10 +66,9 @@
     display: block;
     height: 1px;
     width: 100%;
-    margin-top: 2px;
-    background-color: $black;
+    background-color: #ccc;
     position: relative;
-    top: 30px;
+    top: 25px;
   }
 }
 .apt-list__cost {
