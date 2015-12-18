@@ -70,10 +70,10 @@
                 <div  style="background-image: url('http://img.youtube.com/vi/{{waitlist[$index].Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')"></div>
             </div>
             <div class="apt-list__info col-xs-9">
-                <div class="apt-list__cost col-xs-2 col-lg-2">
+                <div class="apt-list__cost col-xs-2">
                     ${{waitlist[$index].Apartment.costPerMonth}}
                 </div>
-                <div class="apt-list__address col-xs-5">
+                <div class="apt-list__address col-xs-5 col-lg-4">
                     {{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }}<br/>{{ waitlist[$index].Apartment.neighborhood}}
                 </div>
                 <div class="apt-list__beds-baths col-xs-2">
@@ -82,7 +82,7 @@
                 <div class="apt-list__status col-xs-3 col-lg-2">
                     status: waiting
                 </div>
-                <div class="apt-list__view col-xs-2 col-lg-1" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</div>
+                <div class="apt-list__view col-xs-2 col-lg-2" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</div>
             </div>
         </div>
     </div>
