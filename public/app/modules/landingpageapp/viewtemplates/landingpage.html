@@ -22,11 +22,6 @@
                 <div class="home-search__bar col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group">
                         <input placeholder="Search by area" class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
-                        <!-- get rid of loading options icon for now because happens too quickly and makes button jump -->
-<!--                      <i class="fa fa-refresh" ng-show="loadingLocations"></i>
- -->                       <div ng-show="noResults">
-                            <i class="fa fa-remove"></i> No Results Found
-                        </div>
                         <div class="input-group-btn">
                             <button class="btn btn-success" ng-click="search()" href="" type="button">
                                 <span class="fa fa-search"></span>
