@@ -211,10 +211,6 @@ $orange-transparancy-hover: 0.9;
 	&-members {
 		h3, .title {
 			font-family: 'Roboto Slab';	
-
-			@media (max-width: $screen-xs-max) {
-				padding: 0 ($grid-gutter-width / 2);
-			}
 		}
 
 		.title {
