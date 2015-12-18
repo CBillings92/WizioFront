@@ -1,37 +1,144 @@
-<div class="">
-    <div class="" style="margin-bottom:15px;">
-        <input class="btn" ng-click="tabToggle()" ng-disabled="mapshow" type="submit" autoFocus value="Maps View"> </input>
-        <input class="btn" ng-click="tabToggle()" ng-disabled="maphidden" type="submit" value="List View">
-    </div>
-    <div class="container" ng-repeat="apartment in sessionStorage.apartmentSearch" ng-hide="mapshow">
-        <div class="col-md-offset-2" style="border: 1px solid black; border-radius:5px;margin-bottom:10px;padding:10px; background:white;">
-            <article class="media">
-                <img class="pull-left" ng-src="http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)"></img>
-                <h2 class="full-width">
-                    <div class="wrap">
-                        <h1>{{apartment.hiddenAddress}}</h1>
-                    </div>
-                    <!-- wrap -->
-                </h2>
-
-                <div class="media-body">
-                    </br>
-                    </br>
-                    <button class="btn btn-success" ng-click="apartmentSelected(apartment.id)">More</button>
-                    </br>
-                    </br>
-                </div>
-                <!-- media body -->
-            </article>
+<div id="search-navmenu">
+    <div class="container">
+        <div class="col-sm-6">
+            <form id="search-searchbar" class="searchbar navbar-form" ng-submit="search()" role="search">
+              <div class="form-group search-nav-form">
+                  <input class="form-control nav-search search-nav-input"
+                         placeholder="Search by area"
+                         ng-model="searchString"
+                         type="text"
+                         typeahead-loading="loadingLocations"
+                         typeahead-min-length="3"
+                         typeahead-no-results="noResults"
+                         typeahead="address for address in getLocation($viewValue)" />
+<!--                   <div ng-show="noResults">
+                      <i class="glyphicon glyphicon-remove"></i> No Results Found
+                  </div> -->
+              </div>
+              <button class="btn btn-search search-nav-submit" ng-click="search()" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
         </div>
-        <!-- col-md-8 -->
+
+        <div class="col-sm-6 col-md-offset-2 col-md-4 search-view-toggle">
+            <button class="btn btn-search-bar pull-right hidden-xs"
+                    ng-click="tabToggleMap()" ng-class="{'search_view_active': mapshow}">
+                    <i class="fa fa-map-o"></i><span class="search-view-toggle__label">Map</span></button>
+            <button class="btn btn-search-bar pull-right center_button hidden-xs"
+                    ng-click="tabToggleGrid()" ng-class="{'search_view_active': maphidden}">
+                    <i class="fa fa-th-large"></i><span class="search-view-toggle__label">Grid</span></button>
+            <button class="btn btn-search-bar pull-right filter_button hidden-xs"
+                    ng-click="tabToggleFilters()">
+                <i class="fa fa-chevron-down"></i><span class="search-view-toggle__label">Filters</span>
+                    </button>
+        </div>
     </div>
 </div>
+
+<div class="filter-row" ng-show="filterToggle">
+    <div class="container">
+        <div class="" id="searchFiltersCollapse" ui-view="search-filters" style="">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice" placeholder="Min Price">
+            </div>
+            <div class="form-group">
+                <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice" placeholder="Max Price">
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="bedsSelect" ng-model="filters.beds">
+                    <option value="" selected hidden># Beds</option>
+                    <option value=-1>Any</option>
+                    <option value=0>Studio</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5+</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="BathsSelect" ng-model="filters.baths">
+                    <option value="" selected hidden># Baths</option>
+                    <option value=-1>Any</option>
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3+</option>
+                </select>
+            </div>
+        </form>
+        <button id="submit-search-filters" class="btn btn-sm btn-block">Search</button>
+    </div>
+
+    </div>
+
+</div>
+
+<div class="container apt-grid-view apt-grid-view--search" ng-hide="mapshow">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="apartment in sessionStorage.apartmentSearch" >
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+          <div class="apt-tile__overlay">
+            <div class="apt-tile__header">
+                <span class="apt-tile__view-btn" ng-click="apartmentSelected(apartment.id)">View</span>
+                <span class="apt-tile__favorite-btn">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M20.001,37.152
+    C6.783,24.287,3.066,19.554,2.262,14.704C1.278,8.769,5.694,2.848,12.578,2.848c2.949,0,5.63,1.133,7.423,3.026
+    c1.79-1.893,4.471-3.026,7.421-3.026c6.853,0,11.306,5.893,10.315,11.856C36.952,19.449,33.479,24.031,20.001,37.152z"/>
+</svg>
+                </span>
+                <span class="apt-tile__cost">${{apartment.costPerMonth}}</span>
+            </div>
+            <div class="apt-tile__ammenities">
+                <div class="ammenity" ng-if="apartment.beds">
+                    <div class="ammenity__icon w-icon w-bed"></div>
+                    <span class="ammenity__label">{{apartment.beds}} bed</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.baths">
+                    <div class="ammenity__icon w-icon w-toilet"></div>
+                    <span class="ammenity__label">{{apartment.baths}} bath</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.laundry">
+                    <div class="ammenity__icon w-icon w-laundry"></div>
+                    <span class="ammenity__label">laundry</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.dishwasher">
+                    <div class="ammenity__icon w-icon w-dishwasher"></div>
+                    <span class="ammenity__label">dishwasher</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.utilities">
+                    <div class="ammenity__icon w-icon w-utilities"></div>
+                    <span class="ammenity__label">included</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.pets">
+                    <div class="ammenity__icon w-icon w-pets"></div>
+                    <span class="ammenity__label">pets</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.elevator">
+                    <div class="ammenity__icon w-icon w-elevator"></div>
+                    <span class="ammenity__label">elevator</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.fireplace">
+                    <div class="ammenity__icon w-icon w-fireplace"></div>
+                    <span class="ammenity__label">fireplace</span>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="apt-tile__info">
+          <span class="apt-tile__street">{{ apartment.street }} #{{ apartment.unitNum }}</span>
+          <span class="apt-tile__neighborhood">{{ apartment.neighborhood}}</span>
+        </div>
+    </div>
+</div>
+
 <div ng-show="mapshow">
     <div id="map"></div>
     <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
     </div>
 </div>
-<!-- row -->
-</br>
+

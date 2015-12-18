@@ -1,10 +1,23 @@
-<div class="container">
-    <div class="row" style="padding:30px;">
-        <h1>Account Type</h1>
-        <center>
-            <input type="button" name="name" class="btn btn-lg btn-large col-md-5" style="height:125px; width:200px;" value="Tenant" ng-click="tenantSignup()">
-            <input type="button" name="name" class="btn btn-lg btn-large col-md-5" style="height:125px; width:200px;" value="Landlord" ng-click="landlordSignup()">
-        </center>
-
+<div class="acct-modal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Sign Up</h4>
+  </div>
+  <div class="modal-body">
+    <div class="account-type-buttons" data-toggle="buttons">
+        <label class="btn" ng-model="accountTypeModel" btn-radio="'tenant'">
+            I am a potential Tenant who is looking to find my perfect place
+        </label>
+        <label class="btn" ng-model="accountTypeModel" btn-radio="'landlord'">
+            I am a Real Estate Professional looking to add listings to your site
+        </label>
+    </div>
+    <div class="acct-modal-footer">
+        <button class="btn acct-modal-footer__btn acct-modal-footer__next-btn" ng-disabled="!accountTypeModel" ng-click="nextStep(accountTypeModel)">Next <span class="fa fa-long-arrow-right"></span></button>
+        <ul class="acct-modal-dots">
+            <li class="acct-modal-dots-dot acct-modal-dots-dot-filled">&nbsp;</li>
+            <li class="acct-modal-dots-dot">&nbsp;</li>
+            <li class="acct-modal-dots-dot">&nbsp;</li>
+        </ul>
     </div>
 </div>

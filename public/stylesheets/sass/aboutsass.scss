@@ -27,7 +27,7 @@ $orange-transparancy-hover: 0.9;
 	&-main {
 		background: url("/public/viewtemplates/images/aboutimages/hero-image.jpg");
 		color: $white;
-		padding: 50px 0;
+		padding: 100px 0 50px 0;
 
 		&__heading {
 			max-width: 80%;
@@ -40,6 +40,7 @@ $orange-transparancy-hover: 0.9;
 
 		@media (min-width: $screen-sm-min) {
 			padding: 0;
+			padding-top: 90px;
 
 			&__heading {
 				max-width: none;
@@ -55,7 +56,7 @@ $orange-transparancy-hover: 0.9;
 		@media (min-width: $screen-md-min) {
 			.about-hero-main__container {
 				position: absolute;
-				top: 35%;
+				top: 310px;
 				left: 0;
 				right: 0;
 				@include vertical-center-transform();
@@ -80,12 +81,12 @@ $orange-transparancy-hover: 0.9;
 			right: -250px;
 
 			@media (max-width: $screen-xs-max) {
-				top: 80px;				
+				top: 80px;
 			}
 
 			@media (min-width: $screen-sm-min) {
-				bottom: 34%;
-				right: 18.82%;
+				bottom: 35%;
+				right: 18.49%;
 				transform: scale(1.2) translate(50%, 0);
 			}
 
@@ -107,6 +108,12 @@ $orange-transparancy-hover: 0.9;
 .about-principles {
 	background: $light-orange;
 	color: $white;
+	padding: 50px 10px;
+
+	@media (min-width: $screen-sm-min) {
+		padding: 0;
+		margin-top: -10px;
+	}
 	h2 {
 		color: $white;
 
@@ -177,6 +184,7 @@ $orange-transparancy-hover: 0.9;
 	font-family: "Roboto Slab";
 	font-size: 3rem;
 	padding: 26px ($grid-gutter-width / 2);
+	transition: background-color 0.15s ease-in-out;
 
 	@media (min-width: $screen-sm-min) {
 		text-align: center;
@@ -186,7 +194,7 @@ $orange-transparancy-hover: 0.9;
 		color: $white;
 		text-decoration: none;
 	}
-	
+
 	&:hover {
 		background: darken($orange, 5%);
 	}
@@ -198,17 +206,29 @@ $orange-transparancy-hover: 0.9;
 		color: $orange;
 	}
 
+	@media (max-width: $screen-xs-max) {
+
+		.about-team-member {
+			max-width: 350px;
+			margin: 0 auto;
+		}
+
+	}
+
 	&-members {
 		h3, .title {
-			font-family: 'Roboto Slab';	
 
-			@media (max-width: $screen-xs-max) {
-				padding: 0 ($grid-gutter-width / 2);
-			}
+			font-weight: 300;
+			margin-bottom: 5px;
+		}
+
+		h3 {
+			font-family: 'Roboto Slab';
 		}
 
 		.title {
-			margin-bottom: 20px;
+			margin-bottom: 15px;
+			font-family: 'Roboto';
 		}
 
 		color: $gray;
@@ -223,7 +243,8 @@ $orange-transparancy-hover: 0.9;
 		&-more {
 			position: relative;
 			&-overlay {
-				display: none;
+				opacity: 0;
+				transition: opacity 0.15s ease-in-out;
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -264,7 +285,7 @@ $orange-transparancy-hover: 0.9;
 			}
 
 			&:hover &-overlay {
-				display: block;
+				opacity: 1;
 			}
 		}
 	}
