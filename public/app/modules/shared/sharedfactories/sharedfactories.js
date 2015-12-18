@@ -126,7 +126,6 @@ angular.module('SharedFactoryApp')
                         title: unitData.hiddenAddress,
                         icon: '/public/ViewTemplates/Images/brand_assets/map_pin.png'
                     });
-                    console.log(unitData);
                     marker.content = '<div class="infoWindowContent">' +
                                         '<div style="width: 140px; display:inline-block; margin:auto;padding: 25px;">' +
                                             '<span class="apt-tile__favorite-btn">'+
