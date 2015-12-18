@@ -3,8 +3,7 @@
 }
 .user-info {
   margin-top: 140px;
-  padding-bottom: 80px;
-  border-bottom: 1px solid $black;
+  padding-bottom: 50px;
   margin-bottom: 20px;
 }
 .user-info__name {
@@ -15,6 +14,11 @@
 .user-info__email {
   margin-top: 15px;
   font-size: 20px;
+  color: $gray;
+}
+
+.no_results {
+  padding-left: 15px;
 }
 .apt-list__image {
   display: inline-block;
@@ -40,7 +44,7 @@
   }
 
   .apt-list__image {
-    margin-top: 0;
+    margin-top: 1;
   }
 }
 .apt-list__info {
@@ -91,6 +95,11 @@
   border-radius: 6px;
   text-align: center;
   color: $blue;
+  cursor: pointer;
+  &:hover {
+    background-color: $blue;
+    color: $white;
+  }
 }
 .account__waitlisted,
 .account__favorites {
@@ -100,6 +109,7 @@
   display: inline-block;
   margin-right: 20px;
   transition: color 0.15s ease-in-out;
+  color: $gray;
 
   &.active-option {
     color: $orange;
@@ -125,7 +135,7 @@
     margin-bottom: -6px;
     * {
       transition: stroke 0.15s ease-in-out;
-      stroke: $black;
+      stroke: $gray;
     }
   }
 }
@@ -145,13 +155,26 @@
   display: inline-block;
   margin-left: 20px;
   transition: color 0.15s ease-in-out;
+  color: $gray;
 
   &:hover {
     color: $blue;
   }
 }
 .account-filter-options {
-  margin-bottom: 50px;
+  margin-bottom: 60px;
+
+  border-top: 1px solid $gray;
+  margin: 0 15px 10px 15px;
+  padding: 20px 0;
+
+  .col-xs-12 {
+    padding: 0;
+  }
+}
+
+.apt-list-view {
+  margin: 0 15px 10px 15px;
 }
 
 @media (min-width: $screen-sm-min) {

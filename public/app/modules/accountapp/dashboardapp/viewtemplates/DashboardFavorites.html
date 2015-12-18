@@ -62,12 +62,20 @@
     <div class="apt-list__item row" ng-repeat="favorite in favorites track by $index">
         <div class="apt-list__image col-xs-2" style="background-image: url('http://img.youtube.com/vi/{{favorite.Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
         </div>
-        <div class="apt-list__info col-xs-10">
-        <div class="apt-list__cost col-xs-2">${{favorite.Apartment.costPerMonth}}</div>
-        <div class="apt-list__address col-xs-6">{{ favorite.Apartment.street }} #{{ wfavorite.Apartment.unitNum }} | {{ favorite.Apartment.neighborhood}} </div>
-        <div class="apt-list__beds-baths col-xs-2">{{favorite.Apartment.beds}} bed {{favorite.Apartment.baths}} bath</div>
-        <div class="apt-list__status col-xs-3">status: waiting</div>
-        <a class="apt-list__view col-xs-1" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</a>
-    </div>
+        <div class="apt-list__info col-xs-10 col-lg-2">
+            <div class="apt-list__cost col-xs-2">
+                ${{favorite.Apartment.costPerMonth}}
+            </div>
+            <div class="apt-list__address col-xs-6 col-lg-5">
+                {{ favorite.Apartment.street }} #{{ wfavorite.Apartment.unitNum }} | {{ favorite.Apartment.neighborhood}} 
+            </div>
+            <div class="apt-list__beds-baths col-xs-2">
+                {{favorite.Apartment.beds}} bed {{favorite.Apartment.baths}} bath
+            </div>
+            <div class="apt-list__status col-xs-3 col-lg-2">
+                status: waiting
+            </div>
+            <div class="apt-list__view col-xs-1" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</div>
+        </div>
     </div>
 </div>
