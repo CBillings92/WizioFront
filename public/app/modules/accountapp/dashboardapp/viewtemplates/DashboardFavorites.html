@@ -67,7 +67,7 @@
                 <div class="apt-list__cost col-xs-2 col-lg-2">
                     ${{favorite.Apartment.costPerMonth}}
                 </div>
-                <div class="apt-list__address col-xs-5">
+                <div class="apt-list__address col-xs-5 col-lg-4">
                     {{ favorite.Apartment.street }} #{{ favorite.Apartment.unitNum }}<br/>{{ favorite.Apartment.neighborhood}}
                 </div>
                 <div class="apt-list__beds-baths col-xs-2">
@@ -76,7 +76,7 @@
                 <div class="apt-list__status col-xs-3 col-lg-2">
                     status: waiting
                 </div>
-                <div class="apt-list__view col-xs-2" ng-click="apartmentSelected(favorite.Apartment.id)">View</div>
+                <div class="apt-list__view col-xs-2 col-lg-1" ng-click="apartmentSelected(favorite.Apartment.id)">View</div>
             </div>
         </div>
     </div>
