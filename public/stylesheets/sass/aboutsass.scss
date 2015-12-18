@@ -81,12 +81,12 @@ $orange-transparancy-hover: 0.9;
 			right: -250px;
 
 			@media (max-width: $screen-xs-max) {
-				top: 80px;				
+				top: 80px;
 			}
 
 			@media (min-width: $screen-sm-min) {
 				bottom: 34%;
-				right: 18.82%;
+				right: 18.49%;
 				transform: scale(1.2) translate(50%, 0);
 			}
 
@@ -187,7 +187,7 @@ $orange-transparancy-hover: 0.9;
 		color: $white;
 		text-decoration: none;
 	}
-	
+
 	&:hover {
 		background: darken($orange, 5%);
 	}
@@ -210,7 +210,7 @@ $orange-transparancy-hover: 0.9;
 
 	&-members {
 		h3, .title {
-			font-family: 'Roboto Slab';	
+			font-family: 'Roboto Slab';
 		}
 
 		.title {
