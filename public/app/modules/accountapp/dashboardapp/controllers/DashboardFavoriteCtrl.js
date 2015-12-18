@@ -17,7 +17,6 @@ angular.module('AccountApp')
                     $scope.favorites = result;
                     $scope.favoritesExist = true;
                 }
-                console.dir(result);
             });
         }
         $scope.removeFromFavorite = function(value){

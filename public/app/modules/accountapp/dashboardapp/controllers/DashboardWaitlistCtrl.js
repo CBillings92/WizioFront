@@ -18,7 +18,6 @@ angular.module('AccountApp')
                 if($scope.waitlists.length > 0){
                     $scope.waitlistsExist = true;
                 }
-                console.dir($scope.waitlists);
             } else {
                 $scope.waitlistsExist = false;
             }
