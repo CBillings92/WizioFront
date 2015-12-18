@@ -3,7 +3,7 @@
     bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
-    height: 300px;
+    height: 260px;
     background-color: $blue-gray;
     padding-top: 40px;
     color: $white;
@@ -49,7 +49,7 @@
 }
 
 body {
-    margin-bottom: 300px; // footer height
+    margin-bottom: 260px; // footer height
 }
 @media (max-width: 767px) {
     /* Set the fixed height of the footer here

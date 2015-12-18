@@ -54,10 +54,31 @@
     }
   }
   .apt-tile__favorite-btn {
-    font-size: 25px !important;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
     margin-left: 20px;
+    margin-top: -10px;
     position: relative;
-    top: 3px;
+    top: 8px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+
+      path {
+        fill: transparent;
+        transition: fill 0.15s ease-in-out;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      svg path {
+        fill: $white;
+      }
+    }
   }
   .apt-tile__cost {
     font-weight: 500;
@@ -82,13 +103,21 @@
   .apt-tile__ammenities {
     margin-top: 20px;
   }
-  .apt-tile__ammenity {
-    width: 20%;
+  .ammenity {
+    width: 23%;
     display: inline-block;
     text-align: center;
-    i {
-      display: block;
-    }
+    margin-bottom: 10px;
+  }
+  .ammenity__icon {
+    display: block;
+    margin: 0 auto;
+    height: 30px;
+    width: 30px;
+  }
+  .ammenity__label {
+    display: inline-block;
+    font-size: 11px;
   }
 }
 @media (min-width: $screen-lg-min) {
