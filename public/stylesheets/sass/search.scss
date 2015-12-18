@@ -22,7 +22,7 @@ h2 {
 // Main searchbar styles. To use this, add searchbar class
 // to standard bootsrap form
 
-.searchbar { 
+.searchbar {
     margin: 8px -15px;
     width: 100%;
     display: block;
@@ -34,7 +34,7 @@ h2 {
         height: 35px;
         border: 1px solid #ccc;
         box-shadow: none;
-        
+
     }
     .form-control:focus {
         border: 1px solid #ccc;
@@ -135,9 +135,16 @@ h2 {
 
     &:hover {
         background-color: $blue-gray;
-    }        
+    }
 }
 
+.apt-grid-view--search {
+    margin-top: 30px;
+}
+#search-navmenu {
+    border-bottom: 1px solid #eee;
+    margin-bottom: -1px;
+}
 @media (min-width: $screen-sm-min) {
     .filter-row {
         form {
