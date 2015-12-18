@@ -1,19 +1,59 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="topHorizontal"></div>
-      </div>
-    </div><!-- row -->
-    <div class="row" ng-hide="userType != 2">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="midHorizontal"></div>
-      </div>
-    </div><!-- row -->
-    <div class="row pad" ng-show="userType == 1 || userType == 0">
-      <div class="col-md-5 col-md-offset-1 appl">
-        <div ui-view="leftSplit"></div>
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div ui-view="topHorizontal"></div>
+    </div>
+  </div><!-- row -->
+  <div class="row" ng-hide="userType != 2">
+    <div class="col-md-10 col-md-offset-1">
+      <div ui-view="midHorizontal"></div>
+    </div>
+  </div><!-- row -->
+  <div class="pad" ng-show="userType == 1 || userType == 0">
+    <div class="account container">
+      <div class="row account-filter-options">
+        <div class="col-xs-12">
+          <div class="account__waitlisted" ng-class="{'active-option': waitlistedSelected}" ng-click="toggleWaitlisted()">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+              <g>
+                <circle fill="none" stroke="#989898" stroke-width="2" stroke-miterlimit="10" cx="20" cy="20" r="17.442"/>
+                <polyline fill="none" stroke="#989898" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" points="13.216,10.034
+                  20,20 29.403,17.33  "/>
+                  <line fill="none" stroke="#989898" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="20" y1="2.559" x2="20" y2="5.609"/>
+                  <line fill="none" stroke="#989898" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="20" y1="34.385" x2="20" y2="37.436"/>
+                  <line fill="none" stroke="#989898" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="37.438" y1="19.997" x2="34.387" y2="19.997"/>
+                  <line fill="none" stroke="#989898" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="5.612" y1="19.997" x2="2.562" y2="19.997"/>
+              </g>
+            </svg>
+
+            Waitlisted
+          </div>
+          <div class="account__favorites" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                <path stroke="#cccccc" stroke-width="2" fill="none" stroke-linecap="round" stroke-miterlimit="10" d="M20.001,37.152 C6.783,24.287,3.066,19.554,2.262,14.704C1.278,8.769,5.694,2.848,12.578,2.848c2.949,0,5.63,1.133,7.423,3.026 c1.79-1.893,4.471-3.026,7.421-3.026c6.853,0,11.306,5.893,10.315,11.856C36.952,19.449,33.479,24.031,20.001,37.152z"/>
+            </svg>
+            Favorites
+          </div>
+
+        <div class="grid-list-buttons">
+          <div class="account__grid" ng-class="{'active-option': gridViewSelected}" ng-click="toggleGridView()">
+            <i class="fa fa-th-large"></i>
+            Grid
+          </div>
+          <div class="account__list" ng-class="{'active-option': listViewSelected}"ng-click="toggleListView()">
+            <i class="fa fa-bars"></i>
+            List
+          </div>
+        </div>
+        </div>
       </div>
 
-        <div class="col-md-5 sugges" ui-view="rightSplit"></div>
+    <div ng-class="{'apt-grid-view': gridViewSelected, 'apt-list-view': listViewSelected}">
+
+      <div ng-show="waitlistedSelected" ui-view="waitlisted"></div>
+      <div ng-show="favoritesSelected" ui-view="favorites"></div>
     </div>
+  </div>
+  </div>
 </div>

@@ -1,46 +1,77 @@
-<div class="">
-    <h2>Waitlists:</h2>
-    <h3 ng-hide="waitlistsExist">You currently aren't on any waitlists</h3>
-</div>
-    <div class="" ng-repeat="waitlist in waitlists track by $index">
-        <img class="pull-left" ng-src="http://img.youtube.com/vi/{{waitlist[$index].Apartment.Assignments[0].youtubeId}}/0.jpg" id="aptPicture" ng-click="apartmentSelected(apartment.id)"></img>
-        <h3>
-            Street: {{waitlist[$index].Apartment.street}}
-        </h3>
-        <h3>
-            Unit Num: {{waitlist[$index].Apartment.unitNum}}
-        </h3>
-        <h3>
-            Neighborhood: {{waitlist[$index].Apartment.neighborhood}}
-        </h3>
-        <h3>
-            {{waitlist[$index].Apartment.neighborhood}}
-        </h3>
-        <h4>
-            Beds: {{waitlist[$index].Apartment.beds}}
-        </h4>
-        <h4>
-            Baths: {{waitlist[$index].Apartment.baths}}
-        </h4>
-        <h4>
-            Living Spaces: {{waitlist[$index].Apartment.livingSpaces}}
-        </h4>
-        <h4>
-            Cost per Month: {{waitlist[$index].Apartment.costPerMonth}}
-        </h4>
-        <h4>
-            Utilities Included: {{waitlist[$index].Apartment.utilities}}
-        </h4>
-        <h4>
-            Pets Allowed: {{waitlist[$index].Apartment.pets}}
-        </h4>
-        <div class="" ng-repeat="item in waitlist">
-            <ul>
-                <li>{{item.ContactEmail}}</li>
-            </ul>
+<h3 ng-show="!waitlistsExist">You currently aren't on any waitlists</h3>
 
-        </div>
-        <div class="" style="padding:10px;">
+<!--         <div class="" style="padding:10px;">
             <button class="btn btn-success" ng-click="removeFromWaitlist($index)">remove me from this waitlist</button>
+        </div> -->
+
+<!--                 <li>{{item.ContactEmail}}</li>
+ -->
+<div class="account-grid-view">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="waitlist in waitlists track by $index">
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{waitlist[$index].Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+          <div class="apt-tile__overlay">
+            <div class="apt-tile__header">
+                <span class="apt-tile__view-btn" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</span>
+                <span class="apt-tile__favorite-btn" ng-click="removeFromFavorite($index)">
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                        <path stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M20.001,37.152 C6.783,24.287,3.066,19.554,2.262,14.704C1.278,8.769,5.694,2.848,12.578,2.848c2.949,0,5.63,1.133,7.423,3.026 c1.79-1.893,4.471-3.026,7.421-3.026c6.853,0,11.306,5.893,10.315,11.856C36.952,19.449,33.479,24.031,20.001,37.152z"/>
+                    </svg>
+                </span>
+                <span class="apt-tile__cost">${{waitlist[$index].Apartment.costPerMonth}}</span>
+            </div>
+            <div class="apt-tile__ammenities">
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.beds">
+                    <div class="ammenity__icon w-icon w-bed"></div>
+                    <span class="ammenity__label">{{waitlist[$index].Apartment.beds}} bed</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.baths">
+                    <div class="ammenity__icon w-icon w-toilet"></div>
+                    <span class="ammenity__label">{{waitlist[$index].Apartment.baths}} bath</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.laundry">
+                    <div class="ammenity__icon w-icon w-laundry"></div>
+                    <span class="ammenity__label">laundry</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.dishwasher">
+                    <div class="ammenity__icon w-icon w-dishwasher"></div>
+                    <span class="ammenity__label">dishwasher</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.utilities">
+                    <div class="ammenity__icon w-icon w-utilities"></div>
+                    <span class="ammenity__label">included</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.pets">
+                    <div class="ammenity__icon w-icon w-pets"></div>
+                    <span class="ammenity__label">pets</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.elevator">
+                    <div class="ammenity__icon w-icon w-elevator"></div>
+                    <span class="ammenity__label">elevator</span>
+                </div>
+                <div class="ammenity" ng-if="waitlist[$index].Apartment.fireplace">
+                    <div class="ammenity__icon w-icon w-fireplace"></div>
+                    <span class="ammenity__label">fireplace</span>
+                </div>
+            </div>
+          </div>
         </div>
+        <div class="apt-tile__info">
+          <span class="apt-tile__address">{{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }} | {{ waitlist[$index].Apartment.neighborhood}} </span>
+        </div>
+
     </div>
+</div>
+
+<div class="account-list-view">
+    <div class="apt-list__item row" ng-repeat="waitlist in waitlists track by $index">
+        <div class="apt-list__image col-xs-2" style="background-image: url('http://img.youtube.com/vi/{{waitlist[$index].Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+        </div>
+        <div class="apt-list__info col-xs-10">
+        <div class="apt-list__cost col-xs-2">${{waitlist[$index].Apartment.costPerMonth}}</div>
+        <div class="apt-list__address col-xs-6">{{ waitlist[$index].Apartment.street }} #{{ waitlist[$index].Apartment.unitNum }} | {{ waitlist[$index].Apartment.neighborhood}} </div>
+        <div class="apt-list__beds-baths col-xs-2">{{waitlist[$index].Apartment.beds}} bed {{waitlist[$index].Apartment.baths}} bath</div>
+        <div class="apt-list__status col-xs-3">status: waiting</div>
+        <div class="apt-list__view col-xs-1" ng-click="apartmentSelected(waitlist[$index].Apartment.id)">View</div>
+    </div>
+    </div>
+</div>

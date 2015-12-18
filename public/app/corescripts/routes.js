@@ -208,7 +208,7 @@ angular.module('MainApp')
                             }
                             //controller: 'DashboardLLUnitListCtrl'
                         },
-                        leftSplit: {
+                        waitlisted: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
                             controllerProvider: function($rootScope){
                                 if($rootScope.userType === 1 || $rootScope.userType === 0){
@@ -216,7 +216,7 @@ angular.module('MainApp')
                                 }
                             }
                         },
-                        rightSplit: {
+                        favorites: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
                             controller: "DashboardFavoriteCtrl"
                         }
