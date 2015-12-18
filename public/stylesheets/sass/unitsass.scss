@@ -32,6 +32,12 @@
 		}
 
 
+		@media (min-width: $screen-sm-min) {
+			padding-left: 8px;
+			padding-right: 8px;
+			margin: 0 3px 0 0;
+		}
+
 		@media (min-width: $screen-md-min) {
 			padding-left: 25px;
 			padding-right: 25px;
@@ -87,31 +93,54 @@
 }
 
 .unit-details-features {
-	margin: 0 -25px;
+	margin: 0;
+
 	@media (min-width: $screen-sm-min) {
+		margin: 10px 40px 0 -10px;
+	}
+
+	@media (min-width: $screen-md-min) {
 		margin: 10px 40px 0 -25px;
+	}
+
+}
+
+@media (min-width: $screen-sm-min) {
+	.unit-details-features, 
+	.unit-details-info {
+		max-width: 450px;
 	}
 }
 
-.unit-details-features, 
-.unit-details-info {
-	max-width: 450px;
-}
-
 .unit-details-feature {
+	position: relative;
 	text-align: center;
 	color: #8B93A1;
 	height: 90px;
 	padding: 0 5px;
+	@media (min-width: $screen-sm-min) {
+		height: 100px;
+	}
 
 	// this is wrapped because sass compiles & directly to the class name and I want it to be & &__icon
 	.unit-details-feature {
 
 		&__icon {
 			width: 50%;
+			@media (max-width: $screen-xs-max) {
+				max-width: 40px;
+			}
 		}
 
 		&__desc {
+			position: absolute;
+			bottom: 15px;
+			left: 0;
+			right: 0;
+			@media (max-width: $screen-xs-max) {
+				font-size: 1.3rem;
+			}
+
 			text-align: center;
 		}
 
@@ -119,6 +148,7 @@
 }
 
 .unit-details-media-container {
+	margin-bottom: 30px;
 	@media (max-width: $screen-xs-max) {
 		padding: 0;
 	}
@@ -147,6 +177,7 @@
 	&__price {
 		font-weight: 400;
 		margin: 0 0 5px;
+		font-size: 2.8rem;
 		@media (min-width: $screen-md-min) {
 			font-size: 3.6rem;
 		}
@@ -169,10 +200,73 @@
 	p {
 		font-size: 1.7rem;
 		line-height: 2.3rem;
+		font-weight: 300;
+		text-align: left;
 	}
 
 	&__heading {
 		margin-top: 0;
+	}
+
+	.unit-details-action-btn-wrapper {
+		margin-top: 25px;
+	}
+
+}
+
+.unit-details-media-tab-content-picker {
+	display: inline-block;
+	margin: 0 3px 0 0;
+
+	&-wrapper {
+		position: relative;
+		margin: 5px 0;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	&__img {
+
+	}
+
+	&-forward, &-backward {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		font-size: 4rem;
+		color: $white;
+		width: 50px;
+		cursor: pointer;
+		.fa {
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			@include vertical-center-transform;
+		}
+	}
+
+	$gradient-opacity: 0.2;
+
+	&-forward {
+		right: 0;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.4+100 */
+		background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,$gradient-opacity) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,$gradient-opacity) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,$gradient-opacity) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		.fa {
+			right: 5px;
+		}
+	}
+
+	&-backward {
+		left: 0;
+		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100;Neutral+Density */
+		background: -moz-linear-gradient(left,  rgba(0,0,0,$gradient-opacity) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(left,  rgba(0,0,0,$gradient-opacity) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to right,  rgba(0,0,0,0,$gradient-opacity) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		.fa {
+			left: 5px;
+		}
 	}
 
 }
@@ -199,7 +293,12 @@
 			background: none;
 			width: 100%;
 			padding: 15px 10px;
-			font-size: 1.8rem;
+			font-size: 1.3rem;
+			border-radius: 0;
+
+			@media (min-width: $screen-sm-min) {
+				font-size: 1.8rem;
+			}
 
 			@include button-hover-state("&.selected") {
 				color: $blue;
