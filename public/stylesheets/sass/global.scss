@@ -165,6 +165,22 @@ p {
   background-repeat: repeat-x;
 }
 
+.btn.active, .btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn.focus, .btn:focus, .btn:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: none;
+    outline: none;
+    outline-offset: 0;
+}
+
 .main_container {
   padding-top: 80px;
 
