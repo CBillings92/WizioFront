@@ -199,13 +199,18 @@ $orange-transparancy-hover: 0.9;
 		color: $orange;
 	}
 
+	@media (max-width: $screen-xs-max) {
+
+		.about-team-member {
+			max-width: 350px;
+			margin: 0 auto;
+		}
+
+	}
+
 	&-members {
 		h3, .title {
 			font-family: 'Roboto Slab';	
-
-			@media (max-width: $screen-xs-max) {
-				padding: 0 ($grid-gutter-width / 2);
-			}
 		}
 
 		.title {
