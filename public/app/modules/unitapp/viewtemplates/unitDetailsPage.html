@@ -34,16 +34,18 @@
             <li><button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button></li>
         </ul>
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
-            <div class="unit-details-media-tab-content-picker-slider">
-                <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
-                    <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" />
+            <div class="unit-details-media-tab-content-picker-slider-scroller">
+                <div class="unit-details-media-tab-content-picker-slider">
+                    <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
+                        <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" />
+                    </div>
                 </div>
             </div>
-            <div class="unit-details-media-tab-content-picker-forward">
-                <i class="fa fa-chevron-right" ng-click="moveForward()"></i>
+            <div class="unit-details-media-tab-content-picker-forward" ng-show="sliderCanGoForward">
+                <i class="fa fa-chevron-right" ng-click="moveSliderForward()"></i>
             </div>
-            <div class="unit-details-media-tab-content-picker-backward" ng-click="moveBackward()">
-                <i class="fa fa-chevron-left"></i>
+            <div class="unit-details-media-tab-content-picker-backward" ng-show="sliderCanGoBackward">
+                <i class="fa fa-chevron-left" ng-click="moveSliderBackward()"></i>
             </div>
         </div>
     </div>

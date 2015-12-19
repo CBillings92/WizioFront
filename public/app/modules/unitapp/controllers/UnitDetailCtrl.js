@@ -45,17 +45,41 @@ angular.module('UnitApp')
             };
 
             var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
-                width =  $(".unit-details-media-tab-content-picker-wrapper").width()
-                $(".unit-details-media-tab-content-picker-slider").scrollLeft(width * 0.5 * direction);
+                width =  $(".unit-details-media-tab-content-picker-slider-scroller").width();
+                el = $(".unit-details-media-tab-content-picker-slider-scroller");
+                currentPosition = el.scrollLeft();
+                moveWidth = width * 0.5 * direction;
+                // el.scrollLeft(currentPosition + moveWidth);
+                el.animate({
+                    scrollLeft: currentPosition + moveWidth
+                }, 500, function () {
+                    $scope.sliderCanGoForward = $scope.canSliderForward();
+                    $scope.sliderCanGoBackward = $scope.canSliderBackward();                    
+                });
+            };
+
+            $scope.sliderCanGoForward = true;
+            $scope.sliderCanGoBackward = false;
+
+            $scope.canSliderBackward = function() {
+                return $(".unit-details-media-tab-content-picker-slider-scroller").scrollLeft() > 0;
+            }
+
+            $scope.canSliderForward = function() {
+                el = $(".unit-details-media-tab-content-picker-slider-scroller");
+                width =  el.outerWidth();
+                currentPosition = el.scrollLeft()
+                viewportWidth = el.width();
+                return currentPosition + viewportWidth < width;
             }
 
             $scope.moveSliderBackward = function() {
                 moveSlider(-1);
-            }
+            };
 
             $scope.moveSliderForward = function() {
                 moveSlider(1);
-            }
+            };
 
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
