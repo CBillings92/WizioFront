@@ -64,6 +64,9 @@ h2 {
     .search-nav-form {
         display: inline-block;
         width: calc(100% - 8px);
+        @media (min-width: $screen-md-min) {
+            width: 400px;
+        }
     }
     .search-nav-submit {
         position: absolute;
@@ -75,6 +78,9 @@ h2 {
         background-color: #7A9DD1;
         height: 35px;
         font-size: 17px;
+        @media (min-width: $screen-md-min) {
+            position: relative;
+        }
     }
     .search-nav-input {
         padding-left: 5px;
@@ -84,14 +90,12 @@ h2 {
         border-bottom: 1px solid #ccc;
         box-shadow: none;
     }
-
 }
 
 #searchFiltersCollapse .form-inline {
     width: 100%;
 }
 
-//styles for
 #search-searchbar {
     input {
         width: 100%;
