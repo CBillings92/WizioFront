@@ -119,3 +119,24 @@ div[class^='color__box'], div[class*=' color__box']{
     margin-bottom: 10px;
   }
 }
+
+.styleguide-example-make-orange,
+.styleguide-example-hover {
+  display: inline-block;
+}
+.styleguide-example-hover {
+  svg * {
+      fill: transparent;
+      transition: all 0.15s ease-in-out;
+  }
+  svg:hover *{
+      fill: $white;
+    }
+}
+.styleguide-example-make-orange {
+  svg {
+    * {
+      stroke: $orange;
+    }
+  }
+}

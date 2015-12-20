@@ -16,6 +16,8 @@
       <li><a>Filled buttons</a></li>
       <li><a>CTA buttons</a></li>
       <li><a>Outlined buttons</a></li>
+      <li><a>Plain white icons</a><li>
+      <li><a>Changeable hover state</a></li>
     </ul>
   <h3>Structures</h3>
 </div>
@@ -109,11 +111,11 @@
       </p>
       <div class="live-example">
         <input type="button" class="btn btn--cta btn-md" ng-click="registerUser()" value="Sign Up"/>
-        <div class="btn-fill--blue btn-xs">div, blue fill, md</div>
-        <a class="btn-fill--blue btn-sm">a, fill, md, blue</a>
-        <button class="btn-fill--blue btn-md">button, blue fill, md</button>
-        <div class="btn-fill--blue btn-lg">div, blue fill, lg</div>
-        <div class="btn-fill--blue btn-lg btn-block">div, blue fill, lg, block</div>
+        <div class="btn btn-fill--blue btn-xs">div, blue fill, md</div>
+        <a class="btn btn-fill--blue btn-sm">a, fill, md, blue</a>
+        <button class="btn btn-fill--blue btn-md">button, blue fill, md</button>
+        <div class="btn btn-fill--blue btn-lg">div, blue fill, lg</div>
+        <div class="btn btn-fill--blue btn-lg btn-block">div, blue fill, lg, block</div>
       </div>
       <pre class="code"><code></code></pre>
     </div>
@@ -153,6 +155,74 @@
         <div class="btn btn-outline--orange btn-sm">outline, orange, sm</div>
         <div class="btn btn-outline--white btn-md">outline, white, md</div>
         <a class="btn btn-outline--blue btn-lg">outline, blue, lg</a>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>Plain white icons</h3>
+      <p class="styleguide-subsection__desc">
+        This is how to include simple white icons that don't have hover states. These are used to show ammenities on the apartment tile overlays.
+      </p>
+      <div class="live-example" style="background-color: #444; color:">
+        <i class="w-icon w-bath"></i>
+        <i class="w-icon w-bed"></i>
+        <i class="w-icon w-dishwasher"></i>
+        <i class="w-icon w-laundry"></i>
+        <i class="w-icon w-utilities"></i>
+        <i class="w-icon w-pets"></i>
+        <i class="w-icon w-fireplace"></i>
+        <i class="w-icon w-elevator"></i>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>Changeable icons</h3>
+      <p class="styleguide-subsection__desc">
+        When you want to change the color of an icon from white, or give it a hover state, include it like this.
+      </p>
+      <div class="live-example" style="background-color: #444; color:">
+        <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
+        </div>
+        <div class="styleguide-example-make-orange">
+          <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
+        </div>
+        <div class="styleguide-example-make-orange">
+          <ng-include src="'public/assets/icons/bath.svg'"></ng-include>
+        </div>
+        <ng-include src="'public/assets/icons/bed.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/dishwasher.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/laundry.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/utilities.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/pets.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/fireplace.svg'"></ng-include>
+        <ng-include src="'public/assets/icons/elevator.svg'"></ng-include>
+
+        <!-- CSS:
+
+.styleguide-example-make-orange,
+.styleguide-example-hover {
+  display: inline-block;
+}
+.styleguide-example-hover {
+  svg * {
+      fill: transparent;
+      transition: all 0.15s ease-in-out;
+  }
+  svg:hover *{
+      fill: $white;
+    }
+}
+.styleguide-example-make-orange {
+  svg {
+    * {
+      stroke: $orange;
+    }
+  }
+}
+
+-->
+
       </div>
       <pre class="code"><code></code></pre>
     </div>
