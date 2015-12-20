@@ -5,44 +5,9 @@
   overflow: hidden;
 }
 
-.styleguide-nav {
-  background-color: $gray;
-  position: fixed;
-  padding-top: 10px;
-  top: 60px;
-  color: $white;
-  margin-left: -15px;
-  border-radius: 0 4px 4px 0;
-
-  > h2 {
-    padding-top: 10px;
-    position: relative;
-
-    &:after {
-      content: '';
-      color: $white;
-      opacity: 0.3;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      border-width: 0 0 1px;
-      border-style: solid;
-    }
-  }
-}
-
-.styleguide-nav__list {
-  list-style: none;
-  padding-left: 15px;
-
-  a {
-    color: $white;
-  }
-}
-
 .styleguide-section {
   margin-bottom: 100px;
+  display: block;
 
   > h2 {
     padding-top: 10px;
