@@ -1,11 +1,18 @@
-.styleguide-nav, .styleguide {
-  margin-top: -28px;
+.styleguide {
+  background-color: #ccc;
+  padding-top: 80px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .styleguide-nav {
   background-color: $gray;
   position: fixed;
+  padding-top: 10px;
+  top: 60px;
   color: $white;
+  margin-left: -15px;
+  border-radius: 0 4px 4px 0;
 
   > h2 {
     padding-top: 10px;
@@ -34,13 +41,8 @@
   }
 }
 
-.styleguide {
-  background-color: $white;
-}
-
 .styleguide-section {
-
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 
   > h2 {
     padding-top: 10px;
@@ -64,6 +66,19 @@
   background-color: $black;
   color: $white;
   border: none;
+
+  code {
+    margin: 10px;
+    display: inline-block;
+  }
+
+  &:before {
+    content: "Code";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }
 
 div[class^='color__box'], div[class*=' color__box']{
@@ -84,4 +99,23 @@ div[class^='color__box'], div[class*=' color__box']{
 }
 .color__box--light-orange {
   background-color: $light-orange;
+}
+
+.live-example {
+  background-color: $white;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  float: left;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  &:before {
+    content: "Live examples";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }

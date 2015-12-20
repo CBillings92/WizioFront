@@ -1,31 +1,36 @@
-<div class="styleguide-nav col-sm-3">
-  <h2>Colors</h2>
+<div class="styleguide container">
+  <div class="styleguide-nav col-sm-3">
+  <h3>Colors</h3>
     <ul class="styleguide-nav__list">
       <li><a>Base Colors</a></li>
       <li><a>Accent Colors</a></li>
     </ul>
-  <h2>Typography</h2>
+  <h3>Typography</h3>
     <ul class="styleguide-nav__list">
       <li><a>Headings</a></li>
       <li><a>Copy</a></li>
     </ul>
-  <h2>Components</h2>
-  <h2>Structures</h2>
+  <h3>Components</h3>
+    <ul class="styleguide-nav__list">
+      <li><a>General button options</a></li>
+    </ul>
+  <h3>Structures</h3>
 </div>
 
-<div class="styleguide col-sm-9 col-sm-offset-3">
+<div class="styleguide__content col-sm-offset-3 col-sm-9">
   <div class="styleguide-section">
     <h2>About</h2>
     Add stuff in about the about section here.
   </div>
   <div class="styleguide-section">
     <h2>Colors</h2>
+
     <div class="styleguide-subsection">
       <h3>Base Colors</h3>
       <p class="styleguide-subsection__desc">
         Here are the brand's base colors. This orange color should be used for the logo.
       </p>
-      <div class="live-example row">
+      <div class="live-example">
         <div class="color col-xs-3">
           <div class="color__box--orange">
           </div>
@@ -43,7 +48,7 @@
       <p class="styleguide-subsection__desc">
         Here are the brand's accent colors. This orange color should be used for large areas of orange.
       </p>
-      <div class="row">
+      <div class="live-example">
         <div class="color col-xs-3">
           <div class="color__box--red">
           </div>
@@ -61,6 +66,7 @@
         </div>
       </div>
     </div>
+  </div>
   <div class="styleguide-section">
     <h2>Typography</h2>
     <div class="styleguide-subsection">
@@ -91,10 +97,49 @@
     <div class="styleguide-section">
     <h2>Components</h2>
     <div class="styleguide-subsection">
-      <h3>Example</h3>
-      <div class="live-example"></div>
+      <h3>General button options</h3>
+      <p class="styleguide-subsection__desc">
+        Each button can be a div, button, or a and have a size of .btn-xs, .btn-sm, .btn-md, or .btn-lg.
+        If you want them to have a width of their whole container, give it a class of .btn-block
+
+        - block vs no block, diff sizees, can be any element
+      </p>
+      <div class="live-example">
+        <div class="btn-fill--blue btn-xs">div, blue fill, md</div>
+        <a class="btn-fill--blue btn-sm">a, fill, md, blue</a>
+        <button class="btn-fill--blue btn-md">button, blue fill, md</button>
+        <div class="btn-fill--blue btn-lg">div, blue fill, lg</div>
+        <div class="btn-fill--blue btn-lg btn-block">div, blue fill, lg, block</div>
+      </div>
       <pre class="code"><code></code></pre>
     </div>
+    <div class="styleguide-subsection">
+      <h3>Filled buttons</h3>
+      <p class="styleguide-subsection__desc">
+        Filled button options
+      </p>
+      <div class="live-example">
+        <div class="btn-fill--blue btn-xs">blue fill, xs</div>
+        <div class="btn-fill--blue btn-sm">blue fill, sm</div>
+        <div class="btn-fill--blue btn-md">blue fill, md</div>
+        <div class="btn-fill--blue btn-lg">blue fill, lg</div>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>CTA bttons</h3>
+      <p class="styleguide-subsection__desc">
+        CTA buttons are filled with blue and have uppercase text. They should be used on places where there are call-to-aciton butotns, like on the homepage.
+      </p>
+      <div class="live-example">
+        <div class="btn--cta btn-xs">CTA, xs</div>
+        <div class="btn--cta btn-sm">CTA, sm</div>
+        <div class="btn--cta btn-md">CTA, md</div>
+        <div class="btn--cta btn-lg">CTA, lg</div>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+
   </div>
 
     <div class="styleguide-section">
@@ -108,6 +153,8 @@
     </div>
   </div>
 </div>
+</div>
+
 
 <script>
   /* copy the code from the example, and put it beneath the live example in a code block
@@ -115,7 +162,12 @@
     same code that is used in the live example */
   $(".live-example").each(
     function() {
-     $(this).parent().find(".code code").text($(this).html());
+      // var codeNoExtraSpace = $(this).html().replace(/\s*</g,'<');
+      var lengthOfIndent = $(this).html().match(/\s*</)[0].length - 2;
+      var regex = new RegExp("\\s{" + lengthOfIndent + "}<", "g")
+      var getRidOfTabs = $(this).html().replace(regex, '<');
+      $(this).parent().find(".code code").text(getRidOfTabs);
     }
   )
 </script>
+
