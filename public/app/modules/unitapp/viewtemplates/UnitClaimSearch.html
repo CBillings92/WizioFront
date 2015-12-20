@@ -8,7 +8,7 @@
         <li>Search!</li>
     </ol>
     <form action="index.html" class="" method="post">
-        <div class="" ng-repeat="address in apartmentObjArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+        <div class="" ng-repeat="address in finalApartmentArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
             <label class="control-label" style="padding-top:10px;">Apartment Address</label>
             <input class="form-control" ng-blur="addressEntered($index)" ng-model="address.address" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
             <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
@@ -18,10 +18,11 @@
             </div>
             <label class="control-label" for="" style="padding-top:10px;">Unit Number(s)</label>
             <div class="form-group">
-                <div class="" ng-repeat="unit in address.unitNumArray track by $index">
+                <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" style="padding:10px;">
                         <label class="control-label">Unit Num:</label>
-                        <input class="form-control col-md-4" ng-model="address.unitNumArray[$index]" type="text">
+                        <input class="form-control col-md-4" ng-blur="unitEntered($parent.$index)" ng-model="unit.unitNum" type="text" />
+                        <button type="button" class="btn" name="button" ng-click="removeUnit($parent.$index, $index)">Remove Unit</button>
                     </div>
                 </div>
             </div>
