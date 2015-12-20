@@ -16,7 +16,7 @@ angular.module('UnitApp')
             //create constructor function for an Apartment
             var Apartment = function(trackingID, address, unitNum) {
                 this.address = address;
-                this.unitNum;
+                this.unitNum = unitNum;
             };
             //Array that will hold apartment reference objects to turn into real
             //apartment objects with unit numbers
@@ -106,7 +106,7 @@ angular.module('UnitApp')
                 }
                 var finalData = lodash.flatten(lodash.map($scope.finalApartmentArray, lodash.values));
                 finalData = lodash.pluck(finalData, 'fullApartment');
-                console.dir(finalData);
+
 
                 //search database
 

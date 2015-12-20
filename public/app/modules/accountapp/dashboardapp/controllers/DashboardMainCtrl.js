@@ -34,8 +34,8 @@ angular.module('AccountApp')
                     }
                 };
             };
-            ModalSvc.showModal({}, modalOptions).then(function(result){
-                if(result === 'ok'){
+            ModalSvc.showModal({}, modalOptions).then(function(result) {
+                if (result === 'ok') {
                     var modalOptionsUnitSearch = {
                         closeButtonText: "Close",
                         actionButtonText: "Search",
@@ -43,7 +43,7 @@ angular.module('AccountApp')
                     var UnitViews = WizioConfig.UnitViewsURL;
                     var modalDefaultsUnitSearch = modalDefaults('md', UnitViews + 'UnitClaimSearch.html', 'UnitClaimSearchCtrl', modalOptionsUnitSearch);
 
-                    ModalSvc.showModal(modalDefaultsUnitSearch, modalOptionsUnitSearch).then(function(result){
+                    ModalSvc.showModal(modalDefaultsUnitSearch, modalOptionsUnitSearch).then(function(result) {
 
                     });
                 }

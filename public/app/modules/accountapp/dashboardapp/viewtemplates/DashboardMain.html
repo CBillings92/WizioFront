@@ -1,18 +1,20 @@
 <div class="container-fluid">
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="topHorizontal"></div>
-      </div>
-    </div><!-- row -->
+        <div class="col-md-10 col-md-offset-1">
+            <div ui-view="topHorizontal"></div>
+        </div>
+    </div>
+    <!-- row -->
     <div class="row" ng-hide="userType != 2">
-      <div class="col-md-10 col-md-offset-1">
-        <div ui-view="midHorizontal"></div>
-      </div>
-    </div><!-- row -->
+        <div class="col-md-10 col-md-offset-1">
+            <div ui-view="midHorizontal"></div>
+        </div>
+    </div>
+    <!-- row -->
     <div class="row pad" ng-show="userType == 1 || userType == 0">
-      <div class="col-md-5 col-md-offset-1 appl">
-        <div ui-view="leftSplit"></div>
-      </div>
+        <div class="col-md-5 col-md-offset-1 appl">
+            <div ui-view="leftSplit"></div>
+        </div>
 
         <div class="col-md-5 sugges" ui-view="rightSplit"></div>
     </div>

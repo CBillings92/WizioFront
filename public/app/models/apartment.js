@@ -61,6 +61,9 @@ angular.module('Models')
         Apartment.search = function(searchString, unitNum, filters, callback){
 
         };
+        Apartment.claimApi = function(){
+            return $resource(WizioConfig.baseAPIURL + 'apartment/claim');
+        }
         Apartment.build = function(data){
             return new Apartment(
                 data.street,
