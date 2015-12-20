@@ -17,10 +17,13 @@ angular.module('UnitApp')
                 this.address = address;
                 this.unitNumArray = [];
             };
-            //Array of apartment objects from form. Start user with one blank apartment
-            $scope.apartmentObjArray = [];
-            $scope.apartmentObjArray[0] = new Apartment(null, null);
-
+            //Array that will hold apartment reference objects to turn into real
+            //apartment objects with unit numbers
+            $scope.apartmentReferenceArray = [];
+            //Adding the first apartment to the reference array to kick off the form
+            //when the user first loads the modal
+            $scope.apartmentReferenceArray[0] = new Apartment(null, null);
+            var finalApartmentArray = [];
             //smart bar code
             $scope.getLocation = function(val) {
                 /*
@@ -35,37 +38,41 @@ angular.module('UnitApp')
                 Store that object in ApartmentClaims array in sessionStorage
             */
             $scope.addressEntered = function(apartmentIndex){
-                UnitCreateSvc.parseGeocodeData($scope.apartmentObjArray[apartmentIndex].address, null, function(err, apartment){
+                UnitCreateSvc.parseGeocodeData($scope.apartmentReferenceArray[apartmentIndex].address, null, function(err, apartment){
                     //store apartment object from geocoder in fullApartment object
-                    $scope.apartmentObjArray[apartmentIndex].fullApartment = apartment;
+                    $scope.apartmentReferenceArray[apartmentIndex].push(apartment);
                     //move the unitNumArray into the fullApartment object
-                    $scope.apartmentObjArray[apartmentIndex].fullApartment.unitNums =
-                    $scope.apartmentObjArray[apartmentIndex].unitNumArray;
+                    /*
+                    $scope.apartmentReferenceArray[apartmentIndex].fullApartment.unitNums =
+                    $scope.apartmentReferenceArray[apartmentIndex].unitNumArray;
+                    */
                     //set this object in sessionStorage
                     ApartmentClaimGetSetSvc.set(apartment, 'ApartmentClaims');
                 });
             };
             $scope.addUnit = function(apartmentIndex) {
-                $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
-                console.dir($scope.apartmentObjArray);
+                $scope.apartmentReferenceArray[apartmentIndex].unitNumArray.push(null);
+                console.dir($scope.apartmentReferenceArray);
+
+
             };
             $scope.addRange = function(apartmentIndex) {
                 for (var i = 0; i < $scope.highNum; i++) {
-                    $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
+                    $scope.apartmentReferenceArray[apartmentIndex].unitNumArray.push(null);
                 }
             };
             $scope.addAddress = function() {
                 var apartment = new Apartment(null, null);
-                $scope.apartmentObjArray.push(apartment);
+                $scope.apartmentReferenceArray.push(apartment);
             };
 
             $scope.search = function() {
                 var finalArray = [];
-                for(i = 0; i < $scope.apartmentObjArray.length; i++){
-                    for(j = 0; j < $scope.apartmentObjArray[i].unitNumArray.length; j++){
-                        var apartment = $scope.apartmentObjArray[i].fullApartment;
-                        console.dir($scope.apartmentObjArray[i].unitNumArray[j]);
-                        apartment.unitNum = $scope.apartmentObjArray[i].unitNumArray[j];
+                for(i = 0; i < $scope.apartmentReferenceArray.length; i++){
+                    for(j = 0; j < $scope.apartmentReferenceArray[i].unitNumArray.length; j++){
+                        var apartment = $scope.apartmentReferenceArray[i].fullApartment;
+                        console.dir($scope.apartmentReferenceArray[i].unitNumArray[j]);
+                        apartment.unitNum = $scope.apartmentReferenceArray[i].unitNumArray[j];
                         console.dir(apartment);
                     }
                     //console.dir(finalArray);
