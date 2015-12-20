@@ -188,7 +188,16 @@ p {
     outline-offset: 0;
 }
 
+.modal-backdrop {
+  z-index: 700;
+}
+
+.modal {
+  z-index: 800;
+}
+
 .main_container {
   padding-top: 80px;
 
 }
+
