@@ -38,7 +38,6 @@ angular.module('ApplicationApp')
             requestInfoOutbound.owner = TokenSvc.decode().id;
             requestInfoOutbound.ownerEmail = TokenSvc.decode().email;
             ApplicationResource.save(requestInfoOutbound, function(result, status){
-
                 $modalInstance.close('ok');
             });
 

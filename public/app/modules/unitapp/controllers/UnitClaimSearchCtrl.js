@@ -28,7 +28,6 @@ angular.module('UnitApp')
                 */
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
-
             /*
                 addressEntered : ON-BLUR - when address bar loses focus get the last object
                 that was returned from the smart search's google API geocoder
@@ -51,12 +50,10 @@ angular.module('UnitApp')
                 console.dir($scope.apartmentObjArray);
             };
             $scope.addRange = function(apartmentIndex) {
-
                 for (var i = 0; i < $scope.highNum; i++) {
                     $scope.apartmentObjArray[apartmentIndex].unitNumArray.push(null);
                 }
             };
-
             $scope.addAddress = function() {
                 var apartment = new Apartment(null, null);
                 $scope.apartmentObjArray.push(apartment);

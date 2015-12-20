@@ -6,17 +6,20 @@ angular.module('AccountApp')
     'lodash',
     function($scope, ApplicationResource, TokenSvc, lodash){
         var user = TokenSvc.decode();
-        var applicationIdArray = lodash.pluck(user.waitlists, "ApplicationId");
+        var applicationIdArray = lodash.pluck(user.waitlists, "id");
         applicationIdObject = {
             ApplicationId: applicationIdArray,
             //UserId: user.id
         };
         ApplicationResource.save({item: 'findbyuser'}, applicationIdObject, function(data, status){
-            console.dir(data);
-            var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
-            $scope.waitlists = lodash.values(buildingWaitlists);
-            if($scope.waitlists.length > 0){
-                $scope.waitlistsExist = true;
+            if(data.length !== 0){
+                var buildingWaitlists = lodash.groupBy(data, "ApplicationId");
+                $scope.waitlists = lodash.values(buildingWaitlists);
+                if($scope.waitlists.length > 0){
+                    $scope.waitlistsExist = true;
+                }
+            } else {
+                $scope.waitlistsExist = false;
             }
         });
         $scope.removeFromWaitlist = function(value){

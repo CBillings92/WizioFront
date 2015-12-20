@@ -42,11 +42,9 @@ angular.module('UnitApp')
             var localApartmentID = $scope.apartmentArray.length + 1;
             var apartmentObj = new Apartment(localApartmentID);
             $scope.apartmentArray.push(apartmentObj);
-            console.dir($scope.apartmentArray);
         };
 
         $scope.submitApartments = function(){
-            console.dir($scope.apartmentArray);
         };
     }
 ]);
