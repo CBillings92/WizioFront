@@ -161,6 +161,8 @@ p {
 /* buttons */
 
 .btn {
+  cursor: pointer;
+
   @include button-hover-state {
     outline: none;
     outline-offset: 0;
@@ -186,7 +188,6 @@ p {
 }
 
 .btn-fill {
-  @extend .btn;
   color: $white;
   border: none;
   transition: background-color 0.15s ease-in-out;
@@ -214,6 +215,62 @@ p {
   line-height: 1.7;
   text-transform: uppercase;
 
+}
+
+.btn-outline {
+  @include button-hover-state {
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
+
+  border: 2px solid $white;
+  color: $white;
+  transition: all 0.15s ease-in-out;
+
+  @include button-hover-state {
+    color: $orange;
+    border-color: $orange;
+  }
+}
+
+.btn-outline--blue {
+  @extend .btn-outline;
+  color: $blue;
+  border-color: $blue;
+  background-color: transparent;
+
+  @include button-hover-state {
+    color: $white;
+    border-color: $blue;
+    background-color: $blue;
+  }
+}
+
+.btn-outline--orange {
+  @extend .btn-outline;
+  color: $orange;
+  border-color: $orange;
+  background-color: transparent;
+
+  @include button-hover-state {
+    color: $white;
+    border-color: $orange;
+    background-color: $orange;
+  }
+}
+
+.btn-outline--white {
+  @extend .btn-outline;
+  color: $white;
+  border-color: $white;
+  background-color: transparent;
+
+  @include button-hover-state {
+    color: $orange;
+    border-color: $white;
+    background-color: $white;
+  }
 }
 
 .btn-orange {

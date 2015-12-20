@@ -1,12 +1,12 @@
 <div class="unit-details">
     <div class="container unit-details-header">
         <div class="unit-details-action-btn-wrapper">
-            <button class="btn unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
-            <button class="btn unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-            <button class="btn unit-details__action-btn" ng-click="setupTour()">See in person</button>
-            <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
     Apply</button>
-            <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
      Apply</button>
         </div>
         <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
@@ -121,7 +121,7 @@
                         <ellipse class="bath-st0" cx="25.7" cy="9.4" rx="2.6" ry="2.6"/>
                         </g>
                         </svg>
-                        <p class="unit-details-feature__desc">{{apartment.beds}} Bed</p> 
+                        <p class="unit-details-feature__desc">{{apartment.beds}} Bed</p>
                     </div>
                     <div class="col-xs-3 unit-details-feature">
                         <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -162,7 +162,7 @@
                         </g>
                         </g>
                         </svg>
-                        <p class="unit-details-feature__desc">Laundry</p> 
+                        <p class="unit-details-feature__desc">Laundry</p>
                     </div>
                     <div class="col-xs-3 unit-details-feature">
                         <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -206,7 +206,7 @@
                         </g>
                         </svg>
                         <p class="unit-details-feature__desc">Dishwasher</p>
-                    </div> 
+                    </div>
                     <div class="col-xs-3 unit-details-feature">
                         <svg title="Utilities" class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
@@ -359,12 +359,12 @@
                 </p>
                 <p>{{apartment.Descriptions[0].description}}</p>
                 <div class="unit-details-action-btn-wrapper hidden-xs">
-                    <button class="btn unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
-                    <button class="btn unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-                    <button class="btn unit-details__action-btn" ng-click="setupTour()">See in person</button>
-                    <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
+                    <button class="btn btn-outline--blue unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
+                    <button class="btn btn-outline--blue unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
+                    <button class="btn btn-outline--blue unit-details__action-btn" ng-click="setupTour()">See in person</button>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
                 Apply</button>
-                    <button class="btn unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
                 Apply</button>
             </div>
         </div>
