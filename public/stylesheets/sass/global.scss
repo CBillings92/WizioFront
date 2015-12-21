@@ -121,6 +121,9 @@ p {
 }
 
 /* override bootstrap */
+a:focus {
+  outline: none;
+}
 .navbar {
   margin-bottom: 0px;
   border-radius: 0;
@@ -289,3 +292,15 @@ p {
   }
 }
 
+.modal-backdrop {
+  z-index: 700;
+}
+
+.modal {
+  z-index: 800;
+  margin-top: 80px;
+}
+
+.main_container {
+  padding-top: 80px;
+}

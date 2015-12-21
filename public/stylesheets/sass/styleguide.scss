@@ -99,6 +99,7 @@ div[class^='color__box'], div[class*=' color__box']{
       transition: all 0.15s ease-in-out;
   }
   &:hover {
+    cursor: pointer;
     .hover-fill {
       fill: $white;
     }

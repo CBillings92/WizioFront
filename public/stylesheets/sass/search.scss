@@ -138,7 +138,7 @@ h2 {
         transition: color 0.15s ease-in-out;
         &.focus,
         &:focus{
-            color: $white;
+            color: $black;
         }
         &:hover {
             color: $black;
@@ -185,6 +185,14 @@ h2 {
     border-bottom: 1px solid #eee;
     margin-bottom: -1px;
     border-top: 1px solid #eee;
+}
+@media (max-width: $screen-xs-max) {
+    .apt-grid-view--search.ng-hide:not(.ng-hide-animate) {
+        display: block !important;
+    }
+    #map {
+        display: none !important;
+    }
 }
 @media (min-width: $screen-sm-min) {
     .filter-row {
