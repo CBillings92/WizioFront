@@ -111,13 +111,15 @@
     }
   }
 }
+.account__waitlisted {
+  margin-right: 20px;
+}
 .account__waitlisted,
 .account__favorites {
   font-size: 18px;
   font-weight: 500;
   float: left;
   display: inline-block;
-  margin-right: 20px;
   transition: color 0.15s ease-in-out;
   color: $gray;
 
