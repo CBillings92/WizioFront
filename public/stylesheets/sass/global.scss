@@ -115,6 +115,9 @@ p {
 }
 
 /* override bootstrap */
+a:focus {
+  outline: none;
+}
 .navbar {
   margin-bottom: 0px;
 }
