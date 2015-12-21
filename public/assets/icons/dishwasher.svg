@@ -4,16 +4,16 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="40px" height="40px" viewBox="180 130 40 40" enable-background="new 180 130 40 40" xml:space="preserve">
 <g>
-	
+
 		<rect x="187.258" y="131.723" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="25.388" height="36.555"/>
-	<circle fill="#FFFFFF" cx="200.906" cy="135.445" r="1.241"/>
-	<circle fill="#FFFFFF" cx="204.82" cy="135.445" r="1.241"/>
-	<circle fill="#FFFFFF" cx="208.733" cy="135.445" r="1.241"/>
-	
+	<circle fill="transparent" stroke="#FFFFFF" cx="200.906" cy="135.445" r="1.241"/>
+	<circle fill="transparent" stroke="#FFFFFF" cx="204.82" cy="135.445" r="1.241"/>
+	<circle fill="transparent" stroke="#FFFFFF" cx="208.733" cy="135.445" r="1.241"/>
+
 		<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="187.258" y1="139.549" x2="212.742" y2="139.549"/>
 	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M200.906,155.488
 		c8.399-1.718,4.01-9.163,4.01-9.163h-8.018C196.898,146.325,192.508,153.771,200.906,155.488v7.636"/>
-	
+
 		<line fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="198.616" y1="163.124" x2="203.484" y2="163.124"/>
 	<path fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M195.752,151.193
 		c0,0,2.195-1.718,5.822-0.573"/>

@@ -5,11 +5,9 @@
         <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{favorite.Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
           <div class="apt-tile__overlay">
             <div class="apt-tile__header">
-                <span class="apt-tile__view-btn" ng-click="apartmentSelected(favorite.Apartment.id)">View</span>
+                <span class="btn btn-md btn-outline--white" ng-click="apartmentSelected(favorite.Apartment.id)">View</span>
                 <span class="apt-tile__favorite-btn" ng-click="removeFromFavorite($index)">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
-                        <path stroke="#FFFFFF" stroke-linecap="round" stroke-miterlimit="10" d="M20.001,37.152 C6.783,24.287,3.066,19.554,2.262,14.704C1.278,8.769,5.694,2.848,12.578,2.848c2.949,0,5.63,1.133,7.423,3.026 c1.79-1.893,4.471-3.026,7.421-3.026c6.853,0,11.306,5.893,10.315,11.856C36.952,19.449,33.479,24.031,20.001,37.152z"/>
-                    </svg>
+                    <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                 </span>
                 <span class="apt-tile__cost">${{favorite.Apartment.costPerMonth}}</span>
             </div>

@@ -86,22 +86,33 @@ div[class^='color__box'], div[class*=' color__box']{
 }
 
 .styleguide-example-make-orange,
+.styleguide-example-make-light-orange,
+.styleguide-example-make-black,
+.styleguide-example-make-blue,
 .styleguide-example-hover {
   display: inline-block;
 }
+
 .styleguide-example-hover {
-  svg * {
+  .hover-fill {
       fill: transparent;
       transition: all 0.15s ease-in-out;
   }
-  svg:hover *{
+  &:hover {
+    .hover-fill {
       fill: $white;
     }
-}
-.styleguide-example-make-orange {
-  svg {
-    * {
-      stroke: $orange;
-    }
   }
+}
+.styleguide-example-make-orange svg *{
+  stroke: $orange;
+}
+.styleguide-example-make-light-orange svg * {
+  stroke: $light-orange;
+}
+.styleguide-example-make-black svg * {
+  stroke: $black;
+}
+.styleguide-example-make-blue svg * {
+  stroke: $blue;
 }

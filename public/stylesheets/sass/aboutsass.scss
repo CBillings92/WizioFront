@@ -273,20 +273,25 @@ $orange-transparancy-hover: 0.9;
 					top: 50%;
 					left: 50%;
 					@include center-transform();
-
-					.social-media {
-						max-width: 35px;
-						margin-right: 5px;
-						&:last-child {
-							margin-right: 0;
-						}
-					}
 				}
 			}
 
 			&:hover &-overlay {
 				opacity: 1;
 			}
+		}
+	}
+}
+
+.team-social-link {
+	margin: 0 5px;
+	.hover-fill {
+		fill: transparent;
+		transition: fill 0.15s ease-in-out;
+	}
+	&:hover {
+		.hover-fill {
+			fill: #ffffff;
 		}
 	}
 }

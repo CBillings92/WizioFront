@@ -34,11 +34,20 @@
 
 #social-links {
     padding-top: 20px;
-    img {
-        padding-right: 10px;
-    }
-    a, img {
+    a {
         text-decoration: none;
+    }
+    svg {
+        margin-right: 10px;
+
+        .hover-fill{
+            transition: fill 0.15s ease-in-out;
+        }
+        &:hover {
+            .hover-fill{
+                fill: #ffffff;
+            }
+        }
     }
 }
 
