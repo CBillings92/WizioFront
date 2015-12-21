@@ -236,12 +236,6 @@ $orange-transparancy-hover: 0.9;
 		color: $gray;
 		margin-bottom: 50px;
 
-		@media (max-width: $screen-xs-max) {
-			.col-sm-6 {
-				padding: 0;
-			}
-		}
-
 		&-more {
 			position: relative;
 			&-overlay {
