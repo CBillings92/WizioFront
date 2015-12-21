@@ -1,46 +1,13 @@
-.styleguide-nav, .styleguide {
-  margin-top: -28px;
-}
-
-.styleguide-nav {
-  background-color: $gray;
-  position: fixed;
-  color: $white;
-
-  > h2 {
-    padding-top: 10px;
-    position: relative;
-
-    &:after {
-      content: '';
-      color: $white;
-      opacity: 0.3;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      border-width: 0 0 1px;
-      border-style: solid;
-    }
-  }
-}
-
-.styleguide-nav__list {
-  list-style: none;
-  padding-left: 15px;
-
-  a {
-    color: $white;
-  }
-}
-
 .styleguide {
-  background-color: $white;
+  background-color: #ccc;
+  padding-top: 80px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .styleguide-section {
-
-  margin-bottom: 50px;
+  margin-bottom: 100px;
+  display: block;
 
   > h2 {
     padding-top: 10px;
@@ -64,6 +31,19 @@
   background-color: $black;
   color: $white;
   border: none;
+
+  code {
+    margin: 10px;
+    display: inline-block;
+  }
+
+  &:before {
+    content: "Code";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }
 
 div[class^='color__box'], div[class*=' color__box']{
@@ -84,4 +64,56 @@ div[class^='color__box'], div[class*=' color__box']{
 }
 .color__box--light-orange {
   background-color: $light-orange;
+}
+
+.live-example {
+  background-color: $white;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  float: left;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  &:before {
+    content: "Live examples";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+.styleguide-example-make-orange,
+.styleguide-example-make-light-orange,
+.styleguide-example-make-black,
+.styleguide-example-make-blue,
+.styleguide-example-hover {
+  display: inline-block;
+}
+
+.styleguide-example-hover {
+  .hover-fill {
+      fill: transparent;
+      transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+    .hover-fill {
+      fill: $white;
+    }
+  }
+}
+.styleguide-example-make-orange svg *{
+  stroke: $orange;
+}
+.styleguide-example-make-light-orange svg * {
+  stroke: $light-orange;
+}
+.styleguide-example-make-black svg * {
+  stroke: $black;
+}
+.styleguide-example-make-blue svg * {
+  stroke: $blue;
 }

@@ -1,31 +1,19 @@
-<div class="styleguide-nav col-sm-3">
-  <h2>Colors</h2>
-    <ul class="styleguide-nav__list">
-      <li><a>Base Colors</a></li>
-      <li><a>Accent Colors</a></li>
-    </ul>
-  <h2>Typography</h2>
-    <ul class="styleguide-nav__list">
-      <li><a>Headings</a></li>
-      <li><a>Copy</a></li>
-    </ul>
-  <h2>Components</h2>
-  <h2>Structures</h2>
-</div>
-
-<div class="styleguide col-sm-9 col-sm-offset-3">
-  <div class="styleguide-section">
-    <h2>About</h2>
-    Add stuff in about the about section here.
+<div class="styleguide container">
+  <div class="styleguide-section col-xs-12">
+    <h2>About the Style Guide</h2>
+      <p class="styleguide-subsection__desc" style="margin-top: 15px;">
+        This guide will show you how to easily reuse the reusable elements that have been created.
+      </p>
   </div>
-  <div class="styleguide-section">
+  <div class="styleguide-section col-xs-12">
     <h2>Colors</h2>
+
     <div class="styleguide-subsection">
       <h3>Base Colors</h3>
       <p class="styleguide-subsection__desc">
         Here are the brand's base colors. This orange color should be used for the logo.
       </p>
-      <div class="live-example row">
+      <div class="live-example">
         <div class="color col-xs-3">
           <div class="color__box--orange">
           </div>
@@ -43,7 +31,7 @@
       <p class="styleguide-subsection__desc">
         Here are the brand's accent colors. This orange color should be used for large areas of orange.
       </p>
-      <div class="row">
+      <div class="live-example">
         <div class="color col-xs-3">
           <div class="color__box--red">
           </div>
@@ -61,7 +49,8 @@
         </div>
       </div>
     </div>
-  <div class="styleguide-section">
+  </div>
+  <div class="styleguide-section col-xs-12">
     <h2>Typography</h2>
     <div class="styleguide-subsection">
       <h3>Headings</h3>
@@ -88,26 +77,169 @@
     </div>
   </div>
 
-    <div class="styleguide-section">
+  <div class="styleguide-section col-xs-12">
     <h2>Components</h2>
     <div class="styleguide-subsection">
-      <h3>Example</h3>
-      <div class="live-example"></div>
+      <h3>General button options</h3>
+      <p class="styleguide-subsection__desc">
+        Each button can be a div, button, or a and have a size of .btn-xs, .btn-sm, .btn-md, or .btn-lg.
+        If you want them to have a width of their whole container, give it a class of .btn-block
+
+        - block vs no block, diff sizees, can be any element
+      </p>
+      <div class="live-example">
+        <input type="button" class="btn btn--cta btn-md" ng-click="registerUser()" value="Sign Up"/>
+        <div class="btn btn-fill--blue btn-xs">div, blue fill, md</div>
+        <a class="btn btn-fill--blue btn-sm">a, fill, md, blue</a>
+        <button class="btn btn-fill--blue btn-md">button, blue fill, md</button>
+        <div class="btn btn-fill--blue btn-lg">div, blue fill, lg</div>
+        <div class="btn btn-fill--blue btn-lg btn-block">div, blue fill, lg, block</div>
+      </div>
       <pre class="code"><code></code></pre>
     </div>
-  </div>
-
-    <div class="styleguide-section">
-    <h2>Structures</h2>
     <div class="styleguide-subsection">
-      <h3>Example</h3>
+      <h3>Filled buttons</h3>
+      <p class="styleguide-subsection__desc">
+        Filled button options
+      </p>
       <div class="live-example">
-        <p>Random example</p>
+        <div class="btn btn-fill--blue btn-xs">blue fill, xs</div>
+        <div class="btn btn-fill--blue btn-sm">blue fill, sm</div>
+        <div class="btn btn-fill--blue btn-md">blue fill, md</div>
+        <div class="btn btn-fill--blue btn-lg">blue fill, lg</div>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>CTA bttons</h3>
+      <p class="styleguide-subsection__desc">
+        CTA buttons are filled with blue and have uppercase text. They should be used on places where there are call-to-aciton butotns, like on the homepage.
+      </p>
+      <div class="live-example">
+        <div class="btn btn--cta btn-xs">CTA, xs</div>
+        <div class="btn btn--cta btn-sm">CTA, sm</div>
+        <div class="btn btn--cta btn-md">CTA, md</div>
+        <div class="btn btn--cta btn-lg">CTA, lg</div>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>Outlined bttons</h3>
+      <p class="styleguide-subsection__desc">
+        Outlined buttons can be blue, orange, or white.
+      </p>
+      <div class="live-example" style="background-color: #eee;">
+        <div class="btn btn-outline--blue btn-xs">outline, blue, xs</div>
+        <div class="btn btn-outline--orange btn-sm">outline, orange, sm</div>
+        <div class="btn btn-outline--white btn-md">outline, white, md</div>
+        <a class="btn btn-outline--blue btn-lg">outline, blue, lg</a>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>Plain white icons</h3>
+      <p class="styleguide-subsection__desc">
+        This is how to include simple white icons that don't have hover states. These are used to show ammenities on the apartment tile overlays.
+      </p>
+      <div class="live-example" style="background-color: #444; color:">
+        <i class="w-icon w-bath"></i>
+        <i class="w-icon w-bed"></i>
+        <i class="w-icon w-dishwasher"></i>
+        <i class="w-icon w-laundry"></i>
+        <i class="w-icon w-utilities"></i>
+        <i class="w-icon w-pets"></i>
+        <i class="w-icon w-fireplace"></i>
+        <i class="w-icon w-elevator"></i>
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+    <div class="styelguide-subsection">
+      <h3>Change color of icons</h3>
+      <p class="styleguide-subsection__desc">
+        When you want to change the color of an icon from white. This is how you could do that.
+      </p>
+      <div class="live-example" style="background-color: #444; color:">
+          <div class="styleguide-example-make-light-orange">
+            <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
+          </div>
+          <div class="styleguide-example-make-orange">
+            <ng-include src="'public/assets/icons/bath.svg'"></ng-include>
+          </div>
+          <div class="styleguide-example-make-blue">
+            <ng-include src="'public/assets/icons/bed.svg'"></ng-include>
+          </div>
+          <div class="styleguide-example-make-black">
+          <ng-include src="'public/assets/icons/dishwasher.svg'"></ng-include>
+          </div>
+
+<!-- CSS:
+
+.styleguide-example-make-orange svg *{
+  stroke: $orange;
+}
+.styleguide-example-make-light-orange svg * {
+  stroke: $light-orange;
+}
+.styleguide-example-make-black svg * {
+  stroke: $black;
+}
+.styleguide-example-make-blue svg * {
+  stroke: $blue;
+}
+
+-->
+
       </div>
       <pre class="code"><code></code></pre>
     </div>
   </div>
-</div>
+    <div class="styelguide-subsection">
+      <h3>Icon hover states</h3>
+      <p class="styleguide-subsection__desc">
+        The icons below have easy-to-use hover states. This is how to make them work.
+      </p>
+      <div class="live-example" style="background-color: #444; color:">
+        <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
+        </div>
+        <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/facebook.svg'"></ng-include>
+        </div>
+          <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
+        </div>
+          <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
+        </div>
+          <div class="styleguide-example-hover">
+          <ng-include src="'public/assets/icons/email.svg'"></ng-include>
+        </div>
+
+
+<!-- CSS:
+
+.styleguide-example-hover {
+  .hover-fill {
+      fill: transparent;
+      transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+    .hover-fill {
+      fill: $white;
+    }
+  }
+}
+
+-->
+
+      </div>
+      <pre class="code"><code></code></pre>
+    </div>
+  </div>
+
+
+
 
 <script>
   /* copy the code from the example, and put it beneath the live example in a code block
@@ -115,7 +247,12 @@
     same code that is used in the live example */
   $(".live-example").each(
     function() {
-     $(this).parent().find(".code code").text($(this).html());
+      // var codeNoExtraSpace = $(this).html().replace(/\s*</g,'<');
+      var lengthOfIndent = $(this).html().match(/\s*</)[0].length - 2;
+      var regex = new RegExp("\\s{" + lengthOfIndent + "}<", "g")
+      var getRidOfTabs = $(this).html().replace(regex, '<');
+      $(this).parent().find(".code code").text(getRidOfTabs);
     }
   )
 </script>
+

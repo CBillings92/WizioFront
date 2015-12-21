@@ -12,25 +12,7 @@
 
 	&__action-btn {
 		$action-btn-tint: 10%;
-		color: $blue;
-		border: 2px solid $blue;
 		background: $white;
-		@include button-hover-state {
-			background: $blue;
-			color: $white;
-		}
-
-		&__orange {
-			color: $orange;
-			border-color: $orange;
-
-			@include button-hover-state {
-				background: $orange;
-				color: $white;
-			}
-
-		}
-
 
 		@media (min-width: $screen-sm-min) {
 			padding-left: 8px;

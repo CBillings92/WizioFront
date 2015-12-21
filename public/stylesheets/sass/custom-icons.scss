@@ -1,11 +1,14 @@
 .w-icon {
   background-size: contain;
   background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
 }
 .w-bed {
   background-image: url('/public/assets/icons/bed.svg');
 }
-.w-toilet {
+.w-bath {
   background-image: url('/public/assets/icons/bath.svg');
 }
 .w-dishwasher {
@@ -25,4 +28,10 @@
 }
 .w-fireplace {
   background-image: url('/public/assets/icons/fireplace.svg');
+}
+.w-waitlist {
+  background-image: url('/public/assets/icons/waitlist.svg');
+}
+.w-favorite {
+  background-image: url('/public/assets/icons/favorite.svg');
 }

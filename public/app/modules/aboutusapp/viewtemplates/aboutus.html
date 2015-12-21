@@ -60,9 +60,15 @@
                     <img src="/public/viewtemplates/images/aboutimages/{{ member.picture }}" class="img-responsive" />
                     <div class="about-team-members-more-overlay">
                         <div class="about-team-members-more-overlay-content">
-                            <a href="https://www.twitter.com/{{ member.twitter }}"><img class="social-media" src="/public/ViewTemplates/Images/brand_assets/wizio_assets-twitter.png" /></a>
-                            <a href="https://www.twitter.com/{{ member.email }}"><img class="social-media" src="/public/ViewTemplates/Images/brand_assets/wizio_assets-email.png" /></a>
-                            <a href="https://www.twitter.com/{{ member.linkedin }}"><img class="social-media" src="/public/ViewTemplates/Images/brand_assets/wizio_assets-linkedin.png" /></a>
+                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}">
+                                 <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
+                            </a>
+                            <a class="team-social-link" href="https://www.twitter.com/{{ member.email }}">
+                                <ng-include src="'public/assets/icons/email.svg'"></ng-include>
+                            </a>
+                            <a class="team-social-link" href="https://www.twitter.com/{{ member.linkedin }}">
+                                <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
+                            </a>
                         </div>
                     </div>
                 </div>

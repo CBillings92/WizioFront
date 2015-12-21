@@ -69,6 +69,7 @@
     border-radius: 3px 0 0 3px;
   }
   .btn {
+    padding: 7px 14px 8px 14px;
     border-radius: 0 3px 3px 0;
   }
 }
@@ -106,22 +107,7 @@
 .home-sign-up {
   margin-top: 20px;
 }
-.home-sign-up__button,
-.home-landlord__button {
-  padding-right: 60px;
 
-  .btn-success {
-    border-radius: 6px;
-    line-height: 2;
-    text-transform: uppercase;
-  }
-}
-.home-sign-up__button {
-  .btn-success {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-}
 .home-landlord {
   margin-top: -32px;
   position: relative;
