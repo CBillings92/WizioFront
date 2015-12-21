@@ -138,7 +138,7 @@ h2 {
         transition: color 0.15s ease-in-out;
         &.focus,
         &:focus{
-            color: $white;
+            color: $black;
         }
         &:hover {
             color: $black;
