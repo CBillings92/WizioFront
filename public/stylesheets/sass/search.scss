@@ -225,7 +225,7 @@ h2 {
 
     #search-searchbar {
         input {
-            width: 275px;
+            width:322px;
         }
     }
     #searchFiltersCollapse .form-inline {
@@ -240,13 +240,6 @@ h2 {
     #search-searchbar {
         input {
             width: 400px;
-        }
-    }
-}
-@media (min-width: $screen-lg-min) {
-    #search-searchbar {
-        input {
-            width: 500px;
         }
     }
 }
