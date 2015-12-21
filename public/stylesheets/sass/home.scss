@@ -28,7 +28,7 @@
 .home-hero__text {
   position: absolute;
   top: 50%;
-  z-index: 1000;
+  z-index: 100;
   // have to account for the search bar height too
   transform: translateY(calc(-50% - 40px));
   color: $white;
@@ -45,7 +45,7 @@
 
 .home-search {
   position: relative;
-  z-index: 500;
+  z-index: 50;
   margin-top: -80px;
   height: 80px;
   width: 100%;
@@ -62,12 +62,6 @@
   position: relative;
   margin-top: -58px;
 
-  .dropdown-menu {
-    width: calc(100% - 37px);
-    margin-top: -4px;
-    border-radius: 0 0 4px 4px;
-    margin-left: -1px;
-  }
   li a {
     padding-left: 13px;
   }
@@ -82,7 +76,7 @@
 .home-tenants {
   color: white;
   position: relative;
-  z-index: 300;
+  z-index: 30;
 }
 
 .home-tenants__header {
@@ -131,7 +125,7 @@
 .home-landlord {
   margin-top: -32px;
   position: relative;
-  z-index: 100;
+  z-index: 10;
   background-image: url("../viewtemplates/images/home/homepage_bottom.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -150,6 +144,9 @@
 @media (max-width: 767px) {
   .home-hero {
     height: 450px;
+  }
+  .home-hero__heading {
+    margin-top: 45px;
   }
   .home-tenants {
     background-color: $light-orange;

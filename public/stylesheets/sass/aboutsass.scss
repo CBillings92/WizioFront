@@ -32,10 +32,12 @@ $orange-transparancy-hover: 0.9;
 		&__heading {
 			max-width: 80%;
 			word-break: keep-all;
+			text-shadow: 0 0 10px rgba(0,0,0,.4);
 		}
 
 		&__subheading {
 			font-size: 20px;
+			text-shadow: 0 0 10px rgba(0,0,0,.4);
 		}
 
 		@media (min-width: $screen-sm-min) {
@@ -233,12 +235,6 @@ $orange-transparancy-hover: 0.9;
 
 		color: $gray;
 		margin-bottom: 50px;
-
-		@media (max-width: $screen-xs-max) {
-			.col-sm-6 {
-				padding: 0;
-			}
-		}
 
 		&-more {
 			position: relative;
