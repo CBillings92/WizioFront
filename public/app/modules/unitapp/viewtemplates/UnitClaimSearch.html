@@ -21,7 +21,7 @@
                 <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" style="padding:10px;">
                         <label class="control-label">Unit Num:</label>
-                        <input class="form-control col-md-4" ng-blur="unitEntered($parent.$index)" ng-model="unit.unitNum" type="text" />
+                        <input class="form-control col-md-4" ng-blur="unitEntered($parent.$index, $index)" ng-model="unit.unitNum" type="text" />
                         <button type="button" class="btn" name="button" ng-click="removeUnit($parent.$index, $index)">Remove Unit</button>
                     </div>
                 </div>
