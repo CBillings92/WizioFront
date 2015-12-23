@@ -1,12 +1,13 @@
 //CREATE ALL TOP LEVEL APPS (create, not start)
 angular.module('AboutUsApp', []);
 angular.module('AdminPanelApp', []);
-angular.module('AccountApp', []);
+angular.module('AccountApp', ['ui.bootstrap.buttons']);
 angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
 angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
+angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
@@ -31,6 +32,7 @@ angular.module('MainApp', [
         'AuthApp',
         'AboutUsApp',
         'BlogApp',
+        'FooterApp',
         'LandingPageApp',
         'CampaignApp',
         'NavbarApp',

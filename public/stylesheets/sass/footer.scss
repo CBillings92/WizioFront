@@ -1,0 +1,97 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 250px;
+    background-color: $blue-gray;
+    padding-top: 40px;
+    color: $white;
+    a, h2 {
+        color: $white;
+        font-family: 'Roboto', san-serif;
+    }
+    h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+    img {
+        max-width: 200px;
+    }
+    .fa{
+        font-size: 40px;
+        padding-right: 15px;
+    }
+    ul {
+        padding: 0;
+    }
+    li {
+        list-style: none;
+        font-size: 18px;
+        font-weight: 300;
+        padding: 2px 0;
+    }
+}
+
+#social-links {
+    padding-top: 20px;
+    a {
+        text-decoration: none;
+    }
+    svg {
+        margin-right: 10px;
+
+        .hover-fill{
+            transition: fill 0.15s ease-in-out;
+        }
+        &:hover {
+            .hover-fill{
+                fill: #ffffff;
+            }
+        }
+    }
+}
+
+#wizio_address {
+    // font-size: 20px;
+    font-weight: 300;
+    margin-top: 30px;
+    font-size: 16px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+
+}
+
+body {
+    margin-bottom: 250px; // footer height
+}
+@media (max-width: 767px) {
+    /* Set the fixed height of the footer here
+       for mobile screens */
+    body {
+        margin-bottom: 550px;
+    }
+    .footer {
+        height: 550px;
+
+        h2 {
+            margin-top: 20px;
+            font-size: 22px;
+        }
+
+        ul li {
+            font-size: 16px;
+            padding: 3px 0;
+        }
+
+        #social-links {
+            margin-right: 15px;
+        }
+    }
+
+    #wizio_address {
+        font-size: 16px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+}

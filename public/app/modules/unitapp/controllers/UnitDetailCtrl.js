@@ -35,6 +35,52 @@ angular.module('UnitApp')
             WizioConfig
         ) {
 
+            // MediaTabs
+            $scope.mediaTab = 'unitVideos';
+            $scope.selectMediaTab = function(tab) {
+                $scope.mediaTab = tab;
+            };
+            $scope.range = function(n) {
+                return new Array(n);
+            };
+
+            var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+                width =  $(".unit-details-media-tab-content-picker-slider-scroller").width();
+                el = $(".unit-details-media-tab-content-picker-slider-scroller");
+                currentPosition = el.scrollLeft();
+                moveWidth = width * 0.5 * direction;
+                // el.scrollLeft(currentPosition + moveWidth);
+                el.animate({
+                    scrollLeft: currentPosition + moveWidth
+                }, 500, function () {
+                    $scope.sliderCanGoForward = $scope.canSliderForward();
+                    $scope.sliderCanGoBackward = $scope.canSliderBackward();                    
+                });
+            };
+
+            $scope.sliderCanGoForward = true;
+            $scope.sliderCanGoBackward = false;
+
+            $scope.canSliderBackward = function() {
+                return $(".unit-details-media-tab-content-picker-slider-scroller").scrollLeft() > 0;
+            }
+
+            $scope.canSliderForward = function() {
+                el = $(".unit-details-media-tab-content-picker-slider-scroller");
+                width =  el.outerWidth();
+                currentPosition = el.scrollLeft()
+                viewportWidth = el.width();
+                return currentPosition + viewportWidth < width;
+            }
+
+            $scope.moveSliderBackward = function() {
+                moveSlider(-1);
+            };
+
+            $scope.moveSliderForward = function() {
+                moveSlider(1);
+            };
+
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
             //HELPER FUNCTION -- modal creation function

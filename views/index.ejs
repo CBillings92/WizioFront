@@ -2,12 +2,17 @@
 <html ng-app="MainApp">
 
 <head>
-    <title>Wizio!</title>
+    <title>Wizio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap and LESS -->
-    <link href="../public/build/styles.css" rel="stylesheet">
-    <link href="../public/stylesheets/siteCSSforTesting/mapTest.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+   <!--  <link href="../public/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+
+    <!-- Styles -->
     <link href="../public/build/stylessass.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'>
 
     <!--jquery-->
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -194,7 +199,7 @@
 <body>
     <div ui-view="navbar">
     </div>
-    <div ui-view="maincontent">
+    <div ui-view="maincontent" class="">
 
     </div>
     <div ui-view="footer">
