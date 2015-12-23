@@ -8,6 +8,17 @@ angular.module('UnitApp')
     'ApartmentClaimGetSetSvc',
     'WizioConfig',
     function ($scope, ApartmentModel, SmartSearchSvc, UnitCreateSvc, ModalSvc, ApartmentClaimGetSetSvc, WizioConfig) {
+        $scope.selectOptions = {
+            beds: [0,1,2,3,4,5,6,7,8],
+            baths: [1,2,3],
+            livingSpaces: [0,1,2,3],
+            pets: ['Pets Acceptable', 'Only Dogs and Cats', 'Only Cats', 'Only Small Animals', 'No Pets'],
+            utilities: ['Hot Water', 'Electric', 'Cable', 'Internet', 'Heat', 'Gas'],
+            amenities: ['Central Air', 'Gym', 'Pool'],
+            laundry: ['In Unit', 'In Building', 'None'],
+            elevator: ['Yes', 'No']
+
+        }
         $scope.apartmentArray = [];
         var referenceArray = [];
         //create an address array. These arrays house the full apartment units
@@ -32,6 +43,7 @@ angular.module('UnitApp')
         };
         //findOrCreateUnit
         $scope.unitEntered = function(apartmentIndex, unitIndex){
+            console.dir($scope.apartmentArray);
             //assign apartment we'll be handling to shorter variable for readability
             unitEntered = $scope.apartmentArray[apartmentIndex][unitIndex];
             //store the apartment object from the google geocoder in the unitEntered
@@ -39,11 +51,10 @@ angular.module('UnitApp')
             unitEntered.fullApartment = referenceArray[apartmentIndex];
             //store the unitNum on the apartent geocoder object
             unitEntered.fullApartment.unitNum = unitEntered.unitNum;
+            delete unitEntered.unitNum;
             //final apartment to send to the database
             var finalApartment = unitEntered.fullApartment;
             ApartmentModel.claimApi().save(null, finalApartment, function(data){
-                console.dir(data);
-                console.dir(finalApartment);
                 if(!data.created){
                     var modalDefaults = {
                         backdrop: true,
@@ -63,11 +74,16 @@ angular.module('UnitApp')
                             return;
                         } else {
                             $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
+                            console.dir(data.apartment);
                             return;
                         }
 
                     });
-                }
+                } else {
+                    $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
+                    console.dir(data);
+                    return;
+                };
 
             });
             //ApartmentModel.api().save()
