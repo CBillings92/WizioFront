@@ -70,8 +70,8 @@ angular.module('Models')
 
         };
         Apartment.claimApi = function(){
-            return $resource(WizioConfig.baseAPIURL + 'apartment/claim');
-        }
+            return $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {action: "@action"});
+        };
         Apartment.build = function(data){
             return new Apartment(
                 data.street,

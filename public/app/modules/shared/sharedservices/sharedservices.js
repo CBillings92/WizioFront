@@ -144,7 +144,11 @@ angular.module('SharedServiceApp')
                         components: 'country:US|administrative_area:MA'
                     }
                 }).then(function(response) {
-                    FlexGetSetSvc.set(response, sessionStorageVar);
+                    if(sessionStorageVar === 'Staging-ApartmentClaims'){
+                        ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);
+                    } else {
+                        FlexGetSetSvc.set(response, sessionStorageVar);
+                    }
                     return response.data.results.map(function(item) {
                         return item.formatted_address;
                     });
