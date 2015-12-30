@@ -16,9 +16,10 @@ angular.module('AccountApp')
                 var UserId = TokenSvc.decode().id;
                 $scope.profile.UserId = UserId;
                 var profile = ProfileModel.build($scope.profile);
-                console.dir(profile);
-                // ProfileModel.api().save()
-            }
+                ProfileModel.api().save(null, profile, function(response){
+                    alert("DONE");
+                });
+            };
             $scope.profile = {};
             /*var profile = {
                 UserID: user.id,
