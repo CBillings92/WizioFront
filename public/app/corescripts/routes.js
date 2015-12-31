@@ -199,6 +199,10 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controller: 'DashboardUserInfoCtrl'
                         },
+                        controlPanel: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
+                            controller: 'DashboardControlsCtrl'
+                        },
                         midHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
                             controllerProvider: function($rootScope) {
@@ -234,6 +238,15 @@ angular.module('MainApp')
                 })
                 .state('Account.Profile.Create', {
                     url: '/create',
+                    views: {
+                        "ProfileMain": {
+                            templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
+                            controller: 'ExtProfileFormCtrl'
+                        }
+                    }
+                })
+                .state('Account.Profile.Edit', {
+                    url: '/edit',
                     views: {
                         "ProfileMain": {
                             templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',

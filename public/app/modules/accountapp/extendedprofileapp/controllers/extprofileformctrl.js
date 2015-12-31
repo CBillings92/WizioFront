@@ -1,26 +1,44 @@
 angular.module('AccountApp')
     .controller('ExtProfileFormCtrl', [
         '$scope',
+        '$state',
         'ProfileModel',
+        'FlexGetSetSvc',
         'TokenSvc',
-        function($scope, ProfileModel, TokenSvc) {
+        function($scope, $state, ProfileModel, FlexGetSetSvc, TokenSvc) {
+            $scope.profile = {};
+            var loadedProfile = FlexGetSetSvc.get(null, "ExtendedProfile");
+            console.dir(loadedProfile);
+            console.dir(typeof(loadedProfile));
+            if(typeof(loadedProfile) != 'undefined' && loadedProfile){
+                console.dir("HI");
+                $scope.editing = true;
+                $scope.profile = loadedProfile;
+            }
             $scope.selectOptions = {
                 employmentStatus: ["Full Time Employed", "Part Time Employed", "Not Employed"],
                 studentStatus: ["Full Time Student", "Part Time Student", "Not A Student"],
                 yesno: ["Yes", "No"],
                 studentTypes: ["Undergraduate", "Graduate"],
                 maritalStatus: ["Married", "Not Married"]
-            }
+            };
             $scope.yesNoContainer = {};
             $scope.submitProfile = function(){
                 var UserId = TokenSvc.decode().id;
                 $scope.profile.UserId = UserId;
-                var profile = ProfileModel.build($scope.profile);
-                ProfileModel.api().save(null, profile, function(response){
-                    alert("DONE");
-                });
+                if($state.current.name === 'Account.Profile.Edit'){
+                    ProfileModel.api().save({id: $scope.profile.id}, $scope.profile, function(response){
+
+                    });
+                } else if($state.current.name === 'Account.Profile.Create'){
+                    var profile = ProfileModel.build($scope.profile);
+                    ProfileModel.api().save(null, profile, function(response){
+                        alert("DONE");
+                    });
+                }
+
             };
-            $scope.profile = {};
+
             /*var profile = {
                 UserID: user.id,
                 annualIncome: $scope.annualIncome,

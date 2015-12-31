@@ -1,5 +1,8 @@
 <div class="container">
     <div class="row">
+        <h1>Extended Profile</h1>
+        <h4 ng-show="editing">This is your extended profile. To edit, change any values seen and select Subnmit on the bottom of the form</h4>
+        <h4 ng-hide="editing">This is your extended profile. Your extended profile is only shared to the owners of the apartments you applyu to.</h4>
         <form>
             <div class="form-group">
                 <div class="row">
@@ -146,6 +149,6 @@
             </div>
 
         </form>
-        <button type="button" ng-click="submitProfile()" name="button"></button>
+        <button type="button" class="btn" ng-click="submitProfile()" name="button">Submit</button>
     </div>
 </div>

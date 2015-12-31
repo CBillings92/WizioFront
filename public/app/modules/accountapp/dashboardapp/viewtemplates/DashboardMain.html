@@ -4,6 +4,11 @@
         <div ui-view="topHorizontal"></div>
       </div>
     </div><!-- row -->
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div ui-view="controlPanel"></div>
+        </div>
+    </div>
     <div class="row" ng-hide="userType != 2">
       <div class="col-md-10 col-md-offset-1">
         <div ui-view="midHorizontal"></div>
