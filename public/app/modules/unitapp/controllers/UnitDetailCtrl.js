@@ -10,7 +10,6 @@ angular.module('UnitApp')
         'UnitResource',
         'MapFct',
         'TokenSvc',
-        'ProfileResource',
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
         'FavoriteModel',
@@ -27,7 +26,6 @@ angular.module('UnitApp')
             UnitResource,
             MapFct,
             TokenSvc,
-            ProfileResource,
             FlexGetSetSvc,
             RerouteGetSetSvc,
             FavoriteModel,
@@ -37,14 +35,15 @@ angular.module('UnitApp')
 
             //For displaying (ng-show) Apply or Waitlist button
             $scope.available = false;
-            //HELPER FUNCTION -- modal creation function
-            var modal = function(templateUrl, controller, size) {
-                var modalInstance = $modal.open({
+
+            var modalDefaults = function(templateUrl, controller, accountType) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
                     templateUrl: templateUrl,
                     controller: controller,
-                    size: size
-                });
-                return modalInstance;
+                };
             };
 
             //Chris made this so that the apartment details controller would
@@ -61,8 +60,8 @@ angular.module('UnitApp')
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 //loop through all object keys and assign "Unkown" to any null values
-                result = lodash.mapValues(result, function(apartmentField){
-                    if (apartmentField === null){
+                result = lodash.mapValues(result, function(apartmentField) {
+                    if (apartmentField === null) {
                         return "Unknown";
                     } else {
                         return apartmentField;
@@ -102,11 +101,11 @@ angular.module('UnitApp')
                 //check to see if apartment has been favorited
 
                 if (user && typeof(user.favorites) != 'undefined' && user.favorites.length !== 0) {
-                        if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
-                             $scope.favorited = true;
-                         } else {
-                             $scope.favorited = false;
-                         }
+                    if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
+                        $scope.favorited = true;
+                    } else {
+                        $scope.favorited = false;
+                    }
                 } else {
                     $scope.favorited = false;
                 }
@@ -119,50 +118,31 @@ angular.module('UnitApp')
             }; */
             //WAITLIST for the apartment
             $scope.waitlist = function() {
+                var authViews = WizioConfig.AccountAuthViewsURL;
+                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+                var modalDefaultsWaitlist = modalDefaults(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
                 //check if token is expired, if so route to login
                 if (TokenSvc.checkExp()) {
                     TokenSvc.deleteToken();
-                    RerouteGetSetSvc.set($location.path());
-                    alert('Please login');
 
-                    var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
+                    ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                        //store the current apartment in sessionStorage with the
+                        //appropriate session storage variable
+                        FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
 
-                    modalInstanceLoginForm.result.then(function(result) {
-                        if (result === 'ok') {
-                            //store the current apartment in sessionStorage with the
-                            //appropriate session storage variable
-                            FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                            //Create a modal instance with the modal helper function with the correct template and controller
-                            var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
-
-                            //on modal instance close/button click go to user dashboard
-                            modalInstanceWaitlist.result.then(function(result) {
-                                $state.go('Account.Dashboard.Main');
-                            });
-                        }
+                        ModalSvc.showModal(modalDefaultsWaitlist, {}).then(function(result) {
+                            $state.go('Account.Dashboard.Main');
+                        });
                     });
                 } else {
                     //store the current apartment in sessionStorage with the
                     //appropriate session storage variable
                     FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                    //Create a modal instance with the modal helper function with the correct template and controller
-                    var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
 
-                    //on modal instance close/button click go to user dashboard
-                    modalInstanceWaitlist.result.then(function(result) {
+                    ModalSvc.showModal(modalDefaultsWaitlist, {}).then(function(result) {
                         $state.go('Account.Dashboard.Main');
                     });
                 }
-                //store the current apartment in sessionStorage with the
-                //appropriate session storage variable
-                FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                //Create a modal instance with the modal helper function with the correct template and controller
-                var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
-
-                //on modal instance close/button click go to user dashboard
-                modalInstanceWaitlist.result.then(function(result) {
-                    $state.go('Account.Dashboard.Main');
-                });
             };
             //FAVORITE for the apartment
             $scope.favorite = function() {
@@ -191,16 +171,16 @@ angular.module('UnitApp')
                         //launch modal using ModalSvc (sharedservices)
                         ModalSvc.showodal({}, modalOptions);
                         //change button to favorited button
-                        $scope.favorited =  true;
+                        $scope.favorited = true;
                     });
                 }
             };
 
-            $scope.deleteFavorite = function(){
+            $scope.deleteFavorite = function() {
                 //create a new Favorite object
                 var user = TokenSvc.decode();
                 var favorite = new FavoriteModel(user.id, $scope.apartment.id);
-                FavoriteModel.api().delete(favorite, function(result){
+                FavoriteModel.api().delete(favorite, function(result) {
                     alert('Favorite removed');
                 });
             };
@@ -208,54 +188,5 @@ angular.module('UnitApp')
                 alert("Feature still under development and is due to arrive in our full product launch!");
             };
             //LOAD APARTMENT DATA end
-
-            $scope.apply = function() {
-
-                checkToken();
-
-                //get user data
-                var user = TokenSvc.decode();
-                //set apartment data and store that data in sessionStorage variable
-                ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
-                //If the user doesn't have a profile
-                if (user.ProfileId === null) {
-                    //call modal function
-                    var modalInstanceCreate = modal('public/viewtemplates/public/createprofilemodal.html', 'ProfileCreateModalCtrl', 'md');
-
-                    modalInstanceCreate.result.then(function(result) {
-                        $state.go('Profile.Create');
-                    }, function() {
-
-                    });
-                } else {
-                    //call modal function
-                    ProfileResource.get({
-                        id: user.ProfileId
-                    }, function(data) {
-                        if (data) {
-                            var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
-
-                            modalInstanceVerify.result.then(function(result) {
-                                switch (result) {
-                                    case "ok":
-                                        $state.go('ApartmentApplication');
-                                        break;
-                                    case "edit":
-                                        FlexGetSetSvc.set(data);
-                                        $state.go('Profile.Edit');
-                                        break;
-                                    default:
-                                        alert('ERROR');
-                                }
-                            }, function() {
-                                alert('MODAL DISMISSED');
-                            });
-                        } else {
-                            //handle
-                        }
-                    });
-
-                }
-            };
         }
     ]);
