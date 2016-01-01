@@ -19,7 +19,7 @@ angular.module('UnitApp')
                 laundry: ['In Unit', 'In Building', 'None'],
                 elevator: ['Yes', 'No']
 
-            }
+            };
             $scope.apartmentArray = [];
             var referenceArray = [];
             //create an address array. These arrays house the full apartment units
@@ -54,6 +54,7 @@ angular.module('UnitApp')
                 $scope.apartmentArray[apartmentIndex][unitIndex] = unitEntered.fullApartment;
                 ApartmentModel.claimApi().save(null, $scope.apartmentArray[apartmentIndex][unitIndex], function(data) {
                     if (!data.created) {
+                        //create defaults object for modalsvc
                         var modalDefaults = {
                             backdrop: true,
                             keyboard: true,
@@ -66,6 +67,7 @@ angular.module('UnitApp')
                                 }
                             }
                         };
+                        //use newly created object to make a modal
                         ModalSvc.showModal(modalDefaults, {}).then(function(response) {
                             console.dir(response);
                             if (response === 'Do not use data') {
@@ -73,6 +75,7 @@ angular.module('UnitApp')
                                 return;
                             } else {
                                 delete unitEntered.unitNum;
+                                console.dir(data);
                                 $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
                                 return;
                             }
@@ -148,9 +151,15 @@ angular.module('UnitApp')
             $scope.submit = function() {
                 for (var i = 0; i < $scope.apartmentArray.length; i++) {
                     for (var j = 0; j < $scope.apartmentArray[i].length; j++) {
-                        $scope.apartmentArray[i][j].descriptionObj = {};
-                        $scope.apartmentArray[i][j].descriptionObj.description = $scope.apartmentArray[i][j].description;
-                        $scope.apartmentArray[i][j].descriptionObj.ApartmentId = $scope.apartmentArray[i][j].id;
+                        /*
+                            Lots of reassignment...
+                            create a new descriptionObj object on the Apartment
+                            store the description on that object
+                            Store the apartmentId on that Object
+                            Store the userId on that Object
+                            Store the userType on that object
+                        */
+                        $scope.apartmentArray[i][j].Descriptions.ApartmentId = $scope.apartmentArray[i][j].id;
                         $scope.apartmentArray[i][j].descriptionObj.UserId = TokenSvc.decode().id;
                         $scope.apartmentArray[i][j].descriptionObj.userType = TokenSvc.decode().userType;
                     }
