@@ -48,10 +48,12 @@ angular.module('UnitApp')
                 unitEntered = $scope.apartmentArray[apartmentIndex][unitIndex];
                 //store the apartment object from the google geocoder in the unitEntered
                 var unitNum = unitEntered.unitNum;
+
                 unitEntered.fullApartment = referenceArray[apartmentIndex];
                 unitEntered.fullApartment.unitNum = unitNum;
                 //store the unitNum on the apartent geocoder object
                 $scope.apartmentArray[apartmentIndex][unitIndex] = unitEntered.fullApartment;
+                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                 ApartmentModel.claimApi().save(null, $scope.apartmentArray[apartmentIndex][unitIndex], function(data) {
                     if (!data.created) {
                         //create defaults object for modalsvc
@@ -96,6 +98,7 @@ angular.module('UnitApp')
             $scope.addressEntered = function(apartmentIndex) {
                 UnitCreateSvc.parseGeocodeData($scope.apartmentArray[apartmentIndex].address, null, function(err, apartment) {
                     //store apartment object from geocoder in fullApartment object
+                    console.dir(apartment);
                     referenceArray[apartmentIndex] = apartment;
                     for (var i = 0; i < $scope.apartmentArray[apartmentIndex].length; i++) {
                         $scope.apartmentArray[apartmentIndex][i].fullApartment = apartment;

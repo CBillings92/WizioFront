@@ -18,7 +18,6 @@ angular.module('SharedServiceApp')
                     if that variable has been set yet in session storage. If so, push
                     data into it. Otherwise create the variable than push.
                 */
-                console.dir($sessionStorage[sessionStorageVar]);
                 if (typeof($sessionStorage[sessionStorageVar]) != 'undefined' && $sessionStorage[sessionStorageVar] && sessionStorageVar) {
                     $sessionStorage[sessionStorageVar].push(data);
                     dataStore.push(data);

@@ -145,6 +145,7 @@ angular.module('SharedServiceApp')
                     }
                 }).then(function(response) {
                     if(sessionStorageVar === 'Staging-ApartmentClaims'){
+                        ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
                         ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);
                     } else {
                         FlexGetSetSvc.set(response, sessionStorageVar);
