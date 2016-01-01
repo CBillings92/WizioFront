@@ -75,7 +75,6 @@ angular.module('UnitApp')
                                 return;
                             } else {
                                 delete unitEntered.unitNum;
-                                console.dir(data);
                                 $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
                                 return;
                             }
@@ -159,17 +158,19 @@ angular.module('UnitApp')
                             Store the userId on that Object
                             Store the userType on that object
                         */
+                        console.dir($scope.apartmentArray[i][j]);
                         $scope.apartmentArray[i][j].Descriptions.ApartmentId = $scope.apartmentArray[i][j].id;
-                        $scope.apartmentArray[i][j].descriptionObj.UserId = TokenSvc.decode().id;
-                        $scope.apartmentArray[i][j].descriptionObj.userType = TokenSvc.decode().userType;
+                        $scope.apartmentArray[i][j].Descriptions.UserId = TokenSvc.decode().id;
+                        $scope.apartmentArray[i][j].Descriptions.userType = TokenSvc.decode().userType;
                     }
+                    console.dir($scope.apartmentArray[i]);
                 }
                 ApartmentClaimGetSetSvc.reset('ApartmentClaims');
                 ApartmentModel.claimApi().save({
                     action: 'finalize'
                 }, $scope.apartmentArray, function(response) {
                     console.dir(response);
-                })
+                });
             };
 
         }
