@@ -44,19 +44,13 @@ angular.module('UnitApp')
             };
             //findOrCreateUnit
             $scope.unitEntered = function(apartmentIndex, unitIndex) {
-                //assign apartment we'll be handling to shorter variable for readability
-                unitEntered = $scope.apartmentArray[apartmentIndex][unitIndex];
-                //store the apartment object from the google geocoder in the unitEntered
-                var unitNum = unitEntered.unitNum;
 
-                unitEntered.fullApartment = referenceArray[apartmentIndex];
-                unitEntered.fullApartment.unitNum = unitNum;
-                //store the unitNum on the apartent geocoder object
-                $scope.apartmentArray[apartmentIndex][unitIndex] = unitEntered.fullApartment;
                 console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                 ApartmentModel.claimApi().save(null, $scope.apartmentArray[apartmentIndex][unitIndex], function(data) {
+                    console.dir("2");
                     if (!data.created) {
                         //create defaults object for modalsvc
+                        console.dir("3");
                         var modalDefaults = {
                             backdrop: true,
                             keyboard: true,
@@ -70,21 +64,32 @@ angular.module('UnitApp')
                             }
                         };
                         //use newly created object to make a modal
+                        console.dir("4");
                         ModalSvc.showModal(modalDefaults, {}).then(function(response) {
                             console.dir(response);
                             if (response === 'Do not use data') {
                                 $scope.apartmentArray[apartmentIndex][unitIndex].id = data.apartment.id;
+                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                                 return;
                             } else {
-                                delete unitEntered.unitNum;
+                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
+
+                                delete $scope.apartmentArray[apartmentIndex][unitIndex].unitNum;
                                 $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
+                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                                 return;
                             }
 
                         });
                     } else {
-                        $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
-                        console.dir(data);
+                        var i;
+                        var keys = Object.keys(data.apartment);
+                        for (i = 0; i < keys.length; i++) {
+                            $scope.apartmentArray[apartmentIndex][unitIndex][keys[i]] = data.apartment[keys[i]];
+                            console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
+                        }
+                        // $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
+                        // console.dir();
                         return;
                     };
 
@@ -111,6 +116,8 @@ angular.module('UnitApp')
             //create a new unitNum input box
             $scope.addUnit = function(addressIndex) {
                 $scope.apartmentArray[addressIndex].push({});
+                var lastIndex = $scope.apartmentArray[addressIndex].length - 1;
+                $scope.apartmentArray[addressIndex][lastIndex] = referenceArray[addressIndex];
             };
 
 
@@ -128,11 +135,21 @@ angular.module('UnitApp')
                 var unitToCopy = $scope.apartmentArray[apartmentIndex][unitIndex];
 
                 var apartmentClone = {};
+                apartmentClone.copy = true;
                 var i;
                 var keys = Object.keys(unitToCopy);
                 for (i = 0; i < keys.length; i++) {
                     apartmentClone[keys[i]] = unitToCopy[keys[i]];
                 }
+                var descriptionsClone = {};
+                var descriptionKeys = Object.keys(unitToCopy.Descriptions);
+                var j;
+                for (j = 0; j < descriptionKeys.length; j++){
+                    if(unitToCopy.Descriptions[keys[i]] == 'description' || 'UserId' || 'userType' || 'ApartmentId'){
+                        descriptionsClone[keys[i]] = unitToCopy.Descriptions[keys[i]];
+                    }
+                }
+                apartmentClone.Descriptions = descriptionsClone;
                 console.dir(apartmentClone);
                 $scope.apartmentArray[apartmentIndex].push(apartmentClone);
 
