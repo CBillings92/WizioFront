@@ -45,8 +45,7 @@ angular.module('MainApp')
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App
     ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
-    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates',
-    ApplicationWaitlistViewsURL: 'public/app/modules/applicationapp/waitlistapp/viewtemplates/',
+    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
     //Blog App
     BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
     BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',

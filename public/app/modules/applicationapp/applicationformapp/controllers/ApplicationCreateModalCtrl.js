@@ -1,5 +1,5 @@
 angular.module('ApplicationApp')
-.controller('WaitlistCreateModalCtrl', [
+.controller('ApplicationCreateModalCtrl', [
     '$scope',
     '$modalInstance',
     'FlexGetSetSvc',
@@ -7,14 +7,14 @@ angular.module('ApplicationApp')
     'ApplicationResource',
     function($scope, $modalInstance, FlexGetSetSvc, TokenSvc, ApplicationResource){
 
-        $scope.apartment = FlexGetSetSvc.get('ApartmentWaitlistingTo');
+        $scope.apartment = FlexGetSetSvc.get('ApartmentApplyingTo');
         $scope.apartmentSlotsModal = [];
         var requestInfoOutbound = {
            apartmentInfo: null,
            users: null,
            owner: null
            };
-        $scope.waitlistArray = [];
+        $scope.applicationArray = [];
         $scope.trial = [];
 
         //create an array of user objects to store emails in for roomates.
@@ -24,17 +24,17 @@ angular.module('ApplicationApp')
           var userObj = {
            id: i
          };
-         //push a userObj with enough slots for the waitlist for the apartment
+         //push a userObj with enough slots for the application for the apartment
          $scope.apartmentSlotsModal.push(userObj);
        }
 
-        $scope.waitlistSignup = function() {
+        $scope.applicationSignup = function() {
             var apartmentObj = {
                 apartmentId: $scope.apartment.id,
                 apartmentMaxResidency: $scope.apartment.maxResidency
             };
             requestInfoOutbound.apartmentInfo = apartmentObj;
-            requestInfoOutbound.users = $scope.waitlistArray;
+            requestInfoOutbound.users = $scope.applicationArray;
             requestInfoOutbound.owner = TokenSvc.decode().id;
             requestInfoOutbound.ownerEmail = TokenSvc.decode().email;
             ApplicationResource.save(requestInfoOutbound, function(result, status){

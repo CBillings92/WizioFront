@@ -213,10 +213,10 @@ angular.module('MainApp')
                                 //controller: 'DashboardLLUnitListCtrl'
                         },
                         leftSplit: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
                             controllerProvider: function($rootScope) {
                                 if ($rootScope.userType === 1 || $rootScope.userType === 0) {
-                                    return "DashboardWaitlistCtrl";
+                                    return "DashboardApplicationCtrl";
                                 }
                             }
                         },

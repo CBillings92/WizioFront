@@ -33,16 +33,18 @@ angular.module('UnitApp')
             WizioConfig
         ) {
 
-            //For displaying (ng-show) Apply or Waitlist button
-            $scope.available = false;
-
-            var modalDefaults = function(templateUrl, controller, accountType) {
+            var modalDefaults = function(templateUrl, controller, accountType, apartmentData) {
                 return {
                     backdrop: true,
                     keyboard: true,
                     modalFade: true,
                     templateUrl: templateUrl,
                     controller: controller,
+                    resolve: {
+                        modalData: function() {
+                            return apartmentData;
+                        }
+                    }
                 };
             };
 
@@ -84,8 +86,8 @@ angular.module('UnitApp')
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {
                     user = TokenSvc.decode();
-                    if (user.waitlists.length > 0) {
-                        var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
+                    if (user.applications.length > 0) {
+                        var applicationsCheck = lodash.find(user.applications.ApartmentId, $scope.apartment);
                     }
                 }
 
@@ -113,14 +115,12 @@ angular.module('UnitApp')
 
 
             });
-            /*$scope.waitlist = function(){
-                alert('Feature still under development and coming soon!');
-            }; */
-            //WAITLIST for the apartment
-            $scope.waitlist = function() {
+
+            //APPLY to the apartment
+            $scope.apply = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
-                var modalDefaultsWaitlist = modalDefaults(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
+                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'ApplicationCreateModal.html', 'ApplicationCreateModalCtrl', 'md');
                 //check if token is expired, if so route to login
                 if (TokenSvc.checkExp()) {
                     TokenSvc.deleteToken();
@@ -128,18 +128,18 @@ angular.module('UnitApp')
                     ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                         //store the current apartment in sessionStorage with the
                         //appropriate session storage variable
-                        FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
+                        FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
 
-                        ModalSvc.showModal(modalDefaultsWaitlist, {}).then(function(result) {
+                        ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
                             $state.go('Account.Dashboard.Main');
                         });
                     });
                 } else {
                     //store the current apartment in sessionStorage with the
                     //appropriate session storage variable
-                    FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
+                    FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
 
-                    ModalSvc.showModal(modalDefaultsWaitlist, {}).then(function(result) {
+                    ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
                         $state.go('Account.Dashboard.Main');
                     });
                 }

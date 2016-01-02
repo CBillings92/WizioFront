@@ -19,9 +19,8 @@
 
         <div clss="col-lg-6"></br>
         <center>
-            <button class="btn btn-success" ng-click="apply()" ng-show="available">Apply For Apartment</button>
-            <button class="btn btn-success" ng-click="waitlist()" ng-hide="waitlisted || available">Get on Waitlist</button>
-            <button class="btn btn-success" ng-disabled ng-show="waitlisted">You're Waitlisted!</button>
+            <button class="btn btn-success" ng-hide="applied" ng-click="apply()">Apply For Apartment</button>
+            <button class="btn btn-success" ng-show="applied" >View your application</button>
             <button class="btn btn-success" ng-click="setupTour()">Setup in Person Tour</button>
             <button class="btn btn-success" ng-click="favorite()" ng-hide="favorited">Add to your Favorites</button>
             <button class="btn btn-success" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite" ng-show="favorited">Delete from favorites</button>
