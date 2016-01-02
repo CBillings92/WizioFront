@@ -36,7 +36,7 @@ angular.module('UnitApp')
         ) {
 
             // MediaTabs
-            $scope.mediaTab = 'unitVideos';
+            $scope.mediaTab = 'map'; //If this is not map as a default, map fails to load for some reason.
             $scope.selectMediaTab = function(tab) {
                 $scope.mediaTab = tab;
             };
@@ -54,7 +54,7 @@ angular.module('UnitApp')
                     scrollLeft: currentPosition + moveWidth
                 }, 500, function () {
                     $scope.sliderCanGoForward = $scope.canSliderForward();
-                    $scope.sliderCanGoBackward = $scope.canSliderBackward();                    
+                    $scope.sliderCanGoBackward = $scope.canSliderBackward();
                 });
             };
 
