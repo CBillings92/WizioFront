@@ -1,21 +1,21 @@
 <div class="">
     <h2>Applications:</h2>
-    <h3 ng-hide="applicaitonsExist">You currently aren't on any applications</h3>
+    <h3 ng-hide="applicationsExist">You currently aren't on any applications</h3>
 </div>
-    <div class="" ng-repeat="applicaiton in applicaitons track by $index">
+    <div class="" ng-repeat="application in applications track by $index">
         <h3>
-            {{applicaiton[$index].Apartment.concatAddr}}
+            {{application[$index].Apartment.concatAddr}}
         </h3>
         <h3>
-            {{applicaiton[$index].Apartment.neighborhood}}
+            {{application[$index].Apartment.neighborhood}}
         </h3>
-        <div class="" ng-repeat="item in applicaiton">
+        <div class="" ng-repeat="item in application">
             <ul>
                 <li>{{item.ContactEmail}}</li>
             </ul>
 
         </div>
         <div class="" style="padding:10px;">
-            <button class="btn btn-success" ng-click="removeFromApplication($index)">remove me from this applicaiton</button>
+            <button class="btn btn-success" ng-click="removeFromApplication($index)">remove me from this application</button>
         </div>
     </div>
