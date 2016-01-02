@@ -5,16 +5,17 @@ angular.module('AccountApp')
     'TokenSvc',
     'lodash',
     function($scope, ApplicationResource, TokenSvc, lodash){
+        //get user object from token
         var user = TokenSvc.decode();
-        console.dir(user);
+        //get all ApplicationIds on the user object
         var applicationIdArray = lodash.pluck(user.applications, "ApplicationId");
+        //call api and send applicationIds to retrieve applictions for display
         ApplicationResource.findByAppIds.save(applicationIdArray, function(data, status){
-            console.dir(data);
+            //if applicaitons were found
             if(data.length !== 0){
+                //grop the applications by ApplicationId
                 var buildingApplications = lodash.groupBy(data, "ApplicationId");
-                console.dir(buildingApplications);
                 $scope.applications = lodash.values(buildingApplications);
-                console.dir($scope.applications);
                 if($scope.applications.length > 0){
                     $scope.applicationsExist = true;
                 }
