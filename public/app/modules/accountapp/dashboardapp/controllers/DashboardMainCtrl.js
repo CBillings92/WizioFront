@@ -7,18 +7,19 @@ angular.module('AccountApp')
         function($scope, $timeout, TokenSvc, WizioConfig) {
 
 
-            $scope.waitlistedSelected = true;
+            $scope.applicationSelected = true;
             $scope.favoritesSelected = false;
 
-            $scope.toggleWaitlisted = function(){
-                if (!$scope.waitlistedSelected) {
-                    $scope.waitlistedSelected = !$scope.waitlistedSelected;
+            $scope.toggleapplication = function(){
+                console.dir("HELLO");
+                if (!$scope.applicationSelected) {
+                    $scope.applicationSelected = !$scope.applicationSelected;
                     $scope.favoritesSelected = !$scope.favoritesSelected;
                 }
             };
             $scope.toggleFavorites = function(){
                 if (!$scope.favoritesSelected) {
-                    $scope.waitlistedSelected = !$scope.waitlistedSelected;
+                    $scope.applicationSelected = !$scope.applicationSelected;
                     $scope.favoritesSelected = !$scope.favoritesSelected;
                 }
             };

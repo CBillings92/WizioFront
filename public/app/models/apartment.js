@@ -56,7 +56,7 @@ angular.module('Models')
             return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
         };
         Apartment.api = function(){
-            return $resouce(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
+            return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
         };
         Apartment.search = function(searchString, unitNum, filters, callback){
 

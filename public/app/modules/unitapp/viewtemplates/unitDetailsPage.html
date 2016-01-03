@@ -3,12 +3,10 @@
         <div class="unit-details-action-btn-wrapper">
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove<span class="hidden-xs"> from favorites</span></button>
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-hide="applied"><i class="fa fa-check"></i>
     Apply</button>
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
-     Apply</button>
         </div>
         <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
     </div>
@@ -362,12 +360,10 @@
                 <div class="unit-details-action-btn-wrapper hidden-xs">
                     <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
                     <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove<span class="hidden-xs"> from favorites</span></button>
-                    <button class="btn btn-outline--blue unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-                    <button class="btn btn-outline--blue unit-details__action-btn" ng-click="setupTour()">See in person</button>
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
-                Apply</button>
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
-                Apply</button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-hide="applied"><i class="fa fa-check"></i>
+            Apply</button>
             </div>
         </div>
     </div>

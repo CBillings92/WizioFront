@@ -4,24 +4,32 @@ angular.module('SharedServiceApp')
     '$sessionStorage',
     function($sessionStorage, sessionStorage){
         var dataStore = [];
-        var set = function(data, sessionStorageVar, storeMultiple){
+        var dataObjectStore = {};
+        var set = function(data, sessionStorageVar, dataObjectStoreKey){
             if(sessionStorageVar){
                 $sessionStorage[sessionStorageVar] = data;
+                /*
                 if(!storeMultiple){
                     dataStore = [];
-                }
+                } */
                 dataStore.push(data);
                 return;
             }
+            /*
             if(!storeMultiple){
                 dataStore = [];
             }
+            */
             dataStore.push(data);
+            dataObjectStore[dataObjectStoreKey] = data;
             return;
         };
-        var get = function(sessionStorageVar){
+        var get = function(sessionStorageVar, dataObjectStoreKey){
             if(sessionStorageVar){
                 return $sessionStorage[sessionStorageVar];
+            }
+            if(dataObjectStoreKey){
+                return dataObjectStore[dataObjectStoreKey];
             }
             if(dataStore.length === 0){
                 return [];
