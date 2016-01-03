@@ -155,6 +155,8 @@ angular.module('UnitApp')
                 apartmentObj.formattedAddress = googleAPIData[0].formatted_address;
                 //search for street_number in google API data
                 function filterComponents(stringToFind) {
+                    console.dir(addressComponents);
+                    console.dir(stringToFind);
                     return lodash.filter(addressComponents, function(item) {
                         return item.types[0] === stringToFind;
                     });
@@ -171,7 +173,7 @@ angular.module('UnitApp')
                 var street = filterComponents("route");
                 var locality = filterComponents("locality");
                 var administrative_area_level_3 = filterComponents("administrative_area_level_3");
-                var state = filterComponents("state");
+                var state = filterComponents("administrative_area_level_1");
                 var neighborhood = filterComponents("neighborhood");
                 var zip = filterComponents("postal_code");
 
@@ -182,6 +184,7 @@ angular.module('UnitApp')
                 checkExistance(neighborhood, "neighborhood");
                 checkExistance(locality, "locality");
                 checkExistance(administrative_area_level_3, "administrative_area_level_3");
+                checkExistance(state, "state");
                 checkExistance(zip, "zip");
 
                 apartmentObj.latitude = googleAPIData[0].geometry.location.lat().toFixed(6);

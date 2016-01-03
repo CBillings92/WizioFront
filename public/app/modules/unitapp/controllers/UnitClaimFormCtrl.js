@@ -45,12 +45,9 @@ angular.module('UnitApp')
             //findOrCreateUnit
             $scope.unitEntered = function(apartmentIndex, unitIndex) {
 
-                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                 ApartmentModel.claimApi().save(null, $scope.apartmentArray[apartmentIndex][unitIndex], function(data) {
-                    console.dir("2");
                     if (!data.created) {
                         //create defaults object for modalsvc
-                        console.dir("3");
                         var modalDefaults = {
                             backdrop: true,
                             keyboard: true,
@@ -64,19 +61,14 @@ angular.module('UnitApp')
                             }
                         };
                         //use newly created object to make a modal
-                        console.dir("4");
                         ModalSvc.showModal(modalDefaults, {}).then(function(response) {
-                            console.dir(response);
                             if (response === 'Do not use data') {
                                 $scope.apartmentArray[apartmentIndex][unitIndex].id = data.apartment.id;
-                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                                 return;
                             } else {
-                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
 
                                 delete $scope.apartmentArray[apartmentIndex][unitIndex].unitNum;
                                 $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
-                                console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                                 return;
                             }
 
@@ -86,7 +78,6 @@ angular.module('UnitApp')
                         var keys = Object.keys(data.apartment);
                         for (i = 0; i < keys.length; i++) {
                             $scope.apartmentArray[apartmentIndex][unitIndex][keys[i]] = data.apartment[keys[i]];
-                            console.dir($scope.apartmentArray[apartmentIndex][unitIndex]);
                         }
                         // $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
                         // console.dir();
@@ -103,10 +94,9 @@ angular.module('UnitApp')
             $scope.addressEntered = function(apartmentIndex) {
                 UnitCreateSvc.parseGeocodeData($scope.apartmentArray[apartmentIndex].address, null, function(err, apartment) {
                     //store apartment object from geocoder in fullApartment object
-                    console.dir(apartment);
                     referenceArray[apartmentIndex] = apartment;
                     for (var i = 0; i < $scope.apartmentArray[apartmentIndex].length; i++) {
-                        $scope.apartmentArray[apartmentIndex][i].fullApartment = apartment;
+                        $scope.apartmentArray[apartmentIndex][i] = apartment;
                     }
                     //set this object in sessionStorage
                     ApartmentClaimGetSetSvc.set(apartment, 'ApartmentClaims');
@@ -144,20 +134,17 @@ angular.module('UnitApp')
                 var descriptionsClone = {};
                 var descriptionKeys = Object.keys(unitToCopy.Descriptions);
                 var j;
-                for (j = 0; j < descriptionKeys.length; j++){
-                    if(unitToCopy.Descriptions[keys[i]] == 'description' || 'UserId' || 'userType' || 'ApartmentId'){
+                for (j = 0; j < descriptionKeys.length; j++) {
+                    if (unitToCopy.Descriptions[keys[i]] == 'description' || 'UserId' || 'userType' || 'ApartmentId') {
                         descriptionsClone[keys[i]] = unitToCopy.Descriptions[keys[i]];
                     }
                 }
                 apartmentClone.Descriptions = descriptionsClone;
-                console.dir(apartmentClone);
                 $scope.apartmentArray[apartmentIndex].push(apartmentClone);
 
             };
 
             $scope.removeUnit = function(apartmentIndex, unitIndex) {
-                console.dir($scope.apartmentArray);
-                $scope.apartmentArray[apartmentIndex].splice(unitIndex, 1);
                 console.dir($scope.apartmentArray);
 
             };
@@ -165,7 +152,6 @@ angular.module('UnitApp')
             $scope.removeAddress = function(apartmentIndex) {
                 delete $scope.apartmentArray[apartmentIndex];
             };
-            console.dir(TokenSvc.decode());
 
             $scope.submit = function() {
                 for (var i = 0; i < $scope.apartmentArray.length; i++) {
@@ -178,19 +164,15 @@ angular.module('UnitApp')
                             Store the userId on that Object
                             Store the userType on that object
                         */
-                        console.dir($scope.apartmentArray[i][j]);
                         $scope.apartmentArray[i][j].Descriptions.ApartmentId = $scope.apartmentArray[i][j].id;
                         $scope.apartmentArray[i][j].Descriptions.UserId = TokenSvc.decode().id;
                         $scope.apartmentArray[i][j].Descriptions.userType = TokenSvc.decode().userType;
                     }
-                    console.dir($scope.apartmentArray[i]);
                 }
                 ApartmentClaimGetSetSvc.reset('ApartmentClaims');
                 ApartmentModel.claimApi().save({
                     action: 'finalize'
-                }, $scope.apartmentArray, function(response) {
-                    console.dir(response);
-                });
+                }, $scope.apartmentArray, function(response) {});
             };
 
         }
