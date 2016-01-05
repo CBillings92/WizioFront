@@ -5,8 +5,10 @@ angular.module('UnitApp')
         '$state',
         'lodash',
         'ApartmentGetSetSvc',
+        'ApartmentSearchSvc',
+        'SmartSearchSvc',
         'MapFct',
-        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, MapFct) {
+        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentSearchSvc, SmartSearchSvc, MapFct) {
             //collect data from event emitter
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
@@ -16,13 +18,32 @@ angular.module('UnitApp')
             }
             $scope.mapshow = true;
             $scope.maphidden = false;
+            $scope.filterToggle = true;
+
+            $scope.filters = {
+                beds: null,
+                baths: null,
+                minPrice: null,
+                maxPrice: null
+            };
 
             //display maps and markers
             displayMaps();
 
-            $scope.tabToggle = function(){
-                $scope.mapshow = !$scope.mapshow;
-                $scope.maphidden = !$scope.maphidden;
+            $scope.tabToggleMap = function(){
+                if (!$scope.mapshow) {
+                    $scope.mapshow = !$scope.mapshow;
+                    $scope.maphidden = !$scope.maphidden;
+                }
+            };
+            $scope.tabToggleGrid = function(){
+                if (!$scope.maphidden) {
+                    $scope.mapshow = !$scope.mapshow;
+                    $scope.maphidden = !$scope.maphidden;
+                }
+            };
+            $scope.tabToggleFilters = function(){
+                $scope.filterToggle = !$scope.filterToggle;
             };
             $scope.$on('searchFinished', function(event, data) {
                 for(i = 0; i < data.length; i++){
@@ -54,11 +75,21 @@ angular.module('UnitApp')
                     alert('Error: Apartment not loaded properly. Please try searching again');
                 }
             };
+            $scope.search = function() {
+                //SECOND ARG IS UNIT NUM
+                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+                    $state.go('Unit.Display');
+                });
+            };
+            $scope.getLocation = function(val) {
+                return SmartSearchSvc.smartSearch(val);
+            };
 
             //houses the map and marker creation functionality
             function displayMaps(){
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                
                 var markers = MapFct.makeMarkers($scope.map);
                 $scope.openInfoWindow = function(e, selectedMarker) {
                     e.preventDefault();

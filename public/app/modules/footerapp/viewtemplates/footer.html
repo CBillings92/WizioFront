@@ -1,29 +1,47 @@
-<div>
-    <div class="container-fluid" style="background-color:#231F20; color:white; font-size:20px;">
-      <br>
-      <ul class="linker" style="list-style-type: none; float:left; margin-left:-40px;">
-          <li ng-click="goAbout()">
-              <a href="">About</a>
-          </li>
-          <li style="color:white" ng-click="goBlog()">
-              <a href="">Blog</a>
-          </li>
-          <li>
-            &copy; Wizio
-          </li>
-      </ul>
-      <ul style="float: right !important;list-style-type: none;margin-left:-20px">
-        <li>
-          745 Atlantic Ave<br>
-          Boston, MA 02111
-        </li>
-        <br>
-          <li class="linker">
-          <a href="https://www.facebook.com/wizio" target="_blank"  style="padding:3px"> <i class="fa fa-facebook-square fa-3x"> </i> </a>
-          <a href="https://www.twitter.com/teamwizio" target="_blank" style="padding:3px"> <i class="fa fa-twitter-square fa-3x"> </i> </a>
-          <a href="mailto:info@wizio.co" target="_blank" style="padding:3px"> <i class="fa fa-envelope-square fa-3x"> </i> </a>
-          </li>
-      </ul>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-responsive" src="/public/ViewTemplates/Images/brand_assets/wizio_assets-footerlogo.png">
+                <div id="social-links">
+                    <a href="mailto:info@wizio.co">
+                        <ng-include src="'public/assets/icons/email.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.twitter.com/teamwizio" target="_blank">
+                        <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.facebook.com/wizio" target="_blank">
+                        <ng-include src="'public/assets/icons/facebook.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.linkedin.com/company/wizio" target="_blank">
+                        <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
+                    </a>
+                </div>
+                <p id="wizio_address">745 Atlantic Ave<br>Boston, MA 02111</h3>
+            </div>
+            <div class="col-sm-3">
+                <h2>Wizio</h2>
+                <ul>
+                    <li ng-click="goAbout()">
+                        <a href="">About</a>
+                    </li>
+                    <li ng-click="goBlog()">
+                        <a href="">Blog</a>
+                    </li>
+                    <li>
+                        <a href="">Sign up</a>
+                    </li>
+                    <li><a href="mailto:info@wizio.co">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h2>Support</h2>
+                <ul>
+                    <li><a href="">Help &amp; Feedback</a></li>
+                    <li><a href="mailto:support@wizio.co">support@wizio.co</a></li>
+                    <li><a href="">Terms &amp; Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
-<!--End Footer-->
+</footer>

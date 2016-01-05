@@ -73,8 +73,8 @@ angular.module('MainApp')
                 .state('About', {
                     url: '/about',
                     views: {
-                        "navbar": navbar,
                         "footer": footer,
+                        "navbar": navbar,
                         "maincontent": {
                             templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
@@ -85,8 +85,8 @@ angular.module('MainApp')
                 .state('AdminPanel', {
                     abstract: true,
                     views: {
+                        'footer': footer,
                         'navbar': navbar,
-                        "footer": footer,
                         'maincontent': {
                             templateUrl: WizioConfig.AdminPanelAppMainViewsURL + 'AdminPanelMain.html',
                             controller: 'AdminPanelMainCtrl'
@@ -199,6 +199,10 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controller: 'DashboardUserInfoCtrl'
                         },
+                        controlPanel: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
+                            controller: 'DashboardControlsCtrl'
+                        },
                         midHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
                             controllerProvider: function($rootScope) {
@@ -208,20 +212,51 @@ angular.module('MainApp')
                                 }
                                 //controller: 'DashboardLLUnitListCtrl'
                         },
-                        leftSplit: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardWaitlist.html',
+                        application: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
                             controllerProvider: function($rootScope) {
                                 if ($rootScope.userType === 1 || $rootScope.userType === 0) {
-                                    return "DashboardWaitlistCtrl";
+                                    return "DashboardApplicationCtrl";
                                 }
                             }
                         },
-                        rightSplit: {
+                        favorites: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
                             controller: "DashboardFavoriteCtrl"
                         }
                     },
                     data: trueRequiredLogin
+                })
+                .state('Account.Profile', {
+                    url: '/profile',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "AccountMain": {
+                            templateUrl: WizioConfig.extProfileMainViewsURL + 'extprofilemain.html',
+                            controller: 'ExtProfileMainCtrl'
+                        }
+                    }
+                })
+                .state('Account.Profile.Create', {
+                    url: '/create',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "ProfileMain": {
+                            templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
+                            controller: 'ExtProfileFormCtrl'
+                        }
+                    }
+                })
+                .state('Account.Profile.Edit', {
+                    url: '/edit',
+                    views: {
+                        "ProfileMain": {
+                            templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
+                            controller: 'ExtProfileFormCtrl'
+                        }
+                    }
                 })
                 .state('sellerDashboard', {
                     url: '/brokerInfo',
@@ -234,36 +269,6 @@ angular.module('MainApp')
                         }
                     },
                     data: trueRequiredLogin
-                })
-                .state('Profile', {
-                    url: '/profile',
-                    abstract: true,
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profilemain.html'
-                        }
-                    },
-                    data: trueRequiredLogin
-                })
-                .state('Profile.Create', {
-                    url: '/',
-                    views: {
-                        "profilepage": {
-                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileFormCtrl'
-                        }
-                    },
-                })
-                .state('Profile.Edit', {
-                    url: '/edit',
-                    views: {
-                        "profilepage": {
-                            templateUrl: 'public/app/modules/AccountApp/profileapp/viewtemplates/profileform.html',
-                            controller: 'ProfileFormCtrl'
-                        }
-                    },
                 })
                 .state('Application', {
                     url: '/application',

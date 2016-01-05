@@ -9,7 +9,7 @@ angular.module('AdminPanelApp')
             baths: null,
             minPrice: null,
             maxPrice: null
-        }
+        };
         $scope.search = function() {
             //service in shared/services
             //pass in search string

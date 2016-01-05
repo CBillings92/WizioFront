@@ -1,0 +1,22 @@
+<form class="" method="post">
+    <h2>Apartment Application</h2>
+    <p>
+        Wizio will email you regarding any updates to this apartment's status. Currently this apartment
+        is not available. If the apartment becomes available or is taken for next year, Wizio will make
+        sure to notify you and all parties on this application via email.
+
+        Those whose emails you apply to the application may remove themselves from the application. Only those with accounts can application so make sure all of your friends have accounts with us! We will never share your information with anyone without your consent.
+    </p>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-10" ng-repeat="userObj in apartmentSlotsModal track by $index">
+                <label class='control-label'>Housemate {{userObj.id}} - User Name or Email:</label>
+                <input type='text' ng-model="applicationArray[$index]" class='form-control'>
+
+            </div>
+            <div class="col-md-8 col-md-offset-4">
+                <button class="btn btn-success col-md-4" ng-click="applicationSignup()">Submit Application</button>
+            </div>
+        </div>
+    </div>
+</form>

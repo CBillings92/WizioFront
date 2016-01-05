@@ -45,8 +45,7 @@ angular.module('MainApp')
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App
     ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
-    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates',
-    ApplicationWaitlistViewsURL: 'public/app/modules/applicationapp/waitlistapp/viewtemplates/',
+    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
     //Blog App
     BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
     BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',
@@ -55,12 +54,12 @@ angular.module('MainApp')
     //Campaign App
     CampaignMainViewsURL: 'public/app/modules/campaignapp/main/',
     CampaignVideoUploadViewsURL: 'public/app/modules/campaignapp/videouploadapp/viewtemplates/',
+    //Footer Views
+    FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Landing Page App
     landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
-    //Footer Views
-    FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Account App
     AccountViewsURL: 'public/app/modules/accountapp/main/',
     AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboardapp/viewtemplates/',
@@ -68,4 +67,6 @@ angular.module('MainApp')
     UnitMainViewsURL: 'public/app/modules/unitapp/main/',
     //Unit App
     UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
+    extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
+    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/'
 });

@@ -1,0 +1,238 @@
+// *** Mobile styles ***
+.navbar {
+    background-color: $white;
+    margin-bottom: 0;
+    position: absolute;
+    z-index: 600;
+    width: 100%;
+    border: none;
+
+    .navbar-collapse {
+        padding:0;
+        box-shadow: 0 5px 10px rgba(100, 100, 100, 0.3);
+
+        .in {
+            overflow-y: auto;
+        }
+    }
+    .navbar-toggle {
+        margin-top: 0;
+        top: 4px;
+    }
+    .icon-bar {
+        background-color: $orange;
+        width: 25px;
+        height: 4px;
+    }
+    #navbarlogo {
+        cursor: pointer;
+    }
+    .navbar-brand {
+        padding: 9px 0 0 15px;
+        img {
+            width: 112px;
+            content: url('/public/ViewTemplates/Images/brand_assets/wizio_logo_gray.png');
+        }
+    }
+    .navbar-right {
+        padding: 0;
+        font-size: 0;
+        z-index: 600;
+
+        li{
+            width: 49.5%;
+            display: inline-block;
+            border: none;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+            border-radius: 0;
+            border-right: 1px solid #eee;
+            text-align: center;
+            font-size: 16px;
+
+            // can't just do 2n because of hidden elements
+            &:nth-child(2),
+            &:nth-child(6) {
+                border-right: none;
+            }
+
+            &:nth-child(4),
+            &:nth-child(6) {
+                border-bottom: none;
+            }
+        }
+    }
+    .nav>li>a:focus,
+    .nav>li>a:hover {
+        background-color: transparent !important;
+    }
+    .navbar-nav {
+        margin: 0;
+    }
+    .navbar-nav > li:hover > a {
+        color: $orange;
+        background-color: transparent;
+    }
+    .navbar-nav > li.active > a {
+        background-color: transparent;
+        color: $orange;
+    }
+}
+
+// This class is responsible for changing background
+// color of navigation based on page user is on
+.transparent_nav {
+    background-color: $white;
+    .navbar-nav > li > a {
+        color: $gray;
+    }
+}
+
+#navbar-search {
+    margin: 0;
+    width: 100%;
+    display: block;
+    padding:0;
+    .form-group {
+        display: inline-block;
+        width: calc(100% - 30px);
+    }
+
+    input {
+        padding-left: 5px;
+        border-radius: 0;
+        height: 35px;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        box-shadow: none;
+    }
+    ::-webkit-input-placeholder,
+    :-moz-placeholder,
+    ::-moz-placeholder,
+    :-ms-input-placeholder {
+        font-weight: 300;
+    }
+    .btn-search {
+        position: absolute;
+        right: 0;
+        width: 39px;
+        border-radius: 0;
+        color: $white;
+        padding: 5px 9px;
+        background-color: $blue;
+        height: 35px;
+        font-size: 17px;
+
+        &:hover {
+            background-color: darken($blue, 5%);
+        }
+    }
+}
+
+// *** All other screens larger than mobile ***
+@media (min-width: $screen-sm-min) {
+    .transparent_nav {
+        #navbar-search input {
+            border: 1px solid transparent;
+        }
+    }
+    .navbar {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        .navbar-brand {
+            .white_logo {
+                content: url('/public/ViewTemplates/Images/brand_assets/wizio_logo_white.png');
+            }
+            .gray_logo {
+                content: url('/public/ViewTemplates/Images/brand_assets/wizio_logo_gray.png');
+            }
+        }
+        .navbar-right {
+            padding-right: 15px;
+            padding-left: 15px;
+            padding-top: 6px;
+            li {
+                width: auto;
+                display: block;
+                border: none;
+                padding: 0;
+                text-align: left;
+                font-size: 14px;
+            }
+        }
+        .navbar-collapse {
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0);
+        }
+        .navbar-nav > li > a {
+            font-size: 15px;
+            padding: 6px 14px;
+            color: $gray;
+            transition: color 0.15s ease-in-out;
+        }
+        .navbar-nav > li:last-child {
+            a {
+                padding-right: 0;
+            }
+        }
+    }
+    #btn-upload {
+        border: 2px solid $gray;
+        transition: border-color 0.15s ease-in-out;
+        border-radius: 5px;
+        margin-right: 10px;
+        &:hover {
+            border-color: $orange;
+        }
+        &:hover > a {
+            color: $orange;
+        }
+    }
+
+    .transparent_nav {
+        background-color: transparent;
+        .navbar-nav > li > a {
+            color: $white;
+        }
+        #btn-upload {
+            border-color: $white;
+        }
+        #btn-upload:hover {
+            border-color: $orange;
+        }
+    }
+
+    #navbar-search {
+        // margin: 8px -15px;
+        padding: 5px 0 0 25px;
+
+        input {
+            width: 200px;
+            border-radius: 3px 0 0 3px;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+        }
+        .btn-search {
+            position: relative;
+            margin-left: -5px;
+            width: auto;
+            margin-top: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        .form-group {
+            display: inline-block;
+            width: 200px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    #navbar-search {
+        input {
+            width: 250px;
+        }
+        .form-group {
+            width: 250px;
+        }
+    }
+}
+
