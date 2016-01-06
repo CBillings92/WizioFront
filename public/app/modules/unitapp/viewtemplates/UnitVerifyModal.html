@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h2>Apartment: {{apartment.concatAddr}}</h2>
+    <h2>Unit #: {{apartment.unitNum}}</h2>
+</div>
+<div class="modal-body">
+    <div class="">
+        Beds: {{apartment.beds}}
+    </div>
+    <div class="">
+        Baths: {{apartment.beds}}
+    </div>
+    <div class="">
+        Living Spaces: {{apartment.livingSpaces}}
+    </div>
+    <div class="">
+        Cost Per Month: {{apartment.costPerMonth}}
+    </div>
+    <div class="">
+        Utilities: {{apartment.utilities}}
+    </div>
+    <div class="">
+        Beds: {{apartment.beds}}
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn" data-ng-click="useData()" type="button">Use this data</button>
+    <button class="btn btn-primary" data-ng-click="dontUseData();">Don't use this data</button>
+</div>

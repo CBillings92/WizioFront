@@ -34,7 +34,7 @@ angular.module('AccountApp')
                     action: 'remove'
                 }, dataPasser, function(data, status) {
                     $scope.applications.splice(value);
-                    alert("DONE!");
+                    alert("Removed from application");
                 });
             };
         }

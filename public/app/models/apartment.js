@@ -58,8 +58,19 @@ angular.module('Models')
         Apartment.api = function(){
             return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
         };
+        Apartment.apiMod = function(endpoint){
+            switch (endpoint) {
+                case "claim":
+                    return;
+                default:
+
+            }
+        }
         Apartment.search = function(searchString, unitNum, filters, callback){
 
+        };
+        Apartment.claimApi = function(){
+            return $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {action: "@action"});
         };
         Apartment.build = function(data){
             return new Apartment(

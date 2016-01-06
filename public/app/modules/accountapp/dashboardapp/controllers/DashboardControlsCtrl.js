@@ -22,11 +22,11 @@ angular.module('AccountApp')
                         } else {
                             $state.go('Account.Profile.Create');
                         }
-                    })
+                    });
                 } else {
                     $state.go('Account.Profile.Create');
                 }
 
-            }
+            };
         }
-    ])
+    ]);

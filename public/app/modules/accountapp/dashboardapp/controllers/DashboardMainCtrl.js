@@ -3,8 +3,9 @@ angular.module('AccountApp')
         '$scope',
         '$timeout',
         'TokenSvc',
+        'ModalSvc',
         'WizioConfig',
-        function($scope, $timeout, TokenSvc, WizioConfig) {
+        function($scope, $timeout, TokenSvc, ModalSvc, WizioConfig) {
 
 
             $scope.applicationSelected = true;
@@ -40,12 +41,6 @@ angular.module('AccountApp')
                 }
             };
 
-
-
-
-
-
-
             //get account/user info from the currently active token.
             var accountInfo = TokenSvc.decode();
             //set timeout to wait for child controllers to load.
@@ -53,7 +48,7 @@ angular.module('AccountApp')
                 $scope.$broadcast('AccountInfoBroadcast', accountInfo);
             });
             //if no units are claimed, start claim process
-            /*var modalOptions = {
+            var modalOptions = {
                 closeButtonText: "Close",
                 actionButtonText: "OK",
                 headerText: "Apartment Claims",
@@ -74,8 +69,8 @@ angular.module('AccountApp')
                     }
                 };
             };
-            ModalSvc.showModal({}, modalOptions).then(function(result){
-                if(result === 'ok'){
+            ModalSvc.showModal({}, modalOptions).then(function(result) {
+                if (result === 'ok') {
                     var modalOptionsUnitSearch = {
                         closeButtonText: "Close",
                         actionButtonText: "Search",
@@ -83,11 +78,11 @@ angular.module('AccountApp')
                     var UnitViews = WizioConfig.UnitViewsURL;
                     var modalDefaultsUnitSearch = modalDefaults('md', UnitViews + 'UnitClaimSearch.html', 'UnitClaimSearchCtrl', modalOptionsUnitSearch);
 
-                    ModalSvc.showModal(modalDefaultsUnitSearch, modalOptionsUnitSearch).then(function(result){
+                    ModalSvc.showModal(modalDefaultsUnitSearch, modalOptionsUnitSearch).then(function(result) {
 
                     });
                 }
-            });*/
+            });
             //get all the other apartment information
         }
     ]);

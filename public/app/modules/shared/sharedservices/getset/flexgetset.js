@@ -15,13 +15,11 @@ angular.module('SharedServiceApp')
                 dataStore.push(data);
                 return;
             }
-            /*
-            if(!storeMultiple){
-                dataStore = [];
+            if(dataObjectStoreKey){
+                dataObjectStore[dataObjectStoreKey] = data;
             }
-            */
+            console.dir(data);
             dataStore.push(data);
-            dataObjectStore[dataObjectStoreKey] = data;
             return;
         };
         var get = function(sessionStorageVar, dataObjectStoreKey){
