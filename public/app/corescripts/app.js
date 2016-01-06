@@ -17,7 +17,10 @@ angular.module('SharedServiceApp', []);
 angular.module('UnitApp', []);
 angular.module('FooterApp', []);
 angular.module('Models', []);
-
+angular.module('MainApp', [
+  'angulartics',
+  'angulartics.google.analytics'
+]);
 angular.module('Models', []);
 
 
