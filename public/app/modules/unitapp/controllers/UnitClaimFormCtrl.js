@@ -68,7 +68,14 @@ angular.module('UnitApp')
                             } else {
 
                                 delete $scope.apartmentArray[apartmentIndex][unitIndex].unitNum;
-                                $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
+                                console.dir(data.apartment);
+                                for(var key in data.apartment){
+                                    if(data.apartment.hasOwnProperty(key)){
+                                        $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment[key];
+                                    }
+                                };
+                                console.dir($scope.apartmentArray);
+                                // $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
                                 return;
                             }
 
@@ -80,7 +87,7 @@ angular.module('UnitApp')
                             $scope.apartmentArray[apartmentIndex][unitIndex][keys[i]] = data.apartment[keys[i]];
                         }
                         // $scope.apartmentArray[apartmentIndex][unitIndex] = data.apartment;
-                        // console.dir();
+                        console.dir($scope.apartmentArray);
                         return;
                     };
 
@@ -98,6 +105,7 @@ angular.module('UnitApp')
                     for (var i = 0; i < $scope.apartmentArray[apartmentIndex].length; i++) {
                         $scope.apartmentArray[apartmentIndex][i] = apartment;
                     }
+                    console.dir($scope.apartmentArray[apartmentIndex]);
                     //set this object in sessionStorage
                     ApartmentClaimGetSetSvc.set(apartment, 'ApartmentClaims');
                 });
@@ -108,6 +116,10 @@ angular.module('UnitApp')
                 $scope.apartmentArray[addressIndex].push({});
                 var lastIndex = $scope.apartmentArray[addressIndex].length - 1;
                 $scope.apartmentArray[addressIndex][lastIndex] = referenceArray[addressIndex];
+                console.dir($scope.apartmentArray);
+                console.dir($scope.apartmentArray[addressIndex]);
+
+
             };
 
 

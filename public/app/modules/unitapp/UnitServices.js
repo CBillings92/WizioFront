@@ -140,6 +140,7 @@ angular.module('UnitApp')
                 //set empty apartmentObj object. Will store apartment info
 
                 var apartmentObj = {};
+                console.dir(googleAPIData);
                 apartmentObj.topLevelType = googleAPIData[0].types[0];
 
                 //if apartment parameters are passed in for apartment creation
@@ -155,15 +156,12 @@ angular.module('UnitApp')
                 apartmentObj.formattedAddress = googleAPIData[0].formatted_address;
                 //search for street_number in google API data
                 function filterComponents(stringToFind) {
-                    console.dir(addressComponents);
-                    console.dir(stringToFind);
                     return lodash.filter(addressComponents, function(item) {
                         return item.types[0] === stringToFind;
                     });
                 }
 
                 function checkExistance(data, keyName) {
-                    console.dir(data);
                     if (data && data.length > 0) {
                         apartmentObj[keyName] = parseData(data);
                     }
@@ -187,9 +185,14 @@ angular.module('UnitApp')
                 checkExistance(state, "state");
                 checkExistance(zip, "zip");
 
-                apartmentObj.latitude = googleAPIData[0].geometry.location.lat().toFixed(6);
-                apartmentObj.longitude = googleAPIData[0].geometry.location.lng().toFixed(6);
-                console.dir(apartmentObj);
+                //Check to see if the lat and longitude are numbers. On
+                //searches like Boston they are numbers. On exact searches they
+                //are functions
+                if(isNaN(googleAPIData[0].geometry.location.lat)){
+                    apartmentObj.latitude = googleAPIData[0].geometry.location.lat().toFixed(6);
+                    apartmentObj.longitude = googleAPIData[0].geometry.location.lng().toFixed(6);
+                }
+
 
                 return apartmentObj;
             }

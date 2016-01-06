@@ -215,7 +215,7 @@ angular.module('MainApp')
                         application: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
                             controllerProvider: function($rootScope) {
-                                if ($rootScope.userType === 1 || $rootScope.userType === 0) {
+                                if ($rootScope.userType === 1 || $rootScope.userType === 2 || $rootScope.userType === 0) {
                                     return "DashboardApplicationCtrl";
                                 }
                             }

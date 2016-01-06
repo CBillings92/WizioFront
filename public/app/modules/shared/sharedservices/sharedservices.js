@@ -148,6 +148,7 @@ angular.module('SharedServiceApp')
                         ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
                         ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);
                     } else {
+                        console.dir(response);
                         FlexGetSetSvc.set(response, sessionStorageVar);
                     }
                     return response.data.results.map(function(item) {
