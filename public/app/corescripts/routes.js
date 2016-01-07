@@ -204,28 +204,57 @@ angular.module('MainApp')
                             controller: 'DashboardControlsCtrl'
                         },
                         midHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
-                            controllerProvider: function($rootScope) {
-                                    if ($rootScope.userType === 2) {
-                                        return "DashboardLLUnitListCtrl";
-                                    }
+                            templateProvider: function(TokenSvc, $templateFactory) {
+                                if(TokenSvc.decode().userType == 1){
+                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
+                                } else {
+                                    return null;
                                 }
-                                //controller: 'DashboardLLUnitListCtrl'
+                            },
+                            controllerProvider: function($rootScope) {
+                                if($rootScope.userType == 1){
+                                    return 'DashboardLLUnitListCtrl';
+                                } else {
+                                    return null;
+                                }
+                            },
                         },
                         application: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
+                            templateProvider: function(TokenSvc, $templateFactory) {
+                                if(TokenSvc.decode().userType == 1){
+                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
+                                }
+                            },
                             controllerProvider: function($rootScope) {
-                                if ($rootScope.userType === 1 || $rootScope.userType === 2 || $rootScope.userType === 0) {
-                                    return "DashboardApplicationCtrl";
+                                if($rootScope.userType == 1){
+                                    return 'DashboardApplicationCtrl';
+                                } else {
+                                    return null;
                                 }
                             }
                         },
                         favorites: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
-                            controller: "DashboardFavoriteCtrl"
-                        }
-                    },
-                    data: trueRequiredLogin
+                            templateProvider: function(TokenSvc, $templateFactory) {
+                                if(TokenSvc.decode().userType == 1){
+                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
+                                } else {
+                                    return null;
+                                }
+                            },
+                            controllerProvider: function($rootScope) {
+                                switch ($rootScope.userType) {
+                                    case 1:
+                                        console.dir($rootScope.userType);
+                                        return "DashboardFavoriteCtrl";
+                                    case 2:
+
+                                        break;
+                                    default:
+                                }
+                            },
+                        },
+                        data: trueRequiredLogin
+                    }
                 })
                 .state('Account.Profile', {
                     url: '/profile',

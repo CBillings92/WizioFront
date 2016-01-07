@@ -7,39 +7,43 @@ angular.module('AccountApp')
         'WizioConfig',
         function($scope, $timeout, TokenSvc, ModalSvc, WizioConfig) {
 
+            var userType = TokenSvc.decode().userType;
+            console.dir(userType);
+            if(userType == 1){
+                $scope.applicationSelected = true;
+                $scope.favoritesSelected = false;
 
-            $scope.applicationSelected = true;
-            $scope.favoritesSelected = false;
+                $scope.toggleapplication = function(){
+                    if (!$scope.applicationSelected) {
+                        $scope.applicationSelected = !$scope.applicationSelected;
+                        $scope.favoritesSelected = !$scope.favoritesSelected;
+                    }
+                };
+                $scope.toggleFavorites = function(){
+                    if (!$scope.favoritesSelected) {
+                        $scope.applicationSelected = !$scope.applicationSelected;
+                        $scope.favoritesSelected = !$scope.favoritesSelected;
+                    }
+                };
 
-            $scope.toggleapplication = function(){
-                console.dir("HELLO");
-                if (!$scope.applicationSelected) {
-                    $scope.applicationSelected = !$scope.applicationSelected;
-                    $scope.favoritesSelected = !$scope.favoritesSelected;
-                }
-            };
-            $scope.toggleFavorites = function(){
-                if (!$scope.favoritesSelected) {
-                    $scope.applicationSelected = !$scope.applicationSelected;
-                    $scope.favoritesSelected = !$scope.favoritesSelected;
-                }
-            };
+                $scope.gridViewSelected = true;
+                $scope.listViewSelected = false;
 
-            $scope.gridViewSelected = true;
-            $scope.listViewSelected = false;
+                $scope.toggleGridView = function(){
+                    if (!$scope.gridViewSelected) {
+                        $scope.gridViewSelected = !$scope.gridViewSelected;
+                        $scope.listViewSelected = !$scope.listViewSelected;
+                    }
+                };
+                $scope.toggleListView = function(){
+                    if (!$scope.listViewSelected) {
+                        $scope.gridViewSelected = !$scope.gridViewSelected;
+                        $scope.listViewSelected = !$scope.listViewSelected;
+                    }
+                };
+            } else if(userType == 2){
 
-            $scope.toggleGridView = function(){
-                if (!$scope.gridViewSelected) {
-                    $scope.gridViewSelected = !$scope.gridViewSelected;
-                    $scope.listViewSelected = !$scope.listViewSelected;
-                }
-            };
-            $scope.toggleListView = function(){
-                if (!$scope.listViewSelected) {
-                    $scope.gridViewSelected = !$scope.gridViewSelected;
-                    $scope.listViewSelected = !$scope.listViewSelected;
-                }
-            };
+            }
 
             //get account/user info from the currently active token.
             var accountInfo = TokenSvc.decode();

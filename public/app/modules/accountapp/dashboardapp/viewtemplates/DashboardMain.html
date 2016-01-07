@@ -21,11 +21,11 @@
         <div class="account container">
             <div class="row account-filter-options">
                 <div class="col-xs-12">
-                    <div class="account__waitlisted" ng-class="{'active-option': applicationSelected}" ng-click="toggleapplication()">
+                    <div class="account__waitlisted" ng-show="userType == 1" ng-class="{'active-option': applicationSelected}" ng-click="toggleapplication()">
                         <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
                         application
                     </div>
-                    <div class="account__favorites" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()">
+                    <div class="account__favorites" ng-show="userType == 1" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()">
                         <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                         Favorites
                     </div>
@@ -43,6 +43,7 @@
                 </div>
             </div>
 
+            <!--apt-grid-view is a style class, gridViewSelected is the binded model/variable-->
             <div class="row" ng-class="{'apt-grid-view': gridViewSelected, 'apt-list-view': listViewSelected}">
                 <div class="col-xs-12" ng-show="applicationSelected" ui-view="application"></div>
                 <div class="col-xs-12" ng-show="favoritesSelected" ui-view="favorites"></div>
