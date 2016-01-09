@@ -6,7 +6,7 @@ angular.module('AccountApp')
     'ModalSvc',
     'lodash',
     'AssignmentModel',
-    'WizioConfig'
+    'WizioConfig',
     function ($scope, $state, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig) {
         //get apartments associated with user
         var userId = TokenSvc.decode().id;
@@ -33,22 +33,23 @@ angular.module('AccountApp')
                     size: size,
                     templateUrl: templateUrl,
                     controller: controller,
-                    // resolve: {
-                    //     modalData: function() {
-                    //         return modalData;
-                    //     }
-                    // }
+                    resolve: {
+                        modalData: function() {
+                            return modalData;
+                        }
+                    }
                 };
             };
 
             var addTenantsModalDefaults = modalDefaults(
                 'md',
-                WizioConfig.AccountDashboardViewsURL + 'AddTenantsToLease.html',
-                'AddTenantsToLeaseCtrl'
+                WizioConfig.AccountDashboardViewsURL + 'AddTenantsToLeaseForm.html',
+                'AddTenantsToLeaseCtrl',
+                $scope.assignments[val]
             );
 
             ModalSvc.showModal(addTenantsModalDefaults, {}).then(function(result){
-                
+
             });
 
         };
