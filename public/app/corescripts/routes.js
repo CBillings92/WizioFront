@@ -205,14 +205,14 @@ angular.module('MainApp')
                         },
                         midHorizontal: {
                             templateProvider: function(TokenSvc, $templateFactory) {
-                                if(TokenSvc.decode().userType == 1){
+                                if(TokenSvc.decode().userType == 2){
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
                                 } else {
                                     return null;
                                 }
                             },
                             controllerProvider: function($rootScope) {
-                                if($rootScope.userType == 1){
+                                if($rootScope.userType == 2){
                                     return 'DashboardLLUnitListCtrl';
                                 } else {
                                     return null;

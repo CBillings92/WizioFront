@@ -42,9 +42,24 @@ angular.module('AccountApp')
                     }
                 };
             } else if(userType == 2){
+                $scope.myApplicationsSelected = false;
+                $scope.myApartmentsSelected = true;
 
+                $scope.toggleMyApartments = function(){
+                    console.dir("HELLO");
+                    if (!$scope.myApartmentsSelected) {
+                        $scope.myApartmentsSelected = !$scope.myApartmentsSelected;
+                        $scope.myApplicationsSelected = !$scope.myApplicationsSelected;
+                    }
+                }
+                $scope.toggleMyApplications = function(){
+                    if (!$scope.myApplicationsSelected) {
+                        $scope.myApplicationsSelected = !$scope.myApplicationsSelected;
+                        $scope.myApartmentsSelected = !$scope.myApartmentsSelected;
+                    }
+                }
             }
-
+/*
             //get account/user info from the currently active token.
             var accountInfo = TokenSvc.decode();
             //set timeout to wait for child controllers to load.
@@ -88,5 +103,6 @@ angular.module('AccountApp')
                 }
             });
             //get all the other apartment information
+            */
         }
     ]);
