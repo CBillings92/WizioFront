@@ -17,11 +17,11 @@ angular.module('Models')
                 base: $resource(WizioConfig.baseAPIURL + '/lease')
             };
 
-            Lease.buildNew = function(data){
-                firstName: data.firstName,
-                lastName: data.lastName,
-                email: data.email,
-            }
+            // Lease.buildNew = function(data){
+            //     firstName: data.firstName,
+            //     lastName: data.lastName,
+            //     email: data.email,
+            // }
 
             Lease.api = api;
 
