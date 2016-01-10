@@ -30,9 +30,10 @@ angular.module('AccountApp')
         var applicationIds = [];
         AssignmentModel.api().twoParam.query({param1:'user', param2:userId}, function(response){
             $scope.assignments = response;
+            console.dir(response);
             for(var i = 0; i < $scope.assignments.length; i++){
                 if($scope.assignments[i].Apartment.Applications.length != 0){
-                    applicationIds.push($scope.assignments[i].Apartment.Applications[0].ApplicationId);
+                    applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
                 }
                 //group the individual application objects by the ApplicationId
                 var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
@@ -77,14 +78,14 @@ angular.module('AccountApp')
         //navigate to applicants page. indexNum comes from HTML form
         //form should contain applications for apartments.
         $scope.viewApplicants = function(apartmentIndex){
-            console.dir(applicationIds);
+            console.dir(lodash.uniq(applicationIds));
             ApplicationModel.api.oneParam.save({param1: 'ApplicationIdsWithProfiles'}, applicationIds, function(response){
                 console.dir(response);
                 var viewApplicantsModalDefaults = modalDefaults(
                     'lg',
                     WizioConfig.ApplicationFormViewsURL + 'ApplicationOverview.html',
                     'ApplicationOverviewCtrl',
-                    $scope.assignments[apartmentIndex]
+                    response
                 );
 
                 ModalSvc.showModal(viewApplicantsModalDefaults, {}).then(function(result){

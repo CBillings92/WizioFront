@@ -26,7 +26,16 @@ angular.module('Models')
                     isArray: true
                 }
             }),
-            oneParam: $resource(WizioConfig.baseAPIURL + '/application/:param1', {param1: "@param1"})
+            oneParam: $resource(WizioConfig.baseAPIURL + '/application/:param1',
+            {
+                param1: "@param1"
+            },
+            {
+                save: {
+                    method: 'POST',
+                    isArray: true
+                }
+            })
         };
 
         Application.api = api;
