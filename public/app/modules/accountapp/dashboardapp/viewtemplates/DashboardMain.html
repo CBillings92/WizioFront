@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
-        <!-- <div class=""> -->
-        <div ui-view="topHorizontal"></div>
-        <!-- </div> -->
+        <div class="col-md-10 col-md-offset-1">
+            <div ui-view="topHorizontal"></div>
+        </div>
     </div>
     <!-- row -->
 
@@ -17,23 +17,23 @@
             <div ui-view="controlPanel"></div>
         </div>
     </div>
-    <div class="row" ng-show="userType == 2 || userType == 1 || userType == 0">
+    <div class="row" ng-show="userType == 1 || userType == 0">
         <div class="account container">
             <div class="row account-filter-options">
                 <div class="col-xs-12">
-                    <div class="account__waitlisted" ng-show="userType == 2" ng-class="{'active-option': myApartmentsSelected}" ng-click="toggleMyApartments()">
+                    <div class="account__waitlisted" ng-class="{'active-option': myApartmentsSelected}" ng-click="toggleMyApartments()" ng-show="userType == 2">
                         <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
                         My Apartments
                     </div>
-                    <div class="account__favorites" ng-show="userType == 2" ng-class="{'active-option': myApplicationsSelected}" ng-click="toggleMyApplications()">
+                    <div class="account__favorites" ng-class="{'active-option': myApplicationsSelected}" ng-click="toggleMyApplications()" ng-show="userType == 2">
                         <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                         My Applications
                     </div>
-                    <div class="account__waitlisted" ng-show="userType == 1" ng-class="{'active-option': applicationSelected}" ng-click="toggleapplication()">
+                    <div class="account__waitlisted" ng-class="{'active-option': applicationSelected}" ng-click="toggleapplication()" ng-show="userType == 1">
                         <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
                         application
                     </div>
-                    <div class="account__favorites" ng-show="userType == 1" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()">
+                    <div class="account__favorites" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()" ng-show="userType == 1">
                         <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                         Favorites
                     </div>

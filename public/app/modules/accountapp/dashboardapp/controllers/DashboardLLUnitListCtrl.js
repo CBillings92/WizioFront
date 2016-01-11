@@ -89,7 +89,13 @@ angular.module('AccountApp')
                 );
 
                 ModalSvc.showModal(viewApplicantsModalDefaults, {}).then(function(result){
-                    console.dir(result);
+                    switch (result) {
+                        case "VIEW-DETAILS":
+                            $state.go('Account.Dashboard.Application');
+                            break;
+                        default:
+
+                    }
                 });
             })
         };

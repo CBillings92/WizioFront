@@ -58,6 +58,13 @@ angular.module('Models')
         Profile.prototype.api = function(){
             return $resource(WizioConfig.baseAPIURL + 'profile/:id', {id: '@id'});
         };
+        var api = {
+            base: $resource(WizioConfig.baseAPIURL + 'profile'),
+            oneParam: $resource(WizioConfig.baseAPIURL + 'profile/:id', {id: '@id'})
+        }
+
+        Profile.api = api;
+
         Profile.api = function(){
             return $resource(WizioConfig.baseAPIURL + 'profile/:id', {id: '@id'});
         };

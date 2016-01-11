@@ -1,0 +1,131 @@
+<!-- header containing data -->
+<!-- left hand side of container -->
+<div class="row">
+    <div class="col-md-6" style="border: 1px solid black">
+        <div class="col-md-12">
+            <label class="control-label">Address:</label>
+            <span>{{::applicationDetails[0].Apartment.concatAddr}}</span>
+        </div>
+        <div class="col-md-12">
+            <label class="control-label">Application ID:</label>
+            <span>
+                {{::applicationDetails[0].ApplicationId}}
+            </span>
+        </div>
+        <!-- apartment information -->
+        <div class="col-md-4">
+            <label class="control-label">Beds:</label>
+            <span>
+                {{::applicationDetails[0].Apartment.beds}}
+            </span>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label">Baths:</label>
+            <span>
+                {{::applicationDetails[0].Apartment.baths}}
+            </span>
+        </div>
+        <div class="col-md-4">
+            <label class="control-label">Living Spaces:</label>
+            <span>
+                {{::applicationDetails[0].Apartment.livingSpaces}}
+            </span>
+        </div>
+    </div>
+    <!-- right hand side of container -->
+    <div class="col-md-6" style="border: 1px solid black">
+        <div class="">
+            <span>
+                <button class="btn col-md-5" name="button" style="margin:2px;" type="button">Accept</button>
+            </span>
+            <span>
+                <button class="btn col-md-5" name="button" ng-click="viewDetails($index)" style="margin:2px;" type="button">Reject</button>
+            </span>
+        </div>
+        <div class="">
+            <span>
+                <button class="btn col-md-5" name="button" style="margin:2px;" type="button">Send Forms</button>
+            </span>
+            <span>
+                <button class="btn col-md-5" name="button" style="margin:2px;" type="button">Email</button>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" ng-repeat="applicant in applicationDetails">
+            <h3>{{::applicant.firstName + ' ' + applicant.lastName}}</h3>
+            <div class="col-md-6" style="border: 1px solid black">
+                <h4>Personal</h4>
+                <div class="">
+                    <label for="" class="control-label">Birth Date:</label>
+                    <span>
+                        {{::applicant.User.Profile.dateOfBirth || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Student Status:</label>
+                    <span>
+                        {{::applicant.User.Profile.studentStatus || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Pets:</label>
+                    <span>
+                        {{::applicant.User.Profile.pet || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Current Tenancy:</label>
+                    <span>
+                        {{::applicant.User.Profile.currentAddress || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Current Property Manager Name:</label>
+                    <span>
+                        {{::applicant.User.Profile.currentPMName || "No Extended Profile"}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-6" style="border: 1px solid black">
+                <h4>Work</h4>
+                <div class="">
+                    <label for="" class="control-label">Name:</label>
+                    <span>
+                        {{::applicant.firstName + ' ' + applicant.lastName}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Birth Date:</label>
+                    <span>
+                        {{::applicant.User.Profile.dateOfBirth || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Student Status:</label>
+                    <span>
+                        {{::applicant.User.Profile.studentStatus || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Pets:</label>
+                    <span>
+                        {{::applicant.User.Profile.pet || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Current Tenancy:</label>
+                    <span>
+                        {{::applicant.User.Profile.currentAddress || "No Extended Profile"}}
+                    </span>
+                </div>
+                <div class="">
+                    <label for="" class="control-label">Current Property Manager Name:</label>
+                    <span>
+                        {{::applicant.User.Profile.currentPMName || "No Extended Profile"}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

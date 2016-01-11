@@ -1,9 +1,12 @@
 angular.module('ApplicationApp')
 .controller('ApplicationOverviewCtrl', [
     '$scope',
+    '$state',
+    '$modalInstance',
     'modalData',
     'lodash',
-    function($scope, modalData, lodash){
+    'FlexGetSetSvc',
+    function($scope, $state, $modalInstance, modalData, lodash, FlexGetSetSvc){
         $scope.modalData = modalData;
 
         $scope.applications = lodash.groupBy(modalData, 'ApplicationId');
@@ -17,6 +20,11 @@ angular.module('ApplicationApp')
         }
         $scope.applicationArray = lodash.flatten($scope.applicationArray);
         console.dir($scope.applicationArray);
+
+        $scope.viewDetails = function(applicationIndex){
+            FlexGetSetSvc.set($scope.applicationArray[applicationIndex], "ApplicationDetails", "ApplicationDetails");
+            $modalInstance.close('VIEW-DETAILS');
+        };
 
         // for(var i = 0; i < Object.keys(modalData).length; i++){
         //     lodash.map(modalData.Apartment.)

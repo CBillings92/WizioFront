@@ -171,16 +171,6 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                .state('Account.Dashboard', {
-                    //url: '/dashboard',
-                    abstract: true,
-                    views: {
-                        "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
-                            controller: 'DashboardMainCtrl',
-                        }
-                    }
-                })
                 //auth-ify this
                 .state('Account.Create', {
                     url: '/create',
@@ -191,6 +181,16 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('Account.Dashboard', {
+                    //url: '/dashboard',
+                    abstract: true,
+                    views: {
+                        "AccountMain": {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
+                            controller: 'DashboardMainCtrl',
+                        }
+                    }
                 })
                 .state('Account.Dashboard.Main', {
                     url: '/dashboard',
@@ -256,11 +256,19 @@ angular.module('MainApp')
                         data: trueRequiredLogin
                     }
                 })
+                .state('Account.Dashboard.Application', {
+                    url: '/application',
+                    views: {
+                        "midHorizontal": {
+                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'ApplicationDetails.html',
+                            controller: 'ApplicationDetailCtrl'
+                        }
+                    },
+                    data: trueRequiredLogin
+                })
                 .state('Account.Profile', {
                     url: '/profile',
                     views: {
-                        "navbar": navbar,
-                        "footer": footer,
                         "AccountMain": {
                             templateUrl: WizioConfig.extProfileMainViewsURL + 'extprofilemain.html',
                             controller: 'ExtProfileMainCtrl'
@@ -270,13 +278,12 @@ angular.module('MainApp')
                 .state('Account.Profile.Create', {
                     url: '/create',
                     views: {
-                        "navbar": navbar,
-                        "footer": footer,
                         "ProfileMain": {
                             templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
                             controller: 'ExtProfileFormCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('Account.Profile.Edit', {
                     url: '/edit',
@@ -285,7 +292,8 @@ angular.module('MainApp')
                             templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
                             controller: 'ExtProfileFormCtrl'
                         }
-                    }
+                    },
+                    data: trueRequiredLogin
                 })
                 .state('sellerDashboard', {
                     url: '/brokerInfo',
