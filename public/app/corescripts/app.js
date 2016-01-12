@@ -9,6 +9,7 @@ angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
 angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
+angular.module('LeaseApp', []);
 angular.module('NavbarApp', []);
 angular.module('SellerApp', []);
 angular.module('SharedControllersApp', []);
@@ -31,6 +32,7 @@ angular.module('MainApp', [
         'BlogApp',
         'FooterApp',
         'LandingPageApp',
+        'LeaseApp',
         'CampaignApp',
         'NavbarApp',
         'SellerApp',

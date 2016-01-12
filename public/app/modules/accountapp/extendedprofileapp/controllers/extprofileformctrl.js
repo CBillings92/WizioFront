@@ -27,6 +27,7 @@ angular.module('AccountApp')
                 var UserId = TokenSvc.decode().id;
                 $scope.profile.UserId = UserId;
                 if($state.current.name === 'Account.Profile.Edit'){
+                    console.dir($scope.profile);
                     ProfileModel.api.oneParam.save({id: $scope.profile.id}, $scope.profile, function(response){
 
                     });

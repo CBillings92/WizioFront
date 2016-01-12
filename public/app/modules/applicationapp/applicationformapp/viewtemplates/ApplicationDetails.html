@@ -90,39 +90,39 @@
             <div class="col-md-6" style="border: 1px solid black">
                 <h4>Work</h4>
                 <div class="">
-                    <label for="" class="control-label">Name:</label>
+                    <label for="" class="control-label">Current Employer One:</label>
                     <span>
-                        {{::applicant.firstName + ' ' + applicant.lastName}}
+                        {{::applicant.User.Profile.currentEmployer1}}
                     </span>
                 </div>
                 <div class="">
-                    <label for="" class="control-label">Birth Date:</label>
+                    <label for="" class="control-label">Current Employer One Length of Employment:</label>
                     <span>
-                        {{::applicant.User.Profile.dateOfBirth || "No Extended Profile"}}
+                        {{::applicant.User.Profile.currentEmployerLOE1}}
                     </span>
                 </div>
                 <div class="">
-                    <label for="" class="control-label">Student Status:</label>
+                    <label for="" class="control-label">Current Employer One Position:</label>
                     <span>
-                        {{::applicant.User.Profile.studentStatus || "No Extended Profile"}}
+                        {{::applicant.User.Profile.currentEmployerPosition1}}
                     </span>
                 </div>
                 <div class="">
-                    <label for="" class="control-label">Pets:</label>
+                    <label for="" class="control-label">Current Employer Two:</label>
                     <span>
-                        {{::applicant.User.Profile.pet || "No Extended Profile"}}
+                        {{::applicant.User.Profile.currentEmployer2}}
                     </span>
                 </div>
                 <div class="">
-                    <label for="" class="control-label">Current Tenancy:</label>
+                    <label for="" class="control-label">Current Employer Two Length of Employment:</label>
                     <span>
-                        {{::applicant.User.Profile.currentAddress || "No Extended Profile"}}
+                        {{::applicant.User.Profile.currentEmployerLOE2}}
                     </span>
                 </div>
                 <div class="">
-                    <label for="" class="control-label">Current Property Manager Name:</label>
+                    <label for="" class="control-label">Current Employer Two Position:</label>
                     <span>
-                        {{::applicant.User.Profile.currentPMName || "No Extended Profile"}}
+                        {{::applicant.User.Profile.currentEmployerPosition2}}
                     </span>
                 </div>
             </div>

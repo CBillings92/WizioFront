@@ -58,6 +58,9 @@ angular.module('MainApp')
     FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Landing Page App
     landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+    //LeaseApp
+    leaseMainViewsURL: 'public/app/modules/LeaseApp/main/',
+    leaseViewsURL: 'public/app/modules/LeaseApp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
     //Account App

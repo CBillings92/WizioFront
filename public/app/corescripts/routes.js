@@ -266,6 +266,34 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
+                .state('Account.Lease', {
+                    abstract: true,
+                    url:'/lease',
+                    views: {
+                        AccountMain:{
+                            templateUrl: WizioConfig.leaseMainViewsURL + 'leasemain.html',
+                            controller: 'LeaseMainCtrl'
+                        }
+                    }
+                })
+                .state('Account.Lease.Create', {
+                    url: "/create",
+                    views: {
+                        LeaseMain: {
+                            templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
+                            controller: 'LeaseFormCtrl'
+                        }
+                    }
+                })
+                .state('Account.Lease.Edit', {
+                    url: "/edit",
+                    views: {
+                        LeaseMain: {
+                            // templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
+                            // controller: 'LeaseFormCtrl'
+                        }
+                    }
+                })
                 .state('Account.Profile', {
                     url: '/profile',
                     views: {
