@@ -57,7 +57,7 @@
                 <h3>Additional Rent/Fees Information</h3>
                 <div class="col-md-4">
                     <label class="control-label">Security Deposit Amount</label>
-                    <input type="text" name="name" value="" placeholder="$2000.00">
+                    <input type="text" name="name" value="" ng-model="lease.securityDeposit" placeholder="$2000.00">
                 </div>
                 <div class="col-md-8">
                     <label control-label>Needed Upfront:</label>
@@ -78,13 +78,13 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-2" ng-show="lease.keyFee">
+                <div class="col-md-2" ng-show="lease.newKeyFeeNeeded">
                     <label class="control-label">Key Fee Amount</label>
-                    <input type="text" ng-model=lease.keyFeeAmount name="name" value="">
+                    <input type="text" ng-model=lease.newKeyFeeAmount name="name" value="">
                 </div>
-                <div class="col-md-2" ng-show="lease.brokerFee">
+                <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
                     <label class="control-label">Brokers Fee Amount</label>
-                    <input type="text" ng-model=lease.brokersFeeAmount name="name" value="">
+                    <input type="text" ng-model=lease.brokerFeeAmount name="name" value="">
                 </div>
             </div>
         </div>

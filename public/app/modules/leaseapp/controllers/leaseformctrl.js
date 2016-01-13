@@ -2,7 +2,9 @@ angular.module('LeaseApp')
     .controller('LeaseFormCtrl', [
         '$scope',
         'LeaseModel',
-        function($scope, LeaseModel) {
+        'FlexGetSetSvc',
+        'TokenSvc',
+        function($scope, LeaseModel, FlexGetSetSvc, TokenSvc) {
             $scope.selectOptions = {
                 utilities: [{
                     'variable': 'electricIncluded',
@@ -41,7 +43,7 @@ angular.module('LeaseApp')
                     'variable': 'secDepositNeeded',
                     'label': 'Security Deposit'
                 }, {
-                    'variable': 'keyFee',
+                    'variable': 'newKeyFeeNeeded',
                     'label': 'New Key Fee'
                 }, {
                     'variable': 'firstMonthsRentNeeded',
@@ -50,14 +52,15 @@ angular.module('LeaseApp')
                     'variable': 'lastMonthsRentNeeded',
                     'label': 'Last Months Rent'
                 }, {
-                    'variable': 'brokerFee',
+                    'variable': 'brokerFeeNeeded',
                     'label': 'Broker Fee'
                 }]
             };
 
             $scope.lease = {};
-
             $scope.createLease = function(){
+                $scope.lease.UserId = TokenSvc.decode.UserId;
+                $scope.lease.LandlordId = TokenSvc.decode.LandlordId;
                 LeaseModel.api.base.save($scope.lease, function(response){
 
                 });
