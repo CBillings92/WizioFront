@@ -45,7 +45,7 @@
         </div>
     </section>
     <section class="about-learn-more">
-        <a href="/blog" class="about-learn-more__link">
+        <a href="http://blog.wizio.co" target="_blank" class="about-learn-more__link">
             Want to learn more?
             Read our blog <i class="fa fa-long-arrow-right"></i>
         </a>
@@ -60,13 +60,13 @@
                     <img src="/public/viewtemplates/images/aboutimages/{{ member.picture }}" class="img-responsive" />
                     <div class="about-team-members-more-overlay">
                         <div class="about-team-members-more-overlay-content">
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}">
+                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}" target="_blank">
                                  <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
                             </a>
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.email }}">
+                            <a class="team-social-link" href="mailto:{{ member.email }}" target="_self">
                                 <ng-include src="'public/assets/icons/email.svg'"></ng-include>
                             </a>
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.linkedin }}">
+                            <a class="team-social-link" href="https://www.linkedin.com/in/{{ member.linkedin }}" target="_blank">
                                 <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
                             </a>
                         </div>
