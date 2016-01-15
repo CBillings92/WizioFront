@@ -46,9 +46,6 @@ angular.module('MainApp')
     //Application App
     ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
     ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
-    //Blog App
-    BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
-    BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',
 
     BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
     //Campaign App

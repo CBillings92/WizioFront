@@ -42,34 +42,6 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('Blog', {
-                    abstract: true,
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogMain.html',
-                            controller: 'BlogMainCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
-                .state('Blog.List', {
-                    url: "/blog",
-                    "footer": footer,
-                    views: {
-                        "BlogMain": {
-                            templateUrl: 'public/app/modules/blogapp/viewtemplates/blogDetail.html',
-                            controller: 'BlogListCtrl'
-                        }
-                    }
-                })
-                .state('Blog.Detail', {
-                    url: "/blog/:articleUrl",
-                    views: {
-
-                    }
-                })
                 .state('About', {
                     url: '/about',
                     views: {
