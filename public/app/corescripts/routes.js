@@ -289,8 +289,8 @@ angular.module('MainApp')
                     url: "/edit",
                     views: {
                         LeaseMain: {
-                            // templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
-                            // controller: 'LeaseFormCtrl'
+                            templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
+                            controller: 'LeaseFormCtrl'
                         }
                     }
                 })

@@ -8,7 +8,8 @@ angular.module('AccountApp')
     'AssignmentModel',
     'WizioConfig',
     'ApplicationModel',
-    function ($scope, $state, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel) {
+    'FlexGetSetSvc',
+    function ($scope, $state, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc) {
         //reusable function for creating modalDefaults for ModalSvc
         var modalDefaults = function(size, templateUrl, controller, modalData) {
             return {
@@ -74,6 +75,17 @@ angular.module('AccountApp')
         $scope.emailNow = function(apartmentIndex){
 
         };
+
+        $scope.createListing = function(apartmentIndex){
+            var ApartmentId = $scope.assignments[apartmentIndex].id;
+            FlexGetSetSvc.set(ApartmentId,'NewLeaseApartmentId', 'NewLeaseApartmentId');
+            $state.go('Account.Lease.Create');
+        };
+
+        $scope.editListing = function(apartmentIndex){
+            FlexGetSetSvc.set($scope.assignments[apartmentIndex].Apartment, 'EditCurrentListing','EditCurrentListing');
+            $state.go('Account.Lease.Edit');
+        }
 
         //navigate to applicants page. indexNum comes from HTML form
         //form should contain applications for apartments.
