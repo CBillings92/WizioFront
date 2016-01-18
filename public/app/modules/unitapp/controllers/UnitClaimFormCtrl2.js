@@ -29,6 +29,9 @@ angular.module('UnitApp')
                         {address: 175 Amory St ... ..., unitNum: 2, beds:...}
                         {address: 175 Amory St ... ..., unitNum: 1, beds:...}
                     ]
+                    [
+                        {address: 10 Post Office Sq..., unitNum: 3B, beds:...}
+                    ]
                 ]
             */
             $scope.containingArray = [
@@ -47,11 +50,16 @@ angular.module('UnitApp')
             };
             //adding a unit just adds an empty object to the current address array
             $scope.addUnit = function(addressIndex) {
-                $scope.containingArray[addressIndex].push({});
+                /*
+                    Grab the first apartment from the address array
+                    and grab its geocoder data
+                */
                 var apartmentToCopy = $scope.containingArray[addressIndex][0];
-                for(var key in apartmentToCopy){
-                    
-                }
+                //use prototype method to copy geocoded data onto new instance
+                var newApartmentInstance = ApartmentModel.copyGeocodedData(apartmentToCopy);
+                //push this new instance onto the containingArray on the address array
+                $scope.containingArray[addressIndex].push(newApartmentInstance);
+                return;
             };
 
             $scope.onUnitBlur = function(addressIndex, unitIndex) {
@@ -65,15 +73,41 @@ angular.module('UnitApp')
                 });
             };
 
+            //for handling descriptions on each unit
             $scope.onDescriptionBlur = function(addressIndex, unitIndex){
+                //get the prpper apartment to work with
                 var apartment = $scope.containingArray[addressIndex][unitIndex];
-                console.dir(apartment);
+                //get the description text from the form
                 var descriptionText = apartment.Descriptions.description;
-
+                //create a new Description instance
                 var newDescription = new DescriptionModel(null, null, descriptionText);
+                //get association data for description (prototype method);
+                //this is UserId
                 newDescription.getAssociatonData();
+                //append the new Descriptions instance onto the Apartment;
                 apartment.Descriptions = newDescription;
-                console.dir(newDescription);
+            };
+
+            $scope.copyUnit = function(){
+                //get the correct apartment out of the array
+                var apartment = $scope.containingArray[addressIndex][unitIndex];
+                /*
+                    call the duplicate prototype method to get the apartmentData
+                    FIXME this probably doesn't need to be on the prototype button
+                    just in the unitfct ? ?? ? ?
+                */
+                var duplicateApartmentData = apartment.duplicate();
+                //build a new instance with this data
+                var newInstance = ApartmentModel.build(duplicateApartmentData);
+                //push it into the address array
+                $scope.containingArray[addressIndex][unitIndex].push(newInstance);
+            };
+
+            $scope.deleteUnit = function(addressIndex, unitIndex){
+                delete $scope.containingArray[addressIndex][unitIndex];
+            };
+            $scope.deleteAddress = function(addressIndex, unitIndex){
+                delete $scope.containingArray[addressIndex][unitIndex];
             };
 
             $scope.submit = function(){

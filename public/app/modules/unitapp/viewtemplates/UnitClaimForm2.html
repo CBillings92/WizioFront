@@ -37,15 +37,15 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="control-label">Beds</label>
-                                        <select class="form-control" name="" ng-model="unit.beds" ng-options="bed for bed in selectOptions.beds"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.beds" ng-options="bed for bed in selectOptions.beds"></select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Baths</label>
-                                        <select class="form-control" name="" ng-model="unit.baths" ng-options="baths for baths in selectOptions.baths"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.baths" ng-options="baths for baths in selectOptions.baths"></select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Living Spaces</label>
-                                        <select class="form-control" name="" ng-model="unit.livingSpaces" ng-options="livingSpaces for livingSpaces in selectOptions.livingSpaces"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.livingSpaces" ng-options="livingSpaces for livingSpaces in selectOptions.livingSpaces"></select>
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="control-label">Cost Per Month</label>
-                                        <input class="form-control" ng-model="unit.costPerMonth" name="name" type="text" value="{{unit.costPerMonth}}">
+                                        <input class="form-control" ng-model="unit.apartmentData.costPerMonth" name="name" type="text" value="{{unit.apartmentDatacostPerMonth}}">
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Utilities Included</label>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Laundry In Unit</label>
-                                        <select class="form-control" name="" ng-model="unit.laundry" ng-options="laundry for laundry in selectOptions.laundry"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.laundry" ng-options="laundry for laundry in selectOptions.laundry"></select>
                                     </div>
                                 </div>
                             </div>
@@ -76,11 +76,11 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="control-label">Pets</label>
-                                        <select class="form-control" name="" ng-model="unit.pets" ng-options="pets for pets in selectOptions.pets"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.pets" ng-options="pets for pets in selectOptions.pets"></select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Elevator</label>
-                                        <select class="form-control" name="" ng-model="unit.elevator" ng-options="elevator for elevator in selectOptions.elevator"></select>
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.elevator" ng-options="elevator for elevator in selectOptions.elevator"></select>
                                     </div>
                                 </div>
                             </div>

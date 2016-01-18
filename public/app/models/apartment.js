@@ -29,8 +29,8 @@ angular.module('Models')
                 route
             ) {
                 this.apartmentData = {
-                    street: street,
-                    unitNum: unitNum,
+                    street: street || null,
+                    unitNum: unitNum || null,
                     neighborhood: neighborhood || null,
                     locality: locality || null,
                     administrative_area_level_3: administrative_area_level_3 || null,
@@ -88,13 +88,22 @@ angular.module('Models')
                     callback('done');
                 });
             };
+            Apartment.prototype.duplicate = function(){
+                var duplicate = {};
+                for(var key in this.apartmentData){
+                    if(this.apartmentData.hasOwnProperty(key)){
+                        duplicate[key] = this.apartmentData[key];
+                    }
+                }
+                return duplicate;
+            };
             Apartment.setDescription = function(){
                 if(arguments.length > 0){
                     this.apartmentData.Descriptions = null;
                     this.apartmentData.Descriptions.description = arguments.description;
-                    this.apartmentData.Descriptions.UserId
+                    // this.apartmentData.Descriptions.UserId
                 }
-            }
+            };
             Apartment.prototype.api = function() {
                 return {
                     oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')
@@ -114,6 +123,20 @@ angular.module('Models')
                 return $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {
                     action: "@action"
                 });
+            };
+            Apartment.copyGeocodedData = function(ApartmentIntstance){
+                var oldData = ApartmentIntstance.apartmentData;
+                return new Apartment(
+                    oldData.concatAddr,
+                    oldData.longitude,
+                    oldData.latitude,
+                    oldData.route,
+                    oldData.street,
+                    oldData.state,
+                    oldData.locality,
+                    oldData.neighborhood,
+                    oldData.administrative_area_level_3
+                );
             };
             Apartment.build = function(data) {
                 return new Apartment(
