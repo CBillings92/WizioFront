@@ -1,0 +1,62 @@
+<div class="modal-header">
+    <h3>{{applicationArray[0][0].Apartment.concatAddr}}</h3>
+    <h5>Beds: {{applicationArray[0][0].Apartment.beds}}</h5>
+    <h5>Baths: {{applicationArray[0][0].Apartment.baths}}</h5>
+    <h5>Living Spaces: {{applicationArray[0][0].Apartment.livingSpaces}}</h5>
+</div>
+<div class="modal-body">
+    <!-- header info -->
+    <div class=""></div>
+    <!-- applciation tiles -->
+    <div class="">
+        <div class="" ng-repeat="application in applicationArray track by $index" style="margin-top:10px; padding:5px; border: 1px solid black">
+            <div class="row">
+                <div class="col-md-6" ng-repeat="applicant in application track by $index">
+                    <!-- picture -->
+                    <div class="col-md-4" style="height:100px; width:100px; border:1px solid black;"></div>
+                    <!-- applicant info -->
+                    <div class="col-md-8">
+                        <div class="">
+                            {{applicant.firstName + ' ' + applicant.lastName}}
+                        </div>
+                        <div class="">
+                            {{applicant.ContactEmail}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <!-- bottom left info panel -->
+                <div class="col-md-6">
+                    <div class="">
+                        <label for="">Application Submitted On: 12/27/2015</label>
+                    </div>
+                    <div class="">
+                        <label for="">Extended Profiles: 3/4</label>
+                    </div>
+                </div>
+                <!-- bottom right control panel -->
+                <div class="col-md-6">
+                    <div class="">
+                        <span>
+                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Send Email</button>
+                        </span>
+                        <span>
+                            <button class="btn col-md-5" style="margin:2px;" ng-click="viewDetails($index)" name="button" type="button">View Details</button>
+                        </span>
+                    </div>
+                    <div class="">
+                        <span>
+                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Accept</button>
+                        </span>
+                        <span>
+                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Reject</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

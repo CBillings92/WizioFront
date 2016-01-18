@@ -5,7 +5,6 @@ angular.module('AccountApp', ['ui.bootstrap.buttons']);
 angular.module('AmazonS3UploadApp', []);
 angular.module('ApplicationApp', []);
 angular.module('AuthApp', []);
-angular.module('BlogApp', []);
 angular.module('CampaignApp', []);
 angular.module('FooterApp', []);
 angular.module('LandingPageApp', []);
@@ -18,9 +17,6 @@ angular.module('UnitApp', []);
 angular.module('FooterApp', []);
 angular.module('Models', []);
 
-angular.module('Models', []);
-
-
 //LOAD 'MainApp' ANGULAR module
 //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
 angular.module('MainApp', [
@@ -31,7 +27,6 @@ angular.module('MainApp', [
         'ApplicationApp',
         'AuthApp',
         'AboutUsApp',
-        'BlogApp',
         'FooterApp',
         'LandingPageApp',
         'CampaignApp',

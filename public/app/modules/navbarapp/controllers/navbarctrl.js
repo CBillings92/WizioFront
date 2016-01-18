@@ -47,6 +47,12 @@ angular.module('NavbarApp')
                 return (route === $location.path());
             };
 
+            if($state.current.name === 'LandingPage'){
+                $scope.landingPageStyle = {position: "absolute"};
+            } else {
+                $scope.landingPageStyle = {};
+            }
+
             $scope.goToLogin = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');

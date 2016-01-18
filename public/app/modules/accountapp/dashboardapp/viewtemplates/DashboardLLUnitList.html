@@ -1,11 +1,65 @@
-<div class="container">
-    <div class="row">
-        <input type="button" name="name" value="" class="col=md-5">
-        <input type="button" name="name" value="" class="col=md-5">
-    </div>
-    <div class="row">
-        <div class="" ng-repeat="unit in unitList track by $index">
+<div class="row">
+    <div class="col-md-12 tduff">
+        <!-- ng-repeat -->
+        <div class="col-md-12 " ng-repeat='assignment in assignments track by $index' style="border:1px solid black; margin:10px;">
+            <!-- left upper control section  -->
+            <div class="col-md-6 col-lg-6" style="border:0px solid red; margin-top:10px;">
+                <!-- picture  -->
+                <div class="">
+                    <div class=""></div>
+                </div>
+                <!-- data container -->
+                <div class="">
+                    <!-- address -->
+                    <div class="">
+                        <div class="">
+                            <span style="font-size:120%; font-weight:bold;">Address:</span> <span style="font-size:120%;"> {{::assignment.Apartment.concatAddr}} </span>
+                        </div>
+                        <div class="">
+                            <span>Unit Number:</span> <span> {{::assignment.Apartment.unitNum}} </span>
+                        </div>
+                    </div>
+                    <!-- next date available -->
+                    <div class="">
+                        <div class="">
+                            <span>Next Date Available:</span> <span>9/1/2016</span>
+                        </div>
+                    </div>
+                    <!-- current applications -->
+                    <div class="">
+                        <div class="">
+                            <span> Number of Applications: </span> <span> {{assignment.Apartment.Applications.numberOf}} </span>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right upper control block -->
+            <div class="col-md-6 col-lg-5 col-lg-offset-1" style="border:0px solid red; margin-top:15px;">
+                <!-- analytics -->
+                <div class="">
+                    <div class="col-md-12" style="border: 0px solid black">
+                        <span style="padding:10px;">
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">Email Tenants</button>
+                        </span>
+                        <span style="padding:10px;">
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="viewApplicants($index)" name="button" type="button">View Applications</button>
+                        </span>
+                        <br>
+                        <span style="padding:10px;">
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">Update Listing</button>
+                        </span>
+                        <span style="padding:10px;">
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">Apartment Details</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- bottom control panel -->
+            <div class="row" style="margin-bottom:10px;">
+
+
+            </div>
         </div>
     </div>
 </div>
