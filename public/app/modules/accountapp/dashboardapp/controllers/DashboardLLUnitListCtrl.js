@@ -31,9 +31,9 @@ angular.module('AccountApp')
         var applicationIds = [];
         AssignmentModel.api().twoParam.query({param1:'user', param2:userId}, function(response){
             $scope.assignments = response;
-            console.dir(response);
+
             for(var i = 0; i < $scope.assignments.length; i++){
-                if($scope.assignments[i].Apartment.Applications.length != 0){
+                if($scope.assignments[i].Apartment.Applications.length !== 0){
                     applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
                 }
                 //group the individual application objects by the ApplicationId
@@ -44,7 +44,6 @@ angular.module('AccountApp')
                 $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
             }
             $scope.noTenants = true;
-            console.dir($scope.assignments);
         });
 
         $scope.add_tenants = function(val){
@@ -62,8 +61,9 @@ angular.module('AccountApp')
         };
 
         //navigate to editApartments form
-        $scope.editApartments = function(){
-
+        $scope.editApartments = function(apartmentIndex){
+            FlexGetSetSvc.set($scope.assignments[apartmentIndex].Apartment, 'ApartmentToEdit', 'ApartmentToEdit');
+            $state.go('')
         };
         //go to claimApartments form
         $scope.claimApartments = function(){

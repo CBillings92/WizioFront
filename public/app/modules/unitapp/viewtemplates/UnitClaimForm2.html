@@ -8,12 +8,11 @@
         <li>Search!</li>
     </ol>
     <form action="index.html" class="" method="post">
-        <div class="" ng-repeat="address in apartmentArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
-            <label class="control-label" style="padding-top:10px;">Apartment Address</label>
+        <div class="" ng-repeat="address in containingArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+            <label class="control-label" style="padding-top:10px;">Apartment Address{{address}}</label>
             <input
                 class="form-control"
-                ng-blur="addressEntered($index)"
-                ng-model="address.address"
+                ng-model="address[$index].apartmentData.concatAddr"
                 type="text"
                 typeahead-loading="loadingLocations"
                 typeahead-min-length="5"
@@ -32,7 +31,7 @@
                         <h4>Address:
                             {{address.address}}</h4>
                         <label class="control-label">Unit Num:</label>
-                        <input class="form-control col-md-4" ng-blur="unitEntered($parent.$index, $index)" ng-model="unit.unitNum" type="text"/>
+                        <input class="form-control col-md-4" ng-blur="onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text"/>
                         <form class="">
                             <div class="form-group">
                                 <div class="row">
@@ -89,7 +88,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label class="control-label">Description</label>
-                                        <textarea name="name" ng-model="unit.Descriptions.description" class="form-control" rows="4" cols="160"></textarea>
+                                        <textarea name="name" ng-model="unit.Descriptions.description" ng-blur="onDescriptionBlur($parent.$index, $index)" class="form-control" rows="4" cols="160"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +98,7 @@
                     <button class="btn" name="button" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
                 </div>
             </div>
-            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">Add Single Unit</button>
+            <button class="btn" name="button" ng-click="addUnit($index)" type="button">Add Single Unit</button>
             <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button>
         </div>
         <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button>

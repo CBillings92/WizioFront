@@ -62,7 +62,7 @@
                         ng-hide="assignment.Apartment.Leases[0].currentListing == 1 || assignment.Apartment.Leases[1].currentListing == 1" ng-click="createListing($index)" type="button">Create Listing</button>
                     </span>
                     <span style="padding:10px;">
-                        <button class="btn col-md-2" name="button" type="button">Apartment Details</button>
+                        <button class="btn col-md-2" name="button" type="button" ng-click="editApartments($index)">Apartment Details</button>
                     </span>
                     <span style="padding:10px;">
                         <button class="btn col-md-2" name="button" type="button">Apartment Analytics</button>

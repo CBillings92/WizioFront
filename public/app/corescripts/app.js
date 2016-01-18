@@ -1,27 +1,28 @@
-//CREATE ALL TOP LEVEL APPS (create, not start)
-angular.module('AboutUsApp', []);
-angular.module('AdminPanelApp', []);
-angular.module('AccountApp', ['ui.bootstrap.buttons']);
-angular.module('AmazonS3UploadApp', []);
-angular.module('ApplicationApp', []);
-angular.module('AuthApp', []);
-angular.module('BlogApp', []);
-angular.module('CampaignApp', []);
-angular.module('FooterApp', []);
-angular.module('LandingPageApp', []);
-angular.module('LeaseApp', []);
-angular.module('NavbarApp', []);
-angular.module('SellerApp', []);
-angular.module('SharedControllersApp', []);
-angular.module('SharedFactoryApp', []);
-angular.module('SharedServiceApp', []);
-angular.module('UnitApp', []);
-angular.module('FooterApp', []);
-angular.module('Models', []);
+(function(){
+    //CREATE ALL TOP LEVEL APPS (create, not start)
+    angular.module('AboutUsApp', []);
+    angular.module('AdminPanelApp', []);
+    angular.module('AccountApp', ['ui.bootstrap.buttons']);
+    angular.module('AmazonS3UploadApp', []);
+    angular.module('ApplicationApp', []);
+    angular.module('AuthApp', []);
+    angular.module('BlogApp', []);
+    angular.module('CampaignApp', []);
+    angular.module('FooterApp', []);
+    angular.module('LandingPageApp', []);
+    angular.module('LeaseApp', []);
+    angular.module('NavbarApp', []);
+    angular.module('SellerApp', []);
+    angular.module('SharedControllersApp', []);
+    angular.module('SharedFactoryApp', []);
+    angular.module('SharedServiceApp', []);
+    angular.module('UnitApp', []);
+    angular.module('FooterApp', []);
+    angular.module('Models', []);
 
-//LOAD 'MainApp' ANGULAR module
-//LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
-angular.module('MainApp', [
+    //LOAD 'MainApp' ANGULAR module
+    //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
+    angular.module('MainApp', [
         //change to UnitApp
         'AdminPanelApp',
         'AccountApp',
@@ -53,13 +54,13 @@ angular.module('MainApp', [
     .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
         $sceDelegateProvider.resourceUrlWhitelist([
-          // Allow same origin resource loads.
-          'self',
-          // Allow loading from our assets domain.  Notice the difference between * and **.
-          'https://youtu.be/**',
-          'https://www.youtube.com/watch?v=**',
-          'https://www.youtube.com/watch?v=*&feature=youtu.be',
-          'http://www.youtube.com/embed/**'
+            // Allow same origin resource loads.
+            'self',
+            // Allow loading from our assets domain.  Notice the difference between * and **.
+            'https://youtu.be/**',
+            'https://www.youtube.com/watch?v=**',
+            'https://www.youtube.com/watch?v=*&feature=youtu.be',
+            'http://www.youtube.com/embed/**'
         ]);
     }])
     //ON APP START AND DURING APP RUN
@@ -96,48 +97,48 @@ angular.module('MainApp', [
 
                     switch(fbLoginStatus.status){
                         case "not authorized":
-                            $rootScope.isLoggedIn = false;
-                            $rootScope.authObjects.facebookConnected = false;
-                            break;
+                        $rootScope.isLoggedIn = false;
+                        $rootScope.authObjects.facebookConnected = false;
+                        break;
                         case "connected":
-                            $rootScope.authObjects.facebookConnected = true;
-                            $facebook.api('/me').then(function(user){
-                                //tell the server it's a facebook login with
-                                //facebook: true
-                                var fbData = {
-                                    user: user,
-                                    fbLoginStatus: fbLoginStatus,
-                                    facebook: true
-                                };
-                                AuthFct.signin(fbData, function(data, status){
+                        $rootScope.authObjects.facebookConnected = true;
+                        $facebook.api('/me').then(function(user){
+                            //tell the server it's a facebook login with
+                            //facebook: true
+                            var fbData = {
+                                user: user,
+                                fbLoginStatus: fbLoginStatus,
+                                facebook: true
+                            };
+                            AuthFct.signin(fbData, function(data, status){
 
-                                    //do stuff with data?
-                                    if(status === 403){
-                                        $rootScope.isLoggedIn = false;
-                                        return;
-                                    }
-                                    $rootScope.isLoggedIn = true;
+                                //do stuff with data?
+                                if(status === 403){
+                                    $rootScope.isLoggedIn = false;
                                     return;
-                                });
+                                }
+                                $rootScope.isLoggedIn = true;
+                                return;
                             });
-                            break;
+                        });
+                        break;
                         default:
-                            $rootScope.isLoggedIn = false;
-                            $rootScope.authObjects.facebookConnected = false;
+                        $rootScope.isLoggedIn = false;
+                        $rootScope.authObjects.facebookConnected = false;
                     }
                 });
             }
 
             //IF user is not authorized, assign isLoggedIn to false
-                //this will be over written later if they are a standard user
+            //this will be over written later if they are a standard user
             //if user is connected, get user information and pass to server
-                //server will check if user exists in DB if not create user
-                //Server will send back Wizio Token
-                //Front end will store facebook token expiry in localStorage
+            //server will check if user exists in DB if not create user
+            //Server will send back Wizio Token
+            //Front end will store facebook token expiry in localStorage
             //anytime user makes a request at a protected path
-                //1: Check if user is authenticated in front end
-                //2: Check if the Facebook auth token expired
-                //3: Send token and request to DB if hasn't expired.
+            //1: Check if user is authenticated in front end
+            //2: Check if the Facebook auth token expired
+            //3: Send token and request to DB if hasn't expired.
 
 
             //set container object for auth objects
@@ -166,3 +167,4 @@ angular.module('MainApp', [
             }
         }
     ]);
+})();

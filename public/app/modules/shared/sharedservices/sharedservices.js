@@ -99,6 +99,7 @@ angular.module('SharedServiceApp')
             var getToken = function() {
                 if ($localStorage.token) {
                     if (jwtHelper.isTokenExpired($localStorage.token)) {
+                        $localStorage.token = undefined;
                         delete $localStorage.token;
                         return 'No Token';
                     }
@@ -109,6 +110,7 @@ angular.module('SharedServiceApp')
             };
             var deleteToken = function() {
                 if ($localStorage.token) {
+                    $localStorage.token = undefined;
                     delete $localStorage.token;
                     return true;
                 } else {
