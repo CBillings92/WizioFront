@@ -6,9 +6,10 @@ angular.module('UnitApp')
         'DescriptionModel',
         'SmartSearchSvc',
         'UnitFct',
-        function($scope, $state, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct) {
+        'FlexGetSetSvc',
+        function($scope, $state, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc) {
             //use a ternary IF operator to figure out what state we're on
-            $scope.singleUnit = ($state.current.name === 'Unit.Edit' || $state.current.name === 'Unit.Claim') ? true : false;
+            $scope.singleUnit = ($state.current.name === 'Unit.Edit') ? true : false;
 
             //load the selectOptions from the unit factory
             $scope.selectOptions = UnitFct.selectOptions;
@@ -34,13 +35,17 @@ angular.module('UnitApp')
                     ]
                 ]
             */
-            $scope.containingArray = [
-                [
-                    {
+            if($scope.singleUnit){
+                FlexGetSetSvc.get('UnitToEdit');
+            } else {
+                $scope.containingArray = [
+                    [
+                        {
 
-                    }
-                ]
-            ];
+                        }
+                    ]
+                ];
+            }
             //Whenever we add a new address, we want to push a new empty array
             //into containingArray with an empty object to setup the first unit
             $scope.addAddress = function() {

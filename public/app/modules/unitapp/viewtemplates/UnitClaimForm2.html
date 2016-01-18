@@ -94,11 +94,11 @@
                             </div>
                         </form>
                     </div>
-                    <button class="btn" name="button" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
-                    <button class="btn" name="button" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                    <button class="btn" name="button" ng-hide="singleUnit" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
+                    <button class="btn" name="button" ng-hide="singleUnit" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
                 </div>
             </div>
-            <button class="btn" name="button" ng-click="addUnit($index)" type="button">Add Single Unit</button>
+            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">Add Single Unit</button>
             <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button>
         </div>
         <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button>
