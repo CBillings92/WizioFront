@@ -23,6 +23,15 @@ angular.module('Models')
                 this.ApartmentId = ApartmentId;
             }
         };
+        Description.prototype.duplicate = function(){
+            var duplicate = {};
+            for(var key in this.apartmentData){
+                if(this.descriptionData.hasOwnProperty(key)){
+                    duplicate[key] = this.descriptionData[key];
+                }
+            }
+            return duplicate;
+        };
         Description.build = function(data){
             return new Description(
                 data.UserId,

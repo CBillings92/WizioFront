@@ -75,7 +75,10 @@ angular.module('UnitApp')
                 var newApartment = ApartmentModel.build(unitAddressInfo);
                 //call the getGeocodeData prototype function to get all needed geocoded data
                 newApartment.getGeocodeData(function(response){
-                    $scope.containingArray[addressIndex][unitIndex] = newApartment;
+                    newApartment.api().findOrCreate(null, function(response){
+                        console.dir(response);
+                        return;
+                    });
                 });
             };
 
@@ -84,29 +87,35 @@ angular.module('UnitApp')
                 //get the prpper apartment to work with
                 var apartment = $scope.containingArray[addressIndex][unitIndex];
                 //get the description text from the form
-                var descriptionText = apartment.Descriptions.description;
+                var descriptionText = apartment.Description.description;
                 //create a new Description instance
                 var newDescription = new DescriptionModel(null, null, descriptionText);
                 //get association data for description (prototype method);
                 //this is UserId
                 newDescription.getAssociatonData();
                 //append the new Descriptions instance onto the Apartment;
-                apartment.Descriptions = newDescription;
+                apartment.Description = newDescription;
             };
 
-            $scope.copyUnit = function(){
+            $scope.copyUnit = function(addressIndex, unitIndex){
                 //get the correct apartment out of the array
                 var apartment = $scope.containingArray[addressIndex][unitIndex];
+                var description = apartment.Description;
                 /*
                     call the duplicate prototype method to get the apartmentData
                     FIXME this probably doesn't need to be on the prototype button
                     just in the unitfct ? ?? ? ?
                 */
+                //duplicate the apartment data
                 var duplicateApartmentData = apartment.duplicate();
+                //duplicate the description data
+                var duplicateDescriptionData = description.duplicate();
                 //build a new instance with this data
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
+                newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
                 //push it into the address array
-                $scope.containingArray[addressIndex][unitIndex].push(newInstance);
+                console.dir(newInstance);
+                $scope.containingArray[addressIndex].push(newInstance);
             };
 
             $scope.deleteUnit = function(addressIndex, unitIndex){
@@ -117,7 +126,9 @@ angular.module('UnitApp')
             };
 
             $scope.submit = function(){
+                ApartmentModel.claimApi.save($scope.containingArray, function(response){
 
+                });
             };
 
         }

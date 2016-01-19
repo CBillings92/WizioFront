@@ -54,29 +54,41 @@ angular.module('Models')
                     route: route || null,
                 };
             }
-            Apartment.prototype.api = {
-                create: function(callback) {
-                    $resource(WizioConfig.baseAPIURL + 'apartment').save(this.data, function(response) {
-                        return callback(response);
-                    });
-                },
-                update: function(callback) {
-                    $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
-                        id: '@id'
-                    }).save({
-                        id: this.id
-                    }, this.data, function(response) {
-                        return callback(response);
-                    });
-                },
-                getById: function(callback) {
-                    $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
-                        id: '@id'
-                    }).get({
-                        id: this.id
-                    }, function(response) {
-                        return callback(response);
-                    });
+            Apartment.prototype.api = function(){
+                var apartment = this;
+                return {
+                    create: function(callback) {
+                        $resource(WizioConfig.baseAPIURL + 'apartment').save(this.data, function(response) {
+                            return callback(response);
+                        });
+                    },
+                    update: function(callback) {
+                        $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
+                            id: '@id'
+                        }).save({
+                            id: this.id
+                        }, this.data, function(response) {
+                            return callback(response);
+                        });
+                    },
+                    getById: function(callback) {
+                        $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
+                            id: '@id'
+                        }).get({
+                            id: this.id
+                        }, function(response) {
+                            return callback(response);
+                        });
+                    },
+                    findOrCreate: function(action, callback){
+                        console.dir(this);
+                        $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {
+                            action: "@action"
+                        }).save(action, apartment, function(response){
+                            return callback(response);
+                        });
+                    }
+
                 }
             };
             Apartment.prototype.getGeocodeData = function(callback){
@@ -104,16 +116,16 @@ angular.module('Models')
                     // this.apartmentData.Descriptions.UserId
                 }
             };
-            Apartment.prototype.api = function() {
-                return {
-                    oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')
-                };
-            };
-            Apartment.prototype.api = function() {
-                return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
-                    id: '@id'
-                });
-            };
+            // Apartment.prototype.api = function() {
+            //     return {
+            //         oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')
+            //     };
+            // };
+            // Apartment.prototype.api = function() {
+            //     return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
+            //         id: '@id'
+            //     });
+            // };
             Apartment.api = function() {
                 return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {
                     id: '@id'

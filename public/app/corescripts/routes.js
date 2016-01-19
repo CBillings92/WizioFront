@@ -417,6 +417,16 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLandlord
                 })
+                .state('Unit.Edit', {
+                    url: '/edit',
+                    views: {
+                        'UnitMain': {
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm2.html',
+                            controller: 'UnitClaimFormCtrl2'
+                        }
+                    },
+                    data: trueRequiredLandlord
+                })
                 .state('Campaign', {
                     url: '/campaign',
                     abstract: true,
