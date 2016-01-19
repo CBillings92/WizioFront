@@ -127,15 +127,29 @@ angular.module('Models')
             Apartment.copyGeocodedData = function(ApartmentIntstance){
                 var oldData = ApartmentIntstance.apartmentData;
                 return new Apartment(
-                    oldData.concatAddr,
-                    oldData.longitude,
-                    oldData.latitude,
-                    oldData.route,
                     oldData.street,
-                    oldData.state,
-                    oldData.locality,
+                    null,
                     oldData.neighborhood,
-                    oldData.administrative_area_level_3
+                    oldData.locality,
+                    oldData.administrative_area_level_3,
+                    oldData.state,
+                    oldData.zip,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    oldData.latitude,
+                    oldData.longitude,
+                    oldData.concatAddr,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
                 );
             };
             Apartment.build = function(data) {

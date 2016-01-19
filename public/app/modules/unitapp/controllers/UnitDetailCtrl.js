@@ -35,14 +35,17 @@ angular.module('UnitApp')
 
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
+            //FIXME
             $scope.mediaTab = 'map';
             $scope.selectMediaTab = function(tab) {
                 $scope.mediaTab = tab;
             };
+            //FIXME ?????
             $scope.range = function(n) {
                 return new Array(n);
             };
 
+            //FIXME don't use JQuery..
             var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
                 width =  $(".unit-details-media-tab-content-picker-slider-scroller").width();
                 el = $(".unit-details-media-tab-content-picker-slider-scroller");

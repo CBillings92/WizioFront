@@ -64,6 +64,7 @@ angular.module('UnitApp')
                 var newApartmentInstance = ApartmentModel.copyGeocodedData(apartmentToCopy);
                 //push this new instance onto the containingArray on the address array
                 $scope.containingArray[addressIndex].push(newApartmentInstance);
+                console.dir($scope.containingArray);
                 return;
             };
 

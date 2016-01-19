@@ -7,7 +7,6 @@ angular.module('AccountApp')
         function($scope, ApplicationResource, TokenSvc, lodash) {
             //get user object from token
             var user = TokenSvc.decode();
-            console.dir("HENUTHOE");
             //get all ApplicationIds on the user object
             var applicationIdArray = lodash.pluck(user.applications, "ApplicationId");
             //call api and send applicationIds to retrieve applictions for display
