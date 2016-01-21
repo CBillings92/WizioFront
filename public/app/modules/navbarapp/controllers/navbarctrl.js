@@ -7,11 +7,14 @@ angular.module('NavbarApp')
         '$http',
         '$modal',
         'ApartmentSearchSvc',
+        'ApartmentModel',
+        'SearchModel',
+        'SearchFct',
         'AuthFct',
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.filters = {
                 beds: null,
@@ -61,12 +64,33 @@ angular.module('NavbarApp')
                     return;
                 });
             };
-            $scope.search = function() {
-                //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
-                    $state.go('Unit.Display');
-                });
+            // $scope.search = function() {
+            //     //SECOND ARG IS UNIT NUM
+            //     ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+            //         $state.go('Unit.Display');
+            //     });
+            //
+            // };
+            $scope.search = function(){
+                //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                //build new apartment instance
+                var apartmentInstance = ApartmentModel.build(data);
+                //get get Geocode Data
+                apartmentInstance.getGeocodeData(function(response){
+                    //unitNum is null, filters is null
+                    var topLevelType = null;
+                    if(apartmentInstance.apartmentData.topLevelType){
+                        topLevelType = apartmentInstance.apartmentData.topLevelType;
+                    }
+                    var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, $scope.filters);
+                    console.dir(newSearchInstance);
+                    SearchFct.search(newSearchInstance, function(response){
 
+                    });
+                });
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);

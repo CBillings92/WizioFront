@@ -15,6 +15,10 @@ angular.module('UnitApp')
         var createUnit = function(){
 
         };
+
+        var searchUnit = function(){
+
+        };
         return {
             selectOptions: selectOptions,
             createUnit: createUnit
