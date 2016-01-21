@@ -16,7 +16,7 @@ angular.module('AuthApp')
                 tokenExp = TokenSvc.checkExp(token);
             }
 
-            if(token === "No Token" && tokenExp){
+            if(token === "No Token" || tokenExp){
                 return false;
             } else {
                 return true;
@@ -34,8 +34,7 @@ angular.module('AuthApp')
                     success(data, status);
                 });
             },
-            logout: function(success) {
-                tokenClaims = {};
+            logout: function() {
                 delete $localStorage.token;
                 $rootScope.isLoggedIn = false;
                 $state.go('LandingPage');
