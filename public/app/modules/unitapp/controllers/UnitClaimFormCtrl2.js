@@ -114,7 +114,6 @@ angular.module('UnitApp')
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
                 newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
                 //push it into the address array
-                console.dir(newInstance);
                 $scope.containingArray[addressIndex].push(newInstance);
             };
 

@@ -103,17 +103,16 @@ angular.module('AccountApp')
                             'ApplicationOverviewCtrl',
                             response
                         );
+                        ModalSvc.showModal(viewApplicantsModalDefaults, {}).then(function(result) {
+                            switch (result) {
+                                case "VIEW-DETAILS":
+                                    $state.go('Account.Dashboard.Application');
+                                    break;
+                                default:
+
+                            }
+                        });
                     });
-
-                ModalSvc.showModal(viewApplicantsModalDefaults, {}).then(function(result) {
-                    switch (result) {
-                        case "VIEW-DETAILS":
-                            $state.go('Account.Dashboard.Application');
-                            break;
-                        default:
-
-                    }
-                });
             };
         }
     ]);
