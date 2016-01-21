@@ -18,9 +18,6 @@ angular.module('UnitApp', []);
 angular.module('FooterApp', []);
 angular.module('Models', []);
 
-angular.module('Models', []);
-
-
 //LOAD 'MainApp' ANGULAR module
 //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
 angular.module('MainApp', [
@@ -49,7 +46,9 @@ angular.module('MainApp', [
         'ngResource',
         'ngLodash',
         'ui.bootstrap',
-        'angular-jwt'
+        'angular-jwt',
+        'angulartics',
+        'angulartics.google.analytics',
     ])
     .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
         $facebookProvider.setAppId('439701646205204');
