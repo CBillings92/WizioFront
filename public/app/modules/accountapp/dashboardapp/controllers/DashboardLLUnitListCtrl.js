@@ -10,6 +10,7 @@ angular.module('AccountApp')
         'ApplicationModel',
         'FlexGetSetSvc',
         function($scope, $state, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc) {
+
             //reusable function for creating modalDefaults for ModalSvc
             var modalDefaults = function(size, templateUrl, controller, modalData) {
                 return {
@@ -56,7 +57,6 @@ angular.module('AccountApp')
                     'AddTenantsToLeaseCtrl',
                     $scope.assignments[val]
                 );
-
                 ModalSvc.showModal(addTenantsModalDefaults, {}).then(function(result) {});
             };
             //navigate to editApartments form
@@ -72,6 +72,7 @@ angular.module('AccountApp')
             //open email now modal. Shoud allow landlords to select who to email
             //and provide pre-made emails to send.
             $scope.emailNow = function(apartmentIndex) {
+
                 ModalSvc.showModal(addTenantsModalDefaults, {}).then(function(result) {
 
                 });

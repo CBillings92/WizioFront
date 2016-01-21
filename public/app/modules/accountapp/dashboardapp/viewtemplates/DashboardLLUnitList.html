@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-md-12 tduff">
         <!-- ng-repeat -->
-        <div class="col-md-12 " ng-repeat='assignment in assignments track by $index' style="border:1px solid black; margin:10px;">
+        <div class="col-md-12" ng-repeat='assignment in assignments track by $index' style="border:1px solid black; margin:10px; border-radius:4px;">
             <!-- left upper control section  -->
-            <div class="col-md-6 col-lg-6" style="border:0px solid red; margin-top:10px;">
+            <div class="col-md-6 col-lg-6" style="margin-top:10px;">
                 <!-- picture  -->
                 <div class="">
                     <div class=""></div>
@@ -13,7 +13,7 @@
                     <!-- address -->
                     <div class="">
                         <div class="">
-                            <span style="font-size:120%; font-weight:bold;">Address:</span> <span style="font-size:120%;"> {{::assignment.Apartment.concatAddr}} </span>
+                            Address: {{::assignment.Apartment.concatAddr}}
                         </div>
                         <div class="">
                             <span>Unit Number:</span> <span> {{::assignment.Apartment.unitNum}} </span>
@@ -35,10 +35,9 @@
                 </div>
             </div>
             <!-- right upper control block -->
-            <div class="col-md-6 col-lg-5 col-lg-offset-1" style="border:0px solid red; margin-top:15px;">
-                <!-- analytics -->
+            <div class="col-md-6 col-lg-5 col-lg-offset-1" style="margin-top:15px;">
                 <div class="">
-                    <div class="col-md-12" style="border: 0px solid black">
+                    <div class="col-md-12">
                         <span style="padding:10px;">
                             <button class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">Email Tenants</button>
                         </span>
@@ -47,10 +46,9 @@
                         </span>
                         <br>
                         <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-hide="assignment.Apartment.Leases[0].currentListing == 1 || assignment.Apartment.Leases[1].currentListing == 1" ng-click="createListing($index)" name="button" type="button">Create Listing</button>
-                        </span>
-                        <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases[0].currentListing == 1 || assignment.Apartment.Leases[1].currentListing == 1" ng-click="editListing($index)" name="button" type="button">Update Listing</button>
+
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases[0].currentListing == 1 || assignment.Apartment.Leases[1].currentListing == 1" ng-click="createListing($index)" name="button" type="button">Creates Listing</button>
+                            <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" ng-hide="assignment.Apartment.Leases[0].currentListing == 1 || assignment.Apartment.Leases[1].currentListing == 1" ng-click="editListing($index)" name="button" type="button">Update Listing</button>
                         </span>
                         <span style="padding:10px;">
                             <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button>
@@ -59,7 +57,7 @@
                 </div>
             </div>
             <!-- bottom control panel -->
-            <div class="row" style="margin-bottom:10px;">
+            <div class="row" style="margin-bottom:20px;">
             </div>
         </div>
     </div>
