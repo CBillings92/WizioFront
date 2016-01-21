@@ -10,7 +10,16 @@ angular.module('Models')
         }
         Search.prototype.send = function(callback){
             var data = this;
-            return $resource(WizioConfig.baseAPIURL + 'search').save(this, function(data){
+            return $resource(WizioConfig.baseAPIURL + "search",
+            {},
+            {
+                save: {
+                    method: 'POST',
+                    isArray: true
+                }
+            }
+        ).save(this, function(data){
+                console.dir(data);
                 return callback(data);
             });
         };

@@ -1,6 +1,8 @@
 angular.module('SharedServiceApp')
     .factory('SearchFct', [
-        function() {
+        '$sessionStorage',
+        '$rootScope',
+        function($sessionStorage, $rootScope) {
             var concealAddress = function() {
                 for (i = 0; i < data.length; i++) {
                     var left = Math.floor((response[i].concatAddr.charCodeAt(5) / 19) + 4);
@@ -17,10 +19,13 @@ angular.module('SharedServiceApp')
                 return response;
             };
             var search = function(searchInstance, callback) {
+                console.dir("FKJADFL:KAJSFLAKSFJ");
                 searchInstance.send(function(response) {
+                    // var data = concealAddress(response);
                     console.dir(response);
-                    var data = concealAddress(response);
-                    console.dir(data);
+                    $sessionStorage.apartmentSearch = response;
+                    $rootScope.$broadcast('searchFinished', response);
+                    callback('done');
                 });
             };
 
