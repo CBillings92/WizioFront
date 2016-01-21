@@ -65,13 +65,6 @@ angular.module('NavbarApp')
                     return;
                 });
             };
-            // $scope.search = function() {
-            //     //SECOND ARG IS UNIT NUM
-            //     ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
-            //         $state.go('Unit.Display');
-            //     });
-            //
-            // };
             $scope.search = function(){
                 //massage data into proper form for building a new apartment instance
                 var data = {
@@ -87,9 +80,7 @@ angular.module('NavbarApp')
                         topLevelType = apartmentInstance.apartmentData.topLevelType;
                     }
                     var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, $scope.filters);
-                    console.dir(newSearchInstance);
                     SearchFct.search(newSearchInstance, function(response){
-                        
                         $state.go('Unit.Display');
                     });
                 });

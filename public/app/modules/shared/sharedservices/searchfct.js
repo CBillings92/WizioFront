@@ -3,7 +3,7 @@ angular.module('SharedServiceApp')
         '$sessionStorage',
         '$rootScope',
         function($sessionStorage, $rootScope) {
-            var concealAddress = function() {
+            var concealAddress = function(response) {
                 for (i = 0; i < data.length; i++) {
                     var left = Math.floor((response[i].concatAddr.charCodeAt(5) / 19) + 4);
                     var right = Math.floor((response[i].concatAddr.charCodeAt(3) / 19) + 4);
@@ -19,10 +19,8 @@ angular.module('SharedServiceApp')
                 return response;
             };
             var search = function(searchInstance, callback) {
-                console.dir("FKJADFL:KAJSFLAKSFJ");
                 searchInstance.send(function(response) {
-                    // var data = concealAddress(response);
-                    console.dir(response);
+                    var data = concealAddress(response);
                     $sessionStorage.apartmentSearch = response;
                     $rootScope.$broadcast('searchFinished', response);
                     callback('done');
@@ -30,7 +28,8 @@ angular.module('SharedServiceApp')
             };
 
             return {
-                search: search
+                search: search,
+                concealAddress: concealAddress
             }
         }
     ]);
