@@ -85,7 +85,7 @@
                 <span class="apt-tile__favorite-btn">
                     <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                 </span>
-                <span class="apt-tile__cost">${{apartment.costPerMonth}}</span>
+                <span class="apt-tile__cost">${{apartment.Leases[0].monthlyRent || ' Rent Unavailable'}}</span>
             </div>
             <div class="apt-tile__ammenities">
                 <div class="ammenity" ng-if="apartment.beds">
@@ -136,4 +136,3 @@
         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
     </div>
 </div>
-
