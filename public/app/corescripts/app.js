@@ -72,7 +72,6 @@
             'AuthFct',
             'TokenSvc',
             function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
-
                 //FACEBOOK SDK
                 // Load the Facebook SDK asynchronously
                 (function(d, s, id) {
