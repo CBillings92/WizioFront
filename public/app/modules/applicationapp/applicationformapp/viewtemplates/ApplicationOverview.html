@@ -8,12 +8,12 @@
     <!-- header info -->
     <div class=""></div>
     <!-- applciation tiles -->
-    <div class="">
-        <div class="" ng-repeat="application in applicationArray track by $index" style="margin-top:10px; padding:5px; border: 1px solid black">
+        <div class="" ng-repeat="application in applicationArray track by $index" style="margin-top:10px; padding:5px; ">
             <div class="row">
-                <div class="col-md-6" ng-repeat="applicant in application track by $index">
+                <div class="col-md-6 col-sm-6 col-xs-6" ng-repeat="applicant in application track by $index" style="padding-bottom:10px;">
                     <!-- picture -->
-                    <div class="col-md-4" style="height:100px; width:100px; border:1px solid black;"></div>
+                    <div class="col-md-4" >
+                    <img style="height:100px; width:100px; border:1px solid black;" src="http://172.16.0.2:3000/public/viewtemplates/images/aboutimages/chriscanal.png"></img></div>
                     <!-- applicant info -->
                     <div class="col-md-8">
                         <div class="">
@@ -23,9 +23,7 @@
                             {{applicant.ContactEmail}}
                         </div>
                     </div>
-
                 </div>
-
             </div>
             <div class="row" style="margin-top:10px;">
                 <!-- bottom left info panel -->
@@ -41,21 +39,20 @@
                 <div class="col-md-6">
                     <div class="">
                         <span>
-                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Send Email</button>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Send Email</button>
                         </span>
                         <span>
-                            <button class="btn col-md-5" style="margin:2px;" ng-click="viewDetails($index)" name="button" type="button">View Details</button>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" ng-click="viewDetails($index)" name="button" type="button">View Details</button>
                         </span>
                     </div>
                     <div class="">
                         <span>
-                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Accept</button>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Accept</button>
                         </span>
                         <span>
-                            <button class="btn col-md-5" style="margin:2px;" name="button" type="button">Reject</button>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Reject</button>
                         </span>
                     </div>
-                </div>
             </div>
         </div>
     </div>
