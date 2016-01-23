@@ -85,16 +85,16 @@
                 <span class="apt-tile__favorite-btn">
                     <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                 </span>
-                <span class="apt-tile__cost">${{apartment.Leases[0].monthlyRent || ' Rent Unavailable'}}</span>
+                <span class="apt-tile__cost">${{::apartment.Leases[0].monthlyRent || ' Rent Unavailable'}}</span>
             </div>
             <div class="apt-tile__ammenities">
                 <div class="ammenity" ng-if="apartment.beds">
                     <div class="ammenity__icon w-icon w-bed"></div>
-                    <span class="ammenity__label">{{apartment.beds}} bed</span>
+                    <span class="ammenity__label">{{::apartment.beds}} bed</span>
                 </div>
                 <div class="ammenity" ng-if="apartment.baths">
                     <div class="ammenity__icon w-icon w-bath"></div>
-                    <span class="ammenity__label">{{apartment.baths}} bath</span>
+                    <span class="ammenity__label">{{::apartment.baths}} bath</span>
                 </div>
                 <div class="ammenity" ng-if="apartment.laundry">
                     <div class="ammenity__icon w-icon w-laundry"></div>
@@ -124,8 +124,8 @@
           </div>
         </div>
         <div class="apt-tile__info">
-          <span class="apt-tile__street">{{ apartment.street }} #{{ apartment.unitNum }}</span>
-          <span class="apt-tile__neighborhood">{{ apartment.neighborhood}}</span>
+          <span class="apt-tile__street">{{::apartment.street }} #{{::apartment.unitNum }}</span>
+          <span class="apt-tile__neighborhood">{{::apartment.neighborhood}}</span>
         </div>
     </div>
 </div>
