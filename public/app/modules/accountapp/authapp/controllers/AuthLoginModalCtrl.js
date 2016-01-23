@@ -125,6 +125,7 @@ angular.module('AccountApp')
                 AuthFct.signin(userData,
                     function(res) {
                         $rootScope.isLoggedIn = true;
+                        $rootScope.userType = TokenSvc.decode().userType;
                         return $modalInstance.close('ok');
 
                     },

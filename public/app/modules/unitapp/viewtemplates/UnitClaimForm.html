@@ -26,7 +26,7 @@
                 No Results Found
             </div>
             <label class="control-label" for="" style="padding-top:10px;">Unit Number(s)</label>
-            <div class="form-group">
+            <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" style="padding:10px; border-bottom:1px solid black;">
                         <h4>Address:
@@ -99,10 +99,10 @@
                     <button class="btn" name="button" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
                 </div>
             </div>
-            <button class="btn" name="button" ng-click="addUnit($index)" type="button">Add Single Unit</button>
-            <button class="btn" name="button" ng-click="addRange($index)" type="button">Add Range Of Units</button>
+            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">Add Single Unit</button>
+            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button>
         </div>
-        <button class="btn" ng-click="addAddress()" style="margin-top:10px;" type="button">Add Address</button>
+        <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button>
         <button type="button" class="btn" name="button" ng-click="submit()">Submit</button>
     </form>
 </div>

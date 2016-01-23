@@ -1,0 +1,94 @@
+<div class="row">
+    <form class="" ng-submit="editingListing ? formSubmission('editLease') : formSubmission('createLease')">
+        <h2>Edit Listing Information</h2>
+        <div class="form-group">
+            <div class="row acct-modal">
+                <h3>Dates and Rent</h3>
+
+                <div class="col-md-4">
+                    <label class="control-label " for="">Date Start:</label>
+                    <input class="form-control" name="name" ng-model="lease.dateStart" type="text" value="" placeholder="EX: 12/22/2015">
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="">Date End:</label>
+                    <input class="form-control" name="name" ng-model="lease.dateEnd" type="text" value="" placeholder="EX: 12/22/2015">
+                </div>
+                <div class="col-md-4">
+                    <label class="control-label" for="">Rent Per Month:</label>
+                    <input class="form-control" name="name" ng-model="lease.monthlyRent" type="text" value="" placeholder="EX: 2100">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <h3>Utilities Included</h3>
+                <div class="col-md-12">
+                    <div class="" ng-repeat="utility in selectOptions.utilities">
+                        <div class="col-md-2" style="margin:8px;">
+                            <label class="control-label" for="">
+                                {{utility.label}}:
+                                <input class="checkboxinput" name="name" ng-model="lease[utility.variable]" ng-true-value="true" ng-false-value="false" type="checkbox" value="">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <h3>Additional Ammenities/Information</h3>
+                <div class="col-md-6">
+                    <div class="" ng-repeat="ammenity in selectOptions.additionalAmmenities">
+                        <div class="col-md-2" style="margin:8px;">
+                            <label class="control-label" for="">
+                                {{ammenity.label}}:
+                                <input class="" name="name" ng-model=lease[ammenity.variable] ng-true-value="true" ng-false-value="false" type="checkbox" value="">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label">Pets</label>
+                    <select class="form-control" name="" ng-model="lease.pets" ng-options="pets for pets in selectOptions.pets"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <h3>Additional Rent/Fees Information</h3>
+                <div class="col-md-4">
+                    <label class="control-label">Security Deposit Amount</label>
+                    <input name="name" ng-model="lease.securityDeposit" placeholder="$2000.00" type="text" value="">
+                </div>
+                <div class="col-md-8">
+                    <label control-label>Needed Upfront:</label>
+                    <div class="">
+                        <div class="col-md-12">
+                            <div class="" ng-repeat="fee in selectOptions.neededUpfront">
+                                <div class="col-md-2" style="margin:8px;">
+                                    <label class="control-label" for="">
+                                        {{fee.label}}:
+                                        <input class="checkboxinput" ng-true-value="true" ng-false-value="false" name="name" ng-model=lease[fee.variable] type="checkbox" value="">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2" ng-show="lease.newKeyFeeNeeded">
+                    <label class="control-label">Key Fee Amount</label>
+                    <input name="name" ng-model=lease.newKeyFeeAmount type="text" value="">
+                </div>
+                <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
+                    <label class="control-label">Brokers Fee Amount</label>
+                    <input name="name" ng-model=lease.brokerFeeAmount type="text" value="">
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-fill--blue btn-md" name="button" type="submit">Submit</button>
+    </form>
+</div>

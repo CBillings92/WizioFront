@@ -11,7 +11,7 @@ angular.module('AccountApp')
             $scope.viewProfile = function() {
                 console.dir($scope.accountInfo);
                 if ($scope.accountInfo.ProfileId) {
-                    ProfileModel.api().get({
+                    ProfileModel.api.oneParam.get({
                         id: $scope.accountInfo.ProfileId
                     }, function(response){
                         if(response){

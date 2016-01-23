@@ -12,6 +12,12 @@ angular.module('UnitApp')
         //Pass $scope into the function as a way to allow our code to work when utilizing minification.
         //See the last 3 sections of this site. Starts with: "The benefit to the longhand version is that..." https://thinkster.io/egghead/scope-vs-scope/
         function($scope, $sessionStorage, $rootScope, $state, lodash, UnitResource, SmartSearchSvc, UnitCreateSvc, FlexGetSetSvc) {
+            
+
+
+
+
+
             //save sessionStorage variable into $scope.$storage for sessionStorage
 
             $scope.$storage = $sessionStorage;

@@ -27,12 +27,13 @@ angular.module('AccountApp')
                 var UserId = TokenSvc.decode().id;
                 $scope.profile.UserId = UserId;
                 if($state.current.name === 'Account.Profile.Edit'){
-                    ProfileModel.api().save({id: $scope.profile.id}, $scope.profile, function(response){
+                    console.dir($scope.profile);
+                    ProfileModel.api.oneParam.save({id: $scope.profile.id}, $scope.profile, function(response){
 
                     });
                 } else if($state.current.name === 'Account.Profile.Create'){
                     var profile = ProfileModel.build($scope.profile);
-                    ProfileModel.api().save(null, profile, function(response){
+                    ProfileModel.api.oneParam.save(null, profile, function(response){
                         alert("DONE");
                     });
                 }

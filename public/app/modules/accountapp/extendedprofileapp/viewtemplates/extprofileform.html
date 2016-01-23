@@ -25,7 +25,7 @@
                 <div class="row" style="padding-top:10px;">
                     <div class="col-md-3">
                         <label class="control-label">Phone Number</label>
-                        <input type="text" class="form-control" name="name" value="">
+                        <input type="text" class="form-control" ng-model="phoneNumber" name="name" value="">
                     </div>
                     <div class="col-md-2">
                         <label class="control-label">Credit Score?</label>
@@ -84,15 +84,15 @@
                     <h4>Current Employer 1 Info</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 1</label>
-                        <input class="form-control" model="profile.currentEmployer1" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployer1" name="name" type="text" value="">
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 1 Length of Employment</label>
-                        <input class="form-control" model="profile.currentEmployerLOE1" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployerLOE1" name="name" type="text" value="">
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 1 Position</label>
-                        <input class="form-control" model="profile.currentEmployerPosition2" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployerPosition1" name="name" type="text" value="">
                     </div>
                 </div>
             </div>
@@ -109,15 +109,15 @@
                     <h4>Current Employer 2 Info</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 2</label>
-                        <input class="form-control" model="profile.currentEmployer2" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployer2" name="name" type="text" value="">
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 2 Length of Employment</label>
-                        <input class="form-control" model="profile.currentEmployerLOE2" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployerLOE2" name="name" type="text" value="">
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 2 Position</label>
-                        <input class="form-control" model="profile.currentEmployerPosition2" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.currentEmployerPosition2" name="name" type="text" value="">
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="col-md-4">
                         <label class="control-label" for="">Major</label>
-                        <input class="form-control" model="profile.studentMajor" name="name" type="text" value="">
+                        <input class="form-control" ng-model="profile.studentMajor" name="name" type="text" value="">
                     </div>
                 </div>
             </div>

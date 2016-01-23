@@ -6,9 +6,12 @@ angular.module('UnitApp')
         'lodash',
         'ApartmentGetSetSvc',
         'ApartmentSearchSvc',
+        'ApartmentModel',
+        'SearchModel',
+        'SearchFct',
         'SmartSearchSvc',
         'MapFct',
-        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentSearchSvc, SmartSearchSvc, MapFct) {
+        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentSearchSvc, ApartmentModel, SearchModel, SearchFct, SmartSearchSvc, MapFct) {
             //collect data from event emitter
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
@@ -75,10 +78,24 @@ angular.module('UnitApp')
                     alert('Error: Apartment not loaded properly. Please try searching again');
                 }
             };
-            $scope.search = function() {
-                //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
-                    $state.go('Unit.Display');
+            $scope.search = function(){
+                //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                //build new apartment instance
+                var apartmentInstance = ApartmentModel.build(data);
+                //get get Geocode Data
+                apartmentInstance.getGeocodeData(function(response){
+                    //unitNum is null, filters is null
+                    var topLevelType = null;
+                    if(apartmentInstance.apartmentData.topLevelType){
+                        topLevelType = apartmentInstance.apartmentData.topLevelType;
+                    }
+                    var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, $scope.filters);
+                    SearchFct.search(newSearchInstance, function(response){
+                        $state.go('Unit.Display');
+                    });
                 });
             };
             $scope.getLocation = function(val) {
@@ -89,7 +106,7 @@ angular.module('UnitApp')
             function displayMaps(){
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                
+
                 var markers = MapFct.makeMarkers($scope.map);
                 $scope.openInfoWindow = function(e, selectedMarker) {
                     e.preventDefault();
