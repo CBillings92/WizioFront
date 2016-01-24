@@ -26,7 +26,7 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
-            console.dir($scope.apartmentSearch);
+            console.dir($scope.apartmentSearch)
             if ($scope.apartmentSearch.length === 0) {
                 alert('No apartments found!');
             }
@@ -65,10 +65,13 @@ angular.module('UnitApp')
                 displayMaps();
             });
             $scope.apartmentSelected = function(id) {
-                var apartment = lodash.find($scope.apartmentSearch, {
-                    id: id
+                console.dir("HI");
+                var apartment = lodash.find($scope.apartmentSearch, function(apartment){
+                    return apartment.apartmentData.id === id;
                 });
+                console.dir(apartment);
                 if (apartment !== undefined) {
+                    console.dir(apartment);
                     ApartmentGetSetSvc.set(apartment, "apartmentSelected");
                     $state.go('Unit.Details', {
                         id: id

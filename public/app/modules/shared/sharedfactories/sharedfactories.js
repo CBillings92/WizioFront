@@ -80,9 +80,11 @@ angular.module('SharedFactoryApp')
                 var unitList = null;
                 if($state.current.name === "Unit.Details"){
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
+                    console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display"){
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
+                console.dir(unitList);
                 return setMapOptions(unitList);
             };
 

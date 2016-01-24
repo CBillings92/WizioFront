@@ -2,12 +2,11 @@ angular.module('SharedServiceApp')
     .factory('SearchFct', [
         '$sessionStorage',
         '$rootScope',
-        'ApartmentGetSetSvc',
         'ApartmentModel',
         'SearchModel',
         'DescriptionModel',
         'LeaseModel',
-        function($sessionStorage, $rootScope, ApartmentGetSetSvc, ApartmentModel, SearchModel, DescriptionModel, LeaseModel) {
+        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel) {
             var concealAddress = function(response) {
                 for (i = 0; i < response.length; i++) {
                     var left = Math.floor((response[i].concatAddr.charCodeAt(5) / 19) + 4);
@@ -30,8 +29,10 @@ angular.module('SharedServiceApp')
                     var newApartment = ApartmentModel.build(apt);
                     newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
-                    formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
-                    if (apt.Leases.length !== 0) {
+                    if(apt.Descriptions && apt.Descriptions.length !== 0){
+                        formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
+                    }
+                    if (apt.Leases && apt.Leases.length !== 0) {
                         formattedApartmentArray[i].Lease = LeaseModel.build(apt.Leases[0]);
                     }
                 }
@@ -53,7 +54,7 @@ angular.module('SharedServiceApp')
                         //send this new search instance to the backend
                         newSearchInstance.send(function(response) {
                             var formattedSearchResults = formatSearchResults(response);
-                            ApartmentGetSetSvc.set(formattedSearchResults, 'apartmentSearch');
+                            $sessionStorage.apartmentSearch = formattedSearchResults;
                             $rootScope.$broadcast('searchFinished', formattedSearchResults);
                             callback('done');
                         });
@@ -62,7 +63,8 @@ angular.module('SharedServiceApp')
 
             return {
                 search: search,
-                concealAddress: concealAddress
+                concealAddress: concealAddress,
+                formatSearchResults: formatSearchResults
             }
         }
     ]);
