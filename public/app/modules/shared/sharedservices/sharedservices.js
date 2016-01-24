@@ -3,46 +3,45 @@ angular.module('SharedServiceApp')
         '$rootScope',
         '$sessionStorage',
         '$state',
-        'ApartmentGetSetSvc',
         'SearchResource',
         'UnitCreateSvc',
-        function($rootScope, $sessionStorage, $state, ApartmentGetSetSvc, SearchResource, UnitCreateSvc) {
+        function($rootScope, $sessionStorage, $state, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString, unitNum, filters, callback) {
-                //second argument is apartmentparams, which is null.
-                UnitCreateSvc.parseGeocodeData(searchString, {
-                    unitNum: unitNum
-                }, function(err, data) {
-                    if ($state.current.name === 'AdminPanel.Main') {
-                        data.adminSearch = true;
-                    }
-                    data.filters = filters;
-                    //send POST to /api/search with the apartment data for searching
-                    SearchResource.save(data, function(data, status) {
-                        //data is array of apartments we get back from search
-                        if ($state.current.name !== 'AdminPanel.Main') {
-                            for (i = 0; i < data.length; i++) {
-                                var left = Math.floor((data[i].concatAddr.charCodeAt(5) / 19) + 4);
-                                var right = Math.floor((data[i].concatAddr.charCodeAt(3) / 19) + 4);
-                                var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
-                                var houseNumLow = houseNumInt - left;
-                                if (houseNumInt < 15) {
-                                    houseNumLow = 1;
-                                }
-                                var houseNumHigh = houseNumInt + right;
-                                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                                data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
-                            }
-                        }
-
-                        $sessionStorage.apartmentSearch = data;
-                        $rootScope.$broadcast('searchFinished', data);
-                        return callback(null, data);
-                    });
-                });
+            //     //second argument is apartmentparams, which is null.
+            //     UnitCreateSvc.parseGeocodeData(searchString, {
+            //         unitNum: unitNum
+            //     }, function(err, data) {
+            //         if ($state.current.name === 'AdminPanel.Main') {
+            //             data.adminSearch = true;
+            //         }
+            //         data.filters = filters;
+            //         //send POST to /api/search with the apartment data for searching
+            //         SearchResource.save(data, function(data, status) {
+            //             //data is array of apartments we get back from search
+            //             if ($state.current.name !== 'AdminPanel.Main') {
+            //                 for (i = 0; i < data.length; i++) {
+            //                     var left = Math.floor((data[i].concatAddr.charCodeAt(5) / 19) + 4);
+            //                     var right = Math.floor((data[i].concatAddr.charCodeAt(3) / 19) + 4);
+            //                     var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+            //                     var houseNumLow = houseNumInt - left;
+            //                     if (houseNumInt < 15) {
+            //                         houseNumLow = 1;
+            //                     }
+            //                     var houseNumHigh = houseNumInt + right;
+            //                     var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+            //                     data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
+            //                 }
+            //             }
+            //
+            //             $sessionStorage.apartmentSearch = data;
+            //             $rootScope.$broadcast('searchFinished', data);
+            //             return callback(null, data);
+            //         });
+            //     });
+            // }
+            // return {
+            //     searchApartment: searchApartment
             }
-            return {
-                searchApartment: searchApartment
-            };
         }
     ])
     .service('UserRegistrationSvc', [

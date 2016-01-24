@@ -102,18 +102,6 @@ angular.module('UnitApp')
                     }
                 };
             };
-
-            //Chris made this so that the apartment details controller would
-            //display null if there is nothing in the field that is trying to be
-            //displayed.
-            var checkForNulls = function(apartmentField) {
-                if (apartmentField === null) {
-                    return "Unknown";
-                } else {
-                    return apartmentField;
-                }
-            };
-
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 //loop through all object keys and assign "Unkown" to any null values
@@ -126,17 +114,6 @@ angular.module('UnitApp')
                 });
                 //assign result (apartment) to $scope
                 $scope.apartment = result;
-
-                var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) / 19) + 4);
-                var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) / 19) + 4);
-                var houseNumInt = parseInt(($scope.apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
-                var houseNumLow = houseNumInt - left;
-                if (houseNumInt < 15) {
-                    houseNumLow = 1;
-                }
-                var houseNumHigh = houseNumInt + right;
-                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
 
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {

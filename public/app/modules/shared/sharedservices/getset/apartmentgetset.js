@@ -40,30 +40,43 @@ angular.module('SharedServiceApp')
             var reset = function() {
                 apartmentSelected = null;
             };
+            //this is really for making sure we're loading the right apartment data
+            //for a few different cases. User navigates to an apartment, leaves page open
+            // and then navigates to a different apartment on a different tab or page
+            //directly
+            var queryApartment = function() {
+                return new Promise(function(resolve, reject) {
+                    UnitResource.get({
+                        id: apartmentURLID
+                    }, function(apartmentResponse) {
+                        resolve(apartmentResponse);
+                    });
+                });
+            };
             var checkApartment = function(callback) {
                 var apartmentURLID = $stateParams.id;
                 var apartmentInSession = $sessionStorage.apartmentSelected;
                 //check if there is an apartment in session
                 if (!apartmentInSession) {
                     //if no apartment in session, make API call
-                    UnitResource.get({
-                        id: apartmentURLID
-                    }, function(data) {
-                        apartmentSelected = data;
-                        callback(apartmentSelected);
-                    });
+                    queryApartment(apartmentURLID)
+                        .then(function(response) {
+                            console.dir(response);
+                            // SearchFct.formatSearchResults()
+                            callback(response);
+                        });
                 } else {
                     //if the current apartment ID matches the ID in session
-                    if(apartmentURLID == apartmentInSession.id){
+                    if (apartmentURLID == apartmentInSession.id) {
+                        console.dir(apartmentInSession);
                         //return apartment in session.
                         return callback(apartmentInSession);
                     } else {
-                        UnitResource.get({
-                            id: apartmentURLID
-                        }, function(data) {
-                            apartmentSelected = data;
-                            callback(apartmentSelected);
-                        });
+                        queryApartment(apartmentURLID)
+                            .then(function(response) {
+                                console.dir(response);
+                                callback(response);
+                            });
                     }
                 }
 

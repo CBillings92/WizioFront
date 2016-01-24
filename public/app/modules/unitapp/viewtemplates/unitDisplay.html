@@ -88,35 +88,35 @@
                 <span class="apt-tile__cost">${{::apartment.Leases[0].monthlyRent || ' Rent Unavailable'}}</span>
             </div>
             <div class="apt-tile__ammenities">
-                <div class="ammenity" ng-if="apartment.beds">
+                <div class="ammenity" ng-if="apartment.apartmentData.beds">
                     <div class="ammenity__icon w-icon w-bed"></div>
-                    <span class="ammenity__label">{{::apartment.beds}} bed</span>
+                    <span class="ammenity__label">{{::apartment.apartmentData.beds}} bed</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.baths">
+                <div class="ammenity" ng-if="apartment.apartmentData.baths">
                     <div class="ammenity__icon w-icon w-bath"></div>
-                    <span class="ammenity__label">{{::apartment.baths}} bath</span>
+                    <span class="ammenity__label">{{::apartment.apartmentData.baths}} bath</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.laundry">
+                <div class="ammenity" ng-if="apartment.apartmentData.laundry">
                     <div class="ammenity__icon w-icon w-laundry"></div>
                     <span class="ammenity__label">laundry</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.dishwasher">
+                <div class="ammenity" ng-if="apartment.apartmentData.dishwasher">
                     <div class="ammenity__icon w-icon w-dishwasher"></div>
                     <span class="ammenity__label">dishwasher</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.utilities">
+                <div class="ammenity" ng-if="apartment.apartmentData.utilities">
                     <div class="ammenity__icon w-icon w-utilities"></div>
                     <span class="ammenity__label">included</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.pets">
+                <div class="ammenity" ng-if="apartment.apartmentData.pets">
                     <div class="ammenity__icon w-icon w-pets"></div>
                     <span class="ammenity__label">pets</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.elevator">
+                <div class="ammenity" ng-if="apartment.apartmentData.elevator">
                     <div class="ammenity__icon w-icon w-elevator"></div>
                     <span class="ammenity__label">elevator</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.fireplace">
+                <div class="ammenity" ng-if="apartment.apartmentData.fireplace">
                     <div class="ammenity__icon w-icon w-fireplace"></div>
                     <span class="ammenity__label">fireplace</span>
                 </div>
@@ -124,8 +124,8 @@
           </div>
         </div>
         <div class="apt-tile__info">
-          <span class="apt-tile__street">{{::apartment.street }} #{{::apartment.unitNum }}</span>
-          <span class="apt-tile__neighborhood">{{::apartment.neighborhood}}</span>
+          <span class="apt-tile__street">{{::apartment.apartmentData.street }} #{{::apartment.apartmentData.unitNum }}</span>
+          <span class="apt-tile__neighborhood">{{::apartment.apartmentData.neighborhood}}</span>
         </div>
     </div>
 </div>
