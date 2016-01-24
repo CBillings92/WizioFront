@@ -1,3 +1,4 @@
+//Dashboard controller for the landllord app
 angular.module('AccountApp')
     .controller('DashboardLLUnitListCtrl', [
         '$scope',
