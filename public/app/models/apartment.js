@@ -26,7 +26,9 @@ angular.module('Models')
                 leaseExpectedEnd,
                 leaseActualEnd,
                 LandlordId,
-                route
+                route,
+                laundry,
+                elevator
             ) {
                 this.apartmentData = {
                     id: id || null,
@@ -53,6 +55,8 @@ angular.module('Models')
                     leaseActualEnd: leaseActualEnd || null,
                     LandlordId: LandlordId || null,
                     route: route || null,
+                    laundry: laundry || null,
+                    elevator: elevator || null
                 };
             }
             Apartment.prototype.api = function(){
@@ -206,7 +210,9 @@ angular.module('Models')
                     data.leaseExpectedEnd,
                     data.leaseActualEnd,
                     data.LandlordId,
-                    data.route
+                    data.route,
+                    data.laundry,
+                    data.elevator
                 );
             };
 

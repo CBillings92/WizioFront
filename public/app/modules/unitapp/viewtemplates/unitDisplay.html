@@ -85,7 +85,7 @@
                 <span class="apt-tile__favorite-btn">
                     <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                 </span>
-                <span class="apt-tile__cost">${{::apartment.Leases[0].monthlyRent || ' Rent Unavailable'}}</span>
+                <span class="apt-tile__cost">${{::apartment.Lease.leaseData.monthlyRent || ' Rent Unavailable'}}</span>
             </div>
             <div class="apt-tile__ammenities">
                 <div class="ammenity" ng-if="apartment.apartmentData.beds">
@@ -96,9 +96,13 @@
                     <div class="ammenity__icon w-icon w-bath"></div>
                     <span class="ammenity__label">{{::apartment.apartmentData.baths}} bath</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.apartmentData.laundry">
+                <div class="ammenity" ng-if="apartment.apartmentData.laundry === 'In Building'">
                     <div class="ammenity__icon w-icon w-laundry"></div>
-                    <span class="ammenity__label">laundry</span>
+                    <span class="ammenity__label">in building</span>
+                </div>
+                <div class="ammenity" ng-if="apartment.apartmentData.laundry === 'In Unit'">
+                    <div class="ammenity__icon w-icon w-laundry"></div>
+                    <span class="ammenity__label">in unit</span>
                 </div>
                 <div class="ammenity" ng-if="apartment.apartmentData.dishwasher">
                     <div class="ammenity__icon w-icon w-dishwasher"></div>
@@ -112,7 +116,7 @@
                     <div class="ammenity__icon w-icon w-pets"></div>
                     <span class="ammenity__label">pets</span>
                 </div>
-                <div class="ammenity" ng-if="apartment.apartmentData.elevator">
+                <div class="ammenity" ng-if="apartment.apartmentData.elevator !== 'No'">
                     <div class="ammenity__icon w-icon w-elevator"></div>
                     <span class="ammenity__label">elevator</span>
                 </div>
