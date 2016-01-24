@@ -113,7 +113,7 @@ angular.module('MainApp')
                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.AccountAuthViewsURL + 'sendResetEmail.html',
-                            controller: 'AuthLoginCtrl'
+                            controller: 'AuthLoginModalCtrl'
                         }
                     },
                     data: falseRequiredLogin
