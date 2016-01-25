@@ -177,14 +177,14 @@ angular.module('MainApp')
                         },
                         midHorizontal: {
                             templateProvider: function(TokenSvc, $templateFactory) {
-                                if(TokenSvc.decode().userType == 2){
+                                if (TokenSvc.decode().userType == 2) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
                                 } else {
                                     return null;
                                 }
                             },
                             controllerProvider: function($rootScope) {
-                                if($rootScope.userType == 2){
+                                if ($rootScope.userType == 2) {
                                     return 'DashboardLLUnitListCtrl';
                                 } else {
                                     return null;
@@ -193,12 +193,12 @@ angular.module('MainApp')
                         },
                         application: {
                             templateProvider: function(TokenSvc, $templateFactory) {
-                                if(TokenSvc.decode().userType == 1){
+                                if (TokenSvc.decode().userType == 1) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
                                 }
                             },
                             controllerProvider: function($rootScope) {
-                                if($rootScope.userType == 1){
+                                if ($rootScope.userType == 1) {
                                     return 'DashboardApplicationCtrl';
                                 } else {
                                     return null;
@@ -207,7 +207,7 @@ angular.module('MainApp')
                         },
                         favorites: {
                             templateProvider: function(TokenSvc, $templateFactory) {
-                                if(TokenSvc.decode().userType == 1){
+                                if (TokenSvc.decode().userType == 1) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
                                 } else {
                                     return null;
@@ -240,9 +240,9 @@ angular.module('MainApp')
                 })
                 .state('Account.Lease', {
                     abstract: true,
-                    url:'/lease',
+                    url: '/lease',
                     views: {
-                        AccountMain:{
+                        AccountMain: {
                             templateUrl: WizioConfig.leaseMainViewsURL + 'leasemain.html',
                             controller: 'LeaseMainCtrl'
                         }
@@ -484,7 +484,7 @@ angular.module('MainApp')
                                 $injector.get('$state').transitionTo('Login');
                             }
                             return response;
-                            //                            return $q.reject(response);
+                            //return $q.reject(response);
                         }
 
                     };

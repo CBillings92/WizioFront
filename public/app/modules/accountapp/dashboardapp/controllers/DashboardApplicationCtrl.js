@@ -18,6 +18,7 @@ angular.module('AccountApp')
                     $scope.applications = lodash.values(buildingApplications);
                     if ($scope.applications.length > 0) {
                         $scope.applicationsExist = true;
+                        console.dir($scope.applications);
                     }
                 } else {
                     $scope.applicationsExist = false;
@@ -26,7 +27,8 @@ angular.module('AccountApp')
             $scope.removeFromApplication = function(value) {
                 var dataPasser = {
                     ApplicationId: $scope.applications[value][0].ApplicationId,
-                    UserId: user.id
+                    concatAddr: $scope.applications[value][0].Apartment.concatAddr,
+                    UserId: user.id,
                 };
                 ApplicationResource.flex.save({
                     item: 'user',
