@@ -64,6 +64,7 @@ angular.module('AccountApp')
 
                 };*/
             $scope.sendResetEmail = function() {
+                console.log("This gets hit. Chris Canal hit that");
                 var emailobj = {};
                 emailobj.email = $scope.email;
                 AuthResetPasswordResource.save(emailobj, function(responseObj) {

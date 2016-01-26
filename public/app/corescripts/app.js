@@ -18,7 +18,6 @@
     angular.module('UnitApp', []);
     angular.module('FooterApp', []);
     angular.module('Models', []);
-
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -108,7 +107,6 @@
                                         facebook: true
                                     };
                                     AuthFct.signin(fbData, function(data, status) {
-
                                         //do stuff with data?
                                         if (status === 403) {
                                             $rootScope.isLoggedIn = false;
