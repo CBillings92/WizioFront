@@ -34,7 +34,7 @@ angular.module('UnitApp')
             WizioConfig,
             SearchFct
         ) {
-
+            $scope.apartment = {};
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
             //FIXME
@@ -102,41 +102,28 @@ angular.module('UnitApp')
                     }
                 };
             };
-
-            //Chris made this so that the apartment details controller would
-            //display null if there is nothing in the field that is trying to be
-            //displayed.
-            var checkForNulls = function(apartmentField) {
-                if (apartmentField === null) {
-                    return "Unknown";
-                } else {
-                    return apartmentField;
-                }
-            };
-
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
-                //loop through all object keys and assign "Unkown" to any null values
-                result = lodash.mapValues(result, function(apartmentField) {
+                /*
+                    loop through all object keys and assign "Unkown" to any null values
+                    remove the apartment object from the array. was only in array
+                    for the formatSearchResults function in SearchFct
+                */
+                console.dir(result);
+                result = result[0];
+                newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
                         return "Unknown";
                     } else {
                         return apartmentField;
                     }
                 });
+                result.apartmentData = newApartmentData;
+                console.dir(result);
                 //assign result (apartment) to $scope
-                $scope.apartment = result;
-
-                var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) / 19) + 4);
-                var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) / 19) + 4);
-                var houseNumInt = parseInt(($scope.apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
-                var houseNumLow = houseNumInt - left;
-                if (houseNumInt < 15) {
-                    houseNumLow = 1;
-                }
-                var houseNumHigh = houseNumInt + right;
-                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
+                $scope.apartment = result.apartmentData;
+                console.dir($scope.apartment);
+                $scope.listing = result.Lease ? result.Lease.leaseData : false;
 
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {
@@ -146,8 +133,7 @@ angular.module('UnitApp')
                     }
                 }
 
-                $sessionStorage.apartmentSelected = $scope.apartment;
-                $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
+                // $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
 
                 //create the google maps
                 var mapOptions = MapFct.makeMap();

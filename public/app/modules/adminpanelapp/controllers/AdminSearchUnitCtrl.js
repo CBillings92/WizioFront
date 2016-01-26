@@ -1,9 +1,8 @@
 angular.module('AdminPanelApp')
 .controller('AdminSearchUnitCtrl', [
     '$scope',
-    'ApartmentSearchSvc',
     'SmartSearchSvc',
-    function ($scope, ApartmentSearchSvc, SmartSearchSvc) {
+    function ($scope, SmartSearchSvc) {
         $scope.filters = {
             beds: null,
             baths: null,
@@ -15,9 +14,10 @@ angular.module('AdminPanelApp')
             //pass in search string
             //SECOND ARG IS UNIT NUM
             //THIRD ARG FILTERS
-            ApartmentSearchSvc.searchApartment($scope.searchString, $scope.unitNum, $scope.filters, function(err, data){
-                $scope.$emit('passToSiblingAdminApp', {name:'updateUnitData', data: data});
-            });
+            //FIXME needs new search functionality
+            // ApartmentSearchSvc.searchApartment($scope.searchString, $scope.unitNum, $scope.filters, function(err, data){
+            //     $scope.$emit('passToSiblingAdminApp', {name:'updateUnitData', data: data});
+            // });
         };
         //smart search/typeahead functionality
         $scope.getLocation = function(val) {

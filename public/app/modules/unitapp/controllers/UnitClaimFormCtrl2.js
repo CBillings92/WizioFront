@@ -74,7 +74,8 @@ angular.module('UnitApp')
                 //build a new Apartment instance with it
                 var newApartment = ApartmentModel.build(unitAddressInfo);
                 //call the getGeocodeData prototype function to get all needed geocoded data
-                newApartment.getGeocodeData(function(response){
+                newApartment.getGeocodeData()
+                    .then(function(response){
                     newApartment.api().findOrCreate(null, function(response){
                         console.dir(response);
                         return;

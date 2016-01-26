@@ -6,7 +6,7 @@ angular.module('Models')
         'WizioConfig',
         'UnitCreateSvc',
         function($sessionStorage, $resource, lodash, WizioConfig, UnitCreateSvc) {
-            function Apartment(street, unitNum, neighborhood,
+            function Apartment(id, street, unitNum, neighborhood,
                 locality,
                 administrative_area_level_3,
                 state,
@@ -26,9 +26,12 @@ angular.module('Models')
                 leaseExpectedEnd,
                 leaseActualEnd,
                 LandlordId,
-                route
+                route,
+                laundry,
+                elevator
             ) {
                 this.apartmentData = {
+                    id: id || null,
                     street: street || null,
                     unitNum: unitNum || null,
                     neighborhood: neighborhood || null,
@@ -52,6 +55,8 @@ angular.module('Models')
                     leaseActualEnd: leaseActualEnd || null,
                     LandlordId: LandlordId || null,
                     route: route || null,
+                    laundry: laundry || null,
+                    elevator: elevator || null
                 };
             }
             Apartment.prototype.api = function(){
@@ -93,12 +98,15 @@ angular.module('Models')
             };
             Apartment.prototype.getGeocodeData = function(callback){
                 var apartmentData = this.apartmentData;
-                UnitCreateSvc.parseGeocodeData(this.apartmentData.concatAddr, null, function(err, response){
-                    for(var key in response){
-                        apartmentData[key] = response[key];
-                    }
-                    callback('done');
+                return new Promise(function(resolve, reject){
+                    UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
+                        for(var key in response){
+                            apartmentData[key] = response[key];
+                        }
+                        resolve('done');
+                    });
                 });
+
             };
             Apartment.prototype.duplicate = function(){
                 var duplicate = {};
@@ -116,6 +124,18 @@ angular.module('Models')
                     // this.apartmentData.Descriptions.UserId
                 }
             };
+            Apartment.prototype.concealAddress = function(){
+                var left = Math.floor((this.apartmentData.concatAddr.charCodeAt(5) /19) + 4);
+                    var right = Math.floor((this.apartmentData.concatAddr.charCodeAt(3) /19) + 4);
+                    var houseNumInt = parseInt((this.apartmentData.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+                    var houseNumLow = houseNumInt - left;
+                    if(houseNumInt < 15){
+                        houseNumLow = 1;
+                    }
+                    var houseNumHigh = houseNumInt + right;
+                    var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+                    this.apartmentData.concatAddr = houseNumRange + this.apartmentData.concatAddr.replace(/^\d+/, '');
+            }
             // Apartment.prototype.api = function() {
             //     return {
             //         oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')
@@ -139,6 +159,7 @@ angular.module('Models')
             Apartment.copyGeocodedData = function(ApartmentIntstance){
                 var oldData = ApartmentIntstance.apartmentData;
                 return new Apartment(
+                    oldData.id,
                     oldData.street,
                     null,
                     oldData.neighborhood,
@@ -166,6 +187,7 @@ angular.module('Models')
             };
             Apartment.build = function(data) {
                 return new Apartment(
+                    data.id,
                     data.street,
                     data.unitNum,
                     data.neighborhood,
@@ -188,7 +210,9 @@ angular.module('Models')
                     data.leaseExpectedEnd,
                     data.leaseActualEnd,
                     data.LandlordId,
-                    data.route
+                    data.route,
+                    data.laundry,
+                    data.elevator
                 );
             };
 
