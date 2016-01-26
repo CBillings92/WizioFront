@@ -89,7 +89,7 @@ angular.module('Models')
                         });
                     }
 
-                }
+                };
             };
             Apartment.prototype.getGeocodeData = function(callback){
                 var apartmentData = this.apartmentData;

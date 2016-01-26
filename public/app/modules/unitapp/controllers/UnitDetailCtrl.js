@@ -15,6 +15,7 @@ angular.module('UnitApp')
         'FavoriteModel',
         'ModalSvc',
         'WizioConfig',
+        'SearchFct',
         function(
             $scope,
             $state,
@@ -30,7 +31,8 @@ angular.module('UnitApp')
             RerouteGetSetSvc,
             FavoriteModel,
             ModalSvc,
-            WizioConfig
+            WizioConfig,
+            SearchFct
         ) {
 
             // MediaTabs

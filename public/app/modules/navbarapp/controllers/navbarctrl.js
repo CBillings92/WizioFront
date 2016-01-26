@@ -6,12 +6,16 @@ angular.module('NavbarApp')
         '$state',
         '$http',
         '$modal',
+        '$sessionStorage',
         'ApartmentSearchSvc',
+        'ApartmentModel',
+        'SearchModel',
+        'SearchFct',
         'AuthFct',
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $http, $modal, $sessionStorage, ApartmentSearchSvc, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.filters = {
                 beds: null,
@@ -61,9 +65,12 @@ angular.module('NavbarApp')
                     return;
                 });
             };
-            $scope.search = function() {
-                //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+            $scope.search = function(){
+                //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                SearchFct.search(data, $scope.filters, function(response){
                     $state.go('Unit.Display');
                 });
 
