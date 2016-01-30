@@ -202,7 +202,7 @@ angular.module('SharedServiceApp')
                             $modalInstance.close(result);
                         };
                         $scope.modalOptions.close = function(result) {
-                            $modalInstance.dismiss('cancel');
+                            $modalInstance.close('cancel');
                         };
                     };
                 }
