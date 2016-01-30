@@ -4,6 +4,7 @@ public/build/styles.css
 public/build/stylessass.css
 public/stylesheets/compiledsass/stylessass.css
 
+npm-debug.log
 .elasticbeanstalk/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
