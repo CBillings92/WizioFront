@@ -79,7 +79,15 @@ angular.module('AccountApp')
                                 action: 'remove'
                             }, dataPasser, function(data, status) {
                                 $scope.applications.splice(value);
-                                alert("Removed from application");
+
+                                var userRemovedModalOptions = {
+                                    closeButtonText: "Close",
+                                    actionButtonText: "OK",
+                                    headerText: "User Removal",
+                                    bodyText: 'You have been removed from this application. Thanks for using Wizio!'
+                                };
+                                ModalSvc.showModal({}, userRemovedModalOptions)
+                                    .then(function(result) {})
                             });
                         };
                     })
