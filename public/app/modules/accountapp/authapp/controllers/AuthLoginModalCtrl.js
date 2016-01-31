@@ -118,6 +118,11 @@ angular.module('AccountApp')
                     alert("Passwords do not match");
                 }
             };
+            $scope.forgotPassword = function() {
+                $state.go('SendResetEmail');
+                return $modalInstance.close('ok');
+            }
+
             $scope.requestLogin = function() {
                 var userData = {
                     email: $scope.email,
