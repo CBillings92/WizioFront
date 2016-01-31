@@ -7,10 +7,11 @@ angular.module('UnitApp')
         'ApartmentGetSetSvc',
         'ApartmentModel',
         'SearchModel',
+        'ModalSvc',
         'SearchFct',
         'SmartSearchSvc',
         'MapFct',
-        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentModel, SearchModel, SearchFct, SmartSearchSvc, MapFct) {
+        function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentModel, SearchModel, ModalSvc, SearchFct, SmartSearchSvc, MapFct) {
             //houses the map and marker creation functionality
             var displayMaps = function displayMaps() {
                 var mapOptions = MapFct.makeMap();
@@ -28,7 +29,14 @@ angular.module('UnitApp')
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
             console.dir($scope.apartmentSearch)
             if ($scope.apartmentSearch.length === 0) {
-                alert('No apartments found!');
+                var noSearchResultsModalOptions = {
+                    closeButtonText: "Close",
+                    actionButtonText: "OK",
+                    headerText: "No Listings Found",
+                    bodyText: 'Unfortunatly, we could not find any listings that met your specified criteria. Pleasse try broadening your search parameters.'
+                };
+                ModalSvc.showModal({}, noSearchResultsModalOptions)
+                    .then(function(result) {})
             }
             $scope.mapshow = true;
             $scope.maphidden = false;
@@ -77,7 +85,14 @@ angular.module('UnitApp')
                         id: id
                     });
                 } else {
-                    alert('Error: Apartment not loaded properly. Please try searching again');
+                    var aptLoadErrorModalOptions = {
+                        closeButtonText: "Close",
+                        actionButtonText: "OK",
+                        headerText: "Listing Load Error",
+                        bodyText: 'There was an error loading the page you requested. Please try again, or start your search over.'
+                    };
+                    ModalSvc.showModal({}, aptLoadErrorModalOptions)
+                        .then(function(result) {})
                 }
             };
             $scope.search = function() {
