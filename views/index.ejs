@@ -2,31 +2,38 @@
 <html ng-app="MainApp">
 
 <head>
-    <title>Wizio!</title>
+    <title>Wizio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap and LESS -->
-    <link href="../public/build/styles.css" rel="stylesheet">
-    <link href="../public/stylesheets/siteCSSforTesting/mapTest.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+   <!--  <link href="../public/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+
+    <!-- Styles -->
+    <link href="../public/build/stylessass.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'>
 
     <!--jquery-->
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <!--angularJS-->
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
     <!--angular Resource-->
-    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
     <!--angular ui.router-->
-    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <!--bootstrap JS-->
-    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!--angular lodash-->
-    <script type="text/javascript" src="../bower_components/ng-lodash/build/ng-lodash.js"></script>
+    <script type="text/javascript" src="../bower_components/ng-lodash/build/ng-lodash.min.js"></script>
+    <script type="text/javascript" src="../bower_components/ngSanitize/index.js"></script>
     <!--angular storage-->
-    <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.js"></script>
+    <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.min.js"></script>
     <!--angular jwt-->
-    <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
     <!--angular bootstrap ui-->
-    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <!--Stuff for the AWS upload controller-->
     <script src="../bower_components/toastr/build/toastr.min.js"></script>
     <script src="../bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
@@ -36,149 +43,183 @@
     <script type="text/javascript" src="../bower_components/ng-facebook/ngFacebook.js"></script>
 
     <script type="text/javascript" src="../bower_components/jasmine-core/lib/jasmine-core.js"></script>
+    <!--
+    <script type="text/javascript" src="../public/build/scripts.js"></script>
+-->
+    <!-- ===================================CORE SCRIPTS APP======================================-->
 
-
-<!-- ===================================CORE SCRIPTS APP======================================-->
-    <!--custom JS-->
-    <!-- app.js-->
     <script type="text/javascript" src="/app/corescripts/app.js"></script>
-    <!--config JS-->
     <script type="text/javascript" src="/app/corescripts/config.js"></script>
-    <!--routes.js-->
     <script type="text/javascript" src="/app/corescripts/routes.js"></script>
-<!-- =================================================================================-->
 
-    <!--landing page controller-->
-    <script type="text/javascript" src="/app/modules/LandingPageApp/controllers/landingpagectrl.js"></script>
-    <!--AWS Upload controller-->
-    <script type="text/javascript" src="/app/modules/AmazonS3UploadApp/amazons3uploadctrl.js"></script>
-    <!--AWS Upload directive-->
-    <script type="text/javascript" src="/app/modules/AmazonS3UploadApp/amazons3uploaddirectives.js"></script>
-    <!--navbar controller-->
-    <script type="text/javascript" src="/app/modules/navbarapp/controllers/NavbarCtrl.js"></script>
-    <!--apartment display controller-->
-    <script type="text/javascript" src="/app/modules/UnitApp/controllers/UnitDisplayCtrl.js"></script>
-<!-- =================================================================================-->
-<!-- ===================================SHARED APP======================================-->
-    <script type="text/javascript" src="/app/modules/shared/sharedFactories/sharedFactories.js"></script>
-    <script type="text/javascript" src="/app/modules/shared/sharedFactories/sharedResources.js"></script>
-    <script type="text/javascript" src="/app/modules/shared/sharedServices/sharedServices.js"></script>
-    <script type="text/javascript" src="/app/modules/shared/sharedServices/getset/apartmentgetset.js"></script>
-    <script type="text/javascript" src="/app/modules/shared/sharedServices/getset/flexgetset.js"></script>
-<!-- =================================================================================-->
-<!-- ===================================ACCOUNT APP======================================-->
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/factories/resources.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/factories/factories.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/main/AccountMainCtrl.js"></script>
-    <!--login controller-->
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/controllers/AuthLoginCtrl.js"></script>
-    <!--account creation controller-->
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/controllers/AuthCreateAcctCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/controllers/AuthCreateAcctModalCtrl.js"></script>
-    <!--Dashboard App-->
-    <script type="text/javascript" src="/app/modules/AccountApp/dashboardapp/controllers/DashboardMainCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/dashboardapp/controllers/DashboardUserInfoCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/authapp/factories/services.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/dashboardapp/resources/resources.js"></script>
+    <script type="text/javascript" src="/app/modules/landingpageapp/controllers/landingpagectrl.js"></script>
+    <script type="text/javascript" src="/app/modules/amazons3uploadapp/amazons3uploadctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/amazons3uploadapp/amazons3uploaddirectives.js"></script>
+    <script type="text/javascript" src="/app/modules/navbarapp/controllers/navbarctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/main/UnitMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitDisplayCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitVerifyModalCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitClaimFormCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitClaimFormCtrl2.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/services/unitfct.js"></script>
+
+    <script type="text/javascript" src="/app/modules/shared/sharedfactories/sharedfactories.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedfactories/sharedresources.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/sharedservices.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/searchfct.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/apartmentgetset.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/apartmentclaimgetset.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/flexgetset.js"></script>
+    <script type="text/javascript" src="/app/modules/shared/sharedservices/getset/reroutegetset.js"></script>
+
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/factories/resources.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/factories/factories.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/main/AccountMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthLoginModalCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AccountTypeModalCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthCreateAcctModalCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/controllers/AuthResetPassCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardControlsCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/AddTenantsToLeaseCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardUserInfoCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardLLUnitListCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardApplicationCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/DashboardFavoriteCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/controllers/AddTenantsToLeaseCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/authapp/factories/services.js"></script>
+    <script type="text/javascript" src="/app/modules/accountapp/dashboardapp/resources/resources.js"></script>
 
 
-<!-- =================================================================================-->
-<!-- ===================================UNIT APP======================================-->
-    <!--apartment resource-->
-    <script type="text/javascript" src="/app/modules/UnitApp/UnitResource.js"></script>
-    <script type="text/javascript" src="/app/modules/UnitApp/UnitServices.js"></script>
+
+
+    <script type="text/javascript" src="/app/modules/footerapp/controllers/footerctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/UnitResource.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/UnitServices.js"></script>
     <!--apartment controller-->
-    <script type="text/javascript" src="/app/modules/UnitApp/controllers/UnitCreateCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/UnitApp/controllers/UnitDetailCtrl.js"></script>
-<!-- =================================================================================-->
-<!-- ===================================APPLICATION APP======================================-->
-    <script type="text/javascript" src="/app/modules/ApplicationApp/WaitlistApp/controllers/WaitlistCreateModalCtrl.js"></script>
-    <script type="text/javascript" src="app/modules/ApplicationApp/applicationresource.js"></script>
-    <script type="text/javascript" src="app/modules/ApplicationApp/ApplicationFormApp/controllers/applicationformctrl.js"></script>
-<!-- =================================================================================-->
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitCreateCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/unitapp/controllers/UnitDetailCtrl.js"></script>
+    <script type="text/javascript" src="/app/models/favorite.js"></script>
+    <script type="text/javascript" src="/app/modules/applicationapp/applicationformapp/controllers/ApplicationCreateModalCtrl.js"></script>
+    <script type="text/javascript" src="app/modules/applicationapp/resources/applicationresource.js"></script>
+    <script type="text/javascript" src="app/modules/applicationapp/applicationformapp/controllers/applicationformctrl.js"></script>
+    <script type="text/javascript" src="app/modules/applicationapp/applicationformapp/controllers/ApplicationOverviewCtrl.js"></script>
+    <script type="text/javascript" src="app/modules/applicationapp/applicationformapp/controllers/ApplicationDetailCtrl.js"></script>
+    <script type="text/javascript" src="app/modules/applicationapp/applicationformapp/controllers/NewOwnerSelectModalCtrl.js"></script>
 
-<!-- ===================================PROFILE APP======================================-->
-    <!--NEW FORMAT INJECTIONS -->
-    <!--SELLER APPLICATION-->
-    <!--Profile App-->
-    <script type="text/javascript" src="/app/modules/AccountApp/profileapp/controllers/profileformctrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/profileapp/controllers/profilesavemodalctrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/profileapp/controllers/profilecreatemodalctrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/profileapp/controllers/profileexistsmodalctrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AccountApp/profileapp/resources/profileresource.js"></script>
-<!-- =================================================================================-->
+    <script type="text/javascript" src="app/modules/accountapp/extendedprofileapp/main/extprofilemainctrl.js"></script>
+    <script type="text/javascript" src="app/modules/accountapp/extendedprofileapp/controllers/extprofileformctrl.js"></script>
 
-<!-- ===================================CAMPAIGN APP======================================-->
-    <script type="text/javascript" src="/app/modules/CampaignApp/main/CampaignMainCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/controllers/VideoUploadMainCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/controllers/VideoUploadSplashCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/controllers/VideoUploadModalCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/CampaignApp/videouploadapp/services/services.js"></script>
-<!--=======================================================================================-->
-<!-- ===================================ADMIN PANEL APP======================================-->
-    <script type="text/javascript" src="/app/modules/AdminPanelApp/main/AdminPanelMainCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminUpdateUnitCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminSearchUnitCtrl.js"></script>
-    <script type="text/javascript" src="/app/modules/AdminPanelApp/controllers/AdminUpdateAssignmentCtrl.js"></script>
-    <script type="text/javascript" src='app/modules/AdminPanelApp/resources.js'>
+    <script type="text/javascript" src="app/modules/leaseapp/main/leasemainctrl.js"></script>
+    <script type="text/javascript" src="app/modules/leaseapp/controllers/leaseformctrl.js"></script>
+    <script type="text/javascript" src="app/modules/leaseapp/services/leasefct.js"></script>
 
+    <script type="text/javascript" src="/app/modules/campaignapp/main/CampaignMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/campaignapp/videouploadapp/controllers/VideoUploadMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/campaignapp/videouploadapp/controllers/VideoUploadSplashCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/campaignapp/videouploadapp/controllers/VideoUploadModalCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/campaignapp/videouploadapp/services/services.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/main/AdminPanelMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/controllers/AdminUpdateUnitCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/controllers/AdminSearchUnitCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/controllers/AdminUpdateAssignmentCtrl.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/controllers/admincreateunitctrl.js"></script>
+    <script type="text/javascript" src="/app/modules/adminpanelapp/controllers/admincreateassignmentctrl.js"></script>
+    <script type="text/javascript" src='app/modules/adminpanelapp/resources.js'>
     </script>
-<!--=======================================================================================-->
 
-<!-- ===================================BLOG APP======================================-->
-    <script type="text/javascript" src="/app/modules/BlogApp/controllers/BlogMain.js"></script>
-    <script type="text/javascript" src="/app/modules/BlogApp/controllers/BlogListCtrl.js"></script>
-    <link href="../public/stylesheets/blogStyle.css" rel="stylesheet">
-<!--=======================================================================================-->
+    <script type="text/javascript" src="/app/modules/aboutusapp/controllers/AboutMain.js"></script>
+    <script type="text/javascript" src="/app/modules/aboutusapp/controllers/AboutListCtrl.js"></script>
 
-<!-- ===================================ABOUT US APP======================================-->
-    <script type="text/javascript" src="/app/modules/aboutUsApp/controllers/AboutMain.js"></script>
-    <script type="text/javascript" src="/app/modules/aboutUsApp/controllers/AboutListCtrl.js"></script>
-<!--=======================================================================================-->
+    <script type="text/javascript" src="/app/models/description.js"></script>
+    <script type="text/javascript" src="/app/models/apartment.js"></script>
+    <script type="text/javascript" src="/app/models/profile.js"></script>
+    <script type="text/javascript" src="/app/models/assignment.js"></script>
+    <script type="text/javascript" src="/app/models/lease.js"></script>
+    <script type="text/javascript" src="/app/models/application.js"></script>
+    <script type="text/javascript" src="/app/models/search.js"></script>
+    <script type="text/javascript" src="/app/models/media.js"></script>
 
+
+    <link rel="apple-touch-icon" sizes="57x57" href="public/viewtemplates/images/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="public/viewtemplates/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="public/viewtemplates/images/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="public/viewtemplates/images/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="public/viewtemplates/images/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="public/viewtemplates/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="public/viewtemplates/images/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="public/viewtemplates/images/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="public/viewtemplates/images/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="public/viewtemplates/images/favicons/manifest.json">
+    <link rel="mask-icon" href="public/viewtemplates/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="public/viewtemplates/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="public/viewtemplates/images/favicons/mstile-144x144.png">
+    <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#fa9a29">
+    <!--=======================================================================================-->
 
     <!--Settings App-->
     <!--BUYER APPLICATION-->
-    <!--APPLICATION APP -->
+    <!--ANALTICS APP -->
 
     <!-- APPLICATION APP END -->
     <!-- SELLER APPLICATION END-->
+    <script src="/bower_components/angulartics/dist/angulartics.min.js"></script>
+    <script src="/bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js"></script>
 
     <!--ACCOUNT JAVASCRIPT END-->
 
     <!--GOOGLE API STUFF-->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp?key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>  -->
-<!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false" type="text/javascript"></script>  Might not need components-->
+    <!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false" type="text/javascript"></script>  Might not need components-->
 </head>
 <!-- Start of Async HubSpot Analytics Code -->
- <script type="text/javascript">
-   (function(d,s,i,r) {
-     if (d.getElementById(i)){return;}
-     var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
-     n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/1721151.js';
-     e.parentNode.insertBefore(n, e);
-   })(document,"script","hs-analytics",300000);
- </script>
+<script type="text/javascript">
+    (function(d, s, i, r) {
+        if (d.getElementById(i)) {
+            return;
+        }
+        var n = d.createElement(s),
+            e = d.getElementsByTagName(s)[0];
+        n.id = i;
+        n.src = '//js.hs-analytics.net/analytics/' + (Math.ceil(new Date() / r) * r) + '/1721151.js';
+        e.parentNode.insertBefore(n, e);
+    })(document, "script", "hs-analytics", 300000);
+</script>
 <!-- End of Async HubSpot Analytics Code -->
 <!-- Start of Google Analytics Code -->
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-  ga('create', 'UA-69688409-1', 'auto');
-  ga('send', 'pageview');
-
+    ga('create', 'UA-69688409-1', 'none');
+    // ga('send', 'pageview');
 </script>
 <!-- End of Google Analytics Code -->
 
-<body class="bckcolor">
+<body>
     <div ui-view="navbar">
+    </div>
+    <div ui-view="maincontent" class="">
 
     </div>
-    <div ui-view="maincontent">
+    <div ui-view="footer">
 
     </div>
 </body>

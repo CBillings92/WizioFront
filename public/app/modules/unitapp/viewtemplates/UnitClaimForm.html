@@ -1,0 +1,108 @@
+<div class="">
+    <h2>Apartment Claims</h2>
+</div>
+<div class="">
+    <ol>
+        <li>Enter an Apartment Address</li>
+        <li>Enter All Unit Numbers at That Address</li>
+        <li>Search!</li>
+    </ol>
+    <form action="index.html" class="" method="post">
+        <div class="" ng-repeat="address in apartmentArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+            <label class="control-label" style="padding-top:10px;">Apartment Address</label>
+            <input
+                class="form-control"
+                ng-blur="addressEntered($index)"
+                ng-model="address.address"
+                type="text"
+                typeahead-loading="loadingLocations"
+                typeahead-min-length="5"
+                typeahead-no-results="noResults"
+                typeahead="address for address in getLocation($viewValue)"
+            />
+            <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+            <div ng-show="noResults">
+                <i class="glyphicon glyphicon-remove"></i>
+                No Results Found
+            </div>
+            <label class="control-label" for="" style="padding-top:10px;">Unit Number(s)</label>
+            <div class="">
+                <div class="" ng-repeat="unit in address track by $index">
+                    <div class="col-md-12" style="padding:10px; border-bottom:1px solid black;">
+                        <h4>Address:
+                            {{address.address}}</h4>
+                        <label class="control-label">Unit Num:</label>
+                        <input class="form-control col-md-4" ng-blur="unitEntered($parent.$index, $index)" ng-model="unit.unitNum" type="text"/>
+                        <form class="">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Beds</label>
+                                        <select class="form-control" name="" ng-model="unit.beds" ng-options="bed for bed in selectOptions.beds"></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Baths</label>
+                                        <select class="form-control" name="" ng-model="unit.baths" ng-options="baths for baths in selectOptions.baths"></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Living Spaces</label>
+                                        <select class="form-control" name="" ng-model="unit.livingSpaces" ng-options="livingSpaces for livingSpaces in selectOptions.livingSpaces"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Cost Per Month</label>
+                                        <input class="form-control" ng-model="unit.costPerMonth" name="name" type="text" value="{{unit.costPerMonth}}">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Utilities Included</label>
+                                        <div class="" ng-repeat="utility in selectOptions.utilities">
+                                            <div class="col-md-3">
+                                                <label class="" for="">
+                                                    {{utility}}:
+                                                    <input class="" name="name" type="checkbox" value="">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Laundry In Unit</label>
+                                        <select class="form-control" name="" ng-model="unit.laundry" ng-options="laundry for laundry in selectOptions.laundry"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="control-label">Pets</label>
+                                        <select class="form-control" name="" ng-model="unit.pets" ng-options="pets for pets in selectOptions.pets"></select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">Elevator</label>
+                                        <select class="form-control" name="" ng-model="unit.elevator" ng-options="elevator for elevator in selectOptions.elevator"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Description</label>
+                                        <textarea name="name" ng-model="unit.Descriptions.description" class="form-control" rows="4" cols="160"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <button class="btn" name="button" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
+                    <button class="btn" name="button" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                </div>
+            </div>
+            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">Add Single Unit</button>
+            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button>
+        </div>
+        <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button>
+        <button type="button" class="btn" name="button" ng-click="submit()">Submit</button>
+    </form>
+</div>

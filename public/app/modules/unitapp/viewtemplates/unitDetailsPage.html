@@ -1,0 +1,143 @@
+<div class="unit-details">
+    <div class="container unit-details-header">
+        <div class="unit-details-action-btn-wrapper">
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+                <span class="hidden-xs"> to favorites</span>
+            </button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
+                <span class="hidden-xs"> from favorites</span>
+            </button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-hide="applied"><i class="fa fa-check"></i> Apply
+            </button>
+        </div>
+        <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
+    </div>
+    <div class="container unit-details-media-container">
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'neighborhood'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
+            </div>
+        </div>
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'map'">
+            <div id="map"></div>
+            <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+            </div>
+        </div>
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrphoto[0].link)}} width="640"></iframe>
+            </div>
+        </div>
+        <ul class="unit-details-media-container-tabs">
+            <li>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Unit Videos</button>
+            </li>
+            <li>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'neighborhood'}" ng-click="selectMediaTab('neighborhood')">Neighborhood</button>
+            </li>
+            <li>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
+            </li>
+        </ul>
+        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
+            <div class="unit-details-media-tab-content-picker-slider-scroller">
+                <div class="unit-details-media-tab-content-picker-slider">
+                    <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
+                        <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" />
+                    </div>
+                </div>
+            </div>
+            <div class="unit-details-media-tab-content-picker-forward" ng-show="sliderCanGoForward">
+                <i class="fa fa-chevron-right" ng-click="moveSliderForward()"></i>
+            </div>
+            <div class="unit-details-media-tab-content-picker-backward" ng-show="sliderCanGoBackward">
+                <i class="fa fa-chevron-left" ng-click="moveSliderBackward()"></i>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="unit-details-info">
+                    <h3 class="unit-details__orange unit-details-info__price">${{listing.monthlyRent}}</h3>
+                    <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
+                    <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
+                    <p class="unit-details-info__updated">last updated 2 days ago</p>
+                </div>
+                <div class="row unit-details-features">
+                    <div class="col-xs-3 unit-details-feature">
+                        <img src="public\assets\icons\bed-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">{{::apartment.beds}} Bed</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature">
+                        <img src="public\assets\icons\bath-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">{{apartment.baths}} Bath</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature" ng-if="apartment.laundry === 'In Building'">
+                        <img src="public\assets\icons\laundry-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">In Building</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature" ng-if="apartment.laundry === 'In Unit'">
+                        <img src="public\assets\icons\laundry-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">In Unit</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature">
+                        <img src="public\assets\icons\dishwasher-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">Dishwasher</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature">
+                        <img src="public\assets\icons\utilities-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">Included</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature" ng-show="listing.pets">
+                        <img src="public\assets\icons\pets-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">{{listing.pets}}</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.elevator">
+                        <img src="public\assets\icons\elevator-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">Elevator</p>
+                    </div>
+                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.pets">
+                        <img src="public\assets\icons\fireplace-black.svg" class="unit-details-feature__icon" alt="" />
+                        <p class="unit-details-feature__desc">Fireplace</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 unit-details-description">
+                <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
+                <p>
+                    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
+                </p>
+                <p>{{apartment.Description.description}}</p>
+                <div class="unit-details-action-btn-wrapper hidden-xs">
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+                        <span class="hidden-xs"> to favorites</span>
+                    </button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
+                        <span class="hidden-xs"> from favorites</span>
+                    </button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-hide="applied"><i class="fa fa-check"></i> Apply
+                    </button>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label class="control-label">Video Link</label>
+                        <input type="text" class="form-control" name="name" ng-model="media.video.link" value="">
+                        <button type="button" class="btn" ng-click="submitVideo()" name="button">Submit Link</button>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Picture Link</label>
+                        <input type="text" class="form-control" ng-model="media.photo.link" name="name" value="">
+                        <label class="control-label">Title</label>
+                        <input type="text" class="form-control" ng-model="media.photo.title" name="name" value="">
+                        <button type="button" class="btn" ng-click="submitPhoto()" name="button">Submit Picture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

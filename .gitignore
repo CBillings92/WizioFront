@@ -1,0 +1,12 @@
+node_modules/
+public/build/scripts.js
+public/build/styles.css
+public/build/stylessass.css
+public/stylesheets/compiledsass/stylessass.css
+
+npm-debug.log
+bower_components/
+.elasticbeanstalk/
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -1,0 +1,293 @@
+$orange-transparancy-hover: 0.9;
+
+.about-wrapper {
+	position: relative;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.about-hero {
+
+	@media (min-width: $screen-sm-min) {
+		position: relative;
+		width: 100%;
+
+		/* Maintain Aspect Ratio */
+		padding-bottom: percentage(700 / 1264);
+
+		&-main {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+	}
+
+	&-main {
+		background: url("/public/viewtemplates/images/aboutimages/hero-image.jpg");
+		color: $white;
+		padding: 100px 0 50px 0;
+
+		&__heading {
+			max-width: 80%;
+			word-break: keep-all;
+			text-shadow: 0 0 10px rgba(0,0,0,.4);
+		}
+
+		&__subheading {
+			font-size: 20px;
+			text-shadow: 0 0 10px rgba(0,0,0,.4);
+		}
+
+		@media (min-width: $screen-sm-min) {
+			padding: 0;
+			padding-top: 90px;
+
+			&__heading {
+				max-width: none;
+				margin-bottom: 30px;
+			}
+
+			&__subheading {
+				max-width: 50%;
+			}
+
+		}
+
+		@media (min-width: $screen-md-min) {
+			.about-hero-main__container {
+				position: absolute;
+				top: 310px;
+				left: 0;
+				right: 0;
+				@include vertical-center-transform();
+			}
+
+			&__subheading {
+				font-size: 27px;
+			}
+
+		}
+
+		&__quadrangle {
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+			right: 0;
+		}
+
+		.pin-and-outline {
+			position: absolute;
+			transform-origin: bottom right;
+			right: -250px;
+
+			@media (max-width: $screen-xs-max) {
+				top: 80px;
+			}
+
+			@media (min-width: $screen-sm-min) {
+				bottom: 35%;
+				right: 18.49%;
+				transform: scale(1.2) translate(50%, 0);
+			}
+
+			@media (min-width: $screen-md-min) {
+				transform: scale(2) translate(50%, 0);
+			}
+
+			.pin {
+				fill: rgba($orange, 0.4);
+			}
+
+			.pin-outline {
+				fill: rgba($white, 0.4);
+			}
+		}
+	}
+}
+
+.about-principles {
+	background: $light-orange;
+	color: $white;
+	padding: 50px 10px;
+
+	@media (min-width: $screen-sm-min) {
+		padding: 0;
+		margin-top: -10px;
+	}
+	h2 {
+		color: $white;
+
+		@media (min-width: $screen-sm-min) {
+			margin: 10px 0 40px 0;
+			font-size: 40px;
+		}
+
+		@media (max-width: $screen-xs-max) {
+			border-bottom: 2px solid $white;
+			padding-bottom: 10px;
+			margin-bottom: 10px;
+			font-size: 30px;
+		}
+	}
+	.about-principles__principle-list {
+		list-style-type: none;
+		counter-reset: ol-counter;
+		padding: 0;
+		@include clearfix()
+		li {
+			position: relative;
+			p {
+				text-align: left;
+			}
+
+			h3 {
+				margin: 0;
+			}
+
+			@media (min-width: $screen-sm-min) {
+				&:before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					content: counter(ol-counter);
+					counter-increment: ol-counter;
+					color: darken($orange, 10%);
+					font-family: 'Roboto Slab';
+					font-size: 6rem;
+				}
+
+				h3 {
+					margin: 0 0 20px;
+				}
+
+				padding: 0 50px 40px 60px;
+				float: left;
+				width: 50%;
+			}
+
+			@media (min-width: $screen-md-min) {
+				&:before {
+					font-size: 12rem;
+					margin-top: -21px;
+				}
+
+				padding-left: 80px;
+			}
+		}
+	}
+}
+
+.about-learn-more__link {
+	display: block;
+	background: $orange;
+	color: $white;
+	font-family: "Roboto Slab";
+	font-size: 3rem;
+	padding: 26px ($grid-gutter-width / 2);
+	transition: background-color 0.15s ease-in-out;
+
+	@media (min-width: $screen-sm-min) {
+		text-align: center;
+	}
+
+	&:visited, &:hover, &:active, &:focus {
+		color: $white;
+		text-decoration: none;
+	}
+
+	&:hover {
+		background: darken($orange, 5%);
+	}
+}
+
+.about-team {
+	h2 {
+		margin-top: 30px;
+		color: $orange;
+	}
+
+	@media (max-width: $screen-xs-max) {
+
+		.about-team-member {
+			max-width: 350px;
+			margin: 0 auto;
+		}
+
+	}
+
+	&-members {
+		h3, .title {
+
+			font-weight: 300;
+			margin-bottom: 5px;
+		}
+
+		h3 {
+			font-family: 'Roboto Slab';
+		}
+
+		.title {
+			margin-bottom: 15px;
+			font-family: 'Roboto';
+		}
+
+		color: $gray;
+		margin-bottom: 50px;
+
+		&-more {
+			position: relative;
+			&-overlay {
+				opacity: 0;
+				transition: opacity 0.15s ease-in-out;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba($orange, $orange-transparancy-hover);
+
+				.outline-btn {
+					display: block;
+					width: 100%;
+					background: none;
+					border: 2px solid $white;
+					color: $white;
+					margin-bottom: 8px;
+					font-weight: 700;
+					&:hover,
+					&:active,
+					&:focus {
+						background: $white;
+						color: $orange;
+					}
+				}
+
+				&-content {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					@include center-transform();
+				}
+			}
+
+			&:hover &-overlay {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.team-social-link {
+	margin: 0 5px;
+	.hover-fill {
+		fill: transparent;
+		transition: fill 0.15s ease-in-out;
+	}
+	&:hover {
+		.hover-fill {
+			fill: #ffffff;
+		}
+	}
+}

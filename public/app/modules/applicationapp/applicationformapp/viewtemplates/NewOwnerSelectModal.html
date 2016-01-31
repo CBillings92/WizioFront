@@ -1,0 +1,16 @@
+<div class="modal-header">
+    <h3>
+        Select a New Application Owner
+    </h3>
+</div>
+<div class="modal-body" ng-repeat="application in applications track by $index">
+    <div class="">
+        <span>{{::(application.User.firstName || application.firstName) + " " + (application.User.lastName || application.lastName)}}</span>
+        <span style="margin-right: 50%">
+            <button class="btn" name="button" ng-click="selectNewOwner($index)" type="button">Make Owner</button>
+        </span>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn" name="button" type="button">Cancel</button>
+</div>
