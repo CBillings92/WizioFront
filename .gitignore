@@ -5,6 +5,7 @@ public/build/stylessass.css
 public/stylesheets/compiledsass/stylessass.css
 
 npm-debug.log
+bower_components/
 .elasticbeanstalk/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

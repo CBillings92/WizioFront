@@ -5,6 +5,7 @@ angular.module('UnitApp')
         '$modal',
         '$location',
         '$sessionStorage',
+        '$sce',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
@@ -13,6 +14,7 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
         'FavoriteModel',
+        'MediaModel',
         'ModalSvc',
         'WizioConfig',
         'SearchFct',
@@ -22,6 +24,7 @@ angular.module('UnitApp')
             $modal,
             $location,
             $sessionStorage,
+            $sce,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
@@ -30,6 +33,7 @@ angular.module('UnitApp')
             FlexGetSetSvc,
             RerouteGetSetSvc,
             FavoriteModel,
+            MediaModel,
             ModalSvc,
             WizioConfig,
             SearchFct
@@ -40,6 +44,8 @@ angular.module('UnitApp')
             //FIXME
             $scope.mediaTab = 'map';
             $scope.selectMediaTab = function(tab) {
+                console.dir(tab);
+                
                 $scope.mediaTab = tab;
             };
             //FIXME ?????
@@ -122,8 +128,9 @@ angular.module('UnitApp')
                 console.dir(result);
                 //assign result (apartment) to $scope
                 $scope.apartment = result.apartmentData;
-                console.dir($scope.apartment);
                 $scope.listing = result.Lease ? result.Lease.leaseData : false;
+                $scope.media = result.Media;
+                $scope.trust = $sce;
 
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {
@@ -227,6 +234,21 @@ angular.module('UnitApp')
             };
             $scope.setupTour = function() {
                 alert("Feature still under development and is due to arrive in our full product launch!");
+            };
+            $scope.submitVideo = function(){
+                var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
+                newVideo.getAssociationData();
+                newVideo.saveMedia(function(res){
+                    console.dir(res);
+                });
+
+            };
+            $scope.submitPhoto = function(){
+                var newPhoto = new MediaModel($scope.media.photo.link, 'vrphoto', $scope.media.photo.title);
+                newPhoto.getAssociationData();
+                newPhoto.saveMedia(function(res){
+                    console.dir(res);
+                });
             };
             //LOAD APARTMENT DATA end
         }

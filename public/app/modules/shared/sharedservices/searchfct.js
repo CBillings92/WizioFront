@@ -6,7 +6,8 @@ angular.module('SharedServiceApp')
         'SearchModel',
         'DescriptionModel',
         'LeaseModel',
-        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel) {
+        'lodash',
+        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash) {
             var concealAddress = function(response) {
                 for (i = 0; i < response.length; i++) {
                     var left = Math.floor((response[i].concatAddr.charCodeAt(5) / 19) + 4);
@@ -24,8 +25,9 @@ angular.module('SharedServiceApp')
             };
             var formatSearchResults = function(response) {
                 var formattedApartmentArray = [];
+                var apt;
                 for (var i = 0; i < response.length; i++) {
-                    var apt = response[i];
+                    apt = response[i];
                     var newApartment = ApartmentModel.build(apt);
                     newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
@@ -34,6 +36,10 @@ angular.module('SharedServiceApp')
                     }
                     if (apt.Leases && apt.Leases.length !== 0) {
                         formattedApartmentArray[i].Lease = LeaseModel.build(apt.Leases[0]);
+                    }
+                    console.dir(apt);
+                    if (apt.Media && apt.Media.length !== 0) {
+                        formattedApartmentArray[i].Media = lodash.groupBy(apt.Media, "type");
                     }
                 }
                 return formattedApartmentArray;
