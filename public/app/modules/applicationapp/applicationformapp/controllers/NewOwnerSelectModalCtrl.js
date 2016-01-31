@@ -3,13 +3,15 @@ angular.module('ApplicationApp')
     '$scope',
     '$modalInstance',
     'modalData',
-    function($scope, $modalInstance, modalData){
+    'ApplicantModel',
+    function($scope, $modalInstance, modalData, ApplicantModel){
         console.dir(modalData);
         $scope.applications = modalData;
         $scope.selectNewOwner = function(userIndex){
-            var applicant = new Applicant($scope.applications[userIndex]);
-
-            applicant.API.setOwner(function(response){
+            console.dir($scope.applications[userIndex]);
+            var applicant = ApplicantModel.build($scope.applications[userIndex]);
+            console.dir(applicant);
+            applicant.setOwner(function(response){
                 $modalInstance.close();
             });
         };

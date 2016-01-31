@@ -83,6 +83,27 @@ angular.module('AccountApp')
                             });
                         };
                     })
+                } else {
+                    var modalOptions = {
+                        closeButtonText: "Delete Application",
+                        actionButtonText: "Select a New Owner",
+                        headerText: "Deleting Applicant",
+                        bodyText: "Would you like to delete the entire application or select a new application owner for the remaining applicants?"
+                    };
+
+                    ModalSvc.showModal({}, modalOptions).then(function(response) {
+                        console.dir(response);
+                        if (response === "ok") {
+                            ApplicationResource.flex.save({
+                                item: 'user',
+                                action: 'remove'
+                            }, dataPasser, function(data, status) {
+                                $scope.applications.splice(value);
+                                alert("Removed from application");
+                            });
+                        } else {
+                        };
+                    })
                 }
 
             };
