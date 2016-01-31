@@ -63,20 +63,33 @@ angular.module('AccountApp')
 
                 };*/
             $scope.sendResetEmail = function() {
-                console.log("This gets hit. Chris Canal hit that");
                 var emailobj = {};
                 emailobj.email = $scope.email;
                 AuthResetPasswordResource.save(emailobj, function(responseObj) {
                     if (responseObj.status === "ERR") {
-                        alert("A password reset email could not be sent to this email. Please make sure you're using the right email");
-                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                            return;
-                        });
+                        var resetPasswordNotSentModalOptions = {
+                            closeButtonText: "Close",
+                            actionButtonText: "OK",
+                            headerText: "Password Reset Error",
+                            bodyText: 'We could not send an email to ' + emailobj.email + ' for some reason. Please try another email.'
+                        };
+                        ModalSvc.showModal({}, resetPasswordNotSentModalOptions)
+                            .then(function(result) {})
                     } else {
-                        alert('An email has been sent to ' + emailobj.email + ' with instructions on how to reset your password');
-                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                            return;
-                        });
+                        var resetPasswordSentModalOptions = {
+                            closeButtonText: "Close",
+                            actionButtonText: "OK",
+                            headerText: "Password Reset",
+                            bodyText: 'An email has been sent to ' + emailobj.email + ' with instructions on how to reset your password'
+                        };
+                        ModalSvc.showModal({}, resetPasswordSentModalOptions)
+                            .then(function(result) {
+                                $state.go('LandingPage');
+                            })
+
+                        // ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                        //     return;
+                        // });
                     }
                     return;
                 });
@@ -99,22 +112,39 @@ angular.module('AccountApp')
                     passwordobj.token = $stateParams.token;
                     AuthUpdatePasswordResource.save(passwordobj, function(responseObj) {
                         if (responseObj.status !== "ERR") {
-                            alert('Password updated for your account!');
-                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                                return;
-                            });
+                            var passwordUdatedModalOptions = {
+                                closeButtonText: "Close",
+                                actionButtonText: "OK",
+                                headerText: "Password Updated",
+                                bodyText: 'You have succesfully updated the password for your account!'
+                            };
+                            ModalSvc.showModal({}, passwordUdatedModalOptions)
+                                .then(function(result) {
+                                    $state.go('LandingPage');
+                                })
                         } else {
-                            alert("Password cannot be updated at this time");
-                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                                return;
-                            });
+                            var passwordUdateErrorModalOptions = {
+                                closeButtonText: "Close",
+                                actionButtonText: "OK",
+                                headerText: "Password Update Error",
+                                bodyText: 'We coult not update your password for some reason. Please try again.'
+                            };
+                            ModalSvc.showModal({}, passwordUdateErrorModalOptions)
+                                .then(function(result) {})
                         }
                         return;
                     });
                 } else {
                     $scope.password = '';
                     $scope.passwordConfirm = '';
-                    alert("Passwords do not match");
+                    var passwordMatchErrorModalOptions = {
+                        closeButtonText: "Close",
+                        actionButtonText: "OK",
+                        headerText: "Password do not match error",
+                        bodyText: 'The two passwords that you typed do not match. Please try again'
+                    };
+                    ModalSvc.showModal({}, passwordMatchErrorModalOptions)
+                        .then(function(result) {})
                 }
             };
             $scope.requestLogin = function() {
