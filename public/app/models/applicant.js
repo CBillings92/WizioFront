@@ -50,49 +50,56 @@ angular.module('Models')
                     return callback(response);
                 });
             };
-            Applicant.build = function buildApplicant(data){
-                console.dir(data);
-                return new Applicant(
-                    data.UserId,
-                    data.ApplicationId,
-                    data.ApplicationOwner,
-                    data.applicationStatus,
-                    data.applicantStatus
-                )
+            Applicant.prototype.delete = function(callback) {
+                var app = this;
+                return $resource(WizioConfig.baseAPIURL + '/application/applicant').remove(app, function(response) {
+                    return callback(response);
+                })
             }
-            // Applicant.prototype.API = function API(callback){
-            //     var app = this;
-            //     return {
-            //         update: $resource('WizioConfig.baseAPIURL' + '/application/applicant/:ApplicationId/:UserId',
-            //         {ApplicationId: app.ApplicationId, UserId: app.UserId})
-            //         .save(app, function(response){
-            //             return callback(response);
-            //         }),
-            //         save: $resource('WizioConfig.baseAPIURL' + '/application/applicant').save(app, function(response){
-            //             return callback(response);
-            //         }),
-            //         delete: $resource('WizioConfig.baseAPIURL' + '/application/applicant').remove(app, function(response){
-            //             return callback(response);
-            //         }),
-            //         setOwner: $resource('WizioConfig.baseAPIURL' + '/application/applicant/setowner').save(app, function(response){
-            //             return callback(response);
-            //         })
-            //     };
-            // };
-            // Applicant.prototype.FLEXAPI = function FLEXAPI(action, urlParams, callback){
-            //     var app = this;
-            //     return {
-            //         base: $resource('WizioConfig.baseAPIURL' + 'applicant')[action](app, function(response){
-            //             return callback(response);
-            //         }),
-            //         oneParam: $resource('WizioConfig.baseAPIURL' + 'applicant/:firstParam', urlParams)[action](app, function(response){
-            //             return callback(response);
-            //         }),
-            //         twoParam: $resource('WizioConfig.baseAPIURL' + 'applicant/:firstParam/:secondParam', urlParams)[action](app, function(response){
-            //             return callback(response);
-            //         }),
-            //     }
-            // };
+
+            Applicant.build = function buildApplicant(data) {
+                    console.dir(data);
+                    return new Applicant(
+                        data.UserId,
+                        data.ApplicationId,
+                        data.ApplicationOwner,
+                        data.applicationStatus,
+                        data.applicantStatus
+                    )
+                }
+                // Applicant.prototype.API = function API(callback){
+                //     var app = this;
+                //     return {
+                //         update: $resource('WizioConfig.baseAPIURL' + '/application/applicant/:ApplicationId/:UserId',
+                //         {ApplicationId: app.ApplicationId, UserId: app.UserId})
+                //         .save(app, function(response){
+                //             return callback(response);
+                //         }),
+                //         save: $resource('WizioConfig.baseAPIURL' + '/application/applicant').save(app, function(response){
+                //             return callback(response);
+                //         }),
+                //         delete: $resource('WizioConfig.baseAPIURL' + '/application/applicant').remove(app, function(response){
+                //             return callback(response);
+                //         }),
+                //         setOwner: $resource('WizioConfig.baseAPIURL' + '/application/applicant/setowner').save(app, function(response){
+                //             return callback(response);
+                //         })
+                //     };
+                // };
+                // Applicant.prototype.FLEXAPI = function FLEXAPI(action, urlParams, callback){
+                //     var app = this;
+                //     return {
+                //         base: $resource('WizioConfig.baseAPIURL' + 'applicant')[action](app, function(response){
+                //             return callback(response);
+                //         }),
+                //         oneParam: $resource('WizioConfig.baseAPIURL' + 'applicant/:firstParam', urlParams)[action](app, function(response){
+                //             return callback(response);
+                //         }),
+                //         twoParam: $resource('WizioConfig.baseAPIURL' + 'applicant/:firstParam/:secondParam', urlParams)[action](app, function(response){
+                //             return callback(response);
+                //         }),
+                //     }
+                // };
             return Applicant;
         }
     ]);

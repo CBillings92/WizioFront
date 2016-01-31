@@ -54,6 +54,7 @@ angular.module('AccountApp')
                         headerText: "Deleting Applicant",
                         bodyText: "Would you like to delete the entire application or select a new application owner for the remaining applicants?"
                     };
+                    $scope.applications[value].removeCurrentUser = true;
                     var selectOwnerModalDefaults = {
                         backdrop: true,
                         keyboard: true,
