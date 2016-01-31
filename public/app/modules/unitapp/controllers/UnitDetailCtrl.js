@@ -13,6 +13,7 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
         'FavoriteModel',
+        'MediaModel',
         'ModalSvc',
         'WizioConfig',
         'SearchFct',
@@ -30,6 +31,7 @@ angular.module('UnitApp')
             FlexGetSetSvc,
             RerouteGetSetSvc,
             FavoriteModel,
+            MediaModel,
             ModalSvc,
             WizioConfig,
             SearchFct
@@ -227,6 +229,21 @@ angular.module('UnitApp')
             };
             $scope.setupTour = function() {
                 alert("Feature still under development and is due to arrive in our full product launch!");
+            };
+            $scope.submitVideo = function(){
+                var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
+                newVideo.getAssociationData();
+                newVideo.saveMedia(function(res){
+                    console.dir(res);
+                });
+
+            };
+            $scope.submitPhoto = function(){
+                var newPhoto = new MediaModel($scope.media.photo.link, 'vrphoto', $scope.media.photo.title);
+                newPhoto.getAssociationData();
+                newPhoto.saveMedia(function(res){
+                    console.dir(res);
+                });
             };
             //LOAD APARTMENT DATA end
         }
