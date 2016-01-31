@@ -90,6 +90,8 @@
                 <div class="apt-list__view col-xs-2 col-lg-2">
                     <span ng-click="apartmentSelected(application[$index].Apartment.id)">View</span>
                     <span ng-click="removeFromApplication($index)">Remove</span>
+                    <span ng-show="application[$index].ApplicationOwner === application[$index].UserId" ng-click="changeOwner($index)">Change Owner</span>
+                    <span ng-show="application[$index].ApplicationOwner === application[$index].UserId" ng-click="deleteApplication($index)">Delete Application</span>
                 </div>
             </div>
         </div>

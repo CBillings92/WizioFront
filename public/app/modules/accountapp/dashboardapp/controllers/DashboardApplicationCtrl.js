@@ -2,11 +2,12 @@ angular.module('AccountApp')
     .controller('DashboardApplicationCtrl', [
         '$scope',
         'ApplicationResource',
+        'ApplicationModel',
         'TokenSvc',
         'lodash',
         'ModalSvc',
         'WizioConfig',
-        function($scope, ApplicationResource, TokenSvc, lodash, ModalSvc, WizioConfig) {
+        function($scope, ApplicationResource, ApplicationModel, TokenSvc, lodash, ModalSvc, WizioConfig) {
             var modalDefaults = function(templateUrl, controller, modalData) {
                 return {
                     backdrop: true,
@@ -41,6 +42,40 @@ angular.module('AccountApp')
                     $scope.applicationsExist = false;
                 }
             });
+            $scope.changeOwner = function(value){
+                var selectOwnerModalDefaults = {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    size: 'md',
+                    templateUrl: WizioConfig.ApplicationFormViewsURL + "NewOwnerSelectModal.html",
+                    controller: 'NewOwnerSelectModalCtrl',
+                    resolve: {
+                        modalData: function() {
+                            return $scope.applications[value];
+                        }
+                    }
+                };
+                ModalSvc.showModal(selectOwnerModalDefaults, {}).then(function(response){
+
+                })
+            }
+            $scope.deleteApplication = function(value){
+                var modalOptions = {
+                    closeButtonText: "Cancel",
+                    actionButtonText: "Delete Application",
+                    headerText: "Deleting Application",
+                    bodyText: "This will delete the entire application and remove yourself and all other applicants from the apartment. Are you sure you want to proceed?"
+                };
+                ModalSvc.showModal({}, modalOptions).then(function(result){
+                    ApplicationModel.api.oneParam.remove({
+                        param1: $scope.applications[value][0].ApplicationId,
+                    }, function(data, status) {
+                        $scope.applications.splice(value);
+                        alert("Removed from application");
+                    });
+                })
+            }
             $scope.removeFromApplication = function(value) {
                 var dataPasser = {
                     ApplicationId: $scope.applications[value][0].ApplicationId,

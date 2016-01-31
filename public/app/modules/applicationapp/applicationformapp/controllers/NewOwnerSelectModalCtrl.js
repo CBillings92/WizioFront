@@ -15,19 +15,24 @@ angular.module('ApplicationApp')
             }
             console.dir(applicant);
             applicant.setOwner(function(response){
-                var currentUser = {
-                    UserId: TokenSvc.decode().id,
-                    ApartmentId: applicant.ApartmentId,
-                    ApplicationId: applicant.ApplicationId,
-                    concatAddr: $scope.applications[userIndex].Apartment.concatAddr
+                if(applicant.removeCurrentUser){
+                    var currentUser = {
+                        UserId: TokenSvc.decode().id,
+                        ApartmentId: applicant.ApartmentId,
+                        ApplicationId: applicant.ApplicationId,
+                        concatAddr: $scope.applications[userIndex].Apartment.concatAddr
+                    }
+                    ApplicationResource.flex.save({
+                        item: 'user',
+                        action: 'remove'
+                    }, currentUser, function(data, status) {
+                        console.dir(data);
+                        alert("Removed from application");
+                        $modalInstance.close();
+                    });
+                } else {
+                    $modalInstance.close();
                 }
-                ApplicationResource.flex.save({
-                    item: 'user',
-                    action: 'remove'
-                }, currentUser, function(data, status) {
-                    console.dir(data);
-                    alert("Removed from application");
-                });
             });
         };
         $scope.cancel = function(){
