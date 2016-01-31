@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="row formStyle">
+    <div class=" formStyle">
         <h1>Extended Profile</h1>
         <h4 ng-show="editing">This is your extended profile. To edit, change any values seen and select Submit on the bottom of the form</h4>
         <h4 ng-hide="editing">This is your extended profile. Your extended profile is only shared with the owners of the apartments you apply to.</h4>
@@ -15,14 +15,14 @@
                         <label class="control-label" for="">Are you a U.S. citizen?</label>
                         <select class="form-control" name="" ng-model="profile.uscitizen" ng-options="option for option in selectOptions.yesno"></select>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <div class="col-md-4">
                             <label class="control-label" for="">Current Address</label>
                             <input class="form-control" name="name" ng-model="profile.currentAddress"  type="text" value="">
                         </div>
                     </div>
                 </div>
-                <div class="row" style="padding-top:10px;">
+                <div class="" style="padding-top:10px;">
                     <div class="col-md-3">
                         <label class="control-label">Phone Number</label>
                         <input type="text" class="form-control" ng-model="phoneNumber" placeholder="EX: (555) 555-5555" name="name" value="">
@@ -36,7 +36,7 @@
                         <select class="form-control" name="" ng-model="profile.maritalStatus" ng-options="option for option in selectOptions.maritalStatus"></select>
                     </div>
                 </div>
-                <div class="row">
+                <div class="">
                     <div class="col-md-12">
                         <label for="" class="control-label">Do you have any pets?</label>
                         <input type="checkbox" name="pets" value="Pets" ng-model="profile.pets">
@@ -46,7 +46,7 @@
                     </div>
                     </div>
                 </div>
-                <div class="row" style="padding-top:10px;">
+                <div class="" style="padding-top:10px;">
                     <div class="col-md-4">
                         <label class="control-label">Emergency Contact Name</label>
                         <input class="form-control" name="name" ng-model="profile.emergencyContactName" type="text" value="{{profile.emergencyContactName}}">
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Current Landlord/Property Manager Information</h4>
                     <div class="col-md-6">
                         <label class="control-label">Current Property Management Company or Landlord Name</label>
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Employment Status</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Employment Status</label>
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Student Status</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Student Status</label>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="form-group" ng-show="profile.studentStatus =='Full Time Student' || profile.studentStatus == 'Part Time Student'">
-                <div class="row">
+                <div class="">
                     <h4>School Information</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">School You Attend</label>
