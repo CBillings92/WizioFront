@@ -5,6 +5,7 @@ angular.module('UnitApp')
         '$modal',
         '$location',
         '$sessionStorage',
+        '$sce',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
@@ -23,6 +24,7 @@ angular.module('UnitApp')
             $modal,
             $location,
             $sessionStorage,
+            $sce,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
@@ -42,6 +44,8 @@ angular.module('UnitApp')
             //FIXME
             $scope.mediaTab = 'map';
             $scope.selectMediaTab = function(tab) {
+                console.dir(tab);
+                
                 $scope.mediaTab = tab;
             };
             //FIXME ?????
@@ -124,8 +128,9 @@ angular.module('UnitApp')
                 console.dir(result);
                 //assign result (apartment) to $scope
                 $scope.apartment = result.apartmentData;
-                console.dir($scope.apartment);
                 $scope.listing = result.Lease ? result.Lease.leaseData : false;
+                $scope.media = result.Media;
+                $scope.trust = $sce;
 
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {
