@@ -53,31 +53,8 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="control-label">Cost Per Month</label>
-                                        <input class="form-control" ng-model="unit.costPerMonth" name="name" type="text" value="{{unit.costPerMonth}}">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="control-label">Utilities Included</label>
-                                        <div class="" ng-repeat="utility in selectOptions.utilities">
-                                            <div class="col-md-3">
-                                                <label class="" for="">
-                                                    {{utility}}:
-                                                    <input class="" name="name" type="checkbox" value="">
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
                                         <label class="control-label">Laundry In Unit</label>
                                         <select class="form-control" name="" ng-model="unit.laundry" ng-options="laundry for laundry in selectOptions.laundry"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="control-label">Pets</label>
-                                        <select class="form-control" name="" ng-model="unit.pets" ng-options="pets for pets in selectOptions.pets"></select>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">Elevator</label>
