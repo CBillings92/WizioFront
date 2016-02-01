@@ -59,6 +59,9 @@ angular.module('SharedServiceApp')
             var checkApartment = function(callback) {
                 var apartmentURLID = $stateParams.id;
                 var apartmentInSession = $sessionStorage.apartmentSelected;
+                console.dir(apartmentInSession);
+                console.dir(apartmentInSession.apartmentData);
+                console.dir(apartmentURLID == apartmentInSession.apartmentData.id);
                 //check if there is an apartment in session
                 if (!apartmentInSession) {
                     //if no apartment in session, make API call
@@ -69,7 +72,8 @@ angular.module('SharedServiceApp')
                         });
                 } else {
                     //if the current apartment ID matches the ID in session
-                    if (apartmentURLID == apartmentInSession.id) {
+                    if (apartmentURLID === apartmentInSession.apartmentData.id) {
+                        console.dir(apartmentInSession);
                         //return apartment in session.
                         return callback(apartmentInSession);
                     } else {

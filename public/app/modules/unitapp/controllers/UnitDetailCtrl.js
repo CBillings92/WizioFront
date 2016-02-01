@@ -38,7 +38,9 @@ angular.module('UnitApp')
             WizioConfig,
             SearchFct
         ) {
-            $scope.apartment = {};
+            $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
+            console.dir($scope.apartment);
+            $scope.apartment = $scope.apartment.apartmentData;
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
             //FIXME
@@ -108,6 +110,23 @@ angular.module('UnitApp')
                     }
                 };
             };
+            $scope.lease = {};
+            $scope.apartment = {};
+            $scope.listing = {};
+            $scope.media = {};
+
+            $scope.photosRight = function(){
+                if(photoIndex === ($scope.media.vrphoto.length)){
+                    photoIndex = 0;
+                } else {
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
+                    // photoIndex++;
+                }
+            };
+            $scope.photosLeft = function(){
+                photoIndex--;
+            }
+            $scope.trust = $sce;
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 /*
@@ -115,7 +134,6 @@ angular.module('UnitApp')
                     remove the apartment object from the array. was only in array
                     for the formatSearchResults function in SearchFct
                 */
-                console.dir(result);
                 result = result[0];
                 newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
@@ -125,28 +143,11 @@ angular.module('UnitApp')
                     }
                 });
                 result.apartmentData = newApartmentData;
-                console.dir(result);
                 //assign result (apartment) to $scope
                 $scope.apartment = result.apartmentData;
                 $scope.listing = result.Lease ? result.Lease.leaseData : false;
                 $scope.media = result.Media;
-                console.dir($scope.media);
-                var photoIndex = 0;
-                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
 
-                $scope.photosRight = function(){
-                    console.dir(photoIndex);
-                    if(photoIndex === ($scope.media.vrphoto.length)){
-                        photoIndex = 0;
-                    } else {
-                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
-                        // photoIndex++;
-                    }
-                };
-                $scope.photosLeft = function(){
-                    photoIndex--;
-                }
-                $scope.trust = $sce;
 
                 var user = TokenSvc.decode();
                 if (user && user !== 'No Token' && user !== 'undefined') {
