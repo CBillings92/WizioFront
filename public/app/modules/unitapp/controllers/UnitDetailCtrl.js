@@ -110,24 +110,6 @@ angular.module('UnitApp')
                     }
                 };
             };
-            $scope.lease = {};
-            $scope.apartment = {};
-            $scope.listing = {};
-            $scope.media = {};
-            var photoIndex = 0;
-            $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
-            $scope.photosRight = function(){
-                if(photoIndex === ($scope.media.vrphoto.length)){
-                    photoIndex = 0;
-                } else {
-                    $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
-                    // photoIndex++;
-                }
-            };
-            $scope.photosLeft = function(){
-                photoIndex--;
-            }
-            $scope.trust = $sce;
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 /*
@@ -148,6 +130,20 @@ angular.module('UnitApp')
                 $scope.apartment = result.apartmentData;
                 $scope.listing = result.Lease ? result.Lease.leaseData : false;
                 $scope.media = result.Media;
+                var photoIndex = 0;
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
+                $scope.photosRight = function(){
+                    if(photoIndex === ($scope.media.vrphoto.length)){
+                        photoIndex = 0;
+                    } else {
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
+                        // photoIndex++;
+                    }
+                };
+                $scope.photosLeft = function(){
+                    photoIndex--;
+                }
+                $scope.trust = $sce;
 
 
                 var user = TokenSvc.decode();
