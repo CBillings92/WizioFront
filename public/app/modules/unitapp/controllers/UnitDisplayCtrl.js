@@ -98,23 +98,11 @@ angular.module('UnitApp')
             $scope.search = function() {
                 //massage data into proper form for building a new apartment instance
                 var data = {
-                    concatAddr: $scope.searchString
+                    concatAddr : $scope.searchString
                 };
-                //build new apartment instance
-                var apartmentInstance = ApartmentModel.build(data);
-                //get get Geocode Data
-                apartmentInstance.getGeocodeData()
-                    .then(function(response) {
-                        //unitNum is null, filters is null
-                        var topLevelType = null;
-                        if (apartmentInstance.apartmentData.topLevelType) {
-                            topLevelType = apartmentInstance.apartmentData.topLevelType;
-                        }
-                        var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, $scope.filters);
-                        SearchFct.search(newSearchInstance, function(response) {
-                            $state.go('Unit.Display');
-                        });
-                    });
+                SearchFct.search(data, $scope.filters, function(response){
+                    $state.go('Unit.Display');
+                });
             };
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
