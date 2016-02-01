@@ -86,7 +86,7 @@ angular.module('Models')
                         });
                     },
                     findOrCreate: function(action, callback){
-                        console.dir(this);
+                        console.dir(apartment);
                         $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {
                             action: "@action"
                         }).save(action, apartment, function(response){
@@ -100,6 +100,7 @@ angular.module('Models')
                 var apartmentData = this.apartmentData;
                 return new Promise(function(resolve, reject){
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
+                        console.dir(response);
                         for(var key in response){
                             apartmentData[key] = response[key];
                         }
@@ -151,11 +152,12 @@ angular.module('Models')
                     id: '@id'
                 });
             };
-            Apartment.claimApi = function() {
-                return $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {
-                    action: "@action"
+            Apartment.claimApi = function(data, callback) {
+                return $resource(WizioConfig.baseAPIURL + 'apartment/claim/finalize').save(data, function(res){
+                    return callback(res);
                 });
             };
+
             Apartment.copyGeocodedData = function(ApartmentIntstance){
                 var oldData = ApartmentIntstance.apartmentData;
                 return new Apartment(

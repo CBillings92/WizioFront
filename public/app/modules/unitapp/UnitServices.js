@@ -86,6 +86,7 @@ angular.module('UnitApp')
             //else RETURN TRUE
             function findSearchString(searchString, googleAPIDataRaw) {
                 //search for the search string in the smart search google API results
+                console.dir(googleAPIDataRaw);
                 var googleAPIData = lodash.filter(googleAPIDataRaw.data.results, function(item) {
                     return item.formatted_address === searchString;
                 });
