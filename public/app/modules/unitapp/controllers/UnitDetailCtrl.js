@@ -130,6 +130,22 @@ angular.module('UnitApp')
                 $scope.apartment = result.apartmentData;
                 $scope.listing = result.Lease ? result.Lease.leaseData : false;
                 $scope.media = result.Media;
+                console.dir($scope.media);
+                var photoIndex = 0;
+
+
+                $scope.photosRight = function(){
+                    console.dir(photoIndex);
+                    if(photoIndex === ($scope.media.vrphoto.length)){
+                        photoIndex = 0;
+                    } else {
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
+                        // photoIndex++;
+                    }
+                };
+                $scope.photosLeft = function(){
+                    photoIndex--;
+                }
                 $scope.trust = $sce;
 
                 var user = TokenSvc.decode();
