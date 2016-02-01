@@ -132,7 +132,7 @@ angular.module('UnitApp')
                 $scope.media = result.Media;
                 console.dir($scope.media);
                 var photoIndex = 0;
-
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
 
                 $scope.photosRight = function(){
                     console.dir(photoIndex);
