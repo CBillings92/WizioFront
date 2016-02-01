@@ -39,13 +39,14 @@ angular.module('Models')
             };
             //store these functions on each new Lease's object prototype
             Lease.prototype.setAssociationData = function(){
-                this.UserId = TokenSvc.decode().id;
-                this.LandlordId = TokenSvc.decode().LandlordId;
-                this.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
+                this.leaseData.UserId = TokenSvc.decode().id;
+                this.leaseData.LandlordId = TokenSvc.decode().LandlordId;
+                this.leaseData.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
                 return;
             };
             Lease.prototype.create = function(callback){
-                $resource(WizioConfig.baseAPIURL + 'lease').save(this.leaseData, function(response){
+                var data = this;
+                $resource(WizioConfig.baseAPIURL + 'lease').save(data, function(response){
                     callback(response);
                 });
             };

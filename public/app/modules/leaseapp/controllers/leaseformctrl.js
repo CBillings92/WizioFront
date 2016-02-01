@@ -13,9 +13,10 @@ angular.module('LeaseApp')
     .controller('LeaseFormCtrl', [
         '$scope',
         '$state',
+        'TokenSvc',
         'LeaseFct',
         'FlexGetSetSvc',
-        function($scope, $state, LeaseFct, FlexGetSetSvc) {
+        function($scope, $state, TokenSvc, LeaseFct, FlexGetSetSvc) {
             //create empty object on scope
             $scope.lease = {};
             //populate the form's select options from Lease Factory
@@ -34,11 +35,15 @@ angular.module('LeaseApp')
                     //otherwise make it the first/only lease
                     $scope.lease = leases[0];
                 }
+            } else {
+                $scope.lease.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
+                console.dir($scope.lease);
             }
 
             //either edits a current lease or saves a current lease.
             $scope.formSubmission = function(action){
                 console.dir(action);
+                $scope.lease.UserId = TokenSvc.decode().id;
                 LeaseFct[action]($scope.lease, function(response){
                     //handle repsonse;
                 });
