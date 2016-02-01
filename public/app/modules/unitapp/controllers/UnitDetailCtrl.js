@@ -45,7 +45,7 @@ angular.module('UnitApp')
             $scope.mediaTab = 'map';
             $scope.selectMediaTab = function(tab) {
                 console.dir(tab);
-                
+
                 $scope.mediaTab = tab;
             };
             //FIXME ?????
@@ -229,10 +229,10 @@ angular.module('UnitApp')
                 var user = TokenSvc.decode();
                 var favorite = new FavoriteModel(user.id, $scope.apartment.id);
                 FavoriteModel.api().delete(favorite, function(result) {
-                    alert('Favorite removed');
                 });
             };
             $scope.setupTour = function() {
+                //This needs to be discussed further
                 alert("Feature still under development and is due to arrive in our full product launch!");
             };
             $scope.submitVideo = function(){
