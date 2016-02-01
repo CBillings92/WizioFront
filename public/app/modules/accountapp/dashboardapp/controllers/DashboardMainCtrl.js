@@ -1,11 +1,10 @@
 angular.module('AccountApp')
     .controller('DashboardMainCtrl', [
         '$scope',
-        '$timeout',
         'TokenSvc',
         'ModalSvc',
         'WizioConfig',
-        function($scope, $timeout, TokenSvc, ModalSvc, WizioConfig) {
+        function($scope, TokenSvc, ModalSvc, WizioConfig) {
 
             var userType = TokenSvc.decode().userType;
             console.dir(userType);

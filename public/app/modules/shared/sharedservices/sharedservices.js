@@ -196,7 +196,7 @@ angular.module('SharedServiceApp')
                 //Map modal.html $scope custom properties to defaults defined in service
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function($scope, $modalInstance) {
+                    tempModalDefaults.controller = ['$scope', '$modalInstance', function($scope, $modalInstance) {
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function(result) {
                             $modalInstance.close(result);
@@ -204,7 +204,7 @@ angular.module('SharedServiceApp')
                         $scope.modalOptions.close = function(result) {
                             $modalInstance.close('cancel');
                         };
-                    };
+                    }];
                 }
                 return $modal.open(tempModalDefaults).result;
             };

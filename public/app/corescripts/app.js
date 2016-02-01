@@ -2,7 +2,7 @@
     //CREATE ALL TOP LEVEL APPS (create, not start)
     angular.module('AboutUsApp', []);
     angular.module('AdminPanelApp', []);
-    angular.module('AccountApp', ['ui.bootstrap.buttons']);
+    angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
     angular.module('AuthApp', []);
@@ -11,13 +11,12 @@
     angular.module('LandingPageApp', []);
     angular.module('LeaseApp', []);
     angular.module('NavbarApp', []);
-    angular.module('SellerApp', []);
-    angular.module('SharedControllersApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
     angular.module('UnitApp', []);
     angular.module('FooterApp', []);
     angular.module('Models', []);
+    angular.module('Directives', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -28,17 +27,15 @@
             'ApplicationApp',
             'AuthApp',
             'AboutUsApp',
+            'Directives',
             'FooterApp',
             'LandingPageApp',
             'LeaseApp',
             'CampaignApp',
             'NavbarApp',
-            'SellerApp',
-            'SharedControllersApp',
             'SharedFactoryApp',
             'SharedServiceApp',
             'UnitApp',
-            'FooterApp',
             'Models',
             'ui.router',
             'ngFacebook',

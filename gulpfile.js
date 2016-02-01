@@ -9,6 +9,7 @@ var uglify = require('gulp-uglify');
 var autoprefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 var plugins = require("gulp-load-plugins")({
   pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
   replaceString: /\bgulp[\-.]/
@@ -26,9 +27,11 @@ gulp.task('jshint', function() {
 // JS concat, strip debugging and minify
 gulp.task('scripts', function() {
   gulp.src(['./public/app/**/*.js'])
-    .pipe(concat('scripts.js'))
-    .pipe(stripDebug())
-    .pipe(uglify())
+    //   .pipe(stripDebug())
+    .pipe(sourcemaps.init())
+        .pipe(concat('scripts.js'))
+        .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./public/build'));
 });
 

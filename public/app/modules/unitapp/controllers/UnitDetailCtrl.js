@@ -114,7 +114,8 @@ angular.module('UnitApp')
             $scope.apartment = {};
             $scope.listing = {};
             $scope.media = {};
-
+            var photoIndex = 0;
+            $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
             $scope.photosRight = function(){
                 if(photoIndex === ($scope.media.vrphoto.length)){
                     photoIndex = 0;
