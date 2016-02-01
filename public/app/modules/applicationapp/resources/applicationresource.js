@@ -4,7 +4,7 @@ angular.module('ApplicationApp')
         'WizioConfig',
         function($resource, WizioConfig) {
             return {
-                base: $resource(WizioConfig.baseAPIURL + 'application', {
+                base: $resource(WizioConfig.baseAPIURL + 'application', {}, {
                     save: {
                         method: 'POST',
                         isArray: false

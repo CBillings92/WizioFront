@@ -20,7 +20,7 @@ angular.module('ApplicationApp')
         //create an array of user objects to store emails in for roomates.
         //subtracting one to account for the fact that we already have the]
         //logged in user's email address. Store him as the owener.
-        for(var i = 1; i <= $scope.apartment.maxResidency - 1; i++){
+        for(var i = 1; i <= $scope.apartment.beds - 1; i++){
           var userObj = {
            id: i
          };
