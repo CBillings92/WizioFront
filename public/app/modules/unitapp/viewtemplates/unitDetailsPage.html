@@ -29,7 +29,14 @@
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src="https://www.bubl.io/experiences/6f9f5153-1c9b-4340-8e18-842c479bdcc5" width="640"></iframe>
+                <div class="unit-details-media-tab-content-picker-forward" >
+                    <i class="fa fa-chevron-right" ng-click="moveSliderForward()"></i>
+                </div>
+                <div class="unit-details-media-tab-content-picker-backward" >
+                    <i class="fa fa-chevron-left" ng-click="moveSliderBackward()"></i>
+                </div>
             </div>
+
         </div>
         <ul class="unit-details-media-container-tabs">
             <li>
@@ -46,16 +53,9 @@
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider">
                     <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
-                        <!-- <iframe frameborder="0" src="https://www.bubl.io/experiences/6f9f5153-1c9b-4340-8e18-842c479bdcc5" width="160" height="90"></iframe> -->
-                    <!-- <img src="https://www.bubl.io/experiences/6f9f5153-1c9b-4340-8e18-842c479bdcc5" class="unit-details-media-tab-content-picker__img" /> -->
+                        <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" />
                     </div>
                 </div>
-            </div>
-            <div class="unit-details-media-tab-content-picker-forward" ng-show="sliderCanGoForward">
-                <i class="fa fa-chevron-right" ng-click="moveSliderForward()"></i>
-            </div>
-            <div class="unit-details-media-tab-content-picker-backward" ng-show="sliderCanGoBackward">
-                <i class="fa fa-chevron-left" ng-click="moveSliderBackward()"></i>
             </div>
         </div>
     </div>
@@ -142,3 +142,4 @@
             </div>
         </div>
     </div>
+</div>
