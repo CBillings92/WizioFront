@@ -233,7 +233,9 @@ angular.module('UnitApp')
             };
             $scope.setupTour = function() {
                 //This needs to be discussed further
-                alert("Feature still under development and is due to arrive in our full product launch!");
+                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormVidewsURL + '../../../../../assets/featureComing.html', 'ApplicationCreateModalCtrl', 'md');
+                ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                });
             };
             $scope.submitVideo = function(){
                 var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
