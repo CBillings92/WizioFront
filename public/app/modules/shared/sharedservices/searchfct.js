@@ -32,6 +32,7 @@ angular.module('SharedServiceApp')
                     newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
                     if(apt.Descriptions && apt.Descriptions.length !== 0){
+                        console.dir(apt.Descriptions[0]);
                         formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
                     }
                     if (apt.Leases && apt.Leases.length !== 0) {

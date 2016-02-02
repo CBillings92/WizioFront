@@ -36,7 +36,7 @@ angular.module('Models')
             return new Description(
                 data.UserId,
                 data.ApartmentId,
-                data.DescriptionText
+                data.description
             );
         };
 

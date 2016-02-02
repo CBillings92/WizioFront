@@ -61,6 +61,12 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-sm-12" style="margin-bottom:15px;">
+                <p>
+                    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
+                </p>
+
+            </div>
             <div class="col-sm-6">
                 <div class="unit-details-info">
                     <h3 class="unit-details__orange unit-details-info__price">${{listing.monthlyRent}}</h3>
@@ -109,10 +115,7 @@
             </div>
             <div class="col-sm-6 unit-details-description">
                 <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
-                <p>
-                    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
-                </p>
-                <p>{{apartment.Description.description}}</p>
+                <p>{{description.description}}</p>
                 <div class="unit-details-action-btn-wrapper hidden-xs">
                     <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
                         <span class="hidden-xs"> to favorites</span>

@@ -182,7 +182,7 @@ angular.module('SharedServiceApp')
 
             this.showModal = function(customModalDefaults, customModalOptions) {
                 if (!customModalDefaults) customModalDefaults = {};
-                customModalDefaults.backdrop = 'static';
+                // customModalDefaults.backdrop = 'static';
                 return this.show(customModalDefaults, customModalOptions);
             };
 

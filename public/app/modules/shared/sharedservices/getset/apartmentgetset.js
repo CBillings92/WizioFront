@@ -13,7 +13,6 @@ angular.module('SharedServiceApp')
                     UnitResource.get({
                         id: apartmentURLID
                     }, function(apartmentResponse) {
-                        console.dir(apartmentResponse);
                         response = SearchFct.formatSearchResults([apartmentResponse]);
                         console.dir(response);
                         resolve(response);
