@@ -4,10 +4,11 @@ angular.module('AccountApp')
         '$state',
         '$modal',
         '$modalInstance',
+        'ModalSvc',
         'data',
         'WizioConfig',
         'UserRegistrationSvc',
-        function($scope, $state, $modal, $modalInstance, data, WizioConfig, UserRegistrationSvc) {
+        function($scope, $state, $modal, $modalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
 
@@ -31,14 +32,28 @@ angular.module('AccountApp')
                     }
                     UserRegistrationSvc.saveUser($scope.user, function(data) {
                         if (data.status === "ERR") {
-                            alert("Email already in use! Please try another or login");
+                            var signUpErrorModalOptions = {
+                                closeButtonText: "Close",
+                                actionButtonText: "OK",
+                                headerText: "Email Not valid",
+                                bodyText: 'That email is already in use by an account holder. Please try another email or reset your password if you forgot it.'
+                            };
+                            ModalSvc.showModal({}, signUpErrorModalOptions)
+                                .then(function(result) {})
                         } else {
                             $scope.hasRegistered = true;
                         }
 
                     });
                 } else {
-                    alert("Passwords don't match!");
+                    var signUpPasswordErrorModalOptions = {
+                        closeButtonText: "Close",
+                        actionButtonText: "OK",
+                        headerText: "Password Error",
+                        bodyText: 'The two passwords you typed do not match'
+                    };
+                    ModalSvc.showModal({}, signUpPasswordErrorModalOptions)
+                        .then(function(result) {})
                 }
             };
             $scope.login = function() {
