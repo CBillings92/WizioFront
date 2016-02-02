@@ -17,10 +17,26 @@
                     <!-- applicant info -->
                     <div class="col-md-8">
                         <div class="">
-                            {{applicant.firstName + ' ' + applicant.lastName}}
+                            <h7><strong>{{applicant.firstName + ' ' + applicant.lastName}}</strong></h7>
                         </div>
                         <div class="">
-                            {{applicant.ContactEmail}}
+                            <h7>
+                                <strong>
+                                    {{applicant.ContactEmail}}
+                                </strong>
+                            </h7>
+                        </div>
+                        <div class="">
+                            <label for="">Annual Income</label>
+                            {{applicant.User.Profile.annualIncome || 'No Extended Profile'}}
+                        </div>
+                        <div class="">
+                            <label for="">Student Status</label>
+                            {{applicant.User.Profile.studentStatus || 'No Extended Profile'}}
+                        </div>
+                        <div class="">
+                            <label for="">Employer</label>
+                            {{applicant.User.Profile.currntEmployer1 || 'No Extended Profile'}}
                         </div>
                     </div>
                 </div>
