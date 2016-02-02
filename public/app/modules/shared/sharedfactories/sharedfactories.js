@@ -116,7 +116,7 @@ angular.module('SharedFactoryApp')
                         map: map,
                         position: new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude),
                         title: unit.apartmentData.concatAddr,
-                        icon: '/public/ViewTemplates/Images/brand_assets/map_pin.png'
+                        icon: '/public/viewtemplates/images/brand_assets/map_pin.png'
                     });
                     //FIXME - how do we want to handle the picture
                     marker.content = '<div class="infoWindowContent">' +
