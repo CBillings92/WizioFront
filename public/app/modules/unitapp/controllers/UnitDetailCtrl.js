@@ -39,15 +39,12 @@ angular.module('UnitApp')
             SearchFct
         ) {
             $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
-            console.dir($scope.apartment);
-            $scope.apartment = $scope.apartment.apartmentData;
+            $scope.apartment = $scope.apartment.apartmentData || null;
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
             //FIXME
             $scope.mediaTab = 'map';
             $scope.selectMediaTab = function(tab) {
-                console.dir(tab);
-
                 $scope.mediaTab = tab;
             };
             //FIXME ?????
