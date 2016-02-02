@@ -35,93 +35,121 @@
     <!-- right hand side of container -->
     <div class="col-md-6 col-xs-6">
         <span>
-                <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Accept</button>
-            </span>
+            <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Accept</button>
+        </span>
         <span>
-                <button class="btn btn-fill--blue btn-md col-md-5" name="button" ng-click="viewDetails($index)" style="margin:2px;" type="button">Reject</button>
-            </span>
+            <button class="btn btn-fill--blue btn-md col-md-5" name="button" ng-click="viewDetails($index)" style="margin:2px;" type="button">Reject</button>
+        </span>
         <br>
         <span>
-                <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Send Forms</button>
-            </span>
+            <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Send Forms</button>
+        </span>
         <span>
-                <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Email</button>
-            </span>
+            <button class="btn btn-fill--blue btn-md col-md-5" name="button" style="margin:2px;" type="button">Email</button>
+        </span>
     </div>
 </div>
 <div class="row">
     <div class="col-md-12" ng-repeat="applicant in applicationDetails" style="border: 1px solid black; border-radius:4px; margin-bottom:20px;">
+        <h3>{{::applicant.firstName + ' ' + applicant.lastName}} </h3>
         <div class="col-md-6">
-            <h3>{{::applicant.firstName + ' ' + applicant.lastName}} </h3>
+            <h5>Personal</h5>
             <div class="">
                 <label for="" class="control-label">Birth Date:</label>
                 <span>
-                        {{::applicant.User.Profile.dateOfBirth || "No Extended Profile"}}
-                    </span>
+                    {{::applicant.User.Profile.dateOfBirth || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Student Status:</label>
                 <span>
-                        {{::applicant.User.Profile.studentStatus || "No Extended Profile"}}
-                    </span>
+                    {{::applicant.User.Profile.studentStatus || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Pets:</label>
                 <span>
-                        {{::applicant.User.Profile.pet || "No Extended Profile"}}
-                    </span>
+                    {{::applicant.User.Profile.pet || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Tenancy:</label>
                 <span>
-                        {{::applicant.User.Profile.currentAddress || "No Extended Profile"}}
-                    </span>
+                    {{::applicant.User.Profile.currentAddress || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Property Manager Name:</label>
                 <span>
-                        {{::applicant.User.Profile.currentPMName || "No Extended Profile"}}
-                    </span>
+                    {{::applicant.User.Profile.currentPMName || "No Extended Profile"}}
+                </span>
             </div>
+            <h5>Student Status: {{::applicant.User.Profile.studentStatus}}</h5>
+            <div class="col-md-12">
+                <label for="" class="control-label">School:</label>
+                <span>
+                    {{::applicant.User.Profile.studentSchool || "unavailable"}}
+                </span>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="control-label">Major:</label>
+                <span>
+                    {{::applicant.User.Profile.studentMajor || "unavailable"}}
+                </span>
+            </div>
+            <div class="col-md-4">
+                <label for="" class="control-label">Type:</label>
+                <span>
+                    {{::applicant.User.Profile.studentType || "unavailable"}}
+                </span>
+            </div>
+
         </div>
         <div class="col-md-6">
-            <h4>Work</h4>
+            <h5>Work</h5>
+            <div class="">
+                <label for="" class="control-label">Annual Income</label>
+                <span>
+                    {{::applicant.User.Profile.annualIncome || "No Extended Profile"}}
+                </span>
+            </div>
             <div class="">
                 <label for="" class="control-label">Current Employer One:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployer1}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployer1 || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Employer One Length of Employment:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployerLOE1}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployerLOE1 || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Employer One Position:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployerPosition1}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployerPosition1 || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Employer Two:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployer2}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployer2 || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Employer Two Length of Employment:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployerLOE2}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployerLOE2 || "No Extended Profile"}}
+                </span>
             </div>
             <div class="">
                 <label for="" class="control-label">Current Employer Two Position:</label>
                 <span>
-                        {{::applicant.User.Profile.currentEmployerPosition2}}
-                    </span>
+                    {{::applicant.User.Profile.currentEmployerPosition2 || "No Extended Profile"}}
+                </span>
             </div>
+
         </div>
     </div>
 </div>

@@ -81,11 +81,13 @@
             </div>
             <div class="form-group" ng-show="profile.employmentStatus =='Full Time Employed' || profile.employmentStatus == 'Part Time Employed'">
                 <div class="row">
-                    <h4>Current Employer 1 Info</h4>
                     <div class="col-md-4">
-                        <label class="control-label" for="">Current Employer 1</label>
-                        <input class="form-control" ng-model="profile.currentEmployer1" name="name" type="text" value="">
+                        <label class="control-label" for="">Annual Income</label>
+                        <input class="form-control" ng-model="profile.annualIncome" name="name" type="text" value="">
                     </div>
+                </div>
+                <div class="row">
+                    <h4>Current Employer 1 Info</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Current Employer 1 Length of Employment</label>
                         <input class="form-control" ng-model="profile.currentEmployerLOE1" name="name" type="text" value="">
