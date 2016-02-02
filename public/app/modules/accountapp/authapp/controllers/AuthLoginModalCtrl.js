@@ -39,7 +39,7 @@ angular.module('AccountApp')
             $scope.forgotPassword = function() {
                 $state.go('SendResetEmail');
                 return $modalInstance.close('ok');
-            }
+            };
 
             $scope.requestLogin = function() {
                 var userData = {
@@ -55,9 +55,11 @@ angular.module('AccountApp')
                     },
                     function() {
                         $rootScope.error = "Failed to sign in!";
-                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                            return;
-                        });
+                        $scope.email = "";;
+                        $scope.password = "";
+                        // ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                        //     return;
+                        // });
                     });
             };
 

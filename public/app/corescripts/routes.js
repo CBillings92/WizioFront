@@ -481,7 +481,6 @@ angular.module('MainApp')
                                     return $q.reject(response);
                                 }
                                 alert('Authentication Failed');
-                                $injector.get('$state').transitionTo('Login');
                             }
                             return response;
                             //return $q.reject(response);

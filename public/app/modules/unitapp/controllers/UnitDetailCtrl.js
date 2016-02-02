@@ -40,6 +40,7 @@ angular.module('UnitApp')
         ) {
             $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
             $scope.apartment = $scope.apartment.apartmentData || null;
+            console.dir($state.current);
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
             //FIXME
@@ -187,11 +188,15 @@ angular.module('UnitApp')
                     ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                         //store the current apartment in sessionStorage with the
                         //appropriate session storage variable
-                        FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                        console.dir(result);
+                        if(result){
+                            FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                            ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                                $state.go('Account.Dashboard.Main');
+                            });
 
-                        ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
-                            $state.go('Account.Dashboard.Main');
-                        });
+                        }
+
                     });
                 } else {
                     //store the current apartment in sessionStorage with the
