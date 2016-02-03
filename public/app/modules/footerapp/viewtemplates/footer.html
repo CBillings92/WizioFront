@@ -28,7 +28,7 @@
                     <li ng-click="goBlog()">
                         <a href="http://blog.wizio.co">Blog</a>
                     </li>
-                    <li ng-click="goAccoutCreate()">
+                    <li ng-click="goAccountCreate()" ng-hide="isLoggedIn">
                         <a href="">Sign up</a>
                     </li>
                     <li><a href="mailto:info@wizio.co">Contact</a></li>
@@ -37,7 +37,6 @@
             <div class="col-sm-3">
                 <h2>Support</h2>
                 <ul>
-                    <li><a href="">Help &amp; Feedback</a></li>
                     <li><a href="mailto:support@wizio.co">support@wizio.co</a></li>
                     <li><a href="">Terms &amp; Privacy Policy</a></li>
                 </ul>

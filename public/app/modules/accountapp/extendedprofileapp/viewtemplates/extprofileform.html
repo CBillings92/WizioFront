@@ -1,34 +1,34 @@
 <div class="container">
-    <div class="row">
+    <div class=" formStyle">
         <h1>Extended Profile</h1>
-        <h4 ng-show="editing">This is your extended profile. To edit, change any values seen and select Subnmit on the bottom of the form</h4>
-        <h4 ng-hide="editing">This is your extended profile. Your extended profile is only shared to the owners of the apartments you applyu to.</h4>
+        <h4 ng-show="editing">This is your extended profile. To edit, change any values seen and select Submit on the bottom of the form</h4>
+        <h4 ng-hide="editing">This is your extended profile. Your extended profile is only shared with the owners of the apartments you apply to.</h4>
         <form>
             <div class="form-group">
                 <div class="row">
                     <h4>Personal Information</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Date of Birth</label>
-                        <input class="form-control" name="name" ng-model="profile.dateOfBirth" placeholder="07/23/1992" type="text" value="">
+                        <input class="form-control" name="name" ng-model="profile.dateOfBirth" placeholder="07/23/1992" type="date" value="">
                     </div>
                     <div class="col-md-4">
-                        <label class="control-label" for="">Are you a U.S. Citizen?</label>
+                        <label class="control-label" for="">Are you a U.S. citizen?</label>
                         <select class="form-control" name="" ng-model="profile.uscitizen" ng-options="option for option in selectOptions.yesno"></select>
                     </div>
-                    <div class="row">
+                    <div class="">
                         <div class="col-md-4">
                             <label class="control-label" for="">Current Address</label>
-                            <input class="form-control" name="name" ng-model="profile.currentAddress" placeholder="07/23/1992" type="text" value="">
+                            <input class="form-control" name="name" ng-model="profile.currentAddress"  type="text" value="">
                         </div>
                     </div>
                 </div>
-                <div class="row" style="padding-top:10px;">
+                <div class="" style="padding-top:10px;">
                     <div class="col-md-3">
                         <label class="control-label">Phone Number</label>
-                        <input type="text" class="form-control" ng-model="phoneNumber" name="name" value="">
+                        <input type="text" class="form-control" ng-model="phoneNumber" placeholder="EX: (555) 555-5555" name="name" value="">
                     </div>
-                    <div class="col-md-2">
-                        <label class="control-label">Credit Score?</label>
+                    <div class="col-md-3">
+                        <label class="control-label">Can a landlord run a credit score?</label>
                         <select class="form-control" name="" ng-model="profile.creditScore" ng-options="option for option in selectOptions.yesno"></select>
                     </div>
                     <div class="col-md-2">
@@ -36,13 +36,17 @@
                         <select class="form-control" name="" ng-model="profile.maritalStatus" ng-options="option for option in selectOptions.maritalStatus"></select>
                     </div>
                 </div>
-                <div class="row">
+                <div class="">
                     <div class="col-md-12">
-                        <label for="" class="control-label">Pets</label>
-                        <textarea name="name" class="form-control" ng-model="profile.pets" rows="8" cols="40"></textarea>
+                        <label for="" class="control-label">Do you have any pets?</label>
+                        <input type="checkbox" name="pets" value="Pets" ng-model="profile.pets">
+                        <div ng-show="profile.pets">
+                            Please list your pets here:
+                        <textarea name="name" class="form-control"  rows="8" cols="40"></textarea>
+                    </div>
                     </div>
                 </div>
-                <div class="row" style="padding-top:10px;">
+                <div class="" style="padding-top:10px;">
                     <div class="col-md-4">
                         <label class="control-label">Emergency Contact Name</label>
                         <input class="form-control" name="name" ng-model="profile.emergencyContactName" type="text" value="{{profile.emergencyContactName}}">
@@ -53,25 +57,25 @@
                     </div>
                     <div class="col-md-4">
                         <label class="control-label">Emergency Contact Phone Number</label>
-                        <input class="form-control" name="name" ng-model="profile.emergencyContactPhone" type="text" value="{{profile.emergencyContactNumber}}">
+                        <input class="form-control" placeholder="EX: (555) 555-5555" ng-model="profile.emergencyContactPhone" type="text" value="{{profile.emergencyContactNumber}}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Current Landlord/Property Manager Information</h4>
                     <div class="col-md-6">
-                        <label class="control-label">Current Prorerty Management Company or Landlord Name</label>
+                        <label class="control-label">Current Property Management Company or Landlord Name</label>
                         <input class="form-control" name="name" ng-model="profile.currentPMName" type="text" value="{{profile.currentPropertyManagerName}}">
                     </div>
                     <div class="col-md-6">
                         <label class="control-label">Phone Number</label>
-                        <input class="form-control" name="name" ng-model="profile.currentPMContact" type="text" value="{{profile.currentPropertyManagerNumber}}">
+                        <input class="form-control" placeholder="EX: (555) 555-5555" ng-model="profile.currentPMContact" type="text" value="{{profile.currentPropertyManagerNumber}}">
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Employment Status</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Employment Status</label>
@@ -122,7 +126,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="row">
+                <div class="">
                     <h4>Student Status</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">Student Status</label>
@@ -131,7 +135,7 @@
                 </div>
             </div>
             <div class="form-group" ng-show="profile.studentStatus =='Full Time Student' || profile.studentStatus == 'Part Time Student'">
-                <div class="row">
+                <div class="">
                     <h4>School Information</h4>
                     <div class="col-md-4">
                         <label class="control-label" for="">School You Attend</label>
@@ -149,6 +153,7 @@
             </div>
 
         </form>
-        <button type="button" class="btn" ng-click="submitProfile()" name="button">Submit</button>
+        <button type="button" class="btn btn-fill--blue btn-md" ng-click="submitProfile()" name="button">Submit</button>
+        <div style="height:40px;"> </div>
     </div>
 </div>
