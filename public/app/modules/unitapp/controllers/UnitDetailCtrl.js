@@ -39,9 +39,9 @@ angular.module('UnitApp')
             SearchFct
         ) {
             $scope.listing = {};
-            $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
-            console.dir($scope.apartment);
-            $scope.apartment = $scope.apartment.apartmentData || null;
+            // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
+            // console.dir($scope.apartment);
+            // $scope.apartment = $scope.apartment.apartmentData || null;
             //check that the correct apartment is getting pulled
             ApartmentGetSetSvc.checkApartment(function(result) {
                 /*

@@ -2,14 +2,15 @@ angular.module('SharedServiceApp')
     .service('ApartmentGetSetSvc', [
         '$sessionStorage',
         '$stateParams',
+        '$q',
         'UnitResource',
         'lodash',
         'SearchFct',
-        function($sessionStorage, $stateParams, UnitResource, lodash, SearchFct) {
+        function($sessionStorage, $stateParams, $q, UnitResource, lodash, SearchFct) {
             var apartmentSelected = null;
             var sessionStorageVarContainer = [];
             var queryApartment = function(apartmentURLID) {
-                return new Promise(function(resolve, reject) {
+                return $q(function(resolve, reject) {
                     UnitResource.get({
                         id: apartmentURLID
                     }, function(apartmentResponse) {

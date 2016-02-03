@@ -2,10 +2,11 @@ angular.module('Models')
     .factory('ApartmentModel', [
         '$sessionStorage',
         '$resource',
+        '$q',
         'lodash',
         'WizioConfig',
         'UnitCreateSvc',
-        function($sessionStorage, $resource, lodash, WizioConfig, UnitCreateSvc) {
+        function($sessionStorage, $resource, $q, lodash, WizioConfig, UnitCreateSvc) {
             function Apartment(id, street, unitNum, neighborhood,
                 locality,
                 administrative_area_level_3,
@@ -98,7 +99,7 @@ angular.module('Models')
             };
             Apartment.prototype.getGeocodeData = function(callback){
                 var apartmentData = this.apartmentData;
-                return new Promise(function(resolve, reject){
+                return $q(function(resolve, reject){
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
                         console.dir(response);
                         for(var key in response){
