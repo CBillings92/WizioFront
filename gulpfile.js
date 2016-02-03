@@ -9,30 +9,27 @@ var uglify = require('gulp-uglify');
 var autoprefix = require('gulp-autoprefixer');
 var minifyCSS = require('gulp-minify-css');
 var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
 var plugins = require("gulp-load-plugins")({
-  pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
-  replaceString: /\bgulp[\-.]/
+    pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
+    replaceString: /\bgulp[\-.]/
 });
 var mainBowerFiles = require('main-bower-files');
 var resourceDest = '/public';
 
 // JS hint task
 gulp.task('jshint', function() {
-  gulp.src('./public/app/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    gulp.src('./public/app/**/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
 });
 
 // JS concat, strip debugging and minify
 gulp.task('scripts', function() {
-  gulp.src(['./public/app/**/*.js'])
-    //   .pipe(stripDebug())
-    .pipe(sourcemaps.init())
+    gulp.src(['./public/app/**/*.js'])
+        //   .pipe(stripDebug())
         .pipe(concat('scripts.js'))
         .pipe(uglify())
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./public/build'));
+        .pipe(gulp.dest('./public/build'));
 });
 
 /*
@@ -52,34 +49,35 @@ gulp.task('sass', function() {
 });
 // CSS concat, auto-prefix and minify
 gulp.task('styles', ['sass'], function(cb) {
-  return gulp.src(['./public/stylesheets/compiledsass/stylessass.css'])
-    .pipe(autoprefix('last 2 versions'))
-    .pipe(minifyCSS())
-    .pipe(gulp.dest('./public/build/'));
+    return gulp.src(['./public/stylesheets/compiledsass/stylessass.css'])
+        .pipe(autoprefix('last 2 versions'))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest('./public/build/'));
 });
 
-gulp.task('jsresources', function(){
-  var jsFiles = ['src/js/*'];
- 	gulp.src(plugins.mainBowerFiles().concat(jsFiles))
-		.pipe(plugins.filter('*.js'))
-		.pipe(plugins.concat('main.js'))
-		.pipe(plugins.uglify())
-		.pipe(gulp.dest(dest + 'js'));
+gulp.task('jsresources', function() {
+    var jsFiles = ['src/js/*'];
+    gulp.src(plugins.mainBowerFiles().concat(jsFiles))
+        .pipe(plugins.filter('*.js'))
+        .pipe(plugins.concat('main.js'))
+        .pipe(plugins.uglify())
+        .pipe(gulp.dest(dest + 'js'));
 });
 
 gulp.task('default', [
-  'scripts',
-  'sass',
-  'styles'
-  ],
-  function(){
-      gulp.watch(['./public/stylesheets/*.scss', './public/stylesheets/sass/*.scss',
-      './public/stylesheets/sass/**/*.scss'], function() {
-        gulp.run('styles');
-      });
-    gulp.watch('./public/app/**/*.js', function() {
-        gulp.run('jshint', 'scripts');
-    });
+        'scripts',
+        'sass',
+        'styles'
+    ],
+    function() {
+        gulp.watch(['./public/stylesheets/*.scss', './public/stylesheets/sass/*.scss',
+            './public/stylesheets/sass/**/*.scss'
+        ], function() {
+            gulp.run('styles');
+        });
+        gulp.watch('./public/app/**/*.js', function() {
+            gulp.run('jshint', 'scripts');
+        });
 
-  }
+    }
 );

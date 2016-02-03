@@ -60,14 +60,13 @@ angular.module('SharedServiceApp')
                 var apartmentURLID = $stateParams.id;
                 var apartmentInSession = $sessionStorage.apartmentSelected;
                 console.dir(apartmentInSession);
-                console.dir(apartmentInSession.apartmentData);
-                console.dir(apartmentURLID == apartmentInSession.apartmentData.id);
                 //check if there is an apartment in session
                 if (!apartmentInSession) {
                     //if no apartment in session, make API call
                     queryApartment(apartmentURLID)
                         .then(function(response) {
                             // SearchFct.formatSearchResults()
+                            console.dir(response);
                             callback(response);
                         });
                 } else {
@@ -79,6 +78,7 @@ angular.module('SharedServiceApp')
                     } else {
                         queryApartment(apartmentURLID)
                             .then(function(response) {
+                                console.dir(response);
                                 callback(response);
                             });
                     }

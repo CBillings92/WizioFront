@@ -1,31 +1,47 @@
-<form class="" method="post" style="padding:20px;">
-    <h2>Apartment Application</h2>
-    <p style="padding:5px">
-        Wizio will email you regarding any updates to this apartment's status.
-        Those whose emails you apply to the application may remove themselves from the application. Only those with accounts can application so make sure all of your friends have accounts with us! We will never share your information with anyone without your consent.
-    </p>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-10" ng-repeat="userObj in apartmentSlotsModal track by $index" style="padding:5px">
-                <div class="">
-                    <h4>Housemate {{userObj.id}}</h4>
-                </div>
-                <div class="col-md-6">
-                    <label class='control-label'>First Name:</label>
-                    <input type='text' class='form-control'>
-                </div>
-                <div class="col-md-6">
-                    <label class='control-label'>Last Name:</label>
-                    <input type='text' class='form-control'>
-                </div>
-                <div class="col-md-12">
-                    <label class='control-label'>Email:</label>
-                    <input type='text' ng-model="applicationArray[$index]" class='form-control'>
+<!-- <div class="modal-body">
+    <img src="http://cdn2.hubspot.net/hub/1698025/hubfs/logo_200x100.jpg?t=1453741681307&width=200" style="display: block; margin-left: auto;  margin-right: auto;"></img>
+    <p style="padding-top:20px;">Thank you for your interest in this apartment. Unfortunately, it is currently NOT available. Be sure to check back for updates.
+        <br> <br>
+    <span style=" display: block;  width:100px; margin: 0 auto;"> Team Wizio </span></p> -->
+
+
+<div class="modal-header">
+    <h1>Application</h1>
+</div>
+
+<div class="modal-body formStyle">
+    <form class="" method="post">
+        <p>
+            Content Needed Here
+        </p>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-10" ng-repeat="userObj in apartmentSlotsModal track by $index" style="padding:5px">
+                    <div class="">
+                        <h4>Housemate {{userObj.id}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <label class='control-label'>First Name:</label>
+                        <input type='text' class='form-control'>
+                    </div>
+                    <div class="col-md-6">
+                        <label class='control-label'>Last Name:</label>
+                        <input type='text' class='form-control'>
+                    </div>
+                    <div class="col-md-12">
+                        <label class='control-label'>Email:</label>
+                        <input type='text' ng-model="applicationArray[$index]" class='form-control'>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-4">
-                <button class="btn btn-success col-md-4" ng-click="applicationSignup()">Submit Application</button>
-            </div>
+
         </div>
+    </form>
+    <div class="">
+        <button class="btn btn-fill--blue btn-md" ng-click="applicationSignup()">Submit</button>
     </div>
-</form>
+</div>
+
+<!-- </div> -->

@@ -1,3 +1,42 @@
 .buttonPlacement {
     margin-bottom:5px;
 }
+.formStyle {
+
+
+    .modal-header {
+		border-bottom: 0;
+	}
+
+	.modal-title {
+		font-family: "Roboto Slab";
+		font-size: 2rem;
+		color: $gray;
+	}
+
+	&-controls {
+		max-width: 220px;
+		margin: 0 auto;
+		padding: $account-padding;
+
+	}
+    label {
+        padding-top: 10px;
+    }
+
+	.form-control {
+		background: none;
+		box-shadow: none;
+		border-radius: 0;
+		outline: 0;
+		border: 0;
+		border-bottom: 2px solid $gray;
+		padding: 3px 6px;
+		&:focus {
+			color: $orange;
+			border-bottom-color: $orange;
+		}
+	}
+
+
+}

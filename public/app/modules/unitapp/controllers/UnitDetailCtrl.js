@@ -50,12 +50,11 @@ angular.module('UnitApp')
                 for the formatSearchResults function in SearchFct
                 */
                 result = result[0];
-                $scope.description =result.Description;
+                ApartmentGetSetSvc.set(result, "apartmentSelected");
+                $scope.description = result.Description;
                 console.dir(result);
-                $scope.$apply(function(){
-                    $scope.listing = result.Lease ? result.Lease.leaseData : "Monthly Rent Unavailable";
+                $scope.listing = result.Lease ? result.Lease.leaseData : "Monthly Rent Unavailable";
 
-                })
                 console.dir($scope.listing);
                 newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
@@ -66,10 +65,8 @@ angular.module('UnitApp')
                 });
                 result.apartmentData = newApartmentData;
                 //assign result (apartment) to $scope
-                $scope.$apply(function(){
-                    $scope.apartment = result.apartmentData;
-                    $scope.media = result.Media;
-                })
+                $scope.apartment = result.apartmentData;
+                $scope.media = result.Media;
                 var photoIndex = 0;
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
                 $scope.photosRight = function() {
@@ -77,7 +74,7 @@ angular.module('UnitApp')
                         photoIndex = 0;
                     } else {
                         $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
-                        // photoIndex++;
+                            // photoIndex++;
                     }
                 };
                 $scope.photosLeft = function() {
@@ -187,7 +184,7 @@ angular.module('UnitApp')
             var authViews = WizioConfig.AccountAuthViewsURL;
             var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             //APPLY to the apartment
-            $scope.apply = function() {
+            $scope.applyToApartment = function() {
                 var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'ApplicationCreateModal.html', 'ApplicationCreateModalCtrl', 'md');
                 //check if token is expired, if so route to login
                 if (TokenSvc.checkExp()) {
@@ -272,7 +269,8 @@ angular.module('UnitApp')
             };
             $scope.setupTour = function() {
                 //This needs to be discussed further
-                alert("Feature still under development and is due to arrive in our full product launch!");
+                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormVidewsURL + '../../../../../assets/featureComing.html', 'ApplicationCreateModalCtrl', 'md');
+                ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {});
             };
             $scope.submitVideo = function() {
                 var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');

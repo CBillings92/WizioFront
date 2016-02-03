@@ -105,6 +105,7 @@ angular.module('Models')
                         for(var key in response){
                             apartmentData[key] = response[key];
                         }
+                        console.dir("ENUHAEOSNTHEUSNTHAEUNTAOHEUNEAUHAEUNTAHUNRTUAOH");
                         resolve('done');
                     });
                 });

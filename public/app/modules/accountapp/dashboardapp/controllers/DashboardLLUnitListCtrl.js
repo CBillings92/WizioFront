@@ -101,7 +101,7 @@ angular.module('AccountApp')
                     function(response) {
                         var viewApplicantsModalDefaults = modalDefaults(
                             'lg',
-                            WizioConfig.ApplicationFormViewsURL + 'ApplicationOverview.html',
+                            WizioConfig.ApplicationFormViewsURL + 'ApplicationOverviewModal.html',
                             'ApplicationOverviewCtrl',
                             response
                         );
