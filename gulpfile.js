@@ -32,16 +32,6 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest('./public/build'));
 });
 
-/*
-gulp.task('less', function(callback) {
-  return gulp.src('./public/stylesheets/styles.less')
-  .pipe(less({
-    paths: ['./public/stylesheets/styles.less']
-  }))
-  .pipe(gulp.dest('./public/build'));
-  }
-);
-*/
 gulp.task('sass', function() {
     return gulp.src('./public/stylesheets/sass/stylessass.scss')
         .pipe(sass().on('error', sass.logError))
