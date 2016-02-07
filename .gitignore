@@ -4,7 +4,7 @@ public/build/styles.css
 public/stylesheets/compiledsass/stylessass.css
 
 npm-debug.log
-bower_components/
+#bower_components/
 .elasticbeanstalk/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
