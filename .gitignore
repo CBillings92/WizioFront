@@ -1,7 +1,7 @@
 node_modules/
-public/build/scripts.js
-public/build/styles.css
-public/stylesheets/compiledsass/stylessass.css
+#public/build/scripts.js
+#public/build/styles.css
+#public/stylesheets/compiledsass/stylessass.css
 
 npm-debug.log
 #bower_components/
