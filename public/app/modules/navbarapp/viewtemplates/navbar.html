@@ -1,67 +1,60 @@
 <!---<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" ng-style="landingPageStyle" role="navigation"> --->
 <nav class="navbar" ng-class="{transparent_nav: isActive('/')}" ng-style="landingPageStyle" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-      <a class="navbar-brand" ng-click="goHome()">
-        <img id="navbarlogo" />
-      </a>
-    </div><!--navbar header -->
+            <a class="navbar-brand" ng-click="goHome()">
+                <img id="navbarlogo"/>
+            </a>
+        </div>
+        <!--navbar header -->
 
-    <div class="collapse navbar-collapse" id="navbar">
-      <ul class="nav navbar-nav navbar-left"
-          ng-hide="isActive('/') || isActive('/unit/display')">
-        <form id="navbar-search" class="navbar-form navbar-left" ng-submit="search()" role="search">
-          <div class="form-group">
-              <input class="form-control nav-search"
-                     placeholder="Search by area"
-                     ng-model="searchString"
-                     type="text"
-                     typeahead-loading="loadingLocations"
-                     typeahead-min-length="3"
-                     typeahead-no-results="noResults"
-                     typeahead="address for address in getLocation($viewValue)" />
-<!--               <div ng-show="noResults">
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-left" ng-hide="isActive('/') || isActive('/unit/display')">
+                <form class="navbar-form navbar-left" id="navbar-search" ng-submit="search()" role="search">
+                    <div class="form-group">
+                        <input class="form-control nav-search" ng-model="searchString" placeholder="Search by area" type="text" typeahead-loading="loadingLocations" typeahead-min-length="3" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
+                        <!--               <div ng-show="noResults">
                   <i class="glyphicon glyphicon-remove"></i> No Results Found
               </div> -->
-          </div>
-          <button class="btn btn-search" type="submit">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
-      </ul>
+                    </div>
+                    <button class="btn btn-search" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </ul>
 
-      <ul class="nav navbar-nav navbar-right">        
-        <li ng-click="goAbout()" ng-class="{active: false}">
-          <a href="">About</a>
-        </li>
-        <li ng-click="goToLogin()" ng-hide="isLoggedIn">
-          <a href="">Sign In</a>
-        </li>
-        <li ng-click="goAccountDashboard()" ng-class="{active: false}" ng-show="isLoggedIn">
-          <a href="">Activity</a>
-        </li>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-class="{active: false}" ng-click="goAbout()">
+                    <a href="">About</a>
+                </li>
+                <li ng-click="goToLogin()" ng-hide="isLoggedIn">
+                    <a href="">Sign In</a>
+                </li>
+                <li ng-class="{active: false}" ng-click="goAccountDashboard()" ng-show="isLoggedIn">
+                    <a href="">Activity</a>
+                </li>
 
-        <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
-          <a href="">Sign Up</a>
-        </li>
-        <li ng-click="logout()" ng-show="isLoggedIn">
-          <a href="">Logout</a>
-        </li>
-      </ul>
+                <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">
+                    <a href="">Sign Up</a>
+                </li>
+                <li ng-click="logout()" ng-show="isLoggedIn">
+                    <a href="">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.navbar-collapse -->
-  </div>
-  <!-- close container -->
+    <!-- close container -->
 </nav>
 
-<div class="collapse" id="searchFiltersCollapse" ui-view="search-filters" style="">
+<div class="collapse" id="searchFiltersCollapse" style="" ui-view="search-filters">
     <form class="form-inline">
         <div class="form-group">
             <div class="dropdown">
@@ -87,13 +80,15 @@
             </select>
         </div>
         <div class="form-group">
-            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price: </label>
-            <input type="text" name="name" id="minPriceFilter" class="form-control" ng-model="filters.minPrice">
+            <label class="label-lg" for="minPriceFilter" style="color: black">Min Price:
+            </label>
+            <input class="form-control" id="minPriceFilter" name="name" ng-model="filters.minPrice" type="text">
         </div>
         <div class="form-group">
 
-            <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price: </label>
-            <input type="text" name="name" id="maxPriceFilter" class="form-control" ng-model="filters.maxPrice">
+            <label class="label-lg" for="maxPriceFilter" style="color: black">Max Price:
+            </label>
+            <input class="form-control" id="maxPriceFilter" name="name" ng-model="filters.maxPrice" type="text">
         </div>
     </form>
 </div>
