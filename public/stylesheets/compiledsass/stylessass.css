@@ -6654,10 +6654,12 @@ body {
   margin: 0; }
   @media (min-width: 768px) {
     .unit-details-features {
-      margin: 10px 40px 0 -10px; } }
+      margin: 10px 40px 0 -10px;
+      padding-left: 30px; } }
   @media (min-width: 992px) {
     .unit-details-features {
-      margin: 10px 40px 0 -25px; } }
+      margin: 10px 40px 0 -25px;
+      padding-left: 30px; } }
 
 @media (min-width: 768px) {
   .unit-details-features,
@@ -6696,10 +6698,11 @@ body {
   @media (min-width: 768px) {
     .unit-details-media-container {
       margin-bottom: 40px;
-      max-width: 80%; } }
+      max-width: 85%; } }
   @media (min-width: 992px) {
     .unit-details-media-container {
-      margin-bottom: 60px; } }
+      margin-bottom: 60px;
+      max-width: 85%; } }
   .unit-details-media-container #map {
     padding-bottom: 56.25%; }
 
@@ -6710,7 +6713,8 @@ body {
   @media (min-width: 768px) {
     .unit-details-info {
       padding-bottom: 30px;
-      margin-bottom: 30px; } }
+      margin-bottom: 30px;
+      padding-left: 30px; } }
   .unit-details-info__price {
     font-weight: 400;
     margin: 0 0 5px;

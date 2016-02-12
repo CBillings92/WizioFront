@@ -40,16 +40,16 @@
         </div>
         <ul class="unit-details-media-container-tabs">
             <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">Virtual Reality Photos</button>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
             </li>
             <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Virtual Reality Video</button>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Virtual Reality Tour</button>
             </li>
             <li>
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
             </li>
         </ul>
-        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
+        <!-- <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider">
                     <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="container">
         <div class="row">
@@ -68,6 +68,8 @@
                     <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
                     <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
                     <p class="unit-details-info__updated">last updated 2 days ago</p>
+                        <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
+                        </button>
                 </div>
                 <div class="row unit-details-features">
                     <div class="col-xs-3 unit-details-feature">
@@ -111,18 +113,6 @@
             <div class="col-sm-6 unit-details-description">
                 <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
                 <p>{{description.description}}</p>
-                <div class="unit-details-action-btn-wrapper hidden-xs">
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
-                    </button>
-                    <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
-                        <span class="hidden-xs"> to favorites</span>
-                    </button>
-                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
-                        <span class="hidden-xs"> from favorites</span>
-                    </button> -->
-                    <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
-                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
-                </div>
                 <!-- <div class="form-group">
                     <div class="col-md-6">
                         <label class="control-label">Video Link</label>

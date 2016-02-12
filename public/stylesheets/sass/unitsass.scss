@@ -78,13 +78,15 @@
 
 .unit-details-features {
 	margin: 0;
-
 	@media (min-width: $screen-sm-min) {
 		margin: 10px 40px 0 -10px;
+		padding-left: 30px;
+
 	}
 
 	@media (min-width: $screen-md-min) {
 		margin: 10px 40px 0 -25px;
+		padding-left: 30px;
 	}
 
 }
@@ -138,10 +140,12 @@
 	}
 	@media (min-width: $screen-sm-min) {
 		margin-bottom: 40px;
-		max-width: 80%;
+		max-width: 85%;
 	}
 	@media (min-width: $screen-md-min) {
 		margin-bottom: 60px;
+		max-width: 85%;
+
 	}
 	#map {
 		// this maintains a 16 / 9 aspect ratio
@@ -157,6 +161,7 @@
 	@media (min-width: $screen-sm-min) {
 		padding-bottom: 30px;
 		margin-bottom: 30px;
+		padding-left: 30px;
 	}
 
 	&__price {
