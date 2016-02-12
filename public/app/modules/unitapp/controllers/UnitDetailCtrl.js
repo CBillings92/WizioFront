@@ -53,6 +53,9 @@ angular.module('UnitApp')
                 ApartmentGetSetSvc.set(result, "apartmentSelected");
                 $scope.description = result.Description;
                 $scope.listing = result.Lease ? result.Lease.leaseData : "Monthly Rent Unavailable";
+                var dateStart = new Date($scope.listing.dateStart);
+
+                $scope.listing.dateStart =   dateStart.getMonth() + '-' + dateStart.getDate() + "-" + dateStart.getFullYear();
 
                 newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
