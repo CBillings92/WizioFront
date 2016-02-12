@@ -52,10 +52,8 @@ angular.module('UnitApp')
                 result = result[0];
                 ApartmentGetSetSvc.set(result, "apartmentSelected");
                 $scope.description = result.Description;
-                console.dir(result);
                 $scope.listing = result.Lease ? result.Lease.leaseData : "Monthly Rent Unavailable";
 
-                console.dir($scope.listing);
                 newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
                         return "Unknown";
@@ -68,18 +66,18 @@ angular.module('UnitApp')
                 $scope.apartment = result.apartmentData;
                 $scope.media = result.Media;
                 var photoIndex = 0;
-                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 $scope.photosRight = function() {
                     if (photoIndex === ($scope.media.vrphoto.length)) {
                         photoIndex = 0;
                     } else {
-                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link;
                             // photoIndex++;
                     }
                 };
                 $scope.photosLeft = function() {
                     photoIndex--;
-                }
+                };
                 $scope.trust = $sce;
 
 
@@ -117,7 +115,7 @@ angular.module('UnitApp')
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
             //FIXME
-            $scope.mediaTab = 'map';
+            $scope.mediaTab = 'unitPhotos';
             $scope.selectMediaTab = function(tab) {
                 $scope.mediaTab = tab;
             };

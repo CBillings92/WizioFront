@@ -36,7 +36,7 @@
 			border-left-width: 0;
 			border-width: 1px 1px 1px 0;
 			&:last-of-type {
-				width: 34%;
+				width: 100%;
 			}
 			@include button-hover-state {
 				border-color: $gray;
@@ -72,6 +72,7 @@
 	.unit-details-action-btn-wrapper {
 		float: right;
 		margin-top: 3px;
+		// margin-right: 5%;
 	}
 }
 
@@ -136,10 +137,11 @@
 		padding: 0;
 	}
 	@media (min-width: $screen-sm-min) {
-		margin-bottom: 80px;
+		margin-bottom: 40px;
+		max-width: 80%;
 	}
 	@media (min-width: $screen-md-min) {
-		margin-bottom: 120px;
+		margin-bottom: 60px;
 	}
 	#map {
 		// this maintains a 16 / 9 aspect ratio

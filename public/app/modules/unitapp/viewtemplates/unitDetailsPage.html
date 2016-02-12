@@ -1,21 +1,21 @@
 <div class="unit-details">
     <div class="container unit-details-header">
         <div class="unit-details-action-btn-wrapper">
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
+            </button>
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
                 <span class="hidden-xs"> to favorites</span>
             </button>
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
                 <span class="hidden-xs"> from favorites</span>
-            </button>
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Apply
-            </button>
+            </button> -->
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
         </div>
         <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
     </div>
     <div class="container unit-details-media-container">
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'neighborhood'">
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
             </div>
@@ -26,7 +26,7 @@
                 <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
             </div>
         </div>
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
                 <div class="unit-details-media-tab-content-picker-forward" >
@@ -40,10 +40,10 @@
         </div>
         <ul class="unit-details-media-container-tabs">
             <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Unit Videos</button>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">Virtual Reality Photos</button>
             </li>
             <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'neighborhood'}" ng-click="selectMediaTab('neighborhood')">Neighborhood</button>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Virtual Reality Video</button>
             </li>
             <li>
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
@@ -61,15 +61,10 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-sm-12" style="margin-bottom:15px;">
-                <p>
-                    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
-                </p>
-
-            </div>
             <div class="col-sm-6">
                 <div class="unit-details-info">
                     <h3 class="unit-details__orange unit-details-info__price">${{listing.monthlyRent}}</h3>
+                    <h4 class="unit-details-info__heading">Date available: {{listing.dateStart}}</h4>
                     <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
                     <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
                     <p class="unit-details-info__updated">last updated 2 days ago</p>
@@ -117,18 +112,18 @@
                 <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
                 <p>{{description.description}}</p>
                 <div class="unit-details-action-btn-wrapper hidden-xs">
-                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
+                    </button>
+                    <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
                         <span class="hidden-xs"> to favorites</span>
                     </button>
                     <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
                         <span class="hidden-xs"> from favorites</span>
-                    </button>
-                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
-                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Apply
-                    </button>
+                    </button> -->
+                    <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+                    <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <div class="col-md-6">
                         <label class="control-label">Video Link</label>
                         <input type="text" class="form-control" name="name" ng-model="media.video.link" value="">
@@ -141,7 +136,7 @@
                         <input type="text" class="form-control" ng-model="media.photo.title" name="name" value="">
                         <button type="button" class="btn" ng-click="submitPhoto()" name="button">Submit Picture</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

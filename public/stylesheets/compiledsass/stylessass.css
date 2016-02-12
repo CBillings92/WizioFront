@@ -6627,7 +6627,7 @@ body {
         border-left-width: 0;
         border-width: 1px 1px 1px 0; }
         .unit-details__action-btn:last-of-type {
-          width: 34%; }
+          width: 100%; }
         .unit-details__action-btn.active, .unit-details__action-btn.active.focus, .unit-details__action-btn.active:focus, .unit-details__action-btn:active, .unit-details__action-btn:active.focus, .unit-details__action-btn:active:focus, .unit-details__action-btn.focus, .unit-details__action-btn:focus, .unit-details__action-btn.hover, .unit-details__action-btn:hover {
           border-color: #706f72; } }
   @media (max-width: 767px) {
@@ -6695,10 +6695,11 @@ body {
       padding: 0; } }
   @media (min-width: 768px) {
     .unit-details-media-container {
-      margin-bottom: 80px; } }
+      margin-bottom: 40px;
+      max-width: 80%; } }
   @media (min-width: 992px) {
     .unit-details-media-container {
-      margin-bottom: 120px; } }
+      margin-bottom: 60px; } }
   .unit-details-media-container #map {
     padding-bottom: 56.25%; }
 
