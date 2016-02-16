@@ -136,15 +136,15 @@
 .unit-details-media-container {
 	margin-bottom: 30px;
 	@media (max-width: $screen-xs-max) {
-		padding: 0;
+		padding: 20px;
 	}
 	@media (min-width: $screen-sm-min) {
 		margin-bottom: 40px;
-		max-width: 85%;
+		max-width: 75%;
 	}
 	@media (min-width: $screen-md-min) {
 		margin-bottom: 60px;
-		max-width: 85%;
+		max-width: 75%;
 
 	}
 	#map {

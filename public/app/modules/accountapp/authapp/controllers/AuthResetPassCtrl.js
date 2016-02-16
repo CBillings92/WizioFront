@@ -43,7 +43,7 @@ angular.module('AccountApp')
                             bodyText: 'We could not send an email to ' + emailobj.email + ' for some reason. Please try another email.'
                         };
                         ModalSvc.showModal({}, resetPasswordNotSentModalOptions)
-                            .then(function(result) {})
+                            .then(function(result) {});
                     } else {
                         var resetPasswordSentModalOptions = {
                             closeButtonText: "Close",
@@ -80,7 +80,7 @@ angular.module('AccountApp')
                             ModalSvc.showModal({}, passwordUdatedModalOptions)
                                 .then(function(result) {
                                     $state.go('LandingPage');
-                                })
+                                });
                         } else {
                             var passwordUdateErrorModalOptions = {
                                 closeButtonText: "Close",
@@ -89,7 +89,7 @@ angular.module('AccountApp')
                                 bodyText: 'We coult not update your password for some reason. Please try again.'
                             };
                             ModalSvc.showModal({}, passwordUdateErrorModalOptions)
-                                .then(function(result) {})
+                                .then(function(result) {});
                         }
                         return;
                     });
@@ -103,7 +103,7 @@ angular.module('AccountApp')
                         bodyText: 'The two passwords that you typed do not match. Please try again'
                     };
                     ModalSvc.showModal({}, passwordMatchErrorModalOptions)
-                        .then(function(result) {})
+                        .then(function(result) {});
                 }
             };
             $scope.requestLogin = function() {
@@ -125,37 +125,5 @@ angular.module('AccountApp')
                         });
                     });
             };
-            /*    $scope.facebookLogin = function(){
-                    if($rootScope.authObjects.facebookConnected){
-                        alert('Already logged in with email!');
-                        if(RerouteGetSetSvc.get().length !== 0){
-                            return $location.path(RerouteGetSetSvc.get());
-                        }
-                        return $state.go('Account.Dashboard.Main');
-                    }
-                    $facebook.login().then(function(data){
-                        if(data.status === "connected"){
-                            $facebook.api('/me').then(function(userdata){
-                                var fbData = {
-                                    user: userdata,
-                                    facebook: true
-                                };
-                                AuthFct.signup(fbData, function(data, status){
-                                    //do stuff with data?
-                                    if(status === 403){
-                                        $rootScope.isLoggedIn = false;
-                                        return;
-                                    }
-                                    $rootScope.isLoggedIn = true;
-                                    return;
-                                });
-                            });
-                        } else {
-                            alert("Can't autehtnicate Facebook credentials");
-                        }
-                    });
-
-
-                };*/
         }
     ]);

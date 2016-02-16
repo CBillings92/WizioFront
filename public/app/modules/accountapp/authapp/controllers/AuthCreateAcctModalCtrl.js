@@ -59,25 +59,6 @@ angular.module('AccountApp')
             $scope.login = function() {
                 return $modalInstance.close('login');
             };
-            /*    $scope.createFacebookUser = function(){
-                        $facebook.login().then(function(data){
-                            switch(data.status){
-                                case "connected":
-                                    $facebook.api('/me').then(function(user){
-                                        user.accountType = "facebook";
-                                        UserRegistrationSvc.saveUser(user, function(data){
-                                            return $modalInstance.close('ok');
-                                        });
-                                    });
-                                    break;
-                                case "not_authorized":
-                                    alert('Facebook error');
-                                    break;
-                            }
-                        });
-
-                };*/
-
             $scope.cancel = function() {
                 if ($state.current.name === "Campaign.VideoUpload.Main") {
                     $modalInstance.dismiss();
