@@ -12,7 +12,8 @@
             <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
         </div>
-        <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
+        <h2 class="unit-details-header__heading unit-details__orange" style="padding-bottom:0px;">{{ apartment.street }}</h2>
+        <h4 class="unit-details__orange" style="padding-top:2px;">By <img src="http://c3155192.r92.cf0.rackcdn.com/assets/uploads/setting/company_header_logo/25/3b3ba8379e941aad3aad2e9457b8b65c.png" style=" padding-left: 5px;width:100px" alt="why" /></h4>
     </div>
     <div class="container unit-details-media-container">
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
@@ -29,12 +30,12 @@
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
-                <div class="unit-details-media-tab-content-picker-forward" >
+                <!-- <div class="unit-details-media-tab-content-picker-forward" >
                     <i class="fa fa-chevron-right" ng-click="photosRight()"></i>
                 </div>
                 <div class="unit-details-media-tab-content-picker-backward" >
                     <i class="fa fa-chevron-left" ng-click="photosLeft()"></i>
-                </div>
+                </div> -->
             </div>
 
         </div>

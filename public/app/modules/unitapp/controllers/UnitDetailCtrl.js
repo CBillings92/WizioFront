@@ -70,16 +70,8 @@ angular.module('UnitApp')
                 $scope.media = result.Media;
                 var photoIndex = 0;
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                $scope.photosRight = function() {
-                    if (photoIndex === ($scope.media.vrphoto.length)) {
-                        photoIndex = 0;
-                    } else {
-                        $scope.photoUrl = $scope.media.vrphoto[photoIndex++].link;
-                            // photoIndex++;
-                    }
-                };
-                $scope.photosLeft = function() {
-                    photoIndex--;
+                $scope.changePhoto = function(photoIndex) {
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 };
                 $scope.trust = $sce;
 
