@@ -22,8 +22,11 @@ angular.module('AccountApp')
                 return $modalInstance.close('ok');
             };
 
+            //submission of create account form
             $scope.setUserObj = function() {
+                //check if the passwords match
                 if ($scope.user.password === $scope.user.passwordConfirm) {
+                    //set the accountType (local vs third party);
                     $scope.user.accountType = 'local';
                     if(data === "Tenant"){
                         $scope.user.userType = 1;
@@ -39,7 +42,7 @@ angular.module('AccountApp')
                                 bodyText: 'That email is already in use by an account holder. Please try another email or reset your password if you forgot it.'
                             };
                             ModalSvc.showModal({}, signUpErrorModalOptions)
-                                .then(function(result) {})
+                                .then(function(result) {});
                         } else {
                             $scope.hasRegistered = true;
                         }
@@ -53,7 +56,7 @@ angular.module('AccountApp')
                         bodyText: 'The two passwords you typed do not match'
                     };
                     ModalSvc.showModal({}, signUpPasswordErrorModalOptions)
-                        .then(function(result) {})
+                        .then(function(result) {});
                 }
             };
             $scope.login = function() {
