@@ -17,6 +17,9 @@
     </div>
     <div class="container unit-details-media-container">
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
+            <div class="" style="background-color: black; height: 30px;">
+
+            </div>
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
             </div>
@@ -50,6 +53,13 @@
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
             </li>
         </ul>
+        <div class="unit-details-media-tab-content-picker-wrapper">
+            <div class="" ng-repeat="photo in media.vrphoto">
+                <div class="" ng-model=>
+                    {{photo.name}}
+                </div>
+            </div>
+        </div>
         <!-- <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider">
@@ -128,6 +138,9 @@
                         <button type="button" class="btn" ng-click="submitPhoto()" name="button">Submit Picture</button>
                     </div>
                 </div> -->
+            </div>
+            <div class="">
+                
             </div>
         </div>
     </div>
