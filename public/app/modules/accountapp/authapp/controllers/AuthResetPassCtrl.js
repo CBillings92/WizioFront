@@ -15,7 +15,7 @@ angular.module('AccountApp')
         'RerouteGetSetSvc',
         'WizioConfig',
         function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig) {
-            var modalDefaults = function(templateUrl, controller, accountType) {
+            function modalDefaults(templateUrl, controller, accountType) {
                 return {
                     backdrop: true,
                     keyboard: true,
@@ -29,28 +29,32 @@ angular.module('AccountApp')
                     }
                 };
             };
+            //shorthand - just so we don't need to keep typing this long crap
             var authViews = WizioConfig.AccountAuthViewsURL;
 
             $scope.sendResetEmail = function() {
-                var emailobj = {};
-                emailobj.email = $scope.email;
-                AuthResetPasswordResource.save(emailobj, function(responseObj) {
+                $scope.emailobj = {};
+                AuthResetPasswordResource.save($scope.emailobj, function(responseObj) {
                     if (responseObj.status === "ERR") {
+                        //set the object that give the modal its default verbiage
                         var resetPasswordNotSentModalOptions = {
                             closeButtonText: "Close",
                             actionButtonText: "OK",
                             headerText: "Password Reset Error",
-                            bodyText: 'We could not send an email to ' + emailobj.email + ' for some reason. Please try another email.'
+                            bodyText: 'We could not send an email to ' + $scope.emailobj.email + ' for some reason. Please try another email.'
                         };
+                        //create a modal with the newly created object
                         ModalSvc.showModal({}, resetPasswordNotSentModalOptions)
                             .then(function(result) {});
                     } else {
+                        //set the object that give the modal its default verbiage
                         var resetPasswordSentModalOptions = {
                             closeButtonText: "Close",
                             actionButtonText: "OK",
                             headerText: "Password Reset",
                             bodyText: 'An email has been sent to ' + emailobj.email + ' with instructions on how to reset your password'
                         };
+                        //create a modal with the newly created object
                         ModalSvc.showModal({}, resetPasswordSentModalOptions)
                             .then(function(result) {
                                 $state.go('LandingPage');
@@ -59,13 +63,17 @@ angular.module('AccountApp')
                     return;
                 });
             };
+            //on modal close
             $scope.closeModal = function() {
                 $modalInstance.close();
             };
-
+            //______________________________________________________________________________
+            //FOR RESETING EMAIL - Goes with resetPassword.html
             var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             $scope.resetPassword = function() {
-                if ($scope.password === $scope.passwordConfirm) {
+                $scope.passwordObj = {};
+                //check to make sure the password matches
+                if ($scope.passwordObj.password === $scope.passwordObj.passwordConfirm) {
                     var passwordobj = {};
                     passwordobj.password = $scope.password;
                     passwordobj.token = $stateParams.token;
