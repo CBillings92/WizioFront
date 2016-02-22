@@ -180,31 +180,32 @@ angular.module('UnitApp')
             $scope.applyToApartment = function() {
                 var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'contactRepForm.html', 'ApplicationCreateModalCtrl', 'md');
                 //check if token is expired, if so route to login
-                if (TokenSvc.checkExp()) {
-                    TokenSvc.deleteToken();
-
-                    ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                        //store the current apartment in sessionStorage with the
-                        //appropriate session storage variable
-                        console.dir(result);
-                        if (result) {
-                            FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
-                            ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
-                                $state.go('Account.Dashboard.Main');
-                            });
-
-                        }
-
-                    });
-                } else {
+                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                     //store the current apartment in sessionStorage with the
                     //appropriate session storage variable
-                    FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                    console.dir(result);
+                    if (result) {
+                        FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                        ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                            $state.go('Account.Dashboard.Main');
+                        });
 
-                    ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
-                        $state.go('Account.Dashboard.Main');
-                    });
-                }
+                    }
+
+                });
+                //COMMENTED TO STOP THE NEED FOR LOGIN FOR TESTING PURPOSES FOR DEVON
+                // if (TokenSvc.checkExp()) {
+                //     TokenSvc.deleteToken();
+                //
+                // } else {
+                //     //store the current apartment in sessionStorage with the
+                //     //appropriate session storage variable
+                //     FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                //
+                //     ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                //         $state.go('Account.Dashboard.Main');
+                //     });
+                // }
             };
 
             function favoriteLogic(user) {
