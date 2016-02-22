@@ -29,9 +29,9 @@
         </div>
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
             <div class="embed-responsive embed-responsive-16by9">
-                <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
+                <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
 
-                </div>
+                </div> -->
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
             </div>
 
@@ -41,7 +41,7 @@
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
             </li>
             <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Virtual Reality Tour</button>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" style="" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
             </li>
             <li>
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
@@ -49,13 +49,15 @@
         </ul>
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
-                <div class="unit-details-media-tab-content-picker-slider">
+                <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
                     <div ng-repeat="photo in media.vrphoto track by $index" class="unit-details-media-tab-content-picker">
-                        <a href="#" ng-click="changePhoto($index)" style="text-decoration:none;color:black;text-align:center;">
-                            <div class="" style="width:100px; height:50px;vertical-align:middle;display:table-cell;margin:0px;5px;0px;5px;border:1px solid black;background-color:lightgray">
+                        <a href="#" ng-click="changePhoto($index)" class="btn btn-search-bar center_button">
+                            <div class="" >
                                 {{photo.title}}
                             </div>
                         </a>
+                        <!--  style="text-decoration:none;color:black;text-align:center; -->
+                        <!-- style="width:100px; height:50px;vertical-align:middle;display:table-cell;margin:0px;5px;0px;5px;border:1px solid black;background-color:lightgray" -->
                         <!-- <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" /> -->
                     </div>
                 </div>
@@ -133,7 +135,7 @@
             </div>
             <div class="col-sm-6 unit-details-description">
                 <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>
-                <img src="/public/viewtemplates/images/kaceyalisaapartment.jpg" alt="floorplan" />
+                <img src="/public/viewtemplates/images/kaceyalisaapartment.jpg" style="width:100%" alt="floorplan" />
             </div>
         </div>
     </div>
