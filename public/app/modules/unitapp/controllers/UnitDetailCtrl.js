@@ -178,7 +178,7 @@ angular.module('UnitApp')
             var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             //APPLY to the apartment
             $scope.applyToApartment = function() {
-                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'ContactRepForm.html', 'ApplicationCreateModalCtrl', 'md');
+                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'contactRepForm.html', 'ApplicationCreateModalCtrl', 'md');
                 //check if token is expired, if so route to login
                 if (TokenSvc.checkExp()) {
                     TokenSvc.deleteToken();
