@@ -175,7 +175,7 @@ angular.module('UnitApp')
                 };
             };
             var authViews = WizioConfig.AccountAuthViewsURL;
-            var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+            // var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             //APPLY to the apartment
             $scope.applyToApartment = function() {
                 var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'contactRepForm.html', 'ApplicationCreateModalCtrl', 'md');
@@ -184,13 +184,13 @@ angular.module('UnitApp')
                     //store the current apartment in sessionStorage with the
                     //appropriate session storage variable
                     console.dir(result);
-                    if (result) {
-                        FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
-                        ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
-                            $state.go('Account.Dashboard.Main');
-                        });
-
-                    }
+                    // if (result) {
+                    //     FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                    //     ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                    //         $state.go('Account.Dashboard.Main');
+                    //     });
+                    //
+                    // }
 
                 });
                 //COMMENTED TO STOP THE NEED FOR LOGIN FOR TESTING PURPOSES FOR DEVON
