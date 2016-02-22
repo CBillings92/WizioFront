@@ -50,8 +50,8 @@
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
-                    <div ng-repeat="photo in media.vrphoto track by $index" class="unit-details-media-tab-content-picker">
-                        <a href="#" ng-click="changePhoto($index)" class="btn btn-search-bar center_button">
+                    <div ng-repeat="photo in media.vrphoto track by $index" class="unit-details-media-tab-content-picker"  style="margin:0;">
+                        <a href="#" ng-click="changePhoto($index)" class="btn btn-search-bar center_button" style="width:7em;">
                             <div class="" >
                                 {{photo.title}}
                             </div>
