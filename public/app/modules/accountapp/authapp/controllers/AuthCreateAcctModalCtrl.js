@@ -17,11 +17,11 @@ angular.module('AccountApp')
             };
 
             $scope.hasRegistered = false;
-
+            $scope.data = data;
+            console.dir(data);
             $scope.closeModal = function() {
                 return $modalInstance.close('ok');
             };
-
             //submission of create account form
             $scope.setUserObj = function() {
                 //check if the passwords match

@@ -1,4 +1,4 @@
-<div class="acct-modal">
+*<div class="acct-modal">
   <div class="modal-header">
     <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title">Sign Up</h4>
@@ -19,6 +19,13 @@
                     <span ng-show="createAcct.email.$error.required">Invalid email address</span>
                 </span>
             </div>
+            <div class="form-group">
+                <input type="text" placeholder="Company" ng-model="user.company" class="form-control" ng-show ="data === 'Landlord'" name="name" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Broker License Number" ng-model="user.licenseID" class="form-control" ng-show ="data === 'Landlord'" name="name" value="">
+            </div>
+            <br>
             <div class="form-group">
                 <input type="password" ng-minlength="6" ng-model="user.password" required placeholder="Password" class="form-control" />
             </div>
