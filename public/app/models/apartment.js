@@ -138,7 +138,7 @@ angular.module('Models')
                     var houseNumHigh = houseNumInt + right;
                     var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
                     this.apartmentData.concatAddr = houseNumRange + this.apartmentData.concatAddr.replace(/^\d+/, '');
-            }
+            };
             // Apartment.prototype.api = function() {
             //     return {
             //         oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')

@@ -47,6 +47,6 @@ angular.module('LeaseApp')
                 LeaseFct[action]($scope.lease, function(response){
                     //handle repsonse;
                 });
-            }
+            };
         }
     ]);

@@ -95,7 +95,7 @@ angular.module('UnitApp')
                                 };
                             ModalSvc.showModal({}, modalOptions).then(function(results){
                                 return;
-                            })
+                            });
                         }
 
                         return;

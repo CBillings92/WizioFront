@@ -30,6 +30,6 @@ angular.module('AccountApp')
             };
             $scope.claimApartments = function(){
                 $state.go('Unit.Claim');
-            }
+            };
         }
     ]);

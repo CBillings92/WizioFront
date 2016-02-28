@@ -72,6 +72,6 @@ angular.module('SharedServiceApp')
                 search: search,
                 concealAddress: concealAddress,
                 formatSearchResults: formatSearchResults
-            }
+            };
         }
     ]);
