@@ -11,16 +11,12 @@ angular.module('AccountApp')
         function($scope, $state, $modal, $modalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
-
+            $scope.dropdownvals = [
+                "Broker/Agent",
+                "Property Manager"
+            ];
             $scope.backStep = function() {
                 $modalInstance.close('backStep');
-            };
-            $scope.radioModel = 'Right';
-
-            $scope.checkModel = {
-                left: false,
-                middle: false,
-                right: true
             };
             $scope.hasRegistered = false;
             $scope.data = data;
@@ -30,6 +26,7 @@ angular.module('AccountApp')
             };
             //submission of create account form
             $scope.setUserObj = function() {
+
                 console.dir($scope.checkModel);
                 //check if the passwords match
                 //     if ($scope.user.password === $scope.user.passwordConfirm) {
