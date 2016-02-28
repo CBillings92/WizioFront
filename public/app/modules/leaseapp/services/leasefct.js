@@ -27,7 +27,7 @@ angular.module('LeaseApp')
                 'falseValue': 0
             }, {
                 'variable': 'waterIncluded',
-                'label': 'Water Included',
+                'label': 'Water/Sewer Included',
                 'trueValue': 1,
                 'falseValue': 0
             }, {
@@ -63,7 +63,7 @@ angular.module('LeaseApp')
                 'label': 'Security Deposit'
             }, {
                 'variable': 'newKeyFeeNeeded',
-                'label': 'New Key Fee'
+                'label': 'New Key Fee/Deposit'
             }, {
                 'variable': 'firstMonthsRentNeeded',
                 'label': 'First Months Rent'
