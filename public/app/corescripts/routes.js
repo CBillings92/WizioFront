@@ -337,6 +337,7 @@ angular.module('MainApp')
                         }
                     },
                 })
+
                 .state('Unit', {
                     url: '/unit',
                     views: {
@@ -361,6 +362,28 @@ angular.module('MainApp')
                 })
                 .state('Unit.Details', {
                     url: '/details/:id',
+                    views: {
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',
+                            controller: 'UnitDetailCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('Listing', {
+                    url: '/listing',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitMainViewsURL + 'UnitMain.html',
+                            controller: 'UnitMainCtrl'
+                        }
+                    },
+                    abstract: true
+                })
+                .state('Listing.Group', {
+                    url: '/:businessName/:id',
                     views: {
                         "UnitMain": {
                             templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',

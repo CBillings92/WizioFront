@@ -37,4 +37,4 @@ angular.module('Models')
 
             return Media;
         }
-    ])
+    ]);

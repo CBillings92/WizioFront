@@ -28,7 +28,7 @@ angular.module('AccountApp')
                         }
                     }
                 };
-            };
+            }
             //shorthand - just so we don't need to keep typing this long crap
             var authViews = WizioConfig.AccountAuthViewsURL;
 
@@ -58,7 +58,7 @@ angular.module('AccountApp')
                         ModalSvc.showModal({}, resetPasswordSentModalOptions)
                             .then(function(result) {
                                 $state.go('LandingPage');
-                            })
+                            });
                     }
                     return;
                 });

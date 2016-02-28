@@ -32,6 +32,21 @@
             <div class="form-group">
                 <input type="password" ng-minlength="6" ng-model="user.passwordConfirm" required placeholder="Confirm Password" class="form-control" />
             </div>
+            <br>
+            <div class="form-group">
+                <h5>I'm a...</h5>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Left'">
+                        Property Manager
+                    </label>
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Middle'">
+                        Mid
+                    </label>
+                    <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Right'">
+                        Broker/Agent
+                    </label>
+                </div>
+            </div>
         </div>
         <div class="acct-modal-footer">
             <a class="btn acct-modal-footer__btn acct-modal-footer__back-btn" ng-click="backStep()"><span class="fa fa-long-arrow-left"></span> Back</a>
