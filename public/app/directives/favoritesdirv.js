@@ -1,12 +1,10 @@
 angular.module('Directives')
-.directive('favoritesDirv',[
-    'FavoritesFct',
-    function(FavoritesFct){
-        return {
-            restrict: 'A',
-            link: function($scope, $attrs, $element, $controller){
-
-            }
-        };
-    }
-]);
+.directive('closeModalDirv', [function($modalInstance) {
+     return {
+      restrict: 'AE',
+      scope: false,
+      template: '<button type="button" class="close" data-dismiss="modal" data-toggle="modal" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>',
+      link: function(scope, element, attrs){
+      }
+  };
+}])
