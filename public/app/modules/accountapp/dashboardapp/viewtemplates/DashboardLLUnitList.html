@@ -1,3 +1,13 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" data-target="#home">Home</a></li>
+  <li><a data-toggle="tab" data-target="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" data-target="#menu2">Menu 2</a></li>
+</ul>
+
+
+
+<div class="tab-content">
+<div data-toggle="tab" id="home" class="tab-pane fade in active">
 <div class="row">
     <div class="col-md-12 tduff">
         <!-- ng-repeat -->
@@ -39,10 +49,10 @@
                 <div class="">
                     <div class="col-md-12">
                         <span style="padding:10px;">
-                            <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">View Leads</button>
+                            <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" ng-click="viewApplicants($index)" name="button" type="button">View Leads</button>
                         </span>
                         <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="viewApplicants($index)" name="button" type="button">Leasing Management</button>
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" name="button" type="button">Leasing Management</button>
                         </span>
                         <br>
                          <span style="padding:10px;">
@@ -51,11 +61,7 @@
                         </span>
                         <span style="padding:10px;">
                             <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-href="http://172.16.0.2:3000/#/unit/details/{{assignment.ApartmentId}}" target="_blank">Share Listing</a>
-                        </span>
-                        <span style="padding:10px;">
-                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" href="https://calendly.com/devong/virtualtour" target="_blank">Schedule VR Tour</a>
+                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-href="http://172.16.0.2:3000/#/unit/details/{{assignment.ApartmentId}}" >Share Listing</a>
                         </span>
                     </div>
                 </div>
@@ -65,4 +71,14 @@
             </div>
         </div>
     </div>
+</div>
+</div>
+<div data-toggle="tab" id="menu1" class="tab-pane fade">
+  <h3>Menu 1</h3>
+  <p>Some content in menu 1.</p>
+</div>
+<div data-toggle="tab" id="menu2" class="tab-pane fade">
+  <h3>Menu 2</h3>
+  <p>Some content in menu 2.</p>
+</div>
 </div>

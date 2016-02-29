@@ -21,10 +21,10 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <h3>Utilities Included</h3>
-                <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3>Utilities Included</h3>
                     <div class="" ng-repeat="utility in selectOptions.utilities">
-                        <div class="col-md-2" style="margin:8px;">
+                        <div class="col-md-3 col-lg-4" style="margin:8px;">
                             <label class="control-label" for="">
                                 {{utility.label}}:
                                 <input class="checkboxinput" name="name" ng-model="lease[utility.variable]" ng-true-value="true" ng-false-value="false" type="checkbox" value="">
@@ -32,10 +32,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
+
                 <h3>Additional Ammenities/Information</h3>
                 <div class="col-md-6">
                     <div class="" ng-repeat="ammenity in selectOptions.additionalAmmenities">
@@ -47,7 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-6">
                     <label class="control-label">Pets</label>
                     <select class="form-control" name="" ng-model="lease.pets" ng-options="pets for pets in selectOptions.pets"></select>
                 </div>
@@ -83,10 +80,19 @@
                     <label class="control-label">Key Fee Amount</label>
                     <input class="form-control" placeholder="EX: $150" name="name" ng-model="lease.newKeyFeeAmount" type="text" value="">
                 </div>
+                <div class="" ng-show="accountInfo.userType == 2">
                 <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
                     <label class="control-label">Brokers Fee Amount</label>
                     <input class="form-control" name="name" placeholder="EX: $150" ng-model="lease.brokerFeeAmount" type="text" value="">
                 </div>
+               </div>
+               <!--- Not excatly how to handle this --->
+               <div class="" ng-show="accountInfo.userType == 3">
+                <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
+                    <label class="control-label">Brokers Fee Amount</label>
+                    <input class="form-control" name="name" placeholder="EX: $150" ng-model="lease.brokerFeeAmount" type="text" value="">
+                </div>
+            </div>
             </div>
         </div>
         <button class="btn btn-fill--blue btn-md" name="button" type="submit">Submit</button>
