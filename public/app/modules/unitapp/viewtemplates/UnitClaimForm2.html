@@ -1,9 +1,9 @@
 <div class="">
     <h2>Apartment Claims</h2>
 </div>
-<div class="formSt">
+<div class="formSt" id="formbg">
     <h4>This is where you claim the units you manage/rent. After you claim units you'll be able to post them as listings and receive applications for them!</h4>
-    <form action="index.html" class="form" method="post">
+    <form action="index.html" id="formbg" method="post">
         <div class="" ng-repeat="address in containingArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
             <label class="control-label" style="padding-top:10px;">Apartment Address</label>
             <input class="form-control" ng-model="address[0].apartmentData.concatAddr" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" />
@@ -14,7 +14,7 @@
             <label class="control-label" for="" style="padding-top:10px;">Unit Number(s)</label>
             <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
-                    <div class="col-md-12" style="padding:10px; border-bottom:1px solid black;">
+                    <div class="col-md-12" id="formbg" style="padding:10px; border-bottom:1px solid black;">
                         <h4>Address: {{address.address}}
                         </h4>
                         <label class="control-label">Unit Num:</label>
@@ -24,7 +24,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">Property Management Company</label>
-                                        <select class="form-control" name="" ng-model="unit.apartmentData.PropertyManagerId" ng-options ="pmBusinesses.id as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses">
+                                        <select class="form-control" name="" ng-model="unit.apartmentData.PropertyManagerId" ng-options="pmBusinesses.id as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses">
 
                                         </select>
                                     </div>
@@ -63,7 +63,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">This Property Manager is a...</label>
-                                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options ="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson">
+                                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson">
 
                                         </select>
                                     </div>
@@ -74,7 +74,7 @@
                                         <input class="form-control" name="" ng-model="unit.PropertyManager.firstName"></input>
                                     </div>
                                     <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
-                                        <label class="control-label" >Last Name</label>
+                                        <label class="control-label">Last Name</label>
                                         <input class="form-control" name="" ng-model="unit.PropertyManager.lastName"></input>
                                     </div>
                                     <div class="col-md-12" ng-hide="unit.PropertyManager.personalOrBusiness === 'Person'">

@@ -177,14 +177,14 @@ angular.module('MainApp')
                         },
                         midHorizontal: {
                             templateProvider:['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                                if (TokenSvc.decode().userType == 2) {
+                                if (TokenSvc.decode().userType >= 2) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
                                 } else {
                                     return null;
                                 }
                             }],
                             controllerProvider: ['$rootScope', function($rootScope) {
-                                if ($rootScope.userType == 2) {
+                                if ($rootScope.userType >= 2) {
                                     return 'DashboardLLUnitListCtrl';
                                 } else {
                                     return null;
