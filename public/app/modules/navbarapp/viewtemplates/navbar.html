@@ -1,5 +1,5 @@
 <!---<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" ng-style="landingPageStyle" role="navigation"> --->
-<nav class="navbar" ng-class="{transparent_nav: isActive('/')}" ng-style="landingPageStyle" role="navigation">
+<nav class="navbar" ng-style="landingPageStyle" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
@@ -38,7 +38,7 @@
                     <a href="">Sign In</a>
                 </li>
                 <li ng-class="{active: false}" ng-click="goAccountDashboard()" ng-show="isLoggedIn">
-                    <a href="">Activity</a>
+                    <a href="">Account</a>
                 </li>
 
                 <li id="" ng-click="goAccoutCreate()" ng-hide="isLoggedIn">

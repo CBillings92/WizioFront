@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="home-search__bar col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group">
-                        <input placeholder="Search by area" class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+                        <input  placeholder="Search by area" class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
                         <!-- get rid of loading options icon for now because happens too quickly and makes button jump -->
 <!--                      <i class="fa fa-refresh" ng-show="loadingLocations"></i>
  -->
@@ -32,7 +32,7 @@
                             <i class="fa fa-remove"></i> No Results Found
                         </div> -->
                         <div class="input-group-btn">
-                            <button class="btn btn-fill--blue" ng-click="search()" href="" type="button">
+                            <button type="submit" class="btn btn-fill--blue" ng-click="search()" href="" type="button">
                                 <span class="fa fa-search"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
@@ -55,7 +55,7 @@
 
     <div class="container">
         <div class="row">
-            <h2 class="home-tenants__header col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Designed by tenants for tenants</h2>
+            <h2 class="home-tenants__header col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Rentals online like never before.</h2>
         </div>
         <div class="row">
             <div class="home-blurbs">
@@ -64,12 +64,12 @@
                     <h5 class="home-blurb__desc">No fake photos here, fantastic apartments in virtual reality</h5>
                 </div>
                 <div class="home-blurb col-xs-12 col-sm-4">
-                    <h3 class="home-blurb__header">Lorem and stuff</h3>
-                    <h5 class="home-blurb__desc">Wizio’s online leasing process is easy, automated, & clearly explained at every step</h5>
+                    <h3 class="home-blurb__header">Wizio makes leasing easier</h3>
+                    <h5 class="home-blurb__desc">Making a decision is a lot easier when you have an accurate online depiction of your apartment.</h5>
                 </div>
                 <div class="home-blurb col-xs-12 col-sm-4 col-lg-3 ">
-                    <h3 class="home-blurb__header">Rental Management</h3>
-                    <h5 class="home-blurb__desc">Signup right now to get some free Virtual Reality photo shoots!</h5>
+                    <h3 class="home-blurb__header">Showing an apartment to your friend just got easier.</h3>
+                    <h5 class="home-blurb__desc">Sharing our virtual tours is simple and now you don’t have to worry about taking photos of the apartment.</h5>
                 </div>
             </div>
         </div>
@@ -85,10 +85,10 @@
     <div class="container">
         <div class="row">
             <div class="home-blurb">
-                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6">VR VR VR VR VR</h2>
-                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">Request a virtual tour content content content</h5>
+                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6">Join the beta.</h2>
+                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">Trial our service, for free, and help make apartments online better.</h5>
                 <div class="home-landlord__button col-xs-4 col-sm-offset-4 col-lg-offset-6">
-                    <input type="button" ng-click="registerUser()" class="btn btn--cta btn-md" value="Learn more"/>
+                    <input type="button" ng-click="registerUser()" class="btn btn--cta btn-md" value="Contact Rep"/>
                 </div>
             </div>
         </div>

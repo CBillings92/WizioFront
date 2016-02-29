@@ -70,7 +70,7 @@ angular.module('AccountApp')
                 $state.go('Unit.Claim');
             };
             //indexNum comes fromt HTML form
-            //open email now modal. Shoud allow landlords to select who to email
+            //open email now modal. Shoud allow property managers to select who to email
             //and provide pre-made emails to send.
             $scope.emailNow = function(apartmentIndex) {
 

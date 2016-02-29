@@ -43,7 +43,7 @@ angular.module('ApplicationApp')
 
         };
 
-        $scope.cancel = function() {
+        $scope.closeModal = function() {
             $modalInstance.dismiss('cancel');
         };
     }

@@ -40,7 +40,7 @@ angular.module('Models')
             //store these functions on each new Lease's object prototype
             Lease.prototype.setAssociationData = function(){
                 this.leaseData.UserId = TokenSvc.decode().id;
-                this.leaseData.LandlordId = TokenSvc.decode().LandlordId;
+                this.leaseData.PropertyManagerId = TokenSvc.decode().PropertyManagerId;
                 this.leaseData.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
                 return;
             };

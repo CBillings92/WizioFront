@@ -26,7 +26,7 @@ angular.module('Models')
                 leaseType,
                 leaseExpectedEnd,
                 leaseActualEnd,
-                LandlordId,
+                PropertyManagerId,
                 route,
                 laundry,
                 elevator
@@ -54,7 +54,7 @@ angular.module('Models')
                     leaseType: leaseType || null,
                     leaseExpectedEnd: leaseExpectedEnd || null,
                     leaseActualEnd: leaseActualEnd || null,
-                    LandlordId: LandlordId || null,
+                    PropertyManagerId: PropertyManagerId || null,
                     route: route || null,
                     laundry: laundry || null,
                     elevator: elevator || null
@@ -213,7 +213,7 @@ angular.module('Models')
                     data.leaseType,
                     data.leaseExpectedEnd,
                     data.leaseActualEnd,
-                    data.LandlordId,
+                    data.PropertyManagerId,
                     data.route,
                     data.laundry,
                     data.elevator

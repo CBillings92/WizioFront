@@ -66,7 +66,7 @@ angular.module('FooterApp')
 
                                 var modalDefaultsTenantSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Tenant');
 
-                                var modalDefaultsLandlordSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Landlord');
+                                var modalDefaultsPropertyManagerSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'PropertyManager');
 
                                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
 
@@ -89,8 +89,8 @@ angular.module('FooterApp')
                                                 return;
                                             }
                                         });
-                                    } else if (result === 'landlordSignup') {
-                                        ModalSvc.showModal(modalDefaultsLandlordSignup, {}).then(function(result) {
+                                    } else if (result === 'propertyManagerSignup') {
+                                        ModalSvc.showModal(modalDefaultsPropertyManagerSignup, {}).then(function(result) {
                                             if (result === 'login') {
                                                 ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                                                     return;

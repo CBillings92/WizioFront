@@ -17,7 +17,7 @@ angular.module('MainApp')
             var trueRequiredLogin = {
                 requireLogin: true
             };
-            var trueRequiredLandlord = {
+            var trueRequiredPropertyManager = {
                 requireLogin: true,
                 userType: 2
             };
@@ -410,7 +410,7 @@ angular.module('MainApp')
                             controller: 'UnitClaimFormCtrl2'
                         }
                     },
-                    data: trueRequiredLandlord
+                    data: trueRequiredPropertyManager
                 })
                 .state('Unit.Edit', {
                     url: '/edit',
@@ -420,7 +420,7 @@ angular.module('MainApp')
                             controller: 'UnitClaimFormCtrl2'
                         }
                     },
-                    data: trueRequiredLandlord
+                    data: trueRequiredPropertyManager
                 })
                 .state('Campaign', {
                     url: '/campaign',
