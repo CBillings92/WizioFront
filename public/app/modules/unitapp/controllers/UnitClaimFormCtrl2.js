@@ -9,12 +9,21 @@ angular.module('UnitApp')
         'UnitFct',
         'FlexGetSetSvc',
         'ModalSvc',
-        function($scope, $state, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc) {
+        'WizioConfig',
+        function($scope, $state, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
             //use a ternary IF operator to figure out what state we're on
             $scope.singleUnit = ($state.current.name === 'Unit.Edit') ? true : false;
-
+            $scope.user = TokenSvc.decode();
+            console.dir($scope.user);
             //load the selectOptions from the unit factory
             $scope.selectOptions = UnitFct.selectOptions;
+            $scope.multiplePMBusinesses = false
+            if($scope.user.userType === 2 || $scope.user.userType === 4){
+                if($scope.user.PropertyManager.length > 0){
+                    $scope.multiplePMBusinesses = true
+                    $scope.selectOptions.pmBusinesses = $scope.user.PropertyManager;
+                }
+            }
 
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
@@ -68,6 +77,7 @@ angular.module('UnitApp')
             };
 
             $scope.onUnitBlur = function(addressIndex, unitIndex) {
+                console.dir($scope.containingArray[addressIndex][unitIndex]);
                 //grab the data on the form located at the correct address array and the correct Unit object (the street and unit number)
                 var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                 var assignment = unitAddressInfo.Assignment;
@@ -87,14 +97,27 @@ angular.module('UnitApp')
                             };
                             $scope.containingArray[addressIndex][unitIndex] = newApartment;
                         } else {
-                            var modalOptions = {
-                                    closeButtonText: "Close",
-                                    actionButtonText: "OK",
-                                    headerText: "This apartment has been claimed already",
-                                    bodyText: "Help text"
-                                };
-                            ModalSvc.showModal({}, modalOptions).then(function(results){
-                                return;
+                            var views = WizioConfig.UnitViewsURL;
+                            var modalData = response.apartment;
+                            console.dir(response);
+                            var modalDefaultsUnitFound = {
+                                backdrop: true,
+                                keyboard: true,
+                                modalFade: true,
+                                templateUrl: views + "UnitVerifyModal.html",
+                                controller: 'UnitVerifyModalCtrl',
+                                resolve: {
+                                    modalData: function() {
+                                        return modalData;
+                                    }
+                                }
+                            };
+                            ModalSvc.showModal(modalDefaultsUnitFound,{}).then(function(result){
+                                if(result === 'Use data'){
+                                    newApartment = ApartmentModel.build(response.apartment);
+                                    newApartment.PropertyManager = response.apartment.PropertyManager;
+                                    $scope.containingArray[addressIndex][unitIndex] = newApartment;
+                                }
                             });
                         }
 
@@ -121,9 +144,12 @@ angular.module('UnitApp')
             };
 
             $scope.copyUnit = function(addressIndex, unitIndex){
+                console.dir(addressIndex);
+                console.dir(unitIndex);
                 //get the correct apartment out of the array
                 var apartment = $scope.containingArray[addressIndex][unitIndex];
-                var description = apartment.Description;
+                console.dir(apartment);
+                // var description = apartment.Description;
                 /*
                     call the duplicate prototype method to get the apartmentData
                     FIXME this probably doesn't need to be on the prototype button
@@ -132,10 +158,10 @@ angular.module('UnitApp')
                 //duplicate the apartment data
                 var duplicateApartmentData = apartment.duplicate();
                 //duplicate the description data
-                var duplicateDescriptionData = description.duplicate();
+                // var duplicateDescriptionData = description.duplicate();
                 //build a new instance with this data
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
-                newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
+                // newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
                 //push it into the address array
                 $scope.containingArray[addressIndex].push(newInstance);
             };
@@ -148,6 +174,7 @@ angular.module('UnitApp')
             };
 
             $scope.submit = function(){
+                console.dir($scope.containingArray);
                 ApartmentModel.claimApi($scope.containingArray, function(response){
 
                 });

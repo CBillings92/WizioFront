@@ -9,7 +9,9 @@ angular.module('UnitApp')
             livingSpaces: [0, 1, 2, 3],
             // amenities: ['Central Air', 'Gym', 'Pool'],
             laundry: ['In Unit', 'In Building', 'None'],
-            elevator: ['Yes', 'No']
+            elevator: ['Yes', 'No'],
+            makeCurrentListing: ['Yes', 'No'],
+            pmBusinessOrPerson: ['Business', 'Person']
         };
 
         var createUnit = function(){

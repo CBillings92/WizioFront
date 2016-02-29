@@ -14,13 +14,10 @@
         Living Spaces: {{apartment.livingSpaces}}
     </div>
     <div class="">
-        Cost Per Month: {{apartment.costPerMonth}}
-    </div>
-    <div class="">
-        Utilities: {{apartment.utilities}}
-    </div>
-    <div class="">
         Beds: {{apartment.beds}}
+    </div>
+    <div class="">
+        Property Manager: {{apartment.PropertyManager.businessName || apartment.PropertyManager.firstName + ' ' + apartment.PropertyManager.lastName}}
     </div>
 </div>
 <div class="modal-footer">
