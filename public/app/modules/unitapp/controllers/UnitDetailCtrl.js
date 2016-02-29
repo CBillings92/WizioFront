@@ -77,6 +77,7 @@ angular.module('UnitApp')
 
 
                 var user = TokenSvc.decode();
+                
                 if (user && user !== 'No Token' && user !== 'undefined') {
                     user = TokenSvc.decode();
                     if (user.applications.length > 0) {

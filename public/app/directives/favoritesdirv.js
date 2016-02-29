@@ -7,4 +7,4 @@ angular.module('Directives')
       link: function(scope, element, attrs){
       }
   };
-}])
+}]);
