@@ -29,7 +29,9 @@ angular.module('Models')
                 PropertyManagerId,
                 route,
                 laundry,
-                elevator
+                elevator,
+                CreatedBy,
+                UpdatedBy
             ) {
                 this.apartmentData = {
                     id: id || null,
@@ -53,7 +55,9 @@ angular.module('Models')
                     PropertyManagerId: PropertyManagerId || null,
                     route: route || null,
                     laundry: laundry || null,
-                    elevator: elevator || null
+                    elevator: elevator || null,
+                    CreatedBy: CreatedBy || null,
+                    UpdatedBy: UpdatedBy || null,
                 };
             }
             Apartment.prototype.api = function(){

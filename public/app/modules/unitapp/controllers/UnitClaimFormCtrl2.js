@@ -95,6 +95,8 @@ angular.module('UnitApp')
                                 UserId: TokenSvc.decode().id,
                                 ApartmentId: newApartment.apartmentData.id
                             };
+                            newApartment.apartmentData.CreatedById = $scope.user.id;
+                            newApartment.apartmentData.UpdatedById = $scope.user.id;
                             $scope.containingArray[addressIndex][unitIndex] = newApartment;
                         } else {
                             var views = WizioConfig.UnitViewsURL;
@@ -114,6 +116,7 @@ angular.module('UnitApp')
                             };
                             ModalSvc.showModal(modalDefaultsUnitFound,{}).then(function(result){
                                 if(result === 'Use data'){
+                                    response.apartment.UpdatedBy = $scope.user.id;
                                     newApartment = ApartmentModel.build(response.apartment);
                                     newApartment.PropertyManager = response.apartment.PropertyManager;
                                     $scope.containingArray[addressIndex][unitIndex] = newApartment;
@@ -174,7 +177,6 @@ angular.module('UnitApp')
             };
 
             $scope.submit = function(){
-                console.dir($scope.containingArray);
                 ApartmentModel.claimApi($scope.containingArray, function(response){
 
                 });
