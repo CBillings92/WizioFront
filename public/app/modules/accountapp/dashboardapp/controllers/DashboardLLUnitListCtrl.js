@@ -3,6 +3,7 @@ angular.module('AccountApp')
     .controller('DashboardLLUnitListCtrl', [
         '$scope',
         '$state',
+        '$resource',
         'TokenSvc',
         'ModalSvc',
         'lodash',
@@ -10,7 +11,7 @@ angular.module('AccountApp')
         'WizioConfig',
         'ApplicationModel',
         'FlexGetSetSvc',
-        function($scope, $state, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc) {
+        function($scope, $state, $resource, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc) {
 
             //reusable function for creating modalDefaults for ModalSvc
             var modalDefaults = function(size, templateUrl, controller, modalData) {
@@ -28,6 +29,12 @@ angular.module('AccountApp')
                     }
                 };
             };
+            var user = TokenSvc.decode();
+            if(user.userType === 2){
+                $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
+                    $scope.units = result;
+                });
+            }
             //get apartments associated with user
             var userId = TokenSvc.decode().id;
             var applicationIds = [];
@@ -81,7 +88,7 @@ angular.module('AccountApp')
             };
 
             $scope.createListing = function(apartmentIndex) {
-                var ApartmentId = $scope.assignments[apartmentIndex].id;
+                var ApartmentId = $scope.units[apartmentIndex].id;
                 FlexGetSetSvc.set(ApartmentId, 'NewLeaseApartmentId', 'NewLeaseApartmentId');
                 $state.go('Account.Lease.Create');
             };

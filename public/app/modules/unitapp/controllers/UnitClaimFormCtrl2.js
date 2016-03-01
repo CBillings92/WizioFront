@@ -74,13 +74,16 @@ angular.module('UnitApp')
                 return;
             };
 
-
+            $scope.assignPropertyManager = function(){
+                return this.unit.apartmentData.PropertyManagerId = this.unit.apartmentData.PropertyManager.id;
+            }
             $scope.onUnitBlur = function(addressIndex, unitIndex) {
                 //grab the data on the form located at the correct address array and the correct Unit object (the street and unit number)
                 var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                 var assignment = unitAddressInfo.Assignment;
                 //build a new Apartment instance with it
                 var newApartment = ApartmentModel.build(unitAddressInfo);
+                newApartment.pmSelectOptions = $scope.user.PropertyManager;
                 //call the getGeocodeData prototype function to get all needed geocoded data
                 newApartment.getGeocodeData()
                     .then(function(response) {
@@ -92,6 +95,7 @@ angular.module('UnitApp')
                                 newApartment.newlyCreated = true;
                                 newApartment.apartmentData.CreatedById = $scope.user.id;
                                 newApartment.apartmentData.UpdatedById = $scope.user.id;
+                                newApartment.apartmentData.PropertyManagerId = "Unassigned";
                                 $scope.containingArray[addressIndex][unitIndex] = UnitFct.apartmentExisted(newApartment, response);
                             } else {
                                 newApartment.apartmentData.UpdatedById = $scope.user.id;
@@ -163,8 +167,10 @@ angular.module('UnitApp')
                         if (result === 'Use data') {
                             response.apartment.UpdatedById = $scope.user.id;
                             newApartment = ApartmentModel.build(response.apartment);
-                            newApartment.PropertyManager = response.apartment.PropertyManager;
+                            newApartment.apartmentData.PropertyManager = response.apartment.PropertyManager;
+                            console.dir(newApartment);
                             $scope.containingArray[addressIndex][unitIndex] = newApartment;
+                            return newApartment;
                         } else {
                             if($scope.containingArray[addressIndex].length === 1){
                                 $scope.containingArray[addressIndex][unitIndex].apartmentData.concatAddr = "";
