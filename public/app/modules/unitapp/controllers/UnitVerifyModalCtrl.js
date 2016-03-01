@@ -4,6 +4,7 @@ angular.module('UnitApp')
     '$modalInstance',
     'modalData',
     function($scope, $modalInstance, modalData){
+
         $scope.apartment = modalData;
 
         $scope.dontUseData = function(){

@@ -15,7 +15,7 @@
             <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" id="formbg" style="padding:10px; border-bottom:1px solid black;">
-                        <h4>Address: {{address.address}}
+                        <h4>Address: {{unit.apartmentData.concatAddr}}
                         </h4>
                         <label class="control-label">Unit Num:</label>
                         <input class="form-control col-md-4" ng-blur="onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />

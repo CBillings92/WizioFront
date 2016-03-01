@@ -18,8 +18,8 @@ angular.module('UnitApp')
             //load the selectOptions from the unit factory
             $scope.selectOptions = UnitFct.selectOptions;
             $scope.multiplePMBusinesses = false
-            if($scope.user.userType === 2 || $scope.user.userType === 4){
-                if($scope.user.PropertyManager.length > 0){
+            if ($scope.user.userType === 2 || $scope.user.userType === 4) {
+                if ($scope.user.PropertyManager.length > 0) {
                     $scope.multiplePMBusinesses = true
                     $scope.selectOptions.pmBusinesses = $scope.user.PropertyManager;
                 }
@@ -46,15 +46,13 @@ angular.module('UnitApp')
                     ]
                 ]
             */
-            if($scope.singleUnit){
+            if ($scope.singleUnit) {
                 FlexGetSetSvc.get('UnitToEdit');
             } else {
                 $scope.containingArray = [
-                    [
-                        {
+                    [{
 
-                        }
-                    ]
+                    }]
                 ];
             }
             //Whenever we add a new address, we want to push a new empty array
@@ -76,8 +74,8 @@ angular.module('UnitApp')
                 return;
             };
 
+
             $scope.onUnitBlur = function(addressIndex, unitIndex) {
-                console.dir($scope.containingArray[addressIndex][unitIndex]);
                 //grab the data on the form located at the correct address array and the correct Unit object (the street and unit number)
                 var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                 var assignment = unitAddressInfo.Assignment;
@@ -85,52 +83,97 @@ angular.module('UnitApp')
                 var newApartment = ApartmentModel.build(unitAddressInfo);
                 //call the getGeocodeData prototype function to get all needed geocoded data
                 newApartment.getGeocodeData()
-                    .then(function(response){
-
-                    console.dir(newApartment);
-                    newApartment.api().findOrCreate(null, function(response){
-                        if(response.created){
-                            newApartment.apartmentData.id = response.apartment.id;
-                            newApartment.Assignment = {
-                                UserId: TokenSvc.decode().id,
-                                ApartmentId: newApartment.apartmentData.id
-                            };
-                            newApartment.apartmentData.CreatedById = $scope.user.id;
-                            newApartment.apartmentData.UpdatedById = $scope.user.id;
-                            $scope.containingArray[addressIndex][unitIndex] = newApartment;
-                        } else {
-                            var views = WizioConfig.UnitViewsURL;
-                            var modalData = response.apartment;
+                    .then(function(response) {
+                        //find the apartment based on the new geocoded date
+                        newApartment.api().findOrCreate(null, function(response) {
                             console.dir(response);
-                            var modalDefaultsUnitFound = {
-                                backdrop: true,
-                                keyboard: true,
-                                modalFade: true,
-                                templateUrl: views + "UnitVerifyModal.html",
-                                controller: 'UnitVerifyModalCtrl',
-                                resolve: {
-                                    modalData: function() {
-                                        return modalData;
+                            //if the aparment didn't exist before (if created is true)
+                            if (response.created) {
+                                newApartment.newlyCreated = true;
+                                $scope.containingArray[addressIndex][unitIndex] = UnitFct.apartmentExisted(newApartment, response);
+                            } else {
+                                newApartment.newlyCreated = false;
+                                if ($scope.user.userType === 2 && UnitFct.checkPropertyManagerOwnership(response)) {
+                                    var views = WizioConfig.UnitViewsURL;
+                                    var modalData = response.apartment;
+                                    console.dir(response);
+                                    var modalDefaultsUnitFound = {
+                                        backdrop: true,
+                                        keyboard: true,
+                                        modalFade: true,
+                                        templateUrl: views + "UnitVerifyModal.html",
+                                        controller: 'UnitVerifyModalCtrl',
+                                        resolve: {
+                                            modalData: function() {
+                                                return modalData;
+                                            }
+                                        }
+                                    };
+                                    ModalSvc.showModal(modalDefaultsUnitFound, {}).then(function(result) {
+                                        editDataOrDontEdit(result, response, addressIndex, unitIndex);
+                                        return
+                                    });
+                                } else if ($scope.user.userType === 3) {
+                                    if($scope.user.id !== response.apartment.CreatedById){
+                                        var modalOptionsCantEdit = {
+                                            closeButtonText: "Close",
+                                            actionButtonText: "OK",
+                                            headerText: "This Apartment Already Exists",
+                                            bodyText: 'You are not permitted to edit this apartment. You can however make a public listing for this unit.'
+                                        };
+                                        $scope.containingArray[addressIndex][unitIndex].apartmentData.concatAddr = "";
+                                        $scope.containingArray[addressIndex][unitIndex].apartmentData.unitNum = "";
+                                        ModalSvc.showModal({}, modalOptionsCantEdit)
+                                        .then(function(result) {
+                                            return;
+                                        })
+                                    } else {
+                                        var views = WizioConfig.UnitViewsURL;
+                                        var modalData = response.apartment;
+                                        console.dir(response);
+                                        var modalDefaultsUnitFound = {
+                                            backdrop: true,
+                                            keyboard: true,
+                                            modalFade: true,
+                                            templateUrl: views + "UnitVerifyModal.html",
+                                            controller: 'UnitVerifyModalCtrl',
+                                            resolve: {
+                                                modalData: function() {
+                                                    return modalData;
+                                                }
+                                            }
+                                        };
+                                        ModalSvc.showModal(modalDefaultsUnitFound, {}).then(function(result) {
+                                            editDataOrDontEdit(result, response, addressIndex, unitIndex);
+                                            return
+                                        });
                                     }
                                 }
-                            };
-                            ModalSvc.showModal(modalDefaultsUnitFound,{}).then(function(result){
-                                if(result === 'Use data'){
-                                    response.apartment.UpdatedBy = $scope.user.id;
-                                    newApartment = ApartmentModel.build(response.apartment);
-                                    newApartment.PropertyManager = response.apartment.PropertyManager;
-                                    $scope.containingArray[addressIndex][unitIndex] = newApartment;
-                                }
-                            });
-                        }
+                            }
 
-                        return;
+                            return;
+                        });
                     });
-                });
+                    //HELPER FUNCTION
+                    function editDataOrDontEdit(result, response, addressIndex, unitIndex){
+                        if (result === 'Use data') {
+                            response.apartment.UpdatedBy = $scope.user.id;
+                            newApartment = ApartmentModel.build(response.apartment);
+                            newApartment.PropertyManager = response.apartment.PropertyManager;
+                            $scope.containingArray[addressIndex][unitIndex] = newApartment;
+                        } else {
+                            if($scope.containingArray[addressIndex].length === 1){
+                                $scope.containingArray[addressIndex][unitIndex].apartmentData.concatAddr = "";
+                                $scope.containingArray[addressIndex][unitIndex].apartmentData.unitNum = "";
+                            } else {
+                                $scope.containingArray[addressIndex].splice(unitIndex, 1);
+                            }
+                        }
+                    }
             };
 
             //for handling descriptions on each unit
-            $scope.onDescriptionBlur = function(addressIndex, unitIndex){
+            $scope.onDescriptionBlur = function(addressIndex, unitIndex) {
                 console.dir($scope.containingArray);
                 //get the prpper apartment to work with
                 var apartment = $scope.containingArray[addressIndex][unitIndex];
@@ -146,7 +189,7 @@ angular.module('UnitApp')
                 apartment.Description = newDescription;
             };
 
-            $scope.copyUnit = function(addressIndex, unitIndex){
+            $scope.copyUnit = function(addressIndex, unitIndex) {
                 console.dir(addressIndex);
                 console.dir(unitIndex);
                 //get the correct apartment out of the array
@@ -169,15 +212,15 @@ angular.module('UnitApp')
                 $scope.containingArray[addressIndex].push(newInstance);
             };
 
-            $scope.deleteUnit = function(addressIndex, unitIndex){
+            $scope.deleteUnit = function(addressIndex, unitIndex) {
                 delete $scope.containingArray[addressIndex][unitIndex];
             };
-            $scope.deleteAddress = function(addressIndex, unitIndex){
+            $scope.deleteAddress = function(addressIndex, unitIndex) {
                 delete $scope.containingArray[addressIndex][unitIndex];
             };
 
-            $scope.submit = function(){
-                ApartmentModel.claimApi($scope.containingArray, function(response){
+            $scope.submit = function() {
+                ApartmentModel.claimApi($scope.containingArray, function(response) {
 
                 });
             };
