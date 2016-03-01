@@ -30,8 +30,8 @@ angular.module('Models')
                 route,
                 laundry,
                 elevator,
-                CreatedBy,
-                UpdatedBy
+                CreatedById,
+                UpdatedById
             ) {
                 this.apartmentData = {
                     id: id || null,
@@ -56,8 +56,8 @@ angular.module('Models')
                     route: route || null,
                     laundry: laundry || null,
                     elevator: elevator || null,
-                    CreatedBy: CreatedBy || null,
-                    UpdatedBy: UpdatedBy || null,
+                    CreatedById: CreatedById || null,
+                    UpdatedById: UpdatedById || null,
                 };
             }
             Apartment.prototype.api = function(){
@@ -216,7 +216,9 @@ angular.module('Models')
                     data.PropertyManagerId,
                     data.route,
                     data.laundry,
-                    data.elevator
+                    data.elevator,
+                    data.CreatedById,
+                    data.UpdatedById
                 );
             };
 

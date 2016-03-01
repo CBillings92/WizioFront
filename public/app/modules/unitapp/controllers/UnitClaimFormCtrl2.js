@@ -90,8 +90,12 @@ angular.module('UnitApp')
                             //if the aparment didn't exist before (if created is true)
                             if (response.created) {
                                 newApartment.newlyCreated = true;
+                                newApartment.apartmentData.CreatedById = $scope.user.id;
+                                newApartment.apartmentData.UpdatedById = $scope.user.id;
                                 $scope.containingArray[addressIndex][unitIndex] = UnitFct.apartmentExisted(newApartment, response);
                             } else {
+                                newApartment.apartmentData.UpdatedById = $scope.user.id;
+                                delete newApartment.apartmentData.createdById;
                                 newApartment.newlyCreated = false;
                                 if ($scope.user.userType === 2 && UnitFct.checkPropertyManagerOwnership(response)) {
                                     var views = WizioConfig.UnitViewsURL;
@@ -157,7 +161,7 @@ angular.module('UnitApp')
                     //HELPER FUNCTION
                     function editDataOrDontEdit(result, response, addressIndex, unitIndex){
                         if (result === 'Use data') {
-                            response.apartment.UpdatedBy = $scope.user.id;
+                            response.apartment.UpdatedById = $scope.user.id;
                             newApartment = ApartmentModel.build(response.apartment);
                             newApartment.PropertyManager = response.apartment.PropertyManager;
                             $scope.containingArray[addressIndex][unitIndex] = newApartment;

@@ -33,11 +33,12 @@ angular.module('UnitApp')
             for (var i = 0; i < user.PropertyManager.length; i++) {
                 if (user.PropertyManager[i].id === response.apartment.PropertyManagerId) {
                     return true;
-                } else {
-                    return false;
                 }
             }
+            return false;
         }
+
+
 
         var createUnit = function(){
 
