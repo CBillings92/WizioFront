@@ -22,6 +22,7 @@ angular.module('UnitApp')
                 if ($scope.user.PropertyManager.length > 0) {
                     $scope.multiplePMBusinesses = true
                     $scope.selectOptions.pmBusinesses = $scope.user.PropertyManager;
+                    $scope.selectedPM = $scope.selectOptions.pmBusinesses[0];
                 }
             }
 
@@ -55,11 +56,6 @@ angular.module('UnitApp')
                     }]
                 ];
             }
-            //Whenever we add a new address, we want to push a new empty array
-            //into containingArray with an empty object to setup the first unit
-            $scope.addAddress = function() {
-                $scope.containingArray.push([]);
-            };
             //adding a unit just adds an empty object to the current address array
             $scope.addUnit = function(addressIndex) {
                 /*
@@ -73,17 +69,18 @@ angular.module('UnitApp')
                 $scope.containingArray[addressIndex].push(newApartmentInstance);
                 return;
             };
-
-            $scope.assignPropertyManager = function(){
-                return this.unit.apartmentData.PropertyManagerId = this.unit.apartmentData.PropertyManager.id;
-            }
             $scope.onUnitBlur = function(addressIndex, unitIndex) {
                 //grab the data on the form located at the correct address array and the correct Unit object (the street and unit number)
                 var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                 var assignment = unitAddressInfo.Assignment;
                 //build a new Apartment instance with it
                 var newApartment = ApartmentModel.build(unitAddressInfo);
-                newApartment.pmSelectOptions = $scope.user.PropertyManager;
+                newApartment.apartmentData.CreatedById = $scope.user.id;
+                newApartment.apartmentData.UpdatedById = $scope.user.id;
+                console.dir($scope.selectedPM);
+                if($scope.selectedPM.id){
+                    newApartment.apartmentData.PropertyManagerId = $scope.selectedPM.id;
+                }
                 //call the getGeocodeData prototype function to get all needed geocoded data
                 newApartment.getGeocodeData()
                     .then(function(response) {
@@ -95,6 +92,10 @@ angular.module('UnitApp')
                                 newApartment.newlyCreated = true;
                                 newApartment.apartmentData.CreatedById = $scope.user.id;
                                 newApartment.apartmentData.UpdatedById = $scope.user.id;
+                                console.dir($scope.selectedPM);
+                                newApartment.apartmentData.PropertyManager = $scope.selectedPM;
+                                newApartment.apartmentData.PropertyManagerId = $scope.selectedPM.id;
+                                console.dir(newApartment);
                                 newApartment.apartmentData.PropertyManagerId = "Unassigned";
                                 $scope.containingArray[addressIndex][unitIndex] = UnitFct.apartmentExisted(newApartment, response);
                             } else {
@@ -182,23 +183,6 @@ angular.module('UnitApp')
                     }
             };
 
-            //for handling descriptions on each unit
-            $scope.onDescriptionBlur = function(addressIndex, unitIndex) {
-                console.dir($scope.containingArray);
-                //get the prpper apartment to work with
-                var apartment = $scope.containingArray[addressIndex][unitIndex];
-                console.dir(apartment);
-                //get the description text from the form
-                var descriptionText = apartment.Description.description || null;
-                //create a new Description instance
-                var newDescription = new DescriptionModel(null, null, descriptionText);
-                //get association data for description (prototype method);
-                //this is UserId
-                newDescription.getAssociatonData(apartment.apartmentData.id);
-                //append the new Descriptions instance onto the Apartment;
-                apartment.Description = newDescription;
-            };
-
             $scope.copyUnit = function(addressIndex, unitIndex) {
                 console.dir(addressIndex);
                 console.dir(unitIndex);
@@ -223,9 +207,6 @@ angular.module('UnitApp')
             };
 
             $scope.deleteUnit = function(addressIndex, unitIndex) {
-                delete $scope.containingArray[addressIndex][unitIndex];
-            };
-            $scope.deleteAddress = function(addressIndex, unitIndex) {
                 delete $scope.containingArray[addressIndex][unitIndex];
             };
 

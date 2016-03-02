@@ -103,7 +103,13 @@ angular.module('Models')
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
                         console.dir(response);
                         for(var key in response){
-                            apartmentData[key] = response[key];
+                            if(response[key] === 'Longitude'){
+                                apartment['Longitude'] = parseFloat(response[key]).toFixed(6);
+                            } else if (response[key] === 'Latitude'){
+                                apartment['Latitude'] = parseFloat(response[key]).toFixed(6);
+                            } else {
+                                apartmentData[key] = response[key];
+                            }
                         }
                         console.dir("ENUHAEOSNTHEUSNTHAEUNTAOHEUNEAUHAEUNTAHUNRTUAOH");
                         resolve('done');

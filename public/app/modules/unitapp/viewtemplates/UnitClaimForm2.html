@@ -11,7 +11,17 @@
             <div ng-show="noResults">
                 <i class="glyphicon glyphicon-remove"></i> No Results Found
             </div>
-            <label class="control-label" for="" style="padding-top:10px;">Unit Number(s)</label>
+            <div class="form-group" ng-show="multiplePMBusinesses">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">Property Management Company For These Units</label>
+                        <select class="form-control" name="" ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses">
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <label class="control-label" for="" style="padding-top:10px;">Units At This Address</label>
             <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" id="formbg" style="padding:10px; border-bottom:1px solid black;">
@@ -20,16 +30,6 @@
                         <label class="control-label">Unit Num:</label>
                         <input class="form-control col-md-4" ng-blur="onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
                         <form class="">
-                            <div class="form-group" ng-show="multiplePMBusinesses">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="">Property Management Company</label>
-                                        <select class="form-control" name="" ng-model="unit.apartmentData.PropertyManagerId" ng-options="pmBusinesses.id as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -122,14 +122,16 @@
 
                         </form>
                     </div>
-                    <button class="btn" name="button" ng-hide="singleUnit" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
-                    <button class="btn" name="button" ng-hide="singleUnit" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                    <center>
+                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
+                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                    </center>
+                    <button name="button" class="btn btn-lg btn-fill--blue"  style="margin:5px 5px 5px 5px;" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">New Unit</button>
                 </div>
             </div>
-            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">Add Single Unit</button>
-            <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button>
+            <!-- <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button> -->
         </div>
-        <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button>
+        <!-- <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button> -->
         <button type="button" class="btn" name="button" ng-click="submit()">Submit</button>
     </form>
 </div>
