@@ -43,38 +43,23 @@ angular.module('UnitApp')
             moment
         ) {
             $scope.listing = {};
-            $resource(WizioConfig.baseAPIURL + 'lease/:id', {id:'@id'}).get({id: $state.params.id}, function(result){
+            var user = TokenSvc.decode();
+            $resource(WizioConfig.baseAPIURL + 'lease/:id', {
+                id: '@id'
+            }).get({
+                id: $state.params.id
+            }, function(result) {
                 console.dir(result);
                 ApartmentGetSetSvc.set(result, "apartmentSelected");
 
-                $scope.listing.dateStart = moment(dateStart).format('YYYY-MM-DD');
+                $scope.listing = result;
+                $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
                 $scope.apartment = result.Apartment;
-            });
-            // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
-            // console.dir($scope.apartment);
-            // $scope.apartment = $scope.apartment.apartmentData || null;
-            //check that the correct apartment is getting pulled
-            ApartmentGetSetSvc.checkApartment(function(result) {
-                /*
-                loop through all object keys and assign "Unkown" to any null values
-                remove the apartment object from the array. was only in array
-                for the formatSearchResults function in SearchFct
-                */
-                result = result[0];
-                ApartmentGetSetSvc.set(result, "apartmentSelected");
-                $scope.description = result.Description;
-
-
-                newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
-                    if (apartmentField === null) {
-                        return "Unknown";
-                    } else {
-                        return apartmentField;
-                    }
-                });
-                result.apartmentData = newApartmentData;
-                //assign result (apartment) to $scope
-                $scope.apartment = result.apartmentData;
+                //create the google maps
+                var mapOptions = MapFct.makeMap();
+                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                //create the markers for the map
+                var markers = MapFct.makeMarkers($scope.map);
                 $scope.media = result.Media;
                 var photoIndex = 0;
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
@@ -82,92 +67,24 @@ angular.module('UnitApp')
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 };
                 $scope.trust = $sce;
-
-
-                var user = TokenSvc.decode();
-
-                if (user && user !== 'No Token' && user !== 'undefined') {
-                    user = TokenSvc.decode();
-                    if (user.applications.length > 0) {
-                        var applicationsCheck = lodash.find(user.applications.ApartmentId, $scope.apartment);
-                    }
-                }
-
-                // $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
-
-                //create the google maps
-                var mapOptions = MapFct.makeMap();
-                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                //create the markers for the map
-                var markers = MapFct.makeMarkers($scope.map);
-
-                //check to see if apartment has been favorited
-
-                if (user && typeof(user.favorites) != 'undefined' && user.favorites.length !== 0) {
-                    if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
-                        $scope.favorited = true;
-                    } else {
-                        $scope.favorited = false;
-                    }
-                } else {
-                    $scope.favorited = false;
-                }
-
-
-
+                //FIXME
+                $scope.mediaTab = 'unitPhotos';
+                $scope.selectMediaTab = function(tab) {
+                    $scope.mediaTab = tab;
+                };
             });
+            // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
+            // console.dir($scope.apartment);
+            // $scope.apartment = $scope.apartment.apartmentData || null;
+            //check that the correct apartment is getting pulled
+
+
+            // $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
+
+
             // MediaTabs
             //map does not load b/c it's stupid. Must be default.
-            //FIXME
-            $scope.mediaTab = 'unitPhotos';
-            $scope.selectMediaTab = function(tab) {
-                $scope.mediaTab = tab;
-            };
-            //FIXME ?????
-            $scope.range = function(n) {
-                return new Array(n);
-            };
 
-            //FIXME don't use JQuery..
-            var moveSlider = function(direction) { // direction is 1 for forward / -1 for backward
-                width = $(".unit-details-media-tab-content-picker-slider-scroller").width();
-                el = $(".unit-details-media-tab-content-picker-slider-scroller");
-                currentPosition = el.scrollLeft();
-                moveWidth = width * 0.5 * direction;
-                // el.scrollLeft(currentPosition + moveWidth);
-                el.animate({
-                    scrollLeft: currentPosition + moveWidth
-                }, 500, function() {
-                    $scope.sliderCanGoForward = $scope.canSliderForward();
-                    $scope.sliderCanGoBackward = $scope.canSliderBackward();
-                });
-            };
-
-            $scope.sliderCanGoForward = true;
-            $scope.sliderCanGoBackward = false;
-
-            $scope.canSliderBackward = function() {
-                return $(".unit-details-media-tab-content-picker-slider-scroller").scrollLeft() > 0;
-            };
-
-            $scope.canSliderForward = function() {
-                el = $(".unit-details-media-tab-content-picker-slider-scroller");
-                width = el.outerWidth();
-                currentPosition = el.scrollLeft();
-                viewportWidth = el.width();
-                return currentPosition + viewportWidth < width;
-            };
-
-            $scope.moveSliderBackward = function() {
-                moveSlider(-1);
-            };
-
-            $scope.moveSliderForward = function() {
-                moveSlider(1);
-            };
-
-            //For displaying (ng-show) Apply or Waitlist button
-            $scope.available = false;
             //HELPER FUNCTION -- modal creation function
             var modalDefaults = function(templateUrl, controller, accountType, apartmentData) {
                 return {
@@ -214,65 +131,6 @@ angular.module('UnitApp')
                 //     FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
                 //
                 // }
-            };
-
-            function favoriteLogic(user) {
-                //create a new Favorite object
-                var favorite = new FavoriteModel(user.id, $scope.apartment.id);
-                //create empty modalOptions object
-                var modalOptions = {};
-                FavoriteModel.api().save(favorite, function(response) {
-                    if (response.status === 'ERR') {
-                        //set modal text options
-                        modalOptions.closeButtonText = "Close";
-                        modalOptions.actionButtonText = "OK";
-                        modalOptions.headerText = "Error";
-                        modalOptions.bodyText = "You've already favorited this apartment!";
-                        //launch modal using ModalSvc (shaedservices)
-                        ModalSvc.showModal({}, modalOptions);
-                        return;
-                    }
-                    //set modal text options
-                    modalOptions.closeButtonText = "Close";
-                    modalOptions.actionButtonText = "OK";
-                    modalOptions.headerText = "Success!";
-                    modalOptions.bodyText = "This apartment is favorited! You can view this apartment in your account page now.";
-                    //launch modal using ModalSvc (sharedservices)
-                    ModalSvc.showModal({}, modalOptions);
-                    //change button to favorited button
-                    $scope.favorited = true;
-                    return;
-                });
-            }
-            //FAVORITE for the apartment
-            $scope.favorite = function() {
-                var user = TokenSvc.decode();
-                if (user !== "No Token") {
-                    favoriteLogic(user);
-                    return;
-                } else {
-                    ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                        //store the current apartment in sessionStorage with the
-                        //appropriate session storage variable
-                        if (result) {
-                            var user = TokenSvc.decode();
-                            favoriteLogic(user);
-                            return;
-                        }
-                    });
-                }
-            };
-
-            $scope.deleteFavorite = function() {
-                //create a new Favorite object
-                var user = TokenSvc.decode();
-                var favorite = new FavoriteModel(user.id, $scope.apartment.id);
-                FavoriteModel.api().delete(favorite, function(result) {});
-            };
-            $scope.setupTour = function() {
-                //This needs to be discussed further
-                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormVidewsURL + '../../../../../assets/featureComing.html', 'ApplicationCreateModalCtrl', 'md');
-                ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {});
             };
             $scope.submitVideo = function() {
                 var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');

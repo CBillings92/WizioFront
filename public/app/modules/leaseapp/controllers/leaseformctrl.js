@@ -45,6 +45,7 @@ angular.module('LeaseApp')
 
             //either edits a current lease or saves a current lease.
             $scope.formSubmission = function(action){
+                console.dir($scope.lease);
                 console.dir(action);
                 $scope.lease.UserId = TokenSvc.decode().id;
                 LeaseFct[action]($scope.lease, function(response){
