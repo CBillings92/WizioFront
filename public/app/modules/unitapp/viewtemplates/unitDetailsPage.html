@@ -21,12 +21,6 @@
                 <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
             </div>
         </div>
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'map'">
-            <div id="map"></div>
-            <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-            </div>
-        </div>
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
@@ -37,15 +31,15 @@
 
         </div>
         <ul class="unit-details-media-container-tabs">
-            <li>
+            <li style="width:50%">
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
             </li>
-            <li>
-                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" style="" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
+            <li style="width:50%">
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
             </li>
-            <li>
+            <!-- <li>
                 <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
-            </li>
+            </li> -->
         </ul>
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
@@ -66,10 +60,18 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="unit-details-info">
-                    <h3 class="unit-details__orange unit-details-info__price">${{listing.monthlyRent}}</h3>
+                    <h3 class="unit-details__orange unit-details-info__price">Rent: ${{listing.monthlyRent}}/Month</h3>
+                    <h4 class="unit-details-info__heading">Needed upon lease signing:</h4>
+                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">First Months Rent</h4>
+                        <h4 class="unit-details-info__heading" ng-show="listing.lastMonthsRentNeeded">Last Months Rent</h4>
+                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Security Deposit (${{listing.securityDeposit}})</h4>
+                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Broker Fee (${{listing.securityDeposit}})</h4>
+                        <h4></h4>
+                    <br>
                     <h4 class="unit-details-info__heading">Date available: {{listing.dateStart}}</h4>
                     <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
                     <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
+                    <h4 class="unit-details-info__heading">Needed: First, Last, Security</h4>
                     <p class="unit-details-info__updated">last updated 2 days ago</p>
                         <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
                         </button>
@@ -115,7 +117,7 @@
             </div>
             <div class="col-sm-6 unit-details-description">
                 <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
-                <p>{{description.description}}</p>
+                <p>{{listing.Description}}</p>
                 <!-- <div class="form-group">
                     <div class="col-md-6">
                         <label class="control-label">Video Link</label>
@@ -130,6 +132,12 @@
                         <button type="button" class="btn" ng-click="submitPhoto()" name="button">Submit Picture</button>
                     </div>
                 </div> -->
+            </div>
+            <div class="unit-details-media-tab-content">
+                <div id="map" ng-model="map"></div>
+                <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+                    <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
+                </div>
             </div>
             <!-- <div class="col-sm-6 unit-details-description">
                 <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>

@@ -58,9 +58,16 @@ angular.module('SharedFactoryApp')
 
                     var averageLatitude = null;
                     var averageLongitude = null;
-                    for (i = 0; i < unitList.length; i++) {
-                        averageLatitude += unitList[i].apartmentData.latitude;
-                        averageLongitude += unitList[i].apartmentData.longitude;
+                    if(unitList[0].apartmentData){
+                        for (i = 0; i < unitList.length; i++) {
+                            averageLatitude += unitList[i].apartmentData.latitude;
+                            averageLongitude += unitList[i].apartmentData.longitude;
+                        }
+
+                    } else {
+                        averageLatitude += unitList.latitude;
+                        averageLongitude += unitList.longitude;
+
                     }
                     averageLatitude = averageLatitude / (unitList.length);
                     averageLongitude = averageLongitude / (unitList.length);
@@ -78,7 +85,7 @@ angular.module('SharedFactoryApp')
                 };
 
                 var unitList = null;
-                if ($state.current.name === "Unit.Details") {
+                if ($state.current.name === "Unit.Details" || 'listing.group') {
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
                     console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display") {
@@ -111,12 +118,18 @@ angular.module('SharedFactoryApp')
                     }
                     return markersArray;
                 };
+                var map = null;
+                if(unit.apartmentData){
+                    position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
+                } else {
+                    position = new google.maps.LatLng(unit.latitude, unit.longitude);
 
+                }
                 function createMarker(unit) {
                     var marker = new google.maps.Marker({
                         map: map,
-                        position: new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude),
-                        title: unit.apartmentData.concatAddr,
+                        position: position,
+                        title: unit.apartmentData.concatAddr || unit.concatAddr,
                         icon: '/public/viewtemplates/images/brand_assets/map_pin.png'
                     });
                     console.dir("NSUETOEUNSTHEONUTSHOENUOEU");
@@ -129,8 +142,8 @@ angular.module('SharedFactoryApp')
                         '<path fill="none" stroke="#000000" stroke-linecap="round" stroke-miterlimit="10" d="M20.001,37.152 C6.783,24.287,3.066,19.554,2.262,14.704C1.278,8.769,5.694,2.848,12.578,2.848c2.949,0,5.63,1.133,7.423,3.026 c1.79-1.893,4.471-3.026,7.421-3.026c6.853,0,11.306,5.893,10.315,11.856C36.952,19.449,33.479,24.031,20.001,37.152z"/>' +
                         '</svg>' +
                         '</span>' +
-                        '<p style="display: inline-block; padding-left:10px; padding-top:10px;">$' + unit.Lease.leaseData.monthlyRent + '</p>' +
-                        '<a href="' + WizioConfig.frontEndURL + '#/unit/details/' + unit.apartmentData.id + '">' +
+                        '<p style="display: inline-block; padding-left:10px; padding-top:10px;">$' + unit.Lease.leaseData.monthlyRent || unit.monthlyRent + '</p>' +
+                        '<a href="' + WizioConfig.frontEndURL + '#/unit/details/' + unit.apartmentData.id || unit.id + '">' +
                         '<button class="btn btn-small" style="display: block; padding: 2px 22px; background-color:transparent; border:1px solid #7A9DD1; color:#7A9DD1;">View</button>' +
                         '</a>' +
                         '</div>' +
