@@ -212,7 +212,7 @@ angular.module('UnitApp')
 
             $scope.submit = function() {
                 ApartmentModel.claimApi($scope.containingArray, function(response) {
-
+                    $state.go('Account.Dashboard.Main');
                 });
             };
 

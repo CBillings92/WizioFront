@@ -30,33 +30,49 @@ angular.module('AccountApp')
                 };
             };
             var user = TokenSvc.decode();
-            if(user.userType === 2){
-                $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
-                    $scope.units = result;
-                });
-            }
+            var businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '');
+            // if(user.userType === 2){
+            //     $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
+            //         $scope.units = result;
+            //     });
+            // }
             //get apartments associated with user
             var userId = TokenSvc.decode().id;
             var applicationIds = [];
-            AssignmentModel.api().twoParam.query({
-                param1: 'user',
-                param2: userId
-            }, function(response) {
-                $scope.assignments = response;
-
-                for (var i = 0; i < $scope.assignments.length; i++) {
-                    if ($scope.assignments[i].Apartment.Applications.length !== 0) {
-                        applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-                    }
-                    //group the individual application objects by the ApplicationId
-                    var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-                    // reassign the Applications key on the returned object
-                    $scope.assignments[i].Apartment.Applications = groupedApplications;
-                    //get the number of applications
-                    $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
-                }
-                $scope.noTenants = true;
+            $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id',{id: '@id'}).query({id: user.PropertyManager[0].id || user.Brokerage[0].id}, function(result){
+                console.dir(result);
+                $scope.units = result;
             });
+            $scope.shareListing = function(index){
+                var modalOptionsShareListing = {
+                    closeButtonText: "Close",
+                    actionButtonText: "OK",
+                    headerText: "Share This Listing",
+                    bodyText: 'Copy and paste this URL: http://www.wizio.co/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
+                };
+                ModalSvc.showModal({},modalOptionsShareListing).then(function(response){
+                    console.dir(response);
+                });
+            }
+            // AssignmentModel.api().twoParam.query({
+            //     param1: 'user',
+            //     param2: userId
+            // }, function(response) {
+            //     $scope.assignments = response;
+            //
+            //     for (var i = 0; i < $scope.assignments.length; i++) {
+            //         if ($scope.assignments[i].Apartment.Applications.length !== 0) {
+            //             applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
+            //         }
+            //         //group the individual application objects by the ApplicationId
+            //         var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
+            //         // reassign the Applications key on the returned object
+            //         $scope.assignments[i].Apartment.Applications = groupedApplications;
+            //         //get the number of applications
+            //         $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
+            //     }
+            //     $scope.noTenants = true;
+            // });
 
             $scope.add_tenants = function(val) {
                 var addTenantsModalDefaults = modalDefaults(
@@ -94,9 +110,10 @@ angular.module('AccountApp')
             };
 
             $scope.editListing = function(apartmentIndex) {
-                FlexGetSetSvc.set($scope.assignments[apartmentIndex].Apartment, 'EditCurrentListing', 'EditCurrentListing');
+                FlexGetSetSvc.set($scope.units[apartmentIndex], 'EditCurrentListing', 'EditCurrentListing');
                 $state.go('Account.Lease.Edit');
             };
+
 
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.

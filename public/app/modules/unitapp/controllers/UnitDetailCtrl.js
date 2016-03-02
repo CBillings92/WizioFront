@@ -6,6 +6,7 @@ angular.module('UnitApp')
         '$location',
         '$sessionStorage',
         '$sce',
+        '$resource',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
@@ -25,6 +26,7 @@ angular.module('UnitApp')
             $location,
             $sessionStorage,
             $sce,
+            $resource,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
@@ -39,6 +41,9 @@ angular.module('UnitApp')
             SearchFct
         ) {
             $scope.listing = {};
+            $resource(WizioConfig.baseAPIURL + 'lease/:id', {id:'@id'}).get({id: $state.params.id}, function(result){
+                console.dir(result);
+            });
             // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
             // console.dir($scope.apartment);
             // $scope.apartment = $scope.apartment.apartmentData || null;
@@ -77,7 +82,7 @@ angular.module('UnitApp')
 
 
                 var user = TokenSvc.decode();
-                
+
                 if (user && user !== 'No Token' && user !== 'undefined') {
                     user = TokenSvc.decode();
                     if (user.applications.length > 0) {

@@ -46,16 +46,17 @@
                         </span>
                         <br>
                          <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases.length == 0 || assignment.Apartment.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" name="button" type="button">Post Listing</button>
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases.length == 0 || assignment.Apartment.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" name="button" type="button">Create Listing</button>
                             <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases[0].currentListing === true || assignment.Apartment.Leases[1].currentListing === true" ng-click="editListing($index)" name="button" type="button">Update Listing</button>
                         </span>
-                        <span style="padding:10px;" ng-hide="unit.Listing">
+                        <span style="padding:10px;">
                             <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-click="createListing($index)" target="_blank">Create Listing</a>
+                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-show="unit.Leases.length == 0 || unit.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" target="_blank">Create Listing</a>
+                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true" ng-click="editListing($index)" target="_blank">Update Listing</a>
                         </span>
-                        <span style="padding:10px;" ng-show="unit.Listing">
+                        <span style="padding:10px;" ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
                             <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-href="http://172.16.0.2:3000/#/unit/details/{{assignment.ApartmentId}}" target="_blank">Share Listing</a>
+                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-click="shareListing($index)" ng-href="" target="_blank">Share Listing</a>
                         </span>
                         <span style="padding:10px;">
                             <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
