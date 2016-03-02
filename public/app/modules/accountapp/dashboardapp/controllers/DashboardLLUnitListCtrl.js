@@ -30,7 +30,7 @@ angular.module('AccountApp')
                 };
             };
             var user = TokenSvc.decode();
-            var businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '');
+            var businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
             // if(user.userType === 2){
             //     $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
             //         $scope.units = result;
