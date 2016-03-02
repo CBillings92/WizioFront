@@ -52,7 +52,7 @@ angular.module('AccountApp')
                         closeButtonText: "Close",
                         actionButtonText: "OK",
                         headerText: "Share This Listing",
-                        bodyText: 'Copy and paste this URL: beta.wizio.co/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
+                        bodyText: 'Copy and paste this URL: beta.wizio.co/listing/#/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
                     };
                     ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
                         console.dir(response);
