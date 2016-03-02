@@ -19,6 +19,7 @@ angular.module('UnitApp')
         'ModalSvc',
         'WizioConfig',
         'SearchFct',
+        'moment',
         function(
             $scope,
             $state,
@@ -38,11 +39,16 @@ angular.module('UnitApp')
             MediaModel,
             ModalSvc,
             WizioConfig,
-            SearchFct
+            SearchFct,
+            moment
         ) {
             $scope.listing = {};
             $resource(WizioConfig.baseAPIURL + 'lease/:id', {id:'@id'}).get({id: $state.params.id}, function(result){
                 console.dir(result);
+                ApartmentGetSetSvc.set(result, "apartmentSelected");
+
+                $scope.listing.dateStart = moment(dateStart).format('YYYY-MM-DD');
+                $scope.apartment = result.Apartment;
             });
             // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
             // console.dir($scope.apartment);
@@ -57,10 +63,7 @@ angular.module('UnitApp')
                 result = result[0];
                 ApartmentGetSetSvc.set(result, "apartmentSelected");
                 $scope.description = result.Description;
-                $scope.listing = result.Lease ? result.Lease.leaseData : "Monthly Rent Unavailable";
-                var dateStart = new Date($scope.listing.dateStart);
 
-                $scope.listing.dateStart =   dateStart.getMonth() + '-' + dateStart.getDate() + "-" + dateStart.getFullYear();
 
                 newApartmentData = lodash.mapValues(result.apartmentData, function(apartmentField) {
                     if (apartmentField === null) {
