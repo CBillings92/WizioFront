@@ -118,7 +118,7 @@ angular.module('SharedFactoryApp')
                     }
                     return markersArray;
                 };
-                var map = null;
+                map = null;
                 if(unit.apartmentData){
                     position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
                 } else {

@@ -17,10 +17,10 @@ angular.module('UnitApp')
             console.dir($scope.user);
             //load the selectOptions from the unit factory
             $scope.selectOptions = UnitFct.selectOptions;
-            $scope.multiplePMBusinesses = false
+            $scope.multiplePMBusinesses = false;
             if ($scope.user.userType === 2 || $scope.user.userType === 4) {
                 if ($scope.user.PropertyManager.length > 0) {
-                    $scope.multiplePMBusinesses = true
+                    $scope.multiplePMBusinesses = true;
                     $scope.selectOptions.pmBusinesses = $scope.user.PropertyManager;
                     $scope.selectedPM = $scope.selectOptions.pmBusinesses[0];
                 }
@@ -88,6 +88,7 @@ angular.module('UnitApp')
                         newApartment.api().findOrCreate(null, function(response) {
                             console.dir(response);
                             //if the aparment didn't exist before (if created is true)
+                            var views = WizioConfig.UnitViewsURL;
                             if (response.created) {
                                 newApartment.newlyCreated = true;
                                 newApartment.apartmentData.CreatedById = $scope.user.id;
@@ -103,8 +104,7 @@ angular.module('UnitApp')
                                 delete newApartment.apartmentData.createdById;
                                 newApartment.newlyCreated = false;
                                 if ($scope.user.userType === 2 && UnitFct.checkPropertyManagerOwnership(response)) {
-                                    var views = WizioConfig.UnitViewsURL;
-                                    var modalData = response.apartment;
+                                    modalData = response.apartment;
                                     console.dir(response);
                                     var modalDefaultsUnitFound = {
                                         backdrop: true,
@@ -120,7 +120,7 @@ angular.module('UnitApp')
                                     };
                                     ModalSvc.showModal(modalDefaultsUnitFound, {}).then(function(result) {
                                         editDataOrDontEdit(result, response, addressIndex, unitIndex);
-                                        return
+                                        return;
                                     });
                                 } else if ($scope.user.userType === 3) {
                                     if($scope.user.id !== response.apartment.CreatedById){
@@ -135,12 +135,11 @@ angular.module('UnitApp')
                                         ModalSvc.showModal({}, modalOptionsCantEdit)
                                         .then(function(result) {
                                             return;
-                                        })
+                                        });
                                     } else {
-                                        var views = WizioConfig.UnitViewsURL;
-                                        var modalData = response.apartment;
+                                        modalData = response.apartment;
                                         console.dir(response);
-                                        var modalDefaultsUnitFound = {
+                                        modalDefaultsUnitFound = {
                                             backdrop: true,
                                             keyboard: true,
                                             modalFade: true,
@@ -154,7 +153,7 @@ angular.module('UnitApp')
                                         };
                                         ModalSvc.showModal(modalDefaultsUnitFound, {}).then(function(result) {
                                             editDataOrDontEdit(result, response, addressIndex, unitIndex);
-                                            return
+                                            return;
                                         });
                                     }
                                 }

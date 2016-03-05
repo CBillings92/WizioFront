@@ -5,7 +5,12 @@ angular.module('Models')
         'FlexGetSetSvc',
         'WizioConfig',
         function($resource, TokenSvc, FlexGetSetSvc, WizioConfig) {
-            function Lease(id, dateStart, dateEnd, snowRemoval, smoking, pets, electricIncluded, heatIncluded, hotWaterIncluded, waterIncluded, gasIncluded, cableIncluded, internetIncluded, trashRemoval, monthsRentFree, lastMonthsRentNeeded, firstMonthsRentNeeded, brokerFeeNeeded, newKeyFeeNeeded, securityDeposit, secDepositNeeded, monthlyRent, newKeyFeeAmount, brokerFeeAmount) {
+            function Lease(id, dateStart, dateEnd, snowRemoval, smoking, pets,
+                electricIncluded, heatIncluded, hotWaterIncluded, waterIncluded,
+                gasIncluded, cableIncluded, internetIncluded, trashRemoval,
+                monthsRentFree, lastMonthsRentNeeded, firstMonthsRentNeeded,
+                brokerFeeNeeded, newKeyFeeNeeded, securityDeposit, secDepositNeeded,
+                monthlyRent, brokerFeeAmount, newKeyFeeAmount, Description) {
                 this.leaseData = {
                     id: id,
                     dateStart : dateStart,
@@ -31,6 +36,7 @@ angular.module('Models')
                     monthlyRent : monthlyRent,
                     brokerFeeAmount : brokerFeeAmount,
                     newKeyFeeAmount : newKeyFeeAmount,
+                    Description: Description
                 };
             }
 
@@ -86,7 +92,8 @@ angular.module('Models')
                         data.secDepositNeeded,
                         data.monthlyRent,
                         data.brokerFeeAmount,
-                        data.newKeyFeeAmount
+                        data.newKeyFeeAmount,
+                        data.Description
                 );
             };
 

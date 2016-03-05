@@ -23,7 +23,6 @@ angular.module('LeaseApp')
             $scope.selectOptions = LeaseFct.selectLeaseOptions;
             //find out whether we're editing a listing or creating a new one
             $scope.editingListing = $state.current.name === 'Account.Lease.Edit' ? true : false;
-            console.dir($scope.editingListing);
             //if we are editing a current listing/upcoming lease
             if($scope.editingListing){
                 var leases = FlexGetSetSvc.get('EditCurrentListing').Leases;
@@ -45,8 +44,6 @@ angular.module('LeaseApp')
 
             //either edits a current lease or saves a current lease.
             $scope.formSubmission = function(action){
-                console.dir($scope.lease);
-                console.dir(action);
                 $scope.lease.UserId = TokenSvc.decode().id;
                 LeaseFct[action]($scope.lease, function(response){
                     //handle repsonse;
