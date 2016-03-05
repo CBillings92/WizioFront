@@ -1,6 +1,6 @@
 angular.module('Directives')
     .directive('closeModalDirv', [
-        function($modalInstance) {
+        function() {
         return {
             restrict: 'AE',
             scope: false,
