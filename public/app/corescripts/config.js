@@ -12,12 +12,12 @@ angular.module('MainApp')
     //baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
-    //baseAPIURL: 'http://172.16.0.3:4000/api/',
+    baseAPIURL: 'http://172.16.0.3:4000/api/',
 
 
 
     //LIVETESTER URL
-    baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
+    //baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
@@ -31,8 +31,6 @@ angular.module('MainApp')
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
     //frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
     frontEndURL: window.location.origin,
-
-
 
 
     //angular app URLs - views
