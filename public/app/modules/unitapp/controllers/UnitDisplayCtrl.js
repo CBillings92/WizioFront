@@ -27,7 +27,7 @@ angular.module('UnitApp')
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
             $scope.apartmentSearch = $sessionStorage.apartmentSearch;
-            console.dir($scope.apartmentSearch)
+            console.dir($scope.apartmentSearch);
             if ($scope.apartmentSearch.length === 0) {
                 var noSearchResultsModalOptions = {
                     closeButtonText: "Close",
@@ -36,7 +36,7 @@ angular.module('UnitApp')
                     bodyText: 'Unfortunatly, we could not find any listings that met your specified criteria. Pleasse try broadening your search parameters.'
                 };
                 ModalSvc.showModal({}, noSearchResultsModalOptions)
-                    .then(function(result) {})
+                    .then(function(result) {});
             }
             $scope.mapshow = true;
             $scope.maphidden = false;
@@ -92,7 +92,7 @@ angular.module('UnitApp')
                         bodyText: 'There was an error loading the page you requested. Please try again, or start your search over.'
                     };
                     ModalSvc.showModal({}, aptLoadErrorModalOptions)
-                        .then(function(result) {})
+                        .then(function(result) {});
                 }
             };
             $scope.search = function() {

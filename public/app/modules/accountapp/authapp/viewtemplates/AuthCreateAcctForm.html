@@ -19,12 +19,32 @@
                     <span ng-show="createAcct.email.$error.required">Invalid email address</span>
                 </span>
             </div>
+            <div class="form-group" ng-show ="data === 'PropertyManager'">
+                <h5>I'm a...</h5>
+                <select class="form-control" name="" ng-model="user.type" ng-options = "option for option in dropdownvals">
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Company (Optional)" ng-model="user.businessName" class="form-control" ng-show ="user.type === 'Property Manager'" name="name" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Company" ng-model="user.businessName" class="form-control" required ng-show ="user.type === 'Broker/Agent'" name="name" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Broker License Number" ng-model="user.licenseID" class="form-control" ng-show ="user.type === 'Broker/Agent'" name="name" value="">
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="Contact Phone (For Tenants)" ng-model="user.contactPhone" class="form-control" ng-show ="user.type === 'Broker/Agent' || user.type === 'Property Manager'" name="name" value="">
+            </div>
+            <br>
             <div class="form-group">
                 <input type="password" ng-minlength="6" ng-model="user.password" required placeholder="Password" class="form-control" />
             </div>
             <div class="form-group">
                 <input type="password" ng-minlength="6" ng-model="user.passwordConfirm" required placeholder="Confirm Password" class="form-control" />
             </div>
+            <br>
         </div>
         <div class="acct-modal-footer">
             <a class="btn acct-modal-footer__btn acct-modal-footer__back-btn" ng-click="backStep()"><span class="fa fa-long-arrow-left"></span> Back</a>

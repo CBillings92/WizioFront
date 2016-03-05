@@ -30,23 +30,27 @@ angular.module('LeaseApp')
                 //if there are two leases and the second lease in the array is
                 //the current listing, show that on the form to edit
                 if(leases.length == 2 && leases[1].currentListing == 1){
+                    leases[1].dateStart = new Date(leases[1].dateStart);
+                    leases[1].dateEnd= new Date(leases[1].dateEnd);
                     $scope.lease = leases[1];
                 } else {
+                    leases[0].dateStart = new Date(leases[0].dateStart);
+                    leases[0].dateEnd = new Date(leases[0].dateEnd);
                     //otherwise make it the first/only lease
                     $scope.lease = leases[0];
                 }
             } else {
                 $scope.lease.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
-                console.dir($scope.lease);
             }
 
             //either edits a current lease or saves a current lease.
             $scope.formSubmission = function(action){
+                console.dir($scope.lease);
                 console.dir(action);
                 $scope.lease.UserId = TokenSvc.decode().id;
                 LeaseFct[action]($scope.lease, function(response){
                     //handle repsonse;
                 });
-            }
+            };
         }
     ]);

@@ -20,7 +20,7 @@ $account-padding: 30px 0;
 }
 
 .acct-modal {
-	
+
 	.modal-header {
 		border-bottom: 0;
 	}
@@ -32,7 +32,7 @@ $account-padding: 30px 0;
 	}
 
 	&-controls {
-		max-width: 220px;
+		max-width: 300px;
 		margin: 0 auto;
 		padding: $account-padding;
 
@@ -62,7 +62,7 @@ $account-padding: 30px 0;
 			top: 0;
 			background: none;
 			color: $orange;
-			
+
 			&:active, &:focus, &:active:focus, &:hover {
 				color: darken($orange, 10%);
 			}
@@ -181,4 +181,3 @@ $account-padding: 30px 0;
 	}
 
 }
-

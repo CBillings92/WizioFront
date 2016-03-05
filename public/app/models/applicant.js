@@ -54,8 +54,8 @@ angular.module('Models')
                 var app = this;
                 return $resource(WizioConfig.baseAPIURL + '/application/applicant').remove(app, function(response) {
                     return callback(response);
-                })
-            }
+                });
+            };
 
             Applicant.build = function buildApplicant(data) {
                     console.dir(data);
@@ -65,8 +65,8 @@ angular.module('Models')
                         data.ApplicationOwner,
                         data.applicationStatus,
                         data.applicantStatus
-                    )
-                }
+                    );
+                };
                 // Applicant.prototype.API = function API(callback){
                 //     var app = this;
                 //     return {

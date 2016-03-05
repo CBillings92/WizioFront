@@ -5,4 +5,4 @@ angular.module('UnitApp')
     function($resource, WizioConfig){
         return $resource(WizioConfig.baseAPIURL + 'apartment/:id', {id: '@id'});
     }
-])
+]);

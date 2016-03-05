@@ -11,7 +11,7 @@ angular.module('AccountApp')
         };
         //get accountType from the form
         $scope.nextStep = function(accountType) {
-            var chosenAccountType = (accountType == 'tenant') ? 'tenantSignup' : 'landlordSignup';
+            var chosenAccountType = (accountType == 'tenant') ? 'tenantSignup' : 'propertyManagerSignup';
             $modalInstance.close(chosenAccountType);
         };
     }
