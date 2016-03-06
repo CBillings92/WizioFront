@@ -26,6 +26,41 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group" ng-show="user.userType === 3">
+                <h3>Property Manager Info</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="">This Property Manager is a...</label>
+                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson">
+
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
+                        <label class="control-label">First Name</label>
+                        <input class="form-control" name="" ng-model="unit.PropertyManager.firstName"></input>
+                    </div>
+                    <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
+                        <label class="control-label">Last Name</label>
+                        <input class="form-control" name="" ng-model="unit.PropertyManager.lastName"></input>
+                    </div>
+                    <div class="col-md-12" ng-hide="unit.PropertyManager.personalOrBusiness === 'Person'">
+                        <label class="control-label">Company Name</label>
+                        <input class="form-control" name="" ng-model="unit.PropertyManager.businessName"></input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="control-label">Phone Number</label>
+                        <input class="form-control" name="" ng-model="unit.PropertyManager.phoneNumber"></input>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="control-label">Address</label>
+                        <input class="form-control" name="" ng-model="unit.PropertyManager.address"></input>
+                    </div>
+                </div>
+            </div>
             <label class="control-label" for="" style="padding-top:10px;">Units At This Address</label>
             <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
@@ -60,41 +95,6 @@
                                     <div class="col-md-4">
                                         <label class="control-label">Elevator</label>
                                         <select class="form-control" name="" ng-model="unit.apartmentData.elevator" ng-options="elevator for elevator in selectOptions.elevator"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" ng-show="user.userType === 3">
-                                <h3>Property Manager Info</h3>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="">This Property Manager is a...</label>
-                                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson">
-
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
-                                        <label class="control-label">First Name</label>
-                                        <input class="form-control" name="" ng-model="unit.PropertyManager.firstName"></input>
-                                    </div>
-                                    <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
-                                        <label class="control-label">Last Name</label>
-                                        <input class="form-control" name="" ng-model="unit.PropertyManager.lastName"></input>
-                                    </div>
-                                    <div class="col-md-12" ng-hide="unit.PropertyManager.personalOrBusiness === 'Person'">
-                                        <label class="control-label">Company Name</label>
-                                        <input class="form-control" name="" ng-model="unit.PropertyManager.businessName"></input>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label class="control-label">Phone Number</label>
-                                        <input class="form-control" name="" ng-model="unit.PropertyManager.phoneNumber"></input>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="control-label">Address</label>
-                                        <input class="form-control" name="" ng-model="unit.PropertyManager.address"></input>
                                     </div>
                                 </div>
                             </div>
