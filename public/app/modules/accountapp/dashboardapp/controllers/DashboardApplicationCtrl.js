@@ -58,8 +58,8 @@ angular.module('AccountApp')
                 };
                 ModalSvc.showModal(selectOwnerModalDefaults, {}).then(function(response){
 
-                })
-            }
+                });
+            };
             $scope.deleteApplication = function(value){
                 var modalOptions = {
                     closeButtonText: "Cancel",
@@ -74,8 +74,8 @@ angular.module('AccountApp')
                         $scope.applications.splice(value);
                         alert("Removed from application");
                     });
-                })
-            }
+                });
+            };
             $scope.removeFromApplication = function(value) {
                 var dataPasser = {
                     ApplicationId: $scope.applications[value][0].ApplicationId,
@@ -108,7 +108,7 @@ angular.module('AccountApp')
                         if (response === "ok") {
                             ModalSvc.showModal(selectOwnerModalDefaults, {}).then(function(response){
 
-                            })
+                            });
                         } else {
                             ApplicationResource.flex.save({
                                 item: 'user',
@@ -123,19 +123,19 @@ angular.module('AccountApp')
                                     bodyText: 'You have been removed from this application. Thanks for using Wizio!'
                                 };
                                 ModalSvc.showModal({}, userRemovedModalOptions)
-                                    .then(function(result) {})
+                                    .then(function(result) {});
                             });
-                        };
-                    })
+                        }
+                    });
                 } else {
-                    var modalOptions = {
+                    var modalOptionsDeleteApp = {
                         closeButtonText: "Delete Application",
                         actionButtonText: "Select a New Owner",
                         headerText: "Deleting Applicant",
                         bodyText: "Would you like to delete the entire application or select a new application owner for the remaining applicants?"
                     };
 
-                    ModalSvc.showModal({}, modalOptions).then(function(response) {
+                    ModalSvc.showModal({}, modalOptionsDeleteApp).then(function(response) {
                         console.dir(response);
                         if (response === "ok") {
                             ApplicationResource.flex.save({
@@ -146,8 +146,8 @@ angular.module('AccountApp')
                                 alert("Removed from application");
                             });
                         } else {
-                        };
-                    })
+                        }
+                    });
                 }
 
             };

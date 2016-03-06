@@ -71,7 +71,7 @@ angular.module('SharedServiceApp')
                         });
                 } else {
                     //if the current apartment ID matches the ID in session
-                    if (apartmentURLID === apartmentInSession.apartmentData.id) {
+                    if (apartmentURLID === apartmentInSession.ApartmentId) {
                         console.dir(apartmentInSession);
                         //return apartment in session.
                         return callback(apartmentInSession);

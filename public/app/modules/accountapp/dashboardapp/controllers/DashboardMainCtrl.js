@@ -50,13 +50,13 @@ angular.module('AccountApp')
                         $scope.myApartmentsSelected = !$scope.myApartmentsSelected;
                         $scope.myApplicationsSelected = !$scope.myApplicationsSelected;
                     }
-                }
+                };
                 $scope.toggleMyApplications = function(){
                     if (!$scope.myApplicationsSelected) {
                         $scope.myApplicationsSelected = !$scope.myApplicationsSelected;
                         $scope.myApartmentsSelected = !$scope.myApartmentsSelected;
                     }
-                }
+                };
             }
 /*
             //get account/user info from the currently active token.

@@ -17,7 +17,7 @@ angular.module('MainApp')
             var trueRequiredLogin = {
                 requireLogin: true
             };
-            var trueRequiredLandlord = {
+            var trueRequiredPropertyManager = {
                 requireLogin: true,
                 userType: 2
             };
@@ -177,14 +177,14 @@ angular.module('MainApp')
                         },
                         midHorizontal: {
                             templateProvider:['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                                if (TokenSvc.decode().userType == 2) {
+                                if (TokenSvc.decode().userType >= 2) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
                                 } else {
                                     return null;
                                 }
                             }],
                             controllerProvider: ['$rootScope', function($rootScope) {
-                                if ($rootScope.userType == 2) {
+                                if ($rootScope.userType >= 2) {
                                     return 'DashboardLLUnitListCtrl';
                                 } else {
                                     return null;
@@ -337,6 +337,7 @@ angular.module('MainApp')
                         }
                     },
                 })
+
                 .state('Unit', {
                     url: '/unit',
                     views: {
@@ -369,6 +370,28 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Listing', {
+                    url: '/listing',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitMainViewsURL + 'UnitMain.html',
+                            controller: 'UnitMainCtrl'
+                        }
+                    },
+                    abstract: true
+                })
+                .state('Listing.Group', {
+                    url: '/:businessName/:id',
+                    views: {
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',
+                            controller: 'UnitDetailCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Unit.Display', {
                     url: '/display',
                     views: {
@@ -387,7 +410,7 @@ angular.module('MainApp')
                             controller: 'UnitClaimFormCtrl2'
                         }
                     },
-                    data: trueRequiredLandlord
+                    data: trueRequiredPropertyManager
                 })
                 .state('Unit.Edit', {
                     url: '/edit',
@@ -397,7 +420,7 @@ angular.module('MainApp')
                             controller: 'UnitClaimFormCtrl2'
                         }
                     },
-                    data: trueRequiredLandlord
+                    data: trueRequiredPropertyManager
                 })
                 .state('Campaign', {
                     url: '/campaign',

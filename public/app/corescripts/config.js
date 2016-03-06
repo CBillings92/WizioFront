@@ -17,7 +17,7 @@ angular.module('MainApp')
 
 
     //LIVETESTER URL
-    // baseAPIURL: 'http://test-2-1-16-grtustfprs.elasticbeanstalk.com/api/',
+    //baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
@@ -31,8 +31,6 @@ angular.module('MainApp')
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
     //frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
     frontEndURL: window.location.origin,
-
-
 
 
     //angular app URLs - views

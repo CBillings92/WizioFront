@@ -43,7 +43,8 @@
             'ngResource',
             'ngLodash',
             'ui.bootstrap',
-            'angular-jwt'
+            'angular-jwt',
+            'angularMoment',
         ])
         .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
             $facebookProvider.setAppId('439701646205204');

@@ -26,10 +26,12 @@ angular.module('Models')
                 leaseType,
                 leaseExpectedEnd,
                 leaseActualEnd,
-                LandlordId,
+                PropertyManagerId,
                 route,
                 laundry,
-                elevator
+                elevator,
+                CreatedById,
+                UpdatedById
             ) {
                 this.apartmentData = {
                     id: id || null,
@@ -46,18 +48,16 @@ angular.module('Models')
                     maxResidency: maxResidency || null,
                     costPerMonth: costPerMonth || null,
                     renovated: renovated || null,
-                    pets: pets || null,
                     ApartmentType: ApartmentType || null,
                     latitude: latitude || null,
                     longitude: longitude || null,
                     concatAddr: concatAddr || null,
-                    leaseType: leaseType || null,
-                    leaseExpectedEnd: leaseExpectedEnd || null,
-                    leaseActualEnd: leaseActualEnd || null,
-                    LandlordId: LandlordId || null,
+                    PropertyManagerId: PropertyManagerId || null,
                     route: route || null,
                     laundry: laundry || null,
-                    elevator: elevator || null
+                    elevator: elevator || null,
+                    CreatedById: CreatedById || null,
+                    UpdatedById: UpdatedById || null,
                 };
             }
             Apartment.prototype.api = function(){
@@ -103,7 +103,13 @@ angular.module('Models')
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
                         console.dir(response);
                         for(var key in response){
-                            apartmentData[key] = response[key];
+                            if(response[key] === 'Longitude'){
+                                apartment['Longitude'] = parseFloat(response[key]).toFixed(6);
+                            } else if (response[key] === 'Latitude'){
+                                apartment['Latitude'] = parseFloat(response[key]).toFixed(6);
+                            } else {
+                                apartmentData[key] = response[key];
+                            }
                         }
                         console.dir("ENUHAEOSNTHEUSNTHAEUNTAOHEUNEAUHAEUNTAHUNRTUAOH");
                         resolve('done');
@@ -138,7 +144,7 @@ angular.module('Models')
                     var houseNumHigh = houseNumInt + right;
                     var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
                     this.apartmentData.concatAddr = houseNumRange + this.apartmentData.concatAddr.replace(/^\d+/, '');
-            }
+            };
             // Apartment.prototype.api = function() {
             //     return {
             //         oneParam: $resource(WizioConfig.baseAPIURL + 'apartment/:id')
@@ -213,10 +219,12 @@ angular.module('Models')
                     data.leaseType,
                     data.leaseExpectedEnd,
                     data.leaseActualEnd,
-                    data.LandlordId,
+                    data.PropertyManagerId,
                     data.route,
                     data.laundry,
-                    data.elevator
+                    data.elevator,
+                    data.CreatedById,
+                    data.UpdatedById
                 );
             };
 

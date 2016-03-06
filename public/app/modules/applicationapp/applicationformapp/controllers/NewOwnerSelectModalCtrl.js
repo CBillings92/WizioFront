@@ -21,7 +21,7 @@ angular.module('ApplicationApp')
                         ApartmentId: applicant.ApartmentId,
                         ApplicationId: applicant.ApplicationId,
                         concatAddr: $scope.applications[userIndex].Apartment.concatAddr
-                    }
+                    };
                     ApplicationResource.flex.save({
                         item: 'user',
                         action: 'remove'

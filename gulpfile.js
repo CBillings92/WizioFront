@@ -13,6 +13,7 @@ var plugins = require("gulp-load-plugins")({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
     replaceString: /\bgulp[\-.]/
 });
+var gutil = require('gulp-util');
 var mainBowerFiles = require('main-bower-files');
 var resourceDest = '/public';
 
@@ -28,7 +29,7 @@ gulp.task('scripts', function() {
     gulp.src(['./public/app/**/*.js'])
         //   .pipe(stripDebug())
         .pipe(concat('scripts.js'))
-        .pipe(uglify())
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest('./public/build'));
 });
 

@@ -84,7 +84,7 @@ angular.module('LeaseApp')
             console.dir(lease);
             //make a post request to /lease to save the new lease
             lease.create(function(response){
-                callback(response);
+                return callback(response);
             });
         };
         var editLease = function(leaseObject, callback){
@@ -92,7 +92,7 @@ angular.module('LeaseApp')
             var lease = LeaseModel.build(leaseObject);
             //make a post request to lease/:id to update the lease
             lease.update(function(response){
-                callback(response);
+                return callback(response);
             });
         };
 

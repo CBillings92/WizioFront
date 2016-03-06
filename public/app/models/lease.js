@@ -5,7 +5,12 @@ angular.module('Models')
         'FlexGetSetSvc',
         'WizioConfig',
         function($resource, TokenSvc, FlexGetSetSvc, WizioConfig) {
-            function Lease(id, dateStart, dateEnd, snowRemoval, smoking, pets, electricIncluded, heatIncluded, hotWaterIncluded, waterIncluded, gasIncluded, cableIncluded, internetIncluded, trashRemoval, monthsRentFree, lastMonthsRentNeeded, firstMonthsRentNeeded, brokerFeeNeeded, newKeyFeeNeeded, securityDeposit, secDepositNeeded, monthlyRent, newKeyFeeAmount, brokerFeeAmount) {
+            function Lease(id, dateStart, dateEnd, snowRemoval, smoking, pets,
+                electricIncluded, heatIncluded, hotWaterIncluded, waterIncluded,
+                gasIncluded, cableIncluded, internetIncluded, trashRemoval,
+                monthsRentFree, lastMonthsRentNeeded, firstMonthsRentNeeded,
+                brokerFeeNeeded, newKeyFeeNeeded, securityDeposit, secDepositNeeded,
+                monthlyRent, brokerFeeAmount, newKeyFeeAmount, Description) {
                 this.leaseData = {
                     id: id,
                     dateStart : dateStart,
@@ -31,6 +36,7 @@ angular.module('Models')
                     monthlyRent : monthlyRent,
                     brokerFeeAmount : brokerFeeAmount,
                     newKeyFeeAmount : newKeyFeeAmount,
+                    Description: Description
                 };
             }
 
@@ -40,12 +46,13 @@ angular.module('Models')
             //store these functions on each new Lease's object prototype
             Lease.prototype.setAssociationData = function(){
                 this.leaseData.UserId = TokenSvc.decode().id;
-                this.leaseData.LandlordId = TokenSvc.decode().LandlordId;
+                this.leaseData.PropertyManagerId = TokenSvc.decode().PropertyManagerId;
                 this.leaseData.ApartmentId = FlexGetSetSvc.get('NewLeaseApartmentId');
                 return;
             };
             Lease.prototype.create = function(callback){
                 var data = this;
+                console.dir(data);
                 $resource(WizioConfig.baseAPIURL + 'lease').save(data, function(response){
                     callback(response);
                 });
@@ -86,7 +93,8 @@ angular.module('Models')
                         data.secDepositNeeded,
                         data.monthlyRent,
                         data.brokerFeeAmount,
-                        data.newKeyFeeAmount
+                        data.newKeyFeeAmount,
+                        data.Description
                 );
             };
 
