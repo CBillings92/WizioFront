@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="editApartmentAddressCntr" ng-show="singleUnit">
-                <input type="text" name="name" class="form-control" value="{{address[0].concatAddr}}" disabled="disabled">
+                <input type="text" name="name" class="form-control" value="{{address[0].apartmentData.concatAddr}}" disabled="disabled">
             </div>
             <div class="form-group" ng-show="multiplePMBusinesses">
                 <div class="row">
@@ -128,10 +128,10 @@
                         </form>
                     </div>
                     <center>
-                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
-                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="functions.copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
+                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit || containingArray[$parent.$index].length === 1" ng-click="functions.removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
                     </center>
-                    <button name="button" class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" ng-hide="singleUnit" ng-click="addUnit($index)" type="button">New Unit</button>
+                    <button name="button" class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" ng-hide="singleUnit" ng-click="functions.addUnit($index)" type="button">New Unit</button>
                 </div>
             </div>
             <!-- <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button> -->
