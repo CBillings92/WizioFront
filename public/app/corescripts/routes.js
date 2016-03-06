@@ -406,7 +406,7 @@ angular.module('MainApp')
                     url: '/claim',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
                             controller: 'UnitClaimFormCtrl'
                         }
                     },

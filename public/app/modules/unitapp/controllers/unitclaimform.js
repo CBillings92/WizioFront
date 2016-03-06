@@ -6,6 +6,7 @@ angular.module('UnitApp')
     .controller('UnitClaimFormCtrl', [
         '$scope',
         '$state',
+        '$q',
         'TokenSvc',
         'ApartmentModel',
         'DescriptionModel',
@@ -14,7 +15,7 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         'ModalSvc',
         'WizioConfig',
-        function($scope, $state, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
+        function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
@@ -64,6 +65,10 @@ angular.module('UnitApp')
                     ]
                 ]
             */
+            var commonVariables = {
+                addressIndex: null,
+                unitIndex: null
+            };
             function addBlankUnitToAddress(addressIndex) {
                 //we're going to copy the geocoded data from the first apartment
                 //at this address
@@ -80,17 +85,15 @@ angular.module('UnitApp')
             function buildModal(type, data) {
                 return $q(function(resolve, reject) {
                     if (type === 1) {
-                        modalData = data.modalData;
-                        console.dir(response);
                         var modalDefaults = {
                             backdrop: true,
                             keyboard: true,
                             modalFade: true,
-                            templateUrl: data.temlapteUrl,
+                            templateUrl: data.templateUrl,
                             controller: data.controller,
                             resolve: {
                                 modalData: function() {
-                                    return modalData;
+                                    return data.modalData;
                                 }
                             }
                         };
@@ -115,6 +118,8 @@ angular.module('UnitApp')
                 return $q(function(resolve, reject) {
                     var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                     var newUnitInstance = ApartmentModel.build(unitAddressInfo);
+                    commonVariables.addressIndex = addressIndex;
+                    commonVariables.unitIndex = unitIndex;
                     newUnitInstance.getGeocodeData()
                         .then(function(response) {
                             return resolve(newUnitInstance);
@@ -124,21 +129,27 @@ angular.module('UnitApp')
 
             function findOrCreateNewUnit(unitInstance) {
                 return $q(function(resolve, reject) {
-                    unitInstance.api().findOrCreate(null, function(response) {
-                        return resolve(unitInstance, response);
+                    unitInstance.api().findOrCreate(null, function(dbResponse) {
+                        var dataPasser = {
+                            unitInstance: unitInstance,
+                            dbResponse: dbResponse
+                        };
+                        return resolve(dataPasser);
                     });
                 });
             }
 
-            function handleNewlyCreatedUnit(unitInstance, dbResponse) {
+            function handleAPIResponse(data) {
                 return $q(function(resolve, reject) {
+                    var dbResponse = data.dbResponse;
+                    var unitInstance = data.unitInstance;
                     if (dbResponse.created === true) {
-                        onUnitNewlyCreated(unitInstance, dbResponse)
+                        onUnitNewlyCreated(data)
                             .then(function(unit) {
                                 return resolve(unit);
                             });
                     } else {
-                        onUnitCreatedPreviously(unitInstance, dbResponse)
+                        onUnitCreatedPreviously(data)
                             .then(function(unit) {
                                 return resolve(unit);
                             });
@@ -146,21 +157,26 @@ angular.module('UnitApp')
                 });
             }
 
-            function onUnitNewlyCreated(unitInstance, dbResponse) {
+            function onUnitNewlyCreated(data) {
                 return $q(function(resolve, reject) {
+                    var dbResponse = data.dbResponse;
+                    var unitInstance = data.unitInstance;
                     unitInstance.newlyCreated = true;
+                    unitInstance.apartmentData.id = dbResponse.apartment.id;
                     unitInstance.apartmentData.CreatedById = $scope.user.id;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
                     unitInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     unitInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
-                    $scope.containingArray[addressIndex][unitIndex] = unitInstance;
-                    return resolve(unit);
+                    $scope.containingArray[commonVariables.addressIndex][commonVariables.unitIndex] = unitInstance;
+                    return resolve(unitInstance);
                 });
             }
 
-            function onUnitCreatedPreviously(unitInstance, dbResponse) {
+            function onUnitCreatedPreviously(data) {
                 return $q(function(resolve, reject) {
+                    var dbResponse = data.dbResponse;
+                    var unitInstance = data.unitInstance;
                     unitInstance.newlyCreated = false;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
                     var dataForModal = {};
@@ -171,7 +187,7 @@ angular.module('UnitApp')
                             modalData: dbResponse
                         };
                         buildModal(1, dataForModal)
-                            .then(function(response) {
+                            .then(function(dbResponse) {
 
                             });
                     } else if ($scope.userType === 3 && $scope.user.id !== response.apartment.CreatedById) {
@@ -182,7 +198,7 @@ angular.module('UnitApp')
                             bodyText: 'You are not permitted to edit this apartment. You can however make a public listing for this unit.'
                         };
                         buildModal(2, dataForModal)
-                            .then(function(response) {
+                            .then(function(dbResponse) {
 
                             });
                     }
@@ -192,10 +208,10 @@ angular.module('UnitApp')
             function onUnitBlur(addressIndex, unitIndex) {
                 getNewUnitGeocodeData(addressIndex, unitIndex)
                     .then(findOrCreateNewUnit)
-                    .then(handleNewlyCreatedUnit);
+                    .then(handleAPIResponse);
             }
             $scope.functions = {
-                addUnit: addUnitToAddress,
+                addUnit: addBlankUnitToAddress,
                 onUnitBlur: onUnitBlur
             };
             // $scope.onUnitBlur = function(addressIndex, unitIndex) {
@@ -309,39 +325,40 @@ angular.module('UnitApp')
                     }
                 }
             }
-        // };
+            // };
 
-        $scope.copyUnit = function(addressIndex, unitIndex) {
-            console.dir(addressIndex);
-            console.dir(unitIndex);
-            //get the correct apartment out of the array
-            var apartment = $scope.containingArray[addressIndex][unitIndex];
-            console.dir(apartment);
-            // var description = apartment.Description;
-            /*
-                call the duplicate prototype method to get the apartmentData
-                FIXME this probably doesn't need to be on the prototype button
-                just in the unitfct ? ?? ? ?
-            */
-            //duplicate the apartment data
-            var duplicateApartmentData = apartment.duplicate();
-            //duplicate the description data
-            // var duplicateDescriptionData = description.duplicate();
-            //build a new instance with this data
-            var newInstance = ApartmentModel.build(duplicateApartmentData);
-            // newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
-            //push it into the address array
-            $scope.containingArray[addressIndex].push(newInstance);
-        };
+            $scope.copyUnit = function(addressIndex, unitIndex) {
+                console.dir(addressIndex);
+                console.dir(unitIndex);
+                //get the correct apartment out of the array
+                var apartment = $scope.containingArray[addressIndex][unitIndex];
+                console.dir(apartment);
+                // var description = apartment.Description;
+                /*
+                    call the duplicate prototype method to get the apartmentData
+                    FIXME this probably doesn't need to be on the prototype button
+                    just in the unitfct ? ?? ? ?
+                */
+                //duplicate the apartment data
+                var duplicateApartmentData = apartment.duplicate();
+                //duplicate the description data
+                // var duplicateDescriptionData = description.duplicate();
+                //build a new instance with this data
+                var newInstance = ApartmentModel.build(duplicateApartmentData);
+                // newInstance.Description = DescriptionModel.build(duplicateDescriptionData);
+                //push it into the address array
+                $scope.containingArray[addressIndex].push(newInstance);
+            };
 
-        $scope.deleteUnit = function(addressIndex, unitIndex) {
-            delete $scope.containingArray[addressIndex][unitIndex];
-        };
+            $scope.deleteUnit = function(addressIndex, unitIndex) {
+                delete $scope.containingArray[addressIndex][unitIndex];
+            };
 
-        $scope.submit = function() {
-            ApartmentModel.claimApi($scope.containingArray, function(response) {
-                $state.go('Account.Dashboard.Main');
-            });
-        };
+            $scope.submit = function() {
+                ApartmentModel.claimApi($scope.containingArray, function(response) {
+                    $state.go('Account.Dashboard.Main');
+                });
+            };
 
-    }]);
+        }
+    ]);
