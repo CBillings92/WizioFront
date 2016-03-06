@@ -1,5 +1,5 @@
 angular.module('UnitApp')
-    .controller('UnitClaimFormCtrl2', [
+    .controller('UnitClaimFormCtrl', [
         '$scope',
         '$state',
         'TokenSvc',
@@ -47,14 +47,17 @@ angular.module('UnitApp')
                     ]
                 ]
             */
+            $scope.containingArray = [
+                [
+                ]
+            ];
             if ($scope.singleUnit) {
-                FlexGetSetSvc.get('UnitToEdit');
+                console.dir("HELLO");
+                console.dir(FlexGetSetSvc.get('UnitToEdit'));
+                $scope.containingArray[0].push(FlexGetSetSvc.get('UnitToEdit'));
+                console.dir($scope.containingArray);
             } else {
-                $scope.containingArray = [
-                    [{
-
-                    }]
-                ];
+                $scope.containingArray[0].push({});
             }
             //adding a unit just adds an empty object to the current address array
             $scope.addUnit = function(addressIndex) {

@@ -406,8 +406,8 @@ angular.module('MainApp')
                     url: '/claim',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm2.html',
-                            controller: 'UnitClaimFormCtrl2'
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm.html',
+                            controller: 'UnitClaimFormCtrl'
                         }
                     },
                     data: trueRequiredPropertyManager
@@ -416,8 +416,8 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm2.html',
-                            controller: 'UnitClaimFormCtrl2'
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            controller: 'UnitClaimFormCtrl'
                         }
                     },
                     data: trueRequiredPropertyManager

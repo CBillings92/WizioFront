@@ -19,6 +19,6 @@ angular.module('ApplicationApp')
                     console.dir(result);
                     $modalInstance.close('submit');
                 });
-            }
+            };
         }
     ]);
