@@ -155,7 +155,13 @@ angular.module('AccountApp')
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
             $scope.viewLeads = function(apartmentIndex) {
-                console.dir($scope.units);
+                console.dir($scope.units[apartmentIndex].Leases[0].Leads);
+                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', $scope.units[apartmentIndex].Leases[0].Leads);
+
+                ModalSvc.showModal(viewLeadsModal, {})
+                    .then(function(result){
+
+                    });
                 // function(response) {
                 //     var viewApplicantsModalDefaults = modalDefaults(
                 //         'lg',
