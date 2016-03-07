@@ -7670,3 +7670,6 @@ h2 {
   .formStyle .form-control:focus {
     color: #f79739;
     border-bottom-color: #f79739; }
+
+.bold {
+  font-weight: bold; }
