@@ -1,14 +1,10 @@
 <div class="row">
     <div class="col-md-12 tduff">
         <!-- ng-repeat -->
-        <div class="col-md-12" ng-repeat='unit in units track by $index' style="border:0px solid black; margin:10px; border-radius:4px;">
+        <div class="col-md-12" ng-repeat='unit in units track by $index' style="border:0px solid black; margin:10px; border-radius:4px;" ng-init="index = $index">
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
             <!-- left upper control section  -->
             <div class="col-md-3 col-lg-3" style="margin-top:0px;">
-                <!-- picture  -->
-                <div class="">
-                    <div class=""></div>
-                </div>
                 <!-- data container -->
                 <div class="">
                     <!-- address -->
@@ -64,8 +60,11 @@
                         </span>
                     </div>
                 </div>
+                <div ng-show="$last" style="padding-top:50px">
+                    <br><br>
+                <hr style="width: 100%; color: black; height: 1px; background-color:black; " />
                 </div>
-                <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+                </div>
 
             </div>
             <!-- bottom control panel -->
