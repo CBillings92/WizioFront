@@ -402,6 +402,16 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Unit.Claimlist', {
+                    url: '/claim/list',
+                    views: {
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimlist.html',
+                            controller: 'UnitClaimListCtrl'
+                        }
+                    },
+                    data: trueRequiredLogin
+                })
                 .state('Unit.Claim', {
                     url: '/claim',
                     views: {
