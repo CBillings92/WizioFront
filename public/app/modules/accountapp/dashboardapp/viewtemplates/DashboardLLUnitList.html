@@ -1,76 +1,73 @@
 <div class="row">
     <div class="col-md-12 tduff">
         <!-- ng-repeat -->
-        <div class="col-md-12" ng-repeat='unit in units track by $index' style="border:1px solid black; margin:10px; border-radius:4px;">
+        <div class="col-md-12" ng-repeat='unit in units track by $index' style="border:0px solid black; margin:10px; border-radius:4px;" ng-init="index = $index">
+            <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
             <!-- left upper control section  -->
-            <div class="col-md-6 col-lg-6" style="margin-top:10px;">
-                <!-- picture  -->
-                <div class="">
-                    <div class=""></div>
-                </div>
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;">
                 <!-- data container -->
                 <div class="">
                     <!-- address -->
                     <div class="">
                         <div class="">
-                            Address: {{::unit.concatAddr}}
-                        </div>
-                        <div class="">
-                            <span>Unit Number:</span> <span> {{::unit.unitNum}} </span>
+                            <span class="bold">Address:</span> <br> {{::unit.concatAddr}}
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;">
+                        <div class="">
+                            <span class="bold">Unit Number:</span> <span> {{::unit.unitNum}} </span>
+                        </div>
                     <!-- next date available -->
                     <div class="">
                         <div class="">
-                            <span>Next Date Available:</span> <span>9/1/2016</span>
+                            <span class="bold">Next Date Available:</span> <span>9/1/2016</span>
                         </div>
                     </div>
                     <!-- current applications -->
                     <div class="">
                         <div class="">
-                            <span> Number of Applications: </span> <span> {{unit.Applications.numberOf}} </span>
-
+                            <span class="bold"> Number of Applications: </span> <span> {{unit.Applications.numberOf}} </span>
                         </div>
                     </div>
-                </div>
             </div>
             <!-- right upper control block -->
-            <div class="col-md-6 col-lg-5 col-lg-offset-1" style="margin-top:15px;">
-                <div class="">
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;">
                     <div class="col-md-12">
-                        <span style="padding:10px;">
-                            <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" name="button" ng-click="viewLeads($index)" type="button">View Leads</button>
+                        <span>
+                                <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" name="button" ng-click="viewLeads(index)" type="button">View Leads</button>
                         </span>
-                        <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="viewApplicants($index)" name="button" type="button">Leasing Management</button>
+                        <span >
+                            <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" name="button" type="button">Edit Apartment</button>
                         </span>
-                        <br>
-                         <span style="padding:10px;">
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases.length == 0 || assignment.Apartment.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" name="button" type="button">Create Listing</button>
-                            <button style="width: 140px;" class="btn btn-fill--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases[0].currentListing === true || assignment.Apartment.Leases[1].currentListing === true" ng-click="editListing($index)" name="button" type="button">Update Listing</button>
-                        </span>
-                        <span style="padding:10px;">
-                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-show="unit.Leases.length == 0 || unit.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" target="_blank">Create Listing</a>
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true" ng-click="editListing($index)" target="_blank">Update Listing</a>
-                        </span>
-                        <span style="padding:10px;" ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
-                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" ng-click="shareListing($index)" ng-href="" target="_blank">Share Listing</a>
-                        </span>
-                        <span style="padding:10px;">
-                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                            <a class="btn btn-fill--blue btn-md buttonPlacement" href="https://calendly.com/devong/virtualtour" target="_blank">Schedule VR Tour</a>
+                    </div>
+            </div>
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;">
+                    <div class="col-md-12">
+                         <span>
+                            <button style="width: 100%;"  class="btn btn-outline--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases.length == 0 || assignment.Apartment.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" name="button" type="button">Create Listing</button>
+                            <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-show="assignment.Apartment.Leases[0].currentListing === true || assignment.Apartment.Leases[1].currentListing === true" ng-click="editListing($index)" name="button" type="button">Edit Listing</button>
                         </span>
                         <span>
-                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="functions.editApartment($index)" name="button" type="button">Edit Apartment</button>
+                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
+                            <a style="width: 100%;"  class="btn btn-outline--blue btn-md buttonPlacement" ng-show="unit.Leases.length == 0 || unit.Leases[0].currentListing === false || assignment.Apartment.Leases[1].currentListing === false" ng-click="createListing($index)" target="_blank">Create Listing</a>
+                            <a style="width: 100%;" type="button" class="btn btn-outline--blue btn-md buttonPlacement" ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true" ng-click="editListing($index)" target="_blank">Update Listing</a>
+                        </span>
+                        <span ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
+                            <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
+                            <a  style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-click="shareListing($index)" ng-href="" target="_blank">Share Listing</a>
                         </span>
                     </div>
                 </div>
+                <div ng-show="$last" style="padding-top:50px">
+                    <br><br>
+                <hr style="width: 100%; color: black; height: 1px; background-color:black; " />
+                </div>
+                </div>
+
             </div>
             <!-- bottom control panel -->
-            <div class="row" style="margin-bottom:20px;">
-            </div>
-        </div>
+    <div class="row" style="margin-bottom:20px;">
     </div>
 </div>

@@ -58,6 +58,20 @@ angular.module('AccountApp')
                         console.dir(response);
                     });
                 };
+
+            $scope.viewLeads = function(index) {
+                        var modalOptionsShareListing = {
+                            closeButtonText: "Close",
+                            actionButtonText: "OK",
+                            headerText: "Share This Listing",
+                            bodyText: 'Copy and paste this URL: '+ window.location.origin +'/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
+                        };
+                        ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
+                            console.dir(response);
+                        });
+            };
+
+
                 // AssignmentModel.api().twoParam.query({
                 //     param1: 'user',
                 //     param2: userId
@@ -154,6 +168,7 @@ angular.module('AccountApp')
             };
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
+
             $scope.viewLeads = function(apartmentIndex) {
                 console.dir($scope.units[apartmentIndex].Leases[0].Leads);
                 var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', $scope.units[apartmentIndex].Leases[0].Leads);
