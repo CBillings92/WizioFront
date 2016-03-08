@@ -66,6 +66,12 @@ angular.module('UnitApp')
                     ]
                 ]
             */
+            function updateAddress(){
+
+            }
+            function updateUnitNum(){
+
+            }
             var commonVariables = {
                 addressIndex: null,
                 unitIndex: null
@@ -235,7 +241,9 @@ angular.module('UnitApp')
                 addUnit: addBlankUnitToAddress,
                 onUnitBlur: onUnitBlur,
                 copyUnit: copyUnit,
-                removeUnit: removeUnit
+                removeUnit: removeUnit,
+                updateAddress: updateAddress,
+                updateUnitNum: updateUnitNum
             };
 
             $scope.submit = function() {

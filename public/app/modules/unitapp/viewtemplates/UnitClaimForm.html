@@ -14,6 +14,8 @@
                 </div>
             </div>
             <div class="editApartmentAddressCntr" ng-show="singleUnit">
+                <label for="">Edit Address</label>
+                <input type="checkbox" name="name" ng-true-value="true" ng-false-value="false" ng-change="functions.updateAddress()">
                 <input type="text" name="name" class="form-control" value="{{address[0].apartmentData.concatAddr}}" disabled="disabled">
             </div>
             <div class="form-group" ng-show="multiplePMBusinesses">
@@ -67,8 +69,16 @@
                     <div class="col-md-12" id="formbg" style="padding:10px; border-bottom:1px solid black;">
                         <h4>Address: {{unit.apartmentData.concatAddr}}
                         </h4>
-                        <label class="control-label">Unit Num:</label>
-                        <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
+                        <div class="" ng-show="singleUnit">
+                            <label for="">Edit Address</label>
+                            <input type="checkbox" name="name" ng-true-value="true" ng-false-value="false" ng-change="updateUnitNum()">
+                            <label class="control-label">Unit Num:</label>
+                            <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
+                        </div>
+                        <div class="" ng-hide="singleUnit">
+                            <label class="control-label">Unit Num:</label>
+                            <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
+                        </div>
                         <form class="">
                             <div class="form-group">
                                 <div class="row">
