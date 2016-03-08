@@ -1,0 +1,23 @@
+<div class="container">
+    <section ng-repeat="(key, val) in units track by $index" class="row">
+        <div class="col-md-12">
+            <h3>{{key}}</h3>
+            <h5>Request access for all units at this address</h5>
+            <button type="button" class="btn" name="button">Request</button>
+        </div>
+        <section ng-repeat= "(key, val) in val track by $index" class="col-md-12">
+            <div class="col-md-12">
+                <h5>{{key}}</h5>
+                <h6>Request access for all units at this property manager at this address</h6>
+                <button type="button" class="btn btn-small" name="button">Request</button>
+            </div>
+            <section ng-repeat="unit in val track by $index" class="col-md-12">
+                <h6>
+                    Unit: {{unit.unitNum}}
+                </h6>
+                <h6>Request access for this unit</h6>
+                <button type="button" class="btn btn-small" name="button">Request</button>
+            </section>
+        </section>
+    </section>
+</div>

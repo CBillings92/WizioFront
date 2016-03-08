@@ -158,10 +158,25 @@ angular.module('AccountApp')
                         });
                     });
             };
+            function editApartment(apartmentIndex) {
+                console.dir($scope.units[apartmentIndex]);
+                FlexGetSetSvc.set($scope.units[apartmentIndex], 'UnitToEdit', 'UnitToEdit');
+                $state.go('Unit.Edit');
+            }
+            $scope.functions = {
+                editApartment: editApartment
+            };
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
-//            $scope.viewLeads = function(apartmentIndex) {
-//                console.dir($scope.units);
+
+            $scope.viewLeads = function(apartmentIndex) {
+                console.dir($scope.units[apartmentIndex].Leases[0].Leads);
+                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', $scope.units[apartmentIndex].Leases[0].Leads);
+
+                ModalSvc.showModal(viewLeadsModal, {})
+                    .then(function(result){
+
+                    });
                 // function(response) {
                 //     var viewApplicantsModalDefaults = modalDefaults(
                 //         'lg',

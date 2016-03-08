@@ -35,7 +35,7 @@
             <!-- right upper control block -->
             <div class="col-md-3 col-lg-3" style="margin-top:0px;">
                     <div class="col-md-12">
-                        <span >
+                        <span>
                                 <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" name="button" ng-click="viewLeads(index)" type="button">View Leads</button>
                         </span>
                         <span >
@@ -57,6 +57,9 @@
                         <span ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
                             <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
                             <a  style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-click="shareListing($index)" ng-href="" target="_blank">Share Listing</a>
+                        </span>
+                        <span>
+                            <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="functions.editApartment($index)" name="button" type="button">Edit Apartment</button>
                         </span>
                     </div>
                 </div>

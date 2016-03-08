@@ -26,7 +26,7 @@ angular.module('UnitApp')
             newApartment.apartmentData.CreatedById = user.id;
             newApartment.apartmentData.UpdatedById = user.id;
             return newApartment;
-        }
+        };
 
         function checkPropertyManagerOwnership(response){
             var user = TokenSvc.decode();
