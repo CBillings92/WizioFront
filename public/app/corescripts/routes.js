@@ -402,12 +402,22 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Unit.Claimlist', {
+                    url: '/claim/list',
+                    views: {
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimlist.html',
+                            controller: 'UnitClaimListCtrl'
+                        }
+                    },
+                    data: trueRequiredLogin
+                })
                 .state('Unit.Claim', {
                     url: '/claim',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm2.html',
-                            controller: 'UnitClaimFormCtrl2'
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            controller: 'UnitClaimFormCtrl'
                         }
                     },
                     data: trueRequiredPropertyManager
@@ -416,8 +426,8 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm2.html',
-                            controller: 'UnitClaimFormCtrl2'
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            controller: 'UnitClaimFormCtrl'
                         }
                     },
                     data: trueRequiredPropertyManager

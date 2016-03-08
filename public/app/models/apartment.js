@@ -104,14 +104,13 @@ angular.module('Models')
                         console.dir(response);
                         for(var key in response){
                             if(response[key] === 'Longitude'){
-                                apartment['Longitude'] = parseFloat(response[key]).toFixed(6);
+                                apartment.Longitude = parseFloat(response[key]).toFixed(6);
                             } else if (response[key] === 'Latitude'){
-                                apartment['Latitude'] = parseFloat(response[key]).toFixed(6);
+                                apartment.Latitude = parseFloat(response[key]).toFixed(6);
                             } else {
                                 apartmentData[key] = response[key];
                             }
                         }
-                        console.dir("ENUHAEOSNTHEUSNTHAEUNTAOHEUNEAUHAEUNTAHUNRTUAOH");
                         resolve('done');
                     });
                 });

@@ -5,7 +5,7 @@ angular.module('UnitApp')
     'modalData',
     function($scope, $modalInstance, modalData){
 
-        $scope.apartment = modalData;
+        $scope.apartment = modalData.apartment;
 
         $scope.dontUseData = function(){
             $modalInstance.close('Do not use data');
