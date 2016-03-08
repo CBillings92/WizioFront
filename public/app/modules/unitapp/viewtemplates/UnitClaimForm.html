@@ -7,24 +7,26 @@
         <div class="" ng-repeat="address in containingArray track by $index" style="border: 1px solid black; border-radius: 5px; padding: 10px; margin:5px;">
             <label class="control-label" style="padding-top:10px;">Apartment Address</label>
             <div class="smartSearchCntr" ng-hide="singleUnit">
-                <input class="form-control" ng-model="address[0].apartmentData.concatAddr" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" />
+                <input class="form-control" ng-model="address[0].apartmentData.concatAddr" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
                 <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                 <div ng-show="noResults">
-                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                    <i class="glyphicon glyphicon-remove"></i>
+                    No Results Found
                 </div>
             </div>
             <div class="editApartmentAddressCntr" ng-show="singleUnit">
-                <label for="">Edit Address</label>
-                <input type="checkbox" name="name" ng-true-value="true" ng-false-value="false" ng-change="functions.updateAddress()">
-                <input type="text" name="name" class="form-control" value="{{address[0].apartmentData.concatAddr}}" disabled="disabled">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-fill--blue" type="button">Edit Address</button>
+                    </span>
+                    <input class="form-control" disabled="disabled" name="name" type="text" value="{{address[0].apartmentData.concatAddr}}">
+                </div>
             </div>
             <div class="form-group" ng-show="multiplePMBusinesses">
                 <div class="row">
                     <div class="col-md-4">
                         <label for="">Property Management Company For These Units</label>
-                        <select class="form-control" name="" ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses">
-
-                        </select>
+                        <select class="form-control" name="" ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses"></select>
                     </div>
                 </div>
             </div>
@@ -33,9 +35,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="">This Property Manager is a...</label>
-                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson">
-
-                        </select>
+                        <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson"></select>
                     </div>
                 </div>
                 <div class="row">
@@ -67,17 +67,20 @@
             <div class="">
                 <div class="" ng-repeat="unit in address track by $index">
                     <div class="col-md-12" id="formbg" style="padding:10px; border-bottom:1px solid black;">
-                        <h4>Address: {{unit.apartmentData.concatAddr}}
+                        <h4>Address:
+                            {{unit.apartmentData.concatAddr}}
                         </h4>
                         <div class="" ng-show="singleUnit">
-                            <label for="">Edit Address</label>
-                            <input type="checkbox" name="name" ng-true-value="true" ng-false-value="false" ng-change="updateUnitNum()">
-                            <label class="control-label">Unit Num:</label>
-                            <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-fill--blue" type="button">Edit Unit Number</button>
+                                </span>
+                                <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text"/>
+                            </div>
                         </div>
                         <div class="" ng-hide="singleUnit">
                             <label class="control-label">Unit Num:</label>
-                            <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text" />
+                            <input class="form-control col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" type="text"/>
                         </div>
                         <form class="">
                             <div class="form-group">
@@ -112,9 +115,7 @@
                                 <div class="row">
                                     <div class="">
                                         <h3>Would you like to list this apartment now for an upcoming lease cycle?</h3>
-                                        <select class="form-control" name="" ng-model="unit.makeCurrentListing" ng-options="makeCurrentListing for makeCurrentListing in selectOptions.makeCurrentListing">
-
-                                        </select>
+                                        <select class="form-control" name="" ng-model="unit.makeCurrentListing" ng-options="makeCurrentListing for makeCurrentListing in selectOptions.makeCurrentListing"></select>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +123,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label class="control-label">Description</label>
-                                        <textarea name="name" ng-model="unit.Description.description" ng-blur="onDescriptionBlur($parent.$index, $index)" class="form-control" rows="4" cols="160"></textarea>
+                                        <textarea class="form-control" cols="160" name="name" ng-blur="onDescriptionBlur($parent.$index, $index)" ng-model="unit.Description.description" rows="4"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +131,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label class="control-label">Broker Fee Amount</label>
-                                        <input type="text" name="name" value="">
+                                        <input name="name" type="text" value="">
                                     </div>
                                 </div>
                             </div>
@@ -138,15 +139,15 @@
                         </form>
                     </div>
                     <center>
-                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit" ng-click="functions.copyUnit($parent.$index, $index)" type="button">Copy Unit</button>
-                        <button class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" name="button" ng-hide="singleUnit || containingArray[$parent.$index].length === 1" ng-click="functions.removeUnit($parent.$index, $index)" type="button">Remove Unit</button>
+                        <button class="btn btn-lg btn-fill--blue" name="button" ng-click="functions.copyUnit($parent.$index, $index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;" type="button">Copy Unit</button>
+                        <button class="btn btn-lg btn-fill--blue" name="button" ng-click="functions.removeUnit($parent.$index, $index)" ng-hide="singleUnit || containingArray[$parent.$index].length === 1" style="margin:5px 5px 5px 5px;" type="button">Remove Unit</button>
                     </center>
-                    <button name="button" class="btn btn-lg btn-fill--blue" style="margin:5px 5px 5px 5px;" ng-hide="singleUnit" ng-click="functions.addUnit($index)" type="button">New Unit</button>
+                    <button class="btn btn-lg btn-fill--blue" name="button" ng-click="functions.addUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;" type="button">New Unit</button>
                 </div>
             </div>
             <!-- <button class="btn" name="button" ng-hide="singleUnit" ng-click="addRange($index)" type="button">Add Range Of Units</button> -->
         </div>
         <!-- <button class="btn" ng-click="addAddress()" ng-hide="singleUnit" style="margin-top:10px;" type="button">Add Address</button> -->
-        <button type="button" class="btn" name="button" ng-click="submit()">Submit</button>
+        <button class="btn" name="button" ng-click="submit()" type="button">Submit</button>
     </form>
 </div>
