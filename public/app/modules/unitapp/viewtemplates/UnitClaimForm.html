@@ -35,13 +35,13 @@
         </div>
         <div class="col-md-12">
             <form action="index.html" id="formbg" method="post">
-                <div class="col-md-12" ng-repeat="address in containingArray track by $index" style="border: 0px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+                <div class="col-md-12" ng-repeat="unit in containingArray track by $index" style="border: 0px solid black; border-radius: 5px; padding: 10px; margin:5px;">
                     <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
 
                     <div class="col-md-8 row">
                         <div class="col-md-12" style="z-index: 100;">
                             <div class="col-md-8 col-sm-8 col-xs-12 ">
-                                <input class="" ng-model="address[0].apartmentData.concatAddr" ng-value="'Apartment Address'" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
+                                <input class="" ng-model="address[0].apartmentData.concatAddr" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" placeholder="Apartment Address"/>
                                 <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                                 <div ng-show="noResults">
                                     <i class="glyphicon glyphicon-remove"></i>
@@ -50,7 +50,7 @@
                                 <!-- >>>>>>> betaDev -->
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <input class="col-md-4" ng-blur="onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" ng-value="'Unit Number'" style="width:100%" type="text"/>
+                                <input class="col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
                             </div>
                             <!-- <<<<<<< HEAD
             <div class="form-group" ng-show="user.userType === 3">

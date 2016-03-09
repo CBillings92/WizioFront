@@ -102,9 +102,10 @@ angular.module('AccountApp')
                 ModalSvc.showModal(addTenantsModalDefaults, {}).then(function(result) {});
             };
             //navigate to editApartments form
-            $scope.editApartments = function(apartmentIndex) {
-                FlexGetSetSvc.set($scope.assignments[apartmentIndex].Apartment, 'ApartmentToEdit', 'ApartmentToEdit');
-                $state.go('');
+            $scope.editApartment = function(apartmentIndex) {
+                console.dir($scope.units[apartmentIndex]);
+                FlexGetSetSvc.set($scope.units[apartmentIndex], 'ApartmentToEdit', 'ApartmentToEdit');
+                $state.go('Unit.Edit');
             };
             //go to claimApartments form
             $scope.claimApartments = function() {

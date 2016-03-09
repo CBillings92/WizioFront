@@ -140,6 +140,10 @@ angular.module('UnitApp')
 
             function getNewUnitGeocodeData(addressIndex, unitIndex) {
                 return $q(function(resolve, reject) {
+                    console.dir($scope.containingArray);
+                    console.dir(addressIndex);
+                    console.dir(unitIndex);
+
                     var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
                     var newUnitInstance = ApartmentModel.build(unitAddressInfo);
                     commonVariables.addressIndex = addressIndex;
