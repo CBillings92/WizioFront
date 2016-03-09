@@ -37,19 +37,32 @@
             <form action="index.html" id="formbg" method="post">
                 <div class="col-md-12" ng-repeat="unit in containingArray track by $index" style="border: 0px solid black; border-radius: 5px; padding: 10px; margin:5px;">
                     <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
-
-                    <div class="col-md-8 row">
-                        <div class="col-md-12" style="z-index: 100;">
+                    <div class="col-md-12 row">
+                        <div class="col-md-8 row" style="z-index: 100;">
+                        <input class="" ng-model="address[0].apartmentData.concatAddr" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" placeholder="Apartment Address"/>
+                        <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                        <div ng-show="noResults">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            No Results Found
+                        </div>
+                    </div>
+                    <div class="col-md-8 row" style="padding-top:10px">
+                        <div class="col-md-12" style="z-index: 100; ">
                             <div class="col-md-8 col-sm-8 col-xs-12 ">
-                                <input class="" ng-model="address[0].apartmentData.concatAddr" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" placeholder="Apartment Address"/>
-                                <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
-                                <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                    No Results Found
+                                <div class="" ng-show="multiplePMBusinesses" style="z-index: -100;">
+                                        <div class="col-md-12" >
+                                            <div class="styled-select" style="width:250px;">
+                                                <select ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses" style="width:100%"></select>
+                                                <div class="select-button">
+                                                    <div class="small-arrow-down"></div>
+                                                </div>
+                                            </div>
+                                            <!-- >>>>>>> betaDev -->
+                                    </div>
                                 </div>
                                 <!-- >>>>>>> betaDev -->
                             </div>
-                            <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;">
                                 <input class="col-md-4" ng-blur="functions.onUnitBlur($parent.$index, $index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
                             </div>
                             <!-- <<<<<<< HEAD
@@ -85,19 +98,7 @@
                         <input class="form-control" name="" ng-model="unit.PropertyManager.address"></input>
 ======= -->
                         </div>
-                        <div class="" ng-show="multiplePMBusinesses" style="z-index: -100;">
-                            <div class="">
-                                <div class="col-md-12" style="padding-top:10px">
-                                    <div class="styled-select" style="width:300px;">
-                                        <select ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses" style="width:100%"></select>
-                                        <div class="select-button">
-                                            <div class="small-arrow-down"></div>
-                                        </div>
-                                    </div>
-                                    <!-- >>>>>>> betaDev -->
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="">
                             <div class="" ng-repeat="unit in address track by $index">
                                 <!-- <<<<<<< HEAD
@@ -231,11 +232,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
-                                            <div class="row">
                                                 <div class="col-md-12">
                                                     <label class="control-label">Description</label>
                                                     <textarea class="form-control" cols="160" name="name" ng-blur="onDescriptionBlur($parent.$index, $index)" ng-model="unit.Description.description" rows="4"></textarea>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
@@ -252,11 +251,11 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="col-lg-6 col-md-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
                             <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.copyUnit($parent.$index, $index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px; width:100%" type="button">Copy Unit</button>
                             <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.removeUnit($parent.$index, $index)" ng-hide="singleUnit || containingArray[$parent.$index].length === 1" style="margin:5px 5px 5px 5px;width:100%" type="button">Remove Unit</button>
                         </div>
-                        <div class="col-lg-6 col-md-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-xs-12">
                             <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.addUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;width:100%" type="button">Add Single Unit</button>
                             <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.addUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;width:100%" type="button">Add Range of Units</button>
                         </div>
