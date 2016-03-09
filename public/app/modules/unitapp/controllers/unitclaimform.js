@@ -16,6 +16,7 @@ angular.module('UnitApp')
         'ModalSvc',
         'WizioConfig',
         function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
+            'ng-strict'
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
@@ -36,9 +37,7 @@ angular.module('UnitApp')
                     }
                 }
                 //setup the containing object for apartments
-                $scope.containingArray = [
-                    []
-                ];
+                $scope.containingArray = [];
                 //if editing a unit, get that unit and push it into containing
                 //object, otherwise push empty object
                 if ($scope.singleUnit) {
@@ -48,9 +47,10 @@ angular.module('UnitApp')
                     newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                     console.dir(newApartmentInstance);
-                    $scope.containingArray[0].push(newApartmentInstance);
+                    $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
+                    $scope.containingArray.push(newApartmentInstance);
                 } else {
-                    $scope.containingArray[0].push({});
+                    $scope.containingArray.push({});
                 }
             })();
             //setup the containingArray for housing addresses with units
@@ -66,42 +66,47 @@ angular.module('UnitApp')
                     ]
                 ]
             */
-            function updateAddress(){
+            function updateAddress() {
 
             }
-            function updateUnitNum(){
+
+            function updateUnitNum() {
 
             }
             var commonVariables = {
                 addressIndex: null,
                 unitIndex: null
             };
+
             function addBlankUnitToAddress(addressIndex) {
                 //we're going to copy the geocoded data from the first apartment
                 //at this address
-                var apartmentToCopy = $scope.containingArray[addressIndex][0];
+                var apartmentToCopy = $scope.containingArray[0];
                 var newApartmentInstance = ApartmentModel.copyGeocodedData(apartmentToCopy);
                 newApartmentInstance.apartmentData.CreatedById = $scope.user.id;
                 newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                 newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
                 newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                 delete newApartmentInstance.apartmentData.id;
-                $scope.containingArray[addressIndex].push(newApartmentInstance);
+                $scope.containingArray.push(newApartmentInstance);
                 return;
             }
-            function copyUnit(addressIndex, unitIndex){
-                var unitToDuplicate = $scope.containingArray[addressIndex][unitIndex];
+
+            function copyUnit(unitIndex) {
+                var unitToDuplicate = $scope.containingArray[unitIndex];
+                console.dir(unitIndex);
                 var duplicateApartmentData = unitToDuplicate.duplicate();
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
                 newInstance.apartmentData.id = null;
-                $scope.containingArray[addressIndex].push(newInstance);
+                $scope.containingArray.push(newInstance);
                 return;
             }
-            function removeUnit(addressIndex, unitIndex){
-                if($scope.containingArray[addressIndex].length === 1){
+
+            function removeUnit(unitIndex) {
+                if ($scope.containingArray.length === 1) {
                     return;
                 } else {
-                    $scope.containingArray[addressIndex].splice(unitIndex, 1);
+                    $scope.containingArray[unitIndex].splice(unitIndex, 1);
                     return;
                 }
             }
@@ -138,15 +143,10 @@ angular.module('UnitApp')
                 });
             }
 
-            function getNewUnitGeocodeData(addressIndex, unitIndex) {
+            function getNewUnitGeocodeData(unitIndex) {
                 return $q(function(resolve, reject) {
-                    console.dir($scope.containingArray);
-                    console.dir(addressIndex);
-                    console.dir(unitIndex);
-
-                    var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
+                    var unitAddressInfo = $scope.containingArray[unitIndex].apartmentData;
                     var newUnitInstance = ApartmentModel.build(unitAddressInfo);
-                    commonVariables.addressIndex = addressIndex;
                     commonVariables.unitIndex = unitIndex;
                     newUnitInstance.getGeocodeData()
                         .then(function(response) {
@@ -196,7 +196,7 @@ angular.module('UnitApp')
                     unitInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     unitInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
-                    $scope.containingArray[commonVariables.addressIndex][commonVariables.unitIndex] = unitInstance;
+                    $scope.containingArray[commonVariables.unitIndex] = unitInstance;
                     return resolve(unitInstance);
                 });
             }
@@ -233,8 +233,9 @@ angular.module('UnitApp')
                 });
             }
 
-            function onUnitBlur(addressIndex, unitIndex) {
-                getNewUnitGeocodeData(addressIndex, unitIndex)
+            function onUnitBlur(unitIndex) {
+                $scope.containingArray[unitIndex].apartmentData.concatAddr = $scope.apartmentAddress;
+                getNewUnitGeocodeData(unitIndex)
                     .then(findOrCreateNewUnit)
                     .then(handleAPIResponse);
 
