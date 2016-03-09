@@ -15,7 +15,7 @@ angular.module('Directives')
         link: function (elem, $scope, attrs, ngModel) {
             ngModel.$formatters.push(function (val) {
                 return $filter('currency')(val);
-            }); 
+            });
             ngModel.$parsers.push(function (val) {
                 return val.replace(/[\$,]/, '');
             });
