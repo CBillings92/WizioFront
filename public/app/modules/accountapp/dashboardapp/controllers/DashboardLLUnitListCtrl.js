@@ -59,18 +59,6 @@ angular.module('AccountApp')
                     });
                 };
 
-            $scope.viewLeads = function(index) {
-                        var modalOptionsShareListing = {
-                            closeButtonText: "Close",
-                            actionButtonText: "OK",
-                            headerText: "Share This Listing",
-                            bodyText: 'Copy and paste this URL: '+ window.location.origin +'/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
-                        };
-                        ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
-                            console.dir(response);
-                        });
-            };
-
 
                 // AssignmentModel.api().twoParam.query({
                 //     param1: 'user',
@@ -176,7 +164,7 @@ angular.module('AccountApp')
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result){
 
-                    });
+            });
                 // function(response) {
                 //     var viewApplicantsModalDefaults = modalDefaults(
                 //         'lg',

@@ -14,11 +14,11 @@ angular.module('Directives')
         scope: false,
         link: function (elem, $scope, attrs, ngModel) {
             ngModel.$formatters.push(function (val) {
-                return $filter('currency')(val)
-            });
+                return $filter('currency')(val);
+            }); 
             ngModel.$parsers.push(function (val) {
-                return val.replace(/[\$,]/, '')
+                return val.replace(/[\$,]/, '');
             });
         }
-    }
+    };
 }]);
