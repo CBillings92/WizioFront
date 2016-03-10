@@ -160,12 +160,21 @@ angular.module('AccountApp')
 
             $scope.viewLeads = function(apartmentIndex) {
                 console.dir($scope.units[apartmentIndex].Leases[0].Leads);
-                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', $scope.units[apartmentIndex].Leases[0].Leads);
+                console.dir($scope.units[apartmentIndex].unitNum);
+                var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
+                $scope.units[apartmentIndex].concatAddr,
+                $scope.units[apartmentIndex].unitNum];
+
+                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result){
-
             });
+
+
+            //if empty
+
+
                 // function(response) {
                 //     var viewApplicantsModalDefaults = modalDefaults(
                 //         'lg',
