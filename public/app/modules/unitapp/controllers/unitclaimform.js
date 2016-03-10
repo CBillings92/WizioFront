@@ -16,7 +16,7 @@ angular.module('UnitApp')
         'ModalSvc',
         'WizioConfig',
         function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
-            'ng-strict'
+            'ng-strict';
             var dataForModal = {};
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
