@@ -182,7 +182,8 @@ angular.module('UnitApp')
             return {
                 getGeocodeData: getGeocodeData,
                 addressSearchType: addressSearchType,
-                parseGeocodeData: parseGeocodeData
+                parseGeocodeData: parseGeocodeData,
+                lodashParseAPIData: lodashParseAPIData
 
             };
         }

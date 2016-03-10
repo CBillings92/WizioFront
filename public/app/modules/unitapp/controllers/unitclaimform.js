@@ -17,6 +17,7 @@ angular.module('UnitApp')
         'WizioConfig',
         function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
             'ng-strict'
+            var dataForModal = {};
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
@@ -67,11 +68,42 @@ angular.module('UnitApp')
                 ]
             */
             function updateAddress() {
+                var dataForModal = {
+                    Address: $scope.apartmentAddress,
+                    unitNum: $scope.containingArray[0].apartmentData.unitNum,
+                    ApartmentId: $scope.containingArray[0].apartmentData.id,
+                }
+                dataForModal.dataToChange= "Address";
 
+                var dataForUpdateAddressModal = {
+                    templateUrl: WizioConfig.UnitViewsURL + "updateinfomodal.html",
+                    controller: 'UpdateInfoModalCtrl',
+                    modalData: dataForModal,
+                };
+                buildModal(1, dataForUpdateAddressModal)
+                .then(function(response) {
+                    console.dir($scope.containingArray);
+                    $scope.apartmentAddress = response;
+                });
             }
 
             function updateUnitNum() {
+                var dataForModal = {
+                    Address: $scope.apartmentAddress,
+                    unitNum: $scope.containingArray[0].apartmentData.unitNum,
+                    ApartmentId: $scope.containingArray[0].apartmentData.id,
+                }
+                dataForModal.dataToChange= "Unit Number";
 
+                var dataForUpdateUnitNumModal = {
+                    templateUrl: WizioConfig.UnitViewsURL + "updateinfomodal.html",
+                    controller: 'UpdateInfoModalCtrl',
+                    modalData: dataForModal,
+                };
+                buildModal(1, dataForUpdateUnitNumModal)
+                .then(function(response) {
+                    $scope.containingArray[0].apartmentData.unitNum = response;
+                });
             }
             var commonVariables = {
                 addressIndex: null,
@@ -126,6 +158,7 @@ angular.module('UnitApp')
                                 }
                             }
                         };
+                        console.dir(modalDefaults);
                         ModalSvc.showModal(modalDefaults, {}).then(function(result) {
                             return resolve(result);
                         });
@@ -207,7 +240,6 @@ angular.module('UnitApp')
                     var unitInstance = data.unitInstance;
                     unitInstance.newlyCreated = false;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
-                    var dataForModal = {};
                     if ($scope.user.userType === 2 && UnitFct.checkPropertyManagerOwnership(dbResponse)) {
                         dataForModal = {
                             templateUrl: WizioConfig.UnitViewsURL + "UnitVerifyModal.html",
@@ -248,7 +280,7 @@ angular.module('UnitApp')
                 copyUnit: copyUnit,
                 removeUnit: removeUnit,
                 updateAddress: updateAddress,
-                updateUnitNum: updateUnitNum
+                updateUnitNumber: updateUnitNum
             };
 
             $scope.submit = function() {
