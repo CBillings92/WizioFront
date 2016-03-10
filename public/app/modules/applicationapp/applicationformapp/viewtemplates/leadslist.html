@@ -1,13 +1,24 @@
 <div class="modal-header">
-    <h2>Leads for</h2>
+    <h3>Leads for Unit #{{unitNum}} at {{addr}}</h3>
 </div>
 <div class="modal-body">
-    <div class="" ng-repeat="lead in leads track by $index">
-        {{lead.name}}
-        {{lead.phone}}
-        {{lead.email}}
-        {{lead.numberOfApplicants}}
-        {{lead.moveInDate}}
+    <table class="table" >
+        <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Number of Applicants</th>
+        <th>Move in Date</th>
+      </tr>
+    </thead>
+        <tr ng-repeat="lead in leads track by $index">
+        <td>{{lead.name}}</td>
+        <td>{{lead.phone}}</td>
+        <td>{{lead.email}}</td>
+        <td>{{lead.numberOfApplicants}}</td>
+        <td>{{lead.moveInDate}}</td></tr>
+    </table>
     </div>
 </div>
 <div class="modal-footer">

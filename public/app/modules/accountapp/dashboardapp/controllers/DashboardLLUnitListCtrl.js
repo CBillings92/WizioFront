@@ -59,18 +59,6 @@ angular.module('AccountApp')
                     });
                 };
 
-            $scope.viewLeads = function(index) {
-                        var modalOptionsShareListing = {
-                            closeButtonText: "Close",
-                            actionButtonText: "OK",
-                            headerText: "Share This Listing",
-                            bodyText: 'Copy and paste this URL: '+ window.location.origin +'/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
-                        };
-                        ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
-                            console.dir(response);
-                        });
-            };
-
 
                 // AssignmentModel.api().twoParam.query({
                 //     param1: 'user',
@@ -102,9 +90,10 @@ angular.module('AccountApp')
                 ModalSvc.showModal(addTenantsModalDefaults, {}).then(function(result) {});
             };
             //navigate to editApartments form
-            $scope.editApartments = function(apartmentIndex) {
-                FlexGetSetSvc.set($scope.assignments[apartmentIndex].Apartment, 'ApartmentToEdit', 'ApartmentToEdit');
-                $state.go('');
+            $scope.editApartment = function(apartmentIndex) {
+                console.dir($scope.units[apartmentIndex]);
+                FlexGetSetSvc.set($scope.units[apartmentIndex], 'ApartmentToEdit', 'ApartmentToEdit');
+                $state.go('Unit.Edit');
             };
             //go to claimApartments form
             $scope.claimApartments = function() {
@@ -171,12 +160,21 @@ angular.module('AccountApp')
 
             $scope.viewLeads = function(apartmentIndex) {
                 console.dir($scope.units[apartmentIndex].Leases[0].Leads);
-                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', $scope.units[apartmentIndex].Leases[0].Leads);
+                console.dir($scope.units[apartmentIndex].unitNum);
+                var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
+                $scope.units[apartmentIndex].concatAddr,
+                $scope.units[apartmentIndex].unitNum];
+
+                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result){
+            });
 
-                    });
+
+            //if empty
+
+
                 // function(response) {
                 //     var viewApplicantsModalDefaults = modalDefaults(
                 //         'lg',
