@@ -426,7 +426,7 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm.html',
                             controller: 'UnitClaimFormCtrl'
                         }
                     },
