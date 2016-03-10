@@ -27,8 +27,11 @@
                         <div class="col-md-12 row" style="margin: 15px 0 15px 0;" ng-repeat="unit in containingArray track by $index">
                             <div class="col-md-8 row" style="padding-top:10px">
                                 <div class="col-md-12" style="">
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;">
+                                    <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;" ng-hide="singleUnit">
                                         <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text" />
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;" ng-show="singleUnit">
+                                        <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" disabled="disabled" style="width:100%" type="text" />
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12 ">
                                         <div class="" ng-show="multiplePMBusinesses" style="">
