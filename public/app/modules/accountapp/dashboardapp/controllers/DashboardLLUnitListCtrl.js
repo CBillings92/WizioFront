@@ -158,7 +158,7 @@ angular.module('AccountApp')
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
 
-            $scope.viewLeads = function(apartmentIndex) {
+            $scope.au = function(apartmentIndex) {
                 console.dir($scope.units[apartmentIndex].Leases[0].Leads);
                 console.dir($scope.units[apartmentIndex].unitNum);
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
