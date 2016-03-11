@@ -7787,3 +7787,11 @@ h2 {
 
 .lt-ie10 .styled-select .select-button {
   display: none; }
+
+.leads-table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+  /* All browsers since IE 5.5+ */
+  overflow-wrap: break-word;
+  /* Renamed property in CSS3 draft spec */ }
