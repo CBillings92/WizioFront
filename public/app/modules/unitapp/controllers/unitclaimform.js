@@ -72,7 +72,7 @@ angular.module('UnitApp')
                     Address: $scope.apartmentAddress,
                     unitNum: $scope.containingArray[0].apartmentData.unitNum,
                     ApartmentId: $scope.containingArray[0].apartmentData.id,
-                }
+                };
                 dataForModal.dataToChange= "Address";
 
                 var dataForUpdateAddressModal = {
@@ -92,7 +92,7 @@ angular.module('UnitApp')
                     Address: $scope.apartmentAddress,
                     unitNum: $scope.containingArray[0].apartmentData.unitNum,
                     ApartmentId: $scope.containingArray[0].apartmentData.id,
-                }
+                };
                 dataForModal.dataToChange= "Unit Number";
 
                 var dataForUpdateUnitNumModal = {

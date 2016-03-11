@@ -28,7 +28,7 @@ angular.module('UnitApp')
                             method: 'PUT'
                         }
                     }).update(newApartmentWithGeocode, function(response) {
-                        return $modalInstance.close(newApartmentWithGeocode.concatAddr)
+                        return $modalInstance.close(newApartmentWithGeocode.concatAddr);
                     });
                     return;
                 });
