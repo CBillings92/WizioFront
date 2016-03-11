@@ -165,7 +165,7 @@ angular.module('AccountApp')
                 $scope.units[apartmentIndex].concatAddr,
                 $scope.units[apartmentIndex].unitNum];
 
-                var viewLeadsModal = modalDefaults('md', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
+                var viewLeadsModal = modalDefaults('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result){
