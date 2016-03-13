@@ -48,37 +48,49 @@ angular.module('AccountApp')
                 $scope.units = result;
             });
             $scope.shareListing = function(index) {
-                    var modalOptionsShareListing = {
-                        closeButtonText: "Close",
-                        actionButtonText: "OK",
-                        headerText: "Share This Listing",
-                        bodyText: 'Copy and paste this URL: '+ window.location.origin +'/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
-                    };
-                    ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
-                        console.dir(response);
-                    });
+                var modalOptionsShareListing = {
+                    closeButtonText: "Close",
+                    actionButtonText: "OK",
+                    headerText: "Share This Listing",
+                    bodyText: 'Copy and paste this URL: ' + window.location.origin + '/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
                 };
+                ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
+                    console.dir(response);
+                });
+            };
+
+            function shareAllListings() {
+                var view = WizioConfig.UnitViewsURL + 'sharelistings.modal.view.html';
+                var controller = 'ShareListingsCtrl';
+                var shareListingsModalDefaults = modalDefaults('lg', view, controller);
+                
+                ModalSvc.showModal(shareListingsModalDefaults, {})
+                    .then(function(modalResult){
+
+                    });
+            }
+            $scope.shareAllListings = shareAllListings;
 
 
-                // AssignmentModel.api().twoParam.query({
-                //     param1: 'user',
-                //     param2: userId
-                // }, function(response) {
-                //     $scope.assignments = response;
-                //
-                //     for (var i = 0; i < $scope.assignments.length; i++) {
-                //         if ($scope.assignments[i].Apartment.Applications.length !== 0) {
-                //             applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-                //         }
-                //         //group the individual application objects by the ApplicationId
-                //         var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-                //         // reassign the Applications key on the returned object
-                //         $scope.assignments[i].Apartment.Applications = groupedApplications;
-                //         //get the number of applications
-                //         $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
-                //     }
-                //     $scope.noTenants = true;
-                // });
+            // AssignmentModel.api().twoParam.query({
+            //     param1: 'user',
+            //     param2: userId
+            // }, function(response) {
+            //     $scope.assignments = response;
+            //
+            //     for (var i = 0; i < $scope.assignments.length; i++) {
+            //         if ($scope.assignments[i].Apartment.Applications.length !== 0) {
+            //             applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
+            //         }
+            //         //group the individual application objects by the ApplicationId
+            //         var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
+            //         // reassign the Applications key on the returned object
+            //         $scope.assignments[i].Apartment.Applications = groupedApplications;
+            //         //get the number of applications
+            //         $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
+            //     }
+            //     $scope.noTenants = true;
+            // });
 
             $scope.add_tenants = function(val) {
                 var addTenantsModalDefaults = modalDefaults(
@@ -147,6 +159,7 @@ angular.module('AccountApp')
                         });
                     });
             };
+
             function editApartment(apartmentIndex) {
                 console.dir($scope.units[apartmentIndex]);
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'UnitToEdit', 'UnitToEdit');
@@ -162,35 +175,14 @@ angular.module('AccountApp')
                 console.dir($scope.units[apartmentIndex].Leases[0].Leads);
                 console.dir($scope.units[apartmentIndex].unitNum);
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
-                $scope.units[apartmentIndex].concatAddr,
-                $scope.units[apartmentIndex].unitNum];
+                    $scope.units[apartmentIndex].concatAddr,
+                    $scope.units[apartmentIndex].unitNum
+                ];
 
                 var viewLeadsModal = modalDefaults('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
-                    .then(function(result){
-            });
-
-
-            //if empty
-
-
-                // function(response) {
-                //     var viewApplicantsModalDefaults = modalDefaults(
-                //         'lg',
-                //         WizioConfig.ApplicationFormViewsURL + 'ApplicationOverviewModal.html',
-                //         'ApplicationOverviewCtrl',
-                //         response
-                //     );
-                //     ModalSvc.showModal(viewApplicantsModalDefaults, {}).then(function(result) {
-                //         switch (result) {
-                //             case "VIEW-DETAILS":
-                //                 $state.go('Account.Dashboard.Application');
-                //                 break;
-                //             default:
-                //
-                //         }
-                //     });
-                // });
-        };
-    }]);
+                    .then(function(result) {});
+            };
+        }
+    ]);
