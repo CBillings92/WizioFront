@@ -26,7 +26,7 @@ angular.module('LeaseApp')
                 'trueValue': 1,
                 'falseValue': 0
             }, {
-                'variable': 'waterIncluded',
+                'variable': 'waterSewerIncluded',
                 'label': 'Water/Sewer Included',
                 'trueValue': 1,
                 'falseValue': 0
@@ -60,16 +60,24 @@ angular.module('LeaseApp')
             pets: ['Cats and Dogs OK', 'Cats OK', 'Dogs OK', 'Pets OK', 'Contact Landlord', 'No Pets'],
             neededUpfront: [{
                 'variable': 'secDepositNeeded',
-                'label': 'Security Deposit'
+                'label': 'Security Deposit',
+                'trueValue': 1,
+                'falseValue': 0
             }, {
                 'variable': 'newKeyFeeNeeded',
-                'label': 'New Key Fee/Deposit'
+                'label': 'New Key Fee/Deposit',
+                'trueValue': 1,
+                'falseValue': 0
             }, {
                 'variable': 'firstMonthsRentNeeded',
-                'label': 'First Months Rent'
+                'label': 'First Months Rent',
+                'trueValue': 1,
+                'falseValue': 0
             }, {
                 'variable': 'lastMonthsRentNeeded',
-                'label': 'Last Months Rent'
+                'label': 'Last Months Rent',
+                'trueValue': 1,
+                'falseValue': 0
             }, {
                 'variable': 'brokerFeeNeeded',
                 'label': 'Broker Fee'
