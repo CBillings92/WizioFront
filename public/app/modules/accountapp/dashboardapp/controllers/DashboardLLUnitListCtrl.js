@@ -4,6 +4,7 @@ angular.module('AccountApp')
         '$scope',
         '$state',
         '$resource',
+        '$q',
         'TokenSvc',
         'ModalSvc',
         'lodash',
@@ -11,7 +12,8 @@ angular.module('AccountApp')
         'WizioConfig',
         'ApplicationModel',
         'FlexGetSetSvc',
-        function($scope, $state, $resource, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc) {
+        'BrokerageModel',
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel) {
 
             //reusable function for creating modalDefaults for ModalSvc
             var modalDefaults = function(size, templateUrl, controller, modalData) {
@@ -30,7 +32,27 @@ angular.module('AccountApp')
                 };
             };
             var user = TokenSvc.decode();
-            var businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+            // $scope.user.userType = TokenSvc.decode();
+            $scope.user = user;
+
+            function viewSharedApartments(){
+                console.dir("HI");
+                var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
+                var controller = "SharedApartmentsCtrl";
+                var apartmentsSharedModalDefaults = modalDefaults('lg', views, controller);
+                BrokerageModel.getSharedApartments(user.Brokerages[0].id)
+                    .then(function(){
+
+                    });
+            }
+            var businessNameEncoded = null;
+            console.dir(user);
+            if(user.userType === 2){
+                businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+            } else {
+                console.dir(user.Brokerages[0].businessName);
+                businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+            }
             // if(user.userType === 2){
             //     $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
             //         $scope.units = result;
@@ -39,11 +61,15 @@ angular.module('AccountApp')
             //get apartments associated with user
             var userId = TokenSvc.decode().id;
             var applicationIds = [];
+            var data = {};
+            if(user.userType === 3){
+                data.id = user.Brokerages[0].id;
+            } else {
+                data.id = user.PropertyManager[0].id;
+            }
             $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
                 id: '@id'
-            }).query({
-                id: user.PropertyManager[0].id || user.Brokerage[0].id
-            }, function(result) {
+            }).query(data, function(result) {
                 console.dir(result);
                 $scope.units = result;
             });
@@ -58,15 +84,18 @@ angular.module('AccountApp')
                     console.dir(response);
                 });
             };
-
             function shareAllListings() {
                 var view = WizioConfig.UnitViewsURL + 'sharelistings.modal.view.html';
                 var controller = 'ShareListingsCtrl';
-                var shareListingsModalDefaults = modalDefaults('lg', view, controller);
-                
-                ModalSvc.showModal(shareListingsModalDefaults, {})
-                    .then(function(modalResult){
+                BrokerageModel.getAllBrokerages()
+                    .then(function(response){
+                        var modalData = response;
+                        response.PropertyManagerId = user.PropertyManager[0].id;
+                        var shareListingsModalDefaults = modalDefaults('lg', view, controller, modalData);
+                        ModalSvc.showModal(shareListingsModalDefaults, {})
+                        .then(function(modalResult){
 
+                        });
                     });
             }
             $scope.shareAllListings = shareAllListings;
@@ -166,7 +195,8 @@ angular.module('AccountApp')
                 $state.go('Unit.Edit');
             }
             $scope.functions = {
-                editApartment: editApartment
+                editApartment: editApartment,
+                viewSharedApartments: viewSharedApartments
             };
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.

@@ -6837,6 +6837,20 @@ body {
 .modal-content {
   border: 0; }
 
+.brokerage-access-boxes {
+  background-color: white;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  transition: background-color 0.5s ease-in-out; }
+
+.brokerage-access-boxes-fill {
+  background-color: #f79739;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  transition: background-color 0.5s ease-in-out; }
+
 .acct-modal .modal-header {
   border-bottom: 0; }
 
