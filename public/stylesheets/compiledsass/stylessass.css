@@ -6048,6 +6048,9 @@ a:focus {
 .w-elevator {
   background-image: url("/public/assets/icons/elevator.svg"); }
 
+.w-elevator-black {
+  background-image: url("/public/assets/icons/elevator-black.svg"); }
+
 .w-fireplace {
   background-image: url("/public/assets/icons/fireplace.svg"); }
 
@@ -6056,6 +6059,51 @@ a:focus {
 
 .w-favorite {
   background-image: url("/public/assets/icons/favorite.svg"); }
+
+.w-ac {
+  background-image: url("/public/assets/icons/ac.svg"); }
+
+.w-cats {
+  background-image: url("/public/assets/icons/cats.svg"); }
+
+.w-gym {
+  background-image: url("/public/assets/icons/gym.svg"); }
+
+.w-pool {
+  background-image: url("/public/assets/icons/pool.svg"); }
+
+.w-parking {
+  background-image: url("/public/assets/icons/parking.svg"); }
+
+.w-concierge {
+  background-image: url("/public/assets/icons/concierge.svg"); }
+
+.w-wifi {
+  background-image: url("/public/assets/icons/wifi.svg"); }
+
+.w-cable {
+  background-image: url("/public/assets/icons/cable.svg"); }
+
+.w-trash {
+  background-image: url("/public/assets/icons/trash.svg"); }
+
+.w-smoking {
+  background-image: url("/public/assets/icons/smoking.svg"); }
+
+.w-nosmoking {
+  background-image: url("/public/assets/icons/nosmoking.svg"); }
+
+.w-electric {
+  background-image: url("/public/assets/icons/electric.svg"); }
+
+.w-water {
+  background-image: url("/public/assets/icons/water.svg"); }
+
+.w-gas {
+  background-image: url("/public/assets/icons/gas.svg"); }
+
+.w-heat {
+  background-image: url("/public/assets/icons/heat.svg"); }
 
 .navbar {
   background-color: #ffffff;
@@ -7739,3 +7787,11 @@ h2 {
 
 .lt-ie10 .styled-select .select-button {
   display: none; }
+
+.leads-table {
+  table-layout: fixed;
+  width: 100%;
+  word-wrap: break-word;
+  /* All browsers since IE 5.5+ */
+  overflow-wrap: break-word;
+  /* Renamed property in CSS3 draft spec */ }
