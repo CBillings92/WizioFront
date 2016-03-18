@@ -13,6 +13,7 @@ angular.module('MainApp')
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
     // baseAPIURL: 'http://172.16.0.3:4000/api/',
+    // baseAPIURL: 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
 
