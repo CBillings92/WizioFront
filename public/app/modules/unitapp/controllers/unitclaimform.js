@@ -190,6 +190,11 @@ angular.module('UnitApp')
 
             function findOrCreateNewUnit(unitInstance) {
                 return $q(function(resolve, reject) {
+                    unitInstance.apartmentData.Descriptions = [{
+                        description: "testData",
+                        id: null
+                    }];
+                    console.dir(unitInstance);
                     unitInstance.api().findOrCreate(null, function(dbResponse) {
                         var dataPasser = {
                             unitInstance: unitInstance,

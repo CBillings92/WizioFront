@@ -10,28 +10,28 @@
             <div class="col-md-12">
                 <form action="index.html" id="formbg" method="post">
                     <div class="col-md-12" style="border: 0px solid black; border-radius: 5px; padding: 10px; margin:5px;">
-                        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+                        <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
                         <div class="col-md-12 row">
-                            <div class="col-md-8 row" style="z-index: 100;" ng-hide="singleUnit">
-                                <input class="" ng-model="apartmentAddress" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)" placeholder="Apartment Address"
-                                />
+                            <div class="col-md-8 row" ng-hide="singleUnit" style="z-index: 100;">
+                                <input class="" ng-model="apartmentAddress" placeholder="Apartment Address" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
                                 <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                                 <div ng-show="noResults">
-                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    No Results Found
                                 </div>
                             </div>
-                            <div class="col-md-8 row" style="z-index: 100;" ng-show="singleUnit">
-                                <input class="" ng-model="apartmentAddress" style="width:100%" type="text" disabled="disabled" />
+                            <div class="col-md-8 row" ng-show="singleUnit" style="z-index: 100;">
+                                <input class="" disabled="disabled" ng-model="apartmentAddress" style="width:100%" type="text"/>
                             </div>
                         </div>
-                        <div class="col-md-12 row" style="margin: 15px 0 15px 0;" ng-repeat="unit in containingArray track by $index">
+                        <div class="col-md-12 row" ng-repeat="unit in containingArray track by $index" style="margin: 15px 0 15px 0;">
                             <div class="col-md-8 row" style="padding-top:10px">
                                 <div class="col-md-12" style="">
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;" ng-hide="singleUnit">
-                                        <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text" />
+                                    <div class="col-md-4 col-sm-4 col-xs-12" ng-hide="singleUnit" style="border: 0px solid black;">
+                                        <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="border: 0px solid black;" ng-show="singleUnit">
-                                        <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" disabled="disabled" style="width:100%" type="text" />
+                                    <div class="col-md-4 col-sm-4 col-xs-12" ng-show="singleUnit" style="border: 0px solid black;">
+                                        <input class="col-md-4" disabled="disabled" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
                                     </div>
                                     <div class="col-md-8 col-sm-8 col-xs-12 ">
                                         <div class="" ng-show="multiplePMBusinesses" style="">
@@ -119,8 +119,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="">
-                                                        <textarea style="resize: none; width:100%">Description</textarea>
+                                                    <div class="col-md-12">
+                                                        <label class="control-label">Apartment Description</label>
+                                                        <textarea class="col-md-12" style="border: 1px solid black" name="name" ng-model="unit.apartmentData.Description.description" rows="4"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" ng-show="user.userType === 3">
@@ -164,11 +165,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
-                                                    <div class="col-md-12">
-                                                        <label class="control-label">Description</label>
-                                                        <textarea class="form-control" cols="160" name="name" ng-blur="onDescriptionBlur($parent.$index, $index)" ng-model="unit.Description.description" rows="4"></textarea>
-                                                    </div>
+                                                <div class="form-group">
+
                                                 </div>
                                                 <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
                                                     <div class="row">
@@ -178,7 +176,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
