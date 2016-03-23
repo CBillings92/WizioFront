@@ -196,6 +196,7 @@ angular.module('UnitApp')
                     }];
                     console.dir(unitInstance);
                     unitInstance.api().findOrCreate(null, function(dbResponse) {
+
                         var dataPasser = {
                             unitInstance: unitInstance,
                             dbResponse: dbResponse
@@ -231,6 +232,7 @@ angular.module('UnitApp')
                     unitInstance.apartmentData.id = dbResponse.apartment.id;
                     unitInstance.apartmentData.CreatedById = $scope.user.id;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
+                    console.dir($scope.selectedPM);
                     unitInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     unitInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
