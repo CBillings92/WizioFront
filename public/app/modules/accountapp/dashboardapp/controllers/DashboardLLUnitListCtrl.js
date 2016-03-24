@@ -158,6 +158,7 @@ angular.module('AccountApp')
             };
 
             $scope.editListing = function(apartmentIndex) {
+                console.dir($scope.units);
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'EditCurrentListing', 'EditCurrentListing');
                 $state.go('Account.Lease.Edit');
             };
