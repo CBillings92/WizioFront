@@ -43,7 +43,9 @@ angular.module('UnitApp')
                 //object, otherwise push empty object
                 if ($scope.singleUnit) {
                     console.dir(FlexGetSetSvc.get('UnitToEdit'));
+                    console.dir("HI");
                     var newApartmentInstance = ApartmentModel.build(FlexGetSetSvc.get('UnitToEdit'));
+                    newApartmentInstance.apartmentData.Description = FlexGetSetSvc.get('UnitToEdit').Descriptions[0];
                     newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
@@ -190,10 +192,12 @@ angular.module('UnitApp')
 
             function findOrCreateNewUnit(unitInstance) {
                 return $q(function(resolve, reject) {
-                    unitInstance.apartmentData.Descriptions = [{
-                        description: "testData",
-                        id: null
-                    }];
+                    var user = TokenSvc.decode();
+                    unitInstance.apartmentData.Description = {
+                        description: "",
+                        id: null,
+                        UserId: user.id
+                    };
                     console.dir(unitInstance);
                     unitInstance.api().findOrCreate(null, function(dbResponse) {
 
