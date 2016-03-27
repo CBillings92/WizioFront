@@ -16,7 +16,6 @@ angular.module('UnitApp')
         };
 
         var apartmentExisted = function(newApartment, response){
-            console.dir(response);
             var user = TokenSvc.decode();
             newApartment.apartmentData.id = response.apartment.id;
             newApartment.Assignment = {
@@ -30,6 +29,7 @@ angular.module('UnitApp')
 
         function checkPropertyManagerOwnership(response){
             var user = TokenSvc.decode();
+            console.dir(response);
             for (var i = 0; i < user.PropertyManager.length; i++) {
                 if (user.PropertyManager[i].id === response.PropertyManagerId) {
                     return true;
