@@ -253,7 +253,7 @@ angular.module('UnitApp')
                         };
                         buildModal(1, dataForModal)
                             .then(function(dbResponse) {
-
+                                $scope.containingArray[commonVariables.unitIndex] = {};
                             });
                     } else if ($scope.userType === 3 && $scope.user.id !== response.apartment.CreatedById) {
                         dataForModal = {
