@@ -8,10 +8,7 @@ angular.module('AccountApp')
         function($scope, $state, ProfileModel, FlexGetSetSvc, TokenSvc) {
             $scope.profile = {};
             var loadedProfile = FlexGetSetSvc.get(null, "ExtendedProfile");
-            console.dir(loadedProfile);
-            console.dir(typeof(loadedProfile));
             if(typeof(loadedProfile) != 'undefined' && loadedProfile){
-                console.dir("HI");
                 $scope.editing = true;
                 $scope.profile = loadedProfile;
             }
@@ -27,7 +24,6 @@ angular.module('AccountApp')
                 var UserId = TokenSvc.decode().id;
                 $scope.profile.UserId = UserId;
                 if($state.current.name === 'Account.Profile.Edit'){
-                    console.dir($scope.profile);
                     ProfileModel.api.oneParam.save({id: $scope.profile.id}, $scope.profile, function(response){
 
                     });

@@ -20,7 +20,6 @@ angular.module('AccountApp')
             $scope.lease.push({});
         }
         $scope.addTenantsToLease = function(){
-            console.dir($scope.lease);
             // LeaseModal.api.base().save($scope.lease, function(response){
             //
             // });

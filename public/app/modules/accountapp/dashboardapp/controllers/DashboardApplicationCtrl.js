@@ -33,10 +33,8 @@ angular.module('AccountApp')
                     //grop the applications by ApplicationId
                     var buildingApplications = lodash.groupBy(data, "ApplicationId");
                     $scope.applications = lodash.values(buildingApplications);
-                    console.dir($scope.applications);
                     if ($scope.applications.length > 0) {
                         $scope.applicationsExist = true;
-                        console.dir($scope.applications);
                     }
                 } else {
                     $scope.applicationsExist = false;
@@ -104,7 +102,6 @@ angular.module('AccountApp')
                         }
                     };
                     ModalSvc.showModal({}, modalOptions).then(function(response) {
-                        console.dir(response);
                         if (response === "ok") {
                             ModalSvc.showModal(selectOwnerModalDefaults, {}).then(function(response){
 
@@ -136,7 +133,6 @@ angular.module('AccountApp')
                     };
 
                     ModalSvc.showModal({}, modalOptionsDeleteApp).then(function(response) {
-                        console.dir(response);
                         if (response === "ok") {
                             ApplicationResource.flex.save({
                                 item: 'user',

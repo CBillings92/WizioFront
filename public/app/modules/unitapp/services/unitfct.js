@@ -31,7 +31,7 @@ angular.module('UnitApp')
         function checkPropertyManagerOwnership(response){
             var user = TokenSvc.decode();
             for (var i = 0; i < user.PropertyManager.length; i++) {
-                if (user.PropertyManager[i].id === response.apartment.PropertyManagerId) {
+                if (user.PropertyManager[i].id === response.PropertyManagerId) {
                     return true;
                 }
             }

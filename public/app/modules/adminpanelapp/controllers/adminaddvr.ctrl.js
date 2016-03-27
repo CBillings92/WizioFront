@@ -23,12 +23,10 @@ angular.module('AdminPanelApp')
             $resource(WizioConfig.baseAPIURL + 'admin/units')
                 .query(null, function(response){
                     $scope.apartments = response;
-                    console.dir(response);
                 });
 
             $scope.selectUnit = function(index){
                 $scope.apartments[index].selected = true;
-                console.dir("HI");
                 setTimeout(function(){
                     $scope.apartments[index].selected = false;
                 }, 400);

@@ -8,10 +8,9 @@ angular.module('AccountApp')
         function($scope, $state, TokenSvc, FlexGetSetSvc, ProfileModel) {
             $scope.accountInfo = TokenSvc.decode();
             $scope.leaveFeedback = function leaveFeedback(){
-                
+
             };
             $scope.viewProfile = function() {
-                console.dir($scope.accountInfo);
                 if ($scope.accountInfo.ProfileId) {
                     ProfileModel.api.oneParam.get({
                         id: $scope.accountInfo.ProfileId

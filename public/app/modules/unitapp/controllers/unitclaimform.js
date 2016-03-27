@@ -42,14 +42,11 @@ angular.module('UnitApp')
                 //if editing a unit, get that unit and push it into containing
                 //object, otherwise push empty object
                 if ($scope.singleUnit) {
-                    console.dir(FlexGetSetSvc.get('UnitToEdit'));
-                    console.dir("HI");
                     var newApartmentInstance = ApartmentModel.build(FlexGetSetSvc.get('UnitToEdit'));
                     newApartmentInstance.apartmentData.Description = FlexGetSetSvc.get('UnitToEdit').Descriptions[0];
                     newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
-                    console.dir(newApartmentInstance);
                     $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
                     $scope.containingArray.push(newApartmentInstance);
                 } else {
@@ -160,7 +157,6 @@ angular.module('UnitApp')
                                 }
                             }
                         };
-                        console.dir(modalDefaults);
                         ModalSvc.showModal(modalDefaults, {}).then(function(result) {
                             return resolve(result);
                         });
@@ -198,9 +194,7 @@ angular.module('UnitApp')
                         id: null,
                         UserId: user.id
                     };
-                    console.dir(unitInstance);
                     unitInstance.api().findOrCreate(null, function(dbResponse) {
-
                         var dataPasser = {
                             unitInstance: unitInstance,
                             dbResponse: dbResponse
