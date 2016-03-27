@@ -7,7 +7,6 @@ angular.module('AccountApp')
         function($scope, TokenSvc, ModalSvc, WizioConfig) {
 
             var userType = TokenSvc.decode().userType;
-            console.dir(userType);
             if(userType == 1){
                 $scope.applicationSelected = true;
                 $scope.favoritesSelected = false;
@@ -45,7 +44,6 @@ angular.module('AccountApp')
                 $scope.myApartmentsSelected = true;
 
                 $scope.toggleMyApartments = function(){
-                    console.dir("HELLO");
                     if (!$scope.myApartmentsSelected) {
                         $scope.myApartmentsSelected = !$scope.myApartmentsSelected;
                         $scope.myApplicationsSelected = !$scope.myApplicationsSelected;

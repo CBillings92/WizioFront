@@ -36,7 +36,6 @@ angular.module('AccountApp')
             $scope.user = user;
 
             function viewSharedApartments(){
-                console.dir("HI");
                 var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
                 var controller = "SharedApartmentsCtrl";
                 var apartmentsSharedModalDefaults = modalDefaults('lg', views, controller);
@@ -46,11 +45,9 @@ angular.module('AccountApp')
                     });
             }
             var businessNameEncoded = null;
-            console.dir(user);
             if(user.userType === 2){
                 businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
             } else {
-                console.dir(user.Brokerages[0].businessName);
                 businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
             }
             // if(user.userType === 2){
@@ -70,7 +67,6 @@ angular.module('AccountApp')
             $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
                 id: '@id'
             }).query(data, function(result) {
-                console.dir(result);
                 $scope.units = result;
             });
             $scope.shareListing = function(index) {
@@ -81,7 +77,6 @@ angular.module('AccountApp')
                     bodyText: 'Copy and paste this URL: ' + window.location.origin + '/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
                 };
                 ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
-                    console.dir(response);
                 });
             };
             function shareAllListings() {
@@ -132,7 +127,6 @@ angular.module('AccountApp')
             };
             //navigate to editApartments form
             $scope.editApartment = function(apartmentIndex) {
-                console.dir($scope.units[apartmentIndex]);
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'ApartmentToEdit', 'ApartmentToEdit');
                 $state.go('Unit.Edit');
             };
@@ -158,7 +152,6 @@ angular.module('AccountApp')
             };
 
             $scope.editListing = function(apartmentIndex) {
-                console.dir($scope.units);
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'EditCurrentListing', 'EditCurrentListing');
                 $state.go('Account.Lease.Edit');
             };
@@ -191,7 +184,6 @@ angular.module('AccountApp')
             };
 
             function editApartment(apartmentIndex) {
-                console.dir($scope.units[apartmentIndex]);
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'UnitToEdit', 'UnitToEdit');
                 $state.go('Unit.Edit');
             }
@@ -203,8 +195,6 @@ angular.module('AccountApp')
             //form should contain applications for apartments.
 
             $scope.viewLeads = function(apartmentIndex) {
-                console.dir($scope.units[apartmentIndex].Leases[0].Leads);
-                console.dir($scope.units[apartmentIndex].unitNum);
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
                     $scope.units[apartmentIndex].concatAddr,
                     $scope.units[apartmentIndex].unitNum
