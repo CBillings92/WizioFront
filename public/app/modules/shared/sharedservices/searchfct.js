@@ -32,13 +32,11 @@ angular.module('SharedServiceApp')
                     newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
                     if(apt.Descriptions && apt.Descriptions.length !== 0){
-                        console.dir(apt.Descriptions[0]);
                         formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
                     }
                     if (apt.Leases && apt.Leases.length !== 0) {
                         formattedApartmentArray[i].Lease = LeaseModel.build(apt.Leases[0]);
                     }
-                    console.dir(apt);
                     if (apt.Media && apt.Media.length !== 0) {
                         formattedApartmentArray[i].Media = lodash.groupBy(apt.Media, "type");
                     }
@@ -63,7 +61,7 @@ angular.module('SharedServiceApp')
                             var formattedSearchResults = formatSearchResults(response);
                             $sessionStorage.apartmentSearch = formattedSearchResults;
                             $rootScope.$broadcast('searchFinished', formattedSearchResults);
-                            callback('done');
+                            return callback('done');
                         });
                     });
             };

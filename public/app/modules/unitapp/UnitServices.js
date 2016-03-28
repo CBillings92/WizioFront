@@ -32,7 +32,6 @@ angular.module('UnitApp')
                     //first try and get values from array in service
                     googleAPIDataRaw = ApartmentClaimGetSetSvc.get();
                     if(gooogleAPIDataRaw.length === 0){
-                        console.dir("ARRAY BROKEN");
                         //if no value in array then try and grab data from the sessionStorage
                         gooogleAPIDataRaw = ApartmentClaimGetSetSvc.get('Staging-ApartmentClaims');
                     }
@@ -86,7 +85,6 @@ angular.module('UnitApp')
             //else RETURN TRUE
             function findSearchString(searchString, googleAPIDataRaw) {
                 //search for the search string in the smart search google API results
-                console.dir(googleAPIDataRaw);
                 var googleAPIData = lodash.filter(googleAPIDataRaw.data.results, function(item) {
                     return item.formatted_address === searchString;
                 });
@@ -121,7 +119,6 @@ angular.module('UnitApp')
                 //set empty apartmentObj object. Will store apartment info
 
                 var apartmentObj = {};
-                console.dir(googleAPIData);
                 apartmentObj.topLevelType = googleAPIData[0].types[0];
 
                 //if apartment parameters are passed in for apartment creation

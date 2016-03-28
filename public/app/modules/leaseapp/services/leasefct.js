@@ -89,7 +89,6 @@ angular.module('LeaseApp')
             var lease = LeaseModel.build(leaseObject);
             //set association fields such as UserId, ApartmentId, LandlordId
             lease.setAssociationData();
-            console.dir(lease);
             //make a post request to /lease to save the new lease
             lease.create(function(response){
                 return callback(response);

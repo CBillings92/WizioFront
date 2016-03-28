@@ -15,7 +15,8 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         'ModalSvc',
         'WizioConfig',
-        function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
+        'lodash',
+        function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig, lodash) {
             'ng-strict';
             var dataForModal = {};
             //get the geocoded location for the smart bar
@@ -81,8 +82,13 @@ angular.module('UnitApp')
                 };
                 buildModal(1, dataForUpdateAddressModal)
                 .then(function(response) {
-                    console.dir($scope.containingArray);
-                    $scope.apartmentAddress = response;
+                    $scope.apartmentAddress = response.concatAddr;
+                    for(var key in response){
+                        if(response.hasOwnProperty(key)){
+                            $scope.containingArray[0].apartmentData[key] = response[key];
+                        }
+                    }
+                    return;
                 });
             }
 
@@ -125,7 +131,6 @@ angular.module('UnitApp')
 
             function copyUnit(unitIndex) {
                 var unitToDuplicate = $scope.containingArray[unitIndex];
-                console.dir(unitIndex);
                 var duplicateApartmentData = unitToDuplicate.duplicate();
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
                 newInstance.apartmentData.id = null;
@@ -230,9 +235,10 @@ angular.module('UnitApp')
                     unitInstance.apartmentData.id = dbResponse.apartment.id;
                     unitInstance.apartmentData.CreatedById = $scope.user.id;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
-                    console.dir($scope.selectedPM);
                     unitInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     unitInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
+                    unitInstance.apartmentData.Description.ApartmentId = dbResponse.apartment.id;
+                    unitInstance.apartmentData.Description.id = dbResponse.apartment.Description.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
                     $scope.containingArray[commonVariables.unitIndex] = unitInstance;
                     return resolve(unitInstance);
@@ -289,6 +295,7 @@ angular.module('UnitApp')
             };
 
             $scope.submit = function() {
+                // var apartments = lodash.pluck($scope.containingArray, 'apartmentData');
                 ApartmentModel.claimApi($scope.containingArray, function(response) {
                     $state.go('Account.Dashboard.Main');
                 });

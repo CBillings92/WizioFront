@@ -10,7 +10,6 @@ angular.module('UnitApp')
             $scope.brokerages = modalData;
             $scope.selectBrokerage = function(index){
                 $scope.brokerages[index].selected = !$scope.brokerages[index].selected;
-                console.dir($scope.brokerages);
                 return;
             };
             $scope.submit = function submit() {
@@ -18,7 +17,6 @@ angular.module('UnitApp')
                 var PropertyManagerId = user.PropertyManager[0].id;
                 var finalArray = [];
                 lodash.forEach($scope.brokerages, function(brokerage){
-                    console.dir(brokerage);
                     if(brokerage.selected){
                         finalArray.push({
                             PropertyManagerId: PropertyManagerId,
@@ -26,7 +24,6 @@ angular.module('UnitApp')
                         });
                     }
                 });
-                console.dir(finalArray);
                 BrokerageModel.savePartners(finalArray)
                     .then(function(response){
 

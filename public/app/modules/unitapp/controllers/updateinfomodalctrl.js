@@ -19,7 +19,6 @@ angular.module('UnitApp')
                 var newApartmentWithGeocode = {};
                 $scope.newData.ApartmentId = modalData.ApartmentId;
                 var newInstance = ApartmentModel.build($scope.newData);
-                console.dir(newInstance);
                 UnitCreateSvc.getGeocodeData(newInstance.apartmentData.concatAddr, function(err, success) {
                     newApartmentWithGeocode = UnitCreateSvc.lodashParseAPIData(success, null);
                     newApartmentWithGeocode.ApartmentId = $scope.newData.ApartmentId;
@@ -28,7 +27,8 @@ angular.module('UnitApp')
                             method: 'PUT'
                         }
                     }).update(newApartmentWithGeocode, function(response) {
-                        return $modalInstance.close(newApartmentWithGeocode.concatAddr);
+                        newApartmentWithGeocode.id = newApartmentWithGeocode.ApartmentId;
+                        return $modalInstance.close(newApartmentWithGeocode);
                     });
                     return;
                 });

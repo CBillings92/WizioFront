@@ -45,7 +45,6 @@ angular.module('SharedFactoryApp')
                 };
 
                 var setMapOptions = function(unitList) {
-                    console.dir(unitList);
                     if (unitList.constructor !== Array) {
                         unitList = [unitList];
                     }
@@ -87,11 +86,9 @@ angular.module('SharedFactoryApp')
                 var unitList = null;
                 if ($state.current.name === "Unit.Details" || 'listing.group') {
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
-                    console.dir(unitList);
                 } else if ($state.current.name === "Unit.Display") {
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
-                console.dir(unitList);
                 return setMapOptions(unitList);
             };
 
@@ -107,13 +104,11 @@ angular.module('SharedFactoryApp')
                 }
 
                 var createMapMarkers = function(unitList) {
-                    console.dir(unitList);
                     //test for case of only one apartment and turn into array if only one.
                     if (!(Array.isArray(unitList))) {
                         unitList = [unitList];
                     }
                     for (i = 0; i < unitList.length; i++) {
-                        console.dir(unitList[i]);
                         createMarker(unitList[i]);
                     }
                     return markersArray;
@@ -132,8 +127,6 @@ angular.module('SharedFactoryApp')
                         title: unit.apartmentData.concatAddr || unit.concatAddr,
                         icon: '/public/viewtemplates/images/brand_assets/map_pin.png'
                     });
-                    console.dir("NSUETOEUNSTHEONUTSHOENUOEU");
-                    console.dir(unit);
                     //FIXME - how do we want to handle the picture
                     marker.content = '<div class="infoWindowContent">' +
                         '<div style="width: 140px; display:inline-block; margin:auto;padding: 20px 25px;">' +

@@ -49,7 +49,6 @@ angular.module('UnitApp')
             }).get({
                 id: $state.params.id
             }, function(result) {
-                console.dir(result);
                 //hotfix for map
                 result.Apartment.monthlyRent = result.monthlyRent;
                 ApartmentGetSetSvc.set(result.Apartment, "apartmentSelected");
@@ -104,12 +103,10 @@ angular.module('UnitApp')
             setTimeout(function(){
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                console.dir($scope.map);
                 //create the markers for the map
                 // var markers = MapFct.makeMarkers($scope.map);
             },3000);
             // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
-            // console.dir($scope.apartment);
             // $scope.apartment = $scope.apartment.apartmentData || null;
             //check that the correct apartment is getting pulled
 
@@ -153,7 +150,6 @@ angular.module('UnitApp')
                 //     ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                 //         //store the current apartment in sessionStorage with the
                 //         //appropriate session storage variable
-                //         console.dir(result);
                 //         if (result) {
                 //             FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
                 //             ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
@@ -174,16 +170,18 @@ angular.module('UnitApp')
                 var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
                 newVideo.getAssociationData();
                 newVideo.saveMedia(function(res) {
-                    console.dir(res);
+                    return;
                 });
+                return;
 
             };
             $scope.submitPhoto = function() {
                 var newPhoto = new MediaModel($scope.media.photo.link, 'vrphoto', $scope.media.photo.title);
                 newPhoto.getAssociationData();
                 newPhoto.saveMedia(function(res) {
-                    console.dir(res);
+                    return;
                 });
+                return;
             };
             //LOAD APARTMENT DATA end
         }
