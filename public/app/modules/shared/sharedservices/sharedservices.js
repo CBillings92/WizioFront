@@ -142,7 +142,7 @@ angular.module('SharedServiceApp')
                     params: {
                         address: val,
                         sensor: false,
-                        components: 'country:US|administrative_area:MA'
+                        components: 'country:US'
                     }
                 }).then(function(response) {
                     if(sessionStorageVar === 'Staging-ApartmentClaims'){
