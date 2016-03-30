@@ -157,10 +157,10 @@
                     <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
                 <!-- </div> -->
             </div>
-            <!-- <div class="col-sm-6 unit-details-description">
+            <div class="col-sm-6 unit-details-description" ng-show="floorplan !== false">
                 <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>
-                <img src="/public/viewtemplates/images/kaceyalisaapartment.jpg" style="width:100%" alt="floorplan" />
-            </div> -->
+                <img src="{{floorplan}}" style="width:100%" alt="floorplan" />
+            </div>
         </div>
     </div>
 </div>

@@ -56,6 +56,37 @@ angular.module('UnitApp')
                 $scope.listing = result;
                 $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
                 $scope.apartment = result.Apartment;
+                if ($scope.apartment.street === "1040 North Quincy Street") {
+                    switch (apartment.unitNum) {
+                        case 406:
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/LG-1b1d1s2b.png";
+                            break;
+                        case 209:
+                            $scope.floorplan = false;
+                            break;
+                        default:
+                            $scope.floorplan = false;
+                    }
+                } else if ($scope.apartment.street === "1020 North Quincy Street") {
+                    switch ($scope.apartment.unitNum) {
+                        case 908:
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b2b.png";
+                            break;
+                        case 1013:
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b1b.png";
+                            break;
+                        case 616:
+                            $scope.floorplan = false;
+                            break;
+                        case 619:
+                            $scope.floorplan = false;
+                            break;
+                        default:
+                            $scope.floorplan = false;
+                    }
+                } else {
+                    $scope.floorplan = false;
+                }
                 var vrphotos = [];
                 var vrvideos = [];
                 for (var i = 0; i < result.Apartment.Media.length; i++) {
@@ -77,8 +108,8 @@ angular.module('UnitApp')
                 //FIXME
                 $scope.mediaTab = 'unitPhotos';
                 $scope.selectMediaTab = function(tab) {
-                    if(tab === 'unitVideos'){
-                        if(vrvideos.length !== 1){
+                    if (tab === 'unitVideos') {
+                        if (vrvideos.length !== 1) {
                             var signUpErrorModalOptions = {
                                 closeButtonText: "Close",
                                 actionButtonText: "OK",
@@ -86,9 +117,9 @@ angular.module('UnitApp')
                                 bodyText: 'Sorry! This unit does not have a 360 video tour just yet.'
                             };
                             ModalSvc.showModal({}, signUpErrorModalOptions)
-                            .then(function(result) {
-                                return;
-                            });
+                                .then(function(result) {
+                                    return;
+                                });
 
                         } else {
                             $scope.mediaTab = tab;
@@ -100,12 +131,12 @@ angular.module('UnitApp')
                 };
             });
             //create the google maps
-            setTimeout(function(){
+            setTimeout(function() {
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
                 //create the markers for the map
                 // var markers = MapFct.makeMarkers($scope.map);
-            },3000);
+            }, 3000);
             // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
             // $scope.apartment = $scope.apartment.apartmentData || null;
             //check that the correct apartment is getting pulled
@@ -139,7 +170,7 @@ angular.module('UnitApp')
                 var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'contactRepForm.html', 'ContactRepFormCtrl', 'md', $scope.listing);
                 //check if token is expired, if so route to login
                 ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
-                    if(result === 'submit'){
+                    if (result === 'submit') {
 
                     }
                     // $state.go('Account.Dashboard.Main');
