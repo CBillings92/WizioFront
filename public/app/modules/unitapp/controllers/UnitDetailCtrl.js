@@ -57,28 +57,28 @@ angular.module('UnitApp')
                 $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
                 $scope.apartment = result.Apartment;
                 if ($scope.apartment.street === "1040 North Quincy Street") {
-                    switch (apartment.unitNum) {
-                        case 406:
+                    switch ($scope.apartment.unitNum) {
+                        case "406":
                             $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/LG-1b1d1s2b.png";
                             break;
-                        case 209:
-                            $scope.floorplan = false;
+                        case "209":
+                            // $scope.floorplan = false;
                             break;
                         default:
-                            $scope.floorplan = false;
+                            // $scope.floorplan = false;
                     }
                 } else if ($scope.apartment.street === "1020 North Quincy Street") {
                     switch ($scope.apartment.unitNum) {
-                        case 908:
+                        case "908":
                             $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b2b.png";
                             break;
-                        case 1013:
+                        case "1013":
                             $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b1b.png";
                             break;
-                        case 616:
+                        case "616":
                             $scope.floorplan = false;
                             break;
-                        case 619:
+                        case "619":
                             $scope.floorplan = false;
                             break;
                         default:
