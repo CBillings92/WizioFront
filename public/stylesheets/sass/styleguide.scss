@@ -114,6 +114,13 @@ div[class^='color__box'], div[class*=' color__box']{
 .styleguide-example-make-black svg * {
   stroke: $black;
 }
+.styleguide-example-make-black svg {
+    height:50px;
+    width: 50%;
+}
+.styleguide-example-make-black svg path {
+  stroke: $black;
+}
 .styleguide-example-make-blue svg * {
   stroke: $blue;
 }
