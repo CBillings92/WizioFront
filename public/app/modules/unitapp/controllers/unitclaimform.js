@@ -23,13 +23,16 @@ angular.module('UnitApp')
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
+
             (function formPrimer() {
-                //use a ternary IF operator to figure out what state we're on
+                //Figure out what state we're on
                 $scope.singleUnit = ($state.current.name === 'Unit.Edit') ? true : false;
                 //grab the user object that is currently logged in
                 $scope.user = TokenSvc.decode();
                 //get the selectOptions for all of the drop downs on the form
                 $scope.selectOptions = UnitFct.selectOptions;
+                $scope.ammenities = UnitFct.ammenities;
+                //for handling multiple property managers in the future
                 $scope.multiplePMBusinesses = false;
                 if ($scope.user.userType === 2 || $scope.user.userType === 4) {
                     if ($scope.user.PropertyManager.length > 0) {
@@ -43,9 +46,13 @@ angular.module('UnitApp')
                 //if editing a unit, get that unit and push it into containing
                 //object, otherwise push empty object
                 if ($scope.singleUnit) {
+                    //build an instance of an apartment with the data in localstorage
                     var newApartmentInstance = ApartmentModel.build(FlexGetSetSvc.get('UnitToEdit'));
+                    //append the description to the new apartment instance
                     newApartmentInstance.apartmentData.Description = FlexGetSetSvc.get('UnitToEdit').Descriptions[0];
+                    //append the propertymanager to the new apartmentInstance
                     newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
+                    //append the property manager id onto the unit
                     newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                     $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
@@ -194,6 +201,7 @@ angular.module('UnitApp')
             function findOrCreateNewUnit(unitInstance) {
                 return $q(function(resolve, reject) {
                     var user = TokenSvc.decode();
+                    //add a description object onto the instance for saving to DB
                     unitInstance.apartmentData.Description = {
                         description: "",
                         id: null,
@@ -241,6 +249,7 @@ angular.module('UnitApp')
                     unitInstance.apartmentData.Description.id = dbResponse.apartment.Description.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
                     $scope.containingArray[commonVariables.unitIndex] = unitInstance;
+                    console.dir(unitInstance);
                     return resolve(unitInstance);
                 });
             }

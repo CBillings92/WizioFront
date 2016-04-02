@@ -40,6 +40,16 @@ angular.module('LeaseApp')
                 'label': 'Internet Included',
                 'trueValue': 1,
                 'falseValue': 0
+            }, {
+                'variable': 'wifi',
+                'label': 'Wifi Included',
+                'trueValue': 1,
+                'falseValue': 0
+            }, {
+                'variable': 'ac',
+                'label': 'Wifi Included',
+                'trueValue': 1,
+                'falseValue': 0
             }],
             additionalAmmenities: [{
                 'variable': 'smoking',
@@ -54,6 +64,59 @@ angular.module('LeaseApp')
             }, {
                 'variable': 'trashRemoval',
                 'label': 'Trash Removal Included',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'roofDeck',
+                'label': 'Roof Deck',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'balcony',
+                'label': 'Balcony',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'pool',
+                'label': 'Pool',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'parking',
+                'label': 'Parking',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'garage',
+                'label': 'Garage',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'dishwasher',
+                'label': 'Dishwasher',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'concierge',
+                'label': 'Dishwasher',
+                'trueValue': 1,
+                'falseValue': 0
+            }, {
+                'variable': 'superIntendent',
+                'label': 'Super Intendent',
+                'trueValue': 1,
+                'falseValue': 0
+            },
+            {
+                'variable': 'airconditioning',
+                'label': 'Air Conditioning',
                 'trueValue': 1,
                 'falseValue': 0
             }],
