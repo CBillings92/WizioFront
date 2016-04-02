@@ -20,6 +20,7 @@ angular.module('UnitApp')
         'WizioConfig',
         'SearchFct',
         'moment',
+        'UnitFct',
         function(
             $scope,
             $state,
@@ -40,7 +41,8 @@ angular.module('UnitApp')
             ModalSvc,
             WizioConfig,
             SearchFct,
-            moment
+            moment,
+            UnitFct
         ) {
             $scope.listing = {};
             var user = TokenSvc.decode();
@@ -56,6 +58,7 @@ angular.module('UnitApp')
                 $scope.listing = result;
                 $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
                 $scope.apartment = result.Apartment;
+                $scope.features = UnitFct.features;
                 if ($scope.apartment.street === "1040 North Quincy Street") {
                     switch ($scope.apartment.unitNum) {
                         case "406":

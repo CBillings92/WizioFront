@@ -14,256 +14,126 @@ angular.module('UnitApp')
             makeCurrentListing: ['Yes', 'No'],
             pmBusinessOrPerson: ['Business', 'Person']
         };
-        var icons = {
+        var features = {
             beds:{
-                baseUrl: "",
-                blackUrl: "public/assets/icons/bed-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+                svg: 'public/assets/icons/bed.svg',
+                data: "beds",
+                postText: 'Beds',
             },
             baths:{
-                baseUrl: "",
-                blackUrl: "public/assets/icons/bath-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+                svg: 'public/assets/icons/bath.svg',
+                data: 'baths',
+                postText: 'Baths',
             },
             laundry:{
-                baseUrl: "",
-                blackUrl: "public/assets/icons/laundry-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+                svg: 'public/assets/icons/laundry.svg',
+                data: 'laundry',
+                postText: '',
             },
-            dishwasher:{
-                baseUrl: "",
-                blackUrl: "public/assets/icons/dishwasher-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+            pets:{
+                svg: 'public/assets/icons/pets.svg',
+                data: 'pets',
+                postText: '',
+            },
+            elevators:{
+                svg: 'public/assets/icons/elevator.svg',
+                data: 'elevator',
+                postText: '',
+            },
+            electric:{
+                svg: 'public/assets/icons/electric.svg',
+                data: 'electric',
+                postText: '',
+            },
+            gas:{
+                svg: 'public/assets/icons/gas.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            heat:{
+                svg: 'public/assets/icons/heat.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            smoking:{
+                svg: 'public/assets/icons/smoking.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            trash:{
+                svg: 'public/assets/icons/trash.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            water:{
+                svg: 'public/assets/icons/water.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            wifi:{
+                svg: 'public/assets/icons/wifi.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            gym:{
+                svg: 'public/assets/icons/gym.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            pool:{
+                svg: 'public/assets/icons/pool.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            nosmoking:{
+                svg: 'public/assets/icons/nosmoking.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            parking:{
+                svg: 'public/assets/icons/parking.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            pool:{
+                svg: 'public/assets/icons/pool.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            concierge:{
+                svg: 'public/assets/icons/concierge.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            cats:{
+                svg: 'public/assets/icons/cats.svg',
+                // data: 'gas',
+                postText: '',
+            },
+            cable:{
+                svg: 'public/assets/icons/cable.svg',
+                // data: 'gas',
+                postText: '',
             },
             ac:{
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+                svg: 'public/assets/icons/ac.svg',
+                // data: 'gas',
+                postText: '',
             },
-            electricity: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+            roofdeck:{
+                svg: 'public/assets/icons/roofdeck.svg',
+                // data: 'gas',
+                postText: '',
             },
-            gas: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+            supervisor:{
+                svg: 'public/assets/icons/supervisor.svg',
+                // data: 'gas',
+                postText: '',
             },
-            heat: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            hotwater: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            watersewer: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            wifi: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            pets: {
-                baseUrl: "",
-                blackUrl: "public/assets/icons/pets-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            elevator: {
-                baseUrl: "",
-                blackUrl: "public/assets/icons/elevator-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            cable: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            garbagedisposal: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            trashremoval: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            snowremoval: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            fireplace: {
-                baseUrl: "",
-                blackUrl: "public/assets/icons/fireplace-black.svg",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            garage: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            parking: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            concierge: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            superintendent: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            pool: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            porch: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
-            },
-            smoking: {
-                baseUrl: "",
-                blackUrl: "",
-                blueUrl: "",
-                orangeUrl: "",
-                grayUrl: "",
-                description: {
-
-                },
+            balcony:{
+                svg: 'public/assets/icons/balcony.svg',
+                // data: 'gas',
+                postText: '',
             },
         };
         var apartmentExisted = function(newApartment, response){
@@ -301,7 +171,8 @@ angular.module('UnitApp')
             selectOptions: selectOptions,
             createUnit: createUnit,
             apartmentExisted: apartmentExisted,
-            checkPropertyManagerOwnership: checkPropertyManagerOwnership
+            checkPropertyManagerOwnership: checkPropertyManagerOwnership,
+            features: features
         };
     }
 ]);
