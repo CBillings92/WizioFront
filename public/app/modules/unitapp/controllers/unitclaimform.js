@@ -48,6 +48,7 @@ angular.module('UnitApp')
                 if ($scope.singleUnit) {
                     //build an instance of an apartment with the data in localstorage
                     var newApartmentInstance = ApartmentModel.build(FlexGetSetSvc.get('UnitToEdit'));
+                    console.dir(newApartmentInstance);
                     //append the description to the new apartment instance
                     newApartmentInstance.apartmentData.Description = FlexGetSetSvc.get('UnitToEdit').Descriptions[0];
                     //append the propertymanager to the new apartmentInstance
@@ -57,7 +58,7 @@ angular.module('UnitApp')
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                     $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
                     $scope.containingArray.push(newApartmentInstance);
-                    console.dir($scope.containingArray)
+                    console.dir($scope.containingArray);
                 } else {
                     $scope.containingArray.push({});
                 }

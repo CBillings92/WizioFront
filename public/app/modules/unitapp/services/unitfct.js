@@ -28,7 +28,7 @@ angular.module('UnitApp')
                     data: 'baths',
                     label: 'Baths',
                     postText: 'Baths',
-                    selectArray: [1, 2, 3]
+                    selectArray: [1, 2, 3],
                     dataParent: 'Apartment'
                 },
                 laundry: {
@@ -92,8 +92,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'trash',
                     selectObject: {
-                        true:'Yes',
-                        false:'No',
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Lease'
                 },
@@ -115,8 +115,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'gym',
                     selectObject: {
-                        true: 'Yes',
-                        false: 'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -126,8 +126,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'pool',
                     selectObject: {
-                        1: 'Yes',
-                        0: 'No',
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -141,9 +141,8 @@ angular.module('UnitApp')
                     data: 'parking',
                     label: 'Parking',
                     selectObject: {
-                        1:'1 Space',
-                        2:'2 Spaces',
-                        0:'No',
+                        'Yes':true,
+                        'No':false,
                     },
                     postText: '',
                     dataParent: 'Apartment'
@@ -154,8 +153,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'concierge',
                     selectObject: {
-                        1:'Yes',
-                        0:'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -175,8 +174,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'ac',
                     selectObject: {
-                        1:'Yes',
-                        0:'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -186,8 +185,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'roofdeck',
                     selectObject: {
-                        1:'Yes',
-                        0:'No',
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -197,8 +196,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'Super Intendent',
                     selectObject: {
-                        1:'Yes',
-                        0:'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },
@@ -208,8 +207,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'balcony',
                     selectObject: {
-                        1:'Yes',
-                        0:'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },

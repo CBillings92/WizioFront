@@ -62,7 +62,7 @@
                                                                 <label for="" class="control-label">{{ammenity.label}}</label>
                                                                 {{unit.apartmentData[ammenity.data]}}
                                                                 <div class="styled-select" ng-if="ammenity.selectObject">
-                                                                    <select ng-model="unit.apartmentData[ammenity.data]" ng-options="key as value for (key, value) in ammenity.selectObject">
+                                                                    <select ng-model="unit.apartmentData[ammenity.data]" ng-options="key as value for (value, key) in ammenity.selectObject">
                                                                     </select>
                                                                     <div class="select-button">
                                                                         <div class="small-arrow-down"></div>

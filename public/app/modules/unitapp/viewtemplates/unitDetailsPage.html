@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="row unit-details-features">
-                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features">
+                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
                         <div class="" ng-include="feature.svg"></div>
                         <!-- <ng-include ng-src="feature.svg"></ng-inclued> -->
                         <p class="unit-details-feature-text">{{apartment[feature.data] || listing[feature.data]}} {{feature.postText}}</p>

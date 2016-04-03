@@ -42,6 +42,7 @@ angular.module('Models')
                 CreatedById,
                 UpdatedById
             ) {
+                console.dir(superIntendent);
                 this.apartmentData = {
                     id: id || null,
                     street: street || null,
@@ -64,19 +65,20 @@ angular.module('Models')
                     PropertyManagerId: PropertyManagerId || null,
                     route: route || null,
                     laundry: laundry || null,
-                    elevator: elevator || null,
-                    gym: gym|| null,
-                    pool: pool|| null,
-                    parking: parking|| null,
-                    concierge: concierge|| null,
-                    airconditioning: airconditioning|| null,
-                    roofDeck: roofDeck|| null,
-                    superIntendent: superIntendent|| null,
-                    balcony: balcony|| null,
-                    garage: garage|| null,
+                    elevator: elevator,
+                    gym: gym,
+                    pool: pool,
+                    parking: parking,
+                    concierge: concierge,
+                    airconditioning: airconditioning,
+                    roofDeck: roofDeck,
+                    superIntendent: superIntendent,
+                    balcony: balcony,
+                    garage: garage,
                     CreatedById: CreatedById || null,
                     UpdatedById: UpdatedById || null,
                 };
+                console.dir(superIntendent);
             }
             Apartment.prototype.api = function(){
                 var apartment = this;
@@ -213,6 +215,7 @@ angular.module('Models')
                 );
             };
             Apartment.build = function(data) {
+                console.dir(data.superIntendent);
                 return new Apartment(
                     data.id,
                     data.street,
