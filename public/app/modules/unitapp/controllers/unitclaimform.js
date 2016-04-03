@@ -57,6 +57,7 @@ angular.module('UnitApp')
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                     $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
                     $scope.containingArray.push(newApartmentInstance);
+                    console.dir($scope.containingArray)
                 } else {
                     $scope.containingArray.push({});
                 }

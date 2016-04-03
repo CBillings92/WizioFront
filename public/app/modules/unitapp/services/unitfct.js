@@ -5,7 +5,7 @@ angular.module('UnitApp')
         function(ApartmentModel, TokenSvc) {
 
             var selectOptions = {
-                beds: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                // beds: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                 baths: [1, 2, 3],
                 livingSpaces: [0, 1, 2, 3],
                 // amenities: ['Central Air', 'Gym', 'Pool'],
@@ -20,7 +20,7 @@ angular.module('UnitApp')
                     data: "beds",
                     label: 'Beds',
                     postText: 'Beds',
-                    selectOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+                    selectArray: [0, 1, 2, 3, 4, 5, 6, 7, 8],
                     dataParent: 'Apartment'
                 },
                 baths: {
@@ -28,7 +28,7 @@ angular.module('UnitApp')
                     data: 'baths',
                     label: 'Baths',
                     postText: 'Baths',
-                    selectOptions: [1, 2, 3],
+                    selectArray: [1, 2, 3]
                     dataParent: 'Apartment'
                 },
                 laundry: {
@@ -92,8 +92,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'trash',
                     selectObject: {
-                        1:'Yes',
-                        0:'No',
+                        true:'Yes',
+                        false:'No',
                     },
                     dataParent: 'Lease'
                 },
@@ -115,8 +115,8 @@ angular.module('UnitApp')
                     postText: '',
                     label: 'gym',
                     selectObject: {
-                        1: 'Yes',
-                        0: 'No'
+                        true: 'Yes',
+                        false: 'No'
                     },
                     dataParent: 'Apartment'
                 },

@@ -55,16 +55,21 @@
                                         <div class="col-md-12 row" id="formbg" style="padding:10px; border-bottom:0px solid black;">
                                             <!-- >>>>>>> betaDev -->
                                             <form class="">
-
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="" ng-repeat="ammenity in ammenities track by $index" ng-if="ammenity.selectObject">
+                                                        <div class="" ng-repeat="ammenity in ammenities track by $index">
                                                             <div class="col-md-4" ng-show="ammenity.dataParent === 'Apartment'">
                                                                 <label for="" class="control-label">{{ammenity.label}}</label>
-                                                                <div class="styled-select">
+                                                                {{unit.apartmentData[ammenity.data]}}
+                                                                <div class="styled-select" ng-if="ammenity.selectObject">
                                                                     <select ng-model="unit.apartmentData[ammenity.data]" ng-options="key as value for (key, value) in ammenity.selectObject">
-                                                                        <option value="">&nbsp;</option>
-                                                                        <!-- not selected / blank option -->
+                                                                    </select>
+                                                                    <div class="select-button">
+                                                                        <div class="small-arrow-down"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="styled-select" ng-if="ammenity.selectArray" >
+                                                                    <select ng-model=unit.apartmentData[ammenity.data] ng-options="item for item in ammenity.selectArray">
                                                                     </select>
                                                                     <div class="select-button">
                                                                         <div class="small-arrow-down"></div>
