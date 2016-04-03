@@ -85,12 +85,13 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/smoking.svg',
                     data: 'smoking',
                     postText: '',
+                    label: 'Smoking'
                 },
                 trash: {
                     svg: 'public/assets/icons/trash.svg',
                     data: 'trashRemoval',
                     postText: '',
-                    label: 'trash',
+                    label: 'Trash Removal',
                     selectObject: {
                         'Yes':true,
                         'No':false,
@@ -124,7 +125,7 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/pool.svg',
                     data: 'pool',
                     postText: '',
-                    label: 'pool',
+                    label: 'Pool',
                     selectObject: {
                         'Yes':true,
                         'No':false,
