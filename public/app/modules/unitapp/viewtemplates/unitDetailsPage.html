@@ -82,12 +82,12 @@
                     </button>
                 </div>
                 <div class="row unit-details-features">
-                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
+                    <div class="col-xs-3 unit-details-feature-new" ng-class="[feature.st0, feature.st1, feature.st2]" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
                         <div class="" ng-include="feature.svg"></div>
-                        <p class="unit-details-feature-text" ng-show="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">{{::apartment[feature.data] || listing[feature.data]}} {{::feature.postText}}</p>
+                        <p class="unit-details-feature-text" ng-show="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">
+                            {{::apartment[feature.data] || listing[feature.data]}} {{::feature.postText}}</p>
                         <p class="unit-details-feature-text" ng-hide="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">{{::feature.label}}</p>
                     </div>
-
                 </div>
             </div>
             <div class="col-sm-6 unit-details-description">

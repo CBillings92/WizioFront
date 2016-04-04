@@ -21,7 +21,8 @@ angular.module('UnitApp')
                     label: 'Beds',
                     postText: 'Beds',
                     selectArray: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                    dataParent: 'Apartment'
+                    dataParent: 'Apartment',
+                    st0: 'svg-stroke-gray'
                 },
                 baths: {
                     svg: 'public/assets/icons/bath.svg',
@@ -29,7 +30,8 @@ angular.module('UnitApp')
                     label: 'Baths',
                     postText: 'Baths',
                     selectArray: [1, 2, 3],
-                    dataParent: 'Apartment'
+                    dataParent: 'Apartment',
+                    st0: 'svg-stroke-gray'
                 },
                 laundry: {
                     svg: 'public/assets/icons/laundry.svg',
@@ -41,6 +43,7 @@ angular.module('UnitApp')
                         'In Building': 'In Building',
                         'None': 'None'
                     },
+                    st0: 'svg-stroke-gray',
                     dataParent: 'Apartment'
                 },
                 pets: {
@@ -53,6 +56,7 @@ angular.module('UnitApp')
                         'Dogs OK': 'Dogs OK',
                         'Cats and Dogs OK': 'Cats and Dogs OK'
                     },
+                    st0: 'svg-stroke-gray',
                     dataParent: 'Lease'
                 },
                 elevators: {
@@ -64,6 +68,7 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st0: 'svg-stroke-gray',
                     dataParent: 'Apartment'
                 },
                 electric: {
@@ -71,28 +76,35 @@ angular.module('UnitApp')
                     data: 'electricIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Electric'
+                    label: 'Electric',
+                    st0: 'svg-stroke-gray-st0',
                 },
                 gas: {
                     svg: 'public/assets/icons/gas.svg',
                     data: 'gasIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Gas'
+                    label: 'Gas',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
+                    st2: 'svg-stroke-gray-st2',
                 },
                 heat: {
                     svg: 'public/assets/icons/heat.svg',
                     data: 'heatIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Heat'
+                    label: 'Heat',
+                    st0: 'svg-stroke-gray-st0',
                 },
                 smoking: {
                     svg: 'public/assets/icons/smoking.svg',
                     data: 'smoking',
                     postText: '',
                     label: 'Smoking',
-                    dataParent: 'Lease'
+                    dataParent: 'Lease',
+                    st0: 'svg-stroke-gray-fill0',
+                    st1: 'svg-stroke-gray-st1',
                 },
                 trash: {
                     svg: 'public/assets/icons/trash.svg',
@@ -103,6 +115,7 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st1: 'svg-stroke-gray-st0',
                     dataParent: 'Lease'
                 },
                 water: {
@@ -110,14 +123,19 @@ angular.module('UnitApp')
                     data: 'waterSewerIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Water'
+                    label: 'Water',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
                 },
                 wifi: {
                     svg: 'public/assets/icons/wifi.svg',
                     data: 'wifiIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Wifi'
+                    label: 'Wifi',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
+
                 },
                 gym: {
                     svg: 'public/assets/icons/gym.svg',
@@ -128,6 +146,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
                     dataParent: 'Apartment'
                 },
                 pool: {
@@ -139,6 +159,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
                     dataParent: 'Apartment'
                 },
                 nosmoking: {
@@ -155,6 +177,9 @@ angular.module('UnitApp')
                         'No':false,
                     },
                     postText: '',
+                    st2: 'svg-stroke-gray-fill0',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
                     dataParent: 'Apartment'
                 },
                 concierge: {
@@ -178,7 +203,9 @@ angular.module('UnitApp')
                     data: 'cableIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Cable'
+                    label: 'Cable',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1'
                 },
                 ac: {
                     svg: 'public/assets/icons/ac.svg',
@@ -189,7 +216,9 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
-                    dataParent: 'Apartment'
+                    dataParent: 'Apartment',
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1'
                 },
                 roofDeck: {
                     svg: 'public/assets/icons/roofdeck.svg',
@@ -200,6 +229,9 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
+                    st2: 'svg-stroke-gray-st2',
                     dataParent: 'Apartment'
                 },
                 supervisor: {
@@ -211,6 +243,9 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    st0: 'svg-stroke-gray-st0',
+                    st1: 'svg-stroke-gray-st1',
+                    // st2: 'svg-stroke-gray-nofill1',
                     dataParent: 'Apartment'
                 },
                 balcony: {

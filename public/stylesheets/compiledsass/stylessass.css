@@ -6755,6 +6755,21 @@ body {
 .svg-stroke-gray svg * {
   stroke: #8B93A1; }
 
+.svg-stroke-gray-st0 svg .st0 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-fill0 svg .st0 {
+  fill: #8B93A1 !important; }
+
+.svg-stroke-gray-st1 svg .st1 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-st2 svg .st2 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-fill2 svg .st2 {
+  stroke: #8B93A1 !important; }
+
 .svg-stroke-path-black svg path {
   stroke: #000000; }
   @media (max-width: 767px) {
