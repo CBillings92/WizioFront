@@ -6,11 +6,11 @@ angular.module('Models')
         'WizioConfig',
         function($resource, TokenSvc, FlexGetSetSvc, WizioConfig) {
             function Lease(id, dateStart, dateEnd, snowRemoval, smoking, pets,
-                electricIncluded, heatIncluded, hotWaterIncluded, waterIncluded,
+                electricIncluded, heatIncluded, hotWaterIncluded, waterSewerIncluded,
                 gasIncluded, cableIncluded, internetIncluded, trashRemoval,
                 monthsRentFree, lastMonthsRentNeeded, firstMonthsRentNeeded,
                 brokerFeeNeeded, newKeyFeeNeeded, securityDeposit, secDepositNeeded,
-                monthlyRent, brokerFeeAmount, newKeyFeeAmount, Description) {
+                monthlyRent, brokerFeeAmount, newKeyFeeAmount, Description, wifi) {
                 this.leaseData = {
                     id: id,
                     dateStart : dateStart,
@@ -21,7 +21,7 @@ angular.module('Models')
                     electricIncluded : electricIncluded,
                     heatIncluded : heatIncluded,
                     hotWaterIncluded : hotWaterIncluded,
-                    waterIncluded : waterIncluded,
+                    waterSewerIncluded : waterSewerIncluded,
                     gasIncluded : gasIncluded,
                     cableIncluded : cableIncluded,
                     internetIncluded : internetIncluded,
@@ -36,7 +36,8 @@ angular.module('Models')
                     monthlyRent : monthlyRent,
                     brokerFeeAmount : brokerFeeAmount,
                     newKeyFeeAmount : newKeyFeeAmount,
-                    Description: Description
+                    Description: Description,
+                    wifiIncluded: wifi
                 };
             }
 
@@ -94,7 +95,8 @@ angular.module('Models')
                         data.monthlyRent,
                         data.brokerFeeAmount,
                         data.newKeyFeeAmount,
-                        data.Description
+                        data.Description,
+                        data.wifi
                 );
             };
 

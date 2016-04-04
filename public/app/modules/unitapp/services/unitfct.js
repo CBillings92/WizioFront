@@ -70,22 +70,26 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/electric.svg',
                     data: 'electric',
                     postText: '',
+                    dataParent: 'Lease'
                 },
                 gas: {
                     svg: 'public/assets/icons/gas.svg',
                     data: 'gas',
                     postText: '',
+                    dataParent: 'Lease'
                 },
                 heat: {
                     svg: 'public/assets/icons/heat.svg',
                     data: 'heat',
                     postText: '',
+                    dataParent: 'Lease'
                 },
                 smoking: {
                     svg: 'public/assets/icons/smoking.svg',
                     data: 'smoking',
                     postText: '',
-                    label: 'Smoking'
+                    label: 'Smoking',
+                    dataParent: 'Lease'
                 },
                 trash: {
                     svg: 'public/assets/icons/trash.svg',
@@ -103,12 +107,14 @@ angular.module('UnitApp')
                     data: 'waterSewerIncluded',
                     postText: '',
                     dataParent: 'Lease',
+                    label: 'Water'
                 },
                 wifi: {
                     svg: 'public/assets/icons/wifi.svg',
                     data: 'wifiIncluded',
                     postText: '',
                     dataParent: 'Lease',
+                    label: 'Wifi'
                 },
                 gym: {
                     svg: 'public/assets/icons/gym.svg',
@@ -168,6 +174,7 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/cable.svg',
                     data: 'cable',
                     postText: '',
+                    dataParent: 'Lease'
                 },
                 ac: {
                     svg: 'public/assets/icons/ac.svg',
