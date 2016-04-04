@@ -149,7 +149,7 @@ angular.module('UnitApp')
                 if ($scope.containingArray.length === 1) {
                     return;
                 } else {
-                    $scope.containingArray[unitIndex].splice(unitIndex, 1);
+                    $scope.containingArray.splice(unitIndex, 1);
                     return;
                 }
             }

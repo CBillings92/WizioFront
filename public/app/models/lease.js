@@ -39,7 +39,6 @@ angular.module('Models')
                     Description: Description,
                     wifiIncluded: wifi
                 };
-                console.dir(this);
             }
 
             var api = {

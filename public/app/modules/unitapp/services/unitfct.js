@@ -68,21 +68,24 @@ angular.module('UnitApp')
                 },
                 electric: {
                     svg: 'public/assets/icons/electric.svg',
-                    data: 'electric',
+                    data: 'electricIncluded',
                     postText: '',
-                    dataParent: 'Lease'
+                    dataParent: 'Lease',
+                    label: 'Electric'
                 },
                 gas: {
                     svg: 'public/assets/icons/gas.svg',
-                    data: 'gas',
+                    data: 'gasIncluded',
                     postText: '',
-                    dataParent: 'Lease'
+                    dataParent: 'Lease',
+                    label: 'Gas'
                 },
                 heat: {
                     svg: 'public/assets/icons/heat.svg',
-                    data: 'heat',
+                    data: 'heatIncluded',
                     postText: '',
-                    dataParent: 'Lease'
+                    dataParent: 'Lease',
+                    label: 'Heat'
                 },
                 smoking: {
                     svg: 'public/assets/icons/smoking.svg',
@@ -120,7 +123,7 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/gym.svg',
                     data: 'gym',
                     postText: '',
-                    label: 'gym',
+                    label: 'Gym',
                     selectObject: {
                         'Yes':true,
                         'No':false,
@@ -158,7 +161,7 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/concierge.svg',
                     data: 'concierge',
                     postText: '',
-                    label: 'concierge',
+                    label: 'Concierge',
                     selectObject: {
                         'Yes':true,
                         'No':false,
@@ -172,15 +175,16 @@ angular.module('UnitApp')
                 },
                 cable: {
                     svg: 'public/assets/icons/cable.svg',
-                    data: 'cable',
+                    data: 'cableIncluded',
                     postText: '',
-                    dataParent: 'Lease'
+                    dataParent: 'Lease',
+                    label: 'Cable'
                 },
                 ac: {
                     svg: 'public/assets/icons/ac.svg',
                     data: 'airconditioning',
                     postText: '',
-                    label: 'ac',
+                    label: 'Air Conditioning',
                     selectObject: {
                         'Yes':true,
                         'No':false,
@@ -191,7 +195,7 @@ angular.module('UnitApp')
                     svg: 'public/assets/icons/roofdeck.svg',
                     data: 'roofDeck',
                     postText: '',
-                    label: 'roofdeck',
+                    label: 'Roof Deck',
                     selectObject: {
                         'Yes':true,
                         'No':false,
@@ -211,7 +215,7 @@ angular.module('UnitApp')
                 },
                 balcony: {
                     svg: 'public/assets/icons/balcony.svg',
-                    data: 'balcony',
+                    data: 'Balcony',
                     postText: '',
                     label: 'balcony',
                     selectObject: {

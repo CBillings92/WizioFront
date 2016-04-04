@@ -42,7 +42,6 @@ angular.module('Models')
                 CreatedById,
                 UpdatedById
             ) {
-                console.dir(superIntendent);
                 this.apartmentData = {
                     id: id || null,
                     street: street || null,
