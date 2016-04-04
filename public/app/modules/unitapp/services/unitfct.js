@@ -10,7 +10,7 @@ angular.module('UnitApp')
                 livingSpaces: [0, 1, 2, 3],
                 // amenities: ['Central Air', 'Gym', 'Pool'],
                 laundry: ['In Unit', 'In Building', 'None'],
-                elevator: ['Yes', 'No'],
+                // elevator: ['Yes', 'No'],
                 makeCurrentListing: ['Yes', 'No'],
                 pmBusinessOrPerson: ['Business', 'Person']
             };
@@ -53,7 +53,7 @@ angular.module('UnitApp')
                         'Dogs OK': 'Dogs OK',
                         'Cats and Dogs OK': 'Cats and Dogs OK'
                     },
-                    dataParent: 'Apartment'
+                    dataParent: 'Lease'
                 },
                 elevators: {
                     svg: 'public/assets/icons/elevator.svg',
@@ -61,8 +61,8 @@ angular.module('UnitApp')
                     label: 'Elevator',
                     postText: '',
                     selectObject: {
-                        'Yes': 'Yes',
-                        'No': 'No'
+                        'Yes':true,
+                        'No':false,
                     },
                     dataParent: 'Apartment'
                 },

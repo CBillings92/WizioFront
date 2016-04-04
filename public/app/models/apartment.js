@@ -78,7 +78,6 @@ angular.module('Models')
                     CreatedById: CreatedById || null,
                     UpdatedById: UpdatedById || null,
                 };
-                console.dir(superIntendent);
             }
             Apartment.prototype.api = function(){
                 var apartment = this;
@@ -121,7 +120,6 @@ angular.module('Models')
                 var apartmentData = this.apartmentData;
                 return $q(function(resolve, reject){
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
-                        console.dir(response);
                         for(var key in response){
                             if(response[key] === 'Longitude'){
                                 apartment.Longitude = parseFloat(response[key]).toFixed(6);
@@ -140,7 +138,10 @@ angular.module('Models')
                 var duplicate = {};
                 for(var key in this.apartmentData){
                     if(this.apartmentData.hasOwnProperty(key)){
-                        duplicate[key] = this.apartmentData[key];
+                        var count = 0;
+                        if(key !== 'id'){
+                            duplicate[key] = this.apartmentData[key];
+                        }
                     }
                 }
                 return duplicate;
