@@ -39,6 +39,7 @@ angular.module('Models')
                     Description: Description,
                     wifiIncluded: wifi
                 };
+                console.dir(this);
             }
 
             var api = {
@@ -96,7 +97,7 @@ angular.module('Models')
                         data.brokerFeeAmount,
                         data.newKeyFeeAmount,
                         data.Description,
-                        data.wifi
+                        data.wifiIncluded
                 );
             };
 
