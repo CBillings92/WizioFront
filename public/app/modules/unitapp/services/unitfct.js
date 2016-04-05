@@ -64,6 +64,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 electric: {
@@ -103,6 +105,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Lease'
                 },
                 water: {
@@ -110,7 +114,9 @@ angular.module('UnitApp')
                     data: 'waterSewerIncluded',
                     postText: '',
                     dataParent: 'Lease',
-                    label: 'Water'
+                    label: 'Water',
+                    'trueValue': 1,
+                    'falseValue': 0,
                 },
                 wifi: {
                     svg: 'public/assets/icons/wifi.svg',
@@ -128,6 +134,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 pool: {
@@ -139,6 +147,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 nosmoking: {
@@ -154,6 +164,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     postText: '',
                     dataParent: 'Apartment'
                 },
@@ -166,6 +178,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 cats: {
@@ -189,6 +203,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 roofDeck: {
@@ -200,6 +216,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 supervisor: {
@@ -211,6 +229,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 balcony: {
@@ -222,6 +242,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
             };

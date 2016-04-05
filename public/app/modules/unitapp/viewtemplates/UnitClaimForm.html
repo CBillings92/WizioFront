@@ -57,31 +57,35 @@
                                             <form class="">
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="" ng-repeat="ammenity in ammenities track by $index">
-                                                            <div class="col-md-4" ng-show="ammenity.dataParent === 'Apartment'">
-                                                                <label for="" class="control-label">{{ammenity.label}}</label>
-                                                                <div class="styled-select" ng-if="ammenity.selectObject">
+                                                        <div class="col-md-6" ng-if="ammenity.selectArray && ammenity.dataParent === 'Apartment'" ng-repeat="ammenity in ammenities track by $index">
+                                                            <label class="control-label">{{ammenity.label}}</label>
+                                                            <div class="styled-select" ng-if="ammenity.selectArray">
+
+                                                                <select class="" ng-model=unit.apartmentData[ammenity.data] ng-options="item for item in ammenity.selectArray">
+                                                                </select>
+                                                                <div class="select-button">
+                                                                    <div class="small-arrow-down"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4" ng-if="!ammenity.selectArray && ammenity.dataParent === 'Apartment'" ng-repeat="ammenity in ammenities track by $index">
+                                                            <label class="" for="" ng-if="ammenity.trueValue">{{ammenity.label}}
+                                                                <input name="name" ng-false-value="false" ng-model="unit.apartmentData[ammenity.data]" ng-true-value="true" type='checkbox' value="">
+                                                            </label>
+                                                        </div>
+                                                        <!-- <div class="styled-select" ng-if="ammenity.selectObject">
                                                                     <select ng-model="unit.apartmentData[ammenity.data]" ng-options="key as value for (value, key) in ammenity.selectObject">
                                                                     </select>
                                                                     <div class="select-button">
                                                                         <div class="small-arrow-down"></div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="styled-select" ng-if="ammenity.selectArray" >
-                                                                    <select ng-model=unit.apartmentData[ammenity.data] ng-options="item for item in ammenity.selectArray">
-                                                                    </select>
-                                                                    <div class="select-button">
-                                                                        <div class="small-arrow-down"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                                </div> -->
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <label class="control-label">Apartment Description</label>
-                                                        <textarea class="col-md-12" style="border: 1px solid black" name="name" ng-model="unit.apartmentData.Description.description" rows="4"></textarea>
+                                                        <textarea class="col-md-12" name="name" ng-model="unit.apartmentData.Description.description" rows="4" style="border: 1px solid black"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group" ng-show="user.userType === 3">
@@ -125,9 +129,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-
-                                                </div>
+                                                <div class="form-group"></div>
                                                 <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
                                                     <div class="row">
                                                         <div class="col-md-12">
