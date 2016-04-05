@@ -31,7 +31,20 @@ angular.module('UnitApp')
                 $scope.user = TokenSvc.decode();
                 //get the selectOptions for all of the drop downs on the form
                 $scope.selectOptions = UnitFct.selectOptions;
-                $scope.ammenities = UnitFct.ammenities;
+                var allAmmenities = UnitFct.ammenities;
+                $scope.ammenitiesDropdown = {};
+                $scope.ammenitiesCheckbox = {};
+                for(var key in allAmmenities){
+                    console.dir(allAmmenities);
+                    if(allAmmenities[key].dataParent === 'Apartment'){
+                        console.dir(allAmmenities[key]);
+                        if(typeof(allAmmenities[key].selectArray) !== 'undefined'){
+                            $scope.ammenitiesDropdown[key] = allAmmenities[key];
+                        } else {
+                            $scope.ammenitiesCheckbox[key] = allAmmenities[key];
+                        }
+                    }
+                }
                 //for handling multiple property managers in the future
                 $scope.multiplePMBusinesses = false;
                 if ($scope.user.userType === 2 || $scope.user.userType === 4) {

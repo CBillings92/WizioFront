@@ -38,11 +38,7 @@ angular.module('UnitApp')
                     data: 'laundry',
                     label: 'Laundry',
                     postText: '',
-                    selectObject: {
-                        'In Unit': 'In Unit',
-                        'In Building': 'In Building',
-                        'None': 'None'
-                    },
+                    selectArray: ['In Unit', 'In Building', 'None'],
                     st0: 'svg-stroke-gray',
                     dataParent: 'Apartment'
                 },
@@ -51,11 +47,7 @@ angular.module('UnitApp')
                     data: 'pets',
                     label: 'Pets',
                     postText: '',
-                    selectObject: {
-                        'Cats OK': 'Cats OK',
-                        'Dogs OK': 'Dogs OK',
-                        'Cats and Dogs OK': 'Cats and Dogs OK'
-                    },
+                    selectArray: ['Cats OK', 'Dogs OK', 'Cats and Dogs OK', 'No Pets'],
                     st0: 'svg-stroke-gray',
                     dataParent: 'Lease'
                 },
@@ -69,6 +61,8 @@ angular.module('UnitApp')
                         'No':false,
                     },
                     st0: 'svg-stroke-gray',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 electric: {
@@ -116,6 +110,8 @@ angular.module('UnitApp')
                         'No':false,
                     },
                     st1: 'svg-stroke-gray-st0',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Lease'
                 },
                 water: {
@@ -126,6 +122,8 @@ angular.module('UnitApp')
                     label: 'Water',
                     st0: 'svg-stroke-gray-st0',
                     st1: 'svg-stroke-gray-st1',
+                    'trueValue': 1,
+                    'falseValue': 0,
                 },
                 wifi: {
                     svg: 'public/assets/icons/wifi.svg',
@@ -148,6 +146,8 @@ angular.module('UnitApp')
                     },
                     st0: 'svg-stroke-gray-st0',
                     st1: 'svg-stroke-gray-st1',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 pool: {
@@ -161,6 +161,8 @@ angular.module('UnitApp')
                     },
                     st0: 'svg-stroke-gray-st0',
                     st1: 'svg-stroke-gray-st1',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 nosmoking: {
@@ -176,6 +178,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     postText: '',
                     st2: 'svg-stroke-gray-fill0',
                     st0: 'svg-stroke-gray-st0',
@@ -191,6 +195,8 @@ angular.module('UnitApp')
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 cats: {
@@ -218,7 +224,9 @@ angular.module('UnitApp')
                     },
                     dataParent: 'Apartment',
                     st0: 'svg-stroke-gray-st0',
-                    st1: 'svg-stroke-gray-st1'
+                    st1: 'svg-stroke-gray-st1',
+                    'trueValue': 1,
+                    'falseValue': 0,
                 },
                 roofDeck: {
                     svg: 'public/assets/icons/roofdeck.svg',
@@ -232,6 +240,8 @@ angular.module('UnitApp')
                     st0: 'svg-stroke-gray-st0',
                     st1: 'svg-stroke-gray-st1',
                     st2: 'svg-stroke-gray-st2',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 supervisor: {
@@ -246,17 +256,21 @@ angular.module('UnitApp')
                     st0: 'svg-stroke-gray-st0',
                     st1: 'svg-stroke-gray-st1',
                     // st2: 'svg-stroke-gray-nofill1',
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
                 balcony: {
                     svg: 'public/assets/icons/balcony.svg',
-                    data: 'Balcony',
+                    data: 'balcony',
                     postText: '',
                     label: 'balcony',
                     selectObject: {
                         'Yes':true,
                         'No':false,
                     },
+                    'trueValue': 1,
+                    'falseValue': 0,
                     dataParent: 'Apartment'
                 },
             };
