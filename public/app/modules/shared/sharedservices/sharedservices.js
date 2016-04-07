@@ -142,14 +142,13 @@ angular.module('SharedServiceApp')
                     params: {
                         address: val,
                         sensor: false,
-                        components: 'country:US|administrative_area:MA'
+                        components: 'country:US'
                     }
                 }).then(function(response) {
                     if(sessionStorageVar === 'Staging-ApartmentClaims'){
                         ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
                         ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);
                     } else {
-                        console.dir(response);
                         FlexGetSetSvc.set(response, sessionStorageVar);
                     }
                     return response.data.results.map(function(item) {

@@ -64,10 +64,6 @@ angular.module('MainApp')
                             controller: 'AdminPanelMainCtrl'
                         }
                     },
-                    data: {
-                        requireLogin: true,
-                        userType: 0
-                    }
                 })
                 .state('AdminPanel.Main', {
                     url: '/wizioadminpanel',
@@ -93,6 +89,15 @@ angular.module('MainApp')
                             controller: 'AdminCreateAssignmentCtrl'
                         }
                     }
+                })
+                .state('AdminPanel.AddVR', {
+                    url: '/wizioadminpanel/addvr',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'addVRlist.html',
+                            controller: 'AdminAddVrListCtrl'
+                        }
+                    },
                 })
                 .state('Styleguide', {
                     url: '/about/styleguide',
@@ -416,7 +421,7 @@ angular.module('MainApp')
                     url: '/claim',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm.html',
                             controller: 'UnitClaimFormCtrl'
                         }
                     },
@@ -426,7 +431,7 @@ angular.module('MainApp')
                     url: '/edit',
                     views: {
                         'UnitMain': {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitclaimform.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'UnitClaimForm.html',
                             controller: 'UnitClaimFormCtrl'
                         }
                     },

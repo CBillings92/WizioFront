@@ -1,7 +1,8 @@
-
 <div class="modal-header">
-    <h2>Apartment: {{apartment.concatAddr}}</h2>
-    <h2>Unit #: {{apartment.unitNum}}</h2>
+    <close-modal-dirv></close-modal-dirv>
+    <h3>This unit is already created and owned:</h3>
+    <h5>Apartment: {{apartment.concatAddr}}</h5>
+    <h5>Unit #: {{apartment.unitNum}}</h5>
 </div>
 <div class="modal-body">
     <div class="">
@@ -19,8 +20,10 @@
     <div class="">
         Property Manager: {{apartment.PropertyManager.businessName || apartment.PropertyManager.firstName + ' ' + apartment.PropertyManager.lastName}}
     </div>
+    <div class="">
+        <h5>If you feel this was in error please contact Devon@wizio.co and we will work with you to resolve this matter ASAP!</h5>
+    </div>
 </div>
 <div class="modal-footer">
-    <button class="btn" data-ng-click="useData()" type="button">Edit this listing</button>
-    <button class="btn btn-primary" data-ng-click="dontUseData();">Don't edit this listing</button>
+    <button class="btn btn-primary" data-ng-click="dontUseData();">Ok</button>
 </div>

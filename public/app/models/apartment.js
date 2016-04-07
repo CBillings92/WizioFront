@@ -30,6 +30,15 @@ angular.module('Models')
                 route,
                 laundry,
                 elevator,
+                gym,
+                pool,
+                parking,
+                concierge,
+                airconditioning,
+                roofDeck,
+                superIntendent,
+                balcony,
+                garage,
                 CreatedById,
                 UpdatedById
             ) {
@@ -55,7 +64,16 @@ angular.module('Models')
                     PropertyManagerId: PropertyManagerId || null,
                     route: route || null,
                     laundry: laundry || null,
-                    elevator: elevator || null,
+                    elevator: elevator,
+                    gym: gym,
+                    pool: pool,
+                    parking: parking,
+                    concierge: concierge,
+                    airconditioning: airconditioning,
+                    roofDeck: roofDeck,
+                    superIntendent: superIntendent,
+                    balcony: balcony,
+                    garage: garage,
                     CreatedById: CreatedById || null,
                     UpdatedById: UpdatedById || null,
                 };
@@ -101,7 +119,6 @@ angular.module('Models')
                 var apartmentData = this.apartmentData;
                 return $q(function(resolve, reject){
                     UnitCreateSvc.parseGeocodeData(apartmentData.concatAddr, null, function(err, response){
-                        console.dir(response);
                         for(var key in response){
                             if(response[key] === 'Longitude'){
                                 apartment.Longitude = parseFloat(response[key]).toFixed(6);
@@ -120,7 +137,10 @@ angular.module('Models')
                 var duplicate = {};
                 for(var key in this.apartmentData){
                     if(this.apartmentData.hasOwnProperty(key)){
-                        duplicate[key] = this.apartmentData[key];
+                        var count = 0;
+                        if(key !== 'id'){
+                            duplicate[key] = this.apartmentData[key];
+                        }
                     }
                 }
                 return duplicate;
@@ -195,6 +215,7 @@ angular.module('Models')
                 );
             };
             Apartment.build = function(data) {
+                console.dir(data.superIntendent);
                 return new Apartment(
                     data.id,
                     data.street,
@@ -222,6 +243,15 @@ angular.module('Models')
                     data.route,
                     data.laundry,
                     data.elevator,
+                    data.gym,
+                    data.pool,
+                    data.parking,
+                    data.concierge,
+                    data.airconditioning,
+                    data.roofDeck,
+                    data.superIntendent,
+                    data.balcony,
+                    data.garage,
                     data.CreatedById,
                     data.UpdatedById
                 );

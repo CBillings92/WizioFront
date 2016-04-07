@@ -15,7 +15,6 @@ angular.module('SharedServiceApp')
                         id: apartmentURLID
                     }, function(apartmentResponse) {
                         response = SearchFct.formatSearchResults([apartmentResponse]);
-                        console.dir(response);
                         resolve(response);
                     });
                 });
@@ -24,7 +23,6 @@ angular.module('SharedServiceApp')
             //save the data to sessionStorage associated with that name
             var set = function(apartment, sessionStorageVar) {
                 //save data to sessionStorage with dynamic variable name
-                console.dir(apartment);
                 if (sessionStorageVar) {
                     $sessionStorage[sessionStorageVar] = apartment;
                 }
@@ -59,26 +57,22 @@ angular.module('SharedServiceApp')
             var checkApartment = function(callback) {
                 var apartmentURLID = $stateParams.id;
                 var apartmentInSession = $sessionStorage.apartmentSelected;
-                console.dir(apartmentInSession);
                 //check if there is an apartment in session
                 if (!apartmentInSession) {
                     //if no apartment in session, make API call
                     queryApartment(apartmentURLID)
                         .then(function(response) {
                             // SearchFct.formatSearchResults()
-                            console.dir(response);
                             callback(response);
                         });
                 } else {
                     //if the current apartment ID matches the ID in session
                     if (apartmentURLID === apartmentInSession.ApartmentId) {
-                        console.dir(apartmentInSession);
                         //return apartment in session.
                         return callback(apartmentInSession);
                     } else {
                         queryApartment(apartmentURLID)
                             .then(function(response) {
-                                console.dir(response);
                                 callback(response);
                             });
                     }

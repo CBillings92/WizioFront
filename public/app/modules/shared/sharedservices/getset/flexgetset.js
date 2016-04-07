@@ -18,7 +18,6 @@ angular.module('SharedServiceApp')
                 if (dataObjectStoreKey) {
                     dataObjectStore[dataObjectStoreKey] = data;
                 }
-                console.dir(data);
                 dataStore.push(data);
                 return;
             };

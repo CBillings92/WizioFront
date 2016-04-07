@@ -10,16 +10,13 @@ angular.module('ApplicationApp')
         $scope.modalData = modalData;
 
         $scope.applications = lodash.groupBy(modalData, 'ApplicationId');
-        console.dir($scope.applications);
         $scope.applicationArray = [];
-        console.dir($scope.applications);
         for(var key in $scope.applications){
             if($scope.applications.hasOwnProperty(key)){
                 $scope.applicationArray.push([$scope.applications[key]]);
             }
         }
         $scope.applicationArray = lodash.flatten($scope.applicationArray);
-        console.dir($scope.applicationArray);
 
         $scope.viewDetails = function(applicationIndex){
             FlexGetSetSvc.set($scope.applicationArray[applicationIndex], "ApplicationDetails", "ApplicationDetails");

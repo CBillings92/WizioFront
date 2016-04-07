@@ -25,7 +25,8 @@ angular.module('LeaseApp')
             $scope.editingListing = $state.current.name === 'Account.Lease.Edit' ? true : false;
             //if we are editing a current listing/upcoming lease
             if($scope.editingListing){
-                var leases = FlexGetSetSvc.get('EditCurrentListing').Leases;
+                $scope.apartment = FlexGetSetSvc.get('EditCurrentListing');
+                var leases = $scope.apartment.Leases;
                 //if there are two leases and the second lease in the array is
                 //the current listing, show that on the form to edit
                 if(leases.length == 2 && leases[1].currentListing == 1){
@@ -45,7 +46,6 @@ angular.module('LeaseApp')
             //either edits a current lease or saves a current lease.
             $scope.formSubmission = function(action){
                 $scope.lease.UserId = TokenSvc.decode().id;
-                console.dir($scope.lease);
                 LeaseFct[action]($scope.lease, function(response){
                     $state.go('Account.Dashboard.Main');
                 });

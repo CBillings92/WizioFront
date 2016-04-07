@@ -6364,6 +6364,13 @@ div[class^='color__box'], div[class*=' color__box'] {
 .styleguide-example-make-black svg * {
   stroke: #000000; }
 
+.styleguide-example-make-black svg {
+  height: 50px;
+  width: 50%; }
+
+.styleguide-example-make-black svg path {
+  stroke: #000000; }
+
 .styleguide-example-make-blue svg * {
   stroke: #7A9DD1; }
 
@@ -6714,6 +6721,62 @@ body {
   .unit-details-info {
     max-width: 450px; } }
 
+.unit-details-feature-new {
+  position: relative;
+  padding-bottom: 45px;
+  text-align: center; }
+
+.unit-details-feature-new svg {
+  width: 100%;
+  height: 40px;
+  min-width: 30px; }
+  @media (min-width: 768px) {
+    .unit-details-feature-new svg {
+      height: 50px; } }
+  @media (max-width: 767px) {
+    .unit-details-feature-new svg {
+      max-width: 40px; } }
+
+.unit-details-feature-text {
+  color: #8B93A1;
+  text-align: center;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  text-align: center; }
+  @media (max-width: 767px) {
+    .unit-details-feature-text {
+      font-size: 1.3rem; } }
+
+.svg-stroke-black svg * {
+  stroke: #000000; }
+
+.svg-stroke-gray svg * {
+  stroke: #8B93A1; }
+
+.svg-stroke-gray-st0 svg .st0 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-fill0 svg .st0 {
+  fill: #8B93A1 !important; }
+
+.svg-stroke-gray-st1 svg .st1 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-st2 svg .st2 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-gray-fill2 svg .st2 {
+  stroke: #8B93A1 !important; }
+
+.svg-stroke-path-black svg path {
+  stroke: #000000; }
+  @media (max-width: 767px) {
+    .svg-stroke-path-black svg path {
+      width: 50%;
+      max-width: 40px; } }
+
 .unit-details-feature {
   position: relative;
   text-align: center;
@@ -6884,6 +6947,20 @@ body {
 
 .modal-content {
   border: 0; }
+
+.brokerage-access-boxes {
+  background-color: white;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  transition: background-color 0.5s ease-in-out; }
+
+.brokerage-access-boxes-fill {
+  background-color: #f79739;
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+  transition: background-color 0.5s ease-in-out; }
 
 .acct-modal .modal-header {
   border-bottom: 0; }

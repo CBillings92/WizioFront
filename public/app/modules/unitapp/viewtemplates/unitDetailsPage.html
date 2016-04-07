@@ -1,7 +1,8 @@
 <div class="unit-details">
     <div class="container unit-details-header">
         <div class="unit-details-action-btn-wrapper">
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied">
+                <i class="fa fa-check"></i> Contact Representative
             </button>
             <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
                 <span class="hidden-xs"> to favorites</span>
@@ -12,8 +13,8 @@
             <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
             <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
         </div>
-        <h2 class="unit-details-header__heading unit-details__orange" style="padding-bottom:0px;">{{ apartment.street }}</h2>
-        <h4 class="unit-details__orange" style="padding-top:2px;">By {{ listing.Brokerage.businessName|| listing.PropertyManager.businessName || listing.PropertyManager.fullName}}</h4>
+        <h2 class="unit-details-header__heading unit-details__orange" style="padding-bottom:0px;">{{:: apartment.street }}</h2>
+        <h4 class="unit-details__orange" style="padding-top:2px;">By {{:: listing.Brokerage.businessName|| listing.PropertyManager.businessName || listing.PropertyManager.fullName}}</h4>
     </div>
     <div class="container unit-details-media-container">
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
@@ -44,10 +45,10 @@
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
-                    <div ng-repeat="photo in media.vrphoto track by $index" class="unit-details-media-tab-content-picker"  style="margin:0;cursor:pointer;">
-                            <div ng-click="changePhoto($index)" class="btn btn-search-bar center_button" style="width:7em;" >
-                                {{photo.title}}
-                            </div>
+                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
+                        <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
+                            {{photo.title}}
+                        </div>
                         <!--  style="text-decoration:none;color:black;text-align:center; -->
                         <!-- style="width:100px; height:50px;vertical-align:middle;display:table-cell;margin:0px;5px;0px;5px;border:1px solid black;background-color:lightgray" -->
                         <!-- <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" /> -->
@@ -60,89 +61,54 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="unit-details-info">
-                    <h3 class="unit-details__orange unit-details-info__price">Rent: ${{listing.monthlyRent}}/Month</h3>
+                    <h3 class="unit-details__orange unit-details-info__price">Rent: ${{::listing.monthlyRent}}/Month</h3>
                     <h4 class="unit-details-info__heading">Needed upon lease signing:</h4>
-                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">First Months Rent</h4>
-                        <h4 class="unit-details-info__heading" ng-show="listing.lastMonthsRentNeeded">Last Months Rent</h4>
-                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Security Deposit (${{listing.securityDeposit}})</h4>
-                        <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Broker Fee (${{listing.securityDeposit}})</h4>
-                        <h4></h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">First Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.lastMonthsRentNeeded">Last Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Security Deposit (${{::listing.securityDeposit}})</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Broker Fee (${{::listing.securityDeposit}})</h4>
+                    <h4></h4>
                     <br>
-                    <h4 class="unit-details-info__heading">Date available: {{listing.dateStart}}</h4>
-                    <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
-                    <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
+                    <h4 class="unit-details-info__heading">Date available: {{::listing.dateStart}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.street}} {{::apartment.unitNum}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.neighborhood}} | {{::apartment.locality}}
+                    </h4>
                     <h4 class="unit-details-info__heading">Needed: First, Last, Security</h4>
                     <p class="unit-details-info__updated">last updated 2 days ago</p>
-                        <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied"><i class="fa fa-check"></i> Contact Representative
-                        </button>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied">
+                        <i class="fa fa-check"></i> Contact Representative
+                    </button>
                 </div>
                 <div class="row unit-details-features">
-                    <div class="col-xs-3 unit-details-feature">
-                        <img src="public\assets\icons\bed-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">{{::apartment.beds}} Bed</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <img src="public\assets\icons\bath-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">{{apartment.baths}} Bath</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-if="apartment.laundry === 'In Building'">
-                        <img src="public\assets\icons\laundry-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">In Building</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-if="apartment.laundry === 'In Unit'">
-                        <img src="public\assets\icons\laundry-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">In Unit</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <img src="public\assets\icons\dishwasher-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">Dishwasher</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <img src="public\assets\icons\utilities-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">Included</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="listing.pets">
-                        <img src="public\assets\icons\pets-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">{{listing.pets}}</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.elevator">
-                        <img src="public\assets\icons\elevator-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">Elevator</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.pets">
-                        <img src="public\assets\icons\fireplace-black.svg" class="unit-details-feature__icon" alt="" />
-                        <p class="unit-details-feature__desc">Fireplace</p>
+                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
+                        <div class="" ng-include="feature.svg"></div>
+                        <p class="unit-details-feature-text" ng-show="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">
+                            {{::apartment[feature.data] || listing[feature.data]}} {{::feature.postText}}</p>
+                        <p class="unit-details-feature-text" ng-hide="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">{{::feature.label}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 unit-details-description">
-                <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
-                <p>{{listing.Description}}</p>
-                <!-- <div class="form-group">
-                    <div class="col-md-6">
-                        <label class="control-label">Video Link</label>
-                        <input type="text" class="form-control" name="name" ng-model="media.video.link" value="">
-                        <button type="button" class="btn" ng-click="submitVideo()" name="button">Submit Link</button>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="control-label">Picture Link</label>
-                        <input type="text" class="form-control" ng-model="media.photo.link" name="name" value="">
-                        <label class="control-label">Title</label>
-                        <input type="text" class="form-control" ng-model="media.photo.title" name="name" value="">
-                        <button type="button" class="btn" ng-click="submitPhoto()" name="button">Submit Picture</button>
-                    </div>
-                </div> -->
+                <h3 class="unit-details__orange unit-details-description__heading">Apartment Description</h3>
+                <p>{{::listing.Apartment.Descriptions[0].description}}</p>
             </div>
-            <div class="unit-details-media-tab-content">
-                <!-- <div id="map" ng-model="map"></div> -->
-                <!-- <div id="class" ng-repeat="marker in markers | orderBy : 'title'"> -->
-                    <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
-                <!-- </div> -->
+            <div class="col-sm-6 unit-details-description">
+                <h3 class="unit-details__orange unit-details-description__heading">Additional Information</h3>
+                <p>{{::listing.Description}}</p>
             </div>
-            <!-- <div class="col-sm-6 unit-details-description">
+            <div class="col-sm-6 unit-details-description" ng-show="floorplan !== false">
                 <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>
-                <img src="/public/viewtemplates/images/kaceyalisaapartment.jpg" style="width:100%" alt="floorplan" />
-            </div> -->
+                <img alt="floorplan" ng-src="{{::floorplan}}" style="width:100%" />
+            </div>
+        </div>
+        <div class="unit-details-media-tab-content">
+            <!-- <div id="map" ng-model="map"></div> -->
+            <!-- <div id="class" ng-repeat="marker in markers | orderBy : 'title'"> -->
+            <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
+            <!-- </div> -->
         </div>
     </div>
+</div>
 </div>

@@ -13,7 +13,6 @@ angular.module('ApplicationApp')
             if(modalData.removeCurrentUser){
                 applicant.removeCurrentUser = true;
             }
-            console.dir(applicant);
             applicant.setOwner(function(response){
                 if(applicant.removeCurrentUser){
                     var currentUser = {
@@ -26,7 +25,6 @@ angular.module('ApplicationApp')
                         item: 'user',
                         action: 'remove'
                     }, currentUser, function(data, status) {
-                        console.dir(data);
                         alert("Removed from application");
                         $modalInstance.close();
                     });

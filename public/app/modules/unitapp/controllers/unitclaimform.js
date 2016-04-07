@@ -15,18 +15,37 @@ angular.module('UnitApp')
         'FlexGetSetSvc',
         'ModalSvc',
         'WizioConfig',
-        function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig) {
+        'lodash',
+        function($scope, $state, $q, TokenSvc, ApartmentModel, DescriptionModel, SmartSearchSvc, UnitFct, FlexGetSetSvc, ModalSvc, WizioConfig, lodash) {
+            'ng-strict';
+            var dataForModal = {};
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
+
             (function formPrimer() {
-                //use a ternary IF operator to figure out what state we're on
+                //Figure out what state we're on
                 $scope.singleUnit = ($state.current.name === 'Unit.Edit') ? true : false;
                 //grab the user object that is currently logged in
                 $scope.user = TokenSvc.decode();
                 //get the selectOptions for all of the drop downs on the form
                 $scope.selectOptions = UnitFct.selectOptions;
+                var allAmmenities = UnitFct.ammenities;
+                $scope.ammenitiesDropdown = {};
+                $scope.ammenitiesCheckbox = {};
+                for(var key in allAmmenities){
+                    console.dir(allAmmenities);
+                    if(allAmmenities[key].dataParent === 'Apartment'){
+                        console.dir(allAmmenities[key]);
+                        if(typeof(allAmmenities[key].selectArray) !== 'undefined'){
+                            $scope.ammenitiesDropdown[key] = allAmmenities[key];
+                        } else {
+                            $scope.ammenitiesCheckbox[key] = allAmmenities[key];
+                        }
+                    }
+                }
+                //for handling multiple property managers in the future
                 $scope.multiplePMBusinesses = false;
                 if ($scope.user.userType === 2 || $scope.user.userType === 4) {
                     if ($scope.user.PropertyManager.length > 0) {
@@ -36,21 +55,23 @@ angular.module('UnitApp')
                     }
                 }
                 //setup the containing object for apartments
-                $scope.containingArray = [
-                    []
-                ];
+                $scope.containingArray = [];
                 //if editing a unit, get that unit and push it into containing
                 //object, otherwise push empty object
                 if ($scope.singleUnit) {
-                    console.dir(FlexGetSetSvc.get('UnitToEdit'));
+                    //build an instance of an apartment with the data in localstorage
                     var newApartmentInstance = ApartmentModel.build(FlexGetSetSvc.get('UnitToEdit'));
+                    //append the description to the new apartment instance
+                    newApartmentInstance.apartmentData.Description = FlexGetSetSvc.get('UnitToEdit').Descriptions[0];
+                    //append the propertymanager to the new apartmentInstance
                     newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
+                    //append the property manager id onto the unit
                     newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                     newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
-                    console.dir(newApartmentInstance);
-                    $scope.containingArray[0].push(newApartmentInstance);
+                    $scope.apartmentAddress = newApartmentInstance.apartmentData.concatAddr;
+                    $scope.containingArray.push(newApartmentInstance);
                 } else {
-                    $scope.containingArray[0].push({});
+                    $scope.containingArray.push({});
                 }
             })();
             //setup the containingArray for housing addresses with units
@@ -66,42 +87,82 @@ angular.module('UnitApp')
                     ]
                 ]
             */
-            function updateAddress(){
+            function updateAddress() {
+                var dataForModal = {
+                    Address: $scope.apartmentAddress,
+                    unitNum: $scope.containingArray[0].apartmentData.unitNum,
+                    ApartmentId: $scope.containingArray[0].apartmentData.id,
+                };
+                dataForModal.dataToChange= "Address";
 
+                var dataForUpdateAddressModal = {
+                    templateUrl: WizioConfig.UnitViewsURL + "updateinfomodal.html",
+                    controller: 'UpdateInfoModalCtrl',
+                    modalData: dataForModal,
+                };
+                buildModal(1, dataForUpdateAddressModal)
+                .then(function(response) {
+                    $scope.apartmentAddress = response.concatAddr;
+                    for(var key in response){
+                        if(response.hasOwnProperty(key)){
+                            $scope.containingArray[0].apartmentData[key] = response[key];
+                        }
+                    }
+                    return;
+                });
             }
-            function updateUnitNum(){
 
+            function updateUnitNum() {
+                var dataForModal = {
+                    Address: $scope.apartmentAddress,
+                    unitNum: $scope.containingArray[0].apartmentData.unitNum,
+                    ApartmentId: $scope.containingArray[0].apartmentData.id,
+                };
+                dataForModal.dataToChange= "Unit Number";
+
+                var dataForUpdateUnitNumModal = {
+                    templateUrl: WizioConfig.UnitViewsURL + "updateinfomodal.html",
+                    controller: 'UpdateInfoModalCtrl',
+                    modalData: dataForModal,
+                };
+                buildModal(1, dataForUpdateUnitNumModal)
+                .then(function(response) {
+                    $scope.containingArray[0].apartmentData.unitNum = response;
+                });
             }
             var commonVariables = {
                 addressIndex: null,
                 unitIndex: null
             };
+
             function addBlankUnitToAddress(addressIndex) {
                 //we're going to copy the geocoded data from the first apartment
                 //at this address
-                var apartmentToCopy = $scope.containingArray[addressIndex][0];
+                var apartmentToCopy = $scope.containingArray[0];
                 var newApartmentInstance = ApartmentModel.copyGeocodedData(apartmentToCopy);
                 newApartmentInstance.apartmentData.CreatedById = $scope.user.id;
                 newApartmentInstance.apartmentData.UpdatedById = $scope.user.id;
                 newApartmentInstance.apartmentData.PropertyManager = $scope.selectedPM;
                 newApartmentInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
                 delete newApartmentInstance.apartmentData.id;
-                $scope.containingArray[addressIndex].push(newApartmentInstance);
+                $scope.containingArray.push(newApartmentInstance);
                 return;
             }
-            function copyUnit(addressIndex, unitIndex){
-                var unitToDuplicate = $scope.containingArray[addressIndex][unitIndex];
+
+            function copyUnit(unitIndex) {
+                var unitToDuplicate = $scope.containingArray[unitIndex];
                 var duplicateApartmentData = unitToDuplicate.duplicate();
                 var newInstance = ApartmentModel.build(duplicateApartmentData);
                 newInstance.apartmentData.id = null;
-                $scope.containingArray[addressIndex].push(newInstance);
+                $scope.containingArray.push(newInstance);
                 return;
             }
-            function removeUnit(addressIndex, unitIndex){
-                if($scope.containingArray[addressIndex].length === 1){
+
+            function removeUnit(unitIndex) {
+                if ($scope.containingArray.length === 1) {
                     return;
                 } else {
-                    $scope.containingArray[addressIndex].splice(unitIndex, 1);
+                    $scope.containingArray.splice(unitIndex, 1);
                     return;
                 }
             }
@@ -138,15 +199,10 @@ angular.module('UnitApp')
                 });
             }
 
-            function getNewUnitGeocodeData(addressIndex, unitIndex) {
+            function getNewUnitGeocodeData(unitIndex) {
                 return $q(function(resolve, reject) {
-                    console.dir($scope.containingArray);
-                    console.dir(addressIndex);
-                    console.dir(unitIndex);
-
-                    var unitAddressInfo = $scope.containingArray[addressIndex][unitIndex].apartmentData;
+                    var unitAddressInfo = $scope.containingArray[unitIndex].apartmentData;
                     var newUnitInstance = ApartmentModel.build(unitAddressInfo);
-                    commonVariables.addressIndex = addressIndex;
                     commonVariables.unitIndex = unitIndex;
                     newUnitInstance.getGeocodeData()
                         .then(function(response) {
@@ -157,6 +213,13 @@ angular.module('UnitApp')
 
             function findOrCreateNewUnit(unitInstance) {
                 return $q(function(resolve, reject) {
+                    var user = TokenSvc.decode();
+                    //add a description object onto the instance for saving to DB
+                    unitInstance.apartmentData.Description = {
+                        description: "",
+                        id: null,
+                        UserId: user.id
+                    };
                     unitInstance.api().findOrCreate(null, function(dbResponse) {
                         var dataPasser = {
                             unitInstance: unitInstance,
@@ -195,8 +258,10 @@ angular.module('UnitApp')
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
                     unitInstance.apartmentData.PropertyManager = $scope.selectedPM;
                     unitInstance.apartmentData.PropertyManagerId = $scope.selectedPM.id;
+                    unitInstance.apartmentData.Description.ApartmentId = dbResponse.apartment.id;
+                    unitInstance.apartmentData.Description.id = dbResponse.apartment.Description.id;
                     // unit.apartmentData.PropertyManagerId = "Unassigned";
-                    $scope.containingArray[commonVariables.addressIndex][commonVariables.unitIndex] = unitInstance;
+                    $scope.containingArray[commonVariables.unitIndex] = unitInstance;
                     return resolve(unitInstance);
                 });
             }
@@ -207,7 +272,6 @@ angular.module('UnitApp')
                     var unitInstance = data.unitInstance;
                     unitInstance.newlyCreated = false;
                     unitInstance.apartmentData.UpdatedById = $scope.user.id;
-                    var dataForModal = {};
                     if ($scope.user.userType === 2 && UnitFct.checkPropertyManagerOwnership(dbResponse)) {
                         dataForModal = {
                             templateUrl: WizioConfig.UnitViewsURL + "UnitVerifyModal.html",
@@ -216,7 +280,7 @@ angular.module('UnitApp')
                         };
                         buildModal(1, dataForModal)
                             .then(function(dbResponse) {
-
+                                $scope.containingArray[commonVariables.unitIndex] = {};
                             });
                     } else if ($scope.userType === 3 && $scope.user.id !== response.apartment.CreatedById) {
                         dataForModal = {
@@ -233,8 +297,9 @@ angular.module('UnitApp')
                 });
             }
 
-            function onUnitBlur(addressIndex, unitIndex) {
-                getNewUnitGeocodeData(addressIndex, unitIndex)
+            function onUnitBlur(unitIndex) {
+                $scope.containingArray[unitIndex].apartmentData.concatAddr = $scope.apartmentAddress;
+                getNewUnitGeocodeData(unitIndex)
                     .then(findOrCreateNewUnit)
                     .then(handleAPIResponse);
 
@@ -247,10 +312,11 @@ angular.module('UnitApp')
                 copyUnit: copyUnit,
                 removeUnit: removeUnit,
                 updateAddress: updateAddress,
-                updateUnitNum: updateUnitNum
+                updateUnitNumber: updateUnitNum
             };
 
             $scope.submit = function() {
+                // var apartments = lodash.pluck($scope.containingArray, 'apartmentData');
                 ApartmentModel.claimApi($scope.containingArray, function(response) {
                     $state.go('Account.Dashboard.Main');
                 });

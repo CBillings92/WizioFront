@@ -1,21 +1,26 @@
 <div class=" formStyle">
     <form class="" ng-submit="editingListing ? formSubmission('editLease') : formSubmission('createLease')">
-        <h2>Edit Listing Information</h2>
+        <div class="">
+            <h2>Edit Listing Information For</h2>
+        </div>
+        <div class="">
+            <h4>{{apartment.concatAddr}}</h4>
+        </div>
         <div class="form-group">
             <div class="row">
                 <h3>Dates and Rent</h3>
 
                 <div class="col-md-4">
                     <label class="control-label " for="">Date Start:</label>
-                    <input class="form-control" name="name" ng-model="lease.dateStart" type="date" value="" placeholder="EX: 12/22/2015">
+                    <input class="form-control" name="name" ng-model="lease.dateStart" placeholder="EX: 12/22/2015" type="date" value="">
                 </div>
                 <div class="col-md-4">
                     <label class="control-label" for="">Date End:</label>
-                    <input class="form-control" name="name" ng-model="lease.dateEnd" type="date" value="" placeholder="EX: 12/22/2015">
+                    <input class="form-control" name="name" ng-model="lease.dateEnd" placeholder="EX: 12/22/2015" type="date" value="">
                 </div>
                 <div class="col-md-4">
                     <label class="control-label" for="">Rent Per Month:</label>
-                    <input class="form-control" name="name" ng-model="lease.monthlyRent | currency" type="" placeholder="EX: $2100" currency>
+                    <input class="form-control" currency name="name" ng-model="lease.monthlyRent" placeholder="EX: $2100" type="">
                 </div>
             </div>
         </div>
@@ -27,7 +32,7 @@
                         <div class="col-md-3 col-lg-4" style="margin:8px;">
                             <label class="control-label" for="">
                                 {{utility.label}}:
-                                <input class="checkboxinput" name="name" ng-model="lease[utility.variable]" ng-true-value="true" ng-false-value="false" type="checkbox" value="">
+                                <input class="checkboxinput" name="name" ng-false-value="false" ng-model="lease[utility.variable]" ng-true-value="true" type="checkbox" value="">
                             </label>
                         </div>
                     </div>
@@ -39,7 +44,7 @@
                         <div class="col-md-2" style="margin:8px;">
                             <label class="control-label" for="">
                                 {{ammenity.label}}:
-                                <input class="" name="name" ng-model=lease[ammenity.variable] ng-true-value="true" ng-false-value="false" type="checkbox" value="">
+                                <input class="" name="name" ng-false-value="false" ng-model=lease[ammenity.variable] ng-true-value="true" type="checkbox" value="">
                             </label>
                         </div>
                     </div>
@@ -65,7 +70,7 @@
                                 <div class="col-md-2" style="margin:8px;">
                                     <label class="control-label" for="">
                                         {{fee.label}}:
-                                        <input class="checkboxinput"  ng-true-value="true" ng-false-value="false" name="name" ng-model=lease[fee.variable] type="checkbox" value="">
+                                        <input class="checkboxinput" name="name" ng-false-value="false" ng-model=lease[fee.variable] ng-true-value="true" type="checkbox" value="">
                                     </label>
                                 </div>
                             </div>
@@ -78,29 +83,23 @@
             <div class="row">
                 <div class="col-md-2" ng-show="lease.newKeyFeeNeeded">
                     <label class="control-label">Key Fee Amount</label>
-                    <input class="form-control" placeholder="EX: $150" name="name" ng-model="lease.newKeyFeeAmount" type="text" value="">
+                    <input class="form-control" name="name" ng-model="lease.newKeyFeeAmount" placeholder="EX: $150" type="text" value="">
                 </div>
-                <div class="" ng-show="accountInfo.userType == 2">
-                <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
-                    <label class="control-label">Brokers Fee Amount</label>
-                    <input class="form-control" name="name" placeholder="EX: $150" ng-model="lease.brokerFeeAmount" type="text" value="">
+                <!--- Not excatly how to handle this --->
+                <div class="">
+                    <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
+                        <label class="control-label">Brokers Fee Amount</label>
+                        <input class="form-control" name="name" ng-model="lease.brokerFeeAmount" placeholder="EX: $150" type="text" value="">
+                    </div>
+                    <div class="col-md-8">
+                        <label class="control-label">Additional Information</label>;
+                        <textarea class="form-control" cols="40" name="name" ng-model="lease.Description" placeholder="A beautiful victorian styled apartment..." rows="5" style="border-left:1px solid black;border-right:1px solid black" type="text" value=""></textarea>
+                    </div>
                 </div>
-               </div>
-               <!--- Not excatly how to handle this --->
-               <div class="" ng-show="accountInfo.userType == 3">
-                <div class="col-md-2" ng-show="lease.brokerFeeNeeded">
-                    <label class="control-label">Brokers Fee Amount</label>
-                    <input class="form-control" name="name" placeholder="EX: $150" ng-model="lease.brokerFeeAmount" type="text" value="">
-                </div>
-                <div class="col-md-8">
-                    <label class="control-label">Description</label>
-                    <textarea class="form-control" rows="5" cols="40" style="border-left:1px solid black;border-right:1px solid black" name="name" placeholder="A beautiful victorian styled apartment..." ng-model="lease.Description" type="text" value=""></textarea>
-                </div>
-            </div>
             </div>
         </div>
         <button class="btn btn-fill--blue btn-md" name="button" type="submit">Submit</button>
     </form>
-    <div style="height:40px;"> </div>
+    <div style="height:40px;"></div>
 
 </div>

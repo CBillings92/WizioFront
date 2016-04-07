@@ -12,7 +12,6 @@ angular.module('UnitApp')
                     for (var key in setAddresses){
                         setAddresses[key] = lodash.groupBy(setAddresses[key], 'PropertyManager.businessName');
                     }
-                    console.dir(setAddresses);
                     $scope.units = setAddresses;
                 });
         }
