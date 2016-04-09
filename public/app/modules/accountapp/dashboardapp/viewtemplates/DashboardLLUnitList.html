@@ -4,6 +4,7 @@
         <div class="col-md-12">
             <button type="button" class="btn btn-outline--orange btn-lg" ng-click="shareAllListings()" name="button">Share Listings</button>
             <button type="button" ng-show="user.userType == 3" class="btn btn-outline--orange btn-lg" ng-click="functions.viewSharedApartments()" name="button">Apartments Shared</button>
+            <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-click="">Post On My Site</button>
         </div>
         <div class="col-md-12" ng-repeat='unit in units track by $index' style="border:0px solid black; margin:10px; border-radius:4px;" ng-init="index = $index">
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />

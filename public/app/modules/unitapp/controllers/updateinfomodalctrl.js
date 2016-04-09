@@ -3,12 +3,12 @@ angular.module('UnitApp')
         '$scope',
         '$resource',
         'modalData',
-        '$modalInstance',
+        '$uibModalInstance',
         'WizioConfig',
         'SmartSearchSvc',
         'ApartmentModel',
         'UnitCreateSvc',
-        function($scope, $resource, modalData, $modalInstance, WizioConfig, SmartSearchSvc, ApartmentModel, UnitCreateSvc) {
+        function($scope, $resource, modalData, $uibModalInstance, WizioConfig, SmartSearchSvc, ApartmentModel, UnitCreateSvc) {
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
@@ -28,7 +28,7 @@ angular.module('UnitApp')
                         }
                     }).update(newApartmentWithGeocode, function(response) {
                         newApartmentWithGeocode.id = newApartmentWithGeocode.ApartmentId;
-                        return $modalInstance.close(newApartmentWithGeocode);
+                        return $uibModalInstance.close(newApartmentWithGeocode);
                     });
                     return;
                 });
@@ -40,7 +40,7 @@ angular.module('UnitApp')
                         method: 'PUT'
                     }
                 }).update($scope.newData, function(response) {
-                    return $modalInstance.close($scope.newData.unitNum);
+                    return $uibModalInstance.close($scope.newData.unitNum);
                 });
             }
             $scope.submitAddressChanges = submitAddressChanges;

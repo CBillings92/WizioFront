@@ -5,7 +5,7 @@ angular.module('NavbarApp')
         '$scope',
         '$state',
         '$http',
-        '$modal',
+        '$uibModal',
         '$sessionStorage',
         'ApartmentModel',
         'SearchModel',
@@ -14,7 +14,7 @@ angular.module('NavbarApp')
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $location, $scope, $state, $http, $modal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $http, $uibModal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.filters = {
                 beds: null,

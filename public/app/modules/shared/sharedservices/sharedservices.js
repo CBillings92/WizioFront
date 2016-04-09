@@ -163,8 +163,8 @@ angular.module('SharedServiceApp')
         }
     ])
     .service('ModalSvc', [
-        '$modal',
-        function($modal) {
+        '$uibModal',
+        function($uibModal) {
             var modalDefaults = {
                 backdrop: true,
                 keyboard: true,
@@ -195,17 +195,17 @@ angular.module('SharedServiceApp')
                 //Map modal.html $scope custom properties to defaults defined in service
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = ['$scope', '$modalInstance', function($scope, $modalInstance) {
+                    tempModalDefaults.controller = ['$scope', '$uibModalInstance', function($scope, $uibModalInstance) {
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function(result) {
-                            $modalInstance.close(result);
+                            $uibModalInstance.close(result);
                         };
                         $scope.modalOptions.close = function(result) {
-                            $modalInstance.close('cancel');
+                            $uibModalInstance.close('cancel');
                         };
                     }];
                 }
-                return $modal.open(tempModalDefaults).result;
+                return $uibModal.open(tempModalDefaults).result;
             };
 
         }

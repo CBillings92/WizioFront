@@ -1,11 +1,11 @@
 angular.module('ApplicationApp')
 .controller('ApplicationCreateModalCtrl', [
     '$scope',
-    '$modalInstance',
+    '$uibModalInstance',
     'FlexGetSetSvc',
     'TokenSvc',
     'ApplicationResource',
-    function($scope, $modalInstance, FlexGetSetSvc, TokenSvc, ApplicationResource){
+    function($scope, $uibModalInstance, FlexGetSetSvc, TokenSvc, ApplicationResource){
 
         $scope.apartment = FlexGetSetSvc.get('ApartmentApplyingTo');
         $scope.apartmentSlotsModal = [];
@@ -38,13 +38,13 @@ angular.module('ApplicationApp')
             requestInfoOutbound.owner = TokenSvc.decode().id;
             requestInfoOutbound.ownerEmail = TokenSvc.decode().email;
             ApplicationResource.base.save(requestInfoOutbound, function(result, status){
-                $modalInstance.close('ok');
+                $uibModalInstance.close('ok');
             });
 
         };
 
         $scope.closeModal = function() {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
         };
     }
 ]);

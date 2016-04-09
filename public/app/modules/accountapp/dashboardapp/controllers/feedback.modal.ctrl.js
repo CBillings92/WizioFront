@@ -1,10 +1,10 @@
 angular.module('AccountApp')
     .controller('FeedbackModalCtrl', [
         '$scope',
-        '$modalInstance',
+        '$uibModalInstance',
         '$resource',
         'WizioConfig',
-        function FeedbackModalCtrl($scope, $modalInstance, $resource, WizioConfig) {
+        function FeedbackModalCtrl($scope, $uibModalInstance, $resource, WizioConfig) {
             $scope.submit = function(){
                 $resource(WizioConfig.baseAPIURL + 'propertymanager/feedback')
                     .save({feedback: $scope.feedback}, function(response){
@@ -12,7 +12,7 @@ angular.module('AccountApp')
                     });
             };
             $scope.closeModal = function() {
-                $modalInstance.close();
+                $uibModalInstance.close();
             };
 
         }

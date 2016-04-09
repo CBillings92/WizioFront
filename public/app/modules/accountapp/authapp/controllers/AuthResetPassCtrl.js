@@ -65,7 +65,7 @@ angular.module('AccountApp')
             };
             //on modal close
             $scope.closeModal = function() {
-                $modalInstance.close();
+                $uibModalInstance.close();
             };
             //______________________________________________________________________________
             //FOR RESETING EMAIL - Goes with resetPassword.html
@@ -123,7 +123,7 @@ angular.module('AccountApp')
                     function(res) {
                         $rootScope.isLoggedIn = true;
                         $rootScope.userType = TokenSvc.decode().userType;
-                        return $modalInstance.close('ok');
+                        return $uibModalInstance.close('ok');
 
                     },
                     function() {

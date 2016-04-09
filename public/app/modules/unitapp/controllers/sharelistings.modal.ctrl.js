@@ -1,12 +1,12 @@
 angular.module('UnitApp')
     .controller('ShareListingsCtrl', [
         '$scope',
-        '$modalInstance',
+        '$uibModalInstance',
         'TokenSvc',
         'modalData',
         'lodash',
         'BrokerageModel',
-        function($scope, $modalInstance, TokenSvc, modalData, lodash, BrokerageModel){
+        function($scope, $uibModalInstance, TokenSvc, modalData, lodash, BrokerageModel){
             $scope.brokerages = modalData;
             $scope.selectBrokerage = function(index){
                 $scope.brokerages[index].selected = !$scope.brokerages[index].selected;

@@ -2,7 +2,7 @@ angular.module('UnitApp')
     .controller('UnitDetailCtrl', [
         '$scope',
         '$state',
-        '$modal',
+        '$uibModal',
         '$location',
         '$sessionStorage',
         '$sce',
@@ -24,7 +24,7 @@ angular.module('UnitApp')
         function(
             $scope,
             $state,
-            $modal,
+            $uibModal,
             $location,
             $sessionStorage,
             $sce,

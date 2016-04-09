@@ -160,7 +160,6 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Account.Dashboard', {
-                    //url: '/dashboard',
                     abstract: true,
                     views: {
                         "AccountMain": {
@@ -169,6 +168,32 @@ angular.module('MainApp')
                         }
                     }
                 })
+                // .state('Account.Dashboard.Main', {
+                //     abstract: true,
+                //     url: '/dashboard',
+            // views: {
+            //         topHorizontal: {
+            //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+            //             controller: 'DashboardUserInfoCtrl'
+            //         }
+            //
+            //     }
+                // })
+                // .state('Account.Dashboard.Main.Broker', {
+                //     views: {
+                //
+                //     }
+                // })
+                // .state('Account.Dashboard.Main.PropertyManager', {
+                //     views: {
+                //
+                //     }
+                // })
+                // .state('Account.Dashboard.Main.tenant', {
+                //     views: {
+                //
+                //     }
+                // })
                 .state('Account.Dashboard.Main', {
                     url: '/dashboard',
                     views: {
@@ -181,7 +206,7 @@ angular.module('MainApp')
                             controller: 'DashboardControlsCtrl'
                         },
                         midHorizontal: {
-                            templateProvider:['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
+                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
                                 if (TokenSvc.decode().userType >= 2) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
                                 } else {
@@ -197,12 +222,12 @@ angular.module('MainApp')
                             }],
                         },
                         application: {
-                            templateProvider:['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
+                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
                                 if (TokenSvc.decode().userType == 1) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
                                 }
                             }],
-                            controllerProvider:['$rootScope', function($rootScope) {
+                            controllerProvider: ['$rootScope', function($rootScope) {
                                 if ($rootScope.userType == 1) {
                                     return 'DashboardApplicationCtrl';
                                 } else {
@@ -211,14 +236,14 @@ angular.module('MainApp')
                             }]
                         },
                         favorites: {
-                            templateProvider:['TokenSvc', '$templateFactory',function(TokenSvc, $templateFactory) {
+                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
                                 if (TokenSvc.decode().userType == 1) {
                                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
                                 } else {
                                     return null;
                                 }
                             }],
-                            controllerProvider:['$rootScope', function($rootScope) {
+                            controllerProvider: ['$rootScope', function($rootScope) {
                                 switch ($rootScope.userType) {
                                     case 1:
                                         console.dir($rootScope.userType);
@@ -343,7 +368,7 @@ angular.module('MainApp')
                     },
                 })
 
-                .state('Unit', {
+            .state('Unit', {
                     url: '/unit',
                     views: {
                         "navbar": navbar,
@@ -374,6 +399,15 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
+                })
+                .state('externalapi', {
+                    url: '/listing/vr/:apitoken/:id',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    }
                 })
                 .state('Listing', {
                     url: '/listing',

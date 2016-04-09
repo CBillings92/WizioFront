@@ -2,11 +2,11 @@ angular.module('ApplicationApp')
 .controller('ApplicationOverviewCtrl', [
     '$scope',
     '$state',
-    '$modalInstance',
+    '$uibModalInstance',
     'modalData',
     'lodash',
     'FlexGetSetSvc',
-    function($scope, $state, $modalInstance, modalData, lodash, FlexGetSetSvc){
+    function($scope, $state, $uibModalInstance, modalData, lodash, FlexGetSetSvc){
         $scope.modalData = modalData;
 
         $scope.applications = lodash.groupBy(modalData, 'ApplicationId');
@@ -20,7 +20,7 @@ angular.module('ApplicationApp')
 
         $scope.viewDetails = function(applicationIndex){
             FlexGetSetSvc.set($scope.applicationArray[applicationIndex], "ApplicationDetails", "ApplicationDetails");
-            $modalInstance.close('VIEW-DETAILS');
+            $uibModalInstance.close('VIEW-DETAILS');
         };
 
         // for(var i = 0; i < Object.keys(modalData).length; i++){
