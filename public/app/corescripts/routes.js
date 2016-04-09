@@ -170,12 +170,33 @@ angular.module('MainApp')
                     }
                 })
                 .state('Account.Dashboard.Main', {
+                    abstract: true,
                     url: '/dashboard',
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
                             controller: 'DashboardUserInfoCtrl'
-                        },
+                        }
+
+                    }
+                })
+                .state('Account.Dashboard.Main.Broker', {
+                    views: {
+                        
+                    }
+                })
+                .state('Account.Dashboard.Main.PropertyManager', {
+                    views: {
+                        
+                    }
+                })
+                .state('Account.Dashboard.Main.tenant', {
+                    views: {
+                        
+                    }
+                })
+                .state('Account.Dashboard.Main.Broker', {
+                    views: {
                         controlPanel: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
                             controller: 'DashboardControlsCtrl'
@@ -375,15 +396,15 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                // .state('Unit.Media', {
-                //     url:'/vr/:apitoken/:id'
-                //     views: {
-                //         "UnitMain": {
-                //             templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',
-                //             controller: ''
-                //         }
-                //     }
-                // })
+                .state('externalapi', {
+                    url:'/listing/vr/:apitoken/:id',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    }
+                })
                 .state('Listing', {
                     url: '/listing',
                     views: {
