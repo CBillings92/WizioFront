@@ -1,12 +1,12 @@
 angular.module('ApplicationApp')
 .controller('NewOwnerSelectModalCtrl', [
     '$scope',
-    '$modalInstance',
+    '$uibModalInstance',
     'TokenSvc',
     'modalData',
     'ApplicantModel',
     'ApplicationResource',
-    function($scope, $modalInstance, TokenSvc, modalData, ApplicantModel, ApplicationResource){
+    function($scope, $uibModalInstance, TokenSvc, modalData, ApplicantModel, ApplicationResource){
         $scope.applications = modalData;
         $scope.selectNewOwner = function(userIndex){
             var applicant = ApplicantModel.build($scope.applications[userIndex]);
@@ -26,15 +26,15 @@ angular.module('ApplicationApp')
                         action: 'remove'
                     }, currentUser, function(data, status) {
                         alert("Removed from application");
-                        $modalInstance.close();
+                        $uibModalInstance.close();
                     });
                 } else {
-                    $modalInstance.close();
+                    $uibModalInstance.close();
                 }
             });
         };
         $scope.cancel = function(){
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
         };
     }
 ]);

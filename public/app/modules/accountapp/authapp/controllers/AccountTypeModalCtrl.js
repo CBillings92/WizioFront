@@ -4,15 +4,15 @@
 angular.module('AccountApp')
 .controller('AccountTypeModalCtrl', [
     '$scope',
-    '$modalInstance',
-    function($scope, $modalInstance){
+    '$uibModalInstance',
+    function($scope, $uibModalInstance){
         $scope.closeModal = function() {
-            $modalInstance.close();
+            $uibModalInstance.close();
         };
         //get accountType from the form
         $scope.nextStep = function(accountType) {
             var chosenAccountType = (accountType == 'tenant') ? 'tenantSignup' : 'propertyManagerSignup';
-            $modalInstance.close(chosenAccountType);
+            $uibModalInstance.close(chosenAccountType);
         };
     }
 ]);

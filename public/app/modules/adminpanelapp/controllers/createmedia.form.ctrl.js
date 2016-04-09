@@ -1,11 +1,11 @@
 angular.module('AdminPanelApp')
     .controller('CreateMediaFormCtrl', [
         '$scope',
-        '$modalInstance',
+        '$uibModalInstance',
         '$resource',
         'modalData',
         'WizioConfig',
-        function($scope, $modalInstance, $resource, modalData, WizioConfig){
+        function($scope, $uibModalInstance, $resource, modalData, WizioConfig){
             $scope.apartment = modalData.apartment;
             $scope.mediaArray = [];
 
@@ -23,11 +23,11 @@ angular.module('AdminPanelApp')
             function sendMedia(){
                 $resource(WizioConfig.baseAPIURL + 'admin/media')
                     .save($scope.mediaArray, function(response){
-                        $modalInstance.close(response);
+                        $uibModalInstance.close(response);
                     });
             }
             $scope.closeModal = function(){
-                $modalInstance.dismiss();
+                $uibModalInstance.dismiss();
             };
             $scope.fun = {
                 createMediaObj: createMediaObj,

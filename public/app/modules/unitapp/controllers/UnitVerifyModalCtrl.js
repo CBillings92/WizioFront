@@ -1,18 +1,18 @@
 angular.module('UnitApp')
 .controller('UnitVerifyModalCtrl', [
     '$scope',
-    '$modalInstance',
+    '$uibModalInstance',
     'modalData',
-    function($scope, $modalInstance, modalData){
+    function($scope, $uibModalInstance, modalData){
         $scope.apartment = modalData;
         $scope.closeModal = function(){
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
         };
         $scope.dontUseData = function(){
-            $modalInstance.close('Do not use data');
+            $uibModalInstance.close('Do not use data');
         };
         $scope.useData = function(){
-            $modalInstance.close('Use data');
+            $uibModalInstance.close('Use data');
         };
     }
 ]);

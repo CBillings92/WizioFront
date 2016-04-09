@@ -1,5 +1,5 @@
 angular.module('Directives')
-.directive('closeModalDirv', [function($modalInstance) {
+.directive('closeModalDirv', [function($uibModalInstance) {
      return {
       restrict: 'AE',
       scope: false,

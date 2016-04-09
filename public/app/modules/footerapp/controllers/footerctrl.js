@@ -4,12 +4,12 @@ angular.module('FooterApp')
         '$scope',
         '$state',
         '$http',
-        '$modal',
+        '$uibModal',
         'AuthFct',
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $scope, $state, $http, $modal, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $scope, $state, $http, $uibModal, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
 
             var modalDefaults = function(templateUrl, controller, accountType) {
                 return {

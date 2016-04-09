@@ -7,7 +7,7 @@ angular.module('AccountApp')
         '$stateParams',
         '$facebook',
         '$location',
-        '$modalInstance',
+        '$uibModalInstance',
         'ModalSvc',
         'AuthFct',
         'AuthResetPasswordResource',
@@ -15,7 +15,7 @@ angular.module('AccountApp')
         'TokenSvc',
         'RerouteGetSetSvc',
         'WizioConfig',
-        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, $modalInstance, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig) {
+        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, $uibModalInstance, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig) {
             var modalDefaults = function(templateUrl, controller, accountType) {
                 return {
                     backdrop: true,
@@ -33,12 +33,12 @@ angular.module('AccountApp')
             var authViews = WizioConfig.AccountAuthViewsURL;
 
             $scope.closeModal = function() {
-                $modalInstance.close();
+                $uibModalInstance.close();
             };
 
             $scope.forgotPassword = function() {
                 $state.go('SendResetEmail');
-                return $modalInstance.close('ok');
+                return $uibModalInstance.close('ok');
             };
 
             $scope.requestLogin = function() {
@@ -50,7 +50,7 @@ angular.module('AccountApp')
                     function(res) {
                         $rootScope.isLoggedIn = true;
                         $rootScope.userType = TokenSvc.decode().userType;
-                        return $modalInstance.close('ok');
+                        return $uibModalInstance.close('ok');
 
                     },
                     function() {

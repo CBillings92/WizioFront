@@ -34,7 +34,9 @@ angular.module('AccountApp')
             var user = TokenSvc.decode();
             // $scope.user.userType = TokenSvc.decode();
             $scope.user = user;
-
+            function viewAPIPanel(){
+                
+            }
             function viewSharedApartments(){
                 var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
                 var controller = "SharedApartmentsCtrl";

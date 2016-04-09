@@ -33,7 +33,7 @@ angular.module('AdminPanelApp')
                 var modalDefaultsCreateMedia = modalDefaults(WizioConfig.AdminPanelAppViewsURL + 'createmedia.form.html', 'CreateMediaFormCtrl', {apartment: $scope.apartments[index]});
                 ModalSvc.showModal(modalDefaultsCreateMedia, {})
                     .then(function(modalResults){
-                        $modalInstance.close();
+                        $uibModalInstance.close();
                     });
             };
         }

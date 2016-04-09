@@ -2,13 +2,13 @@ angular.module('AccountApp')
     .controller('AuthCreateAcctModalCtrl', [
         '$scope',
         '$state',
-        '$modal',
-        '$modalInstance',
+        '$uibModal',
+        '$uibModalInstance',
         'ModalSvc',
         'data',
         'WizioConfig',
         'UserRegistrationSvc',
-        function($scope, $state, $modal, $modalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc) {
+        function($scope, $state, $uibModal, $uibModalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
             $scope.dropdownvals = [
@@ -16,12 +16,12 @@ angular.module('AccountApp')
                 "Property Manager"
             ];
             $scope.backStep = function() {
-                $modalInstance.close('backStep');
+                $uibModalInstance.close('backStep');
             };
             $scope.hasRegistered = false;
             $scope.data = data;
             $scope.closeModal = function() {
-                return $modalInstance.close('ok');
+                return $uibModalInstance.close('ok');
             };
             //submission of create account form
             $scope.setUserObj = function() {
@@ -74,11 +74,11 @@ angular.module('AccountApp')
                     }
             };
             $scope.login = function() {
-                return $modalInstance.close('login');
+                return $uibModalInstance.close('login');
             };
             // $scope.cancel = function() {
             //     if ($state.current.name === "Campaign.VideoUpload.Main") {
-            //         $modalInstance.dismiss();
+            //         $uibModalInstance.dismiss();
             //     } else {
             //         $state.go('Home');
             //     }

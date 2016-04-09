@@ -1,14 +1,14 @@
 angular.module('ApplicationApp')
     .controller('ContactRepFormCtrl', [
         '$scope',
-        '$modalInstance',
+        '$uibModalInstance',
         '$resource',
         'modalData',
         'WizioConfig',
-        function($scope, $modalInstance, $resource, modalData, WizioConfig) {
+        function($scope, $uibModalInstance, $resource, modalData, WizioConfig) {
             $scope.lead = {};
             $scope.closeModal = function() {
-                $modalInstance.dismiss();
+                $uibModalInstance.dismiss();
             };
             $scope.submit = function() {
                 $scope.lead.PropertyManagerId = modalData.PropertyManagerId;
@@ -18,7 +18,7 @@ angular.module('ApplicationApp')
                 $scope.lead.ApartmentAddress = modalData.Apartment.concatAddr;
                 $scope.lead.unitNum = modalData.Apartment.unitNum;
                 $resource(WizioConfig.baseAPIURL + 'lead').save($scope.lead, function(result){
-                    $modalInstance.close('submit');
+                    $uibModalInstance.close('submit');
                 });
             };
         }

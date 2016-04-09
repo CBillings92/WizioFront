@@ -1,7 +1,7 @@
 angular.module('AccountApp')
 .controller('AddTenantsToLeaseCtrl', [
     '$scope',
-    '$modalInstance',
+    '$uibModalInstance',
     'modalData',
     'LeaseModel',
     function($scope, modalInstance, modalData, LeaseModel){
