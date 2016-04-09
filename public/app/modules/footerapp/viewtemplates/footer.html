@@ -1,0 +1,46 @@
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <img class="img-responsive" src="/public/viewtemplates/images/brand_assets/wizio_assets-footerlogo.png">
+                <div id="social-links">
+                    <a href="mailto:info@wizio.co">
+                        <ng-include src="'public/assets/icons/email.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.twitter.com/teamwizio" target="_blank">
+                        <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.facebook.com/wizio" target="_blank">
+                        <ng-include src="'public/assets/icons/facebook.svg'"></ng-include>
+                    </a>
+                    <a href="https://www.linkedin.com/company/wizio" target="_blank">
+                        <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
+                    </a>
+                </div>
+                <p id="wizio_address">745 Atlantic Ave<br>Boston, MA 02111</h3>
+            </div>
+            <div class="col-sm-3">
+                <h2>Wizio</h2>
+                <ul>
+                    <li ng-click="goAbout()">
+                        <a href="">About</a>
+                    </li>
+                    <li ng-click="goBlog()">
+                        <a href="http://blog.wizio.co">Blog</a>
+                    </li>
+                    <li ng-click="goAccountCreate()" ng-hide="isLoggedIn">
+                        <a href="">Sign up</a>
+                    </li>
+                    <li><a href="mailto:info@wizio.co">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <h2>Support</h2>
+                <ul>
+                    <li><a href="mailto:support@wizio.co">support@wizio.co</a></li>
+                    <li><a href="">Terms &amp; Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

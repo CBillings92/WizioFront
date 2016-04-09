@@ -1,0 +1,126 @@
+.styleguide {
+  background-color: #ccc;
+  padding-top: 80px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.styleguide-section {
+  margin-bottom: 100px;
+  display: block;
+
+  > h2 {
+    padding-top: 10px;
+    position: relative;
+
+    &:after {
+      content: '';
+      color: $gray;
+      opacity: 0.3;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      border-width: 0 0 1px;
+      border-style: solid;
+    }
+  }
+}
+
+.code {
+  background-color: $black;
+  color: $white;
+  border: none;
+
+  code {
+    margin: 10px;
+    display: inline-block;
+  }
+
+  &:before {
+    content: "Code";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+div[class^='color__box'], div[class*=' color__box']{
+  height: 100px;
+}
+
+.color__box--orange {
+  background-color: $orange;
+}
+.color__box--gray {
+  background-color: $gray;
+}
+.color__box--red {
+  background-color: $red;
+}
+.color__box--blue {
+  background-color: $blue;
+}
+.color__box--light-orange {
+  background-color: $light-orange;
+}
+
+.live-example {
+  background-color: $white;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  float: left;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+  &:before {
+    content: "Live examples";
+    color: #aaa;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+.styleguide-example-make-orange,
+.styleguide-example-make-light-orange,
+.styleguide-example-make-black,
+.styleguide-example-make-blue,
+.styleguide-example-hover {
+  display: inline-block;
+}
+
+.styleguide-example-hover {
+  .hover-fill {
+      fill: transparent;
+      transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    cursor: pointer;
+    .hover-fill {
+      fill: $white;
+    }
+  }
+}
+.styleguide-example-make-orange svg *{
+  stroke: $orange;
+}
+.styleguide-example-make-light-orange svg * {
+  stroke: $light-orange;
+}
+.styleguide-example-make-black svg * {
+  stroke: $black;
+}
+.styleguide-example-make-black svg {
+    height:50px;
+    width: 50%;
+}
+.styleguide-example-make-black svg path {
+  stroke: $black;
+}
+.styleguide-example-make-blue svg * {
+  stroke: $blue;
+}

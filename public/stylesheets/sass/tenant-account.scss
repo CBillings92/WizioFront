@@ -1,0 +1,226 @@
+.account {
+  margin-bottom: 100px;
+}
+.user-info {
+  margin-top: 140px;
+  padding-bottom: 50px;
+  margin-bottom: 20px;
+}
+.user-info__name {
+  font-size: 36px;
+  color: $orange;
+  margin: 0;
+}
+.user-info__email {
+  margin-top: 15px;
+  font-size: 20px;
+  color: $gray;
+}
+
+.no_results {
+  padding-left: 15px;
+}
+.apt-list__image {
+    div {
+      width: 100%;
+      display: inline-block;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
+}
+.apt-list__item {
+  margin-top: 4px;
+
+  &:first-child {
+    .apt-list__info {
+      &:before {
+        float: left;
+        content: "";
+        display: block;
+        height: 1px;
+        width: 100%;
+        background-color: #ccc;
+        position: relative;
+      }
+    }
+  }
+
+  .apt-list__image {
+    margin-top: 1;
+  }
+}
+.apt-list__info {
+  display: inline-block;
+  height: 100px;
+
+  > * {
+    margin-top: 40px;
+    font-family: "Roboto";
+    font-weight: 400;
+  }
+
+  &:after {
+    float: left;
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: #ccc;
+    position: relative;
+    top: 25px;
+  }
+}
+.apt-list__cost {
+  display: inline-block;
+}
+.apt-list__address {
+  display: inline-block;
+  font-family: "Roboto Slab";
+  font-weight: 300;
+}
+.apt-list__beds {
+  display: inline-block
+}
+.apt-list__baths {
+  display: inline-block;
+}
+.apt-list__status {
+  display: inline-block;
+}
+.apt-list__view {
+  text-align: right;
+  padding-right: 0;
+
+  span {
+    top: -7px;
+    position: relative;
+    display: inline-block;
+    border: 1px solid $blue;
+    padding: 5px 22%;
+    border-radius: 6px;
+    text-align: center;
+    color: $blue;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+  }
+  &:hover {
+    span {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+}
+.account__waitlisted {
+  margin-right: 20px;
+}
+.account__waitlisted,
+.account__favorites {
+  font-size: 18px;
+  font-weight: 500;
+  float: left;
+  display: inline-block;
+  transition: color 0.15s ease-in-out;
+  color: $gray;
+
+  &.active-option {
+    color: $orange;
+    svg {
+      * {
+        stroke: $orange;
+      }
+    }
+  }
+
+  &:hover {
+    color: $orange;
+    cursor: pointer;
+    svg {
+      * {
+        stroke: $orange;
+      }
+    }
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+    margin-bottom: -6px;
+    * {
+      transition: stroke 0.15s ease-in-out;
+      stroke: $gray;
+    }
+  }
+}
+.grid-list-buttons {
+  float: right;
+
+  .active-option {
+    color: $blue;
+  }
+}
+.account__grid,
+.account__list {
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+  margin-left: 20px;
+  transition: color 0.15s ease-in-out;
+  color: $gray;
+
+  &:hover {
+    color: $blue;
+  }
+}
+.account-filter-options {
+  margin-bottom: 60px;
+
+  border-top: 1px solid $gray;
+  margin: 0 15px 10px 15px;
+  padding: 20px 0;
+
+  .col-xs-12 {
+    padding: 0;
+  }
+}
+
+.apt-list-view {
+  margin: 0 15px 10px 15px;
+}
+
+@media (min-width: $screen-sm-min) {
+  .apt-grid-view {
+    .account-grid-view {
+      display: block;
+    }
+    .account-list-view {
+      display: none;
+    }
+  }
+  .apt-list-view {
+    .account-grid-view {
+      display: none;
+    }
+    .account-list-view {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .apt-list__beds-baths {
+    display: none;
+  }
+}
+@media (max-width: $screen-xs-max) {
+  .account-grid-view {
+    display: block;
+  }
+  .account-list-view {
+    display: none;
+  }
+  .grid-list-buttons {
+    display: none;
+  }
+}

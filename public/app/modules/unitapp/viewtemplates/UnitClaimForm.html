@@ -1,0 +1,169 @@
+<div class="container">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="">
+            <h2 style="color:#F79739">Create Apartments</h2>
+        </div>
+        <div class="formSt row">
+            <div class="col-md-12">
+                <h4>This is where you create your apartments! After an apartment is created it can be listed publically and shared!</h4>
+            </div>
+            <div class="col-md-12">
+                <form action="index.html" id="formbg" method="post">
+                    <div class="col-md-12" style="border: 0px solid black; border-radius: 5px; padding: 10px; margin:5px;">
+                        <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
+                        <div class="col-md-12 row">
+                            <div class="col-md-8 row" ng-hide="singleUnit" style="z-index: 100;">
+                                <input class="" ng-model="apartmentAddress" placeholder="Apartment Address" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
+                                <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                    No Results Found
+                                </div>
+                            </div>
+                            <div class="col-md-8 row" ng-show="singleUnit" style="z-index: 100;">
+                                <input class="" disabled="disabled" ng-model="apartmentAddress" style="width:100%" type="text"/>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row" ng-repeat="unit in containingArray track by $index" style="margin: 15px 0 15px 0;">
+                            <div class="col-md-8 row" style="padding-top:10px">
+                                <div class="col-md-12" style="">
+                                    <div class="col-md-4 col-sm-4 col-xs-12" ng-hide="singleUnit" style="border: 0px solid black;">
+                                        <input class="col-md-4" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12" ng-show="singleUnit" style="border: 0px solid black;">
+                                        <input class="col-md-4" disabled="disabled" ng-blur="functions.onUnitBlur($index)" ng-model="unit.apartmentData.unitNum" placeholder="Unit Number" style="width:100%" type="text"/>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8 col-xs-12 ">
+                                        <div class="" ng-show="multiplePMBusinesses" style="">
+                                            <div class="col-md-12">
+                                                <div class="styled-select" style="width:250px;">
+                                                    <select ng-change="assignPropertyManager()" ng-model="selectedPM" ng-options="pmBusinesses as pmBusinesses.businessName for pmBusinesses in selectOptions.pmBusinesses" style="width:100%"></select>
+                                                    <div class="select-button">
+                                                        <div class="small-arrow-down"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="">
+                                    <div class="">
+                                        <div class="col-md-12 row" id="formbg" style="padding:10px; border-bottom:0px solid black;">
+                                            <!-- >>>>>>> betaDev -->
+                                            <form class="">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-6" ng-repeat="ammenity in ammenitiesDropdown track by $index">
+                                                            <label class="control-label">{{ammenity.label}}</label>
+                                                            <div class="styled-select">
+
+                                                                <select class="" ng-model=unit.apartmentData[ammenity.data] ng-options="item for item in ammenity.selectArray">
+                                                                </select>
+                                                                <div class="select-button">
+                                                                    <div class="small-arrow-down"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4" ng-repeat="ammenity in ammenitiesCheckbox track by $index">
+                                                            <label class="" for="">{{ammenity.label}}
+                                                                <input name="name" ng-false-value="false" ng-model="unit.apartmentData[ammenity.data]" ng-true-value="true" type='checkbox' value="">
+                                                            </label>
+                                                        </div>
+                                                        <!-- <div class="styled-select" ng-if="ammenity.selectObject">
+                                                                    <select ng-model="unit.apartmentData[ammenity.data]" ng-options="key as value for (value, key) in ammenity.selectObject">
+                                                                    </select>
+                                                                    <div class="select-button">
+                                                                        <div class="small-arrow-down"></div>
+                                                                    </div>
+                                                                </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <label class="control-label">Apartment Description</label>
+                                                        <textarea class="col-md-12" name="name" ng-model="unit.apartmentData.Description.description" rows="4" style="border: 1px solid black"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-show="user.userType === 3">
+                                                    <h3>Property Manager Info</h3>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="">This Property Manager is a...</label>
+                                                            <select class="form-control" name="" ng-model="unit.PropertyManager.personalOrBusiness" ng-options="pmBusinessOrPerson for pmBusinessOrPerson in selectOptions.pmBusinessOrPerson"></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
+                                                            <label class="control-label">First Name</label>
+                                                            <input class="form-control" name="" ng-model="unit.PropertyManager.firstName"></input>
+                                                        </div>
+                                                        <div class="col-md-4" ng-show="unit.PropertyManager.personalOrBusiness === 'Person'">
+                                                            <label class="control-label">Last Name</label>
+                                                            <input class="form-control" name="" ng-model="unit.PropertyManager.lastName"></input>
+                                                        </div>
+                                                        <div class="col-md-12" ng-hide="unit.PropertyManager.personalOrBusiness === 'Person'">
+                                                            <label class="control-label">Company Name</label>
+                                                            <input class="form-control" name="" ng-model="unit.PropertyManager.businessName"></input>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="control-label">Phone Number</label>
+                                                            <input class="form-control" name="" ng-model="unit.PropertyManager.phoneNumber"></input>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="control-label">Address</label>
+                                                            <input class="form-control" name="" ng-model="unit.PropertyManager.address"></input>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" ng-hide="true">
+                                                    <div class="row">
+                                                        <div class="">
+                                                            <h3>Would you like to list this apartment now for an upcoming lease cycle?</h3>
+                                                            <select class="form-control" name="" ng-model="unit.makeCurrentListing" ng-options="makeCurrentListing for makeCurrentListing in selectOptions.makeCurrentListing"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group"></div>
+                                                <div class="form-group" ng-show="unit.makeCurrentListing === 'Serendipity'">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label class="control-label">Broker Fee Amount</label>
+                                                            <input name="name" type="text" value="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.copyUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px; width:100%" type="button">Copy Unit</button>
+                                    <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.removeUnit($index)" ng-hide="singleUnit || containingArray[$parent.$index].length === 1" style="margin:5px 5px 5px 5px;width:100%" type="button">Remove Unit</button>
+                                    <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.updateAddress($index)" ng-show="singleUnit" style="margin:5px 5px 5px 5px; width:100%" type="button">Edit Address</button>
+                                    <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.updateUnitNumber($index)" ng-show="singleUnit" style="margin:5px 5px 5px 5px;width:100%" type="button">Edit Unit Number</button>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-xs-12">
+                                    <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.addUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;width:100%" type="button">Add Single Unit</button>
+                                    <!-- <button class="btn btn-lg btn-outline--blue" name="button" ng-click="functions.addUnit($index)" ng-hide="singleUnit" style="margin:5px 5px 5px 5px;width:100%" type="button">Add Range of Units</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 row">
+                            <button class="btn btn-lg btn-outline--blue" name="button" ng-click="submit()" type="button">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

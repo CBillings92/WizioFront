@@ -1,0 +1,40 @@
+angular.module('ApplicationApp')
+.controller('NewOwnerSelectModalCtrl', [
+    '$scope',
+    '$modalInstance',
+    'TokenSvc',
+    'modalData',
+    'ApplicantModel',
+    'ApplicationResource',
+    function($scope, $modalInstance, TokenSvc, modalData, ApplicantModel, ApplicationResource){
+        $scope.applications = modalData;
+        $scope.selectNewOwner = function(userIndex){
+            var applicant = ApplicantModel.build($scope.applications[userIndex]);
+            if(modalData.removeCurrentUser){
+                applicant.removeCurrentUser = true;
+            }
+            applicant.setOwner(function(response){
+                if(applicant.removeCurrentUser){
+                    var currentUser = {
+                        UserId: TokenSvc.decode().id,
+                        ApartmentId: applicant.ApartmentId,
+                        ApplicationId: applicant.ApplicationId,
+                        concatAddr: $scope.applications[userIndex].Apartment.concatAddr
+                    };
+                    ApplicationResource.flex.save({
+                        item: 'user',
+                        action: 'remove'
+                    }, currentUser, function(data, status) {
+                        alert("Removed from application");
+                        $modalInstance.close();
+                    });
+                } else {
+                    $modalInstance.close();
+                }
+            });
+        };
+        $scope.cancel = function(){
+            $modalInstance.dismiss();
+        };
+    }
+]);

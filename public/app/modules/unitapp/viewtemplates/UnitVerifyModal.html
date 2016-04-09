@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h3>This unit is already created and owned:</h3>
+    <h5>Apartment: {{apartment.concatAddr}}</h5>
+    <h5>Unit #: {{apartment.unitNum}}</h5>
+</div>
+<div class="modal-body">
+    <div class="">
+        Beds: {{apartment.beds}}
+    </div>
+    <div class="">
+        Baths: {{apartment.beds}}
+    </div>
+    <div class="">
+        Living Spaces: {{apartment.livingSpaces}}
+    </div>
+    <div class="">
+        Beds: {{apartment.beds}}
+    </div>
+    <div class="">
+        Property Manager: {{apartment.PropertyManager.businessName || apartment.PropertyManager.firstName + ' ' + apartment.PropertyManager.lastName}}
+    </div>
+    <div class="">
+        <h5>If you feel this was in error please contact Devon@wizio.co and we will work with you to resolve this matter ASAP!</h5>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" data-ng-click="dontUseData();">Ok</button>
+</div>

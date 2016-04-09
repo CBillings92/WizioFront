@@ -1,0 +1,199 @@
+$account-padding: 30px 0;
+$orange: #f79739;
+
+.acct-modal-btn {
+	border: 0;
+	padding: 4px 10px;
+	border-radius: 20px;
+	text-transform: uppercase;
+	font-weight: 400;
+
+	&__orange {
+		background: $orange;
+		&:active, &:focus, &:hover {
+			background: darken($orange, 5%);
+		}
+	}
+}
+
+.modal-content {
+	border: 0;
+}
+
+.brokerage-access-boxes {
+	background-color: white;
+	cursor: pointer;
+	padding: 5px;
+	margin: 5px;
+	transition: background-color 0.5s ease-in-out;
+}
+.brokerage-access-boxes-fill {
+	background-color: $orange;
+	cursor: pointer;
+	padding: 5px;
+	margin: 5px;
+	transition: background-color 0.5s ease-in-out;
+}
+
+.acct-modal {
+
+	.modal-header {
+		border-bottom: 0;
+	}
+
+	.modal-title {
+		font-family: "Roboto Slab";
+		font-size: 2rem;
+		color: $gray;
+	}
+
+	&-controls {
+		max-width: 300px;
+		margin: 0 auto;
+		padding: $account-padding;
+
+	}
+
+	.form-control {
+		background: none;
+		box-shadow: none;
+		border-radius: 0;
+		outline: 0;
+		border: 0;
+		border-bottom: 2px solid $gray;
+		padding: 3px 6px;
+		&:focus {
+			color: $orange;
+			border-bottom-color: $orange;
+		}
+	}
+
+	&-footer {
+		position: relative;
+		text-align: center;
+		height: 35px;
+
+		&__btn {
+			position: absolute;
+			top: 0;
+			background: none;
+			color: $orange;
+
+			&:active, &:focus, &:active:focus, &:hover {
+				color: darken($orange, 10%);
+			}
+
+			&[disabled=disabled], &:disabled {
+				color: $gray;
+			}
+
+		}
+
+		&__next-btn {
+			right: 0;
+		}
+
+		&__back-btn {
+			left: 0;
+		}
+	}
+
+	&-dots {
+		display: inline-block;
+		margin: 12px 0;
+		padding: 0;
+		list-style: none;
+		font-size: 0;
+		line-height: 0;
+
+		&-dot {
+			$acct-modal-dot-size: 12px;
+			display: inline-block;
+			border-radius: 50%;
+			width: $acct-modal-dot-size;
+			height: $acct-modal-dot-size;
+			border: 1px solid $orange;
+			padding: 0;
+			margin: 0 3px;
+
+			&-filled {
+				background: $orange;
+			}
+		}
+
+	}
+
+	&-congrats {
+		color: $gray;
+
+		h3 {
+			font-size: 2.6rem;
+		}
+
+		&-tagline {
+			font-size: 2.2rem;
+			text-align: center;
+			font-weight: 300;
+		}
+
+		.btn-orange {
+			text-transform: uppercase;
+			margin: 30px 0;
+			padding: 3px 50px;
+			font-size: 1.5rem;
+		}
+
+	}
+
+}
+
+.login-block {
+
+	.forgot-password {
+		text-align: center;
+		font-size: 1.3rem;
+		a:link, a:visited {
+			color: $gray;
+		}
+	}
+
+	.btn {
+		width: 100%;
+		margin: 20px 0;
+	}
+}
+
+.account-type-buttons {
+	margin: $account-padding;
+	padding-bottom: 30px;
+	text-align: center;
+
+	.btn {
+		width: 100%;
+		border: 2px solid $gray;
+		color: $gray;
+		white-space: normal;
+		background: $white;
+		border-radius: 10px;
+		font-size: 1.6rem;
+		text-align: left;
+		margin-right: 10px;
+		margin-bottom: 20px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		&:hover, &:active, &.active, &:focus {
+			background: $gray;
+			color: $white;
+			box-shadow: none;
+		}
+
+		@media (min-width: $screen-sm-min) {
+			width: 40%;
+		}
+
+	}
+
+}

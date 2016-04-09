@@ -1,0 +1,114 @@
+<div class="unit-details">
+    <div class="container unit-details-header">
+        <div class="unit-details-action-btn-wrapper">
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied">
+                <i class="fa fa-check"></i> Contact Representative
+            </button>
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+                <span class="hidden-xs"> to favorites</span>
+            </button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
+                <span class="hidden-xs"> from favorites</span>
+            </button> -->
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
+        </div>
+        <h2 class="unit-details-header__heading unit-details__orange" style="padding-bottom:0px;">{{:: apartment.street }}</h2>
+        <h4 class="unit-details__orange" style="padding-top:2px;">By {{:: listing.Brokerage.businessName|| listing.PropertyManager.businessName || listing.PropertyManager.fullName}}</h4>
+    </div>
+    <div class="container unit-details-media-container">
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
+            </div>
+        </div>
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
+
+                </div> -->
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
+            </div>
+
+        </div>
+        <ul class="unit-details-media-container-tabs">
+            <li style="width:50%">
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
+            </li>
+            <li style="width:50%">
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
+            </li>
+            <!-- <li>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
+            </li> -->
+        </ul>
+        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
+            <div class="unit-details-media-tab-content-picker-slider-scroller">
+                <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
+                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
+                        <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
+                            {{photo.title}}
+                        </div>
+                        <!--  style="text-decoration:none;color:black;text-align:center; -->
+                        <!-- style="width:100px; height:50px;vertical-align:middle;display:table-cell;margin:0px;5px;0px;5px;border:1px solid black;background-color:lightgray" -->
+                        <!-- <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" /> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="unit-details-info">
+                    <h3 class="unit-details__orange unit-details-info__price">Rent: ${{::listing.monthlyRent}}/Month</h3>
+                    <h4 class="unit-details-info__heading">Needed upon lease signing:</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">First Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.lastMonthsRentNeeded">Last Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Security Deposit (${{::listing.securityDeposit}})</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Broker Fee (${{::listing.securityDeposit}})</h4>
+                    <h4></h4>
+                    <br>
+                    <h4 class="unit-details-info__heading">Date available: {{::listing.dateStart}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.street}} {{::apartment.unitNum}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.neighborhood}} | {{::apartment.locality}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">Needed: First, Last, Security</h4>
+                    <p class="unit-details-info__updated">last updated 2 days ago</p>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied">
+                        <i class="fa fa-check"></i> Contact Representative
+                    </button>
+                </div>
+                <div class="row unit-details-features">
+                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
+                        <div class="" ng-include="feature.svg"></div>
+                        <p class="unit-details-feature-text" ng-show="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">
+                            {{::apartment[feature.data] || listing[feature.data]}} {{::feature.postText}}</p>
+                        <p class="unit-details-feature-text" ng-hide="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">{{::feature.label}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 unit-details-description">
+                <h3 class="unit-details__orange unit-details-description__heading">Apartment Description</h3>
+                <p>{{::listing.Apartment.Descriptions[0].description}}</p>
+            </div>
+            <div class="col-sm-6 unit-details-description">
+                <h3 class="unit-details__orange unit-details-description__heading">Additional Information</h3>
+                <p>{{::listing.Description}}</p>
+            </div>
+            <div class="col-sm-6 unit-details-description" ng-show="floorplan !== false">
+                <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>
+                <img alt="floorplan" ng-src="{{::floorplan}}" style="width:100%" />
+            </div>
+        </div>
+        <div class="unit-details-media-tab-content">
+            <!-- <div id="map" ng-model="map"></div> -->
+            <!-- <div id="class" ng-repeat="marker in markers | orderBy : 'title'"> -->
+            <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+</div>

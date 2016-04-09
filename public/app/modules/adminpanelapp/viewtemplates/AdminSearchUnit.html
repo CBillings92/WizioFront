@@ -1,0 +1,16 @@
+<h1>SEARCH UNIT TO MAKE EDITS IN FORM BELOW</h1>
+<p>
+    SEARCH for a unit here by address to find the unit to edit in the EDIT APARTMENT form below.
+</p>
+<input class="form-control" ng-model="searchString" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)">
+<i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
+<div ng-show="noResults">
+    <i class="glyphicon glyphicon-remove"></i>
+    No Results Found
+</div>
+<label for="" class="control-label">Unit Num</label>
+<input type="text" class="form-control" ng-model="unitNum" name="name" value="">
+<button class="btn btn-success" href="" ng-click="search()" type="button">
+    <span class="glyphicon glyphicon-search"></span>
+    <span class="hidden-xs hidden-sm">Search Apartments to Enter Site</span>
+</button>

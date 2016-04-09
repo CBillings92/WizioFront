@@ -1,0 +1,102 @@
+<h3 class="no_results" ng-show="!applicationsExist">You currently aren't on any applications</h3>
+
+<!--         <div class="" style="padding:10px;">
+                <button class="btn btn-success" ng-click="removeFromapplication($index)">remove me from this application</button>
+            </div> -->
+
+<!--                 <li>{{item.ContactEmail}}</li>
+     -->
+
+
+
+<div class="account-grid-view">
+    <div class="apt-tile col-xs-12 col-sm-6 col-md-4" ng-repeat="application in applications track by $index">
+        <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{application[$index].Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
+            <div class="apt-tile__overlay">
+                <div class="apt-tile__header">
+                    <span class="btn btn-md btn-outline--white" ng-click="apartmentSelected(application[$index].Apartment.id)">View</span>
+                    <span class="apt-tile__favorite-btn" ng-click="removeFromFavorite($index)">
+                        <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
+                    </span>
+                    <span class="apt-tile__cost">${{application[$index].Apartment.costPerMonth}}</span>
+                </div>
+                <div class="apt-tile__ammenities">
+                    <div class="ammenity" ng-if="application[$index].Apartment.beds">
+                        <div class="ammenity__icon w-icon w-bed"></div>
+                        <span class="ammenity__label">{{application[$index].Apartment.beds}}
+                            bed</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.baths">
+                        <div class="ammenity__icon w-icon w-bath"></div>
+                        <span class="ammenity__label">{{application[$index].Apartment.baths}}
+                            bath</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.laundry">
+                        <div class="ammenity__icon w-icon w-laundry"></div>
+                        <span class="ammenity__label">laundry</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.dishwasher">
+                        <div class="ammenity__icon w-icon w-dishwasher"></div>
+                        <span class="ammenity__label">dishwasher</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.utilities">
+                        <div class="ammenity__icon w-icon w-utilities"></div>
+                        <span class="ammenity__label">included</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.pets">
+                        <div class="ammenity__icon w-icon w-pets"></div>
+                        <span class="ammenity__label">pets</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.elevator">
+                        <div class="ammenity__icon w-icon w-elevator"></div>
+                        <span class="ammenity__label">elevator</span>
+                    </div>
+                    <div class="ammenity" ng-if="application[$index].Apartment.fireplace">
+                        <div class="ammenity__icon w-icon w-fireplace"></div>
+                        <span class="ammenity__label">fireplace</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="apt-tile__info">
+            <span class="apt-tile__street">{{ application[$index].Apartment.street }}
+                #{{ application[$index].Apartment.unitNum }}</span>
+            <span class="apt-tile__neighborhood">{{ application[$index].Apartment.neighborhood}}</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="account-list-view">
+        <div class="apt-list__item row" ng-repeat="application in applications track by $index">
+            <div class="apt-list__image col-xs-3">
+                <div style="background-image: url('http://img.youtube.com/vi/{{application[$index].Apartment.Assignments[0].youtubeId}}/mqdefault.jpg')"></div>
+            </div>
+            <div class="apt-list__info col-xs-9">
+                <div class="apt-list__cost col-xs-2">
+                    ${{application[$index].Apartment.costPerMonth}}
+                </div>
+                <div class="apt-list__address col-xs-5 col-lg-4">
+                    {{ application[$index].Apartment.street }}
+                    #{{ application[$index].Apartment.unitNum }}<br/>{{ application[$index].Apartment.neighborhood}}
+                </div>
+                <div class="apt-list__beds-baths col-xs-2">
+                    {{application[$index].Apartment.beds}}
+                    bed
+                    {{application[$index].Apartment.baths}}
+                    bath
+                </div>
+                <div class="apt-list__status col-xs-3 col-lg-2">
+                    status: waiting
+                </div>
+                <div class="apt-list__view col-xs-2 col-lg-2">
+                    <span ng-click="apartmentSelected(application[$index].Apartment.id)">View</span>
+                    <span ng-click="removeFromApplication($index)">Remove</span>
+                    <span ng-show="application[$index].ApplicationOwner === application[$index].UserId" ng-click="changeOwner($index)">Change Owner</span>
+                    <span ng-show="application[$index].ApplicationOwner === application[$index].UserId" ng-click="deleteApplication($index)">Delete Application</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
