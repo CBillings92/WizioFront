@@ -375,6 +375,15 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                // .state('Unit.Media', {
+                //     url:'/vr/:apitoken/:id'
+                //     views: {
+                //         "UnitMain": {
+                //             templateUrl: WizioConfig.UnitViewsURL + 'unitDetailsPage.html',
+                //             controller: ''
+                //         }
+                //     }
+                // })
                 .state('Listing', {
                     url: '/listing',
                     views: {

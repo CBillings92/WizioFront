@@ -1,7 +1,7 @@
 angular.module('CampaignApp')
     .controller('VideoUploadModalCtrl', [
         '$scope',
-        '$modalInstance',
+        '$uibModalInstance',
         'SmartSearchSvc',
         'UnitResource',
         'UnitCreateSvc',
@@ -9,7 +9,7 @@ angular.module('CampaignApp')
         'DescriptionModel',
         'ApartmentModel',
         'AssignmentResource',
-        function($scope, $modalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, DescriptionModel, ApartmentModel, AssignmentResource) {
+        function($scope, $uibModalInstance, SmartSearchSvc, UnitResource, UnitCreateSvc, TokenSvc, DescriptionModel, ApartmentModel, AssignmentResource) {
             $scope.getLocation = function(val) {
                 return SmartSearchSvc.smartSearch(val);
             };
@@ -71,7 +71,7 @@ angular.module('CampaignApp')
                             bucket.putObject(params, function(err, data) {
                                     if (err) {
                                         toastr.error(err.message, err.code);
-                                        $modalInstance.dismiss();
+                                        $uibModalInstance.dismiss();
                                         return false;
                                     } else {
                                         // Upload Successfully Finished
@@ -90,7 +90,7 @@ angular.module('CampaignApp')
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
                                         }, 100000000);*/
-                                        $modalInstance.close('ok');
+                                        $uibModalInstance.close('ok');
                                     }
                                 })
                                 .on('httpUploadProgress', function(progress) {

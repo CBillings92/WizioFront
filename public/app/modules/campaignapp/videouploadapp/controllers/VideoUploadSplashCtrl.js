@@ -2,11 +2,11 @@ angular.module('CampaignApp')
     .controller('VideoUploadSplashCtrl', [
         '$scope',
         '$state',
-        '$modal',
+        '$uibModal',
         'WizioConfig',
         'AuthFct',
         'ModalSvc',
-        function($scope, $state, $modal, WizioConfig, AuthFct, ModalSvc) {
+        function($scope, $state, $uibModal, WizioConfig, AuthFct, ModalSvc) {
             var viewtemplates = {
                 topHorizontal1: true,
                 topHorizontal2: true,

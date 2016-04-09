@@ -81,7 +81,7 @@ angular.module('AdminPanelApp')
                             bucket.putObject(params, function(err, data) {
                                     if (err) {
                                         toastr.error(err.message, err.code);
-                                        $modalInstance.dismiss();
+                                        $uibModalInstance.dismiss();
                                         return false;
                                     } else {
                                         // Upload Successfully Finished
@@ -99,7 +99,7 @@ angular.module('AdminPanelApp')
                                             $scope.uploadProgress = 0;
                                             $scope.$digest();
                                         }, 10000);
-                                        $modalInstance.close('ok');
+                                        $uibModalInstance.close('ok');
                                     }
                                 })
                                 .on('httpUploadProgress', function(progress) {

@@ -28,7 +28,8 @@
     "tag": "v0.0.2",
     "commit": "278284924950474ecc3af62037f04d2cf219e13f"
   },
-  "_source": "git://github.com/gdi2290/ngSanitize.git",
+  "_source": "https://github.com/gdi2290/ngSanitize.git",
   "_target": "~0.0.2",
-  "_originalSource": "ngSanitize"
+  "_originalSource": "ngSanitize",
+  "_direct": true
 }
