@@ -1,4 +1,5 @@
 node_modules/
+public/build/*
 public/build/scripts.js
 public/build/styles.css
 public/stylesheets/compiledsass/stylessass.css
