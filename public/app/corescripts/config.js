@@ -13,11 +13,12 @@ angular.module('MainApp')
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
     baseAPIURL: 'http://172.16.0.3:4000/api/',
+    // baseAPIURL: 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
 
     //LIVETESTER URL
-    //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
+    // baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
@@ -30,9 +31,7 @@ angular.module('MainApp')
     //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
     //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
     //frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
-    frontEndURL: 'http://172.16.0.2:3000/',
-
-
+    frontEndURL: window.location.origin,
 
 
     //angular app URLs - views
@@ -45,11 +44,7 @@ angular.module('MainApp')
     AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
     //Application App
     ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
-    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates',
-    ApplicationWaitlistViewsURL: 'public/app/modules/applicationapp/waitlistapp/viewtemplates/',
-    //Blog App
-    BlogViewsURL: 'public/app/modules/blogApp/viewtemplates/',
-    BuyerViewsURL: 'public/app/modules/accountapp/viewtemplates/',
+    ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
 
     BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
     //Campaign App
@@ -59,6 +54,9 @@ angular.module('MainApp')
     FooterViewsURL:  'public/app/modules/footerapp/viewtemplates/',
     //Landing Page App
     landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+    //LeaseApp
+    leaseMainViewsURL: 'public/app/modules/leaseapp/main/',
+    leaseViewsURL: 'public/app/modules/leaseapp/viewtemplates/',
     //Navbar Views
     NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
     //Account App
@@ -68,4 +66,6 @@ angular.module('MainApp')
     UnitMainViewsURL: 'public/app/modules/unitapp/main/',
     //Unit App
     UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
+    extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
+    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/'
 });

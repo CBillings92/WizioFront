@@ -1,0 +1,10 @@
+<div class="row">
+    <!-- needs to be moved to be lined up next to the name -TD -->
+    <div class="" ng-show="accountInfo.userType == 1">
+        <button type="button" class="btn" ng-click="viewProfile()" ng-show="accountInfo.ProfileId" name="button">View My Extended Profile</button>
+        <button type="button" class="btn" ng-click="viewProfile()" ng-hide="accountInfo.ProfileId" name="button">Create My Extended Profile</button>
+    </div>
+    <div class="" ng-show="accountInfo.userType >= 2">
+        <!-- <button type="button" class="btn" ng-click="viewProfile()" ng-hide="accountInfo.ProfileId" name="button">Create My Extended Profile</button> -->
+    </div>
+</div>

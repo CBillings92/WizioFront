@@ -16,7 +16,7 @@ angular.module('CampaignApp')
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
-            $scope.landlord = {};
+            $scope.propertymanager = {};
             $scope.apartment = {};
             $scope.upload = function() {
                 var userinfo = TokenSvc.decode();

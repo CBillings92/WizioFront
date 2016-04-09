@@ -36,7 +36,7 @@
 			border-left-width: 0;
 			border-width: 1px 1px 1px 0;
 			&:last-of-type {
-				width: 34%;
+				width: 100%;
 			}
 			@include button-hover-state {
 				border-color: $gray;
@@ -72,18 +72,21 @@
 	.unit-details-action-btn-wrapper {
 		float: right;
 		margin-top: 3px;
+		// margin-right: 5%;
 	}
 }
 
 .unit-details-features {
 	margin: 0;
-
 	@media (min-width: $screen-sm-min) {
 		margin: 10px 40px 0 -10px;
+		padding-left: 30px;
+
 	}
 
 	@media (min-width: $screen-md-min) {
 		margin: 10px 40px 0 -25px;
+		padding-left: 30px;
 	}
 
 }
@@ -92,6 +95,63 @@
 	.unit-details-features,
 	.unit-details-info {
 		max-width: 450px;
+	}
+}
+.unit-details-feature-new {
+	position: relative;
+	padding-bottom:45px;
+	text-align: center;
+}
+.unit-details-feature-new svg {
+	width: 100%;
+	height: 40px;
+	min-width:30px;
+	@media (min-width: $screen-sm-min) {
+		height: 50px;
+		// height: 100px;
+	}
+	@media (max-width: $screen-xs-max) {
+		max-width: 40px;
+	}
+}
+.unit-details-feature-text{
+	color: #8B93A1;
+	text-align: center;
+	position: absolute;
+	bottom: 15px;
+	left: 0;
+	right: 0;
+	@media (max-width: $screen-xs-max) {
+		font-size: 1.3rem;
+	}
+	text-align: center;
+}
+.svg-stroke-black svg *{
+	stroke: $black;
+}
+.svg-stroke-gray svg *{
+	stroke: #8B93A1;
+}
+.svg-stroke-gray-st0 svg .st0{
+	stroke: #8B93A1 !important;
+}
+.svg-stroke-gray-fill0 svg .st0{
+	fill: #8B93A1 !important;
+}
+.svg-stroke-gray-st1 svg .st1{
+	stroke: #8B93A1 !important;
+}
+.svg-stroke-gray-st2 svg .st2{
+	stroke: #8B93A1 !important;
+}
+.svg-stroke-gray-fill2 svg .st2{
+	stroke: #8B93A1 !important;
+}
+.svg-stroke-path-black svg path {
+	stroke: $black;
+	@media (max-width: $screen-xs-max) {
+		width: 50%;
+		max-width: 40px;
 	}
 }
 
@@ -133,13 +193,16 @@
 .unit-details-media-container {
 	margin-bottom: 30px;
 	@media (max-width: $screen-xs-max) {
-		padding: 0;
+		padding: 20px;
 	}
 	@media (min-width: $screen-sm-min) {
-		margin-bottom: 80px;
+		margin-bottom: 40px;
+		max-width: 75%;
 	}
 	@media (min-width: $screen-md-min) {
-		margin-bottom: 120px;
+		margin-bottom: 60px;
+		max-width: 75%;
+
 	}
 	#map {
 		// this maintains a 16 / 9 aspect ratio
@@ -155,6 +218,7 @@
 	@media (min-width: $screen-sm-min) {
 		padding-bottom: 30px;
 		margin-bottom: 30px;
+		padding-left: 30px;
 	}
 
 	&__price {

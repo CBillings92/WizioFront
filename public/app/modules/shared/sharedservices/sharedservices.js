@@ -3,46 +3,45 @@ angular.module('SharedServiceApp')
         '$rootScope',
         '$sessionStorage',
         '$state',
-        'ApartmentGetSetSvc',
         'SearchResource',
         'UnitCreateSvc',
-        function($rootScope, $sessionStorage, $state, ApartmentGetSetSvc, SearchResource, UnitCreateSvc) {
+        function($rootScope, $sessionStorage, $state, SearchResource, UnitCreateSvc) {
             function searchApartment(searchString, unitNum, filters, callback) {
-                //second argument is apartmentparams, which is null.
-                UnitCreateSvc.parseGeocodeData(searchString, {
-                    unitNum: unitNum
-                }, function(err, data) {
-                    if ($state.current.name === 'AdminPanel.Main') {
-                        data.adminSearch = true;
-                    }
-                    data.filters = filters;
-                    //send POST to /api/search with the apartment data for searching
-                    SearchResource.save(data, function(data, status) {
-                        //data is array of apartments we get back from search
-                        if ($state.current.name !== 'AdminPanel.Main') {
-                            for (i = 0; i < data.length; i++) {
-                                var left = Math.floor((data[i].concatAddr.charCodeAt(5) / 19) + 4);
-                                var right = Math.floor((data[i].concatAddr.charCodeAt(3) / 19) + 4);
-                                var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
-                                var houseNumLow = houseNumInt - left;
-                                if (houseNumInt < 15) {
-                                    houseNumLow = 1;
-                                }
-                                var houseNumHigh = houseNumInt + right;
-                                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                                data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
-                            }
-                        }
-
-                        $sessionStorage.apartmentSearch = data;
-                        $rootScope.$broadcast('searchFinished', data);
-                        return callback(null, data);
-                    });
-                });
+            //     //second argument is apartmentparams, which is null.
+            //     UnitCreateSvc.parseGeocodeData(searchString, {
+            //         unitNum: unitNum
+            //     }, function(err, data) {
+            //         if ($state.current.name === 'AdminPanel.Main') {
+            //             data.adminSearch = true;
+            //         }
+            //         data.filters = filters;
+            //         //send POST to /api/search with the apartment data for searching
+            //         SearchResource.save(data, function(data, status) {
+            //             //data is array of apartments we get back from search
+            //             if ($state.current.name !== 'AdminPanel.Main') {
+            //                 for (i = 0; i < data.length; i++) {
+            //                     var left = Math.floor((data[i].concatAddr.charCodeAt(5) / 19) + 4);
+            //                     var right = Math.floor((data[i].concatAddr.charCodeAt(3) / 19) + 4);
+            //                     var houseNumInt = parseInt((data[i].concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
+            //                     var houseNumLow = houseNumInt - left;
+            //                     if (houseNumInt < 15) {
+            //                         houseNumLow = 1;
+            //                     }
+            //                     var houseNumHigh = houseNumInt + right;
+            //                     var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
+            //                     data[i].hiddenAddress = houseNumRange + data[i].concatAddr.replace(/^\d+/, '');
+            //                 }
+            //             }
+            //
+            //             $sessionStorage.apartmentSearch = data;
+            //             $rootScope.$broadcast('searchFinished', data);
+            //             return callback(null, data);
+            //         });
+            //     });
+            // }
+            // return {
+            //     searchApartment: searchApartment
             }
-            return {
-                searchApartment: searchApartment
-            };
         }
     ])
     .service('UserRegistrationSvc', [
@@ -99,6 +98,7 @@ angular.module('SharedServiceApp')
             var getToken = function() {
                 if ($localStorage.token) {
                     if (jwtHelper.isTokenExpired($localStorage.token)) {
+                        $localStorage.token = undefined;
                         delete $localStorage.token;
                         return 'No Token';
                     }
@@ -109,6 +109,7 @@ angular.module('SharedServiceApp')
             };
             var deleteToken = function() {
                 if ($localStorage.token) {
+                    $localStorage.token = undefined;
                     delete $localStorage.token;
                     return true;
                 } else {
@@ -129,10 +130,11 @@ angular.module('SharedServiceApp')
         '$http',
         '$state',
         'FlexGetSetSvc',
-        function($http, $state, FlexGetSetSvc) {
+        'ApartmentClaimGetSetSvc',
+        function($http, $state, FlexGetSetSvc, ApartmentClaimGetSetSvc) {
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
-            var smartSearch = function(val) {
+            var smartSearch = function(val, sessionStorageVar) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     headers: {
                         searchCheck: true
@@ -140,17 +142,17 @@ angular.module('SharedServiceApp')
                     params: {
                         address: val,
                         sensor: false,
-                        components: 'country:US|administrative_area:MA'
+                        components: 'country:US'
                     }
                 }).then(function(response) {
-                    if ($state.current.name === "Unit.Claim") {
-                        ApartmentClaimGetSetSvc.set(response.data, 'ApartmentClaims');
+                    if(sessionStorageVar === 'Staging-ApartmentClaims'){
+                        ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
+                        ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);
                     } else {
-                        FlexGetSetSvc.set(response);
+                        FlexGetSetSvc.set(response, sessionStorageVar);
                     }
                     return response.data.results.map(function(item) {
                         return item.formatted_address;
-
                     });
                 });
             };
@@ -179,7 +181,7 @@ angular.module('SharedServiceApp')
 
             this.showModal = function(customModalDefaults, customModalOptions) {
                 if (!customModalDefaults) customModalDefaults = {};
-                customModalDefaults.backdrop = 'static';
+                // customModalDefaults.backdrop = 'static';
                 return this.show(customModalDefaults, customModalOptions);
             };
 
@@ -193,18 +195,32 @@ angular.module('SharedServiceApp')
                 //Map modal.html $scope custom properties to defaults defined in service
                 angular.extend(tempModalOptions, modalOptions, customModalOptions);
                 if (!tempModalDefaults.controller) {
-                    tempModalDefaults.controller = function($scope, $modalInstance) {
+                    tempModalDefaults.controller = ['$scope', '$modalInstance', function($scope, $modalInstance) {
                         $scope.modalOptions = tempModalOptions;
                         $scope.modalOptions.ok = function(result) {
                             $modalInstance.close(result);
                         };
                         $scope.modalOptions.close = function(result) {
-                            $modalInstance.dismiss('cancel');
+                            $modalInstance.close('cancel');
                         };
-                    };
+                    }];
                 }
                 return $modal.open(tempModalDefaults).result;
             };
 
+        }
+    ])
+    .service('TimeFormatterSvc', [
+        'moment',
+        function(moment){
+            function formatTimeFlex(timeToFormat, formatString){
+                var formattedDate = moment(timeToFormat).format(formatString);
+
+                return formattedDate;
+            }
+
+            return {
+                formatTimeFlex: formatTimeFlex
+            };
         }
     ]);

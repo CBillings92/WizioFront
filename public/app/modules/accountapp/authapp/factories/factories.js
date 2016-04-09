@@ -16,7 +16,7 @@ angular.module('AuthApp')
                 tokenExp = TokenSvc.checkExp(token);
             }
 
-            if(token === "No Token" && tokenExp){
+            if(token === "No Token" || tokenExp){
                 return false;
             } else {
                 return true;
@@ -30,15 +30,23 @@ angular.module('AuthApp')
                 });
             },
             signin: function(data, success, error) {
-                AuthLoginResource.save(data, function(data, status){
-                    success(data, status);
+                AuthLoginResource.save(data, function(data){
+                    if(!data.token){
+                        return error("failed");
+                    } else {
+                        return success(data, status);
+                    }
                 });
             },
-            logout: function(success) {
-                tokenClaims = {};
+            logout: function() {
+                $localStorage.token = null;
                 delete $localStorage.token;
                 $rootScope.isLoggedIn = false;
-                $state.go('LandingPage');
+                if($state.current.data.requireLogin){
+                    $state.go('LandingPage');
+                    return;
+                }
+                return;
             },
             isLoggedin: isLoggedin
         };

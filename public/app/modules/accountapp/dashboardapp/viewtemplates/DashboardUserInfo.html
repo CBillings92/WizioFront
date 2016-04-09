@@ -1,7 +1,21 @@
-<div class="user-info container" ng-model="accountInfo">
-    <div class="container">
-        <h2 class="user-info__name">Welcome  {{accountInfo.firstName}} {{accountInfo.lastName}}!</h2>
+<div class="user-info container row" ng-model="accountInfo" style="">
+    <div class="container col-md-6">
+        <h2 class="user-info__name">Welcome to the Wizio Beta, {{accountInfo.firstName}} {{accountInfo.lastName}}!</h2>
         <h3 class="user-info__email">{{accountInfo.email}}</h3>
+        <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3>
     </div>
+    <div class="container col-md-6">
+        <div class="" ng-show="accountInfo.userType >= 2">
+            <button type="button" class="btn btn-outline--orange btn-lg" ng-click="claimApartments()" name="button" style="width:200px">Create Apartments</button>
+            <button type="button" class="btn btn-outline--orange btn-lg" name="button">Account</button>
+            <a href="https://calendly.com/devong/virtualtour" target="_blank" type="button" class="btn btn-outline--orange btn-lg" name="button">Schedule VR tour</a>
+            <button type="button" class="btn btn-outline--orange btn-lg" ng-click="leaveFeedback()" name="button" style="width:200px">Leave Feedback</button>
+
+    </div>
+    <div class="" ng-show="accountInfo.userType == 1">
+        <button type="button" class="btn btn-outline--orange btn-lg" ng-click="viewProfile()" ng-show="accountInfo.ProfileId" name="button">View My Extended Profile</button>
+        <button type="button" class="btn btn-outline--orange btn-lg" ng-click="viewProfile()" ng-hide="accountInfo.ProfileId" name="button">Create My Extended Profile</button>
+    </div>
+</div>
 </div>
 <!-- row -->

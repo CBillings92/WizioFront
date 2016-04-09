@@ -5,15 +5,15 @@ angular.module('Models')
     'lodash',
     'WizioConfig',
     function($sessionStorage, $resource, lodash, WizioConfig){
-        function Description(UserId, ApartmentId, DescriptionText){
+        function Favorite(UserId, ApartmentId){
             this.UserId = UserId;
             this.ApartmentId = ApartmentId;
         }
 
-        Description.api = function(){
+        Favorite.api = function(){
             return $resource(WizioConfig.baseAPIURL + "favorite");
         };
-        Description.findByUser = function(){
+        Favorite.findByUser = function(){
             return $resource(WizioConfig.baseAPIURL + "favorite/findbyuser", {},
             {
                 save:
@@ -24,13 +24,13 @@ angular.module('Models')
             });
         };
 
-        Description.build = function(data){
-            return new Description(
+        Favorite.build = function(data){
+            return new Favorite(
                 data.UserId,
                 data.ApartmentId
             );
         };
 
-        return Description;
+        return Favorite;
     }
 ]);

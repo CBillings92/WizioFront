@@ -5,303 +5,218 @@ angular.module('UnitApp')
         '$modal',
         '$location',
         '$sessionStorage',
+        '$sce',
+        '$resource',
         'lodash',
         'ApartmentGetSetSvc',
         'UnitResource',
         'MapFct',
         'TokenSvc',
-        'ProfileResource',
         'FlexGetSetSvc',
         'RerouteGetSetSvc',
         'FavoriteModel',
+        'MediaModel',
         'ModalSvc',
         'WizioConfig',
+        'SearchFct',
+        'moment',
+        'UnitFct',
         function(
             $scope,
             $state,
             $modal,
             $location,
             $sessionStorage,
+            $sce,
+            $resource,
             lodash,
             ApartmentGetSetSvc,
             UnitResource,
             MapFct,
             TokenSvc,
-            ProfileResource,
             FlexGetSetSvc,
             RerouteGetSetSvc,
             FavoriteModel,
+            MediaModel,
             ModalSvc,
-            WizioConfig
+            WizioConfig,
+            SearchFct,
+            moment,
+            UnitFct
         ) {
+            $scope.listing = {};
+            var user = TokenSvc.decode();
+            $resource(WizioConfig.baseAPIURL + 'lease/:id', {
+                id: '@id'
+            }).get({
+                id: $state.params.id
+            }, function(result) {
+                //hotfix for map
+                result.Apartment.monthlyRent = result.monthlyRent;
+                ApartmentGetSetSvc.set(result.Apartment, "apartmentSelected");
 
-            // MediaTabs
-            $scope.mediaTab = 'unitVideos';
-            $scope.selectMediaTab = function(tab) {
-                $scope.mediaTab = tab;
-            };
-            $scope.range = function(n) {
-                return new Array(n);
-            };
-
-            var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
-                width =  $(".unit-details-media-tab-content-picker-slider-scroller").width();
-                el = $(".unit-details-media-tab-content-picker-slider-scroller");
-                currentPosition = el.scrollLeft();
-                moveWidth = width * 0.5 * direction;
-                // el.scrollLeft(currentPosition + moveWidth);
-                el.animate({
-                    scrollLeft: currentPosition + moveWidth
-                }, 500, function () {
-                    $scope.sliderCanGoForward = $scope.canSliderForward();
-                    $scope.sliderCanGoBackward = $scope.canSliderBackward();                    
-                });
-            };
-
-            $scope.sliderCanGoForward = true;
-            $scope.sliderCanGoBackward = false;
-
-            $scope.canSliderBackward = function() {
-                return $(".unit-details-media-tab-content-picker-slider-scroller").scrollLeft() > 0;
-            }
-
-            $scope.canSliderForward = function() {
-                el = $(".unit-details-media-tab-content-picker-slider-scroller");
-                width =  el.outerWidth();
-                currentPosition = el.scrollLeft()
-                viewportWidth = el.width();
-                return currentPosition + viewportWidth < width;
-            }
-
-            $scope.moveSliderBackward = function() {
-                moveSlider(-1);
-            };
-
-            $scope.moveSliderForward = function() {
-                moveSlider(1);
-            };
-
-            //For displaying (ng-show) Apply or Waitlist button
-            $scope.available = false;
-            //HELPER FUNCTION -- modal creation function
-            var modal = function(templateUrl, controller, size) {
-                var modalInstance = $modal.open({
-                    templateUrl: templateUrl,
-                    controller: controller,
-                    size: size
-                });
-                return modalInstance;
-            };
-
-            //Chris made this so that the apartment details controller would
-            //display null if there is nothing in the field that is trying to be
-            //displayed.
-            var checkForNulls = function(apartmentField) {
-                if (apartmentField === null) {
-                    return "Unknown";
+                $scope.listing = result;
+                $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
+                $scope.apartment = result.Apartment;
+                $scope.features = UnitFct.features;
+                if ($scope.apartment.street === "1040 North Quincy Street") {
+                    switch ($scope.apartment.unitNum) {
+                        case "406":
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/LG-1b1d1s2b.png";
+                            break;
+                        case "209":
+                            // $scope.floorplan = false;
+                            break;
+                        default:
+                            // $scope.floorplan = false;
+                    }
+                } else if ($scope.apartment.street === "1020 North Quincy Street") {
+                    switch ($scope.apartment.unitNum) {
+                        case "908":
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b2b.png";
+                            break;
+                        case "1013":
+                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b1b.png";
+                            break;
+                        case "616":
+                            $scope.floorplan = false;
+                            break;
+                        case "619":
+                            $scope.floorplan = false;
+                            break;
+                        default:
+                            $scope.floorplan = false;
+                    }
                 } else {
-                    return apartmentField;
+                    $scope.floorplan = false;
                 }
-            };
-
-            //check that the correct apartment is getting pulled
-            ApartmentGetSetSvc.checkApartment(function(result) {
-                //loop through all object keys and assign "Unkown" to any null values
-                result = lodash.mapValues(result, function(apartmentField){
-                    if (apartmentField === null){
-                        return "Unknown";
+                var vrphotos = [];
+                var vrvideos = [];
+                for (var i = 0; i < result.Apartment.Media.length; i++) {
+                    if (result.Apartment.Media[i].type === 'vrphoto') {
+                        vrphotos.push(result.Apartment.Media[i]);
                     } else {
-                        return apartmentField;
-                    }
-                });
-                //assign result (apartment) to $scope
-                $scope.apartment = result;
-
-                var left = Math.floor(($scope.apartment.concatAddr.charCodeAt(5) / 19) + 4);
-                var right = Math.floor(($scope.apartment.concatAddr.charCodeAt(3) / 19) + 4);
-                var houseNumInt = parseInt(($scope.apartment.concatAddr).replace(/(^\d+)(.+$)/i, '$1'));
-                var houseNumLow = houseNumInt - left;
-                if (houseNumInt < 15) {
-                    houseNumLow = 1;
-                }
-                var houseNumHigh = houseNumInt + right;
-                var houseNumRange = houseNumLow.toString() + "-" + houseNumHigh.toString();
-                $scope.apartment.hiddenAddress = houseNumRange + $scope.apartment.concatAddr.replace(/^\d+/, '');
-
-                var user = TokenSvc.decode();
-                if (user && user !== 'No Token' && user !== 'undefined') {
-                    user = TokenSvc.decode();
-                    if (user.waitlists.length > 0) {
-                        var waitlistedCheck = lodash.find(user.waitlists.ApartmentId, $scope.apartment);
+                        vrvideos.push(result.Apartment.Media[i]);
                     }
                 }
+                var media = lodash.groupBy(result.Apartment.Media, 'type');
+                $scope.media = media;
+                $scope.media.vrphoto = vrphotos;
+                var photoIndex = 0;
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                $scope.changePhoto = function(photoIndex) {
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                };
+                $scope.trust = $sce;
+                //FIXME
+                $scope.mediaTab = 'unitPhotos';
+                $scope.selectMediaTab = function(tab) {
+                    if (tab === 'unitVideos') {
+                        if (vrvideos.length !== 1) {
+                            var signUpErrorModalOptions = {
+                                closeButtonText: "Close",
+                                actionButtonText: "OK",
+                                headerText: "No 360 Video",
+                                bodyText: 'Sorry! This unit does not have a 360 video tour just yet.'
+                            };
+                            ModalSvc.showModal({}, signUpErrorModalOptions)
+                                .then(function(result) {
+                                    return;
+                                });
 
-                $sessionStorage.apartmentSelected = $scope.apartment;
-                $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
+                        } else {
+                            $scope.mediaTab = tab;
+                        }
+                    } else {
 
-                //create the google maps
+                        $scope.mediaTab = tab;
+                    }
+                };
+            });
+            //create the google maps
+            setTimeout(function() {
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
                 //create the markers for the map
-                var markers = MapFct.makeMarkers($scope.map);
-
-                //check to see if apartment has been favorited
-
-                if (user && typeof(user.favorites) != 'undefined' && user.favorites.length !== 0) {
-                        if (lodash.indexOf(user.favorites, $scope.apartment.id) !== -1) {
-                             $scope.favorited = true;
-                         } else {
-                             $scope.favorited = false;
-                         }
-                } else {
-                    $scope.favorited = false;
-                }
+                // var markers = MapFct.makeMarkers($scope.map);
+            }, 3000);
+            // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
+            // $scope.apartment = $scope.apartment.apartmentData || null;
+            //check that the correct apartment is getting pulled
 
 
+            // $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
 
-            });
-            /*$scope.waitlist = function(){
-                alert('Feature still under development and coming soon!');
-            }; */
-            //WAITLIST for the apartment
-            $scope.waitlist = function() {
+
+            // MediaTabs
+            //map does not load b/c it's stupid. Must be default.
+
+            //HELPER FUNCTION -- modal creation function
+            var modalDefaults = function(templateUrl, controller, accountType, apartmentData) {
+                return {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    resolve: {
+                        modalData: function() {
+                            return apartmentData;
+                        }
+                    }
+                };
+            };
+            var authViews = WizioConfig.AccountAuthViewsURL;
+            var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+            //APPLY to the apartment
+            $scope.applyToApartment = function() {
+                var modalDefaultsApplication = modalDefaults(WizioConfig.ApplicationFormViewsURL + 'contactRepForm.html', 'ContactRepFormCtrl', 'md', $scope.listing);
                 //check if token is expired, if so route to login
-                if (TokenSvc.checkExp()) {
-                    TokenSvc.deleteToken();
-                    RerouteGetSetSvc.set($location.path());
-                    alert('Please login');
+                ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                    if (result === 'submit') {
 
-                    var modalInstanceLoginForm = modal(WizioConfig.AccountAuthViewsURL + 'Login.html', 'AuthLoginModalCtrl', 'md');
-
-                    modalInstanceLoginForm.result.then(function(result) {
-                        if (result === 'ok') {
-                            //store the current apartment in sessionStorage with the
-                            //appropriate session storage variable
-                            FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                            //Create a modal instance with the modal helper function with the correct template and controller
-                            var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
-
-                            //on modal instance close/button click go to user dashboard
-                            modalInstanceWaitlist.result.then(function(result) {
-                                $state.go('Account.Dashboard.Main');
-                            });
-                        }
-                    });
-                } else {
-                    //store the current apartment in sessionStorage with the
-                    //appropriate session storage variable
-                    FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                    //Create a modal instance with the modal helper function with the correct template and controller
-                    var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
-
-                    //on modal instance close/button click go to user dashboard
-                    modalInstanceWaitlist.result.then(function(result) {
-                        $state.go('Account.Dashboard.Main');
-                    });
-                }
-                //store the current apartment in sessionStorage with the
-                //appropriate session storage variable
-                FlexGetSetSvc.set($scope.apartment, "ApartmentWaitlistingTo");
-                //Create a modal instance with the modal helper function with the correct template and controller
-                var modalInstanceWaitlist = modal(WizioConfig.ApplicationWaitlistViewsURL + 'WaitlistCreateModal.html', 'WaitlistCreateModalCtrl', 'md');
-
-                //on modal instance close/button click go to user dashboard
-                modalInstanceWaitlist.result.then(function(result) {
-                    $state.go('Account.Dashboard.Main');
+                    }
+                    // $state.go('Account.Dashboard.Main');
                 });
+                // if (TokenSvc.checkExp()) {
+                //     TokenSvc.deleteToken();
+                //
+                //     ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                //         //store the current apartment in sessionStorage with the
+                //         //appropriate session storage variable
+                //         if (result) {
+                //             FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                //             ModalSvc.showModal(modalDefaultsApplication, {}).then(function(result) {
+                //                 $state.go('Account.Dashboard.Main');
+                //             });
+                //
+                //         }
+                //
+                //     });
+                // } else {
+                //     //store the current apartment in sessionStorage with the
+                //     //appropriate session storage variable
+                //     FlexGetSetSvc.set($scope.apartment, "ApartmentApplyingTo");
+                //
+                // }
             };
-            //FAVORITE for the apartment
-            $scope.favorite = function() {
-
-                var user = TokenSvc.decode();
-                if (user !== "No Token") {
-                    //create a new Favorite object
-                    var favorite = new FavoriteModel(user.id, $scope.apartment.id);
-                    //create empty modalOptions object
-                    var modalOptions = {};
-                    FavoriteModel.api().save(favorite, function(response) {
-                        if (response.status === 'ERR') {
-                            //set modal text options
-                            modalOptions.closeButtonText = "Close";
-                            modalOptions.actionButtonText = "OK";
-                            modalOptions.headerText = "Error";
-                            modalOptions.bodyText = "You've already favorited this apartment!";
-                            //launch modal using ModalSvc (shaedservices)
-                            ModalSvc.showModal({}, modalOptions);
-                        }
-                        //set modal text options
-                        modalOptions.closeButtonText = "Close";
-                        modalOptions.actionButtonText = "OK";
-                        modalOptions.headerText = "Success!";
-                        modalOptions.bodyText = "This apartment is favorited! You can view this apartment in your account page now.";
-                        //launch modal using ModalSvc (sharedservices)
-                        ModalSvc.showodal({}, modalOptions);
-                        //change button to favorited button
-                        $scope.favorited =  true;
-                    });
-                }
-            };
-
-            $scope.deleteFavorite = function(){
-                //create a new Favorite object
-                var user = TokenSvc.decode();
-                var favorite = new FavoriteModel(user.id, $scope.apartment.id);
-                FavoriteModel.api().delete(favorite, function(result){
-                    alert('Favorite removed');
+            $scope.submitVideo = function() {
+                var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
+                newVideo.getAssociationData();
+                newVideo.saveMedia(function(res) {
+                    return;
                 });
+                return;
+
             };
-            $scope.setupTour = function() {
-                alert("Feature still under development and is due to arrive in our full product launch!");
+            $scope.submitPhoto = function() {
+                var newPhoto = new MediaModel($scope.media.photo.link, 'vrphoto', $scope.media.photo.title);
+                newPhoto.getAssociationData();
+                newPhoto.saveMedia(function(res) {
+                    return;
+                });
+                return;
             };
             //LOAD APARTMENT DATA end
-
-            $scope.apply = function() {
-
-                checkToken();
-
-                //get user data
-                var user = TokenSvc.decode();
-                //set apartment data and store that data in sessionStorage variable
-                ApartmentGetSetSvc.set($scope.apartment, "apartmentApplyingTo");
-                //If the user doesn't have a profile
-                if (user.ProfileId === null) {
-                    //call modal function
-                    var modalInstanceCreate = modal('public/viewtemplates/public/createprofilemodal.html', 'ProfileCreateModalCtrl', 'md');
-
-                    modalInstanceCreate.result.then(function(result) {
-                        $state.go('Profile.Create');
-                    }, function() {
-
-                    });
-                } else {
-                    //call modal function
-                    ProfileResource.get({
-                        id: user.ProfileId
-                    }, function(data) {
-                        if (data) {
-                            var modalInstanceVerify = modal('public/app/modules/AccountApp/profileapp/viewtemplates/profileexistsmodal.html', 'ProfileExistsModalCtrl', 'lg');
-
-                            modalInstanceVerify.result.then(function(result) {
-                                switch (result) {
-                                    case "ok":
-                                        $state.go('ApartmentApplication');
-                                        break;
-                                    case "edit":
-                                        FlexGetSetSvc.set(data);
-                                        $state.go('Profile.Edit');
-                                        break;
-                                    default:
-                                        alert('ERROR');
-                                }
-                            }, function() {
-                                alert('MODAL DISMISSED');
-                            });
-                        } else {
-                            //handle
-                        }
-                    });
-
-                }
-            };
         }
     ]);

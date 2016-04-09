@@ -1,0 +1,9 @@
+<div class="" ng-repeat="apartment in apartments track by $index">
+    <div class="">
+            <div ng-class="apartment.selected ? 'brokerage-access-boxes-fill' : 'brokerage-access-boxes'" ng-click="selectUnit($index)">
+                <h5>
+                    {{apartment.concatAddr}} # {{apartment.unitNum}} PM: {{apartment.PropertyManager.businessName}}
+                </h5>
+            </div>
+    </div>
+</div>

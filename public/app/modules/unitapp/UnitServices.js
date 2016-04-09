@@ -1,28 +1,9 @@
 angular.module('UnitApp')
-    .service('UnitObjectSvc', [
-        function(){
-            var Apartment = function(address, unitNum, beds, baths, livingSpaces, maxResidency, costPerMonth, renovated, pets, youtubeVRID){
-                this.address = address;
-                this.unitNum = unitNum;
-                this.beds = beds;
-                this.baths = baths;
-                this.livingSpaces = livingSpaces;
-                this.maxResidency = maxResidency;
-                this.costPerMonth = costPerMonth;
-                this.renovated = renovated;
-                this.pets = pets;
-                this.youtubeVRID = youtubeVRID;
-            };
-            Apartment.prototype.saveToDB = function(){
-
-            };
-
-        }
-    ])
     .service('UnitCreateSvc', [
         'lodash',
         'FlexGetSetSvc',
-        function(lodash, FlexGetSetSvc) {
+        'ApartmentClaimGetSetSvc',
+        function(lodash, FlexGetSetSvc, ApartmentClaimGetSetSvc) {
             //exposed to angular application.
             //sends address to Google API for geocoding
             var getGeocodeData = function(address, callback) {
@@ -45,8 +26,19 @@ angular.module('UnitApp')
             var addressSearchType = function(searchString, callback) {
                 //search type is final description of search type that will be returned
                 var searchType = null;
+                var googleAPIDataRaw;
                 //the raw googleAPIData that is stored in the flex gettersetter
-                var gooogleAPIDataRaw = FlexGetSetSvc.get();
+                if($state.current.name == 'Unit.Claim'){
+                    //first try and get values from array in service
+                    googleAPIDataRaw = ApartmentClaimGetSetSvc.get();
+                    if(gooogleAPIDataRaw.length === 0){
+                        //if no value in array then try and grab data from the sessionStorage
+                        gooogleAPIDataRaw = ApartmentClaimGetSetSvc.get('Staging-ApartmentClaims');
+                    }
+                } else {
+                    gooogleAPIDataRaw = FlexGetSetSvc.get();
+                }
+
                 //converts the type of googleAPI search data to an array
                 //ex: postal code, or [neighborhood, locality]
                 var googleAPIDataTypeARR = lodash.values(googleAPIDataRaw.data.results.types);
@@ -64,7 +56,7 @@ angular.module('UnitApp')
                 //from the smart search feature. False if no match. google API
                 //Data object returned if match found
                 var searchStringFound = false;
-                if(googleAPIDataRaw.length !== 0){
+                if (googleAPIDataRaw.length !== 0) {
                     searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
                 }
 
@@ -139,16 +131,16 @@ angular.module('UnitApp')
                 //store the google API formatted address on the apartment
                 var addressComponents = googleAPIData[0].address_components;
                 //how the data is structured
-                apartmentObj.formattedAddress = googleAPIData[0].formatted_address;
+                apartmentObj.concatAddr = googleAPIData[0].formatted_address;
                 //search for street_number in google API data
-                function filterComponents(stringToFind){
-                    return lodash.filter(addressComponents, function(item){
+                function filterComponents(stringToFind) {
+                    return lodash.filter(addressComponents, function(item) {
                         return item.types[0] === stringToFind;
                     });
                 }
 
-                function checkExistance(data, keyName){
-                    if(data && data.length > 0){
+                function checkExistance(data, keyName) {
+                    if (data && data.length > 0) {
                         apartmentObj[keyName] = parseData(data);
                     }
                 }
@@ -157,9 +149,9 @@ angular.module('UnitApp')
                 var street = filterComponents("route");
                 var locality = filterComponents("locality");
                 var administrative_area_level_3 = filterComponents("administrative_area_level_3");
-                var state = filterComponents("state");
+                var state = filterComponents("administrative_area_level_1");
                 var neighborhood = filterComponents("neighborhood");
-                var zip = filterComponents("zip");
+                var zip = filterComponents("postal_code");
 
                 if (streetNumber && streetNumber.length > 0 && street.length > 0) {
                     apartmentObj.street = parseData(streetNumber) + " " + parseData(street);
@@ -168,50 +160,18 @@ angular.module('UnitApp')
                 checkExistance(neighborhood, "neighborhood");
                 checkExistance(locality, "locality");
                 checkExistance(administrative_area_level_3, "administrative_area_level_3");
+                checkExistance(state, "state");
                 checkExistance(zip, "zip");
 
-                //HANDLE LATITUDE AND LONGITUDE
-                //convert the google API data geometry object that contains the
-                //latitude and logitude into an array
-                var coords = null;
-                var latitude = null;
-                var longitude = null;
-
-                if (googleAPIData[0].geometry.hasOwnProperty('location')){
-                    coords = lodash.values(googleAPIData[0].geometry.location);
-
-                } else if (googleAPIData[0].geometry.hasOwnProperty('viewport')){
-
-                    if (googleAPIData[0].geometry.viewport.hasOwnProperty('northeast')){
-                        coords = lodash.values(googleAPIData[0].geometry.viewport.northeast);
-
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('northwest')){
-                        coords = lodash.values(googleAPIData[0].geometry.viewport.northwest);
-
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southeast')){
-                        coords = lodash.values(googleAPIData[0].geometry.viewport.southeast);
-
-                    } else if (googleAPIData[0].geometry.viewport.hasOwnProperty('southwest')){
-                        coords = lodash.values(googleAPIData[0].geometry.viewport.southwest);
-                    }
+                //Check to see if the lat and longitude are numbers. On
+                //searches like Boston they are numbers. On exact searches they
+                //are functions
+                if(isNaN(googleAPIData[0].geometry.location.lat)){
+                    apartmentObj.latitude = googleAPIData[0].geometry.location.lat().toFixed(6);
+                    apartmentObj.longitude = googleAPIData[0].geometry.location.lng().toFixed(6);
                 }
 
-                //store latitude and longitude onto the apartmetn after converting
-                //it to a number and forcing only 6 decimal places
-                //check if latitude and longitude are strings or numbers.
-                //if not numbers or strings, ignore latitude and longitude
 
-                //Dear Cameron, I didn't understand why these conditionals were
-                //neccessary, they where breaking the lat long, so I fixed them
-                //I wanted to remove them though.
-                if((typeof coords[0]) === (typeof 'Hello') || (typeof coords[0]) === (typeof 3.14)){
-                    latitude = parseFloat(coords[0].toFixed(6));
-                    apartmentObj.latitude = latitude;
-                }
-                if((typeof coords[1]) === (typeof 'Hello') || (typeof coords[1]) === (typeof 3.14)){
-                    longitude = parseFloat(coords[1].toFixed(6));
-                    apartmentObj.longitude = longitude;
-                }
                 return apartmentObj;
             }
 
@@ -219,7 +179,8 @@ angular.module('UnitApp')
             return {
                 getGeocodeData: getGeocodeData,
                 addressSearchType: addressSearchType,
-                parseGeocodeData: parseGeocodeData
+                parseGeocodeData: parseGeocodeData,
+                lodashParseAPIData: lodashParseAPIData
 
             };
         }

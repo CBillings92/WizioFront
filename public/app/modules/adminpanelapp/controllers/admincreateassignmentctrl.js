@@ -38,11 +38,11 @@ angular.module('AdminPanelApp')
             $scope.sizeLimit = 5368709120; // 5GB in Bytes
             $scope.uploadProgress = 0;
             $scope.creds = {};
-            $scope.landlord = {};
+            $scope.propertymanager = {};
             $scope.apartment = {};
             $scope.upload = function() {
                 UnitCreateSvc.parseGeocodeData($scope.apartmentAddress, $scope.apartment, function(err, parsedApartment){
-                    parsedApartment.landlordInfo = $scope.landlord;
+                    parsedApartment.propertyManagerInfo = $scope.propertymanager;
                     UnitResource.save(parsedApartment, function(data, status) {
                         //store saved apartment data to use in AssignmentResource
                         //call later

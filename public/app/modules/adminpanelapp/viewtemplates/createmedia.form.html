@@ -1,0 +1,34 @@
+<div class="modal-header">
+    <close-modal-dirv>
+    </close-modal-dirv>
+    <h3>{{apartment.concatAddr}} # {{apartment.unitNum}}</h3>
+    <h5>{{apartment.PropertyManager.businessName}}</h5>
+</div>
+<div class="modal-body">
+        <div class="row" ng-repeat="media in mediaArray track by $index">
+            <div class="form-group">
+                <div class="col-md-5">
+                    <label for="" class="control-label">Link</label>
+                    <input type="text" style="border:1px solid black" ng-model="media.link" name="name" value="" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label for="" class="control-label">Type</label>
+                    <input type="text" style="border:1px solid black" ng-model="media.type" name="name" value="" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="control-label">Title</label>
+                    <input type="text" style="border:1px solid black" ng-model="media.title" name="name" value="" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label class="control-label"></label>
+                    <button type="button" style="margin-top:20px" class="btn btn-orange" ng-click="fun.deleteMediaObj($index)" name="button">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="" style="margin-top:10px">
+            <button type="button" class="btn btn-orange" ng-click="fun.createMediaObj()" name="button">Add Media Row</button>
+        </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-orange" ng-click="fun.sendMedia()" name="button">submit</button>
+</div>

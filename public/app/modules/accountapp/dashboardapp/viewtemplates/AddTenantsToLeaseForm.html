@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3>Add Tenants To Current Lease</h3>
+</div>
+<div class="modal-body">
+    <form class="" ng-submit="addTenantsToLease()">
+        <div class="" ng-repeat='resident in lease track by $index'>
+            <h4 class="control-label"> Tenant {{::$index + 1}}: </h4>
+            <div class="" ng-repeat="inputName in inputNames track by $index">
+                <div class="form-group">
+                    <label class="control-label">{{inputName.labelName}}</label>
+                    <input type="text" class="form-control" ng-model="lease[$parent.$index][inputName.variable]" name="name" value="">
+                </div>
+            </div>
+        </div>
+        <span class="">
+            <button type="button" ng-click="cancel()" name="button">Cancel</button>
+        </span>
+        <span class="">
+            <button type="submit" name="button">Submit</button>
+        </span>
+    </form>
+</div>

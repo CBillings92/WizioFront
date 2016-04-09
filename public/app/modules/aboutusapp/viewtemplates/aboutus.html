@@ -3,8 +3,9 @@
         <div class="about-hero-main">
             <div class="about-hero-main__container">
                 <div class="container">
-                    <h2 class="about-hero-main__heading">A Tenant movement<br />for change.</h2>
-                    <h4 class="about-hero-main__subheading">Wizio’s mission is to bring honest, transparent information to the apartment market in Boston<br class="visible-lg-block" /> by utilizing crowd sourced videos and lease automation.</h4>
+                    <h2 class="about-hero-main__heading">We strive for<br />apartment accuracy.</h2>
+                    <!-- <h4 class="about-hero-main__subheading">Wizio’s mission is to bring honest, transparent information to the apartment market in Boston<br class="visible-lg-block" /> by utilizing crowd sourced videos and lease automation.</h4> -->
+                    <h4 class="about-hero-main__subheading">When apartment showing, you should know it’s the right one. At Wizio, we think it should be the first one you show.</h4>
                 </div>
             </div>
             <svg width="480" height="465" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" class="pin-and-outline">
@@ -25,27 +26,36 @@
             <h2>The Four Principles<br class="visible-xs-block" /> of Wizio</h2>
             <ol class="about-principles__principle-list">
                 <li>
-                    <h3>Our homes should be our homes.</h3>
-                    <p>The Wizio platform seeks to bring more accountability by working with landlords &amp; city officials to develop a system that helps to maintain homes at standards dictated by law.</p>
+                    <!-- <h3>Our homes should be our homes.</h3>
+<<<<<<< HEAD
+                    <p>The Wizio platform seeks to bring more accountability by working with landlords &amp; city officials to develop a system that helps to maintain homes at standards dictated by law.</p> -->
+                    <h3>Apartment hunting should be quick.</h3>
+                    <p>We want to end trekking circles around the city to find the right place.</p>
                 </li>
                 <li>
-                    <h3>Freedom of information.</h3>
-                    <p>Information should be upfront and free to access. <br class="visible-lg-block" />Our team believes that complete transparency is a right <br class="visible-lg-block" />&amp; we are working hard to make sure that happens.</p>
+                    <!-- <h3>Freedom of information.</h3>
+                    <p>Information should be upfront and free to access. <br class="visible-lg-block" />Our team believes that complete transparency is a right <br class="visible-lg-block" />&amp; we are working hard to make sure that happens.</p> -->
+                    <h3>Apartment listings should be accurate.</h3>
+                    <p>We believe in apartment transparency. With virtual reality there’s no framing a shot so you can see the apartment in all its’ glory.</p>
                 </li>
                 <span class="clearfix hidden-xs">&nbsp;</span>
                 <li>
-                    <h3>People come first. No Doubt.</h3>
-                    <p>Whether it is a prospective tenant, landlord or employee, Wizio exists to serve. Our personal experiences with Boston’s flawed apartment process drive us to create positive change.</p>
+                    <!-- <h3>People come first. No Doubt.</h3>
+                    <p>Whether it is a prospective tenant, landlord or employee, Wizio exists to serve. Our personal experiences with Boston’s flawed apartment process drive us to create positive change.</p> -->
+                    <h3>Customer comes first.</h3>
+                    <p>Transparency is core to who we are. If you have a question about our service or want to provide feedback, please reach out.</p>
                 </li>
                 <li>
-                    <h3>We can always be better.</h3>
-                    <p>We are motivated by the terrible state of the home rental process and an intrinsic desire to provide a better service. Wizio can always be be better for our communities.</p>
+                    <!-- <h3>We can always be better.</h3>
+                    <p>We are motivated by the terrible state of the home rental process and an intrinsic desire to provide a better service. Wizio can always be be better for our communities.</p> -->
+                    <h3>Finding a rental online can always be better.</h3>
+                    <p>The pursuit to improve is constant and we are always searching for a new feature or minor tweak to make apartment listing & searching better.</p>
                 </li>
             </ol>
         </div>
     </section>
     <section class="about-learn-more">
-        <a href="/blog" class="about-learn-more__link">
+        <a href="http://blog.wizio.co" target="_blank" class="about-learn-more__link">
             Want to learn more?
             Read our blog <i class="fa fa-long-arrow-right"></i>
         </a>
@@ -60,13 +70,13 @@
                     <img src="/public/viewtemplates/images/aboutimages/{{ member.picture }}" class="img-responsive" />
                     <div class="about-team-members-more-overlay">
                         <div class="about-team-members-more-overlay-content">
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}">
+                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}" target="_blank">
                                  <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
                             </a>
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.email }}">
+                            <a class="team-social-link" href="mailto:{{ member.email }}" target="_self">
                                 <ng-include src="'public/assets/icons/email.svg'"></ng-include>
                             </a>
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.linkedin }}">
+                            <a class="team-social-link" href="https://www.linkedin.com/in/{{ member.linkedin }}" target="_blank">
                                 <ng-include src="'public/assets/icons/linkedin.svg'"></ng-include>
                             </a>
                         </div>

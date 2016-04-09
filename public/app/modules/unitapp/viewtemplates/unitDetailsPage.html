@@ -1,51 +1,59 @@
 <div class="unit-details">
     <div class="container unit-details-header">
         <div class="unit-details-action-btn-wrapper">
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button>
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
-    Apply</button>
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
-     Apply</button>
+            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied">
+                <i class="fa fa-check"></i> Contact Representative
+            </button>
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
+                <span class="hidden-xs"> to favorites</span>
+            </button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-show="favorited" ng-click="deleteFavorite()" ng-mouseover="!deleteFavorite"><i class="fa fa-heart-o"></i> Remove
+                <span class="hidden-xs"> from favorites</span>
+            </button> -->
+            <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-disabled ng-show="applied">See your application</button>
+            <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="setupTour()">See in person</button> -->
         </div>
-        <h2 class="unit-details-header__heading unit-details__orange">{{ apartment.street }}</h2>
+        <h2 class="unit-details-header__heading unit-details__orange" style="padding-bottom:0px;">{{:: apartment.street }}</h2>
+        <h4 class="unit-details__orange" style="padding-top:2px;">By {{:: listing.Brokerage.businessName|| listing.PropertyManager.businessName || listing.PropertyManager.fullName}}</h4>
     </div>
     <div class="container unit-details-media-container">
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'neighborhood'">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe allowfullscreen class="embed-responsive-item" ng-src="{{apartment.youtubeLink}}"></iframe>
-            </div>
-        </div>
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'map'">
-            <div id="map"></div>
-            <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-                <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-            </div>
-        </div>
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe allowfullscreen class="embed-responsive-item" ng-src="{{apartment.youtubeLink}}"></iframe>
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
             </div>
         </div>
+        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
+
+                </div> -->
+                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
+            </div>
+
+        </div>
         <ul class="unit-details-media-container-tabs">
-            <li><button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">Unit Videos</button></li>
-            <li><button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'neighborhood'}" ng-click="selectMediaTab('neighborhood')">Neighborhood</button></li>
-            <li><button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button></li>
+            <li style="width:50%">
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
+            </li>
+            <li style="width:50%">
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
+            </li>
+            <!-- <li>
+                <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab == 'map'}" ng-click="selectMediaTab('map')">Map View</button>
+            </li> -->
         </ul>
-        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitVideos'">
+        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
-                <div class="unit-details-media-tab-content-picker-slider">
-                    <div ng-repeat="a in range(5) track by $index" class="unit-details-media-tab-content-picker">
-                        <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" />
+                <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
+                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
+                        <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
+                            {{photo.title}}
+                        </div>
+                        <!--  style="text-decoration:none;color:black;text-align:center; -->
+                        <!-- style="width:100px; height:50px;vertical-align:middle;display:table-cell;margin:0px;5px;0px;5px;border:1px solid black;background-color:lightgray" -->
+                        <!-- <img src="http://placehold.it/160x90" class="unit-details-media-tab-content-picker__img" /> -->
                     </div>
                 </div>
-            </div>
-            <div class="unit-details-media-tab-content-picker-forward" ng-show="sliderCanGoForward">
-                <i class="fa fa-chevron-right" ng-click="moveSliderForward()"></i>
-            </div>
-            <div class="unit-details-media-tab-content-picker-backward" ng-show="sliderCanGoBackward">
-                <i class="fa fa-chevron-left" ng-click="moveSliderBackward()"></i>
             </div>
         </div>
     </div>
@@ -53,320 +61,54 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="unit-details-info">
-                    <h3 class="unit-details__orange unit-details-info__price">${{apartment.costPerMonth}}</h3>
-                    <h4 class="unit-details-info__heading">{{apartment.street}} {{apartment.unitNum}}</h4>
-                    <h4 class="unit-details-info__heading">{{apartment.neighborhood}} | {{apartment.locality}}</h4>
+                    <h3 class="unit-details__orange unit-details-info__price">Rent: ${{::listing.monthlyRent}}/Month</h3>
+                    <h4 class="unit-details-info__heading">Needed upon lease signing:</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">First Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.lastMonthsRentNeeded">Last Months Rent</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Security Deposit (${{::listing.securityDeposit}})</h4>
+                    <h4 class="unit-details-info__heading" ng-show="listing.firstMonthsRentNeeded">Broker Fee (${{::listing.securityDeposit}})</h4>
+                    <h4></h4>
+                    <br>
+                    <h4 class="unit-details-info__heading">Date available: {{::listing.dateStart}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.street}} {{::apartment.unitNum}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">{{::apartment.neighborhood}} | {{::apartment.locality}}
+                    </h4>
+                    <h4 class="unit-details-info__heading">Needed: First, Last, Security</h4>
                     <p class="unit-details-info__updated">last updated 2 days ago</p>
+                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange hidden-xs" ng-click="applyToApartment()" ng-hide="applied">
+                        <i class="fa fa-check"></i> Contact Representative
+                    </button>
                 </div>
                 <div class="row unit-details-features">
-                    <div class="col-xs-3 unit-details-feature">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 78 68" style="enable-background:new 0 0 78 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .bed-st0{fill:#8B93A1;}
-                        .bed-st1{fill:none;stroke:#8B93A1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="bed-st0" d="M77,54.1H1c-0.3,0-0.7-0.2-0.8-0.5C0,53.3-0.1,53,0.1,52.7l13.3-30.9c0.2-0.5,0.8-0.7,1.3-0.5
-                        c0.5,0.2,0.7,0.8,0.5,1.3L2.5,52.1h72.9L61.7,22.6c-0.2-0.5,0-1.1,0.5-1.3c0.5-0.2,1.1,0,1.3,0.5l14.3,30.9c0.1,0.3,0.1,0.7-0.1,1
-                        S77.3,54.1,77,54.1z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M77,68c-0.6,0-1-0.4-1-1V40.4c0-0.6,0.4-1,1-1s1,0.4,1,1V67C78,67.6,77.6,68,77,68z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M1,67.8c-0.6,0-1-0.4-1-1V40.2c0-0.6,0.4-1,1-1s1,0.4,1,1v26.6C2,67.4,1.6,67.8,1,67.8z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M63.7,23.2h-4.5v-2h2.5v-16c0-1.9-1.6-3.2-3.1-3.2H18.4c-1.7,0-3.1,1.4-3.1,3.2v16h2.4v2h-4.4v-18
-                        c0-2.8,2.3-5.2,5.1-5.2h40.2c2.8,0,5.1,2.4,5.1,5.2V23.2z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M32.9,32H21c-2.4,0-4.4-2-4.4-4.4v-11c0-2.4,2-4.4,4.4-4.4h11.9c2.4,0,4.4,2,4.4,4.4v11
-                        C37,30.1,35.1,32,32.9,32z M21,14.1c-1.5,0-2.4,1.3-2.4,2.4v11c0,1.5,1.2,2.4,2.4,2.4h11.9c1.2,0,2.2-1.1,2.4-2.5l0-10.9
-                        c0-1.5-1.2-2.4-2.4-2.4H21z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M56.3,32H43.2c-2.1,0-3.7-1.6-3.7-3.7V16.2c0-2.1,1.6-3.7,3.7-3.7h13.1c2.1,0,3.7,1.6,3.7,3.7v12.1
-                        c0.1,0.9-0.2,1.8-0.8,2.5C58.4,31.6,57.4,32,56.3,32z M43.2,14.5c-0.8,0-1.7,0.6-1.7,1.7v12.1c0,0.9,0.6,1.7,1.7,1.7h13.1
-                        c0.5,0,1-0.2,1.3-0.6c0.3-0.3,0.4-0.7,0.3-1l0-0.1V16.2c0-0.9-0.6-1.7-1.7-1.7H43.2z"/>
-                        </g>
-                        <g>
-                        <path class="bed-st0" d="M78,67.5H0V53.1c0-0.6,0.4-1,1-1s1,0.4,1,1v12.4h74V53.1c0-0.6,0.4-1,1-1s1,0.4,1,1V67.5z"/>
-                        </g>
-                        <g>
-                        <rect x="36.1" y="21.2" class="bed-st0" width="4.4" height="2"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">{{apartment.beds}} Bed</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .bath-st0{fill:none;stroke:#8B93A1;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-                        </style>
-                        <g>
-                        <path class="bath-st0" d="M47.7,27.5H20.8c-1.7,0-3-1.1-3.2-2.8l-2.8-20C14.6,2.7,16.1,1,18,1h32.2c1.9,0,3.6,1.7,3.2,3.7l-2.4,20
-                        C50.7,26.2,49.4,27.5,47.7,27.5z"/>
-                        <ellipse class="bath-st0" cx="34.1" cy="39.3" rx="19.4" ry="6"/>
-                        <line class="bath-st0" x1="26.2" y1="27.5" x2="26.2" y2="33.3"/>
-                        <line class="bath-st0" x1="42.1" y1="27.5" x2="42.1" y2="33.3"/>
-                        <path class="bath-st0" d="M34.1,56.9c0,0,19.1-0.2,19.4-16.6"/>
-                        <path class="bath-st0" d="M34.1,56.9c0,0-19.1-0.2-19.4-16.6"/>
-                        <path class="bath-st0" d="M41,55.8l3,9.2c0.4,1.1-0.4,2.1-1.5,2.1H26.1c-1.1,0-1.9-1.1-1.5-2.1l2.8-9.2"/>
-                        <line class="bath-st0" x1="31.5" y1="6.8" x2="25.5" y2="6.8"/>
-                        <ellipse class="bath-st0" cx="25.7" cy="9.4" rx="2.6" ry="2.6"/>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">{{apartment.beds}} Bed</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .laundry-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="laundry-st0" d="M56.9,68H11.1c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1h45.8c0.6,0,1,0.4,1,1v66C57.9,67.6,57.5,68,56.9,68z
-                        M12.1,66h43.8V2H12.1V66z"/>
-                        </g>
-                        <g>
-                        <path class="laundry-st0" d="M34.2,53.4c-9,0-16.3-7.3-16.3-16.3c0-9,7.3-16.3,16.3-16.3S50.5,28,50.5,37C50.5,46,43.2,53.4,34.2,53.4z
-                        M34.2,22.7c-7.9,0-14.3,6.4-14.3,14.3s6.4,14.3,14.3,14.3S48.5,44.9,48.5,37S42.1,22.7,34.2,22.7z"/>
-                        </g>
-                        <g>
-                        <path class="laundry-st0" d="M34.2,48.5c-5.4,0-10-3.5-11.3-8.7c-0.1-0.3,0-0.6,0.2-0.9c0.2-0.2,0.5-0.4,0.8-0.4h3.8v-3.3h-3.8
-                        c-0.3,0-0.6-0.1-0.8-0.4c-0.2-0.2-0.3-0.6-0.2-0.9c1.4-5.1,6-8.7,11.3-8.7c6.3,0,11.5,5.2,11.7,11.5
-                        C45.9,43.3,40.6,48.5,34.2,48.5z M25.2,40.6c1.5,3.6,4.9,5.9,9,5.9c5.3,0,9.7-4.3,9.7-9.7c-0.2-5.2-4.5-9.5-9.7-9.5
-                        c-3.9,0-7.4,2.4-8.9,5.9h3.4c0.6,0,1,0.4,1,1v5.3c0,0.6-0.4,1-1,1H25.2z"/>
-                        </g>
-                        <g>
-                        <circle class="laundry-st0" cx="18.7" cy="7.7" r="2.2"/>
-                        </g>
-                        <g>
-                        <circle class="laundry-st0" cx="27.1" cy="7.7" r="2.2"/>
-                        </g>
-                        <g>
-                        <path class="laundry-st0" d="M52.3,12.2H36.6c-0.6,0-1-0.4-1-1v-6c0-0.6,0.4-1,1-1h15.7c0.6,0,1,0.4,1,1v6C53.3,11.7,52.8,12.2,52.3,12.2z
-                        M37.6,10.2h13.7v-4H37.6V10.2z"/>
-                        </g>
-                        <g>
-                        <path class="laundry-st0" d="M44,12.2c-0.6,0-1-0.4-1-1v-6c0-0.6,0.4-1,1-1s1,0.4,1,1v6C45,11.7,44.5,12.2,44,12.2z"/>
-                        </g>
-                        <g>
-                        <path class="laundry-st0" d="M56.5,16.1H11.5c-0.5,0-1-0.4-1-1s0.4-1,1-1h44.9c0.5,0,1,0.4,1,1S57,16.1,56.5,16.1z"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Laundry</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .dishwasher-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="dishwasher-st0" d="M56.9,68H11.1c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1h45.8c0.6,0,1,0.4,1,1v66C57.9,67.6,57.5,68,56.9,68z
-                        M12.1,66h43.8V2H12.1V66z"/>
-                        </g>
-                        <g>
-                        <circle class="dishwasher-st0" cx="35.7" cy="7.7" r="2.2"/>
-                        </g>
-                        <g>
-                        <circle class="dishwasher-st0" cx="42.8" cy="7.7" r="2.2"/>
-                        </g>
-                        <g>
-                        <circle class="dishwasher-st0" cx="49.9" cy="7.7" r="2.2"/>
-                        </g>
-                        <g>
-                        <path class="dishwasher-st0" d="M56.5,16.1H11.1c-0.6,0-1-0.4-1-1s0.4-1,1-1h45.4c0.6,0,1,0.4,1,1S57,16.1,56.5,16.1z"/>
-                        </g>
-                        <g>
-                        <path class="dishwasher-st0" d="M35.7,58.7c-0.6,0-1-0.4-1-1v-13c-4.3-1-7.2-3.1-8.5-6c-2.4-5.3,1.3-11.6,1.4-11.8c0.2-0.3,0.5-0.5,0.9-0.5
-                        H43c0.4,0,0.7,0.2,0.9,0.5c0.2,0.3,3.8,6.5,1.4,11.8c-1.3,3-4.2,5-8.5,6v13C36.7,58.2,36.3,58.7,35.7,58.7z M29.1,28.4
-                        c-0.7,1.5-2.7,5.9-1,9.5c1.1,2.5,3.7,4.1,7.7,5c4-0.9,6.6-2.5,7.7-5c1.6-3.6-0.3-8.1-1-9.5H29.1z"/>
-                        </g>
-                        <g>
-                        <path class="dishwasher-st0" d="M40.4,59.7h-8.8c-0.6,0-1-0.4-1-1s0.4-1,1-1h8.8c0.6,0,1,0.4,1,1S40.9,59.7,40.4,59.7z"/>
-                        </g>
-                        <g>
-                        <path class="dishwasher-st0" d="M26.9,36.8c-0.3,0-0.6-0.1-0.8-0.4c-0.3-0.4-0.3-1.1,0.2-1.4c0.2-0.1,4-3.1,11-0.9c0.5,0.2,0.8,0.7,0.7,1.3
-                        c-0.2,0.5-0.7,0.8-1.3,0.7c-6-1.9-9.1,0.5-9.1,0.5C27.3,36.8,27.1,36.8,26.9,36.8z"/>
-                        </g>
-                        <g>
-                        <path class="dishwasher-st0" d="M39.2,36.4c-1.4,0-3.1-0.2-5-0.8c-0.5-0.2-0.8-0.7-0.7-1.3c0.2-0.5,0.7-0.8,1.3-0.7c5.9,1.9,8.8-0.3,8.9-0.4
-                        c0.4-0.3,1.1-0.3,1.4,0.2s0.3,1-0.1,1.4C44.9,34.9,42.9,36.4,39.2,36.4z"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Dishwasher</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature">
-                        <svg title="Utilities" class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .utilities-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="utilities-st0" d="M25.4,14.6c0.3,0,0.6-0.2,0.9-0.3c0.5-0.3,0.6-0.6,0.8-0.9c0-0.2,0.2-0.2,0.2-0.3c0.2-0.2,0.3-0.2,0.5,0
-                        c0.2,0.3,0.3,0.5,0.5,0.8c0.3,0.8,0.5,1.4,0.6,2.2c0,0.5,0,0.8-0.2,1.1c-0.5,1.1-1.3,2.2-2.4,3c-0.3,0.3-0.8,0.5-1.3,0.6h-0.2
-                        c0,0,0,0-0.2,0c0-0.2,0-0.5,0.2-0.6c0.2-0.6,0-1.4-0.5-2c-0.3-0.5-0.6-1.1-0.9-1.6C23.2,16,23,15.6,23,15.1c0-0.5,0.2-0.9,0.3-1.4
-                        c0,0,0,0,0-0.2l0,0c-0.2,0-0.5,0.2-0.6,0.2c-1.3,0.3-2,1.1-2.4,2c-0.2,0.5-0.2,0.9,0,1.6c0.2,0.8,0.3,1.6,0.6,2.4c0,0,0,0,0,0.2
-                        c-0.2,0-0.3-0.2-0.5-0.2c-0.6-0.3-1.1-0.8-1.6-1.3c-0.5-0.6-0.6-1.4-0.6-2c0-1.1,0.5-2.2,1.3-3.1c0.5-0.5,0.9-1.1,1.3-1.6
-                        c0.5-0.6,0.8-1.4,0.9-2.2c0.2-0.6,0.2-1.1,0.3-1.7c0-0.2,0-0.2,0-0.3c0.2-0.2,0.3-0.3,0.5-0.2c0.2,0.2,0.5,0.3,0.6,0.5
-                        c1.1,1.1,1.7,2.4,2,3.6c0.2,0.8,0.2,1.7,0,2.5C25.5,14.1,25.4,14.5,25.4,14.6z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M48.3,12.7c-2.8,2.7-5.8,5.3-8.6,8.2c0,0,0,0-0.2-0.2c1.1-2,2.4-4.2,3.6-6.4c-1.4,0-2.7,0-4.1,0
-                        c0.2-0.3,0.3-0.5,0.3-0.6c1.6-2,3.3-4.1,4.9-6.1c0.2-0.3,0.6-0.5,0.9-0.5c1.1,0,2.2,0,3.5,0c-1.6,1.7-2.8,3.5-4.4,5.2
-                        c1.4,0,2.7,0,3.9,0C48.3,12.6,48.3,12.7,48.3,12.7z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M61.2,67.6H6.8V0h54.4V67.6z M8.4,66h51.2V1.6H8.4V66z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M39.3,32.8H13.3c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h26.1c0.4,0,0.8,0.4,0.8,0.8S39.8,32.8,39.3,32.8z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M52.7,32.8h-8.8c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h8.8c0.4,0,0.8,0.4,0.8,0.8S53.1,32.8,52.7,32.8z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M39.3,40.7H13.3c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h26.1c0.4,0,0.8,0.4,0.8,0.8S39.8,40.7,39.3,40.7z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M52.7,40.7h-8.8c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h8.8c0.4,0,0.8,0.4,0.8,0.8S53.1,40.7,52.7,40.7z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M39.3,48.7H13.3c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h26.1c0.4,0,0.8,0.4,0.8,0.8S39.8,48.7,39.3,48.7z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M52.7,48.7h-8.8c-0.4,0-0.8-0.4-0.8-0.8s0.4-0.8,0.8-0.8h8.8c0.4,0,0.8,0.4,0.8,0.8S53.1,48.7,52.7,48.7z"/>
-                        </g>
-                        <g>
-                        <path class="utilities-st0" d="M47.7,60.8V60c-0.5,0-0.9-0.2-1.3-0.3l0.2-0.5c0.3,0.2,0.6,0.3,1.1,0.3c0.6,0,0.9-0.3,0.9-0.8
-                        s-0.3-0.6-0.9-0.9c-0.8-0.3-1.3-0.6-1.3-1.4c0-0.6,0.5-1.1,1.3-1.3v-0.8h0.5v0.8c0.5,0,0.8,0.2,1.1,0.3l-0.2,0.5
-                        c-0.2-0.2-0.5-0.3-0.9-0.3c-0.6,0-0.8,0.3-0.8,0.6c0,0.5,0.3,0.6,0.9,0.9c0.8,0.3,1.3,0.8,1.3,1.4s-0.5,1.3-1.3,1.4v0.8L47.7,60.8
-                        L47.7,60.8z"/>
-                        <path class="utilities-st0" d="M48.5,61h-1v-0.8c-0.5,0-1-0.2-1.1-0.3l-0.2-0.1l0.3-0.8l0.2,0.1c0.3,0.2,0.6,0.3,1,0.3
-                        c0.3,0,0.7-0.1,0.7-0.6c0-0.3-0.2-0.4-0.8-0.8c-0.7-0.3-1.4-0.6-1.4-1.6c0-0.7,0.5-1.2,1.3-1.4v-0.8h0.9V55c0.4,0,0.7,0.2,1,0.3
-                        l0.2,0.1l-0.3,0.9l-0.2-0.2c-0.1-0.1-0.3-0.3-0.8-0.3c-0.5,0-0.6,0.2-0.6,0.4c0,0.3,0.2,0.4,0.8,0.8c1.1,0.5,1.4,1.1,1.4,1.6
-                        c0,0.7-0.5,1.4-1.3,1.6V61z M47.9,60.6h0.2v-0.8l0.2,0c0.7-0.1,1.1-0.7,1.1-1.2c0-0.5-0.4-0.9-1.1-1.2c-0.6-0.3-1.1-0.5-1.1-1.1
-                        c0-0.2,0.1-0.8,1-0.8c0.4,0,0.7,0.1,0.8,0.2l0-0.1c-0.3-0.1-0.5-0.2-0.9-0.2h-0.2v-0.8h-0.1v0.8l-0.2,0c-0.7,0.1-1.1,0.5-1.1,1.1
-                        c0,0.7,0.4,0.9,1.1,1.2c0.7,0.3,1.1,0.5,1.1,1.1c0,0.6-0.4,1-1.1,1c-0.4,0-0.7-0.1-1-0.2l0,0.1c0.3,0.1,0.7,0.2,1,0.2h0.2V60.6z"
-                        />
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Included</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.pets">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 -0.7 68.7 68.7" style="enable-background:new 0 -0.7 68.7 68.7;" xml:space="preserve">
-                        <style type="text/css">
-                        .pets-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="pets-st0" d="M60,47.5c-0.2,0-0.4,0-0.6,0c-3.6-0.3-6.1-2.4-7.2-5.9H16.5c-1.3,3.8-4.1,5.9-8.1,5.9c-3.5,0-6.1-1.8-7.4-5.1
-                        c-1.3-3.4-0.6-6.4,2.1-9.1c-1.1-1-1.8-2.1-2.3-3.4c-0.7-2.2-0.5-4.5,0.6-6.5c1.1-2,3-3.4,5.2-4c2.2-0.6,4.5-0.2,6.4,1
-                        c1.9,1.2,3.2,3,3.6,5.1h35.6c0.9-3.6,3.4-6,7-6.5c3.6-0.4,6.9,1.6,8.4,4.9c1.2,2.6,1,6.4-1.9,9.3c3,3,3.5,6.4,1.6,10
-                        C65.8,46,63.3,47.5,60,47.5z M15.8,39.6h37.1c0.5,0,0.9,0.3,1,0.8c0.8,3.1,2.7,4.8,5.6,5.1c1.9,0.1,4.5-0.4,5.9-3.1
-                        c1.7-3.1,1.1-5.8-1.9-8.3c-0.2-0.2-0.4-0.5-0.4-0.8c0-0.3,0.1-0.6,0.4-0.8c2.9-2.3,3.2-5.5,2.2-7.7c-1.1-2.6-3.7-4.1-6.3-3.8
-                        c-2.9,0.4-4.9,2.5-5.5,5.7c-0.1,0.5-0.5,0.8-1,0.8H16.5c-1.1,0-1.5-0.5-1.8-1.3l0-0.1c0,0,0-0.1,0-0.1c-0.3-1.7-1.3-3.1-2.8-4
-                        c-1.5-0.9-3.2-1.2-4.9-0.8c-1.7,0.4-3.1,1.5-3.9,3c-0.8,1.5-1,3.3-0.4,4.9c0.4,1.2,1.2,2.2,2.5,3.2c0.2,0.2,0.4,0.5,0.4,0.8
-                        S5.5,33.8,5.2,34c-2.7,2.3-3.5,4.7-2.4,7.6c1.1,2.6,2.9,3.9,5.6,3.9c3.4,0,5.5-1.7,6.4-5.1C14.9,39.9,15.3,39.6,15.8,39.6z"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Pets allowed</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.pets">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 68 68" style="enable-background:new 0 0 68 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .elevator-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="elevator-st0" d="M67.1,68H53.5V18.2H14.5V68H0.9V4.2C0.9,1.8,2.7,0,5.1,0h57.8c2.3,0,4.2,1.8,4.2,4.2V68z M55.5,66h9.6V4.2
-                        c0-1.2-0.9-2.2-2.2-2.2H5.1C3.8,2,2.9,2.9,2.9,4.2V66h9.6V16.2h43.1V66z"/>
-                        </g>
-                        <g>
-                        <path class="elevator-st0" d="M34,64.6c-0.6,0-1-0.4-1-1V17.2c0-0.6,0.4-1,1-1s1,0.4,1,1v46.5C35,64.2,34.6,64.6,34,64.6z"/>
-                        </g>
-                        <g>
-                        <path class="elevator-st0" d="M53.5,64.6H13.5c-0.6,0-1-0.4-1-1s0.4-1,1-1h40.1c0.6,0,1,0.4,1,1S54.1,64.6,53.5,64.6z"/>
-                        </g>
-                        <g>
-                        <path class="elevator-st0" d="M28.4,12.2c-0.2,0-0.5-0.1-0.7-0.3L25,9.4l-2.5,2.5c-0.4,0.4-1,0.4-1.4,0c-0.4-0.4-0.4-1,0-1.4l3.2-3.2
-                        c0.4-0.4,1-0.4,1.4,0l3.4,3.2c0.4,0.4,0.4,1,0,1.4C28.9,12.1,28.7,12.2,28.4,12.2z"/>
-                        </g>
-                        <g>
-                        <path class="elevator-st0" d="M43,12.2c-0.2,0-0.5-0.1-0.7-0.3l-3.4-3.2c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0L43,9.8l2.5-2.5
-                        c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-3.2,3.2C43.5,12.1,43.2,12.2,43,12.2z"/>
-                        </g>
-                        <g>
-                        <circle class="elevator-st0" cx="60.5" cy="31.3" r="2.2"/>
-                        </g>
-                        <g>
-                        <circle class="elevator-st0" cx="60.5" cy="38.1" r="2.2"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Elevator</p>
-                    </div>
-                    <div class="col-xs-3 unit-details-feature" ng-show="apartment.pets">
-                        <svg class="unit-details-feature__icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        viewBox="0 0 89 68" style="enable-background:new 0 0 89 68;" xml:space="preserve">
-                        <style type="text/css">
-                        .fireplace-st0{fill:#8B93A1;}
-                        </style>
-                        <g>
-                        <g>
-                        <path class="fireplace-st0" d="M50.8,38.8c1.2-0.4,3.3,4.1,3.5,4.9c0.8,2.8-1.3,9.7-5,9.7c0-4.9-6.5-6.5-5.4-11.8c-2,0.7-3.7,2.3-4.2,4.4
-                        c-0.7,3.1,2.4,4.7,2.4,7.3c-4.6,0-6.7-4.7-5.7-8.7c1-3.9,3.4-6.4,3.2-10.5c0-0.8-0.6-2.4,0.3-2.9c0.9-0.4,2.9,1.4,3.4,1.9
-                        c2.6,2.4,4.3,6.1,4.3,9.6C48.2,42.6,49.5,39.3,50.8,38.8z"/>
-                        </g>
-                        <g>
-                        <path class="fireplace-st0" d="M79.9,54.4h-71c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1h71c0.6,0,1,0.4,1,1v52.4C80.9,54,80.4,54.4,79.9,54.4z
-                        M9.9,52.4h69V2h-69V52.4z"/>
-                        </g>
-                        <g>
-                        <path class="fireplace-st0" d="M65.6,54.4h-42c-0.6,0-1-0.4-1-1V14.3c0-0.6,0.4-1,1-1h42c0.6,0,1,0.4,1,1v39.1C66.6,54,66.2,54.4,65.6,54.4z
-                        M24.6,52.4h40V15.3h-40V52.4z"/>
-                        </g>
-                        <g>
-                        <path class="fireplace-st0" d="M88,68H1c-0.6,0-1-0.4-1-1V53.4c0-0.6,0.4-1,1-1h87c0.6,0,1,0.4,1,1V67C89,67.6,88.6,68,88,68z M2,66h85V54.4
-                        H2V66z"/>
-                        </g>
-                        </g>
-                        </svg>
-                        <p class="unit-details-feature__desc">Fireplace</p>
+                    <div class="col-xs-3 unit-details-feature-new svg-stroke-gray" ng-repeat="feature in features" ng-if="apartment[feature.data] || listing[feature.data]">
+                        <div class="" ng-include="feature.svg"></div>
+                        <p class="unit-details-feature-text" ng-show="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">
+                            {{::apartment[feature.data] || listing[feature.data]}} {{::feature.postText}}</p>
+                        <p class="unit-details-feature-text" ng-hide="feature.data === 'beds' || feature.data === 'baths' || feature.data === 'pets' || feature.data === 'laundry'">{{::feature.label}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 unit-details-description">
-                <h3 class="unit-details__orange unit-details-description__heading">Description</h3>
-                <p>
-                    Ranges are applied to apartment addresses for the privacy of those whom currently live there. While going through the application process, you'll receive the information regarding the exact address of the apartment.
-                </p>
-                <p>{{apartment.Descriptions[0].description}}</p>
-                <div class="unit-details-action-btn-wrapper hidden-xs">
-                    <button class="btn btn-outline--blue unit-details__action-btn"><i class="fa fa-heart-o"></i> Save<span class="hidden-xs"> to favorites</span></button>
-                    <button class="btn btn-outline--blue unit-details__action-btn" ng-disabled ng-show="waitlisted">You're Waitlisted</button>
-                    <button class="btn btn-outline--blue unit-details__action-btn" ng-click="setupTour()">See in person</button>
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="apply()" ng-show="available"><i class="fa fa-check"></i>
-                Apply</button>
-                    <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="waitlist()" ng-hide="waitlisted || available"><i class="fa fa-check"></i>
-                Apply</button>
+                <h3 class="unit-details__orange unit-details-description__heading">Apartment Description</h3>
+                <p>{{::listing.Apartment.Descriptions[0].description}}</p>
+            </div>
+            <div class="col-sm-6 unit-details-description">
+                <h3 class="unit-details__orange unit-details-description__heading">Additional Information</h3>
+                <p>{{::listing.Description}}</p>
+            </div>
+            <div class="col-sm-6 unit-details-description" ng-show="floorplan !== false">
+                <h3 class="unit-details__orange unit-details-description__heading">Floor Plan</h3>
+                <img alt="floorplan" ng-src="{{::floorplan}}" style="width:100%" />
             </div>
         </div>
+        <div class="unit-details-media-tab-content">
+            <!-- <div id="map" ng-model="map"></div> -->
+            <!-- <div id="class" ng-repeat="marker in markers | orderBy : 'title'"> -->
+            <!-- <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a> -->
+            <!-- </div> -->
+        </div>
     </div>
+</div>
 </div>

@@ -4,10 +4,10 @@ angular.module('LandingPageApp')
         '$http',
         '$state',
         'UserRegistrationSvc',
-        'ApartmentSearchSvc',
         'SmartSearchSvc',
         'UnitCreateSvc',
-        function($scope, $http, $state, UserRegistrationSvc, ApartmentSearchSvc, SmartSearchSvc, UnitCreateSvc) {
+        'SearchFct',
+        function($scope, $http, $state, UserRegistrationSvc,SmartSearchSvc, UnitCreateSvc, SearchFct) {
 
             $scope.radioModel = {
                 realtor: false,
@@ -31,9 +31,10 @@ angular.module('LandingPageApp')
 
             $scope.localeButtonClick = function(neighborhood){
                 //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment(neighborhood, null, function(err, data){
-                    return $state.go('Unit.Display');
-                });
+                //FIXME search functionality
+                // ApartmentSearchSvc.searchApartment(neighborhood, null, function(err, data){
+                //     return $state.go('Unit.Display');
+                // });
             };
 
             //smart search functionality
@@ -42,12 +43,12 @@ angular.module('LandingPageApp')
             };
 
             $scope.search = function() {
-                //service in shared/services
-                //pass in search string
-                //SECOND ARG UNIT NUM
-                //THIRD ARG FILTERS
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, data){
-                    return $state.go('Unit.Display');
+                //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                SearchFct.search(data, $scope.filters, function(response){
+                    $state.go('Unit.Display');
                 });
 
             };

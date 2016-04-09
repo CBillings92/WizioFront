@@ -6,12 +6,15 @@ angular.module('NavbarApp')
         '$state',
         '$http',
         '$modal',
-        'ApartmentSearchSvc',
+        '$sessionStorage',
+        'ApartmentModel',
+        'SearchModel',
+        'SearchFct',
         'AuthFct',
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $location, $scope, $state, $http, $modal, ApartmentSearchSvc, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $http, $modal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.filters = {
                 beds: null,
@@ -47,6 +50,12 @@ angular.module('NavbarApp')
                 return (route === $location.path());
             };
 
+            if($state.current.name === 'LandingPage'){
+                $scope.landingPageStyle = {position: "absolute"};
+            } else {
+                $scope.landingPageStyle = {};
+            }
+
             $scope.goToLogin = function() {
                 var authViews = WizioConfig.AccountAuthViewsURL;
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
@@ -55,9 +64,12 @@ angular.module('NavbarApp')
                     return;
                 });
             };
-            $scope.search = function() {
-                //SECOND ARG IS UNIT NUM
-                ApartmentSearchSvc.searchApartment($scope.searchString, null, $scope.filters, function(err, results) {
+            $scope.search = function(){
+                //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                SearchFct.search(data, $scope.filters, function(response){
                     $state.go('Unit.Display');
                 });
 
@@ -92,7 +104,7 @@ angular.module('NavbarApp')
 
                 var modalDefaultsTenantSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Tenant');
 
-                var modalDefaultsLandlordSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'Landlord');
+                var modalDefaultsPropertyManagerSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'PropertyManager');
 
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
 
@@ -115,8 +127,8 @@ angular.module('NavbarApp')
                                 return;
                             }
                         });
-                    } else if (result === 'landlordSignup') {
-                        ModalSvc.showModal(modalDefaultsLandlordSignup, {}).then(function(result) {
+                    } else if (result === 'propertyManagerSignup') {
+                        ModalSvc.showModal(modalDefaultsPropertyManagerSignup, {}).then(function(result) {
                             if (result === 'login') {
                                 ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
                                     return;

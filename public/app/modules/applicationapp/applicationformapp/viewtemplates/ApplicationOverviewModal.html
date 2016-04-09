@@ -1,0 +1,76 @@
+<close-modal-dirv></close-modal-dirv>
+<div class="modal-header">
+    <h3>{{applicationArray[0][0].Apartment.concatAddr}}</h3>
+    <h5>Beds: {{applicationArray[0][0].Apartment.beds}}</h5>
+    <h5>Baths: {{applicationArray[0][0].Apartment.baths}}</h5>
+    <h5>Living Spaces: {{applicationArray[0][0].Apartment.livingSpaces}}</h5>
+</div>
+<div class="modal-body">
+    <!-- header info -->
+    <div class=""></div>
+    <!-- applciation tiles -->
+        <div class="" ng-repeat="application in applicationArray track by $index" style="margin-top:10px; padding:5px; ">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6" ng-repeat="applicant in application track by $index" style="padding-bottom:10px;">
+                    <!-- picture -->
+                    <div class="col-md-4" >
+                    <img style="height:100px; width:100px; border:1px solid black;" src="http://172.16.0.2:3000/public/viewtemplates/images/aboutimages/chriscanal.png"></img></div>
+                    <!-- applicant info -->
+                    <div class="col-md-8">
+                        <div class="">
+                            <h7><strong>{{applicant.firstName + ' ' + applicant.lastName}}</strong></h7>
+                        </div>
+                        <div class="">
+                            <h7>
+                                <strong>
+                                    {{applicant.ContactEmail}}
+                                </strong>
+                            </h7>
+                        </div>
+                        <div class="">
+                            <label for="">Annual Income</label>
+                            {{applicant.User.Profile.annualIncome || 'No Extended Profile'}}
+                        </div>
+                        <div class="">
+                            <label for="">Student Status</label>
+                            {{applicant.User.Profile.studentStatus || 'No Extended Profile'}}
+                        </div>
+                        <div class="">
+                            <label for="">Employer</label>
+                            {{applicant.User.Profile.currntEmployer1 || 'No Extended Profile'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+                <!-- bottom left info panel -->
+                <div class="col-md-6">
+                    <div class="">
+                        <label for="">Application Submitted On: 12/27/2015</label>
+                    </div>
+                    <div class="">
+                        <label for="">Extended Profiles: 3/4</label>
+                    </div>
+                </div>
+                <!-- bottom right control panel -->
+                <div class="col-md-6">
+                    <div class="">
+                        <span>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Send Email</button>
+                        </span>
+                        <span>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" ng-click="viewDetails($index)" name="button" type="button">View Details</button>
+                        </span>
+                    </div>
+                    <div class="">
+                        <span>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Accept</button>
+                        </span>
+                        <span>
+                            <button class="btn btn-fill--blue btn-md col-md-5" style="margin:2px;" name="button" type="button">Reject</button>
+                        </span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
