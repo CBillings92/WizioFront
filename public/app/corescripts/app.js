@@ -45,6 +45,8 @@
             'ui.bootstrap',
             'angular-jwt',
             'angularMoment',
+            'angulartics',
+            'angulartics.google.analytics',
         ])
         .config(["$facebookProvider", "$sceDelegateProvider", function($facebookProvider, $sceDelegateProvider) {
             $facebookProvider.setAppId('439701646205204');
