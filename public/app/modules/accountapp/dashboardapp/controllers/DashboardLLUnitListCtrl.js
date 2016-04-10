@@ -14,8 +14,8 @@ angular.module('AccountApp')
         'FlexGetSetSvc',
         'BrokerageModel',
         function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel) {
-
             //reusable function for creating modalDefaults for ModalSvc
+            new Clipboard('.clipboard');
             var modalDefaults = function(size, templateUrl, controller, modalData) {
                 return {
                     backdrop: true,
@@ -31,11 +31,17 @@ angular.module('AccountApp')
                     }
                 };
             };
+            $scope.currentTab = 'UnitList';
+            $scope.changeTab = function changeTab(tab) {
+                $scope.currentTab = tab;
+                return;
+            };
+            $scope.apiApartments = [1, 2];
             var user = TokenSvc.decode();
             // $scope.user.userType = TokenSvc.decode();
             $scope.user = user;
             function viewAPIPanel(){
-                
+
             }
             function viewSharedApartments(){
                 var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';

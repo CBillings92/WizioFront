@@ -31,6 +31,7 @@
     "angulartics-google-analytics": "~0.1.4",
     "angular-moment": "~0.10.3",
     "ng-facebook": "~0.1.6",
-    "angular-animate": "^1.5.3"
+    "angular-animate": "^1.5.3",
+    "clipboard": "~1.5.10"
   }
 }
