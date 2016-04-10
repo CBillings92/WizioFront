@@ -76,7 +76,7 @@ angular.module('Directives')
                     function onMouseUp(event) {
                         manualControl = false;
                     }
-                }
+-                }
             };
         }
     ])
