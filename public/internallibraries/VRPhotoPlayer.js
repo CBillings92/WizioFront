@@ -1,4 +1,4 @@
-(function VrPhotoPlayer(){
+(function VrPhotoPlayer() {
     var manualControl = false;
     var longitude = 0;
     var latitude = 0;
@@ -36,17 +36,17 @@
     scene.add(sphereMesh);
 
     // listeners
-    document.addEventListener("mousedown", onDocumentMouseDown, false);
-    document.addEventListener("mousemove", onDocumentMouseMove, false);
-    document.addEventListener("mouseup", onDocumentMouseUp, false);
+    document.addEventListener("mousedown", onMouseDown, false);
+    document.addEventListener("mousemove", onMouseMove, false);
+    document.addEventListener("mouseup", onMouseUp, false);
 
     render();
 
-    function render(){
+    function render() {
 
         requestAnimationFrame(render);
 
-        if(!manualControl){
+        if (!manualControl) {
             longitude += 0.1;
         }
 
@@ -65,7 +65,7 @@
     }
 
     // when the mouse is pressed, we switch to manual control and save current coordinates
-    function onDocumentMouseDown(event){
+    function onMouseDown(event) {
 
         event.preventDefault();
 
@@ -80,9 +80,9 @@
     }
 
     // when the mouse moves, if in manual contro we adjust coordinates
-    function onDocumentMouseMove(event){
+    function onMouseMove(event) {
 
-        if(manualControl){
+        if (manualControl) {
             longitude = (savedX - event.clientX) * 0.1 + savedLongitude;
             latitude = (event.clientY - savedY) * 0.1 + savedLatitude;
         }
@@ -90,17 +90,12 @@
     }
 
     // when the mouse is released, we turn manual control off
-    function onDocumentMouseUp(event){
+    function onMouseUp(event) {
 
         manualControl = false;
 
     }
 
     // pressing a key (actually releasing it) changes the texture map
-    document.onkeyup = function(event){
 
-        panoramaNumber = (panoramaNumber + 1) % panoramasArray.length
-        sphereMaterial.map = THREE.ImageUtils.loadTexture(panoramasArray[panoramaNumber])
-
-    }
 }());
