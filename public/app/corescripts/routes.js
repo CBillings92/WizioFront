@@ -435,7 +435,7 @@ angular.module('MainApp')
                     url: '/national',
                     views: {
                         "UnitMain": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'NationalUnits.html',
+                            templateUrl: WizioConfig.UnitViewsCaseURL + 'NationalUnits.html',
                             controller: 'NationalCtrl'
                         }
                     },

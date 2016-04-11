@@ -66,6 +66,7 @@ angular.module('MainApp')
     UnitMainViewsURL: 'public/app/modules/unitapp/main/',
     //Unit App
     UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
+    UnitViewsCaseURL: 'public/app/modules/UnitApp/viewtemplates/',
     extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
     extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/'
 });
