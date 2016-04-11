@@ -1,9 +1,9 @@
 <div class="unit-details">
     <div class="container unit-details-header">
-        <button class="btn btn-lg btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="" ng-hide="applied">
+        <button class="btn btn-lg btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="updateUnit1()" ng-hide="applied">
             InkBlock Building
         </button>
-        <button class="btn btn-lg btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="" ng-hide="">
+        <button class="btn btn-lg btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="updateUnit2()" ng-hide="">
             InkBlock 1
         </button>
         <button class="btn btn-lg btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="" ng-hide="applied">
@@ -14,9 +14,7 @@
         </button>
         <br>
         <div class="unit-details-action-btn-wrapper">
-            <button class="btn btn-outline--orange unit-details__action-btn unit-details__action-btn__orange" ng-click="applyToApartment()" ng-hide="applied">
-                <i class="fa fa-check"></i> Contact Representative
-            </button>
+
             <!-- <button class="btn btn-outline--blue btn-md unit-details__action-btn" ng-click="favorite()" ng-hide="favorited"><i class="fa fa-heart-o"></i> Save
                 <span class="hidden-xs"> to favorites</span>
             </button>
@@ -30,11 +28,6 @@
         <h4 class="unit-details__orange" style="padding-top:2px;">By {{:: listing.Brokerage.businessName|| listing.PropertyManager.businessName || listing.PropertyManager.fullName}}</h4>
     </div>
     <div class="container unit-details-media-container">
-        <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
-            </div>
-        </div>
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
             <div class="embed-responsive embed-responsive-16by9">
                 <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
@@ -56,7 +49,7 @@
         <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
-                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
+                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphotos track by $index" style="margin:0;cursor:pointer;">
                         <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
                             {{photo.title}}
                         </div>
