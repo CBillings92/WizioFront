@@ -99,6 +99,7 @@ angular.module('UnitApp')
                         vrvideos.push(result.Apartment.Media[i]);
                     }
                 }
+
                 var media = lodash.groupBy(result.Apartment.Media, 'type');
                 $scope.media = media;
                 $scope.media.vrphoto = vrphotos;
@@ -200,23 +201,7 @@ angular.module('UnitApp')
                 //
                 // }
             };
-            $scope.submitVideo = function() {
-                var newVideo = new MediaModel($scope.media.video.link, 'vrvideo');
-                newVideo.getAssociationData();
-                newVideo.saveMedia(function(res) {
-                    return;
-                });
-                return;
 
-            };
-            $scope.submitPhoto = function() {
-                var newPhoto = new MediaModel($scope.media.photo.link, 'vrphoto', $scope.media.photo.title);
-                newPhoto.getAssociationData();
-                newPhoto.saveMedia(function(res) {
-                    return;
-                });
-                return;
-            };
             //LOAD APARTMENT DATA end
         }
     ]);

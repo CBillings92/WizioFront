@@ -95,6 +95,7 @@ angular.module('UnitApp')
                 for (var i = 0; i < result.Apartment.Media.length; i++) {
                     if (result.Apartment.Media[i].type === 'vrphoto') {
                         vrphotos.push(result.Apartment.Media[i]);
+                //        console.log(result.Apartment.Media[i]);
                     } else {
                         vrvideos.push(result.Apartment.Media[i]);
                     }
