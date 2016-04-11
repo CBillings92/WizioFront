@@ -431,6 +431,16 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Listing.National', {
+                    url: '/national',
+                    views: {
+                        "UnitMain": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'NationalUnits.html',
+                            controller: 'NationalCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Unit.Display', {
                     url: '/display',
                     views: {
