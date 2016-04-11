@@ -116,7 +116,11 @@ angular.module('UnitApp')
                     });
                     vrphotos.push({
                         title: "Bedroom 1",
-                        link: "https://www.bubl.io/experiences/50dc5135-cd21-45f9-b7a8-1987b0b1ba13"
+                        link: "http://bubl.io/experiences/aabc60c4-d199-4719-8fbf-14dc0e76dfbe"
+                    });
+                    vrphotos.push({
+                        title: "Bedroom 2",
+                        link: "http://bubl.io/experiences/293bc0da-c7d6-41c6-ba03-05541de9b8d4"
                     });
                     vrphotos.push({
                         title: "Living",
@@ -128,7 +132,7 @@ angular.module('UnitApp')
                     });
                     vrphotos.push({
                         title: "Bathroom",
-                        link: "https://www.bubl.io/experiences/aa4083de-3d97-409e-84ab-fc57c319d69d"
+                        link: "http://bubl.io/experiences/8fb2a8c1-6167-4c52-897c-fd32431278c7"
                     });
                     vrphotos.push({
                         title: "Dining",
