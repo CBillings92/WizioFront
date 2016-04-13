@@ -572,5 +572,6 @@ angular.module('MainApp')
                 }
 
             ]);
+            $locationProvider.html5Mode(true);
         }
     ]);
