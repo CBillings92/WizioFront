@@ -18,7 +18,7 @@ angular.module('Directives')
                     var photoUrl;
 
                     var webGLRenderer = new THREE.webGLRenderer();
-                    renderer.setSize(this.width, this.height);
+                    webGLRenderer.setSize(this.width, this.height);
 
                     var scene = new THREE.Scene();
 
@@ -55,7 +55,8 @@ angular.module('Directives')
                         camera.target.z = 500 * Math.sin(THREE.Math.degToRad(90 - latitude)) * Math.sin(THREE.Math.degToRad(longitude));
                         camera.lookAt(camera.target);
 
-                        rendere.render(scene, camera);
+                        webGLRenderer.render(scene, camera);
+                        return;
                     }
                     function onMouseDown(event) {
                         event.preventDefault();
@@ -64,19 +65,20 @@ angular.module('Directives')
                         savedY = event.clientY;
                         savedLongitude = longitude;
                         savedLatitude = latitude;
-
+                        return;
                     }
                     function onMouseMove(event) {
                         if (manualControl) {
                             longitude = (savedX - event.clientX) * 0.1 + savedLongitude;
                             latitude = (event.clientX - savedY) * 0.1 + savedLatitude;
-
                         }
+                        return;
                     }
                     function onMouseUp(event) {
                         manualControl = false;
+                        return;
                     }
--                }
+                }
             };
         }
-    ])
+    ]);
