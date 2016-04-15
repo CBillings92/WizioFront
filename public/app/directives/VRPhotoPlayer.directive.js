@@ -18,6 +18,7 @@ angular.module('Directives')
                     console.dir(webGLRenderer.domElement);
 
                     elem[0].appendChild(webGLRenderer.domElement);
+                    
                     var scene = new THREE.Scene();
                     console.dir(elem[0].parentElement);
                     var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
@@ -89,7 +90,7 @@ angular.module('Directives')
 
                         savedLongitude = longitude;
                         savedLatitude = latitude;
-
+                        return;
                     }
 
                     // when the mouse moves, if in manual contro we adjust coordinates
@@ -106,7 +107,6 @@ angular.module('Directives')
                     function onMouseUp(event) {
 
                         manualControl = false;
-
                     }
                 }
             };

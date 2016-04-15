@@ -1,0 +1,15 @@
+<div class="">
+    <h3>Add or Remove API Access by checking the box next to the brokerage name</h3>
+    <!-- <h4>{{devonRocks}}</h4> -->
+</div>
+<div class="">
+    <div class="" ng-repeat="broker in brokerages track by $index" style="margin:10px;">
+        <div class="">
+            Business Name: {{broker.businessName}}
+        </div>
+        <div class="">
+            API Key: {{broker.Apiaccess.apikey}}
+            <input type="checkbox" name="button" value="Active"> Active </input>
+        </div>
+    </div>
+</div>

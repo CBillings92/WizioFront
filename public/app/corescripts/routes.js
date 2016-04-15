@@ -99,6 +99,15 @@ angular.module('MainApp')
                         }
                     },
                 })
+                .state('AdminPanel.ApiAccessTool', {
+                    url: '/wizioadminpanel/apiaccesstool',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'adminapiaccesstool.view.html',
+                            controller: 'AdminPanelApiAccessCtrl'
+                        }
+                    }
+                })
                 .state('Styleguide', {
                     url: '/about/styleguide',
                     views: {
