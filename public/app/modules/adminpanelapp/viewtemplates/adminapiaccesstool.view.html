@@ -9,7 +9,9 @@
         </div>
         <div class="">
             API Key: {{broker.Apiaccess.apikey}}
-            <input type="checkbox" name="button" ng-model="brokre.Apiaccess.active" ng-change="updateApiAccess(broker, $index, '$scope.brokerages')" value="Active" > Active </input>
+            <input type="checkbox" name="button" ng-hide="broker.Apiaccess == null" ng-model="broker.Apiaccess.active" ng-false-value="0" ng-true-value="1" ng-change="updateApiAccess(broker, $index, '$scope.brokerages')" value="Active"> </input>
+            <input type="button" class="btn btn-orange" name="button" ng-show="broker.Apiaccess == null" ng-click="updateApiAccess(broker, $index, '$scope.brokerages')" value=" Activate"></input>
+
         </div>
     </div>
     <div class="" ng-repeat="pm in PropertyManagers track by $index" style="margin:10px;">
@@ -18,7 +20,8 @@
         </div>
         <div class="">
             API Key: {{pm.Apiaccess.apikey}}
-            <input type="checkbox" name="button" ng-model="brokre.Apiaccess.active" ng-change="updateApiAccess(pm, $index)" value="Active" > Active </input>
+            <input type="checkbox" name="button" ng-hide="pm.Apiaccess == null" ng-model="pm.Apiaccess.active" ng-click="updateApiAccess(pm, $index)" ng-true-value="1" ng-false-value="0" value="Active"></input>
+            <input class="btn btn-orange" type="button" name="button" ng-show="pm.Apiaccess == null" ng-click="updateApiAccess(pm, $index)" value=" Activate"></input>
         </div>
     </div>
 </div>
