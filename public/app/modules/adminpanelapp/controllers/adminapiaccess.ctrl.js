@@ -32,39 +32,21 @@ angular.module('AdminPanelApp')
                         $scope.brokerages = result[1];
                         $scope.PropertyManagers = result[0];
                     }
-                    console.dir($scope.brokerages);
-                    console.dir($scope.PropertyManagers);
                     return;
                 });
 
             function updateApiAccess(data, index, arrayChanged) {
-                console.dir(data.Apiaccess);
                 if(data.Apiaccess !== null){
-                    console.dir("{{{{{{{{}}}}}}}}");
-                    console.dir(data);
-                    console.dir($scope.brokerages);
                         vrapiUpdate.update(data.Apiaccess, function(res){
-                            console.dir(res);
                         });
                 } else {
-                    console.dir("__________________");
                     console.dir(data);
                     vrapi.save(data, function updateApiAccessCB(response) {
-                        console.dir(response);
-                        console.dir("CHECKCHECKCHECKCHECKCHECKCHECK");
-                        console.dir(response.BrokerageId);
-                        console.dir(response.PropertyManagerId);
-
-                        console.dir("CHECKCHECKCHECKCHECKCHECKCHECK");
                         if(typeof(response.BrokerageId) === 'number'){
-                            console.dir("IN BROKER");
                             $scope.brokerages[index].Apiaccess = response;
                         } else {
-                            console.dir("IN ELSE");
                             $scope.PropertyManagers[index].Apiaccess = response;
                         }
-                        console.dir($scope.brokerages);
-                        console.dir($scope.PropertyManagers);
                     });
                 }
             }

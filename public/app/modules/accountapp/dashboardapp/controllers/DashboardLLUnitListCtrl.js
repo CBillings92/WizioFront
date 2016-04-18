@@ -36,6 +36,9 @@ angular.module('AccountApp')
                 $scope.currentTab = tab;
                 return;
             };
+            function getApartmentsForExternalApi(){
+                $resource(WizioConfig.baseAPIURL + 'vrapi')
+            }
             $scope.apiApartments = [1, 2];
             var user = TokenSvc.decode();
             // $scope.user.userType = TokenSvc.decode();
