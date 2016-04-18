@@ -3,7 +3,8 @@ angular.module('AdminPanelApp')
         '$scope',
         '$resource',
         'WizioConfig',
-        function adminpanelapiaccessctrl($scope, $resource, WizioConfig) {
+        'TokenSvc',
+        function adminpanelapiaccessctrl($scope, $resource, WizioConfig, TokenSvc) {
             var vrapi = $resource(WizioConfig.baseAPIURL + 'vrapi');
             var vrapiUpdate = $resource(WizioConfig.baseAPIURL + 'vrapi', null, {
                 'update': {
@@ -23,6 +24,7 @@ angular.module('AdminPanelApp')
                 "DEVVVVVVOOOOOONNNNNNNNNNN",
                 "GET IT DEVON GET IT!"
             ];
+            console.dir(TokenSvc.decode());
             $scope.devonRocks = devonRocksArray[devonRocksIndex];
                 vrapi.query(function(result) {
                     if(result[0].BrokerageId !== null){
