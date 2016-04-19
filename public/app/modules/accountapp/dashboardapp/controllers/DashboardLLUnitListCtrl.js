@@ -38,6 +38,7 @@ angular.module('AccountApp')
             };
             function getApartmentsForExternalApi(){
                 $resource(WizioConfig.baseAPIURL + 'vrapi')
+                    .get('/:apikey')
             }
             $scope.apiApartments = [1, 2];
             var user = TokenSvc.decode();
