@@ -35,24 +35,25 @@ angular.module('AccountApp')
             $scope.changeTab = function changeTab(tab) {
                 getApartmentsForExternalApi()
                     .then(function(response){
-                        console.dir(response);
+                        $scope.currentTab = tab;
+
                     });
                 $scope.currentTab = tab;
                 return;
             };
             function getApartmentsForExternalApi(){
                 var user = TokenSvc.decode();
-                var apikey = null;
+                var $scope.apikey = null;
                 console.dir(user);
-                if(typeof(user.PropertyManagers) == 'undefined'){
-                    apikey = user.Brokerages[0].Apiaccess.apikey;
+                if(typeof(user.PropertyManager) == 'undefined'){
+                    $scope.apikey = user.Brokerages[0].Apiaccess.apikey;
                 } else {
-                    apikey = user.PropertyManagers[0].Apiaccess.apikey;
+                    $scope.apikey = user.PropertyManager[0].Apiaccess.apikey;
                 }
                 return new $q(function(resolve, reject) {
                     $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
-                    .get({apikey:apikey}, function (response) {
-                        return resolve(response);
+                    .query({apikey:$scope.apikey}, function (response) {
+                        return resolve(lodash.uniq(lodash.map(response, 'ApartmentId')));
                     });
                 });
             }
