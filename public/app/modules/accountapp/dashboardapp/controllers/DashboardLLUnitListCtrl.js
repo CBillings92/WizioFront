@@ -33,12 +33,28 @@ angular.module('AccountApp')
             };
             $scope.currentTab = 'UnitList';
             $scope.changeTab = function changeTab(tab) {
+                getApartmentsForExternalApi()
+                    .then(function(response){
+                        console.dir(response);
+                    });
                 $scope.currentTab = tab;
                 return;
             };
             function getApartmentsForExternalApi(){
-                $resource(WizioConfig.baseAPIURL + 'vrapi')
-                    .get('/:apikey')
+                var user = TokenSvc.decode();
+                var apikey = null;
+                console.dir(user);
+                if(typeof(user.PropertyManagers) == 'undefined'){
+                    apikey = user.Brokerages[0].Apiaccess.apikey;
+                } else {
+                    apikey = user.PropertyManagers[0].Apiaccess.apikey;
+                }
+                return new $q(function(resolve, reject) {
+                    $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
+                    .get({apikey:apikey}, function (response) {
+                        return resolve(response);
+                    });
+                });
             }
             $scope.apiApartments = [1, 2];
             var user = TokenSvc.decode();
