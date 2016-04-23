@@ -8,11 +8,11 @@
             <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-show="currentTab === 'api'" ng-click="changeTab('UnitList')">My Inventory</button>
         </div>
         <div class="col-md-12" ng-if="currentTab === 'api'">
-            <div class="" ng-repeat="apartment in apiApartments track by $index">
+            <div class="" ng-repeat="apartment in apartmentsForApi track by $index">
                 <div class="">
                     <h5>175 Amory Street #2 Jamaica Plain MA 02130</h5>
                     <div class="col-md-6">
-                        <label class="control-label" id="iframe{{$index}}">&lt;iframe src='http://172.16.0.2:3000/#/listing/vr/{{apikey}}/{{}}'&gt;&lt;/iframe&gt;</label>
+                        <label class="control-label" id="iframe{{$index}}">&lt;iframe src='http://172.16.0.2:3000/#/listing/vr/{{apikey}}/{{apartment}}'&gt;&lt;/iframe&gt;</label>
 
                         <button type="button" class="btn clipboard" name="button" data-clipboard-target="#iframe{{$index}}">copy to clipboard</button>
                     </div>
