@@ -5,12 +5,14 @@ angular.module('UnitApp')
         'WizioConfig',
         '$sce',
         'lodash',
-        function($scope, $resource, WizioConfig, $sce, lodash) {
+        'ModalSvc',
+        function($scope, $resource, WizioConfig, $sce, lodash, ModalSvc) {
             //mason was here 3,2.] j
+            console.dir($scope);
             var apitoken = 2;
             var apartmentid = 1;
             $scope.trust = $sce;
-
+            $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
             $resource(WizioConfig.baseAPIURL + 'apartment/vr/:apitoken/:apartmentid', {
                 apitoken: '@apitoken',
                 apartmentid: '@apartmentid',
@@ -26,10 +28,13 @@ angular.module('UnitApp')
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    console.dir($scope.photoUrl);
+                    $scope.$emit('CHANGE', {});
                 };
                 $scope.mediaTab = 'unitPhotos';
                 $scope.selectMediaTab = function(tab) {
                     if (tab === 'unitVideos') {
+                        console.dir("HI");
                         if (vrvideos.length !== 1) {
                             var signUpErrorModalOptions = {
                                 closeButtonText: "Close",

@@ -99,6 +99,15 @@ angular.module('MainApp')
                         }
                     },
                 })
+                .state('AdminPanel.ApiAccessTool', {
+                    url: '/wizioadminpanel/apiaccesstool',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'adminapiaccesstool.view.html',
+                            controller: 'AdminPanelApiAccessCtrl'
+                        }
+                    }
+                })
                 .state('Styleguide', {
                     url: '/about/styleguide',
                     views: {
@@ -160,7 +169,7 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Account.Dashboard', {
-                    abstract: true,
+                    url: '/dashboard',
                     views: {
                         "AccountMain": {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
@@ -168,34 +177,16 @@ angular.module('MainApp')
                         }
                     }
                 })
-                // .state('Account.Dashboard.Main', {
-                //     abstract: true,
-                //     url: '/dashboard',
-            // views: {
-            //         topHorizontal: {
-            //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-            //             controller: 'DashboardUserInfoCtrl'
-            //         }
-            //
-            //     }
-                // })
-                // .state('Account.Dashboard.Main.Broker', {
-                //     views: {
-                //
-                //     }
-                // })
-                // .state('Account.Dashboard.Main.PropertyManager', {
-                //     views: {
-                //
-                //     }
-                // })
-                // .state('Account.Dashboard.Main.tenant', {
-                //     views: {
-                //
-                //     }
-                // })
                 .state('Account.Dashboard.Main', {
-                    url: '/dashboard',
+                    abstract: true,
+                    views: {
+                        topHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+                            controller: 'DashboardUserInfoCtrl'
+                        }
+                    }
+                })
+                .state('Account.Dashboard.Broker', {
                     views: {
                         topHorizontal: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
@@ -203,61 +194,118 @@ angular.module('MainApp')
                         },
                         controlPanel: {
                             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl'
+                            controller: 'DashboardControlsCtrl',
                         },
                         midHorizontal: {
-                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                                if (TokenSvc.decode().userType >= 2) {
-                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
-                                } else {
-                                    return null;
-                                }
-                            }],
-                            controllerProvider: ['$rootScope', function($rootScope) {
-                                if ($rootScope.userType >= 2) {
-                                    return 'DashboardLLUnitListCtrl';
-                                } else {
-                                    return null;
-                                }
-                            }],
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
+                            controller: 'DashboardLLUnitListCtrl'
+                        }
+                    },
+                    data: trueRequiredLogin
+                })
+                .state('Account.Dashboard.PropertyManager', {
+                    views: {
+                        topHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+                            controller: 'DashboardUserInfoCtrl'
                         },
-                        application: {
-                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                                if (TokenSvc.decode().userType == 1) {
-                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
-                                }
-                            }],
-                            controllerProvider: ['$rootScope', function($rootScope) {
-                                if ($rootScope.userType == 1) {
-                                    return 'DashboardApplicationCtrl';
-                                } else {
-                                    return null;
-                                }
-                            }]
+                        controlPanel: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
+                            controller: 'DashboardControlsCtrl',
+                        },
+                        midHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
+                            controller: "DashboardLLUnitListCtrl",
+                        }
+
+                    },
+                    data: trueRequiredLogin
+                })
+                .state('Account.Dashboard.Tenant', {
+                    views: {
+                        topHorizontal: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+                            controller: 'DashboardUserInfoCtrl'
+                        },
+                        controlPanel: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
+                            controller: 'DashboardControlsCtrl',
                         },
                         favorites: {
-                            templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                                if (TokenSvc.decode().userType == 1) {
-                                    return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
-                                } else {
-                                    return null;
-                                }
-                            }],
-                            controllerProvider: ['$rootScope', function($rootScope) {
-                                switch ($rootScope.userType) {
-                                    case 1:
-                                        console.dir($rootScope.userType);
-                                        return "DashboardFavoriteCtrl";
-                                    case 2:
-
-                                        break;
-                                    default:
-                                }
-                            }],
-                            data: trueRequiredLogin
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
+                            controller: "DashboardFavoriteCtrl"
                         },
-                    }
+                        application: {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
+                            controller: "DashboardApplicationCtrl"
+                        },
+                    },
+                    data: trueRequiredLogin
                 })
+                // .state('Account.Dashboard.Main', {
+                //     url: '/dashboard',
+                //     views: {
+                //         topHorizontal: {
+                //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
+                //             controller: 'DashboardUserInfoCtrl'
+                //         },
+                //         controlPanel: {
+                //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
+                //             controller: 'DashboardControlsCtrl'
+                //         },
+                //         midHorizontal: {
+                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
+                //                 if (TokenSvc.decode().userType >= 2) {
+                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
+                //                 } else {
+                //                     return null;
+                //                 }
+                //             }],
+                //             controllerProvider: ['$rootScope', function($rootScope) {
+                //                 if ($rootScope.userType >= 2) {
+                //                     return 'DashboardLLUnitListCtrl';
+                //                 } else {
+                //                     return null;
+                //                 }
+                //             }],
+                //         },
+                //         application: {
+                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
+                //                 if (TokenSvc.decode().userType == 1) {
+                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
+                //                 }
+                //             }],
+                //             controllerProvider: ['$rootScope', function($rootScope) {
+                //                 if ($rootScope.userType == 1) {
+                //                     return 'DashboardApplicationCtrl';
+                //                 } else {
+                //                     return null;
+                //                 }
+                //             }]
+                //         },
+                //         favorites: {
+                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
+                //                 if (TokenSvc.decode().userType == 1) {
+                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
+                //                 } else {
+                //                     return null;
+                //                 }
+                //             }],
+                //             controllerProvider: ['$rootScope', function($rootScope) {
+                //                 switch ($rootScope.userType) {
+                //                     case 1:
+                //                         console.dir($rootScope.userType);
+                //                         return "DashboardFavoriteCtrl";
+                //                     case 2:
+                //
+                //                         break;
+                //                     default:
+                //                 }
+                //             }],
+                //             data: trueRequiredLogin
+                //         },
+                //     }
+                // })
                 .state('Account.Dashboard.Application', {
                     url: '/application',
                     views: {

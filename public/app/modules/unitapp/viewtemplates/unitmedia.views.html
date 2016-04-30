@@ -1,12 +1,15 @@
 <div class="container unit-details-media-container">
     <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
         <div class="embed-responsive embed-responsive-16by9">
-            <iframe allowfullscreen="allowfullscreen" style="margin-top:-20px" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
+            <vr-photo-player-dirv photoUrl="{{photoUrl}}"></vr-photo-player-dirv>
+            <!-- <iframe allowfullscreen="allowfullscreen" style="margin-top:-20px" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe> -->
         </div>
     </div>
     <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
-        <div class="embed-responsive embed-responsive-16by9">s
-            <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
+        <div class="embed-responsive embed-responsive-16by9">
+            <vr-photo-player-dirv photoUrl='{{photoUrl}}'></vr-photo-player-dirv>
+
+            <!-- <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
         </div>
 
     </div>
