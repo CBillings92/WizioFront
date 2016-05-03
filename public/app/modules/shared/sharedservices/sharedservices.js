@@ -134,6 +134,7 @@ angular.module('SharedServiceApp')
         function($http, $state, FlexGetSetSvc, ApartmentClaimGetSetSvc) {
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
+
             var smartSearch = function(val, sessionStorageVar) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     headers: {

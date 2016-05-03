@@ -45,6 +45,7 @@ angular.module('SharedFactoryApp')
                 };
 
                 var setMapOptions = function(unitList) {
+
                     if (unitList.constructor !== Array) {
                         unitList = [unitList];
                     }
@@ -84,7 +85,8 @@ angular.module('SharedFactoryApp')
                 };
 
                 var unitList = null;
-                if ($state.current.name === "Unit.Details" || 'listing.group') {
+
+                if ($state.current.name === "Unit.Details" || $state.current.name === "Listing.Group") {
                     unitList = ApartmentGetSetSvc.get("apartmentSelected");
                 } else if ($state.current.name === "Unit.Display") {
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
@@ -114,13 +116,16 @@ angular.module('SharedFactoryApp')
                     return markersArray;
                 };
                 map = null;
-                if(unit.apartmentData){
-                    position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
-                } else {
-                    position = new google.maps.LatLng(unit.latitude, unit.longitude);
 
-                }
                 function createMarker(unit) {
+
+                    if(unit.apartmentData){
+                        position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
+                    } else {
+                        position = new google.maps.LatLng(unit.latitude, unit.longitude);
+
+                    }
+
                     var marker = new google.maps.Marker({
                         map: map,
                         position: position,

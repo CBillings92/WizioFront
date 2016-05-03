@@ -21,6 +21,7 @@ angular.module('UnitApp')
         'SearchFct',
         'moment',
         'UnitFct',
+        'SmartSearchSvc',
         function(
             $scope,
             $state,
@@ -42,8 +43,16 @@ angular.module('UnitApp')
             WizioConfig,
             SearchFct,
             moment,
-            UnitFct
+            UnitFct,
+            SmartSearchSvc
         ) {
+
+            $scope.getLocation = function(val) {
+                console.log("hello ");
+                return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
+            };
+
+
             $scope.listing = {};
             var user = TokenSvc.decode();
             $resource(WizioConfig.baseAPIURL + 'lease/:id', {

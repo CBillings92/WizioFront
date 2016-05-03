@@ -43,10 +43,12 @@ angular.module('LandingPageApp')
             };
 
             $scope.search = function() {
+
                 //massage data into proper form for building a new apartment instance
                 var data = {
                     concatAddr : $scope.searchString
                 };
+
                 SearchFct.search(data, $scope.filters, function(response){
                     $state.go('Unit.Display');
                 });

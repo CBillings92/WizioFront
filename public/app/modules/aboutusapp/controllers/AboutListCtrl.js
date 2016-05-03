@@ -34,7 +34,7 @@ angular.module("AboutUsApp")
             $scope.test = 2;
             $scope.calculator = function(num, num2) {
                 return num + num2;
-            }
+            };
         }
 
     ]);

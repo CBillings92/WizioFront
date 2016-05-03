@@ -9,6 +9,7 @@ angular.module('Models')
             this.filters = filters || null;
         }
         Search.prototype.send = function(callback){
+
             var data = this;
             return $resource(WizioConfig.baseAPIURL + "search",
             {},

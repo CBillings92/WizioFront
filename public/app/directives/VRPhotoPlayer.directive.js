@@ -18,7 +18,7 @@ angular.module('Directives')
                     console.dir(webGLRenderer.domElement);
 
                     elem[0].appendChild(webGLRenderer.domElement);
-                    
+
                     var scene = new THREE.Scene();
                     console.dir(elem[0].parentElement);
                     var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
@@ -41,7 +41,7 @@ angular.module('Directives')
                     render();
                     scope.$on('CHANGE', function() {
                         newImage();
-                    })
+                    });
 
                     function resize() {
                         camera.aspect = (elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
