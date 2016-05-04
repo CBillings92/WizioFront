@@ -54,6 +54,7 @@ angular.module('LandingPageApp')
             };
             //smart search/typeahead functionality
             $scope.getLocation = function(val) {
+              console.dir("HIHIHI");
                 return SmartSearchSvc.smartSearch(val);
             };
             $scope.registerUser = function() {

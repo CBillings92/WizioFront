@@ -18,7 +18,7 @@ angular.module('Directives')
                     console.dir(webGLRenderer.domElement);
 
                     elem[0].appendChild(webGLRenderer.domElement);
-                    
+
                     var scene = new THREE.Scene();
                     console.dir(elem[0].parentElement);
                     var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
@@ -28,7 +28,11 @@ angular.module('Directives')
                     sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 
                     var sphereMaterial = new THREE.MeshBasicMaterial();
-                    sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
+                    scope.$on('IMGLOAD', function IMGLOAD(event, data) {
+                        console.dir(data);
+                        THREE.ImageUtils.crossOrigin = '';
+                        sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
+                    })
 
                     var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
                     scene.add(sphereMesh);
@@ -51,7 +55,7 @@ angular.module('Directives')
                     }
 
                     function newImage() {
-                        sphereMesh.material.map = THREE.ImageUtils.loadTexture('public/assets/equirect-5376x2688-fb4e3b33-5101-4aae-8349-7953509fa0f4.jpg');
+                        sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
                         sphereMesh.material.needsUpdate = true;
                     }
 

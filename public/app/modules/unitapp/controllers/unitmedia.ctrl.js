@@ -22,14 +22,15 @@ angular.module('UnitApp')
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
+                $scope.$broadcast('IMGLOAD', {media: media})
                 // $scope.media.vrphoto = vrphotos;
                 console.dir($scope.media);
                 var photoIndex = 0;
-                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                 $scope.changePhoto = function(photoIndex) {
-                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                     console.dir($scope.photoUrl);
-                    $scope.$emit('CHANGE', {});
+                    $scope.$broadcast('CHANGE', {});
                 };
                 $scope.mediaTab = 'unitPhotos';
                 $scope.selectMediaTab = function(tab) {
