@@ -10,9 +10,9 @@
         <div class="col-md-12" ng-if="currentTab === 'api'">
             <div class="" ng-repeat="apartment in apartmentsForApi track by $index">
                 <div class="">
-                    <h5>175 Amory Street #2 Jamaica Plain MA 02130</h5>
+                    <h5>{{apartment.Apartment.concatAddr + " " + apartment.Apartment.unitNum}}</h5>
                     <div class="col-md-6">
-                        <label class="control-label" id="iframe{{$index}}">&lt;iframe src='http://172.16.0.2:3000/#/listing/vr/{{apikey}}/{{apartment}}'&gt;&lt;/iframe&gt;</label>
+                        <label class="control-label" id="iframe{{$index}}">&lt;iframe style="width: 100%; height: 100% style:block" src='http://172.16.0.2:3000/#/listing/vr/{{apikey}}/{{apartment}}'&gt;&lt;/iframe&gt;</label>
 
                         <button type="button" class="btn clipboard" name="button" data-clipboard-target="#iframe{{$index}}">copy to clipboard</button>
                     </div>

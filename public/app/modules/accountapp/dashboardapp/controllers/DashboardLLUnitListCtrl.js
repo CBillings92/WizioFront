@@ -48,6 +48,7 @@ angular.module('AccountApp')
                 getApartmentsForExternalApi()
                     .then(function(response){
                         $scope.apartmentsForApi = response;
+                        console.dir(response);
                         $scope.currentTab = tab;
 
                     });
@@ -66,12 +67,11 @@ angular.module('AccountApp')
                     console.dir($scope.apikey);
                     $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
                     .query({apikey:$scope.apikey}, function (response) {
-                        return resolve(lodash.uniq(lodash.map(response, 'ApartmentId')));
+                        return resolve(lodash.uniqBy(response, 'ApartmentId'));
                     });
                 });
             }
             $scope.apiApartments = [1, 2];
-            var user = TokenSvc.decode();
             // $scope.user.userType = TokenSvc.decode();
             $scope.user = user;
             function viewAPIPanel(){
