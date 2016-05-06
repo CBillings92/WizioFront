@@ -31,21 +31,22 @@ angular.module('Directives')
                     scope.$on('IMGLOAD', function IMGLOAD(event, data) {
                         console.dir(data);
                         THREE.ImageUtils.crossOrigin = '';
+                        console.dir(scope.photoUrl);
                         sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
-                    })
-
-                    var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
-                    scene.add(sphereMesh);
+                        var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
+                        scene.add(sphereMesh);
+                    });
                     elem[0].addEventListener("mousedown", onMouseDown, false);
                     elem[0].addEventListener("mousemove", onMouseMove, false);
                     elem[0].addEventListener("mouseup", onMouseUp, false);
                     window.addEventListener("resize", resize, false);
 
+
                     preRender();
                     render();
                     scope.$on('CHANGE', function() {
                         newImage();
-                    })
+                    });
 
                     function resize() {
                         camera.aspect = (elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
@@ -55,6 +56,9 @@ angular.module('Directives')
                     }
 
                     function newImage() {
+                        console.dir("HInaeuthnaoteuhntoeahuoeauoae");
+                        var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
+                        scene.add(sphereMesh);
                         sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
                         sphereMesh.material.needsUpdate = true;
                     }

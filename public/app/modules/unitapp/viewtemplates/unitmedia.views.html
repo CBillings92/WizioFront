@@ -1,4 +1,4 @@
-<div class="container unit-details-media-container">
+<div class="container unit-details-media-container" style="width: 800px; height: 450px">
     <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
         <div class="embed-responsive embed-responsive-16by9">
             <vr-photo-player-dirv photoUrl="{{photoUrl}}"></vr-photo-player-dirv>
@@ -13,14 +13,14 @@
         </div>
 
     </div>
-    <ul class="unit-details-media-container-tabs">
+    <!--<ul class="unit-details-media-container-tabs">
         <li style="width:50%">
             <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
         </li>
         <li style="width:50%">
             <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
         </li>
-    </ul>
+    </ul>-->
     <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
         <div class="unit-details-media-tab-content-picker-slider-scroller">
             <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
