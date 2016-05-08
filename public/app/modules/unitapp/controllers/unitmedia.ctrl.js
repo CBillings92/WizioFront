@@ -25,7 +25,7 @@ angular.module('UnitApp')
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
                 $scope.photoUrl = $scope.media.vrphoto[0].awsurl;
-                $scope.$broadcast('IMGLOAD', {media: media})
+                $scope.$broadcast('IMGLOAD', {media: media});
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
