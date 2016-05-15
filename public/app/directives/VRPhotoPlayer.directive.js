@@ -11,16 +11,13 @@ angular.module('Directives')
                     var savedY;
                     var savedLongitude;
                     var savedLatitude;
-                    console.dir(scope.photoUrl);
                     var webGLRenderer = new THREE.WebGLRenderer();
                     webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
                     webGLRenderer.domElement.className = 'col-md-12';
-                    console.dir(webGLRenderer.domElement);
 
                     elem[0].appendChild(webGLRenderer.domElement);
 
                     var scene = new THREE.Scene();
-                    console.dir(elem[0].parentElement);
                     var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
                     camera.target = new THREE.Vector3(0, 0, 0);
 
@@ -29,9 +26,7 @@ angular.module('Directives')
 
                     var sphereMaterial = new THREE.MeshBasicMaterial();
                     scope.$on('IMGLOAD', function IMGLOAD(event, data) {
-                        console.dir(data);
                         THREE.ImageUtils.crossOrigin = '';
-                        console.dir(scope.photoUrl);
                         sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
                         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
                         scene.add(sphereMesh);
@@ -56,7 +51,6 @@ angular.module('Directives')
                     }
 
                     function newImage() {
-                        console.dir("HInaeuthnaoteuhntoeahuoeauoae");
                         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
                         scene.add(sphereMesh);
                         sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);

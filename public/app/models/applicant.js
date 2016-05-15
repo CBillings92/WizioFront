@@ -58,7 +58,6 @@ angular.module('Models')
             };
 
             Applicant.build = function buildApplicant(data) {
-                    console.dir(data);
                     return new Applicant(
                         data.UserId,
                         data.ApplicationId,
