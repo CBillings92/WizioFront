@@ -197,11 +197,11 @@
 	}
 	@media (min-width: $screen-sm-min) {
 		margin-bottom: 40px;
-		max-width: 90%;
+		max-width: 75%;
 	}
 	@media (min-width: $screen-md-min) {
 		margin-bottom: 60px;
-		max-width: 90%;
+		max-width: 75%;
 
 	}
 	#map {
@@ -209,7 +209,25 @@
 		padding-bottom: percentage(9 / 16);
 	}
 }
+.unit-details-media-container-iframe{
+	margin-bottom: 30px;
+	@media (max-width: $screen-xs-max) {
+		padding: 20px;
+	}
+	@media (min-width: $screen-sm-min) {
+		margin-bottom: 40px;
+		max-width: 75%;
+	}
+	@media (min-width: $screen-md-min) {
+		margin-bottom: 60px;
+		max-width: 75%;
 
+	}
+	#map {
+		// this maintains a 16 / 9 aspect ratio
+		padding-bottom: percentage(9 / 16);
+	}
+}
 .unit-details-info {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
