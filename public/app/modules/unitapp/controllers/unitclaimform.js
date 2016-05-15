@@ -35,9 +35,7 @@ angular.module('UnitApp')
                 $scope.ammenitiesDropdown = {};
                 $scope.ammenitiesCheckbox = {};
                 for(var key in allAmmenities){
-                    console.dir(allAmmenities);
                     if(allAmmenities[key].dataParent === 'Apartment'){
-                        console.dir(allAmmenities[key]);
                         if(typeof(allAmmenities[key].selectArray) !== 'undefined'){
                             $scope.ammenitiesDropdown[key] = allAmmenities[key];
                         } else {

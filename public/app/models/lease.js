@@ -53,7 +53,6 @@ angular.module('Models')
             };
             Lease.prototype.create = function(callback){
                 var data = this;
-                console.dir(data);
                 $resource(WizioConfig.baseAPIURL + 'lease').save(data, function(response){
                     callback(response);
                 });
@@ -101,7 +100,6 @@ angular.module('Models')
             };
 
             Lease.api = api;
-            console.dir(Lease);
             return Lease;
         }
     ]);

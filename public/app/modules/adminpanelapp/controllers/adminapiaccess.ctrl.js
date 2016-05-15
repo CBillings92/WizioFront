@@ -24,7 +24,6 @@ angular.module('AdminPanelApp')
                 "DEVVVVVVOOOOOONNNNNNNNNNN",
                 "GET IT DEVON GET IT!"
             ];
-            console.dir(TokenSvc.decode());
             $scope.devonRocks = devonRocksArray[devonRocksIndex];
                 vrapi.query(function(result) {
                     if(result[0].BrokerageId !== null){
@@ -42,7 +41,6 @@ angular.module('AdminPanelApp')
                         vrapiUpdate.update(data.Apiaccess, function(res){
                         });
                 } else {
-                    console.dir(data);
                     vrapi.save(data, function updateApiAccessCB(response) {
                         if(typeof(response.BrokerageId) === 'number'){
                             $scope.brokerages[index].Apiaccess = response;

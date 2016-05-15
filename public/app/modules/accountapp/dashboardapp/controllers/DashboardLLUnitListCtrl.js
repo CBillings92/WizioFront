@@ -15,6 +15,7 @@ angular.module('AccountApp')
         'BrokerageModel',
         function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel) {
             //reusable function for creating modalDefaults for ModalSvc
+            var user = TokenSvc.decode();
             new Clipboard('.clipboard');
             var modalDefaults = function(size, templateUrl, controller, modalData) {
                 return {
@@ -33,6 +34,17 @@ angular.module('AccountApp')
             };
             $scope.currentTab = 'UnitList';
             $scope.changeTab = function changeTab(tab) {
+                if(typeof user.Brokerages === 'undefined') {
+                    if(user.PropertyManager[0].Apiaccess.active === 0){
+                        alert('No API Access If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
+                        return;
+                    }
+                } else {
+                    if(user.Brokerages[0].Apiaccess.active === 0){
+                        alert('No API Access. If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
+                        return;
+                    }
+                }
                 getApartmentsForExternalApi()
                     .then(function(response){
                         $scope.apartmentsForApi = response;
@@ -43,24 +55,21 @@ angular.module('AccountApp')
                 return;
             };
             function getApartmentsForExternalApi(){
-                var user = TokenSvc.decode();
                 $scope.apikey = null;
-                console.dir(user);
+                //grab the api key
                 if(typeof(user.PropertyManager) == 'undefined'){
                     $scope.apikey = user.Brokerages[0].Apiaccess.apikey;
                 } else {
                     $scope.apikey = user.PropertyManager[0].Apiaccess.apikey;
                 }
                 return new $q(function(resolve, reject) {
-                    console.dir($scope.apikey);
                     $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
                     .query({apikey:$scope.apikey}, function (response) {
-                        return resolve(lodash.uniq(lodash.map(response, 'ApartmentId')));
+                        return resolve(lodash.uniqBy(response, 'ApartmentId'));
                     });
                 });
             }
             $scope.apiApartments = [1, 2];
-            var user = TokenSvc.decode();
             // $scope.user.userType = TokenSvc.decode();
             $scope.user = user;
             function viewAPIPanel(){

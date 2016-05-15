@@ -105,7 +105,6 @@ angular.module('Models')
                         });
                     },
                     findOrCreate: function(action, callback){
-                        console.dir(apartment);
                         $resource(WizioConfig.baseAPIURL + 'apartment/claim/:action', {
                             action: "@action"
                         }).save(action, apartment, function(response){
@@ -215,7 +214,6 @@ angular.module('Models')
                 );
             };
             Apartment.build = function(data) {
-                console.dir(data.superIntendent);
                 return new Apartment(
                     data.id,
                     data.street,
