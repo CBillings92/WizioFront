@@ -12,6 +12,7 @@ angular.module('Directives')
                     var savedLongitude;
                     var savedLatitude;
                     var webGLRenderer = new THREE.WebGLRenderer();
+                    console.dir("HI");
                     webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
                     webGLRenderer.domElement.className = 'col-md-12';
 

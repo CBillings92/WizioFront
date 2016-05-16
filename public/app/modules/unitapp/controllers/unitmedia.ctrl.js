@@ -8,10 +8,7 @@ angular.module('UnitApp')
         'lodash',
         'ModalSvc',
         function($scope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
-            console.dir("_UHOE_UHOE_UHOEUHOEUHOEHUHO_EUHO_EUH_OEHU_OHEU_HOEUHOU");
             //mason was here 3,2.] j
-            console.dir(window.location.href);
-            console.dir($state.params);
             // var apitoken = 2;
             // var apartmentid = 1;
             $scope.trust = $sce;
