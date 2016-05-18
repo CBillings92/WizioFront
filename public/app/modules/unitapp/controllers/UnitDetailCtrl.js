@@ -48,8 +48,18 @@ angular.module('UnitApp')
         ) {
 
             $scope.getLocation = function(val) {
-                console.log("hello ");
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
+            };
+
+            //Chris made this so that the apartment details controller would
+            //display null if there is nothing in the field that is trying to be
+            //displayed.
+            var checkForNulls = function(apartmentField){
+                if (apartmentField === null){
+                    return "Unknown";
+                } else {
+                    return apartmentField;
+                }
             };
 
 
@@ -108,6 +118,7 @@ angular.module('UnitApp')
                     } else {
                         vrvideos.push(result.Apartment.Media[i]);
                     }
+
                 }
                 var media = lodash.groupBy(result.Apartment.Media, 'type');
                 $scope.media = media;

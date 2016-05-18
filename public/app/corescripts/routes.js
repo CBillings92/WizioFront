@@ -42,6 +42,16 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Externalapi', {
+                    url: '/listing/vr/:apitoken/:id',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('About', {
                     url: '/about',
                     views: {
@@ -447,15 +457,6 @@ angular.module('MainApp')
                         }
                     },
                     data: falseRequiredLogin
-                })
-                .state('externalapi', {
-                    url: '/listing/vr/:apitoken/:id',
-                    views: {
-                        "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
-                            controller: 'UnitMediaCtrl'
-                        }
-                    }
                 })
                 .state('Listing', {
                     url: '/listing',

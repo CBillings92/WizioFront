@@ -20,7 +20,6 @@ angular.module('Models')
                 }
             }
         ).save(this, function(data){
-                console.dir(data);
                 return callback(data);
             });
         };

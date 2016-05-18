@@ -6817,6 +6817,22 @@ body {
   .unit-details-media-container #map {
     padding-bottom: 56.25%; }
 
+.unit-details-media-container-iframe {
+  margin-bottom: 30px; }
+  @media (max-width: 767px) {
+    .unit-details-media-container-iframe {
+      padding: 20px; } }
+  @media (min-width: 768px) {
+    .unit-details-media-container-iframe {
+      margin-bottom: 40px;
+      max-width: 75%; } }
+  @media (min-width: 992px) {
+    .unit-details-media-container-iframe {
+      margin-bottom: 60px;
+      max-width: 75%; } }
+  .unit-details-media-container-iframe #map {
+    padding-bottom: 56.25%; }
+
 .unit-details-info {
   padding-bottom: 20px;
   margin-bottom: 20px;
