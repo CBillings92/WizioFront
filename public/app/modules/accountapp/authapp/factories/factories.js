@@ -2,21 +2,16 @@ angular.module('AuthApp')
 .factory('AuthFct', [
     '$state',
     '$localStorage',
-    '$http',
     '$rootScope',
     'AuthRegistrationResource',
     'AuthLoginResource',
     'TokenSvc',
-    function($state, $localStorage, $http, $rootScope, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
+    function($state, $localStorage, $rootScope, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
+        //check if a user is logged in
         var isLoggedin = function(){
             var tokenExp = true;
             var token = TokenSvc.getToken();
-
-            if(token !== "No Token"){
-                tokenExp = TokenSvc.checkExp(token);
-            }
-
-            if(token === "No Token" || tokenExp){
+            if(token === "No Token" || tokenSvc.checkExp(token)){
                 return false;
             } else {
                 return true;
@@ -29,12 +24,15 @@ angular.module('AuthApp')
                     success(status);
                 });
             },
-            signin: function(data, success, error) {
+            signin: function(data, callback) {
                 AuthLoginResource.save(data, function(data){
                     if(!data.token){
-                        return error("failed");
+                        $rootScope.error = "Failed to sign in!";
+                        return callback("failed");
                     } else {
-                        return success(data, status);
+                        $rootScope.isLoggedIn = true;
+                        $rootScope.userType = TokenSvc.decode().userType;
+                        return callback(data, status);
                     }
                 });
             },

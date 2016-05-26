@@ -64,6 +64,20 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('TenantSurvey', {
+                    url: '/survey',
+                    views: {
+                        'footer': footer,
+                        'navbar': navbar,
+                        'maincontent': {
+                            templateUrl: 'public/app/modules/tenantsurvey/survey.view.html',
+                            // templateUrl: WizioConfig.tenantSurveyFormViews + 'survey.view.html',
+                            // controller: 'AboutListCtrl'
+                            controller: 'TenantSurveyCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('AdminPanel', {
                     abstract: true,
                     views: {

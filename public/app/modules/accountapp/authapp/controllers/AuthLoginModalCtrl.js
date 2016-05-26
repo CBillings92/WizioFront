@@ -1,22 +1,12 @@
 angular.module('AccountApp')
     .controller('AuthLoginModalCtrl', [
-        '$rootScope',
         '$scope',
         '$state',
-        '$localStorage',
-        '$stateParams',
-        '$facebook',
-        '$location',
         '$uibModalInstance',
-        'ModalSvc',
         'AuthFct',
-        'AuthResetPasswordResource',
-        'AuthUpdatePasswordResource',
-        'TokenSvc',
-        'RerouteGetSetSvc',
         'WizioConfig',
-        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, $uibModalInstance, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig) {
-            var modalDefaults = function(templateUrl, controller, accountType) {
+        function($scope, $state,$uibModalInstance, AuthFct, WizioConfig) {
+            function modalDefaults(templateUrl, controller, accountType) {
                 return {
                     backdrop: true,
                     keyboard: true,
@@ -29,7 +19,7 @@ angular.module('AccountApp')
                         }
                     }
                 };
-            };
+            }
             var authViews = WizioConfig.AccountAuthViewsURL;
 
             $scope.closeModal = function() {
@@ -48,18 +38,13 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData,
                     function(res) {
-                        $rootScope.isLoggedIn = true;
-                        $rootScope.userType = TokenSvc.decode().userType;
-                        return $uibModalInstance.close('ok');
+                        if(res !== 'failed'){
+                            return $uibModalInstance.close('ok');
+                        } else {
+                            $scope.email = "";
+                            $scope.password = "";
+                        }
 
-                    },
-                    function() {
-                        $rootScope.error = "Failed to sign in!";
-                        $scope.email = "";
-                        $scope.password = "";
-                        // ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                        //     return;
-                        // });
                     });
             };
 

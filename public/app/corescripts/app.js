@@ -11,6 +11,7 @@
     angular.module('LandingPageApp', []);
     angular.module('LeaseApp', []);
     angular.module('NavbarApp', []);
+    angular.module('TenantSurveyApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
     angular.module('UnitApp', []);
@@ -33,6 +34,7 @@
             'LeaseApp',
             'CampaignApp',
             'NavbarApp',
+            'TenantSurveyApp',
             'SharedFactoryApp',
             'SharedServiceApp',
             'UnitApp',

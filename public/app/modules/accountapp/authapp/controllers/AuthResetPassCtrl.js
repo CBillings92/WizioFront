@@ -121,16 +121,16 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData,
                     function(res) {
-                        $rootScope.isLoggedIn = true;
-                        $rootScope.userType = TokenSvc.decode().userType;
-                        return $uibModalInstance.close('ok');
-
-                    },
-                    function() {
-                        $rootScope.error = "Failed to sign in!";
-                        ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
-                            return;
-                        });
+                        if(res === "failed"){
+                            $rootScope.error = "Failed to sign in!";
+                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                                return;
+                            });
+                        } else {
+                            $rootScope.isLoggedIn = true;
+                            $rootScope.userType = TokenSvc.decode().userType;
+                            return $uibModalInstance.close('ok');
+                        }
                     });
             };
         }
