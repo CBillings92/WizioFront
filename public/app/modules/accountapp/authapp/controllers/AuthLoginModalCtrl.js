@@ -3,9 +3,10 @@ angular.module('AccountApp')
         '$scope',
         '$state',
         '$uibModalInstance',
+        '$q',
         'AuthFct',
         'WizioConfig',
-        function($scope, $state,$uibModalInstance, AuthFct, WizioConfig) {
+        function($scope, $state,$uibModalInstance, $q, AuthFct, WizioConfig) {
             function modalDefaults(templateUrl, controller, accountType) {
                 return {
                     backdrop: true,
@@ -36,15 +37,12 @@ angular.module('AccountApp')
                     email: $scope.email,
                     password: $scope.password
                 };
-                AuthFct.signin(userData,
-                    function(res) {
-                        if(res !== 'failed'){
-                            return $uibModalInstance.close('ok');
-                        } else {
-                            $scope.email = "";
-                            $scope.password = "";
-                        }
-
+                AuthFct.signin(userData)
+                    .then(function(result) {
+                        return $uibModalInstance.close('ok');
+                    })
+                    .catch(function(result) {
+                        $scope.password = '';
                     });
             };
 

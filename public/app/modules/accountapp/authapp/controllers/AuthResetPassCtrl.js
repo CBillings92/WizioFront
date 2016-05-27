@@ -119,18 +119,15 @@ angular.module('AccountApp')
                     email: $scope.email,
                     password: $scope.password
                 };
-                AuthFct.signin(userData,
-                    function(res) {
-                        if(res === "failed"){
-                            $rootScope.error = "Failed to sign in!";
-                            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                AuthFct.signin(userData)
+                    .then(function(result) {
+                        ModalSvc.showModal(modalDefaultsLogin, {})
+                            .then(function(result) {
                                 return;
-                            });
-                        } else {
-                            $rootScope.isLoggedIn = true;
-                            $rootScope.userType = TokenSvc.decode().userType;
-                            return $uibModalInstance.close('ok');
-                        }
+                            })
+                    })
+                    .catch(function(result) {
+                        return $uibModalInstance.close('ok');
                     });
             };
         }
