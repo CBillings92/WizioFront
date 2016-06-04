@@ -4,13 +4,17 @@ angular.module('AccountApp')
         'TokenSvc',
         'DashboardResources',
         'lodash',
-        function DashboardFactory($state, TokenSvc, DashboardResources, lodash){
+        '$q',
+        function($state, TokenSvc, DashboardResources, lodash, $q) {
             var user = TokenSvc.decode();
-            function routeToAccount(){
+
+            function routeToAccount() {
                 var userType = user.userType;
                 var params = {};
                 var options = {};
-                options = $state.current.name === "Account.Dashboard" ? {location: false} : {};
+                options = $state.current.name === "Account.Dashboard" ? {
+                    location: false
+                } : {};
                 switch (userType) {
                     case 0:
                         $state.go('Account.Dashboard.PropertyManager', params, options);
@@ -28,7 +32,8 @@ angular.module('AccountApp')
                         return null;
                 }
             }
-            function getApartmentsForApiShare(){
+
+            function getApartmentsForApiShare() {
                 //get the API key of the user for the request
                 var apikey = getAPIKey();
                 return new $q(function(resolve, reject) {
@@ -38,32 +43,33 @@ angular.module('AccountApp')
                     //make the request go to /api/vrapi/:apikey
                     DashboardResources.vrapi(param1, param2)
                         //feed the :apikey in the query the users api key
-                        .query({apikey: apikey})
+                        .query({
+                            apikey: apikey
+                        })
                         //turn this into a promise object to call then and catch
-                        .$promise()
-                        .then(function(result){
+                        .$promise
+                        .then(function(result) {
                             resolve(lodash.uniqBy(result, "ApartmentId"));
                         })
-                        .catch(function(result){
+                        .catch(function(result) {
 
                         });
-                    /*$resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
-                    .query({apikey:$scope.apikey}, function (response) {
-                        return resolve(lodash.uniqBy(response, 'ApartmentId'));
-                    });
-                    */
+
+
                 });
             }
+
             function getAPIKey() {
-                if(typeOfUser === "Brokerage"){
+                var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
+                if (typeOfUser === "Brokerage") {
                     return user.Brokerages[0].Apiaccess.apikey;
                 } else {
                     return user.PropertyManager[0].Apiaccess.apikey;
                 }
             }
             return {
-                routeToAccount: routeToAccount,
                 getApartmentsForApiShare: getApartmentsForApiShare,
+                routeToAccount: routeToAccount,
                 getAPIKey: getAPIKey
             };
         }

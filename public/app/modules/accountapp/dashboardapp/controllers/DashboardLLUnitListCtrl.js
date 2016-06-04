@@ -15,7 +15,7 @@ angular.module('AccountApp')
         'BrokerageModel',
         'ModalBuilderFct',
         'DashboardFactory',
-        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, DashboardFactory) {
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
             //get the user for things
             var user = TokenSvc.decode();
             //for copy to clipboard button - from the clipboard.js library
@@ -38,13 +38,11 @@ angular.module('AccountApp')
                         alert('No API Access. If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
                         return;
                 } else {
-                    console.dir(DashboardFactory);
                     DashboardFactory.getApartmentsForApiShare()
                         .then(function(result){
-                            console.dir("_________");
-                            console.dir(result);
-                            console.dir("_________");
-                            $scope.apartmentsFor = response;
+                            $scope.apartmentsForApi = result;
+                            $scope.currentTab = tab;
+                            return;
                         })
                         .catch(function(err){
 
@@ -52,8 +50,6 @@ angular.module('AccountApp')
                 /*    getApartmentsForExternalApi()
                     .then(function(response){
                         $scope.apartmentsForApi = response;
-                        $scope.currentTab = tab;
-                        return;
                     });
 
                     */

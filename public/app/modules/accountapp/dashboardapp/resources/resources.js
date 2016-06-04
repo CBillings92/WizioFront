@@ -21,10 +21,10 @@ angular.module('AccountApp')
             = http://api.wizio.co/api/vrapi/param1/param2/param3
         */
         function vrapi() {
-            var requestString;
+            var requestString = '';
             //loop through function arguments and append to each other
             //to build the string
-            for(var i = 0; i < vrapi.arguments; i++){
+            for(var i = 0; i < vrapi.arguments.length; i++){
                 requestString += vrapi.arguments[i];
             }
             //return the resource built with the request parameters passed in
