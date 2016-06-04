@@ -2,10 +2,10 @@
     <div class="col-md-12">
         <!-- ng-repeat -->
         <div class="col-md-12">
-            <button type="button" class="btn btn-outline--orange btn-lg" ng-click="shareAllListings()" ng-show="currentTab === 'UnitList'" name="button">Share Listings</button>
+            <button type="button" class="btn btn-outline--orange btn-lg" ng-click="funcs.shareAllListings()" ng-show="currentTab === 'UnitList'" name="button">Share Listings</button>
             <button type="button" ng-show="user.userType == 3" class="btn btn-outline--orange btn-lg" ng-click="functions.viewSharedApartments()" name="button">Apartments Shared</button>
-            <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-show="currentTab === 'UnitList'" ng-click="changeTab('api')">Post On My Site</button>
-            <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-show="currentTab === 'api'" ng-click="changeTab('UnitList')">My Inventory</button>
+            <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-show="currentTab === 'UnitList'" ng-click="funcs.changeTab('api')">Post On My Site</button>
+            <button type="button" class="btn btn-outline--orange btn-lg" name="button" ng-show="currentTab === 'api'" ng-click="funcs.changeTab('UnitList')">My Inventory</button>
         </div>
         <div class="col-md-12" ng-if="currentTab === 'api'">
             <div class="" ng-repeat="apartment in apartmentsForApi track by $index">
@@ -80,7 +80,7 @@
                     </span>
                     <span ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
                         <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                        <a style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-click="shareListing($index)" ng-href="" target="_blank">Share Listing</a>
+                        <a style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-click="funcs.shareListing($index)" ng-href="" target="_blank">Share Listing</a>
                     </span>
                 </div>
             </div>

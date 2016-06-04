@@ -17,6 +17,15 @@ angular.module('AccountApp')
         'DashboardFactory',
         function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
 
+            setUnitListTab();
+            $scope.funcs = {
+                editApartment: editApartment,
+                viewSharedApartments: viewSharedApartments,
+                changeTab: changeTab,
+                shareListing: shareListing,
+                shareAllListings: shareAllListings
+            };
+
             //get the user for things
             var user = TokenSvc.decode();
             $scope.user = user;
@@ -28,39 +37,67 @@ angular.module('AccountApp')
             var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
             $scope.currentTab = 'UnitList';
 
+            function setUnitListTab() {
+                var applicationIds = [];
+                var data = {};
+                if (user.userType === 3) {
+                    data.id = user.Brokerages[0].id;
+                } else {
+                    data.id = user.PropertyManager[0].id;
+                }
+                $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
+                    id: '@id'
+                }).query(data, function(result) {
+                    $scope.units = result;
+                });
+            }
+
+            function setShareApiTab() {
+                var businessNameEncoded;
+                if (user.userType === 2) {
+                    businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+                } else {
+                    businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+                }
+            }
             //changing the tab on the dashboard LL unit list
-            $scope.changeTab = function changeTab(tab) {
+            function changeTab(tab) {
                 //if apikey is active, get apartments for API, else display error modal
+                console.dir(tab);
                 var apiaccess;
-                if(typeOfUser === "PropertyManager"){
+                if (typeOfUser === "PropertyManager") {
                     apiaccess = user.PropertyManager[0].Apiaccess;
                     console.dir(apiaccess);
-                    if(apiaccess === null || apiaccess === 0){
+                    if (apiaccess === null || apiaccess === 0) {
                         displayAPIModal();
                     } else {
+                        setShareApiTab();
                         getApartmentsForApiShare();
+                        $scope.currentTab = tab;
                     }
                 } else {
                     apiaccess = user.Brokerage[0].Apiaccess;
-                    if(typeOfUser === "Brokerage"){
-                        if(apiaccess === null || apiaccess === 0){
+                    if (typeOfUser === "Brokerage") {
+                        if (apiaccess === null || apiaccess === 0) {
                             displayAPIModal();
                         } else {
+                            setShareApiTab();
                             getApartmentsForApiShare();
+                            $scope.currentTab = tab;
                         }
                     }
                 }
             };
-            function getApartmentsForApiShare(){
-                DashboardFactory.getApartmentsForApiShare()
-                .then(function(result) {
-                    $scope.apartmentsForApi = result;
-                    $scope.currentTab = tab;
-                    return;
-                })
-                .catch(function(err) {
 
-                });
+            function getApartmentsForApiShare() {
+                DashboardFactory.getApartmentsForApiShare()
+                    .then(function(result) {
+                        $scope.apartmentsForApi = result;
+                        return;
+                    })
+                    .catch(function(err) {
+
+                    });
             }
             //helper function - just displays no API access error to user in modal
             function displayAPIModal() {
@@ -74,6 +111,7 @@ angular.module('AccountApp')
                         return result;
                     });
             }
+
             function viewSharedApartments() {
                 var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
                 var controller = "SharedApartmentsCtrl";
@@ -83,32 +121,8 @@ angular.module('AccountApp')
 
                     });
             }
-            var businessNameEncoded;
-            if (user.userType === 2) {
-                businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
-            } else {
-                businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
-            }
-            // if(user.userType === 2){
-            //     $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
-            //         $scope.units = result;
-            //     });
-            // }
-            //get apartments associated with user
-            var userId = TokenSvc.decode().id;
-            var applicationIds = [];
-            var data = {};
-            if (user.userType === 3) {
-                data.id = user.Brokerages[0].id;
-            } else {
-                data.id = user.PropertyManager[0].id;
-            }
-            $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
-                id: '@id'
-            }).query(data, function(result) {
-                $scope.units = result;
-            });
-            $scope.shareListing = function(index) {
+
+            function shareListing(index) {
                 var modalOptionsShareListing = {
                     closeButtonText: "Close",
                     actionButtonText: "OK",
@@ -132,28 +146,6 @@ angular.module('AccountApp')
                             });
                     });
             }
-            $scope.shareAllListings = shareAllListings;
-
-
-            // AssignmentModel.api().twoParam.query({
-            //     param1: 'user',
-            //     param2: userId
-            // }, function(response) {
-            //     $scope.assignments = response;
-            //
-            //     for (var i = 0; i < $scope.assignments.length; i++) {
-            //         if ($scope.assignments[i].Apartment.Applications.length !== 0) {
-            //             applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-            //         }
-            //         //group the individual application objects by the ApplicationId
-            //         var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-            //         // reassign the Applications key on the returned object
-            //         $scope.assignments[i].Apartment.Applications = groupedApplications;
-            //         //get the number of applications
-            //         $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
-            //     }
-            //     $scope.noTenants = true;
-            // });
 
             $scope.add_tenants = function(val) {
                 var addTenantsModalDefaults = ModalBuilderFct.buildComplexModal(
@@ -226,10 +218,6 @@ angular.module('AccountApp')
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'UnitToEdit', 'UnitToEdit');
                 $state.go('Unit.Edit');
             }
-            $scope.functions = {
-                editApartment: editApartment,
-                viewSharedApartments: viewSharedApartments
-            };
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
 
