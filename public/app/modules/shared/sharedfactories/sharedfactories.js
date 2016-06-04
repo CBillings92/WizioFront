@@ -26,8 +26,10 @@ angular.module('SharedFactoryApp')
         }
     ])
     .factory('ModalBuilderFct', [
-        function() {
-            function buildModal(size, templateUrl, controller, modalData) {
+        'ModalSvc',
+        '$q',
+        function(ModalSvc, $q) {
+            function buildModalWithController(size, templateUrl, controller, modalData) {
                 var modalObj = {
                     backdrop: true,
                     keyboard: true,
@@ -43,8 +45,22 @@ angular.module('SharedFactoryApp')
                 };
                 return modalObj;
             }
+            function buildModalWithNoController(closeBtnText, actionBtnText, headerText, bodyText) {
+                return new $q(function(resolve, reject){
+                    ModalSvc.showModal({}, {
+                        closeButtonText: closeBtnText,
+                        actionBtnText: actionBtnText,
+                        headerText: headerText,
+                        bodyText: bodyText
+                    })
+                    .then(function(result){
+                        resolve(result);
+                    })
+                })
+            }
             return {
-                build: buildModal
+                buildComplexModal: buildModalWithController,
+                buildSimpleModal: buildModalWithNoController
             };
         }
     ])
