@@ -13,55 +13,74 @@ angular.module('AccountApp')
         'ApplicationModel',
         'FlexGetSetSvc',
         'BrokerageModel',
-        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel) {
-            //reusable function for creating modalDefaults for ModalSvc
+        'ModalBuilderFct',
+        'DashboardFactory',
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, DashboardFactory) {
+            //get the user for things
             var user = TokenSvc.decode();
+            //for copy to clipboard button - from the clipboard.js library
             new Clipboard('.clipboard');
-            var modalDefaults = function(size, templateUrl, controller, modalData) {
-                return {
-                    backdrop: true,
-                    keyboard: true,
-                    modalFade: true,
-                    size: size,
-                    templateUrl: templateUrl,
-                    controller: controller,
-                    resolve: {
-                        modalData: function() {
-                            return modalData;
-                        }
-                    }
-                };
-            };
+            //calculate the typeof user so you don't need to keep rewriting this
+            var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
             $scope.currentTab = 'UnitList';
+            //changing the tab on the dashboard LL unit list
             $scope.changeTab = function changeTab(tab) {
-                if(typeof user.Brokerages === 'undefined') {
+                //if the user ISN'T A BROKERAGE
+                if(typeOfUser === "PropertyManager") {
+                    //if the API access key is not active
                     if(user.PropertyManager[0].Apiaccess.active === 0){
+                        //FIXME - trent - actionable - modal is needed
                         alert('No API Access If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
                         return;
                     }
-                } else {
-                    if(user.Brokerages[0].Apiaccess.active === 0){
+                } else if(user.Brokerages[0].Apiaccess.active === 0){
+                    //FIXME - trent - actionable - modal is needed
                         alert('No API Access. If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
                         return;
-                    }
-                }
-                getApartmentsForExternalApi()
+                } else {
+                    console.dir(DashboardFactory);
+                    DashboardFactory.getApartmentsForApiShare()
+                        .then(function(result){
+                            console.dir("_________");
+                            console.dir(result);
+                            console.dir("_________");
+                            $scope.apartmentsFor = response;
+                        })
+                        .catch(function(err){
+
+                        });
+                /*    getApartmentsForExternalApi()
                     .then(function(response){
                         $scope.apartmentsForApi = response;
                         $scope.currentTab = tab;
-
+                        return;
                     });
-                $scope.currentTab = tab;
+
+                    */
+                }
                 return;
             };
+            //FIXME - trent - actionable - can we move this into a factory
+            /*
+                Send a request to the Wizio API to get the apartments for the vrapi
+                These are the apartment ID's/URL's for the Iframes that the user would copy to clipboard and paste on their own site
+
+                FIXME - trent - brainstorm - this should be as simple as calling something like
+                    MyFactory.getApartmentsForExternalApi(typeOfUser)
+                        .then(function(results){
+                        ...
+                    })
+            */
             function getApartmentsForExternalApi(){
                 $scope.apikey = null;
                 //grab the api key
-                if(typeof(user.PropertyManager) == 'undefined'){
+                //this is a ridiculous way to handle the API key... can we simplify this?
+                if(typeOfUser === "Brokerage"){
                     $scope.apikey = user.Brokerages[0].Apiaccess.apikey;
                 } else {
                     $scope.apikey = user.PropertyManager[0].Apiaccess.apikey;
                 }
+                //FIXME - trent - actionable - should be housed not in a controller
                 return new $q(function(resolve, reject) {
                     $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
                     .query({apikey:$scope.apikey}, function (response) {
@@ -78,13 +97,13 @@ angular.module('AccountApp')
             function viewSharedApartments(){
                 var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
                 var controller = "SharedApartmentsCtrl";
-                var apartmentsSharedModalDefaults = modalDefaults('lg', views, controller);
+                var apartmentsSharedModalDefaults = ModalBuilderFct.build('lg', views, controller);
                 BrokerageModel.getSharedApartments(user.Brokerages[0].id)
                     .then(function(){
 
                     });
             }
-            var businessNameEncoded = null;
+            var businessNameEncoded;
             if(user.userType === 2){
                 businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
             } else {
@@ -126,7 +145,7 @@ angular.module('AccountApp')
                     .then(function(response){
                         var modalData = response;
                         response.PropertyManagerId = user.PropertyManager[0].id;
-                        var shareListingsModalDefaults = modalDefaults('lg', view, controller, modalData);
+                        var shareListingsModalDefaults = ModalBuilderFct.build('lg', view, controller, modalData);
                         ModalSvc.showModal(shareListingsModalDefaults, {})
                         .then(function(modalResult){
 
@@ -157,7 +176,7 @@ angular.module('AccountApp')
             // });
 
             $scope.add_tenants = function(val) {
-                var addTenantsModalDefaults = modalDefaults(
+                var addTenantsModalDefaults = ModalBuilderFct.build(
                     'md',
                     WizioConfig.AccountDashboardViewsURL + 'AddTenantsToLeaseForm.html',
                     'AddTenantsToLeaseCtrl',
@@ -205,7 +224,7 @@ angular.module('AccountApp')
                     },
                     applicationIds,
                     function(response) {
-                        var viewApplicantsModalDefaults = modalDefaults(
+                        var viewApplicantsModalDefaults = ModalBuilderFct.build(
                             'lg',
                             WizioConfig.ApplicationFormViewsURL + 'ApplicationOverviewModal.html',
                             'ApplicationOverviewCtrl',
@@ -240,7 +259,7 @@ angular.module('AccountApp')
                     $scope.units[apartmentIndex].unitNum
                 ];
 
-                var viewLeadsModal = modalDefaults('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
+                var viewLeadsModal = ModalBuilderFct.build('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result) {});

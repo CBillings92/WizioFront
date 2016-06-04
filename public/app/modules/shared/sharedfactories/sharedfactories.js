@@ -25,6 +25,29 @@ angular.module('SharedFactoryApp')
             };
         }
     ])
+    .factory('ModalBuilderFct', [
+        function() {
+            function buildModal(size, templateUrl, controller, modalData) {
+                var modalObj = {
+                    backdrop: true,
+                    keyboard: true,
+                    modalFade: true,
+                    size: size,
+                    templateUrl: templateUrl,
+                    controller: controller,
+                    resolve: {
+                        modalData: function() {
+                            return modalData;
+                        }
+                    }
+                };
+                return modalObj;
+            }
+            return {
+                build: buildModal
+            };
+        }
+    ])
     .factory('MapFct', [
         'ApartmentGetSetSvc',
         '$sessionStorage',
@@ -57,7 +80,7 @@ angular.module('SharedFactoryApp')
 
                     var averageLatitude = null;
                     var averageLongitude = null;
-                    if(unitList[0].apartmentData){
+                    if (unitList[0].apartmentData) {
                         for (i = 0; i < unitList.length; i++) {
                             averageLatitude += unitList[i].apartmentData.latitude;
                             averageLongitude += unitList[i].apartmentData.longitude;
@@ -114,12 +137,13 @@ angular.module('SharedFactoryApp')
                     return markersArray;
                 };
                 map = null;
-                if(unit.apartmentData){
+                if (unit.apartmentData) {
                     position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
                 } else {
                     position = new google.maps.LatLng(unit.latitude, unit.longitude);
 
                 }
+
                 function createMarker(unit) {
                     var marker = new google.maps.Marker({
                         map: map,
