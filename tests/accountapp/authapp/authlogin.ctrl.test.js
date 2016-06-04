@@ -1,5 +1,12 @@
 describe('Auth Factory', function() {
-    beforeEach(module('MainApp'));
+    var AuthFct;
+    beforeEach(module('MainApp', function($provide) {
 
-    var $controller;
+    }));
+
+    beforeEach(inject(function (_AuthFct_) {
+        AuthFct = _AuthFct_;
+
+        spyOn(signOn,'signOn');
+    }))
 });

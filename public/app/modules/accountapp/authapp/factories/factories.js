@@ -3,10 +3,11 @@ angular.module('AuthApp')
     '$state',
     '$localStorage',
     '$rootScope',
+    '$q',
     'AuthRegistrationResource',
     'AuthLoginResource',
     'TokenSvc',
-    function($state, $localStorage, $rootScope, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
+    function($state, $localStorage, $rootScope, $q, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
         //check if a user is logged in
         var isLoggedin = function(){
             var tokenExp = true;
@@ -17,25 +18,43 @@ angular.module('AuthApp')
                 return true;
             }
         };
+        /*  SIGNIN()
+            signin - used to sign users into our site.
+            expects {username: username, password: password}
+            uses $q and $promise to handle async with promises
+        */
+        function signin(data) {
+            return $q(function(resolve, reject) {
+                var postRequest = AuthLoginResource.save(data);
+                postRequest.$promise
+                .then(function(result) {
+                    $rootScope.isLoggedin = true;
+                    $rootScope.userType = TokenSvc.decode().userType;
+                    resolve('success');
+                })
+                .catch(function(result) {
+                    $rootScope.error = "Failed to sign in!";
+                    reject('failed');
+                });
+            });
+        }
+
+        function signup(data) {
+            return $q(function(resolve, reject) {
+                var registrationRequest = AuthRegistrationResource.save(null, data);
+                registrationRequest.$promise
+                .then(function(result) {
+                    resolve(result);
+                })
+                .catch(function(result) {
+                    reject(result);
+                });
+            });
+        }
 
         return {
-            signup: function(data, success, error) {
-                AuthRegistrationResource.save(null, data, function(data, status) {
-                    success(status);
-                });
-            },
-            signin: function(data, callback) {
-                AuthLoginResource.save(data, function(data){
-                    if(!data.token){
-                        $rootScope.error = "Failed to sign in!";
-                        return callback("failed");
-                    } else {
-                        $rootScope.isLoggedIn = true;
-                        $rootScope.userType = TokenSvc.decode().userType;
-                        return callback(data, status);
-                    }
-                });
-            },
+            signup: signup,
+            signin: signin,
             logout: function() {
                 $localStorage.token = null;
                 delete $localStorage.token;
