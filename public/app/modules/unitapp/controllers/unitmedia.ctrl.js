@@ -18,7 +18,7 @@ angular.module('UnitApp')
                 apartmentid: '@apartmentid',
             }).query({
                 apitoken: $state.params.apitoken,
-                apartmentid: $state.params.id
+                apartmentid: $state.params.apartmentpubid
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;

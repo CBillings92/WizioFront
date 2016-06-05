@@ -43,7 +43,17 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Externalapi', {
-                    url: '/listing/vr/:apitoken/:id',
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('Externalapiv2', {
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',

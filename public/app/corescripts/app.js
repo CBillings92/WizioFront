@@ -24,7 +24,7 @@
             //change to UnitApp
             'AdminPanelApp',
             'AccountApp',
-            'AmazonS3UploadApp',
+            // 'AmazonS3UploadApp',
             'ApplicationApp',
             'AuthApp',
             'AboutUsApp',

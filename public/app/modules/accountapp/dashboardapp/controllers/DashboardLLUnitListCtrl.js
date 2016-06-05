@@ -16,6 +16,14 @@ angular.module('AccountApp')
         'ModalBuilderFct',
         'DashboardFactory',
         function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
+            //get loggedin user
+            var user = TokenSvc.decode();
+            $scope.user = user;
+            var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
+            $scope.currentTab = 'UnitList';
+
+            //for copy to clipboard button - from the clipboard.js library
+            new Clipboard('.clipboard');
 
             setUnitListTab();
             $scope.funcs = {
@@ -26,17 +34,7 @@ angular.module('AccountApp')
                 shareAllListings: shareAllListings
             };
 
-            //get the user for things
-            var user = TokenSvc.decode();
-            $scope.user = user;
-
-            //for copy to clipboard button - from the clipboard.js library
-            new Clipboard('.clipboard');
-
             //calculate the typeof user so you don't need to keep rewriting this
-            var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
-            $scope.currentTab = 'UnitList';
-
             function setUnitListTab() {
                 var applicationIds = [];
                 var data = {};
