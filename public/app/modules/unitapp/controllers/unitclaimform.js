@@ -21,7 +21,6 @@ angular.module('UnitApp')
             var dataForModal = {};
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
-                console.dir("IN HERE");
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
 

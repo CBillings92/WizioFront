@@ -22,6 +22,7 @@ angular.module('AccountApp')
             var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
             $scope.currentTab = 'UnitList';
 
+            var businessNameEncoded;
             //for copy to clipboard button - from the clipboard.js library
             new Clipboard('.clipboard');
 
@@ -52,7 +53,6 @@ angular.module('AccountApp')
             }
 
             function setShareApiTab() {
-                var businessNameEncoded;
                 if (user.userType === 2) {
                     businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
                 } else {
