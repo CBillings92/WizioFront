@@ -55,8 +55,8 @@ angular.module('SharedFactoryApp')
                     })
                     .then(function(result){
                         resolve(result);
-                    })
-                })
+                    });
+                });
             }
             return {
                 buildComplexModal: buildModalWithController,

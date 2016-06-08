@@ -21,6 +21,7 @@ angular.module('UnitApp')
             var dataForModal = {};
             //get the geocoded location for the smart bar
             $scope.getLocation = function(val) {
+                console.dir("IN HERE");
                 return SmartSearchSvc.smartSearch(val, 'Staging-ApartmentClaims');
             };
 
@@ -316,7 +317,7 @@ angular.module('UnitApp')
             $scope.submit = function() {
                 // var apartments = lodash.pluck($scope.containingArray, 'apartmentData');
                 ApartmentModel.claimApi($scope.containingArray, function(response) {
-                    $state.go('Account.Dashboard.Main');
+                    $state.go('Account.Dashboard.PropertyManager');
                 });
             };
 
