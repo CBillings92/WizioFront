@@ -26,6 +26,7 @@ angular.module('AccountApp')
             new Clipboard('.clipboard');
 
             setUnitListTab();
+            setShareApiTab();
             $scope.funcs = {
                 editApartment: editApartment,
                 viewSharedApartments: viewSharedApartments,
@@ -85,7 +86,7 @@ angular.module('AccountApp')
                         }
                     }
                 }
-            };
+            }
 
             function getApartmentsForApiShare() {
                 DashboardFactory.getApartmentsForApiShare()
@@ -128,7 +129,7 @@ angular.module('AccountApp')
                     bodyText: 'Copy and paste this URL: ' + window.location.origin + '/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
                 };
                 ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {});
-            };
+            }
 
             function shareAllListings() {
                 var view = WizioConfig.UnitViewsURL + 'sharelistings.modal.view.html';
