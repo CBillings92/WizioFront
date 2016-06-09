@@ -35,7 +35,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
+                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
                             controller: 'LandingPageCtrl'
                         }
 
