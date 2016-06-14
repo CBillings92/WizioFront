@@ -45,17 +45,18 @@ angular.module('SharedFactoryApp')
                 };
                 return modalObj;
             }
+
             function buildModalWithNoController(closeBtnText, actionBtnText, headerText, bodyText) {
-                return new $q(function(resolve, reject){
+                return new $q(function(resolve, reject) {
                     ModalSvc.showModal({}, {
-                        closeButtonText: closeBtnText,
-                        actionBtnText: actionBtnText,
-                        headerText: headerText,
-                        bodyText: bodyText
-                    })
-                    .then(function(result){
-                        resolve(result);
-                    });
+                            closeButtonText: closeBtnText,
+                            actionBtnText: actionBtnText,
+                            headerText: headerText,
+                            bodyText: bodyText
+                        })
+                        .then(function(result) {
+                            resolve(result);
+                        });
                 });
             }
             return {
@@ -82,47 +83,6 @@ angular.module('SharedFactoryApp')
                     center: new google.maps.LatLng(42.3601, -71.0589),
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
-
-                var setMapOptions = function(unitList) {
-
-                    if (unitList.constructor !== Array) {
-                        unitList = [unitList];
-                    }
-                    if (unitList.length === 0) {
-                        return mapOptions;
-                    }
-
-                    //I am averaging all lats and longitudes to find where the best
-                    //place to center the map is
-
-                    var averageLatitude = null;
-                    var averageLongitude = null;
-                    if (unitList[0].apartmentData) {
-                        for (i = 0; i < unitList.length; i++) {
-                            averageLatitude += unitList[i].apartmentData.latitude;
-                            averageLongitude += unitList[i].apartmentData.longitude;
-                        }
-
-                    } else {
-                        averageLatitude += unitList.latitude;
-                        averageLongitude += unitList.longitude;
-
-                    }
-                    averageLatitude = averageLatitude / (unitList.length);
-                    averageLongitude = averageLongitude / (unitList.length);
-                    //what we want
-                    mapOptions = {
-                        //so this should center the map properly, I still haven't
-                        //figured out how we should zoom
-                        scrollwheel: false,
-                        zoom: 12,
-                        center: new google.maps.LatLng(averageLatitude, averageLongitude),
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                    };
-
-                    return mapOptions;
-                };
-
                 var unitList = null;
 
                 if ($state.current.name === "Unit.Details" || $state.current.name === "Listing.Group") {
@@ -130,7 +90,44 @@ angular.module('SharedFactoryApp')
                 } else if ($state.current.name === "Unit.Display") {
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
-                return setMapOptions(unitList);
+
+
+                if (unitList.constructor !== Array) {
+                    unitList = [unitList];
+                }
+                if (unitList.length === 0) {
+                    return mapOptions;
+                }
+
+                //I am averaging all lats and longitudes to find where the best
+                //place to center the map is
+
+                var averageLatitude = null;
+                var averageLongitude = null;
+                if (unitList[0].apartmentData) {
+                    for (i = 0; i < unitList.length; i++) {
+                        averageLatitude += unitList[i].apartmentData.latitude;
+                        averageLongitude += unitList[i].apartmentData.longitude;
+                    }
+
+                } else {
+                    averageLatitude += unitList.latitude;
+                    averageLongitude += unitList.longitude;
+
+                }
+                averageLatitude = averageLatitude / (unitList.length);
+                averageLongitude = averageLongitude / (unitList.length);
+                //what we want
+                mapOptions = {
+                    //so this should center the map properly, I still haven't
+                    //figured out how we should zoom
+                    scrollwheel: false,
+                    zoom: 12,
+                    center: new google.maps.LatLng(averageLatitude, averageLongitude),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+
+                return mapOptions;
             };
 
             //function that makes array of google maps markers
@@ -144,27 +141,25 @@ angular.module('SharedFactoryApp')
                     unitList = ApartmentGetSetSvc.get("apartmentSearch");
                 }
 
-                var createMapMarkers = function(unitList) {
-                    //test for case of only one apartment and turn into array if only one.
-                    if (!(Array.isArray(unitList))) {
-                        unitList = [unitList];
-                    }
-                    for (i = 0; i < unitList.length; i++) {
-                        createMarker(unitList[i]);
-                    }
-                    return markersArray;
-                };
-                map = null;
-                if (unit.apartmentData) {
-                    position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
-                } else {
-                    position = new google.maps.LatLng(unit.latitude, unit.longitude);
-
+                //test for case of only one apartment and turn into array if only one.
+                if (!(Array.isArray(unitList))) {
+                    unitList = [unitList];
                 }
+                for (i = 0; i < unitList.length; i++) {
+                    createMarker(unitList[i]);
+                }
+                return markersArray;
+                // map = null;
+                // if (unit.apartmentData) {
+                //     position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
+                // } else {
+                //     position = new google.maps.LatLng(unit.latitude, unit.longitude);
+                //
+                // }
 
                 function createMarker(unit) {
 
-                    if(unit.apartmentData){
+                    if (unit.apartmentData) {
                         position = new google.maps.LatLng(unit.apartmentData.latitude, unit.apartmentData.longitude);
                     } else {
                         position = new google.maps.LatLng(unit.latitude, unit.longitude);
@@ -205,7 +200,7 @@ angular.module('SharedFactoryApp')
 
                 }
 
-                return createMapMarkers(unitList);
+                return markersArray;
             };
             return {
                 makeMap: makeMap,

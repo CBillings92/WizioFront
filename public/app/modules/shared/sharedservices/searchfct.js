@@ -26,7 +26,7 @@ angular.module('SharedServiceApp')
                 return response;
             };
 
-            
+
             var formatSearchResults = function(response) {
                 var formattedApartmentArray = [];
                 var apt;
@@ -48,12 +48,13 @@ angular.module('SharedServiceApp')
                 return formattedApartmentArray;
             };
             var search = function(data, filters, callback) {
-
+                console.dir(data);
                 //build new apartment instance
                 var apartmentInstance = ApartmentModel.build(data);
                 //get get Geocode Data
                 apartmentInstance.getGeocodeData()
                     .then(function(response) {
+                        console.dir(response);
                         //set topLevelType for search
                         var topLevelType = null;
                         if (apartmentInstance.apartmentData.topLevelType) {

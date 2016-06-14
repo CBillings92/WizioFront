@@ -18,6 +18,7 @@ angular.module('UnitApp')
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
                 var markers = MapFct.makeMarkers($scope.map);
+                console.dir(markers);
                 $scope.openInfoWindow = function(e, selectedMarker) {
                     e.preventDefault();
                     google.maps.event.trigger(selectedMarker, 'click');
