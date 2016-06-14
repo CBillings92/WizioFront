@@ -146,9 +146,6 @@ angular.module('SharedServiceApp')
                         components: 'country:US'
                     }
                 }).then(function(response) {
-
-                  console.dir("response");
-                  console.dir(response);
                     if(sessionStorageVar === 'Staging-ApartmentClaims'){
                         ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
                         ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);

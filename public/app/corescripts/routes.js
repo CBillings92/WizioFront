@@ -35,7 +35,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.html',
+                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
                             controller: 'LandingPageCtrl'
                         }
 
@@ -43,7 +43,17 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Externalapi', {
-                    url: '/listing/vr/:apitoken/:id',
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('Externalapiv2', {
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
@@ -60,6 +70,20 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('TenantSurvey', {
+                    url: '/survey',
+                    views: {
+                        'footer': footer,
+                        'navbar': navbar,
+                        'maincontent': {
+                            templateUrl: 'public/app/modules/tenantsurvey/survey.view.html',
+                            // templateUrl: WizioConfig.tenantSurveyFormViews + 'survey.view.html',
+                            // controller: 'AboutListCtrl'
+                            controller: 'TenantSurveyCtrl'
                         }
                     },
                     data: falseRequiredLogin

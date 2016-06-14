@@ -46,7 +46,7 @@ angular.module('UnitApp')
                 UnitCreateSvc.parseGeocodeData(address, apartmentParams, function(err, apartment){
                     UnitResource.save(apartment, function(data, status) {
 
-                        $state.go('Account.Dashboard.Main');
+                        $state.go('Account.Dashboard.PropertyManager');
                     });
                 });
             };

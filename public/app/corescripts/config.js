@@ -67,5 +67,6 @@ angular.module('MainApp')
     //Unit App
     UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
     extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
-    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/'
+    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/',
+    tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/'
 });

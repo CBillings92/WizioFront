@@ -13,7 +13,7 @@ angular.module('UnitApp')
         'MapFct',
         function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentModel, SearchModel, ModalSvc, SearchFct, SmartSearchSvc, MapFct) {
             //houses the map and marker creation functionality
-            var displayMaps = function displayMaps() {
+            function displayMaps() {
                 var mapOptions = MapFct.makeMap();
                 $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
@@ -22,7 +22,7 @@ angular.module('UnitApp')
                     e.preventDefault();
                     google.maps.event.trigger(selectedMarker, 'click');
                 };
-            };
+            }
             //collect data from event emitter
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
