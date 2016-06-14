@@ -23,6 +23,7 @@ angular.module('AccountApp')
             $scope.currentTab = 'UnitList';
 
             var businessNameEncoded;
+            $scope.windowLocationOrigin = window.location.origin;
             //for copy to clipboard button - from the clipboard.js library
             new Clipboard('.clipboard');
 
@@ -55,8 +56,10 @@ angular.module('AccountApp')
             function setShareApiTab() {
                 if (user.userType === 2) {
                     businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+                    $scope.businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
                 } else {
                     businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+                    $scope.businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
                 }
             }
             //changing the tab on the dashboard LL unit list

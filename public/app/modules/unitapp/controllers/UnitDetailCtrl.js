@@ -42,6 +42,7 @@ angular.module('UnitApp')
         ) {
             var user = TokenSvc.decode();
             $scope.listing = {};
+
             function setDataForPage(data) {
                 var dataForPage = UnitDetailsFct.setDataForPage(data);
                 $scope.apartment = dataForPage.apartment;
@@ -59,15 +60,27 @@ angular.module('UnitApp')
                 var setPhotosObj = UnitDetailsFct.setPhotos(data);
                 console.dir(setPhotosObj);
                 var media = setPhotosObj.media;
+                $scope.media = setPhotosObj.media;
                 $scope.photoUrl = setPhotosObj.initialPhotoUrl;
-                // $scope.media.vrphoto = vrphotos;
-                $scope.$broadcast('IMGLOAD', {media: media});
-                // $scope.media.vrphoto = vrphotos;
-                $scope.changePhoto = function(photoIndex) {
-                    $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
-                    console.dir($scope.photoUrl);
-                    $scope.$broadcast('CHANGE', {});
-                };
+                if (media.vrphoto[0].awsurl) {
+                    // $scope.media.vrphoto = vrphotos;
+                    $scope.$broadcast('IMGLOAD', {
+                        media: media
+                    });
+                    // $scope.media.vrphoto = vrphotos;
+                    $scope.changePhoto = function(photoIndex) {
+                        $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
+                        console.dir($scope.photoUrl);
+                        $scope.$broadcast('CHANGE', {});
+                    };
+                } else {
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    $scope.changePhoto = function(photoIndex) {
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    };
+                    $scope.trust = $sce;
+                }
+
 
                 $scope.trust = $sce;
                 //FIXME

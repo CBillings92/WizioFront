@@ -80,7 +80,7 @@
                     </span>
                     <span ng-show="unit.Leases[0].currentListing === true || unit.Leases[1].currentListing === true">
                         <!-- <button class="btn btn-fill--blue btn-md buttonPlacement" ng-click="editApartments($index)" name="button" type="button">Apartment Details</button> -->
-                        <a style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" ng-click="funcs.shareListing($index)" ng-href="" target="_blank">Share Listing</a>
+                        <button type="button" style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement clipboard"  name="button" data-clipboard-text="{{windowLocationOrigin + '/#/listing/' + businessNameEncoded + '/' + unit.Leases[0].id}}">Copy Link to Listing</button>
                     </span>
                 </div>
             </div>
