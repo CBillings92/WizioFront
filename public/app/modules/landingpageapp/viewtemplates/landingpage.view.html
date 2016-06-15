@@ -10,7 +10,7 @@
         <div class="row">
             <div class="home-hero__text col-xs-9 col-xs-offset-0 col-lg-6 col-lg-offset-1">
                 <h2 class="home-hero__heading">Apartment Clarity.</h2>
-                    <!-- <br>at your fingertips</h2> -->
+                <!-- <br>at your fingertips</h2> -->
                 <!-- <h4 class="home-hero__subheading">Watch virtual reality videos of awesome apartments until you find the right one for you!</h4> -->
                 <h4 class="home-hero__subheading">Renting made easy</h4>
             </div>
@@ -18,40 +18,40 @@
     </div>
 </div>
 
- <div class="home-search">
-        <div class="home-search__background"></div>
-        <div class="container">
-            <div class="row">
+<div class="home-search">
+    <div class="home-search__background"></div>
+    <div class="container">
+        <div class="row">
+            <form class="" ng-submit="search()">
                 <div class="home-search__bar col-xs-12 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group">
-                        <input  placeholder="Search by area" class="form-control" ng-model="data.searchString" type="text" uib-typeahead-loading="loadingLocations" uib-typeahead-min-length="5" uib-typeahead-no-results="noResults" uib-typeahead="address for address in getLocation($viewValue)">
+                        <input class="form-control" ng-model="data.searchString" placeholder="Search by area" type="text" uib-typeahead-loading="loadingLocations" uib-typeahead-min-length="5" uib-typeahead-no-results="noResults" uib-typeahead="address for address in getLocation($viewValue)">
                         <!-- get rid of loading options icon for now because happens too quickly and makes button jump -->
-<!--                      <i class="fa fa-refresh" ng-show="loadingLocations"></i>
- -->
-<!--                         <div ng-show="noResults">
-                            <i class="fa fa-remove"></i> No Results Found
-                        </div> -->
+                        <!--                      <i class="fa fa-refresh" ng-show="loadingLocations"></i>
+                        -->
+                        <!--                         <div ng-show="noResults">
+                        <i class="fa fa-remove"></i> No Results Found
+                    </div> -->
                         <div class="input-group-btn">
-                            <button type="submit" class="btn btn-fill--blue" ng-click="search()" href="" type="button">
+                            <button class="btn btn-fill--blue" href="" type="button" type="submit">
                                 <span class="fa fa-search"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
 <div class="home-tenants">
-        <div class="home-pin">
-            <div class="home-pin__orange">
-                <div class="home-pin__orange__left">
-                </div>
-                <div class="home-pin__orange__right">
-                </div>
-            </div>
+    <div class="home-pin">
+        <div class="home-pin__orange">
+            <div class="home-pin__orange__left"></div>
+            <div class="home-pin__orange__right"></div>
         </div>
+    </div>
 
     <div class="container">
         <div class="row">
@@ -75,7 +75,7 @@
         </div>
         <div class="row home-sign-up">
             <div class="home-sign-up__button col-xs-4 col-sm-3 col-md-2 col-lg-offset-1">
-             <input type="button" class="btn btn--cta btn-md" ng-click="registerUser()" value="Sign Up"/>
+                <input class="btn btn--cta btn-md" ng-click="registerUser()" type="button" value="Sign Up"/>
             </div>
         </div>
     </div>
@@ -88,7 +88,7 @@
                 <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6">Join the beta.</h2>
                 <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">Trial our service, for free, and help make apartments online better.</h5>
                 <div class="home-landlord__button col-xs-4 col-sm-offset-4 col-lg-offset-6">
-                    <input type="button" ng-click="registerUser()" class="btn btn--cta btn-md" value="Contact Rep"/>
+                    <input class="btn btn--cta btn-md" ng-click="registerUser()" type="button" value="Contact Rep"/>
                 </div>
             </div>
         </div>
