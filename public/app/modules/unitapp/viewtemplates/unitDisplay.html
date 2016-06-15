@@ -81,7 +81,9 @@
         <div class="apt-tile__image" style="background-image: url('http://img.youtube.com/vi/{{apartment.Assignments[0].youtubeId}}/mqdefault.jpg')">
           <div class="apt-tile__overlay">
             <div class="apt-tile__header">
-                <span class="btn btn-md btn-outline--white" ng-click="apartmentSelected(apartment.Lease.leaseData.pubid)">View</span>
+                <a class="btn btn-md btn-outline--white" href="http://beta.wizio.co/unit/details/{{apartment.Lease.leaseData.id}}">
+                    view
+                </a>
                 <span class="apt-tile__favorite-btn">
                     <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
                 </span>
