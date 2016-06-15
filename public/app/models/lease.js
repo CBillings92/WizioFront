@@ -74,7 +74,6 @@ angular.module('Models')
                     start at 1 to get only the parameters that make it into the
                     API string. The first argument is the method.
                 */
-                console.dir(getRequest.arguments);
                 for (var i = 1; i < getRequest.arguments.length; i++) {
                     apiString += "/:param" + i.toString();
                     apiResourceObj['param' + i.toString()] = '@param' + i.toString();
@@ -87,9 +86,7 @@ angular.module('Models')
                         apiString,
                         paramObj
                     );
-                    console.dir(request);
                     request[getRequest.arguments[0]](paramObj, function(result) {
-                        console.dir(result);
                         resolve(result);
                     });
                 });
@@ -123,8 +120,6 @@ angular.module('Models')
 
             function api(method) {
                 return $q(function(resolve, reject) {
-                    console.dir(api.arguments);
-                    console.dir(api.arguments.length);
                     if (api.arguments.length === 1) {
 
                     } else if (method === 'get') {

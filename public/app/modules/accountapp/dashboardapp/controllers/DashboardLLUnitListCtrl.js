@@ -65,11 +65,9 @@ angular.module('AccountApp')
             //changing the tab on the dashboard LL unit list
             function changeTab(tab) {
                 //if apikey is active, get apartments for API, else display error modal
-                console.dir(tab);
                 var apiaccess;
                 if (typeOfUser === "PropertyManager") {
                     apiaccess = user.PropertyManager[0].Apiaccess;
-                    console.dir(apiaccess);
                     if (apiaccess === null || apiaccess === 0) {
                         displayAPIModal();
                     } else {

@@ -58,7 +58,6 @@ angular.module('UnitApp')
             function setVideoAndPhotos(data) {
                 var photoIndex = 0;
                 var setPhotosObj = UnitDetailsFct.setPhotos(data);
-                console.dir(setPhotosObj);
                 var media = setPhotosObj.media;
                 $scope.media = setPhotosObj.media;
                 $scope.photoUrl = setPhotosObj.initialPhotoUrl;
@@ -70,7 +69,6 @@ angular.module('UnitApp')
                     // $scope.media.vrphoto = vrphotos;
                     $scope.changePhoto = function(photoIndex) {
                         $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
-                        console.dir($scope.photoUrl);
                         $scope.$broadcast('CHANGE', {});
                     };
                 } else {

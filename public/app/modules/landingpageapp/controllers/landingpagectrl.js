@@ -18,7 +18,6 @@ angular.module('LandingPageApp')
             };
             //search function
             $scope.search = function() {
-                console.dir($scope.data);
                 SearchFct.search(
                     {concatAddr: $scope.data.searchString},
                     $scope.filters,

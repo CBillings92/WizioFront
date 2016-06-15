@@ -91,11 +91,8 @@ angular.module('UnitApp')
             function setPhotos(data) {
                 var photoIndex = 0;
                 var vrphotos = [], vrvideos = [];
-                console.dir("HI");
                 var media = lodash.groupBy(data.Apartment.Media, 'type');
-                console.dir(media);
                 var initialPhotoUrl = media.vrphoto[photoIndex].awsurl;
-                console.dir(initialPhotoUrl);
                 return {
                     media: media,
                     initialPhotoUrl: initialPhotoUrl

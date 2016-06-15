@@ -27,13 +27,11 @@ angular.module('UnitApp')
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
-                    console.dir($scope.photoUrl);
                     $scope.$broadcast('CHANGE', {});
                 };
                 $scope.mediaTab = 'unitPhotos';
                 $scope.selectMediaTab = function(tab) {
                     if (tab === 'unitVideos') {
-                        console.dir("HI");
                         if (vrvideos.length !== 1) {
                             var signUpErrorModalOptions = {
                                 closeButtonText: "Close",

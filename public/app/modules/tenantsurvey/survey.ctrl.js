@@ -7,6 +7,5 @@ angular.module('TenantSurveyApp')
 
             };
             $scope.selectOptions = TenantSurveyFct.selectOptions;
-            console.dir($scope.selectOptions);
         }
     ]);

@@ -8,7 +8,6 @@ angular.module('AccountApp')
         function($scope, TokenSvc, ModalSvc, WizioConfig, DashboardFactory) {
             DashboardFactory.routeToAccount();
             var userType = TokenSvc.decode().userType;
-            console.dir(userType);
             if(userType == 1){
                 $scope.applicationSelected = true;
                 $scope.favoritesSelected = false;
