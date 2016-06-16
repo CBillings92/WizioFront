@@ -74,6 +74,7 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+
                 .state('TenantSurvey', {
                     url: '/survey',
                     views: {
@@ -150,6 +151,17 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/viewtemplates/public/styleguide.html',
                             //The blog controller for the styleguide is temporary
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('Apiguide', {
+                    url: '/about/api',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/apiguide.view.html',
                         }
                     },
                     data: falseRequiredLogin
