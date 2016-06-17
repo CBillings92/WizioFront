@@ -162,6 +162,7 @@ angular.module('MainApp')
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/aboutusapp/viewtemplates/apiguide.view.html',
+                            controller: 'ApiGuideCtrl'
                         }
                     },
                     data: falseRequiredLogin

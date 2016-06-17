@@ -66,13 +66,14 @@
         .run([
             '$rootScope',
             '$state',
+            '$stateParams',
             '$localStorage',
             '$window',
             '$facebook',
             'jwtHelper',
             'AuthFct',
             'TokenSvc',
-            function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+            function($rootScope, $state, $stateParams, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
                 //FACEBOOK SDK
                 // Load the Facebook SDK asynchronously
                 (function(d, s, id) {
@@ -84,6 +85,8 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
 
+                $rootScope.state = $state;
+                $rootScope.stateParams = $stateParams;
                 //HELPER FUNCTION
                 //handle facebook authentication on initial application launch
                 //get the login status of the user

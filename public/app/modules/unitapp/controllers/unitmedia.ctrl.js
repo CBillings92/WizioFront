@@ -1,16 +1,18 @@
 angular.module('UnitApp')
     .controller('UnitMediaCtrl', [
         '$scope',
+        '$rootScope',
         '$state',
         '$resource',
         'WizioConfig',
         '$sce',
         'lodash',
         'ModalSvc',
-        function($scope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
+        function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
             //mason was here 3,2.] j
             // var apitoken = 2;
             // var apartmentid = 1;
+            // $rootScope.$state = Externalapi
             $scope.trust = $sce;
             // $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
             $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {

@@ -14,7 +14,7 @@
     </p>
     <br>
     <label for="">Request More Information/Request an API Key</label>
-    <button type="button" class="btn" name="button">click me!</button>
+    <button type="button" ng-click="triggerModal()" class="btn" name="button">click me!</button>
     <br>
     <br>
     <h4>How utilizie the Wizio API</h4>
@@ -94,17 +94,23 @@
         Wizio has test data that you may use for testing to make sure the API is working. Below are the following addresses that test data exists for. To test, you'll want to make the request as noted above in the documentation with some of these hard coded addresses. The request from each of these responses will be a URL. You need to load this URL into the Iframe's <strong>src</strong> attribute on your page.
     </p>
     <ul>
-        <li>175 Amory Street #2 Jamaica Plain MA 02130 Unit Number 2</li>
-        <ul>
-            <li>api.wizio.co/api/vr/listing/APIKEY/175_amory_street_#2_jamaica_plain_ma_02130/2</li>
-        </ul>
         <li>101 Monmouth Street boston ma unit number 1</li>
         <ul>
             <li>api.wizio.co/api/vr/listing/APIKEY/101_monmouth_st_boston_ma/1</li>
         </ul>
-        <li>6 Keswick St Boston MA Unit Number 6</li>
+        <li><strong>More test data coming soon</strong></li>
+
+    </ul>
+    <h4>Upcoming Changes</h4>
+    <p>
+        The following changes are being strongly considered for the API. More information will follow
+        as these items are updated.
+    </p>
+    <ul>
+        <li>Photo Selection Menu</li>
         <ul>
-            <li>api.wizio.co/api/vr/listing/APIKEY/6_keswick_st_boston_ma/6</li>
-        </ul>
+            <li>A photo selection menu that overlays the photo will be replacing the photo selection menu that
+            resides on the bottom of the photo currently</li>
+        </ul>        
     </ul>
 </div>
