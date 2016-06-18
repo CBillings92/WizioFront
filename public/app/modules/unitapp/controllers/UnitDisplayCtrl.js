@@ -13,17 +13,17 @@ angular.module('UnitApp')
         'MapFct',
         'ModalBuilderFct',
         function($scope, $sessionStorage, $state, lodash, ApartmentGetSetSvc, ApartmentModel, SearchModel, ModalSvc, SearchFct, SmartSearchSvc, MapFct,ModalBuilderFct) {
-            //houses the map and marker creation functionality
-            function displayMaps() {
-                var mapOptions = MapFct.makeMap();
-                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-                var markers = MapFct.makeMarkers($scope.map);
-                $scope.openInfoWindow = function(e, selectedMarker) {
-                    e.preventDefault();
-                    google.maps.event.trigger(selectedMarker, 'click');
-                };
-            }
+            // //houses the map and marker creation functionality
+            // function displayMaps() {
+            //     var mapOptions = MapFct.makeMap();
+            //     $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            //
+            //     var markers = MapFct.makeMarkers($scope.map);
+            //     $scope.openInfoWindow = function(e, selectedMarker) {
+            //         e.preventDefault();
+            //         google.maps.event.trigger(selectedMarker, 'click');
+            //     };
+            // }
             //collect data from event emitter
             //store in apartmentSearch last search results stored on sessionStorage
             $scope.sessionStorage = $sessionStorage;
@@ -50,7 +50,7 @@ angular.module('UnitApp')
             };
 
             //display maps and markers
-            displayMaps();
+            // displayMaps();
             $scope.launchVRModal = function(unit){
                 alert('work');
                 ModalBuilderFct.buildModalWithController('lg', WizioConfig.UnitViewsURL + 'unitmedia.mdl.view.html', 'UnitMediaModalCtrl', unit)
@@ -76,7 +76,7 @@ angular.module('UnitApp')
             $scope.$on('searchFinished', function(event, data) {
                 $scope.apartmentSearch = data;
                 //display maps and markers
-                displayMaps();
+                // displayMaps();
             });
             $scope.apartmentSelected = function(id) {
                 var apartment = lodash.find($scope.apartmentSearch, function(apartment){
