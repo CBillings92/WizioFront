@@ -13,7 +13,7 @@
                         <hr style="width: 100%; color: black; height: 1px; background-color:black;"/>
                         <div class="col-md-12 row">
                             <div class="col-md-8 row" ng-hide="singleUnit" style="z-index: 100;">
-                                <input class="" ng-model="apartmentAddress" placeholder="Apartment Address" style="width:100%" type="text" typeahead-loading="loadingLocations" typeahead-min-length="5" typeahead-no-results="noResults" typeahead="address for address in getLocation($viewValue)"/>
+                                <input class="" ng-model="apartmentAddress" placeholder="Apartment Address" style="width:100%" type="text" uib-typeahead-loading="loadingLocations" uib-typeahead-min-length="5" uib-typeahead-no-results="noResults" uib-typeahead="address for address in getLocation($viewValue)"/>
                                 <i class="glyphicon glyphicon-refresh" ng-show="loadingLocations"></i>
                                 <div ng-show="noResults">
                                     <i class="glyphicon glyphicon-remove"></i>

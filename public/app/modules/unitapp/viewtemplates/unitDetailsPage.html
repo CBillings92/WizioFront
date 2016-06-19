@@ -19,7 +19,9 @@
     <div class="container unit-details-media-container">
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
+                <iframe allowfullscreen="allowfullscreen" ng-hide="media.vrphoto[0].awsurl" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe>
+                <vr-photo-player-dirv ng-show="media.vrphoto[0].awsurl" photoUrl="{{photoUrl}}"></vr-photo-player-dirv>
+
             </div>
         </div>
         <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
@@ -27,7 +29,8 @@
                 <!-- <div class="" style="background-color: black; height: 50px;position:relative;top:0;left:0;z-index:1000;">
 
                 </div> -->
-                <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
+                <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe>
+                <vr-photo-player-dirv ng-show="media.vrphoto[0].awsurl" photoUrl="{{photoUrl}}"></vr-photo-player-dirv>
             </div>
 
         </div>

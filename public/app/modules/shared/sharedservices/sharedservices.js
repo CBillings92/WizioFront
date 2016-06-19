@@ -134,6 +134,7 @@ angular.module('SharedServiceApp')
         function($http, $state, FlexGetSetSvc, ApartmentClaimGetSetSvc) {
             //accepts a search string, makes a request to the google API
             //and returns the formatted address to the controller
+
             var smartSearch = function(val, sessionStorageVar) {
                 return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
                     headers: {
@@ -145,9 +146,6 @@ angular.module('SharedServiceApp')
                         components: 'country:US'
                     }
                 }).then(function(response) {
-
-                  console.dir("response");
-                  console.dir(response);
                     if(sessionStorageVar === 'Staging-ApartmentClaims'){
                         ApartmentClaimGetSetSvc.reset('Staging-ApartmentClaims');
                         ApartmentClaimGetSetSvc.set(response.data, sessionStorageVar);

@@ -3,111 +3,83 @@ angular.module('UnitApp')
         '$scope',
         '$state',
         '$uibModal',
-        '$location',
-        '$sessionStorage',
         '$sce',
-        '$resource',
+        '$q',
         'lodash',
         'ApartmentGetSetSvc',
-        'UnitResource',
         'MapFct',
         'TokenSvc',
         'FlexGetSetSvc',
-        'RerouteGetSetSvc',
-        'FavoriteModel',
         'MediaModel',
         'ModalSvc',
         'WizioConfig',
         'SearchFct',
         'moment',
         'UnitFct',
+        'LeaseModel',
+        'ModalBuilderFct',
+        'UnitDetailsFct',
         function(
             $scope,
             $state,
             $uibModal,
-            $location,
-            $sessionStorage,
             $sce,
-            $resource,
+            $q,
             lodash,
             ApartmentGetSetSvc,
-            UnitResource,
             MapFct,
             TokenSvc,
             FlexGetSetSvc,
-            RerouteGetSetSvc,
-            FavoriteModel,
             MediaModel,
             ModalSvc,
             WizioConfig,
             SearchFct,
             moment,
-            UnitFct
+            UnitFct,
+            LeaseModel,
+            ModalBuilderFct,
+            UnitDetailsFct
         ) {
-            $scope.listing = {};
             var user = TokenSvc.decode();
-            $resource(WizioConfig.baseAPIURL + 'lease/:id', {
-                id: '@id'
-            }).get({
-                id: $state.params.id
-            }, function(result) {
-                //hotfix for map
-                result.Apartment.monthlyRent = result.monthlyRent;
-                ApartmentGetSetSvc.set(result.Apartment, "apartmentSelected");
+            $scope.listing = {};
 
-                $scope.listing = result;
-                $scope.listing.dateStart = moment($scope.listing.dateStart).format('YYYY-MM-DD');
-                $scope.apartment = result.Apartment;
-                $scope.features = UnitFct.features;
-                if ($scope.apartment.street === "1040 North Quincy Street") {
-                    switch ($scope.apartment.unitNum) {
-                        case "406":
-                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/LG-1b1d1s2b.png";
-                            break;
-                        case "209":
-                            // $scope.floorplan = false;
-                            break;
-                        default:
-                            // $scope.floorplan = false;
-                    }
-                } else if ($scope.apartment.street === "1020 North Quincy Street") {
-                    switch ($scope.apartment.unitNum) {
-                        case "908":
-                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b2b.png";
-                            break;
-                        case "1013":
-                            $scope.floorplan = "https://s3.amazonaws.com/wiziouservideos/1020-2b1b.png";
-                            break;
-                        case "616":
-                            $scope.floorplan = false;
-                            break;
-                        case "619":
-                            $scope.floorplan = false;
-                            break;
-                        default:
-                            $scope.floorplan = false;
-                    }
-                } else {
-                    $scope.floorplan = false;
-                }
-                var vrphotos = [];
-                var vrvideos = [];
-                for (var i = 0; i < result.Apartment.Media.length; i++) {
-                    if (result.Apartment.Media[i].type === 'vrphoto') {
-                        vrphotos.push(result.Apartment.Media[i]);
-                //        console.log(result.Apartment.Media[i]);
-                    } else {
-                        vrvideos.push(result.Apartment.Media[i]);
-                    }
-                }
-                var media = lodash.groupBy(result.Apartment.Media, 'type');
-                $scope.media = media;
-                $scope.media.vrphoto = vrphotos;
+            function setDataForPage(data) {
+                var dataForPage = UnitDetailsFct.setDataForPage(data);
+                $scope.apartment = dataForPage.apartment;
+                $scope.listing = dataForPage.listing;
+                $scope.features = dataForPage.features;
+                return;
+            }
+
+            function setHardCodedFloorplans() {
+
+            }
+
+            function setVideoAndPhotos(data) {
                 var photoIndex = 0;
-                $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                $scope.changePhoto = function(photoIndex) {
+                var setPhotosObj = UnitDetailsFct.setPhotos(data);
+                var media = setPhotosObj.media;
+                $scope.media = setPhotosObj.media;
+                $scope.photoUrl = setPhotosObj.initialPhotoUrl;
+                if (media.vrphoto[0].awsurl) {
+                    // $scope.media.vrphoto = vrphotos;
+                    $scope.$broadcast('IMGLOAD', {
+                        media: media
+                    });
+                    // $scope.media.vrphoto = vrphotos;
+                    $scope.changePhoto = function(photoIndex) {
+                        $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
+                        $scope.$broadcast('CHANGE', {});
+                    };
+                } else {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                };
+                    $scope.changePhoto = function(photoIndex) {
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    };
+                    $scope.trust = $sce;
+                }
+
+
                 $scope.trust = $sce;
                 //FIXME
                 $scope.mediaTab = 'unitPhotos';
@@ -129,11 +101,20 @@ angular.module('UnitApp')
                             $scope.mediaTab = tab;
                         }
                     } else {
-
                         $scope.mediaTab = tab;
                     }
                 };
-            });
+            }
+            //
+            LeaseModel.api('get', $state.params.id)
+                .then(function(result) {
+                    var street = result.Apartment.street;
+                    var unitnum = result.Apartment.unitNum;
+                    setDataForPage(result);
+                    $scope.floorplan = UnitDetailsFct.setFloorPlan(street, unitnum);
+                    setVideoAndPhotos(result);
+                    return;
+                });
             //create the google maps
             setTimeout(function() {
                 var mapOptions = MapFct.makeMap();
@@ -141,18 +122,7 @@ angular.module('UnitApp')
                 //create the markers for the map
                 // var markers = MapFct.makeMarkers($scope.map);
             }, 3000);
-            // $scope.apartment = ApartmentGetSetSvc.get('apartmentSelected');
-            // $scope.apartment = $scope.apartment.apartmentData || null;
-            //check that the correct apartment is getting pulled
 
-
-            // $scope.apartment.youtubeLink = 'http://www.youtube.com/embed/' + $scope.apartment.Assignments[0].youtubeId + '?autoplay=0';
-
-
-            // MediaTabs
-            //map does not load b/c it's stupid. Must be default.
-
-            //HELPER FUNCTION -- modal creation function
             var modalDefaults = function(templateUrl, controller, accountType, apartmentData) {
                 return {
                     backdrop: true,
@@ -168,6 +138,10 @@ angular.module('UnitApp')
                 };
             };
             var authViews = WizioConfig.AccountAuthViewsURL;
+            // ModalBuilderFct.buildModalWithController(authViews + 'Login.html', 'AuthLoginModalCtrl')
+            // .then(function(result){
+            //
+            // });
             var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             //APPLY to the apartment
             $scope.applyToApartment = function() {

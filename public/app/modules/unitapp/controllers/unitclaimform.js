@@ -316,7 +316,7 @@ angular.module('UnitApp')
             $scope.submit = function() {
                 // var apartments = lodash.pluck($scope.containingArray, 'apartmentData');
                 ApartmentModel.claimApi($scope.containingArray, function(response) {
-                    $state.go('Account.Dashboard.Main');
+                    $state.go('Account.Dashboard.PropertyManager');
                 });
             };
 

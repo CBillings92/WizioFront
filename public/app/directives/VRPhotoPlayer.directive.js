@@ -12,9 +12,8 @@ angular.module('Directives')
                     var savedLongitude;
                     var savedLatitude;
                     var webGLRenderer = new THREE.WebGLRenderer();
-                    console.dir("HI");
                     webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                    webGLRenderer.domElement.className = 'col-md-12';
+                    // webGLRenderer.domElement.className = 'col-md-12';
 
                     elem[0].appendChild(webGLRenderer.domElement);
 
@@ -49,6 +48,7 @@ angular.module('Directives')
                         camera.updateProjectionMatrix();
 
                         webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                        console.dir(webGLRenderer)
                     }
 
                     function newImage() {

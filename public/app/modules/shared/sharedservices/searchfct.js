@@ -8,6 +8,8 @@ angular.module('SharedServiceApp')
         'LeaseModel',
         'lodash',
         function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash) {
+
+            //to randomize the address for security
             var concealAddress = function(response) {
                 for (i = 0; i < response.length; i++) {
                     var left = Math.floor((response[i].concatAddr.charCodeAt(5) / 19) + 4);
@@ -23,6 +25,8 @@ angular.module('SharedServiceApp')
                 }
                 return response;
             };
+
+
             var formatSearchResults = function(response) {
                 var formattedApartmentArray = [];
                 var apt;

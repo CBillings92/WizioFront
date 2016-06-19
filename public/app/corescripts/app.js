@@ -11,6 +11,7 @@
     angular.module('LandingPageApp', []);
     angular.module('LeaseApp', []);
     angular.module('NavbarApp', []);
+    angular.module('TenantSurveyApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
     angular.module('UnitApp', []);
@@ -23,7 +24,7 @@
             //change to UnitApp
             'AdminPanelApp',
             'AccountApp',
-            'AmazonS3UploadApp',
+            // 'AmazonS3UploadApp',
             'ApplicationApp',
             'AuthApp',
             'AboutUsApp',
@@ -33,6 +34,7 @@
             'LeaseApp',
             'CampaignApp',
             'NavbarApp',
+            'TenantSurveyApp',
             'SharedFactoryApp',
             'SharedServiceApp',
             'UnitApp',
@@ -64,13 +66,14 @@
         .run([
             '$rootScope',
             '$state',
+            '$stateParams',
             '$localStorage',
             '$window',
             '$facebook',
             'jwtHelper',
             'AuthFct',
             'TokenSvc',
-            function($rootScope, $state, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
+            function($rootScope, $state, $stateParams, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
                 //FACEBOOK SDK
                 // Load the Facebook SDK asynchronously
                 (function(d, s, id) {
@@ -82,6 +85,8 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
 
+                $rootScope.state = $state;
+                $rootScope.stateParams = $stateParams;
                 //HELPER FUNCTION
                 //handle facebook authentication on initial application launch
                 //get the login status of the user

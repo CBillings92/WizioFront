@@ -13,151 +13,142 @@ angular.module('AccountApp')
         'ApplicationModel',
         'FlexGetSetSvc',
         'BrokerageModel',
-        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel) {
-            //reusable function for creating modalDefaults for ModalSvc
+        'ModalBuilderFct',
+        'DashboardFactory',
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
+            //get loggedin user
             var user = TokenSvc.decode();
-            new Clipboard('.clipboard');
-            var modalDefaults = function(size, templateUrl, controller, modalData) {
-                return {
-                    backdrop: true,
-                    keyboard: true,
-                    modalFade: true,
-                    size: size,
-                    templateUrl: templateUrl,
-                    controller: controller,
-                    resolve: {
-                        modalData: function() {
-                            return modalData;
-                        }
-                    }
-                };
-            };
+            $scope.user = user;
+            var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
             $scope.currentTab = 'UnitList';
-            $scope.changeTab = function changeTab(tab) {
-                if(typeof user.Brokerages === 'undefined') {
-                    if(user.PropertyManager[0].Apiaccess.active === 0){
-                        alert('No API Access If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
-                        return;
-                    }
-                } else {
-                    if(user.Brokerages[0].Apiaccess.active === 0){
-                        alert('No API Access. If you feel this is in error, or you would like to request API access please contact Devon@wizio.co.');
-                        return;
-                    }
-                }
-                getApartmentsForExternalApi()
-                    .then(function(response){
-                        $scope.apartmentsForApi = response;
-                        $scope.currentTab = tab;
 
-                    });
-                $scope.currentTab = tab;
-                return;
+            var businessNameEncoded;
+            $scope.windowLocationOrigin = window.location.origin;
+            //for copy to clipboard button - from the clipboard.js library
+            new Clipboard('.clipboard');
+
+            setUnitListTab();
+            setShareApiTab();
+            $scope.funcs = {
+                editApartment: editApartment,
+                viewSharedApartments: viewSharedApartments,
+                changeTab: changeTab,
+                shareListing: shareListing,
+                shareAllListings: shareAllListings
             };
-            function getApartmentsForExternalApi(){
-                $scope.apikey = null;
-                //grab the api key
-                if(typeof(user.PropertyManager) == 'undefined'){
-                    $scope.apikey = user.Brokerages[0].Apiaccess.apikey;
+
+            //calculate the typeof user so you don't need to keep rewriting this
+            function setUnitListTab() {
+                var applicationIds = [];
+                var data = {};
+                if (user.userType === 3) {
+                    data.id = user.Brokerages[0].id;
                 } else {
-                    $scope.apikey = user.PropertyManager[0].Apiaccess.apikey;
+                    data.id = user.PropertyManager[0].id;
                 }
-                return new $q(function(resolve, reject) {
-                    $resource(WizioConfig.baseAPIURL + 'vrapi/:apikey', {apikey: '@apikey'})
-                    .query({apikey:$scope.apikey}, function (response) {
-                        return resolve(lodash.uniqBy(response, 'ApartmentId'));
-                    });
+                $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
+                    id: '@id'
+                }).query(data, function(result) {
+                    $scope.units = result;
                 });
             }
-            $scope.apiApartments = [1, 2];
-            // $scope.user.userType = TokenSvc.decode();
-            $scope.user = user;
-            function viewAPIPanel(){
 
+            function setShareApiTab() {
+                if (user.userType === 2) {
+                    businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+                    $scope.businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+                } else {
+                    businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+                    $scope.businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+                }
             }
-            function viewSharedApartments(){
-                var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
-                var controller = "SharedApartmentsCtrl";
-                var apartmentsSharedModalDefaults = modalDefaults('lg', views, controller);
-                BrokerageModel.getSharedApartments(user.Brokerages[0].id)
-                    .then(function(){
+            //changing the tab on the dashboard LL unit list
+            function changeTab(tab) {
+                //if apikey is active, get apartments for API, else display error modal
+                var apiaccess;
+                if (typeOfUser === "PropertyManager") {
+                    apiaccess = user.PropertyManager[0].Apiaccess;
+                    if (apiaccess === null || apiaccess === 0) {
+                        displayAPIModal();
+                    } else {
+                        setShareApiTab();
+                        getApartmentsForApiShare();
+                        $scope.currentTab = tab;
+                    }
+                } else {
+                    apiaccess = user.Brokerage[0].Apiaccess;
+                    if (typeOfUser === "Brokerage") {
+                        if (apiaccess === null || apiaccess === 0) {
+                            displayAPIModal();
+                        } else {
+                            setShareApiTab();
+                            getApartmentsForApiShare();
+                            $scope.currentTab = tab;
+                        }
+                    }
+                }
+            }
+
+            function getApartmentsForApiShare() {
+                DashboardFactory.getApartmentsForApiShare()
+                    .then(function(result) {
+                        $scope.apartmentsForApi = result;
+                        return;
+                    })
+                    .catch(function(err) {
 
                     });
             }
-            var businessNameEncoded = null;
-            if(user.userType === 2){
-                businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
-            } else {
-                businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+            //helper function - just displays no API access error to user in modal
+            function displayAPIModal() {
+                ModalBuilderFct.buildSimpleModal(
+                        'Cancel',
+                        'OK',
+                        'No API Access Key Found',
+                        "It appears you don't have access to our beta API. If you feel that this is in error, or would like access to the API, please contact Devon@wizio.co"
+                    )
+                    .then(function(result) {
+                        return result;
+                    });
             }
-            // if(user.userType === 2){
-            //     $resource(WizioConfig.baseAPIURL + '/apartment/pm/:id', {id: '@id'}).query({id: user.PropertyManager[0].id}, function(result){
-            //         $scope.units = result;
-            //     });
-            // }
-            //get apartments associated with user
-            var userId = TokenSvc.decode().id;
-            var applicationIds = [];
-            var data = {};
-            if(user.userType === 3){
-                data.id = user.Brokerages[0].id;
-            } else {
-                data.id = user.PropertyManager[0].id;
+
+            function viewSharedApartments() {
+                var views = WizioConfig.UnitViewsURL + 'sharedapartments.modal.view.html';
+                var controller = "SharedApartmentsCtrl";
+                var apartmentsSharedModalDefaults = ModalBuilderFct.buildComplexModal('lg', views, controller);
+                BrokerageModel.getSharedApartments(user.Brokerages[0].id)
+                    .then(function() {
+
+                    });
             }
-            $resource(WizioConfig.baseAPIURL + 'apartment/pm/:id', {
-                id: '@id'
-            }).query(data, function(result) {
-                $scope.units = result;
-            });
-            $scope.shareListing = function(index) {
+
+            function shareListing(index) {
                 var modalOptionsShareListing = {
                     closeButtonText: "Close",
                     actionButtonText: "OK",
                     headerText: "Share This Listing",
                     bodyText: 'Copy and paste this URL: ' + window.location.origin + '/#/listing/' + businessNameEncoded + '/' + $scope.units[index].Leases[0].id
                 };
-                ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {
-                });
-            };
+                ModalSvc.showModal({}, modalOptionsShareListing).then(function(response) {});
+            }
+
             function shareAllListings() {
                 var view = WizioConfig.UnitViewsURL + 'sharelistings.modal.view.html';
                 var controller = 'ShareListingsCtrl';
                 BrokerageModel.getAllBrokerages()
-                    .then(function(response){
+                    .then(function(response) {
                         var modalData = response;
                         response.PropertyManagerId = user.PropertyManager[0].id;
-                        var shareListingsModalDefaults = modalDefaults('lg', view, controller, modalData);
+                        var shareListingsModalDefaults = ModalBuilderFct.buildComplexModal('lg', view, controller, modalData);
                         ModalSvc.showModal(shareListingsModalDefaults, {})
-                        .then(function(modalResult){
+                            .then(function(modalResult) {
 
-                        });
+                            });
                     });
             }
-            $scope.shareAllListings = shareAllListings;
-
-
-            // AssignmentModel.api().twoParam.query({
-            //     param1: 'user',
-            //     param2: userId
-            // }, function(response) {
-            //     $scope.assignments = response;
-            //
-            //     for (var i = 0; i < $scope.assignments.length; i++) {
-            //         if ($scope.assignments[i].Apartment.Applications.length !== 0) {
-            //             applicationIds = lodash.pluck($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-            //         }
-            //         //group the individual application objects by the ApplicationId
-            //         var groupedApplications = lodash.groupBy($scope.assignments[i].Apartment.Applications, 'ApplicationId');
-            //         // reassign the Applications key on the returned object
-            //         $scope.assignments[i].Apartment.Applications = groupedApplications;
-            //         //get the number of applications
-            //         $scope.assignments[i].Apartment.Applications.numberOf = Object.keys(groupedApplications).length;
-            //     }
-            //     $scope.noTenants = true;
-            // });
 
             $scope.add_tenants = function(val) {
-                var addTenantsModalDefaults = modalDefaults(
+                var addTenantsModalDefaults = ModalBuilderFct.buildComplexModal(
                     'md',
                     WizioConfig.AccountDashboardViewsURL + 'AddTenantsToLeaseForm.html',
                     'AddTenantsToLeaseCtrl',
@@ -205,7 +196,7 @@ angular.module('AccountApp')
                     },
                     applicationIds,
                     function(response) {
-                        var viewApplicantsModalDefaults = modalDefaults(
+                        var viewApplicantsModalDefaults = ModalBuilderFct.buildComplexModal(
                             'lg',
                             WizioConfig.ApplicationFormViewsURL + 'ApplicationOverviewModal.html',
                             'ApplicationOverviewCtrl',
@@ -227,10 +218,6 @@ angular.module('AccountApp')
                 FlexGetSetSvc.set($scope.units[apartmentIndex], 'UnitToEdit', 'UnitToEdit');
                 $state.go('Unit.Edit');
             }
-            $scope.functions = {
-                editApartment: editApartment,
-                viewSharedApartments: viewSharedApartments
-            };
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
 
@@ -240,7 +227,7 @@ angular.module('AccountApp')
                     $scope.units[apartmentIndex].unitNum
                 ];
 
-                var viewLeadsModal = modalDefaults('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
+                var viewLeadsModal = ModalBuilderFct.buildComplexModal('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);
 
                 ModalSvc.showModal(viewLeadsModal, {})
                     .then(function(result) {});

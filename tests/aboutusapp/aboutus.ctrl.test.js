@@ -13,6 +13,6 @@ describe('calculator', function(){
             var controller = $controller('AboutListCtrl', {$scope: $scope});
             console.dir(controller);
             // expect($scope.test).toBe(2);
-        })
-    })
-})
+        });
+    });
+});

@@ -12,13 +12,13 @@ angular.module('MainApp')
     //baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
-    baseAPIURL: 'http://172.16.0.3:4000/api/',
+    // baseAPIURL: 'http://172.16.0.3:4000/api/',
     // baseAPIURL: 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
 
     //LIVETESTER URL
-    //baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
+    baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
 
     //FRONT END SERVER URL
@@ -67,5 +67,6 @@ angular.module('MainApp')
     //Unit App
     UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
     extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
-    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/'
+    extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/',
+    tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/'
 });

@@ -1,35 +1,21 @@
-<div class="container unit-details-media-container-iframe" style="width: 800px; height: 450px">
-    <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitVideos'">
-        <div class="embed-responsive embed-responsive-16by9">
-            <vr-photo-player-dirv photoUrl="{{photoUrl}}"></vr-photo-player-dirv>
-            <!-- <iframe allowfullscreen="allowfullscreen" style="margin-top:-20px" frameborder="0" height="480" src={{trust.trustAsResourceUrl(media.vrvideo[0].link)}} width="640"></iframe> -->
+<div class="">
+    <div class="">
+        <div class="" ng-show="mediaTab == 'unitPhotos'">
+            <div class="embed-responsive embed-responsive-16by9">
+                <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%"></vr-photo-player-dirv>
+            </div>
         </div>
-    </div>
-    <div class="unit-details-media-tab-content" ng-show="mediaTab == 'unitPhotos'">
-        <div class="embed-responsive embed-responsive-16by9">
-            <vr-photo-player-dirv photoUrl='{{photoUrl}}'></vr-photo-player-dirv>
-
-            <!-- <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
-        </div>
-
-    </div>
-    <!--<ul class="unit-details-media-container-tabs">
-        <li style="width:50%">
-            <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitPhotos'}" ng-click="selectMediaTab('unitPhotos')">360 Photos</button>
-        </li>
-        <li style="width:50%">
-            <button class="btn unit-details-media-container-tab" ng-class="{selected: mediaTab === 'unitVideos'}" ng-click="selectMediaTab('unitVideos')">360 Tour</button>
-        </li>
-    </ul>-->
-    <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
-        <div class="unit-details-media-tab-content-picker-slider-scroller">
-            <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
-                <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
-                    <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
-                        {{photo.title}}
+        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
+            <div class="unit-details-media-tab-content-picker-slider-scroller">
+                <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
+                    <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
+                        <div class="btn btn-search-bar center_button" ng-click="changePhoto($index)" style="width:7em;">
+                            {{photo.title}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- <iframe allowfullscreen="allowfullscreen" frameborder="0" height="480" src="https://www.bubl.io/embed/de2e535a-a51b-4a83-9e59-62c56aaa4c8e" width="640"></iframe> -->

@@ -1,24 +1,26 @@
 angular.module('UnitApp')
     .controller('UnitMediaCtrl', [
         '$scope',
+        '$rootScope',
         '$state',
         '$resource',
         'WizioConfig',
         '$sce',
         'lodash',
         'ModalSvc',
-        function($scope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
+        function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
             //mason was here 3,2.] j
             // var apitoken = 2;
             // var apartmentid = 1;
+            // $rootScope.$state = Externalapi
             $scope.trust = $sce;
             // $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
-            $resource(WizioConfig.baseAPIURL + 'vrapi/listing/vr/:apitoken/:apartmentid', {
+            $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
                 apitoken: '@apitoken',
                 apartmentid: '@apartmentid',
             }).query({
                 apitoken: $state.params.apitoken,
-                apartmentid: $state.params.id
+                apartmentid: $state.params.apartmentpubid
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
@@ -27,13 +29,11 @@ angular.module('UnitApp')
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
-                    console.dir($scope.photoUrl);
                     $scope.$broadcast('CHANGE', {});
                 };
                 $scope.mediaTab = 'unitPhotos';
                 $scope.selectMediaTab = function(tab) {
                     if (tab === 'unitVideos') {
-                        console.dir("HI");
                         if (vrvideos.length !== 1) {
                             var signUpErrorModalOptions = {
                                 closeButtonText: "Close",
