@@ -27,17 +27,13 @@ angular.module('UnitApp')
                 //search type is final description of search type that will be returned
                 var searchType = null;
                 var googleAPIDataRaw;
+                var state = $state.current.name;
                 //the raw googleAPIData that is stored in the flex gettersetter
-                if($state.current.name == 'Unit.Claim'){
-                    //first try and get values from array in service
-                    googleAPIDataRaw = ApartmentClaimGetSetSvc.get();
-                    if(gooogleAPIDataRaw.length === 0){
-                        //if no value in array then try and grab data from the sessionStorage
-                        gooogleAPIDataRaw = ApartmentClaimGetSetSvc.get('Staging-ApartmentClaims');
-                    }
-                } else {
-                    gooogleAPIDataRaw = FlexGetSetSvc.get();
-                }
+                //first try and get values from array in service
+                if(state == 'Unit.Claim') googleAPIDataRaw = ApartmentClaimGetSetSvc.get();
+                if(state === 'Unit.Claim' && googleAPIDataRaw.length === 0) ApartmentClaimGetSetSvc.get('Staging-ApartmentClaims');
+
+                gooogleAPIDataRaw = FlexGetSetSvc.get();
 
                 //converts the type of googleAPI search data to an array
                 //ex: postal code, or [neighborhood, locality]
@@ -52,9 +48,11 @@ angular.module('UnitApp')
             var parseGeocodeData = function(apartmentAddress, apartmentParams, callback) {
                 //get raw data from Smart Search stored in FlexGetSetSvc
                 var googleAPIDataRaw = FlexGetSetSvc.get();
-                //check if search string matches any google API raw data passed
-                //from the smart search feature. False if no match. google API
-                //Data object returned if match found
+                /*
+                    check if search string matches any google API raw data passed
+                    from the smart search feature. False if no match. google API
+                    Data object returned if match found
+                */
                 var searchStringFound = false;
                 if (googleAPIDataRaw.length !== 0) {
                     searchStringFound = findSearchString(apartmentAddress, googleAPIDataRaw);
@@ -96,13 +94,7 @@ angular.module('UnitApp')
                     });
                 }
                 //if the search string wasn't found return false
-                switch (googleAPIData.length) {
-                    case 0:
-                        return false;
-                    default:
-                        return googleAPIData;
-
-                }
+                return googleAPIData.length === 0 ? false : googleAPIData
             }
             //Used to select between long_name and short_name in the googleAPI data
             function parseData(array) {
@@ -166,7 +158,7 @@ angular.module('UnitApp')
                 //Check to see if the lat and longitude are numbers. On
                 //searches like Boston they are numbers. On exact searches they
                 //are functions
-                if(isNaN(googleAPIData[0].geometry.location.lat)){
+                if (isNaN(googleAPIData[0].geometry.location.lat)) {
                     apartmentObj.latitude = googleAPIData[0].geometry.location.lat().toFixed(6);
                     apartmentObj.longitude = googleAPIData[0].geometry.location.lng().toFixed(6);
                 }
