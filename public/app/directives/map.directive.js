@@ -4,6 +4,8 @@ angular.module('Directives')
         function (MapFct) {
             return {
                 restrict: 'E',
+                template: '<div></div>',
+                replace: true,
                 link: function(scope, elem, attr){
                     console.dir(MapFct);
                     var mapOptions;
@@ -11,9 +13,10 @@ angular.module('Directives')
 
                     mapOptions = MapFct.makeMap();
                     console.dir(mapOptions);
-                    scope.map = new google.maps.Map(document.getElementById(attr.id), mapOptions);
-                    markers = MapFct.makeMarkers(scope.map);
-                    console.dir(markers);
+                    console.dir(attr.id);
+                    var map = new google.maps.Map(document.getElementById(attr.id), mapOptions);
+                    console.dir(map);
+                    markers = MapFct.makeMarkers(map);
                     scope.openInfoWindow = function (e, selectedMarker) {
                         e.preventDefault();
                         google.maps.event.trigger(selectedMarker, 'click');
