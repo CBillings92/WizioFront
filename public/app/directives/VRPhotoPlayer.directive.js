@@ -11,29 +11,43 @@ angular.module('Directives')
                     var savedY;
                     var savedLongitude;
                     var savedLatitude;
+                    //create a new webGL renderer that will render our vr player
                     var webGLRenderer = new THREE.WebGLRenderer();
+                    //create a new scene that our VR/three SPHERE will live on
+                    var scene = new THREE.Scene();
+                    //FIXME needs documentation
+                    var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                    var sphere = new THREE.SphereGeometry(100, 100, 40);
+                    var sphereMaterial = new THREE.MeshBasicMaterial();
+
+                    //set the size of the vr player
                     webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
                     // webGLRenderer.domElement.className = 'col-md-12';
 
+                    //set the vr player in the DOM as the child of the directive
                     elem[0].appendChild(webGLRenderer.domElement);
-
-                    var scene = new THREE.Scene();
-                    var camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                    //FIXME set documentation
                     camera.target = new THREE.Vector3(0, 0, 0);
 
-                    var sphere = new THREE.SphereGeometry(100, 100, 40);
                     sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 
-                    var sphereMaterial = new THREE.MeshBasicMaterial();
+                    //on an image load event (fired from the controller)
                     scope.$on('IMGLOAD', function IMGLOAD(event, data) {
+                        //handle cross origin issues
                         THREE.ImageUtils.crossOrigin = '';
+                        //set the texture of the sphere with the equirect photo
                         sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
+                        //remake the sphereMesh
                         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
+                        //add the sphereMesh to the scene
                         scene.add(sphereMesh);
                     });
                     elem[0].addEventListener("mousedown", onMouseDown, false);
                     elem[0].addEventListener("mousemove", onMouseMove, false);
                     elem[0].addEventListener("mouseup", onMouseUp, false);
+                    elem[0].addEventListener("touchstart", touchstart, false);
+                    elem[0].addEventListener("touchend", touchend, false);
+                    elem[0].addEventListener("touchmove", touchmove, false);
                     window.addEventListener("resize", resize, false);
 
 
@@ -48,7 +62,7 @@ angular.module('Directives')
                         camera.updateProjectionMatrix();
 
                         webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        console.dir(webGLRenderer)
+                        console.dir(webGLRenderer);
                     }
 
                     function newImage() {
@@ -110,6 +124,18 @@ angular.module('Directives')
                     function onMouseUp(event) {
 
                         manualControl = false;
+                    }
+
+                    //handles the touchstart event. Fires when a touch is
+                    //registered on mobile touch screen devices
+                    function touchstart(event) {
+                        switch (event.touches.length) {
+                            case 1:
+                                
+                                break;
+                            default:
+
+                        }
                     }
                 }
             };
