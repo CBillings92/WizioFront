@@ -1,11 +1,12 @@
 <div class="">
-    <div class="">
+    <div class="" style="height:100vh">
         <div class="" ng-show="mediaTab == 'unitPhotos'">
-            <div class="embed-responsive embed-responsive-16by9">
-                <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%"></vr-photo-player-dirv>
+            <div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 0; height: 90vh">
+
+                <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%;"></vr-photo-player-dirv>;
             </div>
         </div>
-        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'">
+        <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'" style="height:10vh">
             <div class="unit-details-media-tab-content-picker-slider-scroller">
                 <div class="unit-details-media-tab-content-picker-slider" style="overflow-x:auto">
                     <div class="unit-details-media-tab-content-picker" ng-repeat="photo in media.vrphoto track by $index" style="margin:0;cursor:pointer;">
