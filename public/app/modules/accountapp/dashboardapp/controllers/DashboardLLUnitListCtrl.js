@@ -15,7 +15,8 @@ angular.module('AccountApp')
         'BrokerageModel',
         'ModalBuilderFct',
         'DashboardFactory',
-        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
+        'customFilter',
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory, customFilter) {
             //get loggedin user
             var user = TokenSvc.decode();
             $scope.user = user;
@@ -220,6 +221,15 @@ angular.module('AccountApp')
             }
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
+
+
+            $scope.filterthis = function() {
+                for (var k in units) {
+                        //if (collection[k]['screen_name'] == user) return true;
+                }
+
+                $scope.units
+            }
 
             $scope.viewLeads = function(apartmentIndex) {
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
