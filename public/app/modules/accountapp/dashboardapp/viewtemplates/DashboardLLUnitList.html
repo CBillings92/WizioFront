@@ -19,8 +19,10 @@
                 </div>
             </div>
         </div>
-        <label>Search: <input ng-model="searchText"></label>
-        <div class="col-md-12" ng-repeat='unit in units track by $index | filter:searchText' style="border:0px solid black; margin:10px; border-radius:4px;" ng-init="index = $index" ng-show="currentTab == 'UnitList'">
+        <div class="col-md-12">
+        <label style="border:0px solid black; margin:10px; border-radius:4px; padding-top:15px" >Search by address: <input ng-model="searchText.concatAddr"></label>
+        </div>
+        <div class="col-md-12" ng-repeat='unit in units | filter:searchText' style="border:0px solid black; margin:10px; border-radius:4px;" ng-init="index = $index" ng-show="currentTab == 'UnitList'">
             <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
             <!-- left upper control section  -->
             <div class="col-md-3 col-lg-3" style="margin-top:0px;">
