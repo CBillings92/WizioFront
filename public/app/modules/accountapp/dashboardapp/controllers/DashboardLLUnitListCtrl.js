@@ -15,8 +15,7 @@ angular.module('AccountApp')
         'BrokerageModel',
         'ModalBuilderFct',
         'DashboardFactory',
-        'customFilter',
-        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory, customFilter) {
+        function($scope, $state, $resource, $q, TokenSvc, ModalSvc, lodash, AssignmentModel, WizioConfig, ApplicationModel, FlexGetSetSvc, BrokerageModel, ModalBuilderFct, DashboardFactory) {
             //get loggedin user
             var user = TokenSvc.decode();
             $scope.user = user;
