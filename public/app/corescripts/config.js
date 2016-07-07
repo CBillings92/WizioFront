@@ -12,8 +12,21 @@ angular.module('MainApp')
     //baseAPIURL: 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/',
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
-    baseAPIURL: 'http://172.16.0.3:4000/api/',
-    // baseAPIURL: 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
+    baseAPIURL: (function () {
+        switch (window.location.origin) {
+            case "http://172.16.0.2:3000":
+                return 'http://172.16.0.3:4000/api/';
+            case "http://alphafront.rc9igeipqw.us-east-1.elasticbeanstalk.com":
+                return 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/';
+            case "http://beta.wizio.co":
+                return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
+            case "http://wizio.co":
+                return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
+            default:
+                return "http://172.16.0.2:3000";
+
+        }
+    }()),
 
 
 
