@@ -57,9 +57,11 @@ angular.module('AccountApp')
                 if (user.userType === 2) {
                     businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
                     $scope.businessNameEncoded = user.PropertyManager[0].businessName.replace(/\s/g, '') || 'byowner';
+                    $scope.apikey = user.PropertyManager[0].Apiaccess.apikey;
                 } else {
                     businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
                     $scope.businessNameEncoded = user.Brokerages[0].businessName.replace(/\s/g, '');
+                    $scope.apikey = user.Brokerages[0].Apiaccess.apikey;
                 }
             }
             //changing the tab on the dashboard LL unit list
