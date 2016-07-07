@@ -223,6 +223,15 @@ angular.module('AccountApp')
             //navigate to applicants page. indexNum comes from HTML form
             //form should contain applications for apartments.
 
+
+            $scope.filterthis = function() {
+                for (var k in units) {
+                        //if (collection[k]['screen_name'] == user) return true;
+                }
+
+                $scope.units
+            }
+
             $scope.viewLeads = function(apartmentIndex) {
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
                     $scope.units[apartmentIndex].concatAddr,
