@@ -19,11 +19,11 @@ angular.module('MainApp')
                 case "http://alphafront.rc9igeipqw.us-east-1.elasticbeanstalk.com":
                     return 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/';
                 case "http://beta.wizio.co":
-                    return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
+                    return 'http://api.wizio.co/api/';
                 case "http://wizio.co":
-                    return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
+                    return 'http://api.wizio.co/api/';
                 case "http://www.wizio.co":
-                    return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
+                    return 'http://api.wizio.co/api/';
                 default:
                     return "http://172.16.0.2:3000";
 
