@@ -124,7 +124,7 @@ angular.module('AccountApp')
                         ModalSvc.showModal(modalDefaultsLogin, {})
                             .then(function(result) {
                                 return;
-                            })
+                            });
                     })
                     .catch(function(result) {
                         return $uibModalInstance.close('ok');

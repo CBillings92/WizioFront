@@ -94,7 +94,7 @@ angular.module('UnitApp')
                     });
                 }
                 //if the search string wasn't found return false
-                return googleAPIData.length === 0 ? false : googleAPIData
+                return googleAPIData.length === 0 ? false : googleAPIData;
             }
             //Used to select between long_name and short_name in the googleAPI data
             function parseData(array) {

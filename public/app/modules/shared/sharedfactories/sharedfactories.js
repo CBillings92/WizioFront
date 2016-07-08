@@ -20,7 +20,7 @@ angular.module('SharedFactoryApp')
                 ModalSvc.showModal(modalObj, {})
                     .then(function (response) {
                         resolve(response);
-                    })
+                    });
                 return modalObj;
             }
 
