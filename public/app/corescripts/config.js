@@ -22,7 +22,7 @@ angular.module('MainApp')
                     return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
                 case "http://wizio.co":
                     return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
-                case "http://www.wizio.co/":
+                case "http://www.wizio.co":
                     return 'http://cbProdTestServer-zh7mseyghz.elasticbeanstalk.com/api/';
                 default:
                     return "http://172.16.0.2:3000";
