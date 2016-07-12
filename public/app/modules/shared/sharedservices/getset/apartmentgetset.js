@@ -32,7 +32,6 @@ angular.module('SharedServiceApp')
             //in session storage that you want to retrieve
             var get = function(sessionStorageVar) {
 
-                console.log("get " + sessionStorageVar);
 
                 if (sessionStorageVar) {
                     apartmentSelected = $sessionStorage[sessionStorageVar];

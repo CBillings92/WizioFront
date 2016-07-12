@@ -27,20 +27,18 @@ angular.module('UnitApp')
                 var photoIndex = 0;
                 if (media.vrphoto[0].awsurl) {
                     // $scope.media.vrphoto = vrphotos;
-                    console.dir("IN HERE");
+                    $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
                     $scope.$broadcast('IMGLOAD', {
                         media: media
                     });
                     // $scope.media.vrphoto = vrphotos;
                     $scope.changePhoto = function(photoIndex) {
-                        console.dir($scope.photoUrl);
                         $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
                         $scope.$broadcast('CHANGE', {});
                     };
                 } else {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                     $scope.changePhoto = function(photoIndex) {
-                        console.dir(photoIndex);
                         $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                     };
                     $scope.trust = $sce;

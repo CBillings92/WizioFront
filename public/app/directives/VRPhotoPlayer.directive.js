@@ -34,7 +34,6 @@ angular.module('Directives')
                     //on an image load event (fired from the controller)
                     scope.$on('IMGLOAD', function IMGLOAD(event, data) {
                         //handle cross origin issues
-                        console.dir("WHY CROSS ORIGIN");
                         THREE.ImageUtils.crossOrigin = '';
                         //set the texture of the sphere with the equirect photo
                         sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
@@ -63,7 +62,6 @@ angular.module('Directives')
                         camera.updateProjectionMatrix();
 
                         webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        console.dir(webGLRenderer);
                     }
 
                     function newImage() {
