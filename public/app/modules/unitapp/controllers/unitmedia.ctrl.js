@@ -24,37 +24,58 @@ angular.module('UnitApp')
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
-                $scope.photoUrl = $scope.media.vrphoto[0].awsurl;
-                $scope.$broadcast('IMGLOAD', {media: media});
-                // $scope.media.vrphoto = vrphotos;
-                $scope.changePhoto = function(photoIndex) {
-                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
-                    $scope.$broadcast('CHANGE', {});
-                };
+                var photoIndex = 0;
+                if (media.vrphoto[0].awsurl) {
+                    // $scope.media.vrphoto = vrphotos;
+                    console.dir("IN HERE");
+                    $scope.$broadcast('IMGLOAD', {
+                        media: media
+                    });
+                    // $scope.media.vrphoto = vrphotos;
+                    $scope.changePhoto = function(photoIndex) {
+                        console.dir($scope.photoUrl);
+                        $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
+                        $scope.$broadcast('CHANGE', {});
+                    };
+                } else {
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    $scope.changePhoto = function(photoIndex) {
+                        console.dir(photoIndex);
+                        $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+                    };
+                    $scope.trust = $sce;
+                }
+
+
+                $scope.trust = $sce;
                 $scope.mediaTab = 'unitPhotos';
-                $scope.selectMediaTab = function(tab) {
-                    if (tab === 'unitVideos') {
-                        if (vrvideos.length !== 1) {
-                            var signUpErrorModalOptions = {
-                                closeButtonText: "Close",
-                                actionButtonText: "OK",
-                                headerText: "No 360 Video",
-                                bodyText: 'Sorry! This unit does not have a 360 video tour just yet.'
-                            };
-                            ModalSvc.showModal({}, signUpErrorModalOptions)
-                                .then(function(result) {
-                                    return;
-                                });
-
-                        } else {
-                            $scope.mediaTab = tab;
-                        }
-                    } else {
-
-                        $scope.mediaTab = tab;
-                    }
-                };
+                // $scope.selectMediaTab = function(tab) {
+                //     if (tab === 'unitVideos') {
+                //         if (vrvideos.length !== 1) {
+                //             var signUpErrorModalOptions = {
+                //                 closeButtonText: "Close",
+                //                 actionButtonText: "OK",
+                //                 headerText: "No 360 Video",
+                //                 bodyText: 'Sorry! This unit does not have a 360 video tour just yet.'
+                //             };
+                //             ModalSvc.showModal({}, signUpErrorModalOptions)
+                //                 .then(function(result) {
+                //                     return;
+                //                 });
+                //
+                //         } else {
+                //             $scope.mediaTab = tab;
+                //         }
+                //     } else {
+                //
+                //         $scope.mediaTab = tab;
+                //     }
+                // };
             });
+            // $scope.changePhotoBubl = function(photoIndex){
+            //     console.dir(photoIndex);
+            //     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
+            // };
 
         }
     ]);

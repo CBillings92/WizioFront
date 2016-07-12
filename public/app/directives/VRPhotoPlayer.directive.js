@@ -34,6 +34,7 @@ angular.module('Directives')
                     //on an image load event (fired from the controller)
                     scope.$on('IMGLOAD', function IMGLOAD(event, data) {
                         //handle cross origin issues
+                        console.dir("WHY CROSS ORIGIN");
                         THREE.ImageUtils.crossOrigin = '';
                         //set the texture of the sphere with the equirect photo
                         sphereMaterial.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
@@ -66,6 +67,7 @@ angular.module('Directives')
                     }
 
                     function newImage() {
+                        THREE.ImageUtils.crossOrigin = '';
                         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
                         scene.add(sphereMesh);
                         sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
