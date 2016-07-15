@@ -6374,6 +6374,9 @@ div[class^='color__box'], div[class*=' color__box'] {
 .styleguide-example-make-blue svg * {
   stroke: #7A9DD1; }
 
+.alternate-text-orange {
+  color: #F79739; }
+
 .footer {
   position: absolute;
   bottom: 0;
