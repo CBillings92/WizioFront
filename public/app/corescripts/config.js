@@ -24,8 +24,10 @@ angular.module('MainApp')
                     return 'http://api.wizio.co/api/';
                 case "http://www.wizio.co":
                     return 'http://api.wizio.co/api/';
+                case "https://wizio.co":
+                    return 'http://api.wizio.co/api/';
                 default:
-                    return "http://172.16.0.2:3000";
+                    return "http://172.16.0.2:3000/api/";
 
             }
         }()),
