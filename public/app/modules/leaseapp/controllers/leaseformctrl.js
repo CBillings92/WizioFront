@@ -47,7 +47,7 @@ angular.module('LeaseApp')
             $scope.formSubmission = function(action){
                 $scope.lease.UserId = TokenSvc.decode().id;
                 LeaseFct[action]($scope.lease, function(response){
-                    $state.go('Account');
+                    $state.go('Account.Dashboard');
                 });
             };
         }

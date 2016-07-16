@@ -39,6 +39,7 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData)
                     .then(function(result) {
+                        
                         return $uibModalInstance.close('ok');
                     })
                     .catch(function(result) {
