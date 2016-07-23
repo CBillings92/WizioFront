@@ -12,8 +12,6 @@ angular.module('AccountApp')
         //get accountType from the form
         $scope.nextStep = function(accountType) {
             var chosenAccountType = (accountType == 'tenant') ? 'tenantSignup' : 'propertyManagerSignup';
-            console.dir(chosenAccountType);
-            console.dir(accountType);
             $uibModalInstance.close(chosenAccountType);
         };
     }

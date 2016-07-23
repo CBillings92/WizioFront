@@ -19,8 +19,27 @@ angular.module('AccountApp')
             //get loggedin user
             var user = TokenSvc.decode();
             $scope.user = user;
+            $scope.user = user;
             var typeOfUser = typeof(user.Brokerages) == 'undefined' ? 'PropertyManager' : 'Brokerage';
+            $scope.typeOfUser = typeOfUser;
             $scope.currentTab = 'UnitList';
+            if (typeOfUser === "PropertyManager") {
+                apiaccess = user.PropertyManager[0].Apiaccess;
+                if (apiaccess === null || apiaccess === 0) {
+                    $scope.hasApiAccess = false;
+                } else {
+                    $scope.hasApiAccess = true;
+                }
+            } else {
+                apiaccess = user.Brokerage[0].Apiaccess;
+                if (typeOfUser === "Brokerage") {
+                    if (apiaccess === null || apiaccess === 0) {
+                        $scope.hasApiAccess = false;
+                    } else {
+                        $scope.hasApiAccess = true;
+                    }
+                }
+            }
 
             var businessNameEncoded;
             $scope.windowLocationOrigin = window.location.origin;
@@ -71,8 +90,10 @@ angular.module('AccountApp')
                 if (typeOfUser === "PropertyManager") {
                     apiaccess = user.PropertyManager[0].Apiaccess;
                     if (apiaccess === null || apiaccess === 0) {
+                        $scope.hasApiAccess = false;
                         displayAPIModal();
                     } else {
+                        $scope.hasApiAccess = true;
                         setShareApiTab();
                         getApartmentsForApiShare();
                         $scope.currentTab = tab;
@@ -80,9 +101,11 @@ angular.module('AccountApp')
                 } else {
                     apiaccess = user.Brokerage[0].Apiaccess;
                     if (typeOfUser === "Brokerage") {
+                        $scope.hasApiAccess = false;
                         if (apiaccess === null || apiaccess === 0) {
                             displayAPIModal();
                         } else {
+                            $scope.hasApiAccess = true;
                             setShareApiTab();
                             getApartmentsForApiShare();
                             $scope.currentTab = tab;

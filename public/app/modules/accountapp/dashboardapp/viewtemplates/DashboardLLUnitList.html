@@ -87,6 +87,23 @@
                     </span>
                 </div>
             </div>
+            <!-- right upper control block -->
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;" ng-show="typeOfUser === 'PropertyManager' && hasApiAccess === true">
+                <div class="col-md-12">
+                    <span>
+                        <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement clipboard" name="button" data-clipboard-text="{{windowLocationOrigin + '/#/listing/' + 'vr' + '/' + user.PropertyManager[0].Apiaccess.apikey + '/' + unit.pubid}}" type="button">Copy Link to VR</button>
+                        <!--                     <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" name="button" onclick="alert('You are clicking on me');" type="button">View Leads</button> -->
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3" style="margin-top:0px;" ng-show="typeOfUser === 'Brokerage' && hasApiAccess === true">
+                <div class="col-md-12">
+                    <span>
+                        <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement clipboard" name="button" data-clipboard-text="{{windowLocationOrigin + '/#/listing/' + 'vr' + '/' + user.Brokerages[0].Apiaccess.apikey + '/' + unit.pubid}}" type="button">Copy Link to VR</button>
+                        <!--                     <button style="width: 100%;" class="btn btn-outline--blue btn-md buttonPlacement" name="button" onclick="alert('You are clicking on me');" type="button">View Leads</button> -->
+                    </span>
+                </div>
+            </div>
             <div ng-show="$last" style="padding-top:50px">
                 <br>
                 <br>

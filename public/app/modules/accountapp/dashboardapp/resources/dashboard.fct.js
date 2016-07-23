@@ -12,7 +12,6 @@ angular.module('AccountApp')
                 var userType = user.userType;
                 var params = {};
                 var options = {};
-                console.dir(user);
                 options = $state.current.name === "Account.Dashboard" ? {
                     location: false
                 } : {};

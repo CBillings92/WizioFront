@@ -45,9 +45,9 @@ angular.module('Directives')
                     elem[0].addEventListener("mousedown", onMouseDown, false);
                     elem[0].addEventListener("mousemove", onMouseMove, false);
                     elem[0].addEventListener("mouseup", onMouseUp, false);
-                    elem[0].addEventListener("touchstart", touchstart, false);
-                    elem[0].addEventListener("touchend", touchend, false);
-                    elem[0].addEventListener("touchmove", touchmove, false);
+                    // elem[0].addEventListener("touchstart", touchstart, false);
+                    // elem[0].addEventListener("touchend", touchend, false);
+                    // elem[0].addEventListener("touchmove", touchmove, false);
                     window.addEventListener("resize", resize, false);
 
 
@@ -62,10 +62,10 @@ angular.module('Directives')
                         camera.updateProjectionMatrix();
 
                         webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        console.dir(webGLRenderer);
                     }
 
                     function newImage() {
+                        THREE.ImageUtils.crossOrigin = '';
                         var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
                         scene.add(sphereMesh);
                         sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
@@ -131,7 +131,7 @@ angular.module('Directives')
                     function touchstart(event) {
                         switch (event.touches.length) {
                             case 1:
-                                
+
                                 break;
                             default:
 
