@@ -134,6 +134,15 @@ angular.module('MainApp')
                         }
                     },
                 })
+                .state('AdminPanel.Pay', {
+                    url: '/wizioadminpanel/pay',
+                    views: {
+                        'AdminTop': {
+                            templateUrl: WizioConfig.AdminPanelAppViewsURL + 'payment.html',
+                            controller: 'paymentCtrl'
+                        }
+                    },
+                })
                 .state('AdminPanel.ApiAccessTool', {
                     url: '/wizioadminpanel/apiaccesstool',
                     views: {
