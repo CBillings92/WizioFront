@@ -52,6 +52,9 @@
     <!--GOOGLE API STUFF-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
+    <script type="text/javascript" src='../public/internallibraries/orbitcontrols.js'> </script>
+    <script type="text/javascript" src='../public/internallibraries/detector.js'> </script>
+    <script type="text/javascript" src='../public/internallibraries/photosphere.js'> </script>
 
     <!-- ===================================CORE SCRIPTS APP======================================-->
 
@@ -226,9 +229,30 @@
     <div ui-view="maincontent" class="">
 
     </div>
+    <div id="sphere"></div>
+    <script type="text/javascript">
+    // var photo = getParameterByName('photo');
+    var photo = '/public/internallibraries/testphoto.jpg';
+    if (photo) {
+        console.dir("HI");
+        var photosphere = THREE.Photosphere(document.getElementById('sphere'), photo, {
+            view: getParameterByName('view'),
+            speed: getParameterByName('speed'),
+            y: getParameterByName('y')
+        });
+        window.onresize = photosphere.resize;
+    }
+    function getParameterByName(name) {
+        var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+
+    </script>
+	</script>
     <div ui-view="footer">
 
     </div>
+
 </body>
 
 

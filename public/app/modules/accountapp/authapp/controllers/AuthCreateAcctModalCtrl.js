@@ -8,81 +8,72 @@ angular.module('AccountApp')
         'data',
         'WizioConfig',
         'UserRegistrationSvc',
-        function($scope, $state, $uibModal, $uibModalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc) {
+        'ModalBuilderFct',
+        function($scope, $state, $uibModal, $uibModalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc, ModalBuilderFct) {
             //Set a standard, local user object to save for local authentication
             $scope.user = {};
+            $scope.hasRegistered = false;
+            //data comes from previous modal
+            $scope.data = data;
             $scope.dropdownvals = [
                 "Broker/Agent",
                 "Property Manager"
             ];
-            $scope.backStep = function() {
-                $uibModalInstance.close('backStep');
-            };
-            $scope.hasRegistered = false;
-            $scope.data = data;
-            $scope.closeModal = function() {
+            //the back button functionality
+            function backStep() {
+                return $uibModalInstance.close('backStep');
+            }
+            function closeModal() {
                 return $uibModalInstance.close('ok');
-            };
-            //submission of create account form
-            $scope.setUserObj = function() {
+            }
+            function save() {
+                var passwordOne = $scope.user.password;
+                var passwordTwo = $scope.user.passwordConfirm;
+                var passwordsMatch;
 
-                //check if the passwords match
-                    if ($scope.user.password === $scope.user.passwordConfirm) {
-                        //set the accountType (local vs third party);
-                        $scope.user.accountType = 'local';
-
-                        if(data === "Tenant"){
-                            $scope.user.userType = 1;
+                passwordsMatch = AuthFct.confirmPasswords(passwordOne, passwordTwo);
+                if(passwordsMatch){
+                    //assign user type
+                    $scope.user = AuthFct.setUserType($scope.user, data);
+                    //save user to DB
+                    UserRegistrationSvc.saveUser($scope.user, function(data) {
+                        if (data.status === "ERR") {
+                            ModalBuilderFct.buildSimpleModal(
+                                "Close",
+                                "OK",
+                                "Email Not valid",
+                                'That email is already in use by an account holder. Please try another email or reset your password if you forgot it.'
+                            ).then(function(result){
+                                return;
+                            });
                         } else {
-                            //decide what kind of seller account type the user is
-                            //and change to numerical value for database purposes
-                            switch ($scope.user.type) {
-                                case "Broker/Agent":
-                                    $scope.user.userType = 3;
-                                    break;
-                                case "Property Manager":
-                                    $scope.user.userType = 2;
-                                    break;
-                                default:
-                                    $scope.user.userType = 2;
-                            }
+                            $scope.hasRegistered = true;
                         }
-                        UserRegistrationSvc.saveUser($scope.user, function(data) {
-                            if (data.status === "ERR") {
-                                var signUpErrorModalOptions = {
-                                    closeButtonText: "Close",
-                                    actionButtonText: "OK",
-                                    headerText: "Email Not valid",
-                                    bodyText: 'That email is already in use by an account holder. Please try another email or reset your password if you forgot it.'
-                                };
-                                ModalSvc.showModal({}, signUpErrorModalOptions)
-                                    .then(function(result) {});
-                            } else {
-                                $scope.hasRegistered = true;
-                            }
 
-                        });
-                    } else {
-                        var signUpPasswordErrorModalOptions = {
-                            closeButtonText: "Close",
-                            actionButtonText: "OK",
-                            headerText: "Password Error",
-                            bodyText: 'The two passwords you typed do not match'
-                        };
-                        ModalSvc.showModal({}, signUpPasswordErrorModalOptions)
-                            .then(function(result) {});
-                    }
-            };
+                    });
+                } else {
+                    ModalBuilderFct.buildSimpleModal(
+                        'Close',
+                        'OK',
+                        'Password Error',
+                        'The two passwords you typed do not match'
+                    )
+                    .then(function(result){
+                        return;
+                    });
+                    return;
+                }
+
+            }
+            $scope.backStep = backstep;
+
+            $scope.closeModal = closeModal;
+
+            $scope.save = save;
+            
             $scope.login = function() {
                 return $uibModalInstance.close('login');
             };
-            // $scope.cancel = function() {
-            //     if ($state.current.name === "Campaign.VideoUpload.Main") {
-            //         $uibModalInstance.dismiss();
-            //     } else {
-            //         $state.go('Home');
-            //     }
-            // };
 
         }
     ]);

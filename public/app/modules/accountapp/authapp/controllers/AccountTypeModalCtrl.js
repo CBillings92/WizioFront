@@ -1,5 +1,5 @@
 /*
-    for the signup modal - account type selection
+    for the signup modal - account type selection screen
 */
 angular.module('AccountApp')
 .controller('AccountTypeModalCtrl', [
@@ -11,6 +11,8 @@ angular.module('AccountApp')
         };
         //get accountType from the form
         $scope.nextStep = function(accountType) {
+            //account type tenant? TenantSignup, otherwise propertyManagerSignup
+            //FIXME - will need functionality for brokerages.
             var chosenAccountType = (accountType == 'tenant') ? 'tenantSignup' : 'propertyManagerSignup';
             $uibModalInstance.close(chosenAccountType);
         };

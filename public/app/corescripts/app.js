@@ -76,6 +76,7 @@
             function($rootScope, $state, $stateParams, $localStorage, $window, $facebook, jwtHelper, AuthFct, TokenSvc) {
                 //FACEBOOK SDK
                 // Load the Facebook SDK asynchronously
+                //FIXME - do we need this anymore?
                 (function(d, s, id) {
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) return;
@@ -93,6 +94,7 @@
                 //--if they are "connected", get their user information and send
                 //----that to the server to search for credentials and get a token
                 //--if they are "not authorized" set variables for authentication
+                //FIXME - Do we need this anymore?
                 function facebookAuth() {
                     $facebook.getLoginStatus().then(function(fbLoginStatus) {
 
