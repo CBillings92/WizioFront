@@ -16,6 +16,8 @@
     "gulp": "^3.9.1",
     "lodash": "^3.0.0",
     "main-bower-files": "^2.9.0",
+    "moment": "^2.14.1",
+    "momentjs": "^1.1.14",
     "morgan": "^1.6.1",
     "nodemon": "^1.7.1",
     "serve-favicon": "^2.3.0"
