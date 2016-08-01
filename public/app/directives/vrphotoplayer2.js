@@ -40,6 +40,7 @@ angular.module('Directives')
 
                         elem[0].addEventListener('mousewheel', onMouseWheel, false);
                         elem[0].addEventListener('DOMMouseScroll', onMouseWheel, false);
+                        window.addEventListener('resize', resize, false);
 
                         animate();
 
@@ -57,6 +58,14 @@ angular.module('Directives')
                     function render() {
                         renderer.render(scene, camera);
                     }
+
+                    function resize() {
+                        camera.aspect = (elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                        camera.updateProjectionMatrix();
+
+                        webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                    }
+
 
                     function newImage() {
                         THREE.ImageUtils.crossOrigin = '';
