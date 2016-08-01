@@ -4,59 +4,21 @@ angular.module('Directives')
             return {
                 restrict: 'E',
                 link: function(scope, elem, attr) {
-                    //create variables
-                    var camera, controls, scene, renderer, sphere;
-                    console.dir('1');
 
-                    //check if webgl is supported
-                    var webglSupport = (function() {
-                        console.dir('2');
-                        try {
-                            console.dir('3');
-                            var canvas = document.createElement('canvas');
-                            console.dir('4');
-                            return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
-                        } catch (e) {
-                            return false;
-                        }
-                    })();
+                    var camera, controls, scene, renderer, sphere;
+
                     //FIXME - DYNAMIC
                     //on image load from controller, load the image into the player
                     scope.$on('IMGLOAD', function IMGLOAD(event) {
-                        console.dir('5');
-                        THREE.ImageUtils.crossOrigin = '';
-                        var loader = new THREE.TextureLoader();
-                        loader.crossOrigin = '';
-                        loader.load(scope.photoUrl, function(texture){
-                            // var texture = THREE.ImageUtils.loadTexture(scope.photoUrl);
-                            console.dir(scope.photoUrl);
-                            texture.minFilter = THREE.LinearFilter;
-
-                            sphere = new THREE.Mesh(
-                                new THREE.SphereGeometry(100, 100, 20),
-                                new THREE.MeshBasicMaterial({
-                                    map: texture
-                                })
-                            );
-                            // sphere.scale.x = -1;
-                            scene.add(sphere);
-                            render();
-
-                        });
-
+                        newImage();
                     });
 
                     init(elem);
-                    console.dir("______");
-                    console.dir("______");
-                    console.dir('6');
-                    console.dir(elem);
-                    console.dir('7');
+                    render();
 
                     function init(elem) {
                         console.dir('pppppppp');
-                        console.dir(elem[0].offsetWidth);
-                        camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight, 1, 1000);
+                        camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
 
@@ -65,15 +27,15 @@ angular.module('Directives')
                         controls.noZoom = true;
                         controls.autoRotate = true;
                         controls.autoRotateSpeed = 0.5;
+                        controls.addEventListener('change', render);
 
                         scene = new THREE.Scene();
 
                         console.dir("WEBGLSUPPORT");
-                        console.dir(webglSupport);
-                        renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-
+                        // console.dir(webglSupport);
+                        // renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+                        renderer = new THREE.WebGLRenderer();
                         renderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        console.dir(renderer);
                         elem[0].appendChild(renderer.domElement);
 
                         elem[0].addEventListener('mousewheel', onMouseWheel, false);
@@ -87,22 +49,41 @@ angular.module('Directives')
                         };
 
                     }
+
+                    scope.$on('CHANGE', function() {
+                        newImage();
+                    });
+
                     function render() {
-                        console.dir(scene);
                         renderer.render(scene, camera);
                     }
 
                     function newImage() {
                         THREE.ImageUtils.crossOrigin = '';
-                        console.dir("INHERE");
-                        var sphereMesh = new THREE.Mesh(sphere, sphereMaterial);
-                        scene.add(sphereMesh);
-                        sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
-                        sphereMesh.material.needsUpdate = true;
+                        var loader = new THREE.TextureLoader();
+                        loader.crossOrigin = '';
+                        loader.load(scope.photoUrl, function(texture) {
+                            // var texture = THREE.ImageUtils.loadTexture(scope.photoUrl);
+                            console.dir(scope.photoUrl);
+                            texture.minFilter = THREE.LinearFilter;
+
+                            sphere = new THREE.Mesh(
+                                new THREE.SphereGeometry(100, 20, 20),
+                                new THREE.MeshBasicMaterial({
+                                    map: texture
+                                })
+                            );
+
+                            sphere.scale.x = -1;
+                            scene.add(sphere);
+
+                        });
                     }
 
                     function animate() {
+                        // console.dir(controls.update);
                         requestAnimationFrame(animate);
+                        render();
                         controls.update();
                     }
 
