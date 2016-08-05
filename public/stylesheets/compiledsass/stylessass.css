@@ -6375,7 +6375,10 @@ div[class^='color__box'], div[class*=' color__box'] {
   stroke: #7A9DD1; }
 
 .alternate-text-orange {
-  color: #F79739; }
+  color: #706F72; }
+
+.background-api-headers h4 {
+  background-color: #F7AA63; }
 
 .footer {
   position: absolute;
