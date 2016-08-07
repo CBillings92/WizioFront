@@ -4,6 +4,22 @@ angular.module('Directives')
             return {
                 restrict: 'E',
                 link: function(scope, elem, attrs) {
+
+                    //set variables
+                    //crceate a webGLRenderer
+                    //create a Three scene
+                    //create a Three camera(100, width, height)
+                    //Create a Three spheregeometery(100,100,40)
+                    //Create a new MeshBasicMatreal
+                    //Set Size - WebGLRenderer
+                    //Add webGLRender to Doc
+                    //set the camera target to a three Vector3
+                    //apply a matrix to the three sphere
+                    //add event listeners
+                    //call render function
+                    //requestAnimationFrame
+                    //change camera targets
+                    //WebGLRenderer.render(camera, scene);
                     var manualControl = false;
                     var longitude = 0;
                     var latitude = 0;
@@ -28,7 +44,7 @@ angular.module('Directives')
                     elem[0].appendChild(webGLRenderer.domElement);
                     //FIXME set documentation
                     camera.target = new THREE.Vector3(0, 0, 0);
-
+nnn
                     sphere.applyMatrix(new THREE.Matrix4().makeScale(-1, 1, 1));
 
                     //on an image load event (fired from the controller)
@@ -49,9 +65,6 @@ angular.module('Directives')
                     // elem[0].addEventListener("touchend", touchend, false);
                     // elem[0].addEventListener("touchmove", touchmove, false);
                     window.addEventListener("resize", resize, false);
-
-
-                    preRender();
                     render();
                     scope.$on('CHANGE', function() {
                         newImage();
@@ -70,11 +83,6 @@ angular.module('Directives')
                         scene.add(sphereMesh);
                         sphereMesh.material.map = THREE.ImageUtils.loadTexture(scope.photoUrl);
                         sphereMesh.material.needsUpdate = true;
-                    }
-
-                    function preRender() {
-
-                        return;
                     }
 
                     function render() {

@@ -8,6 +8,7 @@ angular.module('LandingPageApp')
         'ModalSvc',
         'ModalBuilderFct',
         function($scope, $state, SmartSearchSvc, SearchFct, WizioConfig, ModalSvc, ModalBuilderFct) {
+            $scope.devEnvironmentCheck = window.location.origin = 'http://172.16.0.2:3000';
             $scope.data = {};
             $scope.filters = {
                 beds: null,
@@ -95,6 +96,6 @@ angular.module('LandingPageApp')
 
             };
 
-        
+
         }
     ]);
