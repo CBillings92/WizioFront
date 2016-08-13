@@ -1,3 +1,7 @@
+/*
+    directive for generating maps with apartments and pins.
+    Requires the map factory
+*/
 angular.module('Directives')
     .directive('mapsDirv', [
         'MapFct',
@@ -7,16 +11,17 @@ angular.module('Directives')
                 template: '<div></div>',
                 replace: true,
                 link: function(scope, elem, attr){
-                    console.dir(MapFct);
                     var mapOptions;
                     var markers;
 
+                    //create the map object
                     mapOptions = MapFct.makeMap();
-                    console.dir(mapOptions);
-                    console.dir(attr.id);
                     var map = new google.maps.Map(document.getElementById(attr.id), mapOptions);
-                    console.dir(map);
+
+                    //create the map markers
                     markers = MapFct.makeMarkers(map);
+
+                    //add the event handler for clicking on a map pin
                     scope.openInfoWindow = function (e, selectedMarker) {
                         e.preventDefault();
                         google.maps.event.trigger(selectedMarker, 'click');

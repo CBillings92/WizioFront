@@ -9,7 +9,5 @@ angular.module('AccountApp')
         function($scope, $state, TokenSvc, ModalSvc, WizioConfig){
 
 
-            console.log("hello reddit");
-
 
     }]);

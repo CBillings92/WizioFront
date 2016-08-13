@@ -7,22 +7,6 @@ angular.module('AccountApp')
         'AuthFct',
         'WizioConfig',
         function($scope, $state,$uibModalInstance, $q, AuthFct, WizioConfig) {
-            function modalDefaults(templateUrl, controller, accountType) {
-                return {
-                    backdrop: true,
-                    keyboard: true,
-                    modalFade: true,
-                    templateUrl: templateUrl,
-                    controller: controller,
-                    resolve: {
-                        data: function() {
-                            return accountType;
-                        }
-                    }
-                };
-            }
-            var authViews = WizioConfig.AccountAuthViewsURL;
-
             $scope.closeModal = function() {
                 $uibModalInstance.close();
             };
@@ -39,7 +23,7 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData)
                     .then(function(result) {
-                        
+
                         return $uibModalInstance.close('ok');
                     })
                     .catch(function(result) {
