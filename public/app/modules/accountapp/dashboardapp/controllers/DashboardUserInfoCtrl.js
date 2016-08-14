@@ -35,6 +35,6 @@ angular.module('AccountApp')
 
                 });
         };
-        
+
     }
 ]);

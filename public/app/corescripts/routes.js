@@ -134,6 +134,7 @@ angular.module('MainApp')
                         }
                     },
                 })
+
                 .state('AdminPanel.ApiAccessTool', {
                     url: '/wizioadminpanel/apiaccesstool',
                     views: {
@@ -353,6 +354,15 @@ angular.module('MainApp')
                 //         },
                 //     }
                 // })
+                .state('Account.Pay', {
+                    url: '/pay',
+                    views: {
+                        'AccountMain': {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'payment.html',
+                            controller: 'PaymentCtrl'
+                        }
+                    },
+                })
                 .state('Account.Dashboard.Application', {
                     url: '/application',
                     views: {
