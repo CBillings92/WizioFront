@@ -6378,7 +6378,10 @@ div[class^='color__box'], div[class*=' color__box'] {
   color: #706F72; }
 
 .background-api-headers h4 {
-  background-color: #F7AA63; }
+  background-color: #F7AA63;
+  padding: 4px;
+  border: 2px solid #706F72;
+  border-radius: 4px; }
 
 .footer {
   position: absolute;
