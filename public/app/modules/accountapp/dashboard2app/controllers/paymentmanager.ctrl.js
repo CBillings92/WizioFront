@@ -3,4 +3,4 @@ angular.module('AccountApp')
         //get user plan
         $scope.plan = 'Premium';
         $scope.costPerMonth = 99.00;
-    }])
+    }]);
