@@ -8,5 +8,5 @@ angular.module('AccountApp')
           costPerMonth: "@"
         },
         restrict: 'E'
-      }
-    })
+    };
+});
