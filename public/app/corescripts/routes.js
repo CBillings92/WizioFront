@@ -36,7 +36,7 @@ angular.module('MainApp')
                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
-                            controller: 'LandingPageCtrl'
+                            // controller: 'LandingPage2Ctrl'
                         }
 
                     },

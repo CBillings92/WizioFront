@@ -70,7 +70,7 @@ angular.module('MainApp')
         //Footer Views
         FooterViewsURL: 'public/app/modules/footerapp/viewtemplates/',
         //Landing Page App
-        landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+        landingPageAppViewsURL: 'public/app/modules/landingpage2app/main/',
         //LeaseApp
         leaseMainViewsURL: 'public/app/modules/leaseapp/main/',
         leaseViewsURL: 'public/app/modules/leaseapp/viewtemplates/',
