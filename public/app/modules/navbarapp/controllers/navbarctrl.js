@@ -92,6 +92,11 @@ angular.module('NavbarApp')
             };
 
             $scope.goBlog = function(val) {};
+
+            $scope.signup = function signup() {
+                var modalDefaultsSignup = modalDefaults('public/app/modules/accountapp/auth2app/views/signupmodal.view.html')
+            }
+
             $scope.goAccoutCreate = function() {
 
                 //shorten the authViews URL variable so we don't need to type wizioconfig.yada every time...
@@ -108,6 +113,7 @@ angular.module('NavbarApp')
                 var modalDefaultsPropertyManagerSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'PropertyManager');
 
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
 
                 //show modal for choosing account type
                 ModalSvc.showModal(modalDefaultsAccountType, {}).then(function(result) {
