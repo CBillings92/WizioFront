@@ -7897,3 +7897,17 @@ h2 {
   /* All browsers since IE 5.5+ */
   overflow-wrap: break-word;
   /* Renamed property in CSS3 draft spec */ }
+
+.tourBlock {
+  display: block;
+  box-sizing: border-box;
+  position: relative;
+  background-color: gray; }
+  .tourBlock h1, .tourBlock p {
+    font-weight: bold;
+    text-align: center; }
+  .tourBlock img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px; }
