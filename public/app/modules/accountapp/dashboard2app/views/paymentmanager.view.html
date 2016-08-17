@@ -10,7 +10,7 @@
         <div class="col-sm-6">
             <button type="button" name="button" class="btn btn-outline--orange btn-lg">Modify Payment Method</button>
         </div> -->
-        <div class="col-sm-6">
+        <!-- <div class="col-sm-6">
             <button type="button" name="button" class="btn btn-outline--orange btn-lg">Modify Payment Method</button>
              <form action="http://172.16.0.3:4000/api/stripe/pay" method="POST">
                    <script
@@ -24,23 +24,22 @@
                     data-locale="auto">
                   </script>
                 </form>
-
-        </div>
-        <div class="col-sm-6">
-            <button type="button" name="button" class="btn btn-outline--orange btn-lg">Modify Payment Method</button>
-             <form action="http://172.16.0.3:4000/api/stripe/" method="POST">
-                 <script
-                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                     data-key="pk_test_mngZell36UYuy8GfSSox4CZ9"
-                     data-image="/path/to/your/logo.png"
-                     data-name="Your Website Name"
-                     data-panel-label="Update Card Details"
-                     data-label="Update Card Details"
-                     data-allow-remember-me=false
-                     data-locale="auto">
-                 </script>
+        </div> -->
+        <div class="">
+            <button type="button" name="button" class="btn btn-outline--orange btn-lg dashbutton" onclick="document.querySelector('.stripe-button-el').click()">Modify Payment Method</button>
+             <form action="http://172.16.0.3:4000/api/stripe/update" method="POST" style="display:none">
+                   <script
+                       src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                       data-key="pk_test_mngZell36UYuy8GfSSox4CZ9"
+                       data-image="https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471400059126-Untitled-1.png"
+                       data-name="Wizio"
+                       data-panel-label="Update Card Details"
+                       data-label="Update Card Details"
+                       data-allow-remember-me=false
+                       data-locale="auto">
+                   </script>
                 </form>
-
-        </div>
+            <button type="button" name="button" class="btn btn-outline--orange btn-lg dashbutton">Cancel Service</button>
     </div>
+</div>
 </div>
