@@ -7902,7 +7902,8 @@ h2 {
   display: block;
   box-sizing: border-box;
   position: relative;
-  background-color: gray; }
+  background-color: gray;
+  padding-bottom: 30px; }
   .tourBlock h1, .tourBlock p {
     font-weight: bold;
     text-align: center; }
@@ -7911,3 +7912,15 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px; }
+
+.secondBlock {
+  text-align: center; }
+  .secondBlock .centerImage {
+    margin: 0 auto; }
+  .secondBlock .para {
+    align-items: center;
+    justify-content: center; }
+
+.thirdBlock {
+  background-color: gray;
+  text-align: center; }

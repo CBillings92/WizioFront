@@ -4,6 +4,7 @@
     position: relative;
     background-color: gray;
 
+    padding-bottom: 30px;
 
 
     h1, p {
@@ -19,4 +20,25 @@
     }
 
 
+}
+
+.secondBlock {
+
+    text-align: center;
+
+    .centerImage {
+        margin: 0 auto;
+    }
+
+    .para {
+        align-items:center;
+        justify-content: center;
+
+    }
+
+}
+
+.thirdBlock {
+    background-color: gray;
+        text-align: center;
 }
