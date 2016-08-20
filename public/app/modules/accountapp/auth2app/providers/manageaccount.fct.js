@@ -5,8 +5,6 @@ angular.module('AccountApp')
         '$q',
         function(UserModel, BusinessModel, $q) {
 
-        var createAccount = createAccount;
-
         function createAccount(userData) {
             var newUser = Object.create(UserModel);
             newUser.init(userData);
@@ -18,8 +16,8 @@ angular.module('AccountApp')
             return newBusiness;
         }
         function setupNewBusiness(user, business) {
-            var user = createUser(user);
-            var business = createBusiness(business);
+            user = createUser(user);
+            business = createBusiness(business);
 
             return new $q(function(resolve, reject) {
                 // business.api.setup(user, business)
@@ -36,5 +34,5 @@ angular.module('AccountApp')
             createAccount: createAccount,
             createBusiness: createBusiness,
             setupNewBusiness: setupNewBusiness
-        }
-    }])
+        };
+    }]);

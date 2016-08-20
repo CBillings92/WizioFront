@@ -17,7 +17,7 @@ angular.module('AccountApp')
             $scope.data = data;
             $scope.dropdownvals = [
                 "Broker/Agent",
-                "Property Manager"
+                "Property Manager",
             ];
             //the back button functionality
             function backstep() {

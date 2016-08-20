@@ -30,10 +30,11 @@ angular.module('AccountApp')
 
                     scope.signup = function() {
                         ModalSvc.showModal(signupModal, {})
-                        .then(function(result){
+                            .then(function(result) {
 
-                        })
-                    }
-            }
+                            });
+                    };
+                }
+            };
         }
-    ])
+    ]);

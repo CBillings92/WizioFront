@@ -19,7 +19,7 @@ var resourceDest = '/public';
 
 // JS hint task
 gulp.task('jshint', function() {
-    gulp.src('./public/app/**/*.js')
+    gulp.src('./public/app/modules/**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -56,6 +56,7 @@ gulp.task('jsresources', function() {
 });
 
 gulp.task('default', [
+        'jshint',
         'scripts',
         'sass',
         'styles'

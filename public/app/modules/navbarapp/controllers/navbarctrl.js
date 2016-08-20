@@ -94,8 +94,13 @@ angular.module('NavbarApp')
             $scope.goBlog = function(val) {};
 
             $scope.signup = function signup() {
-                var modalDefaultsSignup = modalDefaults('public/app/modules/accountapp/auth2app/views/signupmodal.view.html')
-            }
+                var modalDefaultsSignup = modalDefaults('public/app/modules/accountapp/auth2app/views/signupmodal.view.html', 'SignupFormCtrl');
+
+                ModalSvc.showModal(modalDefaultsSignup, {})
+                .then(function(response) {
+                    alert("HI");
+                });
+            };
 
             $scope.goAccoutCreate = function() {
 
