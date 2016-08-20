@@ -80,15 +80,16 @@ angular.module('AuthApp')
                 } else {
                     switch (user.type) {
                         case "Broker/Agent":
-                            $scope.user.userType = 3;
+                            user.userType = 3;
                             break;
                         case "Property Manager":
-                            $scope.user.userType = 2;
+                            user.userType = 2;
                             break;
                         default:
-                            $scope.user.userType = 2;
+                            user.userType = 2;
                     }
                 }
+                return user;
             }
 
             function signup(data) {

@@ -9,9 +9,10 @@ angular.module('AccountApp')
         'WizioConfig',
         'UserRegistrationSvc',
         'ModalBuilderFct',
-        function($scope, $state, $uibModal, $uibModalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc, ModalBuilderFct) {
+        'AuthFct',
+        function($scope, $state, $uibModal, $uibModalInstance, ModalSvc, data, WizioConfig, UserRegistrationSvc, ModalBuilderFct, AuthFct) {
             //Set a standard, local user object to save for local authentication
-            $scope.waitlist = true;
+            $scope.waitlist = false;
             $scope.user = {};
             $scope.hasRegistered = false;
             //data comes from previous modal

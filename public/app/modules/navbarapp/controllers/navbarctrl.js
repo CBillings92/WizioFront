@@ -98,7 +98,6 @@ angular.module('NavbarApp')
 
                 ModalSvc.showModal(modalDefaultsSignup, {})
                 .then(function(response) {
-                    alert("HI");
                 });
             };
 
