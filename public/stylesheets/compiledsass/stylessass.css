@@ -7914,7 +7914,10 @@ h2 {
     margin-bottom: 20px; }
 
 .secondBlock {
-  text-align: center; }
+  display: flex;
+  justify-content: center;
+  /* align horizontal */
+  align-items: center; }
   .secondBlock .centerImage {
     margin: 0 auto; }
   .secondBlock .para {

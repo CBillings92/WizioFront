@@ -24,7 +24,9 @@
 
 .secondBlock {
 
-    text-align: center;
+     display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
 
     .centerImage {
         margin: 0 auto;
