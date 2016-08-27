@@ -85,5 +85,6 @@ angular.module('MainApp')
         UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
         extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
         extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/',
-        tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/'
+        tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/',
+        stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9"
     });
