@@ -27,9 +27,8 @@ angular.module('AccountApp')
                 locale: 'auto',
                 token: function stripecb(token) {
                     stripetoken = token;
-                    console.dir("1");
                     stripetoken.userid = TokenSvc.decode().id;
-                    console.dir("2");
+                    stripetoken.user = TokenSvc.decode();
                     $resource(WizioConfig.baseAPIURL + "user/subscribe")
                     .save(stripetoken, function(response) {
                         return response;
@@ -47,7 +46,6 @@ angular.module('AccountApp')
             }
 
             function save() {
-                console.dir("CALLED TWIE");
                 if ($scope.waitlist) {
 
                 } else {
