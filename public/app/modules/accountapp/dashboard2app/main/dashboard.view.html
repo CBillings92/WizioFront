@@ -1,27 +1,24 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <!-- <div ui-view="topHorizontal"></div> -->
+        <div class="col-sm-6">
             <user-info-dir></user-info-dir>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <payment-manager-dirv></payment-manager-dirv>
         </div>
     </div>
-    <!-- row -->
-
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div ui-view="controlPanel"></div>
         </div>
-    </div>
+    </div> -->
     <div class="row" ng-show="userType >= 2">
         <!-- <div class="col-md-10 col-md-offset-1"> -->
         <div ui-view="midHorizontal"></div>
         <!-- </div> -->
     </div>
     <!-- row -->
-    <div class="row" ng-show="userType == 1 || userType == 0">
+    <!-- <div class="row" ng-show="userType == 1 || userType == 0">
         <div class="account container">
             <div class="row account-filter-options">
                 <div class="col-xs-12">
@@ -59,5 +56,5 @@
                 <div class="col-xs-12" ng-show="favoritesSelected" ui-view="favorites"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

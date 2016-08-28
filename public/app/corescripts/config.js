@@ -78,7 +78,7 @@ angular.module('MainApp')
         NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
         //Account App
         AccountViewsURL: 'public/app/modules/accountapp/main/',
-        AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboardapp/viewtemplates/',
+        AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboard2app/main/',
         AccountAuthViewsURL: 'public/app/modules/accountapp/authapp/viewtemplates/',
         UnitMainViewsURL: 'public/app/modules/unitapp/main/',
         //Unit App

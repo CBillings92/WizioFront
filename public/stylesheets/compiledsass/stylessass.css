@@ -7615,7 +7615,7 @@ h2 {
   margin-bottom: 100px; }
 
 .user-info {
-  margin-top: 140px;
+  margin-top: 40px;
   padding-bottom: 50px;
   margin-bottom: 20px; }
 
@@ -7792,6 +7792,9 @@ h2 {
 
 .buttonPlacement {
   margin-bottom: 5px; }
+
+.dashbutton {
+  margin: 5px; }
 
 .formStyle .modal-header {
   border-bottom: 0; }

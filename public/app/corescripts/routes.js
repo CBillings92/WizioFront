@@ -220,8 +220,8 @@ angular.module('MainApp')
                     url: '/dashboard',
                     views: {
                         "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
-                            controller: 'DashboardMainCtrl',
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'dashboard.view.html',
+                            controller: 'DashboardCtrl',
                         }
                     }
                 })
