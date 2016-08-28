@@ -6375,7 +6375,13 @@ div[class^='color__box'], div[class*=' color__box'] {
   stroke: #7A9DD1; }
 
 .alternate-text-orange {
-  color: #F79739; }
+  color: #706F72; }
+
+.background-api-headers h4 {
+  background-color: #F7AA63;
+  padding: 4px;
+  border: 2px solid #706F72;
+  border-radius: 4px; }
 
 .footer {
   position: absolute;
@@ -7609,7 +7615,7 @@ h2 {
   margin-bottom: 100px; }
 
 .user-info {
-  margin-top: 140px;
+  margin-top: 40px;
   padding-bottom: 50px;
   margin-bottom: 20px; }
 
@@ -7786,6 +7792,9 @@ h2 {
 
 .buttonPlacement {
   margin-bottom: 5px; }
+
+.dashbutton {
+  margin: 5px; }
 
 .formStyle .modal-header {
   border-bottom: 0; }

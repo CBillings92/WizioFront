@@ -126,5 +126,12 @@ div[class^='color__box'], div[class*=' color__box']{
 }
 
 .alternate-text-orange {
-    color:#F79739;
+    color:#706F72;
+}
+
+.background-api-headers h4 {
+    background-color:#F7AA63;
+    padding: 4px;
+    border: 2px solid #706F72;
+    border-radius: 4px;
 }
