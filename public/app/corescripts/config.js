@@ -106,8 +106,6 @@ angular.module('MainApp')
                 // var test = {
                 //
                 // };
-                console.dir(data);
-                console.dir(env);
                 switch (env) {
                     case "dev":
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';

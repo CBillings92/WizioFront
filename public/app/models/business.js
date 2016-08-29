@@ -30,8 +30,6 @@ angular.module('Models')
             }
 
             function setup(user, business) {
-                console.dir(user);
-                console.dir(setup);
                 // return new $q(function(resolve, reject) {
                 //     $resource(WizioConfig.baseAPIURL + 'business/setup')
                 //         .save({user:user,business:business}, function(response) {
