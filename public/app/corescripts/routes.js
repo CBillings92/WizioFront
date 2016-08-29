@@ -42,6 +42,15 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Demo', {
+                    url: '/demo',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'demo.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
@@ -75,7 +84,7 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
 
-                .state('TenantSurvey', {
+            .state('TenantSurvey', {
                     url: '/survey',
                     views: {
                         'footer': footer,
@@ -135,7 +144,7 @@ angular.module('MainApp')
                     },
                 })
 
-                .state('AdminPanel.ApiAccessTool', {
+            .state('AdminPanel.ApiAccessTool', {
                     url: '/wizioadminpanel/apiaccesstool',
                     views: {
                         'AdminTop': {

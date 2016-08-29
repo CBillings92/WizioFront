@@ -381,3 +381,19 @@
 		}
 	}
 }
+
+/*DEMO STYLES*/
+#unit-details-pins-container {
+	position: absolute;
+}
+
+#unit-details-floorplan-img {
+	position: relative;
+	top: 0;
+	left: 0;
+	height: 325px;
+}
+
+.unit-details-floorplan-pin {
+	position: absolute;
+}
