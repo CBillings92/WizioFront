@@ -211,6 +211,16 @@ a:focus {
   }
 }
 
+.btn-fill--orange {
+  @extend .btn-fill;
+  background-color: $orange;;
+
+  @include button-hover-state {
+    color: $white;
+    background-color: darken($orange, 5%);
+  }
+}
+
 .btn--cta {
   @extend .btn-fill--blue;
 

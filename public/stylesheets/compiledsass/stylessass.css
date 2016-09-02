@@ -5943,11 +5943,11 @@ a:focus {
   padding-left: 0;
   padding-right: 0; }
 
-.btn-fill, .btn-fill--blue, .btn--cta {
+.btn-fill, .btn-fill--blue, .btn--cta, .btn-fill--orange {
   color: #ffffff;
   border: none;
   transition: background-color 0.15s ease-in-out; }
-  .btn-fill.active, .active.btn-fill--blue, .active.btn--cta, .btn-fill.active.focus, .active.focus.btn-fill--blue, .active.focus.btn--cta, .btn-fill.active:focus, .active.btn-fill--blue:focus, .active.btn--cta:focus, .btn-fill:active, .btn-fill--blue:active, .btn--cta:active, .btn-fill:active.focus, .btn-fill--blue:active.focus, .btn--cta:active.focus, .btn-fill:active:focus, .btn-fill--blue:active:focus, .btn--cta:active:focus, .btn-fill.focus, .focus.btn-fill--blue, .focus.btn--cta, .btn-fill:focus, .btn-fill--blue:focus, .btn--cta:focus, .btn-fill.hover, .hover.btn-fill--blue, .hover.btn--cta, .btn-fill:hover, .btn-fill--blue:hover, .btn--cta:hover {
+  .btn-fill.active, .active.btn-fill--blue, .active.btn--cta, .active.btn-fill--orange, .btn-fill.active.focus, .active.focus.btn-fill--blue, .active.focus.btn--cta, .active.focus.btn-fill--orange, .btn-fill.active:focus, .active.btn-fill--blue:focus, .active.btn--cta:focus, .active.btn-fill--orange:focus, .btn-fill:active, .btn-fill--blue:active, .btn--cta:active, .btn-fill--orange:active, .btn-fill:active.focus, .btn-fill--blue:active.focus, .btn--cta:active.focus, .btn-fill--orange:active.focus, .btn-fill:active:focus, .btn-fill--blue:active:focus, .btn--cta:active:focus, .btn-fill--orange:active:focus, .btn-fill.focus, .focus.btn-fill--blue, .focus.btn--cta, .focus.btn-fill--orange, .btn-fill:focus, .btn-fill--blue:focus, .btn--cta:focus, .btn-fill--orange:focus, .btn-fill.hover, .hover.btn-fill--blue, .hover.btn--cta, .hover.btn-fill--orange, .btn-fill:hover, .btn-fill--blue:hover, .btn--cta:hover, .btn-fill--orange:hover {
     color: #ffffff; }
 
 .btn-fill--blue, .btn--cta {
@@ -5955,6 +5955,12 @@ a:focus {
   .btn-fill--blue.active, .active.btn--cta, .btn-fill--blue.active.focus, .active.focus.btn--cta, .btn-fill--blue.active:focus, .active.btn--cta:focus, .btn-fill--blue:active, .btn--cta:active, .btn-fill--blue:active.focus, .btn--cta:active.focus, .btn-fill--blue:active:focus, .btn--cta:active:focus, .btn-fill--blue.focus, .focus.btn--cta, .btn-fill--blue:focus, .btn--cta:focus, .btn-fill--blue.hover, .hover.btn--cta, .btn-fill--blue:hover, .btn--cta:hover {
     color: #ffffff;
     background-color: #678fca; }
+
+.btn-fill--orange {
+  background-color: #f79739; }
+  .btn-fill--orange.active, .btn-fill--orange.active.focus, .btn-fill--orange.active:focus, .btn-fill--orange:active, .btn-fill--orange:active.focus, .btn-fill--orange:active:focus, .btn-fill--orange.focus, .btn-fill--orange:focus, .btn-fill--orange.hover, .btn-fill--orange:hover {
+    color: #ffffff;
+    background-color: #f68a20; }
 
 .btn--cta {
   font-weight: 500;
@@ -7902,8 +7908,9 @@ h2 {
   display: block;
   box-sizing: border-box;
   position: relative;
-  background-color: gray;
-  padding-bottom: 30px; }
+  background-color: #DCDCDC;
+  padding-bottom: 30px;
+  text-align: center; }
   .tourBlock h1, .tourBlock p {
     font-weight: bold;
     text-align: center; }
@@ -7912,18 +7919,45 @@ h2 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px; }
+  .tourBlock blockquote {
+    display: inline-block; }
 
 .secondBlock {
-  display: flex;
-  justify-content: center;
-  /* align horizontal */
-  align-items: center; }
-  .secondBlock .centerImage {
-    margin: 0 auto; }
-  .secondBlock .para {
-    align-items: center;
-    justify-content: center; }
+  display: block; }
 
 .thirdBlock {
-  background-color: gray;
+  background-color: #999999;
+  text-align: center;
+  color: orange;
+  padding-top: 25px;
+  padding-bottom: 25px; }
+
+.fourthBlock {
+  background-color: #DCDCDC; }
+  .fourthBlock h3 {
+    display: table;
+    margin: 0 auto; }
+
+div.item {
+  vertical-align: top;
+  display: inline-block;
+  text-align: center;
+  width: 100%; }
+
+.item img {
+  background-color: grey;
+  margin-left: auto;
+  margin-right: auto; }
+
+.caption {
+  display: block; }
+
+.fifthBlock {
   text-align: center; }
+  .fifthBlock p {
+    padding-top: 10px; }
+
+.sixthBlock {
+  display: block;
+  text-align: center;
+  background-color: #999999; }
