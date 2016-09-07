@@ -85,7 +85,7 @@
   margin-top: 70px;
 
   button {
-    font-size: 40px; 
+    font-size: 40px;
   }
 
     &:after {
@@ -212,7 +212,7 @@
     margin-top: 30px;
   }
   .home-blurb__header {
-    font-size: 22px;
+    font-size: 25px;
   }
   .home-blurb__desc {
     font-size: 18px;
@@ -245,6 +245,9 @@
   }
   .home-pin__orange__left {
     float: left;
+  }
+  .home-blurb__desc {
+    font-size: 25px;
   }
 }
 @media (min-width: 1170px) {
