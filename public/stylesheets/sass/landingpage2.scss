@@ -2,7 +2,7 @@
     display:block;
     box-sizing: border-box;
     position: relative;
-    background-color: #DCDCDC;
+    background-color: #F7AA63;
 
     padding-bottom: 30px;
     text-align: center;
@@ -26,24 +26,29 @@
 
 }
 
-.secondBlock {
+.whatwhyblock {
     display: block;
+padding-top:20px;
+padding-bottom:20px;
+    font-size: 20px;
 }
 
-.thirdBlock {
+.inventoryBlock {
     background-color: #999999;
     text-align: center;
-    color: orange;
+    color: #F7AA63;
     padding-top: 25px;
     padding-bottom: 25px;
 }
 
-.fourthBlock {
+.marketBlock {
     h3 {
         display: table;
         margin: 0 auto;
     }
 
+    padding-top:20px;
+    padding-bottom:20px;
     background-color: #DCDCDC;
 
 
@@ -69,18 +74,23 @@ div.item {
 }
 
 
-.fifthBlock {
+.integrationBlock {
     text-align: center;
     p {
         padding-top: 10px
     }
 }
 
-.sixthBlock {
+.signupBlock {
     display: block;
     text-align: center;
     background-color: #999999;
+    padding-top:20px;
+    padding-bottom:20px;
 
+    button {
+        font-size: 30px;
+    }
 
 
 }

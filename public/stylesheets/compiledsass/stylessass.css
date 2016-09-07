@@ -5836,9 +5836,6 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0 auto; }
 
-h1, h2 {
-  font-family: "Roboto Slab"; }
-
 h3 {
   font-family: "Roboto";
   font-size: 28px;
@@ -7908,7 +7905,7 @@ h2 {
   display: block;
   box-sizing: border-box;
   position: relative;
-  background-color: #DCDCDC;
+  background-color: #F7AA63;
   padding-bottom: 30px;
   text-align: center; }
   .tourBlock h1, .tourBlock p {
@@ -7922,19 +7919,24 @@ h2 {
   .tourBlock blockquote {
     display: inline-block; }
 
-.secondBlock {
-  display: block; }
+.whatwhyblock {
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 20px; }
 
-.thirdBlock {
+.inventoryBlock {
   background-color: #999999;
   text-align: center;
-  color: orange;
+  color: #F7AA63;
   padding-top: 25px;
   padding-bottom: 25px; }
 
-.fourthBlock {
+.marketBlock {
+  padding-top: 20px;
+  padding-bottom: 20px;
   background-color: #DCDCDC; }
-  .fourthBlock h3 {
+  .marketBlock h3 {
     display: table;
     margin: 0 auto; }
 
@@ -7952,12 +7954,16 @@ div.item {
 .caption {
   display: block; }
 
-.fifthBlock {
+.integrationBlock {
   text-align: center; }
-  .fifthBlock p {
+  .integrationBlock p {
     padding-top: 10px; }
 
-.sixthBlock {
+.signupBlock {
   display: block;
   text-align: center;
-  background-color: #999999; }
+  background-color: #999999;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+  .signupBlock button {
+    font-size: 30px; }
