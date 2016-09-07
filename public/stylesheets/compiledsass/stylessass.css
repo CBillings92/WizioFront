@@ -7170,6 +7170,8 @@ body {
 .home-tenants__header {
   position: relative;
   margin-top: 70px; }
+  .home-tenants__header button {
+    font-size: 40px; }
   .home-tenants__header:after {
     content: '';
     color: #ffffff;

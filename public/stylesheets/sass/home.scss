@@ -84,6 +84,10 @@
   position: relative;
   margin-top: 70px;
 
+  button {
+    font-size: 40px; 
+  }
+
     &:after {
       content: '';
       color: $white;
