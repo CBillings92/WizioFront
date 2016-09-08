@@ -3,9 +3,12 @@ angular.module('Directives')
         function() {
             return {
                 restrict: 'E',
+                controller: 'UnitMediaCtrl',
+                templateUrl: 'public/app/modules/unitapp/viewtemplates/demo.views.html',
                 link: function(scope, elem, attr) {
 
                     var camera, controls, scene, renderer, sphere;
+                    var canvasParent = document.getElementById('sphere');
 
                     var webglSupport = (function() {
                         try {
@@ -24,7 +27,8 @@ angular.module('Directives')
                     render();
 
                     function init(elem) {
-                        camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                        console.dir(canvasParent);
+                        camera = new THREE.PerspectiveCamera(100, canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
 
@@ -37,11 +41,11 @@ angular.module('Directives')
 
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-                        renderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        elem[0].appendChild(renderer.domElement);
+                        renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
+                        canvasParent.appendChild(renderer.domElement);
 
-                        elem[0].addEventListener('mousewheel', onMouseWheel, false);
-                        elem[0].addEventListener('DOMMouseScroll', onMouseWheel, false);
+                        canvasParent.addEventListener('mousewheel', onMouseWheel, false);
+                        canvasParent.addEventListener('DOMMouseScroll', onMouseWheel, false);
                         window.addEventListener('resize', resize, false);
 
                         animate();
@@ -62,10 +66,10 @@ angular.module('Directives')
                     }
 
                     function resize() {
-                        camera.aspect = (elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                        camera.aspect = (canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.updateProjectionMatrix();
 
-                        webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                        webGLRenderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                     }
 
 
@@ -110,9 +114,9 @@ angular.module('Directives')
                     }
 
                     function resize() {
-                        camera.aspect = elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight;
+                        camera.aspect = canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight;
                         camera.updateProjectionMatrix();
-                        renderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                        renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                         render();
                     }
                 }

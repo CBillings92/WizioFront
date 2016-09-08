@@ -109,7 +109,7 @@ angular.module('MainApp')
                 switch (env) {
                     case "dev":
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
-                        data.apartmentpubid = 'd5ee04bb-6d52-11e6-8edc-0800274a1eca';
+                        data.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';
