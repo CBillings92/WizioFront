@@ -7018,13 +7018,13 @@ body {
 .close {
   -webkit-animation: close ease 2s; }
 
-@-webkit-keyframes open {
+@keyframes open {
   from {
     left: -500px; }
   to {
     left: -10px; } }
 
-@-webkit-keyframes close {
+@keyframes close {
   from {
     left: -10px; }
   to {
