@@ -1,456 +1,107 @@
-
-.unit-details {
-	padding-bottom: 60px;
-	@media (min-width: $screen-md-min) {
-		padding-bottom: 150px;
-	}
-
-	&__orange {
-		color: $orange;
-	}
-
-
-	&__action-btn {
-		$action-btn-tint: 10%;
-		background: $white;
-		padding: 6px 0;
-
-		@media (min-width: $screen-sm-min) {
-			padding-left: 8px;
-			padding-right: 8px;
-			margin: 0 3px 0 0;
-		}
-
-		@media (min-width: $screen-md-min) {
-			padding-left: 25px;
-			padding-right: 25px;
-			margin: 10px 5px 0 0;
-			font-size: 1.5rem;
-		}
-
-		@media (max-width: $screen-xs-max) {
-			float: left;
-			width: 33%;
-			border-radius: 0;
-			border-color: $gray;
-			border-left-width: 0;
-			border-width: 1px 1px 1px 0;
-			&:last-of-type {
-				width: 100%;
-			}
-			@include button-hover-state {
-				border-color: $gray;
-			}
-		}
-
-	}
-
-	@media (max-width: $screen-xs-max) {
-		.unit-details-action-btn-wrapper {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			overflow: hidden;
-			z-index: 9;
-		}
-
-	}
-
-}
-
-.unit-details-header {
-	margin: 20px auto;
-
-	&__heading {
-		font-size: 2.3rem;
-		@media (min-width: $screen-sm-min) {
-			font-size: 4.2rem;
-		}
-	}
-
-	.unit-details-action-btn-wrapper {
-		float: right;
-		margin-top: 3px;
-		// margin-right: 5%;
-	}
-}
-
-.unit-details-features {
-	margin: 0;
-	@media (min-width: $screen-sm-min) {
-		margin: 10px 40px 0 -10px;
-		padding-left: 30px;
-
-	}
-
-	@media (min-width: $screen-md-min) {
-		margin: 10px 40px 0 -25px;
-		padding-left: 30px;
-	}
-
-}
-
-@media (min-width: $screen-sm-min) {
-	.unit-details-features,
-	.unit-details-info {
-		max-width: 450px;
-	}
-}
-.unit-details-feature-new {
-	position: relative;
-	padding-bottom:45px;
-	text-align: center;
-}
-.unit-details-feature-new svg {
-	width: 100%;
-	height: 40px;
-	min-width:30px;
-	@media (min-width: $screen-sm-min) {
-		height: 50px;
-		// height: 100px;
-	}
-	@media (max-width: $screen-xs-max) {
-		max-width: 40px;
-	}
-}
-.unit-details-feature-text{
-	color: #8B93A1;
-	text-align: center;
-	position: absolute;
-	bottom: 15px;
-	left: 0;
-	right: 0;
-	@media (max-width: $screen-xs-max) {
-		font-size: 1.3rem;
-	}
-	text-align: center;
-}
-.svg-stroke-black svg *{
-	stroke: $black;
-}
-.svg-stroke-gray svg *{
-	stroke: #8B93A1;
-}
-.svg-stroke-gray-st0 svg .st0{
-	stroke: #8B93A1 !important;
-}
-.svg-stroke-gray-fill0 svg .st0{
-	fill: #8B93A1 !important;
-}
-.svg-stroke-gray-st1 svg .st1{
-	stroke: #8B93A1 !important;
-}
-.svg-stroke-gray-st2 svg .st2{
-	stroke: #8B93A1 !important;
-}
-.svg-stroke-gray-fill2 svg .st2{
-	stroke: #8B93A1 !important;
-}
-.svg-stroke-path-black svg path {
-	stroke: $black;
-	@media (max-width: $screen-xs-max) {
-		width: 50%;
-		max-width: 40px;
-	}
-}
-
-.unit-details-feature {
-	position: relative;
-	text-align: center;
-	color: #8B93A1;
-	height: 90px;
-	padding: 0 5px;
-	@media (min-width: $screen-sm-min) {
-		height: 100px;
-	}
-
-	// this is wrapped because sass compiles & directly to the class name and I want it to be & &__icon
-	.unit-details-feature {
-
-		&__icon {
-			width: 50%;
-			@media (max-width: $screen-xs-max) {
-				max-width: 40px;
-			}
-		}
-
-		&__desc {
-			position: absolute;
-			bottom: 15px;
-			left: 0;
-			right: 0;
-			@media (max-width: $screen-xs-max) {
-				font-size: 1.3rem;
-			}
-
-			text-align: center;
-		}
-
-	}
-}
-
-.unit-details-media-container {
-	margin-bottom: 30px;
-	@media (max-width: $screen-xs-max) {
-		padding: 20px;
-	}
-	@media (min-width: $screen-sm-min) {
-		margin-bottom: 40px;
-		max-width: 75%;
-	}
-	@media (min-width: $screen-md-min) {
-		margin-bottom: 60px;
-		max-width: 75%;
-
-	}
-	#map {
-		// this maintains a 16 / 9 aspect ratio
-		padding-bottom: percentage(9 / 16);
-	}
-}
-.unit-details-media-container-iframe{
-	margin-bottom: 30px;
-	@media (max-width: $screen-xs-max) {
-		padding: 20px;
-	}
-	@media (min-width: $screen-sm-min) {
-		margin-bottom: 40px;
-		max-width: 75%;
-	}
-	@media (min-width: $screen-md-min) {
-		margin-bottom: 60px;
-		max-width: 75%;
-
-	}
-	#map {
-		// this maintains a 16 / 9 aspect ratio
-		padding-bottom: percentage(9 / 16);
-	}
-}
-.unit-details-info {
-	padding-bottom: 20px;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #666;
-
-	@media (min-width: $screen-sm-min) {
-		padding-bottom: 30px;
-		margin-bottom: 30px;
-		padding-left: 30px;
-	}
-
-	&__price {
-		font-weight: 400;
-		margin: 0 0 5px;
-		font-size: 2.8rem;
-		@media (min-width: $screen-md-min) {
-			font-size: 3.6rem;
-		}
-	}
-
-	&__heading {
-		font-weight: 300;
-		margin: 0 0 5px;
-	}
-
-	&__updated {
-		color: $blue-gray;
-		margin: 15px 0 0;
-	}
-
-}
-
-
-.unit-details-description {
-	p {
-		font-size: 1.7rem;
-		line-height: 2.3rem;
-		font-weight: 300;
-		text-align: left;
-	}
-
-	&__heading {
-		margin-top: 0;
-	}
-
-	.unit-details-action-btn-wrapper {
-		margin-top: 25px;
-	}
-
-}
-
-.unit-details-media-tab-content-picker {
-	display: inline-block;
-	margin: 0 3px 0 0;
-
-	&-wrapper {
-		position: relative;
-		margin: 5px 0;
-	}
-
-	&-slider-scroller {
-		overflow: hidden;
-		white-space: nowrap;
-	}
-
-	&__img {
-
-	}
-
-	&-forward, &-backward {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		font-size: 4rem;
-		color: $white;
-		width: 50px;
-		cursor: pointer;
-		.fa {
-			cursor: pointer;
-			position: absolute;
-			top: 50%;
-			@include vertical-center-transform;
-		}
-	}
-
-	$gradient-opacity: 0.2;
-
-	&-forward {
-		right: 0;
-		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.4+100 */
-		background: -moz-linear-gradient(left,  rgba(0,0,0,0) 0%, rgba(0,0,0,$gradient-opacity) 100%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(left,  rgba(0,0,0,0) 0%,rgba(0,0,0,$gradient-opacity) 100%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(0,0,0,$gradient-opacity) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-		.fa {
-			right: 5px;
-		}
-	}
-
-	&-backward {
-		left: 0;
-		/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.4+0,0+100;Neutral+Density */
-		background: -moz-linear-gradient(left,  rgba(0,0,0,$gradient-opacity) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-		background: -webkit-linear-gradient(left,  rgba(0,0,0,$gradient-opacity) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-		background: linear-gradient(to right,  rgba(0,0,0,$gradient-opacity) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-		.fa {
-			left: 5px;
-		}
-	}
-
-}
-
-.unit-details-media-container-tabs {
-	$tab-border-width: 3px;
-	@include clearfix();
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	border-bottom: $tab-border-width solid #eee;
-
-	li {
-		float: left;
-		text-align: center;
-		width: 33%;
-		border-right: 1px solid #eee;
-		padding: 0;
-
-		.unit-details-media-container-tab {
-			position: relative;
-			top: $tab-border-width;
-			color: $gray;
-			background: none;
-			width: 100%;
-			padding: 15px 10px;
-			font-size: 1.3rem;
-			border-radius: 0;
-
-			@media (min-width: $screen-sm-min) {
-				font-size: 1.8rem;
-			}
-
-			@include button-hover-state("&.selected") {
-				color: $blue;
-				border-bottom: $tab-border-width solid $blue;
-			}
-
-		}
-
-		&:last-of-type {
-			border-right: 0;
-			width: 34%;
-		}
-	}
-}
-
-/*DEMO STYLES*/
+/*demo STYLES*/
 #unit-details-pins-container {
-	position: absolute;
+    position: absolute;
 }
-
 #unit-details-floorplan-img {
-	position: relative;
-	top: 0;
-	left: 0;
-	height: 325px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 325px;
 }
-
 .unit-details-floorplan-pin {
-	position: absolute;
+    position: absolute;
 }
-
 #panel-container {
-  left:-500px;
-  position: relative;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  height: 300px;
-  width: 500px;
+    top:20px;
+    left: -420px;
+    position: relative;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 300px;
+    width: 450px;
+    opacity: 0.9;
+    font-size: 2em;
+    font-weight: normal;
+    bottom: 20px;
+    background-color: #706F72;
+    color: white;
+    line-height: 1;
 }
 #unit-details-floorplan-img {
-  height: 260px;
-  margin-bottom:20px;
-  left: 0px;
-  position: relative;
-  margin: 0 auto;
-  bottom:20px;
+    height: 260px;
+    margin-bottom: 20px;
+    left: 0;
+    position: relative;
+    margin: 0 auto;
+    bottom: 20px;
 }
 #panel-text {
-  position: relative;
-  top:215px;
-  left:88%;
-  font: roboto slab;
-  font-size:2em;
-  width:150px;
-  /* Safari */
-  -webkit-transform: rotate(-90deg);
-
-  /* Firefox */
-  -moz-transform: rotate(-90deg);
-
-  /* IE */
-  -ms-transform: rotate(-90deg);
-
-  /* Opera */
-  -o-transform: rotate(-90deg);
-
-  /* Internet Explorer */
-  filter:         progid:DXImageTransform.Microsoft.BasicImage(rotation= 3);
-
+    position: relative;
+    top: 140px;
+    left: 80%;
+    bottom: 20px;
+    // font: roboto slab;
+    // font-size:2em;
+    width: 150px;
+    /* Safari */
+    -webkit-transform: rotate(-90deg);
+    /* Firefox */
+    -moz-transform: rotate(-90deg);
+    /* IE */
+    -ms-transform: rotate(-90deg);
+    /* Opera */
+    -o-transform: rotate(-90deg);
+    /* Internet Explorer */
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation= 3);
 }
 .open {
-   -webkit-animation: open ease 2s forwards;
+    -webkit-animation: open ease 2s forwards;
+    font-size: 2em;
+    top: 20px;
+    bottom: 20px;
+    line-height: 1;
 }
 .close {
-  -webkit-animation: close ease 2s;
+    -webkit-animation: close ease 2s;
+    font-size: 2em;
+    text-shadow: none;
+    font-weight: normal;
+    top: 20px;
+    bottom: 20px;
+    line-height: 1;
+}
+@-webkit-keyframes open {
+    from {
+        left: -425px;
+    };
+    to {
+        left: -10px;
+    };
+}
+@-webkit-keyframes close {
+    from {
+        left: -10px;
+    };
+    to {
+        left: -425px;
+    };
 }
 @keyframes open {
-   from { left: -500px }
-   to   { left:-10px }
+    from {
+        left: -420px;
+    };
+    to {
+        left: -10px;
+    };
 }
 @keyframes close {
-  from { left: -10px }
-  to   { left: -500px };
+    from {
+        left: -10px;
+    };
+    to {
+        left: -420px;
+    };
 }
