@@ -18,7 +18,7 @@
     angular.module('FooterApp', []);
     angular.module('Models', []);
     angular.module('Directives', []);
-    angular.module('Photographer', []);
+    angular.module('PhotographerApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [

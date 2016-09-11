@@ -83,26 +83,28 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('Photopgrapher', {
-                    abstract: true,
+                .state('Photographer', {
+                    // abstract: true,
                     url: '/photographer',
-                    viwes: {
-                        'footer': footer,
-                        'navbar': navbar,
-                        'maincontent': {
-                            templateUrl: '',
-                            controller: 'PhotographerMainCtrl'
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/photographerapp/main/photographer-main.view.html',
+                            // controller: 'LandingPageCtrl'
                         }
+
                     }
+
                 })
                 .state('Photographer.Track', {
                     url:'/track',
                     views: {
-                        'photographer-app-main': {
-                            templateUrl: '',
-                            controller: '',
+                        'test': {
+                            // templateUrl: '',
+                        templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
+                            // controller: 'PhotographerTrackCtrl',
                         }
-
                     }
                 })
                 .state('TenantSurvey', {
