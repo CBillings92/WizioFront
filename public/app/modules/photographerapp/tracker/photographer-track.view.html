@@ -9,21 +9,22 @@
     <div class="form-group">
         <div class="row" style="margin:15px;">
             <div class="col-md-3">
-                <label for="photo-title" class="control-label">Photo Type</label>
-                <select class="form-control" name="" style="border:1px solid black">
-                    <option value="Unit">Unit</option>
-                    <option value="Ammenity">Ammenity</option>
-                </select>
-            </div>
+                <label class="control-label">Photo Type:</label> <br>
+                      <input id="first" type="radio" name="content" ng-model="content" value="unit">
+                      <label for="first">Unit</label>
+                      <br />
+                      <input id="other" type="radio" name="content" ng-model="content" value="amenity">
+                      <label for="other">Amenity</label>
+                </div>
             <div class="col-md-3">
                 <label for="photo-title" class="control-label">Photo Title</label>
                 <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" ng-hide="content == 'amenity'">
                 <label for="photo-title" class="control-label">Apartement #</label>
                 <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2" ng-hide="content == 'amenity'">
                 <label for="photo-title" class="control-label">Floor Plan</label>
                 <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>

@@ -12,7 +12,7 @@ angular.module('PhotographerApp')
             floorPlan: null,
             photoType: null,
             recordedTime: null
-        }
+        };
 
         var floorPlan = {
 
