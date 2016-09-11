@@ -399,7 +399,7 @@
 }
 
 #panel-container {
-  left:-500px;
+  left:-450px;
   position: relative;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
@@ -407,7 +407,11 @@
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   height: 300px;
-  width: 500px;
+  width: 450px;
+  opacity: 1;
+  font-size: 2em;
+  font-weight: normal;
+  bottom:20px;
 }
 #unit-details-floorplan-img {
   height: 260px;
@@ -421,8 +425,9 @@
   position: relative;
   top:215px;
   left:88%;
-  font: roboto slab;
-  font-size:2em;
+  bottom:20px;
+  // font: roboto slab;
+  // font-size:2em;
   width:150px;
   /* Safari */
   -webkit-transform: rotate(-90deg);
@@ -442,15 +447,29 @@
 }
 .open {
    -webkit-animation: open ease 2s forwards;
+   font-size: 2em;
+   bottom:20px;
 }
 .close {
-  -webkit-animation: close ease 2s
+  -webkit-animation: close ease 2s;
+  font-size: 2em;
+  text-shadow: none;
+  font-weight: normal;
+  bottom:20px;
 }
 @-webkit-keyframes open {
-   from { left: -500px }
-   to   { left:-10px }
+   from { left: -450px };
+   to   { left:-10px };
 }
 @-webkit-keyframes close {
-  from { left: -10px }
-  to   { left: -500px };
+  from { left: -10px };
+  to   { left: -450px };
+}
+@keyframes open {
+   from { left: -450px };
+   to   { left:-10px };
+}
+@keyframes close {
+  from { left: -10px };
+  to   { left: -450px };
 }
