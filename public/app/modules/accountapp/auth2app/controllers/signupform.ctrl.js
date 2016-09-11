@@ -34,7 +34,7 @@ angular.module('AccountApp')
                         return response;
                     });
                 }
-            })
+            });
 
             //the back button functionality
             function backstep() {
