@@ -36,11 +36,20 @@ angular.module('MainApp')
                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
-                            // controller: 'LandingPage2Ctrl'
+                            controller: 'LandingPageCtrl'
                         }
 
                     },
                     data: falseRequiredLogin
+                })
+                .state('Demo', {
+                    url: '/demo',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'demo.views.html',
+                            controller: 'UnitMediaCtrl'
+                        }
+                    }
                 })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
@@ -74,7 +83,30 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Photographer', {
+                    // abstract: true,
+                    url: '/photographer',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/photographerapp/main/photographer-main.view.html',
+                            // controller: 'LandingPageCtrl'
+                        }
 
+                    }
+
+                })
+                .state('Photographer.Track', {
+                    url:'/track',
+                    views: {
+                        'test': {
+                            // templateUrl: '',
+                        templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
+                            // controller: 'PhotographerTrackCtrl',
+                        }
+                    }
+                })
                 .state('TenantSurvey', {
                     url: '/survey',
                     views: {
@@ -135,7 +167,7 @@ angular.module('MainApp')
                     },
                 })
 
-                .state('AdminPanel.ApiAccessTool', {
+            .state('AdminPanel.ApiAccessTool', {
                     url: '/wizioadminpanel/apiaccesstool',
                     views: {
                         'AdminTop': {
@@ -220,8 +252,8 @@ angular.module('MainApp')
                     url: '/dashboard',
                     views: {
                         "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
-                            controller: 'DashboardMainCtrl',
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'dashboard.view.html',
+                            controller: 'DashboardCtrl',
                         }
                     }
                 })

@@ -17,6 +17,7 @@ angular.module('NavbarApp')
         'DashboardFactory',
         function($rootScope, $location, $scope, $state, $http, $uibModal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig, DashboardFactory) {
             $scope.isCollapsed = false;
+            $scope.onLandingPage = $state.current.name === 'LandingPage' ? true : false;
             $scope.filters = {
                 beds: null,
                 baths: null,
@@ -92,6 +93,15 @@ angular.module('NavbarApp')
             };
 
             $scope.goBlog = function(val) {};
+
+            $scope.signup = function signup() {
+                var modalDefaultsSignup = modalDefaults('public/app/modules/accountapp/auth2app/views/signupmodal.view.html', 'SignupFormCtrl');
+
+                ModalSvc.showModal(modalDefaultsSignup, {})
+                .then(function(response) {
+                });
+            };
+
             $scope.goAccoutCreate = function() {
 
                 //shorten the authViews URL variable so we don't need to type wizioconfig.yada every time...
@@ -108,6 +118,7 @@ angular.module('NavbarApp')
                 var modalDefaultsPropertyManagerSignup = modalDefaults(authViews + 'AuthCreateAcctForm.html', 'AuthCreateAcctModalCtrl', 'PropertyManager');
 
                 var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
 
                 //show modal for choosing account type
                 ModalSvc.showModal(modalDefaultsAccountType, {}).then(function(result) {
