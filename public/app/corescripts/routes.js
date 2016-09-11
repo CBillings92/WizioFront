@@ -83,8 +83,29 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Photopgrapher', {
+                    abstract: true,
+                    url: '/photographer',
+                    viwes: {
+                        'footer': footer,
+                        'navbar': navbar,
+                        'maincontent': {
+                            templateUrl: '',
+                            controller: 'PhotographerMainCtrl'
+                        }
+                    }
+                })
+                .state('Photographer.Track', {
+                    url:'/track',
+                    views: {
+                        'photographer-app-main': {
+                            templateUrl: '',
+                            controller: '',
+                        }
 
-            .state('TenantSurvey', {
+                    }
+                })
+                .state('TenantSurvey', {
                     url: '/survey',
                     views: {
                         'footer': footer,
