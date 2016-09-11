@@ -6886,7 +6886,7 @@ body {
   .unit-details-media-tab-content-picker-slider-scroller {
     overflow: hidden;
     white-space: nowrap; }
-  .unit-details-media-tab-content-picker-forward, .unit-details-media-tab-content-picker-backward {
+  .unit-details-media-tab-content-picker-backward, .unit-details-media-tab-content-picker-forward {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -6894,7 +6894,7 @@ body {
     color: #ffffff;
     width: 50px;
     cursor: pointer; }
-    .unit-details-media-tab-content-picker-forward .fa, .unit-details-media-tab-content-picker-backward .fa {
+    .unit-details-media-tab-content-picker-backward .fa, .unit-details-media-tab-content-picker-forward .fa {
       cursor: pointer;
       position: absolute;
       top: 50%;
@@ -6964,7 +6964,7 @@ body {
   position: absolute; }
 
 #unit-details-floorplan-img {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   height: 325px; }
@@ -6973,7 +6973,8 @@ body {
   position: absolute; }
 
 #panel-container {
-  left: -450px;
+  top: 20px;
+  left: -420px;
   position: relative;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
@@ -6982,23 +6983,26 @@ body {
   border-bottom-right-radius: 15px;
   height: 300px;
   width: 450px;
-  opacity: 1;
+  opacity: 0.9;
   font-size: 2em;
   font-weight: normal;
-  bottom: 20px; }
+  bottom: 20px;
+  background-color: #706F72;
+  color: white;
+  line-height: 1; }
 
 #unit-details-floorplan-img {
   height: 260px;
   margin-bottom: 20px;
-  left: 0px;
+  left: 0;
   position: relative;
   margin: 0 auto;
   bottom: 20px; }
 
 #panel-text {
   position: relative;
-  top: 215px;
-  left: 88%;
+  top: 140px;
+  left: 80%;
   bottom: 20px;
   width: 150px;
   /* Safari */
@@ -7015,18 +7019,22 @@ body {
 .open {
   -webkit-animation: open ease 2s forwards;
   font-size: 2em;
-  bottom: 20px; }
+  top: 20px;
+  bottom: 20px;
+  line-height: 1; }
 
 .close {
   -webkit-animation: close ease 2s;
   font-size: 2em;
   text-shadow: none;
   font-weight: normal;
-  bottom: 20px; }
+  top: 20px;
+  bottom: 20px;
+  line-height: 1; }
 
 @-webkit-keyframes open {
   from {
-    left: -450px; }
+    left: -420px; }
   to {
     left: -10px; } }
 
@@ -7034,11 +7042,11 @@ body {
   from {
     left: -10px; }
   to {
-    left: -450px; } }
+    left: -420px; } }
 
 @keyframes open {
   from {
-    left: -450px; }
+    left: -420px; }
   to {
     left: -10px; } }
 
@@ -7046,7 +7054,7 @@ body {
   from {
     left: -10px; }
   to {
-    left: -450px; } }
+    left: -420px; } }
 
 .acct-modal-btn {
   border: 0;
