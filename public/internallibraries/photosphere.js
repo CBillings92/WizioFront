@@ -17,6 +17,7 @@ THREE.Photosphere = function (domEl, image, options) {
 
 	function init () {
 		// http://threejs.org/docs/#Reference/Cameras/PerspectiveCamera
+		alert(domEl);
 		camera = new THREE.PerspectiveCamera(options.view || 75, domEl.offsetWidth / domEl.offsetHeight, 1, 1000);
 		camera.position.x = 0.1;
 		camera.position.y = options.y || 0;

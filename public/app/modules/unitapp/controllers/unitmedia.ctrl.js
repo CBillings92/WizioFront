@@ -9,7 +9,24 @@ angular.module('UnitApp')
         'lodash',
         'ModalSvc',
         function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
-            //mason was here 3,2.] j
+            /*floor plan animation*/
+            var panelContainer = document.getElementById('panel-container');
+
+            var panelOpened = false;
+
+            panelContainer.addEventListener('click', togglePanel, false);
+
+            function togglePanel() {
+                panelOpened = !panelOpened;
+                if (panelOpened) {
+                    this.classList.add('open');
+                    this.classList.remove('close');
+                } else {
+                    this.classList.add('close');
+                    this.classList.remove('open');
+                }
+            }
+            /*end floorplan animation*/
             // var apitoken = 2;
             // var apartmentid = 1;
             // $rootScope.$state = Externalapi
@@ -18,8 +35,8 @@ angular.module('UnitApp')
             // console.dir("PL:");
             var state = $state.current.name;
             console.dir(WizioConfig.demo);
-            var apitoken = state === 'Demo' ||  state === 'LandingPage' ? WizioConfig.demo.apikey : $state.params.apitoken;
-            var apartmentpubid = state === 'Demo' || state === 'LandingPage' ? WizioConfig.demo.apartmentpubid: $state.params.apartmentpubid
+            var apitoken = state === 'Demo' || state === 'LandingPage' ? WizioConfig.demo.apikey : $state.params.apitoken;
+            var apartmentpubid = state === 'Demo' || state === 'LandingPage' ? WizioConfig.demo.apartmentpubid : $state.params.apartmentpubid
 
             $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
                 apitoken: '@apitoken',

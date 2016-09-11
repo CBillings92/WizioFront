@@ -6972,6 +6972,61 @@ body {
 .unit-details-floorplan-pin {
   position: absolute; }
 
+#panel-container {
+  left: -500px;
+  position: relative;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  height: 300px;
+  width: 500px; }
+
+#unit-details-floorplan-img {
+  height: 260px;
+  margin-bottom: 20px;
+  left: 0px;
+  position: relative;
+  margin: 0 auto;
+  bottom: 20px; }
+
+#panel-text {
+  position: relative;
+  top: 215px;
+  left: 88%;
+  font: roboto slab;
+  font-size: 2em;
+  width: 150px;
+  /* Safari */
+  -webkit-transform: rotate(-90deg);
+  /* Firefox */
+  -moz-transform: rotate(-90deg);
+  /* IE */
+  -ms-transform: rotate(-90deg);
+  /* Opera */
+  -o-transform: rotate(-90deg);
+  /* Internet Explorer */
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation= 3); }
+
+.open {
+  -webkit-animation: open ease 2s forwards; }
+
+.close {
+  -webkit-animation: close ease 2s; }
+
+@-webkit-keyframes open {
+  from {
+    left: -500px; }
+  to {
+    left: -10px; } }
+
+@-webkit-keyframes close {
+  from {
+    left: -10px; }
+  to {
+    left: -500px; } }
+
 .acct-modal-btn {
   border: 0;
   padding: 4px 10px;

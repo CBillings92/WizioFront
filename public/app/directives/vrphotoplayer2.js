@@ -6,7 +6,7 @@ angular.module('Directives')
                 controller: 'UnitMediaCtrl',
                 templateUrl: 'public/app/modules/unitapp/viewtemplates/demo.views.html',
                 link: function(scope, elem, attr) {
-
+                    scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;
                     var canvasParent = document.getElementById('sphere');
 
