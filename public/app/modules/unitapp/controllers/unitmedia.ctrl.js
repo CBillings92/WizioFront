@@ -47,7 +47,8 @@ angular.module('UnitApp')
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
-                var photoIndex = 0;
+                console.dir(media.vrphoto[0]);
+                var photoIndex = media.vrphoto[0].title === 'floor plan' ? 4 : 0;
                 if (media.vrphoto[0].awsurl) {
                     // $scope.media.vrphoto = vrphotos;
                     $scope.photoIndex = photoIndex;
