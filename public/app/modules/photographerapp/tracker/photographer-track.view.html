@@ -1,30 +1,33 @@
+<!--begin header row - should have address info-->
 <div class="row" id="header">
     <div class="page-header">
         <h3>Photography Tracker<small> 85 Seaport Boulevard Boston MA</small></h3>
     </div>
 </div>
+<!--begin photo data entry row-->
 <div class="row photo-row">
-    <form class="" action="index.html" method="post">
-        <div class="form-group">
+    <div class="form-group">
+        <div class="" ng-repeat="photo in media track by $index">
             <div class="row" style="margin:15px;">
                 <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Title</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Apartement #</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Floor Plan</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                    <label class="control-label">Photo Type:</label> <br>
+                    <input id="first" type="radio" name="content" ng-model="content" value="unit">
+                    <label for="first">Unit</label>
+                    <br />
+                    <input id="other" type="radio" name="content" ng-model="content" value="amenity">
+                    <label for="other">Amenity</label>
                 </div>
                 <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Type</label>
-                    <select class="form-control" name="" style="border:1px solid black">
-                        <option value="Unit">Unit</option>
-                        <option value="Ammenity">Ammenity</option>
-                    </select>
+                    <label for="photo-title" class="control-label">Photo Title</label>
+                    <input type="text" ng-model="photo.title" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                </div>
+                <div class="col-md-2" ng-hide="content == 'amenity'">
+                    <label for="photo-title" class="control-label">Apartement #</label>
+                    <input type="text" ng-model="photo.apartmentNumber" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                </div>
+                <div class="col-md-2" ng-hide="content == 'amenity'">
+                    <label for="photo-title" class="control-label">Floor Plan</label>
+                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
                 </div>
                 <div class="col-md-2">
                     <label for="photo-title" class="control-label"></label>
@@ -32,121 +35,156 @@
                 </div>
             </div>
             <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-            <div class="row" style="margin:15px;">
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Title</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Apartement #</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Floor Plan</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Type</label>
-                    <select class="form-control" name="" style="border:1px solid black">
-                        <option value="Unit">Unit</option>
-                        <option value="Ammenity">Ammenity</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label"></label>
-                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
-                </div>
+        </div>
+        <div class="row" style="margin:15px;">
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Type</label>
+                <select class="form-control" name="" style="border:1px solid black">
+                    <option value="Unit">Unit</option>
+                    <option value="Ammenity">Ammenity</option>
+                </select>
             </div>
-            <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-            <div class="row" style="margin:15px;">
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Title</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Apartement #</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Floor Plan</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Type</label>
-                    <select class="form-control" name="" style="border:1px solid black">
-                        <option value="Unit">Unit</option>
-                        <option value="Ammenity">Ammenity</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label"></label>
-                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
-                </div>
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Title</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>
-            <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-            <div class="row" style="margin:15px;">
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Title</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Apartement #</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Floor Plan</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Type</label>
-                    <select class="form-control" name="" style="border:1px solid black">
-                        <option value="Unit">Unit</option>
-                        <option value="Ammenity">Ammenity</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label"></label>
-                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
-                </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Apartement #</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>
-            <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-            <div class="row" style="margin:15px;">
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Title</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Apartement #</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label">Floor Plan</label>
-                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-                </div>
-                <div class="col-md-3">
-                    <label for="photo-title" class="control-label">Photo Type</label>
-                    <select class="form-control" name="" style="border:1px solid black">
-                        <option value="Unit">Unit</option>
-                        <option value="Ammenity">Ammenity</option>
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <label for="photo-title" class="control-label"></label>
-                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
-                </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Floor Plan</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
             </div>
-            <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-            <div class="row" style="margin:15px;">
-                <div class="col-md-2">
-                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Add Photo</button>
-                </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label"></label>
+                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
             </div>
         </div>
-    </form>
+        <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+        <div class="row" style="margin:15px;">
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Type</label>
+                <select class="form-control" name="" style="border:1px solid black">
+                    <option value="Unit">Unit</option>
+                    <option value="Ammenity">Ammenity</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Title</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Apartement #</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Floor Plan</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label"></label>
+                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
+            </div>
+        </div>
+        <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+        <div class="row" style="margin:15px;">
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Type</label>
+                <select class="form-control" name="" style="border:1px solid black">
+                    <option value="Unit">Unit</option>
+                    <option value="Ammenity">Ammenity</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Title</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Apartement #</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Floor Plan</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label"></label>
+                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
+            </div>
+        </div>
+        <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+        <div class="row" style="margin:15px;">
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Type</label>
+                <select class="form-control" name="" style="border:1px solid black">
+                    <option value="Unit">Unit</option>
+                    <option value="Ammenity">Ammenity</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="photo-title" class="control-label">Photo Title</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Apartement #</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label">Floor Plan</label>
+                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-2">
+                <label for="photo-title" class="control-label"></label>
+                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
+            </div>
+        </div>
+        <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+        <div class="row" style="margin:15px;">
+            <div class="col-md-2">
+                <button name="photo-title" ng-click="button.addMedia()" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Add Photo</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="row button-add-photo">
-
+<!--begin floorplan data entry row-->
+<div class="row">
+    <div class="page-header">
+        <h4>Floor Plan A:</h4>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="control-label">Square Footage:</label>
+                <input type="text" name="square-footage1" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-4">
+                <label for="" class="control-label"># of Units</label>
+                <input type="text" name="square-footage2" value="" class="form-control" style="border:1px solid black">
+            </div>
+        </div>
+    </div>
 </div>
-<div class="row floor-plan-data">
+<div class="row">
+    <div class="page-header">
+        <h4>Floor Plan A:</h4>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="" class="control-label">Square Footage:</label>
+                <input type="text" name="square-footage1" value="" class="form-control" style="border:1px solid black">
+            </div>
+            <div class="col-md-4">
+                <label for="" class="control-label"># of Units</label>
+                <input type="text" name="square-footage2" value="" class="form-control" style="border:1px solid black">
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="row" style="margin:15px;">
+    <div class="col-md-2">
+        <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Submit Building</button>
+    </div>
 </div>
