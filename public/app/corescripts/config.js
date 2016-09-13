@@ -113,7 +113,7 @@ angular.module('MainApp')
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';
-                        data.apartmentpubid = 'd5ee04bb-6d52-11e6-8edc-0800274a1eca';
+                        data.apartmentpubid = '8d0248bc-2e4b-43ba-9ff8-01e76bbe1259';
                         return data;
                     case "prod":
                         return data;
