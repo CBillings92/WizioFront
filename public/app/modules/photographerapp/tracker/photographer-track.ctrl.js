@@ -7,14 +7,25 @@ angular.module('PhotographerApp')
         var address, media, floorplans;
 
         var photo = {
-            title: null,
-            apartmentNumber: null,
-            floorPlan: null,
-            photoType: null,
-            recordedTime: null
+            title: '',
+            apartmentNumber: '',
+            floorPlan: '',
+            photoType: '',
+            recordedTime: ''
+        };
+
+        $scope.media = [photo];
+
+        function addMedia() {
+            console.dir("hi");
+            var mediaObj = Object.create(photo);
+
+            media.push(mediaObj);
+
+            return;
         }
 
-        var floorPlan = {
-
-        };
+        $scope.buttons = {
+            addMedia: addMedia
+        }
   }]);

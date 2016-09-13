@@ -7,6 +7,35 @@
 <!--begin photo data entry row-->
 <div class="row photo-row">
     <div class="form-group">
+        <div class="" ng-repeat="photo in media track by $index">
+            <div class="row" style="margin:15px;">
+                <div class="col-md-3">
+                    <label class="control-label">Photo Type:</label> <br>
+                    <input id="first" type="radio" name="content" ng-model="content" value="unit">
+                    <label for="first">Unit</label>
+                    <br />
+                    <input id="other" type="radio" name="content" ng-model="content" value="amenity">
+                    <label for="other">Amenity</label>
+                </div>
+                <div class="col-md-3">
+                    <label for="photo-title" class="control-label">Photo Title</label>
+                    <input type="text" ng-model="photo.title" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                </div>
+                <div class="col-md-2" ng-hide="content == 'amenity'">
+                    <label for="photo-title" class="control-label">Apartement #</label>
+                    <input type="text" ng-model="photo.apartmentNumber" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                </div>
+                <div class="col-md-2" ng-hide="content == 'amenity'">
+                    <label for="photo-title" class="control-label">Floor Plan</label>
+                    <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
+                </div>
+                <div class="col-md-2">
+                    <label for="photo-title" class="control-label"></label>
+                    <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
+                </div>
+            </div>
+            <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
+        </div>
         <div class="row" style="margin:15px;">
             <div class="col-md-3">
                 <label for="photo-title" class="control-label">Photo Type</label>
@@ -112,34 +141,8 @@
         </div>
         <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
         <div class="row" style="margin:15px;">
-            <div class="col-md-3">
-                <label for="photo-title" class="control-label">Photo Type</label>
-                <select class="form-control" name="" style="border:1px solid black">
-                    <option value="Unit">Unit</option>
-                    <option value="Ammenity">Ammenity</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <label for="photo-title" class="control-label">Photo Title</label>
-                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-            </div>
             <div class="col-md-2">
-                <label for="photo-title" class="control-label">Apartement #</label>
-                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-            </div>
-            <div class="col-md-2">
-                <label for="photo-title" class="control-label">Floor Plan</label>
-                <input type="text" name="photo-title" value="" class="form-control" style="border:1px solid black">
-            </div>
-            <div class="col-md-2">
-                <label for="photo-title" class="control-label"></label>
-                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Record Time</button>
-            </div>
-        </div>
-        <hr style="height:12px; border:0; box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);">
-        <div class="row" style="margin:15px;">
-            <div class="col-md-2">
-                <button name="photo-title" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Add Photo</button>
+                <button name="photo-title" ng-click="button.addMedia()" class="btn form-control btn-outline--blue btn-md" style="border:1px solid black">Add Photo</button>
             </div>
         </div>
     </div>
