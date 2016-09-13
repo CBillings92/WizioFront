@@ -18,6 +18,7 @@
     angular.module('FooterApp', []);
     angular.module('Models', []);
     angular.module('Directives', []);
+    angular.module('PhotographerApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -37,6 +38,7 @@
             'TenantSurveyApp',
             'SharedFactoryApp',
             'SharedServiceApp',
+            'PhotographerApp',
             'UnitApp',
             'Models',
             'ui.router',

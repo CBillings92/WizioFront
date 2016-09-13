@@ -17,6 +17,7 @@ angular.module('NavbarApp')
         'DashboardFactory',
         function($rootScope, $location, $scope, $state, $http, $uibModal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig, DashboardFactory) {
             $scope.isCollapsed = false;
+            $scope.onLandingPage = $state.current.name === 'LandingPage' ? true : false;
             $scope.filters = {
                 beds: null,
                 baths: null,

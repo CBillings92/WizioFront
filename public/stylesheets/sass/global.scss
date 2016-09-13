@@ -56,7 +56,6 @@ body {
 
 
 h1, h2 {
-  font-family: "Roboto Slab";
 }
 
 h3 {
@@ -97,7 +96,7 @@ p {
     font-size: 18px;
   }
   h5 {
-    font-size: 16px;
+    font-size: 20px;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -116,7 +115,7 @@ p {
     font-size: 24px;
   }
   h5 {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
 
@@ -208,6 +207,16 @@ a:focus {
   @include button-hover-state {
     color: $white;
     background-color: darken($blue, 5%);
+  }
+}
+
+.btn-fill--orange {
+  @extend .btn-fill;
+  background-color: $orange;;
+
+  @include button-hover-state {
+    color: $white;
+    background-color: darken($orange, 5%);
   }
 }
 

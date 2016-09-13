@@ -1,0 +1,96 @@
+.tourBlock {
+    display:block;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #F7AA63;
+
+    padding-bottom: 30px;
+    text-align: center;
+
+
+    h1, p {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+
+    blockquote {
+    display:inline-block;
+    }
+
+}
+
+.whatwhyblock {
+    display: block;
+padding-top:20px;
+padding-bottom:20px;
+    font-size: 20px;
+}
+
+.inventoryBlock {
+    background-color: #999999;
+    text-align: center;
+    color: #F7AA63;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.marketBlock {
+    h3 {
+        display: table;
+        margin: 0 auto;
+    }
+
+    padding-top:20px;
+    padding-bottom:20px;
+    background-color: #DCDCDC;
+
+
+}
+
+div.item {
+    vertical-align: top;
+    display: inline-block;
+    text-align: center;
+    width:100%;
+}
+
+.item {
+    img {
+        background-color: grey;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.caption {
+    display: block;
+}
+
+
+.integrationBlock {
+    text-align: center;
+    p {
+        padding-top: 10px
+    }
+}
+
+.signupBlock {
+    display: block;
+    text-align: center;
+    background-color: #999999;
+    padding-top:20px;
+    padding-bottom:20px;
+
+    button {
+        font-size: 30px;
+    }
+
+
+}
