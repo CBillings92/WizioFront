@@ -47,8 +47,8 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
-                            controller: 'LandingPageCtrl'
-                            // controller: 'UnitMediaCtrl'
+                            // controller: 'LandingPageCtrl'
+                            controller: 'UnitMediaCtrl'
                         }
                     }
                 })
