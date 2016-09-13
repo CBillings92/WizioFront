@@ -99,7 +99,15 @@ angular.module('MainApp')
             tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/',
             stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",
             static_vr: (function() {
-                var data = {};
+                var data = {
+                    landingpage: {
+                        apartmentpubid: null
+                    },
+                    demo: {
+                        apartmentpubid: null
+                    },
+                    apikey: null
+                };
 
                 // var prod = {
                 //
@@ -111,7 +119,7 @@ angular.module('MainApp')
                     case "dev":
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
                         data.landingpage.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
-                        data.demo.apartmentpubid = ''
+                        data.demo.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6'
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';
