@@ -35,8 +35,18 @@ angular.module('UnitApp')
             // console.dir("PL:");
             var state = $state.current.name;
             console.dir(WizioConfig.demo);
-            var apitoken = state === 'Demo' || state === 'LandingPage' ? WizioConfig.demo.apikey : $state.params.apitoken;
-            var apartmentpubid = state === 'Demo' || state === 'LandingPage' ? WizioConfig.demo.apartmentpubid : $state.params.apartmentpubid;
+            var apartmentpubid, apikey;
+
+            if(state === 'Demo'){
+                apikey = WizioConfig.static_vr.apikey;
+                apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
+            } else if (state === 'LandingPage') {
+                apikey = WizioConfig.static_vr.apikey;
+                apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+            } else {
+                apikey = $state.params.apitoken;
+                apartmentpubid = $state.params.apartmentpubid
+            }
 
             $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
                 apitoken: '@apitoken',

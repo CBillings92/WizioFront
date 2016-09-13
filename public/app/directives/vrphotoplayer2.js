@@ -1,10 +1,10 @@
 angular.module('Directives')
-    .directive('newVrPhotoPlayerDirv', [
-        function() {
+    .directive('newVrPhotoPlayerDirv', [ '$state',
+        function($state) {
             return {
                 restrict: 'E',
                 controller: 'UnitMediaCtrl',
-                templateUrl: 'public/app/modules/unitapp/viewtemplates/demo.views.html',
+                templateUrl: $state.current.name === 'LandingPage' ? 'public/app/modules/unitapp/viewtemplates/landingpagedemo.view.html' : $state.current.name === 'Demo' ? 'public/app/modules/unitapp/viewtemplates/demo.view.html' : null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;
