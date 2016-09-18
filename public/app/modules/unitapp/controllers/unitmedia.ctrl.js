@@ -45,7 +45,7 @@ angular.module('UnitApp')
                 apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
             } else {
                 apitoken = $state.params.apitoken;
-                apartmentpubid = $state.params.apartmentpubid
+                apartmentpubid = $state.params.apartmentpubid;
             }
 
             $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
@@ -59,9 +59,10 @@ angular.module('UnitApp')
                 $scope.media = media;
                 console.dir(media.vrphoto[0]);
                 var photoIndex;
-                if(media.vrphoto[0].title === 'floor plan'){
+                if(state === 'Demo' || state === 'LandingPage'){
                     photoIndex = 4;
                     media.vrphoto.shift();
+                    console.dir(media.vrphoto);
                 } else {
                     photoIndex = 0;
                 }

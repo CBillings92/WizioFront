@@ -664,16 +664,16 @@ THREE.OrbitControls = function ( object, domElement ) {
 	}
 
 	// this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-	var domElement = document.getElementById('vr-player-container');
-	domElement.addEventListener( 'mousedown', onMouseDown, false );
-	this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-	this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
+	var vrDomElement = document.getElementById('vr-player-container');
+	vrDomElement.addEventListener( 'mousedown', onMouseDown, false );
+	// this.vrDomElement.addEventListener( 'mousewheel', onMouseWheel, false );
+	// this.vrDomElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
 
-	domElement.addEventListener( 'touchstart', touchstart, false );
-	domElement.addEventListener( 'touchend', touchend, false );
-	domElement.addEventListener( 'touchmove', touchmove, false );
+	vrDomElement.addEventListener( 'touchstart', touchstart, false );
+	vrDomElement.addEventListener( 'touchend', touchend, false );
+	vrDomElement.addEventListener( 'touchmove', touchmove, false );
 
-	domElement.addEventListener( 'keydown', onKeyDown, false );
+	vrDomElement.addEventListener( 'keydown', onKeyDown, false );
 
 	// force an update at start
 	this.update();
