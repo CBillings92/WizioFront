@@ -60,7 +60,7 @@ angular.module('UnitApp')
                 console.dir(media.vrphoto[0]);
                 var photoIndex;
                 if(state === 'LandingPage'){
-                    photoIndex = 3;
+                    photoIndex = 4;
                 } else if(state === 'Demo') {
                     photoIndex = 0;
                 }
