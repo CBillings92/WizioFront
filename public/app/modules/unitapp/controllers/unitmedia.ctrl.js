@@ -59,9 +59,9 @@ angular.module('UnitApp')
                 $scope.media = media;
                 console.dir(media.vrphoto[0]);
                 var photoIndex;
-                if(state === 'Demo' || state === 'LandingPage'){
-                    photoIndex = 0;
-                } else {
+                if(state === 'LandingPage'){
+                    photoIndex = 2;
+                } else if(state === 'Demo') {
                     photoIndex = 0;
                 }
                 if (media.vrphoto[0].awsurl) {
