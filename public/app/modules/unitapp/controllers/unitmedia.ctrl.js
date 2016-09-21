@@ -13,7 +13,7 @@ angular.module('UnitApp')
             var panelContainer;
             $scope.selectPhoto = false;
             var panelOpened = false;
-            if(state !== 'demoGreenStreet'){
+            if(state !== 'DemoGreenStreet'){
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
             }
