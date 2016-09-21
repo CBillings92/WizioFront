@@ -13,6 +13,7 @@ angular.module('UnitApp')
             var panelContainer;
             $scope.selectPhoto = false;
             var panelOpened = false;
+            var state = $state.current.name;
             if(state !== 'DemoGreenStreet'){
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
@@ -35,7 +36,6 @@ angular.module('UnitApp')
             $scope.trust = $sce;
             // $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
             // console.dir("PL:");
-            var state = $state.current.name;
             var apartmentpubid, apitoken;
 
             if(state === 'Demo'){
