@@ -11,7 +11,7 @@ angular.module('UnitApp')
         function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
             /*floor plan animation*/
             var panelContainer = document.getElementById('panel-container');
-
+            $scope.selectPhoto = false;
             var panelOpened = false;
 
             panelContainer.addEventListener('click', togglePanel, false);
