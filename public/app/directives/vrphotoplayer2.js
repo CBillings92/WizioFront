@@ -4,7 +4,7 @@ angular.module('Directives')
             return {
                 restrict: 'E',
                 controller: 'UnitMediaCtrl',
-                templateUrl: $state.current.name === 'LandingPage' ? 'public/app/modules/unitapp/viewtemplates/landingpagedemo.view.html' : $state.current.name === 'Demo' ? 'public/app/modules/unitapp/viewtemplates/demo.views.html' : null,
+                templateUrl: $state.current.name === 'LandingPage' ? 'public/app/modules/unitapp/viewtemplates/landingpagedemo.view.html' : $state.current.name === 'Demo' ? 'public/app/modules/unitapp/viewtemplates/demo.views.html' : $state.current.name === "DemoOneBackBay" ? 'public/app/modules/unitapp/viewtemplates/demoOneBackBay.views.html': $state.current.name === 'DemoGreenStreet' ? 'public/app/modules/unitapp/viewtemplates/demoGreenStreet.views.html' : null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;

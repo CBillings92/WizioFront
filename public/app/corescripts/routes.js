@@ -52,6 +52,22 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoOneBackBay', {
+                    url: '/demo/backbay',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenStreet', {
+                    url: '/demo/greenstreet',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {

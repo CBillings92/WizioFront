@@ -43,9 +43,13 @@ angular.module('UnitApp')
             } else if (state === 'LandingPage') {
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+            } else if(state === 'DemoOneBackBay'){
+                apartmentpubid = WizioConfig.static_vr.demoOneBackBay.apartmentpubid;
+                apitoken = WizioConfig.static_vr.apikey;
             } else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
+
             }
 
             $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
@@ -57,12 +61,14 @@ angular.module('UnitApp')
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
-                console.dir(media.vrphoto[0]);
+                console.dir(media);
                 var photoIndex;
                 if(state === 'LandingPage'){
                     //hardcoded
                     photoIndex = 3;
                 } else if(state === 'Demo') {
+                    photoIndex = 0;
+                } else {
                     photoIndex = 0;
                 }
                 if (media.vrphoto[0].awsurl) {

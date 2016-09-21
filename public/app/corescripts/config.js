@@ -106,6 +106,9 @@ angular.module('MainApp')
                     demo: {
                         apartmentpubid: null
                     },
+                    demoOneBackBay: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -119,7 +122,8 @@ angular.module('MainApp')
                     case "dev":
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
                         data.landingpage.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
-                        data.demo.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6'
+                        data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
+                        data.demo.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';
@@ -130,6 +134,8 @@ angular.module('MainApp')
                         data.apikey = 'a2d53f52-7979-11e6-85e0-0a8adbb20c4d';
                         data.demo.apartmentpubid = 'cdd02606-bfc7-4aec-90c9-ed78c1462661';
                         data.landingpage.apartmentpubid = 'b4a4b637-b585-4f21-8f5d-32a382a2ee15';
+                        data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
+                        data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
