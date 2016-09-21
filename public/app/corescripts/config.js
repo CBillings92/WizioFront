@@ -127,6 +127,7 @@ angular.module('MainApp')
                         data.landingpage.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
                         data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
                         data.demo.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
+                        data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';

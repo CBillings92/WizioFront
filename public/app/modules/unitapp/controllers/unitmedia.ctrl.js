@@ -49,6 +49,8 @@ angular.module('UnitApp')
             } else if(state === 'DemoGreenStreet'){
                 apartmentpubid = WizioConfig.static_vr.demoGreenStreet.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
+                console.dir(apitoken);
+                console.dir(WizioConfig.static_vr);
             } else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
