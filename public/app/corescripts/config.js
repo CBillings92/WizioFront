@@ -109,6 +109,9 @@ angular.module('MainApp')
                     demoOneBackBay: {
                         apartmentpubid: null
                     },
+                    demoGreenStreet: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
