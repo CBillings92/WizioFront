@@ -47,7 +47,7 @@ angular.module('UnitApp')
                 apartmentpubid = WizioConfig.static_vr.demoOneBackBay.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
             } else if(state === 'DemoGreenStreet'){
-                apartmentpubid = WizioConfig.static_vr.demoOneBackBay.apartmentpubid;
+                apartmentpubid = WizioConfig.static_vr.demoGreenStreet.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
             } else {
                 apitoken = $state.params.apitoken;
@@ -73,8 +73,10 @@ angular.module('UnitApp')
                     photoIndex = 0;
                 } else if(state === 'DemoOneBackBay') {
                     photoIndex = 9;
+                } else {
+                    photoIndex = 0;
+
                 }
-                photoIndex = 0;
                 if (media.vrphoto[0].awsurl) {
                     // $scope.media.vrphoto = vrphotos;
                     $scope.photoIndex = photoIndex;
