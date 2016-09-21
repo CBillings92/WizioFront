@@ -10,11 +10,13 @@ angular.module('UnitApp')
         'ModalSvc',
         function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
             /*floor plan animation*/
-            var panelContainer = document.getElementById('panel-container');
+            var panelContainer;
             $scope.selectPhoto = false;
             var panelOpened = false;
-
-            panelContainer.addEventListener('click', togglePanel, false);
+            if(state !== 'demoGreenStreet'){
+                panelContainer = document.getElementById('panel-container');
+                panelContainer.addEventListener('click', togglePanel, false);
+            }
 
             function togglePanel() {
                 panelOpened = !panelOpened;
