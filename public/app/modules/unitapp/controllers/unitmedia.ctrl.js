@@ -34,7 +34,6 @@ angular.module('UnitApp')
             // $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
             // console.dir("PL:");
             var state = $state.current.name;
-            console.dir(WizioConfig.demo);
             var apartmentpubid, apitoken;
 
             if(state === 'Demo'){
@@ -49,8 +48,6 @@ angular.module('UnitApp')
             } else if(state === 'DemoGreenStreet'){
                 apartmentpubid = WizioConfig.static_vr.demoGreenStreet.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
-                console.dir(apitoken);
-                console.dir(WizioConfig.static_vr);
             } else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
@@ -66,7 +63,6 @@ angular.module('UnitApp')
             }, function(result) {
                 var media = lodash.groupBy(result, 'type');
                 $scope.media = media;
-                console.dir(media);
                 var photoIndex;
                 if(state === 'LandingPage'){
                     //hardcoded
