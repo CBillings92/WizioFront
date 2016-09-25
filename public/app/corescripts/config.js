@@ -112,6 +112,9 @@ angular.module('MainApp')
                     demoGreenStreet: {
                         apartmentpubid: null
                     },
+                    demoWellington2Bed: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -121,6 +124,7 @@ angular.module('MainApp')
                 // var test = {
                 //
                 // };
+                console.dir(env);
                 switch (env) {
                     case "dev":
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
@@ -128,6 +132,7 @@ angular.module('MainApp')
                         data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
                         data.demo.apartmentpubid = 'b9114993-172f-4729-b375-aed0dc9101c6';
                         data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
+                        data.demoWellington2Bed.apartmentpubid = '5d65b2a1-5067-44d4-ae75-5ff7bf8127ac';
                         return data;
                     case "test":
                         data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';

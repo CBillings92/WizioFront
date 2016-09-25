@@ -15,6 +15,7 @@ angular.module('UnitApp')
             var panelOpened = false;
             var state = $state.current.name;
             if(state !== 'DemoGreenStreet'){
+                console.dir('theu problem');
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
             }
@@ -50,6 +51,10 @@ angular.module('UnitApp')
             } else if(state === 'DemoGreenStreet'){
                 apartmentpubid = WizioConfig.static_vr.demoGreenStreet.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
+            } else if (state === 'DemoWellington2Bed'){
+                console.dir(WizioConfig.static_vr);
+                apartmentpubid = WizioConfig.static_vr.demoWellington2Bed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
             } else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;

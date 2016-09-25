@@ -68,6 +68,14 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoWellington2Bed', {
+                    url: '/demo/wellington',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
@@ -115,12 +123,21 @@ angular.module('MainApp')
 
                 })
                 .state('Photographer.Track', {
-                    url:'/track',
+                    url: '/track',
                     views: {
                         'test': {
                             // templateUrl: '',
-                        templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
-                            // controller: 'PhotographerTrackCtrl',
+                            templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
+                            controller: 'PhotographerTrackCtrl',
+                        }
+                    }
+                })
+                .state('Photographer.UploadFloorPlan', {
+                    url: '/upload/floorplan',
+                    views: {
+                        'test': {
+                            templateUrl: 'public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html',
+                            controller: 'FloorPlanUploadCtrl',
                         }
                     }
                 })
