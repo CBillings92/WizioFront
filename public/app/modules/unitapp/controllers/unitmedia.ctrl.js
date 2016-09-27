@@ -15,7 +15,6 @@ angular.module('UnitApp')
             var panelOpened = false;
             var state = $state.current.name;
             if(state !== 'DemoGreenStreet'){
-                console.dir('theu problem');
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
             }
@@ -53,12 +52,34 @@ angular.module('UnitApp')
                 apitoken = WizioConfig.static_vr.apikey;
             }
             else if (state === 'DemoWellington2Bed'){
-                console.dir(WizioConfig.static_vr);
                 apartmentpubid = WizioConfig.static_vr.demoWellington2Bed.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
             }
+            else if (state === 'DemoGreenWay0404'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoGreenWay0503'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoGreenWay0512'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoGreenWay1209'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoGreenWay1401'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoGreenWay1707'){
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
             else if (state === 'DemoWaterMarkOneBed'){
-                console.dir(WizioConfig.static_vr);
                 apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
             }

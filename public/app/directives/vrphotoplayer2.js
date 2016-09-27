@@ -11,6 +11,12 @@ angular.module('Directives')
                     $state.current.name === 'DemoGreenStreet' ? 'public/app/modules/unitapp/viewtemplates/demoGreenStreet.views.html' :
                     $state.current.name === 'DemoWellington2Bed' ? 'public/app/modules/unitapp/viewtemplates/demoWellington2bed.view.html' :
                     $state.current.name === 'DemoWaterMarkOneBed' ? 'public/app/modules/unitapp/viewtemplates/demoWaterMarkOneBed.view.html' :
+                    $state.current.name === 'DemoGreenWay0404' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0404.view.html' :
+                    $state.current.name === 'demoGreenWay0503' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0503.view.html' :
+                    $state.current.name === 'DemoGreenWay0512' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0512.view.html' :
+                    $state.current.name === 'demoGreenWay1401' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1401.view.html' :
+                    $state.current.name === 'demoGreenWay1209' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1209.view.html' :
+                    $state.current.name === 'demoGreenWay1707' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1707.view.html' :
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;

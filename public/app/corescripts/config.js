@@ -118,6 +118,24 @@ angular.module('MainApp')
                     demoWaterMarkOneBed: {
                         apartmentpubid: null
                     },
+                    demoGreenWay0404: {
+                        apartmentpubid: null
+                    },
+                    demoGreenWay0503: {
+                        apartmentpubid: null
+                    },
+                    demoGreenWay0512:{
+                        apartmentpubid: null
+                    },
+                    demoGreenWay1209: {
+                        apartmentpubid: null
+                    },
+                    demoGreenWay1401: {
+                        apartmentpubid: null
+                    },
+                    demoGreenWay1707: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -150,6 +168,12 @@ angular.module('MainApp')
                         data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
                         data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
                         data.demoWaterMarkOneBed.apartmentpubid = 'ccf9ac72-601e-427b-8898-7ca367cc86e1';
+                        data.demoGreenWay0404.apartmentpubid = 'f78a349b-96b8-4b83-b470-7df789bebf32';
+                        data.demoGreenWay0503.apartmentpubid = 'c87a0162-27f1-4862-ae4e-32c4f74f1c0d';
+                        data.demoGreenWay0512.apartmentpubid = '07c5e21f-d7c9-4ae6-83b8-a8b0d88492c7';
+                        data.demoGreenWay1209.apartmentpubid = 'f341d89a-5574-4dbc-a786-cf931ee89620';
+                        data.demoGreenWay1401.apartmentpubid = 'ae6fa9b3-34b5-4010-9de3-8f006eea9ca2';
+                        data.demoGreenWay1707.apartmentpubid = 'dae5df4c-6149-4bec-82f3-a12c4dd5c067';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
