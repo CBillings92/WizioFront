@@ -10,6 +10,7 @@ angular.module('Directives')
                     $state.current.name === "DemoOneBackBay" ? 'public/app/modules/unitapp/viewtemplates/demoOneBackBay.views.html':
                     $state.current.name === 'DemoGreenStreet' ? 'public/app/modules/unitapp/viewtemplates/demoGreenStreet.views.html' :
                     $state.current.name === 'DemoWellington2Bed' ? 'public/app/modules/unitapp/viewtemplates/demoWellington2bed.view.html' :
+                    $state.current.name === 'DemoWaterMarkOneBed' ? 'public/app/modules/unitapp/viewtemplates/demoWaterMarkOneBed.view.html' :
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;

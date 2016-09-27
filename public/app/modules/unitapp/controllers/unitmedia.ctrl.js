@@ -51,11 +51,18 @@ angular.module('UnitApp')
             } else if(state === 'DemoGreenStreet'){
                 apartmentpubid = WizioConfig.static_vr.demoGreenStreet.apartmentpubid;
                 apitoken = WizioConfig.static_vr.apikey;
-            } else if (state === 'DemoWellington2Bed'){
+            }
+            else if (state === 'DemoWellington2Bed'){
                 console.dir(WizioConfig.static_vr);
                 apartmentpubid = WizioConfig.static_vr.demoWellington2Bed.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
-            } else {
+            }
+            else if (state === 'DemoWaterMarkOneBed'){
+                console.dir(WizioConfig.static_vr);
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
 

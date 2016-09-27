@@ -76,6 +76,14 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoWaterMarkOneBed', {
+                    url: '/demo/watermark/onebed',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
