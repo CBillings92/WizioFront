@@ -36,7 +36,7 @@
                     <div class="">
                         <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'"  ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
                         margin: 10px; z-index:1200; cursor: pointer;
-                        ">{{photo.title}}</button>;
+                        ">{{photo.title}}</button>
 
                     </div>
 
@@ -79,8 +79,8 @@
                             <!-- Entry -->
                             <!-- <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-click='changePhoto(3)'  class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 215px; left: 150px;" /> -->
                             <!-- Living/Dining -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 50%; left: 23%;"/>;
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 50%; left: 23%;"/>;
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 50%; left: 23%;"/>
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 50%; left: 23%;"/>
 
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                 </div>
                 <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
                 <div id="sphere"></div>
-                <!-- <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%;"></vr-photo-player-dirv>; -->
+                <!-- <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%;"></vr-photo-player-dirv> -->
             </div>
         </div>
         <!-- <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'" style="height:10vh">

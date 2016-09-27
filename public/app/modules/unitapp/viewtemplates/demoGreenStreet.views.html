@@ -36,7 +36,7 @@
                     <div class="">
                         <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'"  ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
                         margin: 10px; z-index:1200; cursor: pointer;
-                        ">{{photo.title}}</button>;
+                        ">{{photo.title}}</button>
 
                     </div>
 
@@ -66,7 +66,7 @@
                 </div>
                 <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
                 <div id="sphere"></div>
-                <!-- <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%;"></vr-photo-player-dirv>; -->
+                <!-- <vr-photo-player-dirv photoUrl='{{photoUrl}}' style="width:100%;"></vr-photo-player-dirv> -->
             </div>
         </div>
         <!-- <div class="unit-details-media-tab-content-picker-wrapper" ng-show="mediaTab == 'unitPhotos'" style="height:10vh">
