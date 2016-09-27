@@ -101,7 +101,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('demoGreenWay0503', {
-                    url: '/demo/greenway/0512',
+                    url: '/demo/greenway/0503',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
