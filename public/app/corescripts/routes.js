@@ -100,7 +100,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoGreenWay0503', {
+                .state('DemoGreenWay0503', {
                     url: '/demo/greenway/0503',
                     views: {
                         "maincontent": {
@@ -108,7 +108,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoGreenWay1209', {
+                .state('DemoGreenWay1209', {
                     url: '/demo/greenway/1209',
                     views: {
                         "maincontent": {
@@ -116,7 +116,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoGreenWay1401', {
+                .state('DemoGreenWay1401', {
                     url: '/demo/greenway/1401',
                     views: {
                         "maincontent": {
@@ -124,7 +124,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoGreenWay1707', {
+                .state('DemoGreenWay1707', {
                     url: '/demo/greenway/1707',
                     views: {
                         "maincontent": {
