@@ -29,20 +29,18 @@
     <div class="" style="height:100%" ng-show="media.vrphoto[0].awsurl">
         <div class="" ng-show="mediaTab == 'unitPhotos'" style="height:90vh;">
             <div class="embed-responsive embed-responsive-16by9" style="padding-bottom: 0; height:90vh">
-                <div class="container" style="width:90%" ng-show="selectPhoto === true;" ng-click = "selectPhoto = false;">
-                    <div
-                    class="unitButtonContainer row"
-                    style="position: absolute;z-index:1100; cursor: pointer; width:100%; horizontal-align: middle;text-align: center;">
-                    <div class="">
-                        <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'"  ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
+                <div class="container" style="width:90%" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;">
+                    <div class="unitButtonContainer row" style="position: absolute;z-index:1100; cursor: pointer; width:100%; horizontal-align: middle;text-align: center;">
+                        <div class="">
+                            <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
                         margin: 10px; z-index:1200; cursor: pointer;
                         ">{{photo.title}}</button>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
 
                 <div class="" id="unit-details-pins-container" style="z-index:1000;">
                     <div id="panel-container">
@@ -50,47 +48,48 @@
                             Floor Plan
                         </div>
                         <div class="" style="margin: 0 auto; width:325px">
-                            <img src="https://s3.amazonaws.com/equirect-photos/Unit+511/floorplan.png" alt="" id='unit-details-floorplan-img'/>
+                            <img src="https://s3.amazonaws.com/equirect-photos/Unit+511/floorplan.png" alt="" id='unit-details-floorplan-img' />
                             <!--Bedroom  -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 7" ng-click='changePhoto(7)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 25%; left: 23%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 7" ng-click='changePhoto(7)' class="unit-details-floorplan-pin" alt="" style="width: 40px; height: 40px; cursor:pointer; top: 25%; left: 23%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 0" ng-click='changePhoto(0)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 60%; left: 19%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 0" ng-click='changePhoto(0)' class="unit-details-floorplan-pin" alt="" style="width: 40px; height: 40px; cursor:pointer; top: 60%; left: 19%;" />
                             <!--Bathroom  -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 2" ng-click='changePhoto(2)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 20%; left: 43%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 2" ng-click='changePhoto(2)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 20%; left: 43%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 1" ng-click='changePhoto(1)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 56%; left: 41%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 1" ng-click='changePhoto(1)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 56%; left: 41%;" />
                             <!--Bathroom 2  -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 8" ng-click='changePhoto(8)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 60%; left: 19%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 8" ng-click='changePhoto(8)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 60%; left: 19%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 2" ng-click='changePhoto(2)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 62%; left: 55%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 2" ng-click='changePhoto(2)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 62%; left: 55%;" />
                             <!--Kitchen  -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 0" ng-click='changePhoto(0)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 68%; left: 38%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 0" ng-click='changePhoto(0)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 68%; left: 38%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 3" ng-click='changePhoto(3)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 44%; left: 59%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 3" ng-click='changePhoto(3)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 44%; left: 59%;" />
                             <!--Living 1 -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 1" ng-click='changePhoto(1)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 67%; left: 50%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 1" ng-click='changePhoto(1)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 67%; left: 50%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 4" ng-click='changePhoto(4)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 63%; left: 71%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 4" ng-click='changePhoto(4)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 63%; left: 71%;" />
                             <!--Living 2 -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 4" ng-click='changePhoto(4)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 60%; left: 68%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 4" ng-click='changePhoto(4)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 60%; left: 68%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 5" ng-click='changePhoto(5)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 46%; left: 75%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 5" ng-click='changePhoto(5)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 46%; left: 75%;" />
                             <!--Bedroom 1 -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 5" ng-click='changePhoto(5)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 47%; left: 69%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 5" ng-click='changePhoto(5)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 47%; left: 69%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 36%; left: 77%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 36%; left: 77%;" />
                             <!--Bedroom 12 -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 3" ng-click='changePhoto(3)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 16%; left: 65%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 3" ng-click='changePhoto(3)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 16%; left: 65%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 7" ng-click='changePhoto(7)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 25%; left: 25%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 7" ng-click='changePhoto(7)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 25%; left: 25%;" />
                             <!-- Entry -->
                             <!-- Entry -->
                             <!-- <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-click='changePhoto(3)'  class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 215px; left: 150px;" /> -->
                             <!-- Living/Dining -->
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 50%; left: 23%;"/>
-                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 6" ng-click='changePhoto(6)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 50%; left: 23%;"/>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 8" ng-click='changePhoto(8)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 15%; left: 38%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 8" ng-click='changePhoto(8)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 15%; left: 38%;" />
 
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 9" ng-click='changePhoto(9)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 47%; left: 22%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 9" ng-click='changePhoto(9)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 47%; left: 22%;" />
+
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-hide="photoIndex === 10" ng-click='changePhoto(10)' class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: 27%; left: 60%;" />
+                            <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === 10" ng-click='changePhoto(10)' class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 27%; left: 60%;" />
                         </div>
                     </div>
                     <!-- <img src="https://s3.amazonaws.com/equirect-photos/Unit+501/floorplan.png" style="" alt="" id='unit-details-floorplan-img'/> -->
                 </div>
-                <img
-                    src="public/assets/black.png"
-                    height="100%"
-                    width="100%"
-                    style="
+                <img src="public/assets/black.png" height="100%" width="100%" style="
                 opacity: 0;
                 position: absolute;Error: source does not appear to be markup.
                 left: 0;
