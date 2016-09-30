@@ -168,6 +168,7 @@ angular.module('MainApp')
                         data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
                         data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
                         data.demoWaterMarkOneBed.apartmentpubid = 'ccf9ac72-601e-427b-8898-7ca367cc86e1';
+                        data.demoWellington2Bed.apartmentpubid = '53508b28-caed-4958-99a9-ef1b89b3c70d';
                         data.demoGreenWay0404.apartmentpubid = 'f78a349b-96b8-4b83-b470-7df789bebf32';
                         data.demoGreenWay0503.apartmentpubid = 'c87a0162-27f1-4862-ae4e-32c4f74f1c0d';
                         data.demoGreenWay0512.apartmentpubid = '07c5e21f-d7c9-4ae6-83b8-a8b0d88492c7';
