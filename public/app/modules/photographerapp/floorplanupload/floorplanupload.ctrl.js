@@ -1,8 +1,9 @@
 angular.module('PhotographerApp')
     .controller('FloorPlanUploadCtrl', ['$scope', function($scope) {
         AWS.config.update({
-            accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
-            secretAccessKey: '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'
+            accessKeyId: 'AKIAJ3OKI45M7I25XVNQ',
+            secretAccessKey: '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'
+
         });
         // AWS.config.region = 'us-east-1';
         var bucket = new AWS.S3({
