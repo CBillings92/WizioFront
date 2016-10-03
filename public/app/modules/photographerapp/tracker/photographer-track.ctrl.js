@@ -6,7 +6,7 @@ angular.module('PhotographerApp')
     .controller('PhotographerTrackCtrl', ['$scope', function($scope) {
         //set variables
         var address, floorplans;
-        $scope.media;
+        //$scope.media;
 
         //create object template
         var photo = {
@@ -43,5 +43,5 @@ angular.module('PhotographerApp')
 
         $scope.buttons = {
             addMedia: addMedia
-        }
+        };
   }]);

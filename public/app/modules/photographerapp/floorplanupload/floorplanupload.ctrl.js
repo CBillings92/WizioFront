@@ -5,14 +5,14 @@ angular.module('PhotographerApp')
             secretAccessKey: '/Kgh+Jq4up2HLEOVmkZuFF+x2O8ZKp4JH+N7JuJ+'
         });
         // AWS.config.region = 'us-east-1';
-        var bucket = new AWS.S3({
-            endpoint: 'http://cdn.wizio.co',
-            s3BucketEndpoint: true,
-            region: 'us-east-1',
-            // params: {
-            //     Bucket: 'equirect-photos'
-            // }
-        });
+        // var bucket = new AWS.S3({
+        //     endpoint: 'http://cdn.wizio.co',
+        //     s3BucketEndpoint: true,
+        //     region: 'us-east-1',
+        //     // params: {
+        //     //     Bucket: 'equirect-photos'
+        //     // }
+        // });
 
         var fileChooser = document.getElementById('file-chooser');
         var button = document.getElementById('upload-button');
@@ -35,4 +35,4 @@ angular.module('PhotographerApp')
                 results.innerHTML = 'Nothing to upload.';
             }
         }, false);
-    }])
+    }]);

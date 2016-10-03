@@ -42,6 +42,16 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Upload', {
+                    url: '/upload',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
+                            // controller: 'LandingPageCtrl'
+                            // controller: 'UnitMediaCtrl'
+                        }
+                    }
+                })
                 .state('Demo', {
                     url: '/demo',
                     views: {
