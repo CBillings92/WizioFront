@@ -45,8 +45,10 @@ angular.module('MainApp')
                 .state('Upload', {
                     url: '/upload',
                     views: {
+                        "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
+                            templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
                             // controller: 'LandingPageCtrl'
                             // controller: 'UnitMediaCtrl'
                         }
