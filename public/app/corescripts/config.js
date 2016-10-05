@@ -150,7 +150,7 @@ angular.module('MainApp')
                     },
                     demoRiversEdgeB1: {
                         apartmentpubid: null
-                    }
+                    },
                     apikey: null
                 };
 
