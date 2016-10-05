@@ -132,32 +132,32 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('DemoWaterMark04', {
-                    url: '/demo/watermark/04',
+                .state('DemoMetroMark04', {
+                    url: '/demo/metromark/04',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
-                .state('DemoWaterMark06', {
-                    url: '/demo/watermark/06',
+                .state('DemoMetroMark06', {
+                    url: '/demo/metromark/06',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
-                .state('DemoWaterMark12', {
-                    url: '/demo/watermark/12',
+                .state('DemoMetroMark12', {
+                    url: '/demo/metromark/12',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
-                .state('DemoWaterMark13', {
-                    url: '/demo/watermark/13',
+                .state('DemoMetroMark13', {
+                    url: '/demo/metromark/13',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
