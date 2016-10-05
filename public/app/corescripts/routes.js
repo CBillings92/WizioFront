@@ -164,7 +164,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoRiversEdgeB1', {
+                .state('DemoRiversEdgeB1', {
                     url: '/demo/riversedge/b1',
                     views: {
                         "maincontent": {
@@ -172,7 +172,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoRiversEdgeA2', {
+                .state('DemoRiversEdgeA2', {
                     url: '/demo/riversedge/a2',
                     views: {
                         "maincontent": {
@@ -180,7 +180,7 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('demoRiversEdgeA9', {
+                .state('DemoRiversEdgeA9', {
                     url: '/demo/riversedge/a9',
                     views: {
                         "maincontent": {
