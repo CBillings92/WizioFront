@@ -132,6 +132,46 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoWaterMark04', {
+                    url: '/demo/watermark/04',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoWaterMark06', {
+                    url: '/demo/watermark/06',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoWaterMark12', {
+                    url: '/demo/watermark/12',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoWaterMark13', {
+                    url: '/demo/watermark/13',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('demoRiversEdgeB1', {
+                    url: '/demo/riversedge/b1',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
