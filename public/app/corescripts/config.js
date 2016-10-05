@@ -201,8 +201,8 @@ angular.module('MainApp')
                         data.demoMetroMark12.apartmentpubid = '89beaef2-8864-4488-8ecb-be81ccf6b7e7';
                         data.demoMetroMark13.apartmentpubid = '38b4b736-f7dc-4da0-ad9c-94899d516db9';
                         data.demoRiversEdgeB1.apartmentpubid = '4384fc6d-967f-429c-8894-2e38fde18e54';
-                        data.demoRiversEdgeA2.apartmentpubid = '4384fc6d-967f-429c-8894-2e38fde18e54';
-                        data.demoRiversEdgeA9.apartmentpubid = '987f8160-8229-4a79-b51d-d17975f01804';
+                        data.demoRiversEdgeA2.apartmentpubid = '987f8160-8229-4a79-b51d-d17975f01804';
+                        data.demoRiversEdgeA9.apartmentpubid = 'b6aae3d0-2ada-40ca-91c1-54ab87dde49e';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
