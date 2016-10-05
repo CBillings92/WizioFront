@@ -172,6 +172,22 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('demoRiversEdgeA2', {
+                    url: '/demo/riversedge/a2',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('demoRiversEdgeA9', {
+                    url: '/demo/riversedge/a9',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
