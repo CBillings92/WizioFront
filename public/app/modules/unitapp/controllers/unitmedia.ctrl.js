@@ -80,7 +80,7 @@ angular.module('UnitApp')
                 apitoken=WizioConfig.static_vr.apikey;
             }
             else if (state === 'DemoWaterMarkOneBed'){
-                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBe.apartmentpubid;
+                apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
             }
             else if (state === 'DemoMetroMark04'){
