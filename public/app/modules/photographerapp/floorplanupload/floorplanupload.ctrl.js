@@ -15,36 +15,40 @@ angular.module('PhotographerApp')
             region: 'us-east-1',
         });
 
-        //vanilla JS for uploading the photo
-        var fileChooser = document.getElementById('file-chooser');
-        var button = document.getElementById('upload-button');
-        var results = document.getElementById('results');
-        button.addEventListener('click', function() {
-            var file = fileChooser.files[0];
-            if (file) {
-                results.innerHTML = '';
-
-                var params = {
-                    Bucket: 'equirect-photos',
-                    Key: file.name,
-                    ContentType: file.type,
-                    Body: file
-                };
-                bucket.putObject(params, function(err, data) {
-                    results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
-                    console.dir(data);
-                });
-            } else {
-                results.innerHTML = 'Nothing to upload.';
-            }
-        }, false);
+        // //vanilla JS for uploading the photo
+        // var fileChooser = document.getElementById('file-chooser');
+        // var button = document.getElementById('upload-button');
+        // var results = document.getElementById('results');
+        // button.addEventListener('click', function() {
+        //     var file = fileChooser.files[0];
+        //     if (file) {
+        //         results.innerHTML = '';
+        //
+        //         var params = {
+        //             Bucket: 'equirect-photos',
+        //             Key: file.name,
+        //             ContentType: file.type,
+        //             Body: file
+        //         };
+        //         bucket.putObject(params, function(err, data) {
+        //             results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+        //             console.dir(data);
+        //         });
+        //     } else {
+        //         results.innerHTML = 'Nothing to upload.';
+        //     }
+        // }, false);
 
         //send apartemnt address and unit number to the backend
         function createAddress(){
-            $resource(apiurl + '/photographer/yadayadayada', {apartmentAddress: '@apartmentAddress', floorPlanModel: '@floorPlanModel'})
-            .save({apartmentAddress: apartmentAddress, floorPlanModel: floorPlanModel}, function(response){
+            $resource(apiurl + 'unit')
+            .save({apartmentAddress: '176 Amory Street Jamaica Plain', floorPlanModel: '2'}, function(response){
                 console.dir('inResponse');
             })
+        }
+
+        $scope.functions = {
+            saveForm: createAddress
         }
         //get the google maps corrected data
         //save it to the database
