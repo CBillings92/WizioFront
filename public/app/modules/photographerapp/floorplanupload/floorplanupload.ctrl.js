@@ -1,6 +1,12 @@
 angular.module('PhotographerApp')
-    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', function($scope, $resource, WizioConfig) {
-        var apartmentAddress, floorPlanModel, apiurl;
+    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', function($scope, $resource, WizioConfig,$q) {
+        var apiurl;
+        $scope.apartment = {
+            address: null,
+            floorPlanModel: null
+        }
+
+        var fileChooser = document.getElementById('file-chooser');
 
         apiurl = WizioConfig.baseAPIURL;
         //config the AWS object in the global scope
@@ -14,36 +20,45 @@ angular.module('PhotographerApp')
             s3BucketEndpoint: true,
             region: 'us-east-1',
         });
+        function saveFloorPlanToS3(key) {
+            return new $q(function(resolve, reject){
+                var file = fileChooser.files[0];
+                if (file) {
+                    results.innerHTML = '';
 
+                    var params = {
+                        Bucket: 'equirect-photos',
+                        Key: key,
+                        ContentType: file.type,
+                        Body: file
+                    };
+                    bucket.putObject(params, function(err, data) {
+                        results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+                        console.dir(data);
+                        resolve(data);
+                    });
+                } else {
+                    results.innerHTML = 'Nothing to upload.';
+                    reject('err');
+                }
+            })
+        }
         // //vanilla JS for uploading the photo
-        // var fileChooser = document.getElementById('file-chooser');
         // var button = document.getElementById('upload-button');
         // var results = document.getElementById('results');
         // button.addEventListener('click', function() {
-        //     var file = fileChooser.files[0];
-        //     if (file) {
-        //         results.innerHTML = '';
-        //
-        //         var params = {
-        //             Bucket: 'equirect-photos',
-        //             Key: file.name,
-        //             ContentType: file.type,
-        //             Body: file
-        //         };
-        //         bucket.putObject(params, function(err, data) {
-        //             results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
-        //             console.dir(data);
-        //         });
-        //     } else {
-        //         results.innerHTML = 'Nothing to upload.';
-        //     }
         // }, false);
 
         //send apartemnt address and unit number to the backend
         function createAddress(){
             $resource(apiurl + 'unit')
-            .save({apartmentAddress: '176 Amory Street Jamaica Plain', floorPlanModel: '2'}, function(response){
-                console.dir('inResponse');
+            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
+                var key = response.pubid + '/floorplan.png';
+                saveFloorPlanToS3(key)
+                    .then(function(response){
+                        alert('finished');
+                    })
+
             })
         }
 
