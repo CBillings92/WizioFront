@@ -17,6 +17,7 @@ angular.module('Directives')
                     $state.current.name === 'DemoGreenWay1401' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1401.view.html' :
                     $state.current.name === 'DemoGreenWay1209' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1209.view.html' :
                     $state.current.name === 'DemoGreenWay1707' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1707.view.html' :
+                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html'
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;

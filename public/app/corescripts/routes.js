@@ -136,8 +136,7 @@ angular.module('MainApp')
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
-                            controller: 'UnitMediaCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
                         }
                     },
                     data: falseRequiredLogin
