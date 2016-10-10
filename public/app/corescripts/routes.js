@@ -204,6 +204,38 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoStationLanding2', {
+                    url: '/demo/stationlanding/2',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding24W', {
+                    url: '/demo/stationlanding/24w',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding26E', {
+                    url: '/demo/stationlanding/24w',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLandingStudioA', {
+                    url: '/demo/stationlanding/24w',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
