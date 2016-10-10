@@ -49,7 +49,7 @@ angular.module('MainApp')
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
-                            // controller: 'LandingPageCtrl'
+                             controller: 'UploadPageCtrl'
                             // controller: 'UnitMediaCtrl'
                         }
                     }

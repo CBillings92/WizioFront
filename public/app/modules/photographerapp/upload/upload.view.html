@@ -1,17 +1,19 @@
-<div >
+<div>
         <div class="text-center">
-            <input type="text" placeholder="Search for unit"></input>
-            <div id="filter-results"> stuff goes here</div>
-            <p>Building Address and Unit Number</p>
-            <img id="floorplan" src="http://placekitten.com/g/800/400">
+            <input ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit"></input>
+            <br>
+            <div ng-hide="searchText.concatAddr == null " ng-repeat= "unit in units | filter:searchText" ng-init="index = $index">
+                <p>{{unit.unitNum}}</p>
+                <img id="floorplan" ng-src="{{unit.Floor_Plan}}">
+            </div>
     </div>
     <div class="col-md-6 col-md-offset-4" style="padding-top:25px;">
         <div style="width:50%; float:left">
             <p>Amenties Uploaded:</p>
-            <p>Put ng-repeat here</p>
+            <p ng-repeat="unit in units track by $index">{{unit}}</p>
         </div>
         <div style="width:50%; float:left">
-            <button >Add Amenity</button>
+            <button class="btn btn--cta btn-lg">Add Amenity</button>
         </div>
     </div>
 </div>
