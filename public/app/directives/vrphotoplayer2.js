@@ -29,7 +29,7 @@ angular.module('Directives')
                     $state.current.name === 'DemoStationLanding2' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding2.view.html' :
                     $state.current.name === 'DemoStationLanding24W' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding24W.view.html' :
                     $state.current.name === 'DemoStationLanding26E' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding26E.view.html' :
-                    $state.current.name === 'DemoStationLandingStudioA' ?  'public/app/modules/unitapp/viewtemplates/demoStationLandingStudioA.view.html' :
+                    $state.current.name === 'DemoStationLandingStudioB' ?  'public/app/modules/unitapp/viewtemplates/demoStationLandingStudioB.view.html' :
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;
