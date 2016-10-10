@@ -188,12 +188,27 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoStationLanding1', {
+                    url: '/demo/stationlanding/1',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding1C', {
+                    url: '/demo/stationlanding/1c',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
-                            controller: 'UnitMediaCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
                         }
                     },
                     data: falseRequiredLogin

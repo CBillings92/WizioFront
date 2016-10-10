@@ -111,6 +111,14 @@ angular.module('UnitApp')
                 apartmentpubid = WizioConfig.static_vr.demoRiversEdgeA9.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
             }
+            else if (state === 'DemoStationLanding1'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding1.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding1C'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding1C.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
             else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;

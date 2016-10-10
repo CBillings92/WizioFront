@@ -157,6 +157,12 @@ angular.module('MainApp')
                     demoRiversEdgeA9: {
                         apartmentpubid: null
                     },
+                    demoStationLanding1: {
+                        apartmentpubid: null
+                    },
+                    demoStationLanding1C: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -203,6 +209,8 @@ angular.module('MainApp')
                         data.demoRiversEdgeB1.apartmentpubid = '4384fc6d-967f-429c-8894-2e38fde18e54';
                         data.demoRiversEdgeA2.apartmentpubid = '987f8160-8229-4a79-b51d-d17975f01804';
                         data.demoRiversEdgeA9.apartmentpubid = 'b6aae3d0-2ada-40ca-91c1-54ab87dde49e';
+                        data.demoStationLanding1.apartmentpubid = 'e3cc5db2-ebf8-473c-8696-0c21d9caa3d2';
+                        data.demoStationLanding1C.apartmentpubid = '57934872-c858-43a3-b69f-60b33985963a';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
