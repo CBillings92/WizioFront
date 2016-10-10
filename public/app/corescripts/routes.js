@@ -221,7 +221,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('DemoStationLanding26E', {
-                    url: '/demo/stationlanding/24w',
+                    url: '/demo/stationlanding/26e',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
@@ -229,7 +229,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('DemoStationLandingStudioA', {
-                    url: '/demo/stationlanding/24w',
+                    url: '/demo/stationlanding/studioa',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
