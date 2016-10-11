@@ -236,6 +236,38 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoEddyD', {
+                    url: '/demo/theeddy/d',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyBB', {
+                    url: '/demo/theeddy/bb',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyCC', {
+                    url: '/demo/theeddy/cc',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyK', {
+                    url: '/demo/theeddy/k',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {

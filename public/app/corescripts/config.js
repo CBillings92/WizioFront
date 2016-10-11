@@ -175,6 +175,18 @@ angular.module('MainApp')
                     demoStationLandingStudioB: {
                         apartmentpubid: null
                     },
+                    demoEddyD: {
+                        apartmentpubid: null
+                    },
+                    demoEddyBB: {
+                        apartmentpubid: null
+                    },
+                    demoEddyCC: {
+                        apartmentpubid: null
+                    },
+                    demoEddyK: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -227,6 +239,10 @@ angular.module('MainApp')
                         data.demoStationLanding24W.apartmentpubid = '29ed2132-0a02-4205-91d8-e30d23378f0d';
                         data.demoStationLanding26E.apartmentpubid = 'adaea09c-69ae-4aed-a11b-33a697f32304';
                         data.demoStationLandingStudioB.apartmentpubid = 'af7b3c43-44d7-4ee5-8183-ce5b7ee3677f';
+                        data.demoEddyD.apartmentpubid = 'a0dde313-fe71-4988-adc1-a187b943625f';
+                        data.demoEddyBB.apartmentpubid = 'c08f0dbc-6910-4c7e-9084-af5351696653';
+                        data.demoEddyCC.apartmentpubid = '6e9049a5-a823-4ccb-b625-8fe7616afdcc';
+                        data.demoEddyK.apartmentpubid = '110a0962-172d-4c81-b85a-3276070053c2';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
