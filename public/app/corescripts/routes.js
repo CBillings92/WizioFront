@@ -132,6 +132,15 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('NewExternalApi' ,{
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                        }
+                    },
+                    data: falseRequiredLogin
+                })
                 .state('Externalapi', {
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {

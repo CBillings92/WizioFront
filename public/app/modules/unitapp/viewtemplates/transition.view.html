@@ -21,7 +21,7 @@
                         <div class="">
                             <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'"  ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
                             margin: 10px; z-index:1200; cursor: pointer;
-                            ">{{photo.title}}</button>
+                            ">{{photo.title}}</button>ng-repeat="photo in media.vrphoto track by $index"
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                         <div class="" style="margin: 0 auto; width: 325px">
                             <img src="{{unit.Floor_Plan}}" id="unit-details-floorplan-img" alt="" />
 
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-click="changePhoto($index)" style="cursor: pointer; top: {{unit.media[$index].y}}; left: {{unit.media[$index].x}}" ng-repeat="photo in unit.media track by $index" alt="" />
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-click="changePhoto($index)" style="cursor: pointer; top: {{unit.media[$index].y}}; left: {{unit.media[$index].x}}" ng-repeat="photo in media.vrphoto track by $index" alt="" />
                         </div>
                     </div>
 
