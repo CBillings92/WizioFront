@@ -3,7 +3,7 @@ angular.module('Directives')
         function($state) {
             return {
                 restrict: 'E',
-                controller: 'UnitMediaCtrl',
+                controller: 'TransitionUnitMediaCtrl',
                 templateUrl: 'public/app/modules/unitapp/viewtemplates/transition.view.html',
                 link: function(scope, elem, attr) {
                     scope.noPan = true;

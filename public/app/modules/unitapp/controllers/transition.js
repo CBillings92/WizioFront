@@ -1,5 +1,5 @@
 angular.module('UnitApp')
-.controller('UnitMediaCtrl', [
+.controller('TransitionUnitMediaCtrl', [
     '$scope',
     '$rootScope',
     '$state',
@@ -10,6 +10,7 @@ angular.module('UnitApp')
     'ModalSvc',
     function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
         // floor plan animation
+        console.dir('in controller"');
         var panelContainer;
         $scope.selectPhoto = false;
         var panelOpened = false;
@@ -39,10 +40,18 @@ angular.module('UnitApp')
         var apitoken;
         //
         //get parameters from URL
-        apitoken = $state.params.apitoken;
-        apartmentpubid = $state.params.apartmentpubid;
-        //
-        //this should be moved into a factory
+        switch (state) {
+            case 'LandingPage':
+                apitoken = WizioConfig.static_vr.apikey;
+                apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+                break;
+            case 'Demo':
+                apitoken = WizioConfig.static_vr.apikey;
+                apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
+            default:
+                apitoken = $state.params.apitoken;
+                apartmentpubid = $state.params.apartmentpubid;
+        }
         $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
             apitoken: '@apitoken',
             apartmentid: '@apartmentid',
@@ -50,7 +59,10 @@ angular.module('UnitApp')
             apitoken: apitoken,
             apartmentid: apartmentpubid
         }, function(result) {
+            console.dir(result);
+            console.dir(lodash.groupBy);
             var media = lodash.groupBy(result, 'type');
+            console.dir(media);
             $scope.media = media;
             var photoIndex;
             if(state === 'LandingPage'){
