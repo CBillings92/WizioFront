@@ -1,19 +1,22 @@
 <div>
-        <div class="text-center">
-            <input ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit"></input>
-            <br>
-            <div ng-hide="searchText.concatAddr == null " ng-repeat= "unit in units | filter:searchText" ng-init="index = $index">
-                <p>{{unit.unitNum}}</p>
-                <img id="floorplan" ng-src="{{unit.Floor_Plan}}">
-            </div>
-    </div>
+    <input ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit"></input>
     <div class="col-md-6 col-md-offset-4" style="padding-top:25px;">
         <div style="width:50%; float:left">
             <p>Amenties Uploaded:</p>
-            <p ng-repeat="unit in units track by $index">{{unit}}</p>
+            <p ng-repeat="unit in units track by $index" ng-click="loadFloorplan(this)">{{unit.concatAddr}}</p>
         </div>
         <div style="width:50%; float:left">
             <button class="btn btn--cta btn-lg">Add Amenity</button>
         </div>
+    </div>
+    <div class="text-center">
+        <br>
+        <div ng-hide="searchText.concatAddr == null " ng-repeat= "unit in units | filter:searchText" ng-init="index = $index">
+            <p>{{unit.unitNum}}</p>
+
+        </div>
+    </div>
+    <div>
+        <img id="floorplan" src="{{selectedFloorplan}}" alt="">
     </div>
 </div>
