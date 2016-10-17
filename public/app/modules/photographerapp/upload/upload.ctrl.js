@@ -5,6 +5,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     function($scope, $resource, WizioConfig) {
         var units;
         var selectedUnit;
+        $scope.pins = [];
         //
         // $resource(WizioConfig.baseAPIURL + '/apartment/uploadtool').get(function(response) {
         // });
@@ -28,13 +29,20 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
             selectedUnit = subScope.unit
         }
-        document.getElementById('floorplan').addEventListener('click', function(e){
+        function createPin(e){
             console.dir(e);
-            var x = e.pageX - this.offsetLeft;
-            var y = e.pageY - this.offsetTop;
-            console.log("x =" + ((x/e.srcElement.clientWidth)*100).toFixed(2));
-            console.log("y =" + ((y/e.srcElement.clientHeight)*100).toFixed(2));
-        })
+            var x = (((e.offsetX - 17)/e.srcElement.clientWidth)*100).toFixed(2);
+            var y = (((e.offsetY - 35)/e.srcElement.clientHeight)*100).toFixed(2);
+            var pin = {
+                x: x,
+                y: y
+            }
+            console.dir($scope.pins);
+            $scope.pins.push(pin);
+            $scope.$apply();
+            return;
+        }
+        document.getElementById('floorplan').addEventListener('click',createPin);
 
     }
 ]);

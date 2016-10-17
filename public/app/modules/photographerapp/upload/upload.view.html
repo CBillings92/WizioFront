@@ -1,6 +1,6 @@
 <div>
     <input ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit"></input>
-    <div class="col-md-6 col-md-offset-4" style="padding-top:25px;">
+    <div class="col-md-8 col-md-offset-4" style="padding-top:25px;">
         <div style="width:50%; float:left">
             <p>Amenties Uploaded:</p>
             <p ng-repeat="unit in units track by $index" ng-click="loadFloorplan(this)">{{unit.concatAddr}}</p>
@@ -16,7 +16,8 @@
 
         </div>
     </div>
-    <div>
+    <div style="display: inline-block; position: relative;">
         <img id="floorplan" src="{{selectedFloorplan}}" alt="">
+        <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt="" style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;"/>
     </div>
 </div>
