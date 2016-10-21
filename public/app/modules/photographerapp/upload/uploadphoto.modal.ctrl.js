@@ -4,13 +4,14 @@ angular.module('PhotographerApp')
         'ModalSvc',
         '$uibModalInstance',
         function($scope, ModalSvc, $uibModalInstance) {
+            $scope.disabled = true;
             $scope.ok = function(){
                 return $uibModalInstance.close('ok');
             }
-            AWS.config.update({
-                accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
-                secretAccessKey: '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'
-            });
+
+            // $scope.$on('doneUploadingPhoto', function(event, data){
+            //     $scope.disabled = false;
+            // })
             // AWS.config.region = 'us-east-1';
             // var bucket = new AWS.S3({
             //     endpoint: 'http://cdn.wizio.co',
