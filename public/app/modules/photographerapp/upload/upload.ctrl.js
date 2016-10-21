@@ -2,7 +2,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     '$scope',
     '$resource',
     'WizioConfig',
-    function($scope, $resource, WizioConfig) {
+    'ModalBuilderFct',
+    function($scope, $resource, WizioConfig, ModalBuilderFct) {
         var units;
         var selectedUnit;
         $scope.pins = [];
@@ -29,19 +30,48 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
             selectedUnit = subScope.unit
         }
+
+        //for removing pins placed already.
+        function removePin(e){
+            console.dir(e.srcElement.id);
+            var onlyNumbersPattern = /\d+/g
+            var index = e.srcElement.id.match(onlyNumbersPattern);
+            ModalBuilderFct.buildComplexModal(
+                    'md',
+                    'public/app/modules/photographerapp/upload/remove-pin.modal.view.html',
+                    'RemovePinModalCtrl',
+                    $scope.pins
+                )
+                .then(function(result) {
+                    if(result === 'ok'){
+                        var pinIndex = $scope.pins.splice(index,1);
+                        // $scope.$apply()
+                        return result;
+                    }
+                });
+        }
+
         function createPin(e){
-            console.dir(e);
             var x = (((e.offsetX - 17)/e.srcElement.clientWidth)*100).toFixed(2);
             var y = (((e.offsetY - 35)/e.srcElement.clientHeight)*100).toFixed(2);
             var pin = {
                 x: x,
                 y: y
             }
-            console.dir($scope.pins);
             $scope.pins.push(pin);
             $scope.$apply();
-            return;
+            ModalBuilderFct.buildComplexModal(
+                    'md',
+                    'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html',
+                    'UploadPhotoModalCtrl'
+                )
+                .then(function(result) {
+                    var pinIndex = $scope.pins.length - 1;
+                    document.getElementById('pin_' + pinIndex).addEventListener('click', removePin);
+                    return result;
+                });
         }
+        console.dir("why");
         document.getElementById('floorplan').addEventListener('click',createPin);
 
     }

@@ -18,6 +18,6 @@
     </div>
     <div style="display: inline-block; position: relative;">
         <img id="floorplan" src="{{selectedFloorplan}}" alt="">
-        <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt="" style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;"/>
+        <img src="public/viewtemplates/images/brand_assets/map_pin.png" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt="" style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;"/>
     </div>
 </div>

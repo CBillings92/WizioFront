@@ -4,24 +4,25 @@ angular.module('SharedFactoryApp')
         '$q',
         function(ModalSvc, $q) {
             function buildModalWithController(size, templateUrl, controller, modalData) {
-                var modalObj = {
-                    backdrop: true,
-                    keyboard: true,
-                    modalFade: true,
-                    size: size,
-                    templateUrl: templateUrl,
-                    controller: controller,
-                    resolve: {
-                        modalData: function() {
-                            return modalData;
+                return new $q(function(resolve, reject){
+                    var modalObj = {
+                        backdrop: true,
+                        keyboard: true,
+                        modalFade: true,
+                        size: size,
+                        templateUrl: templateUrl,
+                        controller: controller,
+                        resolve: {
+                            modalData: function() {
+                                return modalData;
+                            }
                         }
-                    }
-                };
-                ModalSvc.showModal(modalObj, {})
+                    };
+                    ModalSvc.showModal(modalObj, {})
                     .then(function (response) {
                         resolve(response);
                     });
-                return modalObj;
+                })
             }
 
             function buildModalWithNoController(closeBtnText, actionBtnText, headerText, bodyText) {
