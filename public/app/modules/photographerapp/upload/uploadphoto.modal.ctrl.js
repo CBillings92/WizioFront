@@ -20,26 +20,27 @@ angular.module('PhotographerApp')
             //     //     Bucket: 'equirect-photos'
             //     // }
             // });
-            var fileChooser = document.getElementById('file-chooser');
-            var button = document.getElementById('upload-button');
-            var results = document.getElementById('results');
-            button.addEventListener('click', function() {
-                var file = fileChooser.files[0];
-                if (file) {
-                    results.innerHTML = '';
-
-                    var params = {
-                        Bucket: 'equirect-photos',
-                        Key: file.name,
-                        ContentType: file.type,
-                        Body: file
-                    };
-                    bucket.putObject(params, function(err, data) {
-                        results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
-                    });
-                } else {
-                    results.innerHTML = 'Nothing to upload.';
-                }
-            }, false);
+            // var fileChooser = document.getElementById('file-chooser');
+            // var button = document.getElementById('upload-button');
+            // var results = document.getElementById('results');
+            // console.dir(document);
+            // button.addEventListener('click', function() {
+            //     var file = fileChooser.files[0];
+            //     if (file) {
+            //         results.innerHTML = '';
+            //
+            //         var params = {
+            //             Bucket: 'equirect-photos',
+            //             Key: file.name,
+            //             ContentType: file.type,
+            //             Body: file
+            //         };
+            //         bucket.putObject(params, function(err, data) {
+            //             results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
+            //         });
+            //     } else {
+            //         results.innerHTML = 'Nothing to upload.';
+            //     }
+            // }, false);
         }
     ])
