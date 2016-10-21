@@ -1,33 +1,10 @@
 angular.module('Directives')
-    .directive('newVrPhotoPlayerDirv', [ '$state',
+    .directive('transitionVrPlayerDirv', [ '$state',
         function($state) {
             return {
                 restrict: 'E',
                 controller: 'UnitMediaCtrl',
-                templateUrl: $state.current.name ===
-                    'LandingPage' ? 'public/app/modules/unitapp/viewtemplates/landingpagedemo.view.html' :
-                    $state.current.name === 'Demo' ? 'public/app/modules/unitapp/viewtemplates/demo.views.html' :
-                    $state.current.name === "DemoOneBackBay" ? 'public/app/modules/unitapp/viewtemplates/demoOneBackBay.views.html':
-                    $state.current.name === 'DemoGreenStreet' ? 'public/app/modules/unitapp/viewtemplates/demoGreenStreet.views.html' :
-                    $state.current.name === 'DemoWellington2Bed' ? 'public/app/modules/unitapp/viewtemplates/demoWellington2bed.view.html' :
-                    $state.current.name === 'DemoWaterMarkOneBed' ? 'public/app/modules/unitapp/viewtemplates/demoWaterMarkOneBed.view.html' :
-                    $state.current.name === 'DemoGreenWay0404' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0404.view.html' :
-                    $state.current.name === 'DemoGreenWay0503' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0503.view.html' :
-                    $state.current.name === 'DemoGreenWay0512' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0512.view.html' :
-                    $state.current.name === 'DemoGreenWay1401' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1401.view.html' :
-                    $state.current.name === 'DemoGreenWay1209' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1209.view.html' :
-                    $state.current.name === 'DemoGreenWay1707' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1707.view.html' :
-                    $state.current.name === 'DemoMetroMark04' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark04.view.html' :
-                    $state.current.name === 'DemoMetroMark06' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark06.view.html' :
-                    $state.current.name === 'DemoMetroMark12' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark12.view.html' :
-                    $state.current.name === 'DemoMetroMark13' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark13.view.html' :
-                    $state.current.name === 'DemoRiversEdgeB1' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeB1.view.html' :
-                    $state.current.name === 'DemoRiversEdgeA2' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA2.view.html' :
-                    $state.current.name === 'DemoRiversEdgeA9' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA9.view.html' :
-                    $state.current.name === 'DemoStationLanding1' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1.view.html' :
-                    $state.current.name === 'DemoStationLanding1C' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1C.view.html' :
-                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html':
-                    null,
+                templateUrl: 'public/app/modules/unitapp/viewtemplates/transition.view.html',
                 link: function(scope, elem, attr) {
                     scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;

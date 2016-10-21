@@ -6,26 +6,21 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     function($scope, $resource, WizioConfig, ModalBuilderFct) {
         var units;
         var selectedUnit;
+        $scope.photoTitle;
         $scope.pins = [];
-        //
-        // $resource(WizioConfig.baseAPIURL + '/apartment/uploadtool').get(function(response) {
-        // });
-        var response = [
-            {
-                id: 1,
-                concatAddr: "2 Huntington",
-                unitNum: 10,
-                pubid: 1234,
-                Floor_Plan: "http://placekitten.com/g/600/400"
-            }, {
-                id: 2,
-                concatAddr: "130 Maple Ave",
-                unitNum: 2,
-                pubid: 12345,
-                Floor_Plan: "http://placekitten.com/g/400/600"
-            }
-        ];
-        $scope.units = response;
+
+        $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5', {
+            id: '@id',
+            pubid: '@pubid',
+            concatAddr: '@concatAddr',
+            unitNum: '@unitNum',
+            Floor_Plan: '@Floor_Plan',
+        }).query({id: 'id', pubid: 'pubid', concatAddr: 'concatAddr', unitNum: 'unitNum', Floor_Plan: "Floor_Plan"}, function(response){
+            console.dir(response);
+            $scope.units=response;
+        })
+
+
         $scope.loadFloorplan = function(subScope){
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
             selectedUnit = subScope.unit
@@ -56,14 +51,21 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             var y = (((e.offsetY - 35)/e.srcElement.clientHeight)*100).toFixed(2);
             var pin = {
                 x: x,
-                y: y
+                y: y,
+                apartmentpubid: selectedUnit.pubid,
+                isUnit: 1,
+                type: 'vrphoto',
+                title: null,
+                awsurl: 'http://cdn.wizio.co/' + selectedUnit.pubid + '/',
+                ApartmentId: selectedUnit.id
             }
             $scope.pins.push(pin);
             $scope.$apply();
             ModalBuilderFct.buildComplexModal(
                     'md',
                     'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html',
-                    'UploadPhotoModalCtrl'
+                    'UploadPhotoModalCtrl',
+                    pin
                 )
                 .then(function(result) {
                     var pinIndex = $scope.pins.length - 1;

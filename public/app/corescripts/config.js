@@ -136,6 +136,33 @@ angular.module('MainApp')
                     demoGreenWay1707: {
                         apartmentpubid: null
                     },
+                    demoMetroMark04: {
+                        apartmentpubid: null
+                    },
+                    demoMetroMark06: {
+                        apartmentpubid: null
+                    },
+                    demoMetroMark12: {
+                        apartmentpubid: null
+                    },
+                    demoMetroMark13: {
+                        apartmentpubid: null
+                    },
+                    demoRiversEdgeB1: {
+                        apartmentpubid: null
+                    },
+                    demoRiversEdgeA2: {
+                        apartmentpubid: null
+                    },
+                    demoRiversEdgeA9: {
+                        apartmentpubid: null
+                    },
+                    demoStationLanding1: {
+                        apartmentpubid: null
+                    },
+                    demoStationLanding1C: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -175,6 +202,15 @@ angular.module('MainApp')
                         data.demoGreenWay1209.apartmentpubid = 'f341d89a-5574-4dbc-a786-cf931ee89620';
                         data.demoGreenWay1401.apartmentpubid = 'ae6fa9b3-34b5-4010-9de3-8f006eea9ca2';
                         data.demoGreenWay1707.apartmentpubid = 'dae5df4c-6149-4bec-82f3-a12c4dd5c067';
+                        data.demoMetroMark04.apartmentpubid = '40391eab-8c85-4e12-ac58-296bff64cc98';
+                        data.demoMetroMark06.apartmentpubid = '4a8f7cf5-21cf-4665-b472-72faf83fb583';
+                        data.demoMetroMark12.apartmentpubid = '89beaef2-8864-4488-8ecb-be81ccf6b7e7';
+                        data.demoMetroMark13.apartmentpubid = '38b4b736-f7dc-4da0-ad9c-94899d516db9';
+                        data.demoRiversEdgeB1.apartmentpubid = '4384fc6d-967f-429c-8894-2e38fde18e54';
+                        data.demoRiversEdgeA2.apartmentpubid = '987f8160-8229-4a79-b51d-d17975f01804';
+                        data.demoRiversEdgeA9.apartmentpubid = 'b6aae3d0-2ada-40ca-91c1-54ab87dde49e';
+                        data.demoStationLanding1.apartmentpubid = 'e3cc5db2-ebf8-473c-8696-0c21d9caa3d2';
+                        data.demoStationLanding1C.apartmentpubid = '57934872-c858-43a3-b69f-60b33985963a';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';
