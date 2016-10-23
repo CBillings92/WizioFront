@@ -1,23 +1,22 @@
 <div class="row">
     <div class="form-group">
-        <form ng-submit="functions.saveForm()" id="upload-floorplan-form">
+        <form id="upload-floorplan-form" ng-submit="functions.saveForm()">
         <div class="col-md-3">
             <label class="control-label" for="apartmentAddress">Apartment Address</label>
-            <input type="text" class="form-control" name="apartmentAddress" ng-model="apartment.address" style="border: 1px solid black" />
+            <input type="text" class="form-control" name="apartmentAddress" ng-model="apartment.address" style="border: 1px solid black" required>
         </div>
         <div class="col-md-2">
             <label class="control-label" for="apartmentAddress">Floor Plan</label>
-            <input type="text" class="form-control" name="apartmentAddress" ng-model="apartment.floorPlanModel" style="border: 1px solid black" />
+            <input type="text" class="form-control" name="apartmentAddress" ng-model="apartment.floorPlanModel" style="border: 1px solid black" required/>
         </div>
         <div class="col-md-3">
             <label for="" class="control-label">Choose Floor Plan</label>
-            <input type="file" id="file-chooser" class="btn form-control" />
+            <input type="file" id="file-chooser" class="btn form-control" required/>
         </div>
         <div class="col-md-4">
             <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
-            <button class="btn" id="upload-button" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Save Floorplan</button>
-            <div id="re
-            sults"></div>
+            <button class="btn" id="upload-button" type="submit" form="upload-floorplan-form"  style="margin-top: 20px;">Save Floorplan</button>
+            <div id="results"></div>
         </div>
     </form>
     </div>
