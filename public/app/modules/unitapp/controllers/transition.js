@@ -9,17 +9,16 @@ angular.module('UnitApp')
     'lodash',
     'ModalSvc',
     function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
-        // floor plan animation
-        console.dir('in controller"');
-        var panelContainer;
-        $scope.selectPhoto = false;
-        var panelOpened = false;
+        var panelContainer, apartmentpubid, apitoken;
         var state = $state.current.name;
-        if(state !== 'DemoGreenStreet'){
-            panelContainer = document.getElementById('panel-container');
-            panelContainer.addEventListener('click', togglePanel, false);
-        }
-        //
+        $scope.selectPhoto = false;
+        $scope.style = 'margin: 0 auto;';
+
+        panelContainer = document.getElementById('panel-container');
+        panelContainer.addEventListener('click', togglePanel, false);
+        // floor plan animation
+        var panelOpened = false;
+
         function togglePanel() {
             panelOpened = !panelOpened;
             if (panelOpened) {
@@ -31,14 +30,10 @@ angular.module('UnitApp')
             }
         }
         // end floorplan animation and controls
-        //
+
         // for loading CORS images....UGH
         $scope.trust = $sce;
-        //
-        //establish variables
-        var apartmentpubid;
-        var apitoken;
-        //
+
         //get parameters from URL
         switch (state) {
             case 'LandingPage':
@@ -48,6 +43,9 @@ angular.module('UnitApp')
             case 'Demo':
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
+                $scope.style = $scope.style + ' width:325px;';
+                console.dir($scope.style);
+                break;
             default:
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
@@ -59,11 +57,11 @@ angular.module('UnitApp')
             apitoken: apitoken,
             apartmentid: apartmentpubid
         }, function(result) {
-            console.dir(result);
-            console.dir(lodash.groupBy);
-            var media = lodash.groupBy(result, 'type');
-            console.dir(media);
-            $scope.media = media;
+            var media = result[0];
+            $scope.floorplan = result[1].Floor_Plan;
+            $scope.media = lodash.groupBy(media, 'type');
+
+            console.dir($scope.media);
             var photoIndex;
             if(state === 'LandingPage'){
                 //hardcoded
@@ -75,17 +73,17 @@ angular.module('UnitApp')
             } else {
                 photoIndex = 0;
             }
-            if (media.vrphoto[0].awsurl) {
+            if ($scope.media.vrphoto[0].awsurl) {
                 // $scope.media.vrphoto = vrphotos;
                 $scope.photoIndex = photoIndex;
-                $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
+                $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                 $scope.$broadcast('IMGLOAD', {
                     media: media
                 });
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoIndex = photoIndex;
-                    $scope.photoUrl = media.vrphoto[photoIndex].awsurl;
+                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {

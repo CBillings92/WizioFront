@@ -58,7 +58,7 @@ angular.module('MainApp')
                     url: '/demo',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
                             // controller: 'LandingPageCtrl'
                             // controller: 'UnitMediaCtrl'
                         }

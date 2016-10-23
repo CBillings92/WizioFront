@@ -16,11 +16,11 @@
                         <div class="" id="panel-text">
                             Floor Plan
                         </div>
-                        <div class="" style="margin: 0 auto; width: 325px">
-                            <!-- <img src="{{unit.Floor_Plan}}" id="unit-details-floorplan-img" alt="" /> -->
+                        <div ng-style="style">
+                            <img src="{{floorplan}}" id="unit-details-floorplan-img" alt="" />
                             <span ng-repeat="photo in media.vrphoto track by $index">
-                                <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                                <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" alt="" style="width: 45px; height: 45px; cursor: pointer; top: 11%; left: 55%;" />
+                                <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
+                                <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
 
                             </span>
                         </div>
