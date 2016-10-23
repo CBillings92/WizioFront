@@ -3,7 +3,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     '$resource',
     'WizioConfig',
     'ModalBuilderFct',
-    function($scope, $resource, WizioConfig, ModalBuilderFct) {
+    'lodash',
+    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash) {
         var units;
         var selectedUnit;
     //    $scope.photoTitle;
@@ -18,15 +19,33 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             unitNum: '@unitNum',
             Floor_Plan: '@Floor_Plan',
         }).query({id: 'id', pubid: 'pubid', concatAddr: 'concatAddr', unitNum: 'unitNum', Floor_Plan: "Floor_Plan"}, function(response){
-            console.dir(response);
+
+
+
             $scope.units=response;
         });
+
+
 
 
         $scope.loadFloorplan = function(subScope){
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
             selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
+
+            $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:pubid', {
+                apitoken: '@apitoken',
+                pubid: '@pubid'
+            }).query({apitoken: WizioConfig.static_vr.apikey, pubid: subScope.unit.pubid}, function(response){
+                console.dir(response);
+                var media = response[0];
+                console.dir(media);
+                $scope.media = lodash.groupBy(media, "isUnit");
+
+                console.dir($scope.media);
+                $scope.amenities=$scope.media.false;
+            });
+
         };
 
         //for removing pins placed already.
