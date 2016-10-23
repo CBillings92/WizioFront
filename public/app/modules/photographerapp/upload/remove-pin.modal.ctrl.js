@@ -7,5 +7,8 @@ angular.module('PhotographerApp')
             $scope.ok = function(){
                 return $uibModalInstance.close('ok');
             };
+            $scope.notok = function(){
+                return $uibModalInstance.close('notok');
+            };
         }
     ]);
