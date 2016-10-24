@@ -1,23 +1,21 @@
 <div>
-    <input ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit"></input>
     <div class="col-md-8 col-md-offset-4" style="padding-top:25px;">
         <div style="width:50%; float:left">
-            <p>Amenties Uploaded:</p>
-            <p ng-repeat="unit in units track by $index" ng-click="loadFloorplan(this)">{{unit.concatAddr}}</p>
+            <input style="width:250px;" ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit by address"></input>
+            <p ng-repeat="unit in units | filter:searchText" ng-click="loadFloorplan(this)"> Unit Num: {{unit.unitNum}}, at {{unit.concatAddr}}</p>
         </div>
-        <div style="width:50%; float:left">
-            <button class="btn btn--cta btn-lg">Add Amenity</button>
-        </div>
+
     </div>
     <div class="text-center">
         <br>
-        <div ng-hide="searchText.concatAddr == null " ng-repeat= "unit in units | filter:searchText" ng-init="index = $index">
-            <p>{{unit.unitNum}}</p>
-
-        </div>
     </div>
     <div style="display: inline-block; position: relative;">
         <img id="floorplan" src="{{selectedFloorplan}}" alt="">
         <img src="public/viewtemplates/images/brand_assets/map_pin.png" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt="" style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;"/>
+    </div>
+
+    <div style="padding:30px;" ng-show="showAmenityButton">
+        <button class="btn btn--cta btn-lg">Add Amenity</button>
+        <p ng-repeat="amenity in amenities"> {{amenity.title}}</p>
     </div>
 </div>
