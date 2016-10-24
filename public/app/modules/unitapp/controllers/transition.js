@@ -57,9 +57,12 @@ angular.module('UnitApp')
             apitoken: apitoken,
             apartmentid: apartmentpubid
         }, function(result) {
+            console.dir(result);
             var media = result[0];
             $scope.floorplan = result[1].Floor_Plan;
             $scope.media = lodash.groupBy(media, 'type');
+            console.dir('what the fuck reichard2');
+            // handleStyling($scope.media.vrphoto[0].apartmentpubid);
 
             console.dir($scope.media);
             var photoIndex;
@@ -73,6 +76,7 @@ angular.module('UnitApp')
             } else {
                 photoIndex = 0;
             }
+            console.dir('what the fuck reichard2');
             if ($scope.media.vrphoto[0].awsurl) {
                 // $scope.media.vrphoto = vrphotos;
                 $scope.photoIndex = photoIndex;
@@ -96,6 +100,19 @@ angular.module('UnitApp')
 
             $scope.trust = $sce;
             $scope.mediaTab = 'unitPhotos';
+
         });
+        function handleStyling(apartmentpubid) {
+            // switch (apartmentpubid) {
+            //     case "b6aae3d0-2ada-40ca-91c1-54ab87dde49e":
+            //     console.dir('what the fuc richard');
+            //     $scope.style = $scope.style + ' width:325px;';
+            //     break;
+            //     default:
+            //
+            // }
+            // console.dir('hi');
+            return;
+        }
     }
 ]);

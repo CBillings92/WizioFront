@@ -217,7 +217,7 @@ angular.module('MainApp')
                     }
                 })
                 .state('NewExternalApi', {
-                    url: 'transition/listing/vr/:apitoken/:apartmentpubid',
+                    url: '/transition/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
