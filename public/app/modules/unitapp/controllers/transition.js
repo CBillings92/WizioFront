@@ -1,4 +1,4 @@
-angular.module('UnitApp')
+-angular.module('UnitApp')
 .controller('TransitionUnitMediaCtrl', [
     '$scope',
     '$rootScope',
@@ -45,6 +45,9 @@ angular.module('UnitApp')
                 apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
                 $scope.style = $scope.style + ' width:325px;';
                 console.dir($scope.style);
+                break;
+            case: 'DemoGreenWay1707':
+                $scope.style = $scope.style + ' width:325px;';
                 break;
             default:
                 apitoken = $state.params.apitoken;
