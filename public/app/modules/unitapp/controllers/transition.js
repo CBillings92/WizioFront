@@ -58,10 +58,11 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             apitoken: apitoken,
             apartmentid: apartmentpubid
         }, function(result) {
-
+            console.dir(result);
             var media = result[0];
             $scope.floorplan = result[1].Floor_Plan;
             $scope.media = lodash.groupBy(media, 'type');
+            console.dir($scope.Floor_Plan);
 
             var photoIndex;
 
@@ -76,6 +77,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 photoIndex = 0;
             }
 
+            console.dir($scope.media);
             if ($scope.media.vrphoto[0].awsurl) {
                 // $scope.media.vrphoto = vrphotos;
                 $scope.photoIndex = photoIndex;
