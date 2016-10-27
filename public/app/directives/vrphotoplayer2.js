@@ -26,7 +26,15 @@ angular.module('Directives')
                     $state.current.name === 'DemoRiversEdgeA9' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA9.view.html' :
                     $state.current.name === 'DemoStationLanding1' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1.view.html' :
                     $state.current.name === 'DemoStationLanding1C' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1C.view.html' :
-                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html':
+                    $state.current.name === 'DemoStationLanding2' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding2.view.html' :
+                    $state.current.name === 'DemoStationLanding24W' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding24W.view.html' :
+                    $state.current.name === 'DemoStationLanding26E' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding26E.view.html' :
+                    $state.current.name === 'DemoStationLandingStudioB' ?  'public/app/modules/unitapp/viewtemplates/demoStationLandingStudioB.view.html' :
+                    $state.current.name === 'DemoEddyD' ?  'public/app/modules/unitapp/viewtemplates/demoEddyD.view.html' :
+                    $state.current.name === 'DemoEddyBB' ?  'public/app/modules/unitapp/viewtemplates/demoEddyBB.view.html' :
+                    $state.current.name === 'DemoEddyCC' ?  'public/app/modules/unitapp/viewtemplates/demoEddyCC.view.html' :
+                    $state.current.name === 'DemoEddyK' ?  'public/app/modules/unitapp/viewtemplates/demoEddyK.view.html' :
+                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html' :
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;

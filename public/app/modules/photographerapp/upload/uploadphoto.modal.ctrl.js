@@ -10,6 +10,6 @@ angular.module('PhotographerApp')
             $scope.pin = modalData;
             $scope.ok = function(){
                 return $uibModalInstance.close('ok');
-            }
+            };
         }
-    ])
+    ]);

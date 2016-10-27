@@ -163,6 +163,30 @@ angular.module('MainApp')
                     demoStationLanding1C: {
                         apartmentpubid: null
                     },
+                    demoStationLanding2: {
+                        apartmentpubid: null
+                    },
+                    demoStationLanding24W: {
+                        apartmentpubid: null
+                    },
+                    demoStationLanding26E: {
+                        apartmentpubid: null
+                    },
+                    demoStationLandingStudioB: {
+                        apartmentpubid: null
+                    },
+                    demoEddyD: {
+                        apartmentpubid: null
+                    },
+                    demoEddyBB: {
+                        apartmentpubid: null
+                    },
+                    demoEddyCC: {
+                        apartmentpubid: null
+                    },
+                    demoEddyK: {
+                        apartmentpubid: null
+                    },
                     apikey: null
                 };
 
@@ -211,6 +235,14 @@ angular.module('MainApp')
                         data.demoRiversEdgeA9.apartmentpubid = 'b6aae3d0-2ada-40ca-91c1-54ab87dde49e';
                         data.demoStationLanding1.apartmentpubid = 'e3cc5db2-ebf8-473c-8696-0c21d9caa3d2';
                         data.demoStationLanding1C.apartmentpubid = '57934872-c858-43a3-b69f-60b33985963a';
+                        data.demoStationLanding2.apartmentpubid = '1878da61-1334-43f1-9c99-68cd45783bde';
+                        data.demoStationLanding24W.apartmentpubid = '29ed2132-0a02-4205-91d8-e30d23378f0d';
+                        data.demoStationLanding26E.apartmentpubid = 'adaea09c-69ae-4aed-a11b-33a697f32304';
+                        data.demoStationLandingStudioB.apartmentpubid = 'af7b3c43-44d7-4ee5-8183-ce5b7ee3677f';
+                        data.demoEddyD.apartmentpubid = 'c08f0dbc-6910-4c7e-9084-af5351696653';
+                        data.demoEddyBB.apartmentpubid = 'a0dde313-fe71-4988-adc1-a187b943625f';
+                        data.demoEddyCC.apartmentpubid = '110a0962-172d-4c81-b85a-3276070053c2';
+                        data.demoEddyK.apartmentpubid = '6e9049a5-a823-4ccb-b625-8fe7616afdcc';
                         return data;
                     default:
                         data.apikey = 'bb4b58d2-4e8b-4155-a736-b5d233ca03aa';

@@ -22,7 +22,7 @@ angular.module('SharedFactoryApp')
                     .then(function (response) {
                         resolve(response);
                     });
-                })
+                });
             }
 
             function buildModalWithNoController(closeBtnText, actionBtnText, headerText, bodyText) {

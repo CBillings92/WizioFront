@@ -216,8 +216,72 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('DemoStationLanding2', {
+                    url: '/demo/stationlanding/2',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding24W', {
+                    url: '/demo/stationlanding/24w',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding26E', {
+                    url: '/demo/stationlanding/26e',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLandingStudioB', {
+                    url: '/demo/stationlanding/studiob',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyD', {
+                    url: '/demo/theeddy/d',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyBB', {
+                    url: '/demo/theeddy/bb',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyCC', {
+                    url: '/demo/theeddy/cc',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyK', {
+                    url: '/demo/theeddy/k',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
                 .state('NewExternalApi', {
-                    url: '/transition/listing/vr/:apitoken/:apartmentpubid',
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'

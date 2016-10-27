@@ -26,7 +26,7 @@ angular.module('Directives')
                     button.addEventListener('click', function() {
                         var file = fileChooser.files[0];
                         if(scope.photoTitle === null){
-                            results.innerHTML = "Please enter a title for the photo"
+                            results.innerHTML = "Please enter a title for the photo";
                             return;
                         }
                         scope.pin.title = scope.photoTitle;
@@ -49,7 +49,7 @@ angular.module('Directives')
                                             alert('finished');
                                             alert(response);
                                             results.innerHTML = 'UPLOADED, PLEASE PROCEED AT BEING AWESOME';
-                                        })
+                                        });
 
                                     // scope.$emit('doneUploadingPhoto', 'OK')
                                 }
@@ -61,6 +61,6 @@ angular.module('Directives')
                         }
                     }, false);
                 }
-            }
+            };
         }
-    ])
+    ]);
