@@ -100,7 +100,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/0404',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
@@ -108,7 +108,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/0512',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
@@ -116,7 +116,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/0503',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
@@ -124,7 +124,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/1209',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
@@ -132,7 +132,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/1401',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
@@ -140,7 +140,7 @@ angular.module('MainApp')
                     url: '/demo/greenway/1707',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
                         }
                     }
                 })
