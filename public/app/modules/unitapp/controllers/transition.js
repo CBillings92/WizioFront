@@ -12,7 +12,7 @@
         var panelContainer, apartmentpubid, apitoken;
         var state = $state.current.name;
         $scope.selectPhoto = false;
-        $scope.style = 'margin: 0 auto;';
+        $scope.style = 'margin: 0 auto; width:325px';
 
         panelContainer = document.getElementById('panel-container');
         panelContainer.addEventListener('click', togglePanel, false);
@@ -39,15 +39,12 @@
             case 'LandingPage':
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+                $scope.style = "margin: 0 auto;"
                 break;
             case 'Demo':
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
-                $scope.style = $scope.style + ' width:325px;';
                 console.dir($scope.style);
-                break;
-            case: 'DemoGreenWay1707':
-                $scope.style = $scope.style + ' width:325px;';
                 break;
             default:
                 apitoken = $state.params.apitoken;
