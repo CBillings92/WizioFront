@@ -58,11 +58,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             apitoken: apitoken,
             apartmentid: apartmentpubid
         }, function(result) {
-            console.dir(result);
             var media = result[0];
             $scope.floorplan = result[1].Floor_Plan;
             $scope.media = lodash.groupBy(media, 'type');
-            console.dir($scope.Floor_Plan);
 
             var photoIndex;
 
@@ -77,7 +75,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 photoIndex = 0;
             }
 
-            console.dir($scope.media);
             if ($scope.media.vrphoto[0].awsurl) {
                 // $scope.media.vrphoto = vrphotos;
                 $scope.photoIndex = photoIndex;
@@ -95,6 +92,17 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 };
                 $scope.trust = $sce;
+            }
+
+            function handleStyle() {
+                switch (apartmentpubid) {
+                    case 'c87a0162-27f1-4862-ae4e-32c4f74f1c0d':
+                        $scope.style = 'margin: 0 auto';
+                        $scope.floorPlanStyle =
+                        break;
+                    default:
+
+                }
             }
 
             $scope.trust = $sce;
