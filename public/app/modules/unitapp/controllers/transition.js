@@ -98,7 +98,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 switch (apartmentpubid) {
                     case 'c87a0162-27f1-4862-ae4e-32c4f74f1c0d':
                         $scope.style = 'margin: 0 auto';
-                        $scope.floorPlanStyle =
+                        // $scope.floorPlanStyle =
                         break;
                     default:
 
