@@ -164,7 +164,7 @@ angular.module('UnitApp')
                 apitoken: apitoken,
                 apartmentid: apartmentpubid
             }, function(result) {
-                var media = lodash.groupBy(result, 'type');
+                var media = lodash.groupBy(result[0], 'type');
                 $scope.media = media;
                 var photoIndex;
                 if(state === 'LandingPage'){
