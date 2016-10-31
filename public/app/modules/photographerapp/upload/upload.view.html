@@ -34,6 +34,6 @@
 
     <div style="padding:30px;" ng-show="showAmenityButton">
         <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add Amenity</button>
-        <p ng-repeat="amenity in amenities"> {{amenity.title}}</p>
+        <p ng-repeat="amenity in amenities"> <a ng-href="{{amenity.awsurl}}" target="_blank"> {{amenity.title}} </a></p>
     </div>
 </div>
