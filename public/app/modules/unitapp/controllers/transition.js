@@ -74,6 +74,8 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             } else {
                 photoIndex = 0;
             }
+            $scope.$broadcast('CHANGE', {});
+
 
             if ($scope.media.vrphoto[0].awsurl) {
                 // $scope.media.vrphoto = vrphotos;
@@ -82,9 +84,10 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 $scope.$broadcast('IMGLOAD', {media: media});
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
+                    console.dir(photoIndex);
                     $scope.photoIndex = photoIndex;
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
-                    console.dir($scope.$broadcast);
+                    console.dir($scope.photoUrl);
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {

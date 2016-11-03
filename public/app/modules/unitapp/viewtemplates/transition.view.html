@@ -11,12 +11,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="" id="unit-details-pins-container" style="z-index:1000">
+                <div class="" id="unit-details-pins-container" ng-show="floorplan" style="z-index:1000">
                     <div class="" id="panel-container">
                         <div class="" id="panel-text">
                             Floor Plan
                         </div>
-                        <div style="{{style}}">
+                        <div style="{{style}}" ng-show="floorplan">
                             <img src="{{floorplan}}" id="unit-details-floorplan-img" alt="" />
                             <span ng-repeat="photo in media.vrphoto track by $index">
                                 <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
