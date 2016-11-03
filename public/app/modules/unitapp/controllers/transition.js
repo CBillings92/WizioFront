@@ -9,13 +9,16 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
     'ModalSvc',
     function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
 
+        var bodyTag = document.getElementsByTagName("BODY")[0];
         var panelContainer,
             apartmentpubid,
             apitoken;
         var state = $state.current.name;
+        $scope.state = state;
+        var elem = document.getElementById('height-container');
+        elem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 47vh" : "padding-bottom: 0; height: 100vh";
         $scope.selectPhoto = false;
         $scope.style = 'margin: 0 auto; width:325px';
-
         panelContainer = document.getElementById('panel-container');
         panelContainer.addEventListener('click', togglePanel, false);
         // floor plan animation

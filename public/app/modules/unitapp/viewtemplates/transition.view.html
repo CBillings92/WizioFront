@@ -1,7 +1,7 @@
-<div class="" style="100%">
+<div class="">
     <div class="" style="height:100%" ng-show="media.vrphoto[0].awsurl">
-        <div class="" style="height:90vh">
-            <div class="embed-responsive embede-responsive-16by9" style="padding-bottom:0; height:90vh;">
+        <div class="" style="height:100%">
+            <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100vh">
                 <div class="container" style="width:90%" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;">
                     <div class="unitButtonContainer row" style="position: absolute; z-index:1100; cursor: pointer; width: 100%; horizontal-align: middle text-align: center;">
                         <div class="">
@@ -43,7 +43,7 @@
                 ">
 
                 <div ng-show="selectPhoto" class="" style="height:100%; width: 100%; color: black; background-color:black; opacity:.5; position: absolute; z-index=600;"></div>
-                <div style="position: absolute; top: 90%; left: 0; right:0; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
+                <div style="position: absolute; top: 90%; left: 50px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
                     <button class="btn btn-fill--orange btn-md" ng-click="selectPhoto = true;" style="width:175px" type="submit">Photos</button>
                 </div>
                 <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->

@@ -14,10 +14,15 @@ angular.module('UnitApp')
             $scope.selectPhoto = false;
             var panelOpened = false;
             var state = $state.current.name;
+
+
             if(state !== 'DemoGreenStreet'){
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
             }
+
+            $scope.vrPlayerStyle = state === 'LandingPage' ? "padding-bottom: 0; height: 50vh" : "padding-bottom: 0; height: 100vh";
+            console.dir($scope.vrPlayerStyle);
 
             function togglePanel() {
                 panelOpened = !panelOpened;
