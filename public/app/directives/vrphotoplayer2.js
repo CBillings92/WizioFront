@@ -89,6 +89,7 @@ angular.module('Directives')
                     }
 
                     scope.$on('CHANGE', function() {
+                        console.dir('disconnect');
                         newImage();
                     });
 
@@ -108,6 +109,7 @@ angular.module('Directives')
                         THREE.ImageUtils.crossOrigin = '';
                         var loader = new THREE.TextureLoader();
                         loader.crossOrigin = '';
+                        console.dir(scope.photoUrl);
                         loader.load(scope.photoUrl, function(texture) {
                             texture.minFilter = THREE.LinearFilter;
 

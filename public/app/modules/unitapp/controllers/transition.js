@@ -84,9 +84,11 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoIndex = photoIndex;
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
+                    console.dir($scope.$broadcast);
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {
+                console.dir(photoIndex + ' in bubl');
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
