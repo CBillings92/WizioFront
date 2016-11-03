@@ -14,7 +14,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             apartmentpubid,
             apitoken;
         var state = $state.current.name;
-        $scope.state = state;
+        bodyTag.style["margin-bottom"] = 0;
         var elem = document.getElementById('height-container');
         elem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 47vh" : "padding-bottom: 0; height: 100vh";
         $scope.selectPhoto = false;
