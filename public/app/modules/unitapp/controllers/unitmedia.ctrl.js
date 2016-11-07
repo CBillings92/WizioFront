@@ -21,7 +21,7 @@ angular.module('UnitApp')
                 panelContainer.addEventListener('click', togglePanel, false);
             }
 
-            $scope.vrPlayerStyle = state === 'LandingPage' ? "padding-bottom: 0; height: 50vh" : "padding-bottom: 0; height: 100vh";
+            $scope.vrPlayerStyle = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height: 100vh";
             console.dir($scope.vrPlayerStyle);
 
             function togglePanel() {
