@@ -144,6 +144,32 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 document.getElementById('pin_' + pinIndex).addEventListener('click', removePin);
         }
 
+        $scope.addAmenity =  function addAmenity() {
+
+            var amenity = {
+                x: null,
+                y: null,
+                apartmentpubid: selectedUnit.pubid,
+                isUnit: 0,
+                type: 'vrphoto',
+                title: null,
+                awsurl: 'http://cdn.wizio.co/' + selectedUnit.pubid + '/',
+                ApartmentId: selectedUnit.id
+            };
+
+            ModalBuilderFct.buildComplexModal(
+                    'md',
+                    'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html',
+                    'UploadPhotoModalCtrl',
+                    amenity
+                ).then(function(result) {
+                    // result is what's passed back from modal button selection
+                    return result;
+                });
+
+
+        };
+
 
     }
 ]);
