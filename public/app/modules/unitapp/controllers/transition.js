@@ -16,7 +16,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var state = $state.current.name;
         bodyTag.style["margin-bottom"] = 0;
         var elem = document.getElementById('height-container');
-        elem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 62vh" : "padding-bottom: 0; height: 100vh";
+        elem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100vh" : "padding-bottom: 0; height: 100vh";
         $scope.selectPhoto = false;
         $scope.style = 'margin: 0 auto; width:325px';
         panelContainer = document.getElementById('panel-container');
