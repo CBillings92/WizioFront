@@ -6,12 +6,11 @@
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
     angular.module('AuthApp', []);
-    angular.module('CampaignApp', []);
     angular.module('FooterApp', []);
+    angular.module('InfoApp', []);
     angular.module('LandingPageApp', []);
     angular.module('LeaseApp', []);
     angular.module('NavbarApp', []);
-    angular.module('TenantSurveyApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
     angular.module('UnitApp', []);
@@ -32,12 +31,11 @@
             'AboutUsApp',
             'Directives',
             'FooterApp',
+            'InfoApp',
             'LandingPageApp',
             'UploadPageApp',
             'LeaseApp',
-            'CampaignApp',
             'NavbarApp',
-            'TenantSurveyApp',
             'SharedFactoryApp',
             'SharedServiceApp',
             'PhotographerApp',

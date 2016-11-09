@@ -75,13 +75,12 @@ angular.module('MainApp')
             ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
 
             BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
-            //Campaign App
-            CampaignMainViewsURL: 'public/app/modules/campaignapp/main/',
-            CampaignVideoUploadViewsURL: 'public/app/modules/campaignapp/videouploadapp/viewtemplates/',
             //Footer Views
             FooterViewsURL: 'public/app/modules/footerapp/viewtemplates/',
             //Landing Page App
             landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+            //Info app
+            infoAppViews: 'public/app/modules/infoapp/',
             //LeaseApp
             leaseMainViewsURL: 'public/app/modules/leaseapp/main/',
             leaseViewsURL: 'public/app/modules/leaseapp/viewtemplates/',
@@ -96,7 +95,6 @@ angular.module('MainApp')
             UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
             extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
             extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/',
-            tenantSurveyFormViews: 'public/app/modulse/tenantsurvey/',
             stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",
             static_vr: (function() {
                 var data = {
