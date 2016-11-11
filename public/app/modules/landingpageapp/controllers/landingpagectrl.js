@@ -2,19 +2,50 @@ angular.module('LandingPageApp')
     .controller('LandingPageCtrl', [
         '$scope',
         '$state',
+        '$resource',
         'SmartSearchSvc',
         'SearchFct',
         'WizioConfig',
         'ModalSvc',
         'ModalBuilderFct',
-        function($scope, $state, SmartSearchSvc, SearchFct, WizioConfig, ModalSvc, ModalBuilderFct) {
+        'UnitMapFct',
+        function($scope, $state, $resource, SmartSearchSvc, SearchFct, WizioConfig, ModalSvc, ModalBuilderFct, UnitMapFct) {
             $scope.devEnvironmentCheck = window.location.origin = 'http://172.16.0.2:3000';
             $scope.data = {};
+            $scope.mapViewSelected= false;
             $scope.filters = {
                 beds: null,
                 baths: null,
                 minPrice: null,
                 maxPrice: null
+            };
+            var listOfUnits = null;
+
+            $scope.toggleMapView = function(){
+                console.dir(listOfUnits);
+                if(listOfUnits){
+                    $scope.mapViewSelected = !$scope.mapViewSelected;
+
+                } else {
+                    console.dir('trial');
+                    $resource(WizioConfig.baseAPIURL + 'apartment/landingpage/mapunits')
+                    .query(function(response){
+                        $scope.mapViewSelected = !$scope.mapViewSelected;
+                        var googleMap = new google.maps.Map(document.getElementById('mapLP'),{
+                            scrollwheel: false,
+                            zoom: 12,
+                            center:new google.maps.LatLng(42.3601, -71.0589),
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+                        listOfUnits = response;
+                        var mapOptions = UnitMapFct.setMapOptions(response);
+
+                        UnitMapFct.addMapPinsToMap(response, googleMap);
+
+                    });
+                }
+
+                return;
             };
 
             var modalDefaults = function(templateUrl, controller, accountType) {
