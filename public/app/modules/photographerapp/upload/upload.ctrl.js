@@ -18,18 +18,18 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
 
         // get the id, pubid, concatAddr, unitnum, and Floor_Plan for all apartments with Floor_Plans
         $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5', {
-            id: '@id',
-            pubid: '@pubid',
-            concatAddr: '@concatAddr',
-            unitNum: '@unitNum',
-            Floor_Plan: '@Floor_Plan',
+            param1: '@id',
+            param2: '@pubid',
+            param3: '@concatAddr',
+            param4: '@unitNum',
+            param5: '@Floor_Plan',
         }).query(
             {
-                id: 'id',
-                pubid: 'pubid',
-                concatAddr: 'concatAddr',
-                unitNum: 'unitNum',
-                Floor_Plan: "Floor_Plan"
+                param1: 'id',
+                param2: 'pubid',
+                param3: 'concatAddr',
+                param4: 'unitNum',
+                param5: "Floor_Plan"
             },
             function(response){
                 $scope.units=response;
