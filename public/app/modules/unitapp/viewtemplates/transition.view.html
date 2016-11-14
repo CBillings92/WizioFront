@@ -1,0 +1,54 @@
+<div class="" style="height:100%">
+    <div class="" style="height:100%" ng-show="media.vrphoto[0].awsurl">
+        <div class="" style="height:100%">
+            <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100vh">
+                <div class="container" style="width:90%" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;">
+                    <div class="unitButtonContainer row" style="position: absolute; z-index:1100; cursor: pointer; width: 100%; horizontal-align: middle text-align: center;">
+                        <div class="">
+                            <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'"  ng-repeat="photo in media.vrphoto track by $index" class="btn btn-md col-md-2" name="button" style="
+                            margin: 10px; z-index:1200; cursor: pointer;
+                            ">{{photo.title}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="" id="unit-details-pins-container" ng-show="floorplan" style="z-index:1000">
+                    <div class="" id="panel-container">
+                        <div class="" id="panel-text">
+                            Floor Plan
+                        </div>
+                        <div style="{{style}}" ng-show="floorplan">
+                            <img src="{{floorplan}}" id="unit-details-floorplan-img" alt="" />
+                            <span ng-repeat="photo in media.vrphoto track by $index">
+                                <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
+                                <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <img
+                    src="public/assets/black.png"
+                    height="100%"
+                    width="100%"
+                    style="
+                opacity: 0;
+                position: absolute;Error: source does not appear to be markup.
+                left: 0;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                z-index: 500;
+                ">
+
+                <div ng-show="selectPhoto" class="" style="height:100%; width: 100%; color: black; background-color:black; opacity:.5; position: absolute; z-index=600;"></div>
+                <div style="position: absolute; top: 90%; left: 50px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
+                    <button class="btn btn-fill--orange btn-md" ng-click="selectPhoto = true;" style="width:175px" type="submit">Photos</button>
+                </div>
+                <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
+                <div id="sphere"></div>
+            </div>
+        </div>
+    </div>
+</div>

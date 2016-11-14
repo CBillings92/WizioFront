@@ -17,6 +17,24 @@ angular.module('Directives')
                     $state.current.name === 'DemoGreenWay1401' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1401.view.html' :
                     $state.current.name === 'DemoGreenWay1209' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1209.view.html' :
                     $state.current.name === 'DemoGreenWay1707' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1707.view.html' :
+                    $state.current.name === 'DemoMetroMark04' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark04.view.html' :
+                    $state.current.name === 'DemoMetroMark06' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark06.view.html' :
+                    $state.current.name === 'DemoMetroMark12' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark12.view.html' :
+                    $state.current.name === 'DemoMetroMark13' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark13.view.html' :
+                    $state.current.name === 'DemoRiversEdgeB1' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeB1.view.html' :
+                    $state.current.name === 'DemoRiversEdgeA2' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA2.view.html' :
+                    $state.current.name === 'DemoRiversEdgeA9' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA9.view.html' :
+                    $state.current.name === 'DemoStationLanding1' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1.view.html' :
+                    $state.current.name === 'DemoStationLanding1C' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1C.view.html' :
+                    $state.current.name === 'DemoStationLanding2' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding2.view.html' :
+                    $state.current.name === 'DemoStationLanding24W' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding24W.view.html' :
+                    $state.current.name === 'DemoStationLanding26E' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding26E.view.html' :
+                    $state.current.name === 'DemoStationLandingStudioB' ?  'public/app/modules/unitapp/viewtemplates/demoStationLandingStudioB.view.html' :
+                    $state.current.name === 'DemoEddyD' ?  'public/app/modules/unitapp/viewtemplates/demoEddyD.view.html' :
+                    $state.current.name === 'DemoEddyBB' ?  'public/app/modules/unitapp/viewtemplates/demoEddyBB.view.html' :
+                    $state.current.name === 'DemoEddyCC' ?  'public/app/modules/unitapp/viewtemplates/demoEddyCC.view.html' :
+                    $state.current.name === 'DemoEddyK' ?  'public/app/modules/unitapp/viewtemplates/demoEddyK.view.html' :
+                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html' :
                     null,
                 link: function(scope, elem, attr) {
                     scope.noPan = true;
@@ -71,6 +89,7 @@ angular.module('Directives')
                     }
 
                     scope.$on('CHANGE', function() {
+                        console.dir('disconnect');
                         newImage();
                     });
 
@@ -90,6 +109,7 @@ angular.module('Directives')
                         THREE.ImageUtils.crossOrigin = '';
                         var loader = new THREE.TextureLoader();
                         loader.crossOrigin = '';
+                        console.dir(scope.photoUrl);
                         loader.load(scope.photoUrl, function(texture) {
                             texture.minFilter = THREE.LinearFilter;
 

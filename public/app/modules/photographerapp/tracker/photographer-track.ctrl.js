@@ -6,7 +6,6 @@ angular.module('PhotographerApp')
     .controller('PhotographerTrackCtrl', ['$scope', function($scope) {
         //set variables
         var address, floorplans;
-        $scope.media;
 
         //create object template
         var photo = {
@@ -39,9 +38,10 @@ angular.module('PhotographerApp')
         //send data to the wizio api
         function submitForm() {
             // mediaResource.
+            return;
         }
 
         $scope.buttons = {
             addMedia: addMedia
-        }
+        };
   }]);

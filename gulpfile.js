@@ -29,7 +29,10 @@ gulp.task('scripts', function() {
     gulp.src(['./public/app/**/*.js'])
         //   .pipe(stripDebug())
         .pipe(concat('scripts.js'))
-        .pipe(uglify().on('error', gutil.log))
+        .pipe(uglify({
+            file: 'scripts.min.js',
+            outSourceMap: true
+        })).on('error', gutil.log)
         .pipe(gulp.dest('./public/build'));
 });
 

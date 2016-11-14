@@ -5,7 +5,12 @@
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <new-vr-photo-player-dirv id='directiveContainer' style="height:50%"></new-vr-photo-player-dirv>
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()"> View Map of Our Inventory </button>
+
+            <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;">
+
+            </div>
+        <transition-vr-player-dirv style="height:100%" ng-hide="mapViewSelected"></transition-vr-player-dirv>
     </div>
     <div class="container">
         <div class="row">
@@ -34,7 +39,10 @@
 
     <div class="container">
         <div class="row">
-            <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2>
+            <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
+            <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;
+                    <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button>
+            </h2>
         </div>
         <div class="row">
             <div class="home-blurbs">

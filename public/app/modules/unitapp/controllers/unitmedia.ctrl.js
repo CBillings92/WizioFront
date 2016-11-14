@@ -14,10 +14,15 @@ angular.module('UnitApp')
             $scope.selectPhoto = false;
             var panelOpened = false;
             var state = $state.current.name;
+
+
             if(state !== 'DemoGreenStreet'){
                 panelContainer = document.getElementById('panel-container');
                 panelContainer.addEventListener('click', togglePanel, false);
             }
+
+            $scope.vrPlayerStyle = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height: 100vh";
+            console.dir($scope.vrPlayerStyle);
 
             function togglePanel() {
                 panelOpened = !panelOpened;
@@ -83,6 +88,74 @@ angular.module('UnitApp')
                 apartmentpubid = WizioConfig.static_vr.demoWaterMarkOneBed.apartmentpubid;
                 apitoken=WizioConfig.static_vr.apikey;
             }
+            else if (state === 'DemoMetroMark04'){
+                apartmentpubid = WizioConfig.static_vr.demoMetroMark04.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoMetroMark06'){
+                apartmentpubid = WizioConfig.static_vr.demoMetroMark06.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoMetroMark12'){
+                apartmentpubid = WizioConfig.static_vr.demoMetroMark12.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoMetroMark13'){
+                apartmentpubid = WizioConfig.static_vr.demoMetroMark13.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoRiversEdgeB1'){
+                apartmentpubid = WizioConfig.static_vr.demoRiversEdgeB1.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoRiversEdgeA2'){
+                apartmentpubid = WizioConfig.static_vr.demoRiversEdgeA2.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoRiversEdgeA9'){
+                apartmentpubid = WizioConfig.static_vr.demoRiversEdgeA9.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding1'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding1.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding1C'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding1C.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding2'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding2.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding24W'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding24W.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLanding26E'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLanding26E.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoStationLandingStudioB'){
+                apartmentpubid = WizioConfig.static_vr.demoStationLandingStudioB.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoEddyD'){
+                apartmentpubid = WizioConfig.static_vr.demoEddyD.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoEddyBB'){
+                apartmentpubid = WizioConfig.static_vr.demoEddyBB.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoEddyCC'){
+                apartmentpubid = WizioConfig.static_vr.demoEddyCC.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
+            else if (state === 'DemoEddyK'){
+                apartmentpubid = WizioConfig.static_vr.demoEddyK.apartmentpubid;
+                apitoken=WizioConfig.static_vr.apikey;
+            }
             else {
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
@@ -96,7 +169,7 @@ angular.module('UnitApp')
                 apitoken: apitoken,
                 apartmentid: apartmentpubid
             }, function(result) {
-                var media = lodash.groupBy(result, 'type');
+                var media = lodash.groupBy(result[0], 'type');
                 $scope.media = media;
                 var photoIndex;
                 if(state === 'LandingPage'){
