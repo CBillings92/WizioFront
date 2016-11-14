@@ -7039,6 +7039,22 @@ body {
   bottom: 20px;
   line-height: 1; }
 
+.vr-control-overlay {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: .6;
+  position: absolute;
+  z-index: 600; }
+
+.vr-control-button {
+  margin: 10px;
+  z-index: 1200;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  margin: 5px; }
+
 @-webkit-keyframes open {
   from {
     left: -425px; }

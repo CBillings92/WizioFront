@@ -8,17 +8,27 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
     'lodash',
     'ModalSvc',
     function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
-
         var bodyTag = document.getElementsByTagName("BODY")[0];
-        var panelContainer,
-            apartmentpubid,
-            apitoken;
+        var panelContainer;
+        var apartmentpubid;
+        var apitoken;
         var state = $state.current.name;
+        var heightContainerElem = document.getElementById('height-container');
+
+        // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         bodyTag.style["margin-bottom"] = 0;
-        var elem = document.getElementById('height-container');
-        elem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100vh" : "padding-bottom: 0; height: 100vh";
+
+        // Containing html element of the VR player
+        heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100vh" : "padding-bottom: 0; height: 100vh";
+
+        // For photo and floorplan selection
         $scope.selectPhoto = false;
+        $scope.viewFloorPlan = false;
+
+        // For styling VR player floorplan programatically
         $scope.style = 'margin: 0 auto; width:325px';
+
+        // Get the containing element of the VR player floorplan panel
         panelContainer = document.getElementById('panel-container');
         panelContainer.addEventListener('click', togglePanel, false);
         // floor plan animation
@@ -87,10 +97,8 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 $scope.$broadcast('IMGLOAD', {media: media});
                 // $scope.media.vrphoto = vrphotos;
                 $scope.changePhoto = function(photoIndex) {
-                    console.dir(photoIndex);
                     $scope.photoIndex = photoIndex;
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
-                    console.dir($scope.photoUrl);
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {
