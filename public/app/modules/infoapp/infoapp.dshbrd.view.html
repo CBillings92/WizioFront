@@ -1,43 +1,37 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <h5>Number of Units Filmed: 550</h5>
+            <h5>Buildings Filmed: {{::data.numOfAddresses}}</h5>
         </div>
         <div class="col-md-3">
-            <h5>Number of Units Represented: 2500</h5>
+            <h5>Units Filmed: {{::data.numOfUnits}}</h5>
+        </div>
+        <div class="col-md-3">
+            <h5>Number of Units Represented: Approximately 2500</h5>
         </div>
         <div class="col-md-3">
             <h5>Percent of Inventory Luxury: 50%</h5>
-        </div>
-        <div class="col-md-3">
-            <h5>Sight Unseen Success Rates: 50%</h5>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <h5>Neighborhoods Represented</h5>
             <ul>
-                <li>Jamaica Plain: 20%</li>
-                <li>Back Bay: 10%</li>
-                <li>Seaport: 10%</li>
-                <li>Downtown: 10%</li>
-                <li>China Town: 10%</li>
-                <li>Symphony: 10%</li>
-                <li>Belmont/Outside Boston: 10%</li>
-                <li>Cambridge: 20%</li>
+                <li ng-repeat="(key, val) in data.byNeighborhood track by $index">{{key}}: {{val.length}}</li>
             </ul>
         </div>
         <div class="col-md-4">
             <h5>Property Managers Represented</h5>
             <ul>
-                <li>National Development</li>
-                <li>State Financial</li>
-                <li>Another Property Manager</li>
-                <li>Another property manager</li>
+                <li ng-repeat="(key, val) in data.byPropertyManagers track by $index">{{key}}: {{val.length}}</li>
             </ul>
         </div>
         <div class="col-md-4">
             <h5>Hello</h5>
         </div>
+    </div>
+    <div class="row" ng-repeat="(key, val) in data.byStreet track by $index" style="padding:5px; border:1px solid black;">
+        <div class="col-md-6">Street: {{key}}</div>
+        <div class="col-md-6">Number Of Units: {{val.length}}</div>
     </div>
 </div>
