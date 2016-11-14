@@ -2,15 +2,17 @@
     <h1>Terms of Service</h1>
 </div>
 <div class="modal-body">
+    <p> Please agree to all of these to continue. </p>
     <div class="checkbox">
-        <label><input type="checkbox"><a href="">Terms of Service</a></label>
+        <label><input type="checkbox" id="terms" ng-click="showContinue()"><a href="https://docs.google.com/a/wizio.co/document/d/1-ttcPyEIbS8Laqf9iVRQP5RVqyGEikqNIcXbDiiCz4c/edit?usp=sharing">Terms of Service</a></label>
     </div>
     <div class="checkbox">
-        <label><input type="checkbox"><a href="">Terms of Service</a></label>
+        <label><input type="checkbox" id="next" ng-click="showContinue()"><a href="https://docs.google.com/a/wizio.co/document/d/1-ttcPyEIbS8Laqf9iVRQP5RVqyGEikqNIcXbDiiCz4c/edit?usp=sharing">Terms of Service</a></label>
     </div>
     <div class="checkbox">
-        <label><input type="checkbox"><a href="">Terms of Service</a></label>
+        <label><input type="checkbox" id="last" ng-click="showContinue()"><a href="https://docs.google.com/a/wizio.co/document/d/1-ttcPyEIbS8Laqf9iVRQP5RVqyGEikqNIcXbDiiCz4c/edit?usp=sharing">Terms of Service</a></label>
     </div>
+    <button style="visibility:hidden;" id="contbutton" class="btn btn-fill--blue btn-lg">Continue</button>
 </div>
 <div class="modal-footer">
     <button></button>
