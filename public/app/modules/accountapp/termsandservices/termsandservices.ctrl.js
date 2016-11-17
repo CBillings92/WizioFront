@@ -2,20 +2,17 @@ angular.module('AccountApp')
     .controller('TermsAndServicesCtrl', [
         '$scope',
         function($scope){
-        var getElemByID = document.getElementById;
-
-
         $scope.pass = false;
 
         $scope.showContinue = function() {
 
-            var termsChecked = getElemByID('terms').checked;
-            var nextChecked = getElemByID('next').checked;
-            var lastChecked = getElemByID('last').checked;
+            var termsChecked = document.getElementById('terms').checked;
+            var nextChecked = document.getElementById('next').checked;
+            var lastChecked = document.getElementById('last').checked;
             if(
-                document.getElementById('terms').checked
-                && document.getElementById('next').checked
-                && document.getElementById('last').checked
+                termsChecked
+                && nextChecked
+                && lastChecked
             ) {
                 document.getElementById('contbutton').style.visibility = "visible";
             }
