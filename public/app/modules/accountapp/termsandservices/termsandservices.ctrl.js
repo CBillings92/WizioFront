@@ -1,9 +1,10 @@
 angular.module('AccountApp')
     .controller('TermsAndServicesCtrl', [
         '$scope',
-        function($scope){
+        '$uibModalInstance',
+        function($scope, $uibModalInstance){
         $scope.pass = false;
-
+        $scope.allChecked = false;
         $scope.showContinue = function() {
 
             var termsChecked = document.getElementById('terms').checked;
@@ -14,8 +15,13 @@ angular.module('AccountApp')
                 && nextChecked
                 && lastChecked
             ) {
-                document.getElementById('contbutton').style.visibility = "visible";
+                $scope.allChecked = true;
+                console.dir($scope.allChecked);
             }
         };
+
+        $scope.testfunc = function(){
+            $uibModalInstance.close('success');
+        }
     }
     ])
