@@ -9,7 +9,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
     'ModalSvc',
     function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
         var bodyTag = document.getElementsByTagName("BODY")[0];
-        var panelContainer;
+        // var panelContainer;
         var apartmentpubid;
         var apitoken;
         var state = $state.current.name;
@@ -29,21 +29,21 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         $scope.style = 'margin: 0 auto; width:325px';
 
         // Get the containing element of the VR player floorplan panel
-        panelContainer = document.getElementById('panel-container');
-        panelContainer.addEventListener('click', togglePanel, false);
+        // panelContainer = document.getElementById('panel-container');
+        // panelContainer.addEventListener('click', togglePanel, false);
         // floor plan animation
-        var panelOpened = false;
-
-        function togglePanel() {
-            panelOpened = !panelOpened;
-            if (panelOpened) {
-                this.classList.add('open');
-                this.classList.remove('close');
-            } else {
-                this.classList.add('close');
-                this.classList.remove('open');
-            }
-        }
+        // var panelOpened = false;
+        //
+        // function togglePanel() {
+        //     panelOpened = !panelOpened;
+        //     if (panelOpened) {
+        //         this.classList.add('open');
+        //         this.classList.remove('close');
+        //     } else {
+        //         this.classList.add('close');
+        //         this.classList.remove('open');
+        //     }
+        // }
         // end floorplan animation and controls
 
         // for loading CORS images....UGH
