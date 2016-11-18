@@ -8091,3 +8091,20 @@ div.item {
   padding-bottom: 20px; }
   .signupBlock button {
     font-size: 30px; }
+
+.flex-header {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center; }
+
+.flex-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.flex-data-block {
+  margin-top: 15px;
+  padding-top: 15px;
+  background-color: #F69746; }

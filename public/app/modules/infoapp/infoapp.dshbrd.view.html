@@ -1,16 +1,26 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <h5>Buildings Filmed: {{::data.numOfAddresses}}</h5>
+    <div class="flex-header" style="width:100%;">
+        <img src="http://172.16.0.2:3000/public/viewtemplates/images/brand_assets/wizio_logo_gray.png">
+    </div>
+    <div class="row flex-data-block">
+        <div class="col-md-6 flex-column">
+            <i class="fa fa-building-o fa-5x" aria-hidden="true"></i>
+            <h5>Buildings Filmed:  <br> {{::data.numOfAddresses}}</h5>
         </div>
-        <div class="col-md-3">
-            <h5>Units Filmed: {{::data.numOfUnits}}</h5>
+        <div class="col-md-5 flex-column">
+            <i class="fa fa-bed fa-5x" aria-hidden="true"></i>
+            <h5>Units Filmed:  <br> {{::data.numOfUnits}}</h5>
         </div>
-        <div class="col-md-3">
-            <h5>Number of Units Represented: Approximately 2500</h5>
+    </div>
+    <div class="row" style="background-color:#F69746">
+        <div class="col-md-6 flex-column">
+            <i class="fa fa-square-o fa-5x" aria-hidden="true"></i>
+            <h5>Number of Units Represented: <br> Approximately 2500</h5>
         </div>
-        <div class="col-md-3">
-            <h5>Percent of Inventory Luxury: 50%</h5>
+        <div class="col-md-5 flex-column">
+            <i class="fa fa-pie-chart fa-5x" aria-hidden="true"></i>
+
+            <h5>Percent of Inventory Luxury:  <br> 50%</h5>
         </div>
     </div>
     <div class="row">
@@ -21,13 +31,13 @@
             </ul>
         </div>
         <div class="col-md-4">
+            <h5>Hello</h5>
+        </div>
+        <div class="col-md-4">
             <h5>Property Managers Represented</h5>
             <ul>
                 <li ng-repeat="(key, val) in data.byPropertyManagers track by $index">{{key}}: {{val.length}}</li>
             </ul>
-        </div>
-        <div class="col-md-4">
-            <h5>Hello</h5>
         </div>
     </div>
     <div class="row" ng-repeat="(key, val) in data.byStreet track by $index" style="padding:5px; border:1px solid black;">
