@@ -22,4 +22,5 @@ angular.module('AccountApp')
                 $uibModalInstance.close('success');
             }
         }
+
     ])

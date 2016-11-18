@@ -23,7 +23,7 @@
 <div class="" style="height:100%; width:100%;" ng-show="media.vrphoto[0].awsurl">
     <div class="" style="height:100%">
         <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100vh">
-            <div class="" id="unit-details-pins-container" style="z-index:1000">
+            <!-- <div class="" id="unit-details-pins-container" style="z-index:1000">
                 <div class="" id="panel-container">
                     <div class="" id="panel-text">
                         Floor Plan
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
             <img src="public/assets/black.png" height="100%" width="100%" style="
                 opacity: 0;
                 position: absolute;
@@ -51,14 +51,18 @@
                 ">
 
             <div ng-show="selectPhoto || viewFloorPlan" class="vr-control-overlay"></div>
-            <div style="position: absolute; top: 90%; left: 50px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
-                <button class="btn btn-fill--orange btn-md" ng-click="selectPhoto = !selectPhoto;" style="width:175px" type="submit">Photos</button>
-            </div>
-            <div style="position: absolute; top: 90%; left: 250px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
-                <button class="btn btn-fill--orange btn-md" ng-click="viewFloorPlan = !viewFloorPlan;" style="width:175px" type="submit">Floor Plan</button>
-            </div>
             <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
             <div id="sphere"></div>
         </div>
     </div>
+</div>
+<div class="" style="position: absolute; bottom:25px; left: 50px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-fill--orange btn-md form-control" ng-click="selectPhoto = !selectPhoto;" style="margin:5px" type="submit">Photos</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-fill--orange btn-md form-control" ng-click="viewFloorPlan = !viewFloorPlan;" style="margin: 5px;" type="submit">Floor Plan</button>
+            </div>
+        </div>
 </div>
