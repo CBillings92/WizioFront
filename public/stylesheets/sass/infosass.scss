@@ -1,0 +1,25 @@
+.flex-header {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+//    padding-bottom: 30px;
+
+}
+.flex-column {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.flex-data-block {
+    // margin-top:15px;
+    // padding-top:15px;
+    // background-color:#7B9ECF;
+
+}
+.top-table {
+    padding-top: 20px;
+    margin-top: 20px;
+
+}

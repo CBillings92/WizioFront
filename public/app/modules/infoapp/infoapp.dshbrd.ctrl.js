@@ -4,10 +4,10 @@ angular.module('InfoApp')
         '$resource',
         'WizioConfig',
         function($scope, $resource, WizioConfig){
-            alert('works');
+            // alert('works');
             $resource(WizioConfig.baseAPIURL + 'info')
             .get(function(response){
-                alert('in response');
+                // alert('in response');
                 $scope.data = response;
             })
         }

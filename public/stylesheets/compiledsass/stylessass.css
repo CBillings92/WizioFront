@@ -8091,3 +8091,19 @@ div.item {
   padding-bottom: 20px; }
   .signupBlock button {
     font-size: 30px; }
+
+.flex-header {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center; }
+
+.flex-column {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center; }
+
+.top-table {
+  padding-top: 20px;
+  margin-top: 20px; }
