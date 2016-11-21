@@ -75,7 +75,9 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
         $scope.openTermsOfServicesModal = function openTermsOfServicesModal() {
             ModalBuilderFct.buildComplexModal('md', '/public/app/modules/accountapp/termsandservices/termsandservices.view.html', 'TermsAndServicesCtrl', null).then(function(response) {
                 if (response === "success") {
-                    goAccountCreate();
+                    ModalBuilderFct.buildComplexModal('md', 'public/app/modules/accountapp/auth2app/views/signupmodal.view.html', 'SignupFormCtrl', null)
+                    .then(function(response){
+                    });
                 }
             });
         }
