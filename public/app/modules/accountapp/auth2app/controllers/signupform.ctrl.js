@@ -25,7 +25,9 @@ angular.module('AccountApp')
                 image: 'https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471400059126-Untitled-1.png',
                 locale: 'auto',
                 token: function stripecb(token) {
+                    console.dir('hi');
                     stripetoken = token;
+                    console.dir(token);
                     stripetoken.userid = TokenSvc.decode().id;
                     stripetoken.user = TokenSvc.decode();
                     $resource(WizioConfig.baseAPIURL + "user/subscribe")
