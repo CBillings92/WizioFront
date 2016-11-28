@@ -36,8 +36,8 @@
                 <div style="position:relative; display:inline-block" id="floorplanOverlay">
                     <img src="{{selectedFloorplan}}" ng-click="makePinAction($event, this, true)" id="floorplan" alt=""/>
                     <!-- this loop is for displaying newly created pins -->
-                    <span ng-repeat="pin in pins track by $index">
-                        <img src="public/viewtemplates/images/brand_assets/map_pin.png" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                    <span>
+                        <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
                     </span>
                 </div>
             </div>
