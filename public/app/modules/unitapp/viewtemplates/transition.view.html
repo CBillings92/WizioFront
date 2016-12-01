@@ -1,8 +1,6 @@
-
 <div class="" style="height:100%; width:100%;" ng-show="media.vrphoto[0].awsurl">
-    <div class="" style="height:100%">
-        <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100vh">
-            <!-- <div class="" id="unit-details-pins-container" style="z-index:1000">
+    <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100px">
+        <!-- <div class="" id="unit-details-pins-container" style="z-index:1000">
                 <div class="" id="panel-container">
                     <div class="" id="panel-text">
                         Floor Plan
@@ -16,7 +14,7 @@
                     </div>
                 </div>
             </div> -->
-            <img src="public/assets/black.png" height="100%" width="100%" style="
+        <img src="public/assets/black.png" height="100%" width="100%" style="
                 opacity: 0;
                 position: absolute;
                 left: 0;
@@ -27,10 +25,9 @@
                 z-index: 500;
                 ">
 
-            <div ng-show="selectPhoto || viewFloorPlan" class="vr-control-overlay"></div>
-            <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
-            <div id="sphere"></div>
-        </div>
+        <div ng-show="selectPhoto || viewFloorPlan" class="vr-control-overlay"></div>
+        <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
+        <div id="sphere"></div>
     </div>
 </div>
 <div class="vr-control-container">

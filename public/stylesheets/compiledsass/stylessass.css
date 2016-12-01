@@ -6968,7 +6968,7 @@ body {
 
 @media (max-width: 768px) {
   #photo-button-container {
-    height: 90vh;
+    height: 85%;
     overflow: scroll; } }
 
 .vr-control-container {

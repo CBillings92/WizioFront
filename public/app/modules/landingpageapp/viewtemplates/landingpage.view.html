@@ -1,16 +1,39 @@
 <div class="home-hero">
+    <div style="position:absolute; top:0; left:0; width:100%; height:100%" ng-hide="viewFloorPlan">
+        <div class="container-fluid" style="height:100%">
+            <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
+                <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
+                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:100%; width:100%; text-align:center; display:inline-block; position:absolute; z-index: 700;" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
+        <div style="height:100%; vertical-align:middle; display:inline-block">
+            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+            <div style="position:relative; display:inline-block">
+                <img src="{{floorplan}}" id="floorplan" alt="" />
+                <span ng-repeat="photo in media.vrphoto track by $index">
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
+                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+
+                </span>
+            </div>
+        </div>
+    </div>
     <div class="home-hero__video" id="vr-player-container">
         <!-- <iframe ng-show="devEnvironmentCheck !== 'http://172.16.0.2:3000'" allowfullscreen="allowfullscreen" frameborder="0" height="100%" src="https://www.bubl.io/embed/be140e00-8b6b-48fa-aa2a-6fc2e42cb06f" width="100%"></iframe> -->
         <!-- <video autoplay width="400" height="300" loop poster="public/viewtemplates/images/home/sequence.png">
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()"> View Map of Our Inventory </button>
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan"> View Map of Our Inventory </button>
 
             <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;">
 
             </div>
-        <transition-vr-player-dirv style="height:100%" ng-hide="mapViewSelected"></transition-vr-player-dirv>
+            <transition-vr-player-dirv ng-hide="mapViewSelected"></transition-vr-player-dirv>
+
     </div>
     <div class="container">
         <div class="row">
@@ -41,7 +64,8 @@
         <div class="row">
             <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
             <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;
-                    <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button>
+                    <a href="https://hopskins.typeform.com/to/ByD6BO" class="btn btn-fill--blue btn-md"> Request now. </button>
+                    <!-- <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button> -->
             </h2>
         </div>
         <div class="row">

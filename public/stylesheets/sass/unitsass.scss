@@ -340,7 +340,7 @@
 }
 #photo-button-container{
     @media (max-width: $screen-sm){
-        height:90vh;
+        height:85%;
         overflow: scroll;
     }
 }
@@ -356,9 +356,6 @@
         bottom:0;
         width:100%;
     }
-}
-.vr-player-control {
-
 }
 /*DEMO STYLES*/
 #unit-details-pins-container {

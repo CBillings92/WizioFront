@@ -19,7 +19,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         bodyTag.style["margin-bottom"] = 0;
 
         // Containing html element of the VR player
-        heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100vh" : "padding-bottom: 0; height: 100vh";
+        heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height: 100vh";
 
         // For photo and floorplan selection
         $scope.selectPhoto = false;
