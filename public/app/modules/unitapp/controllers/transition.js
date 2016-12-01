@@ -22,8 +22,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 heightContainerElem.style = "padding-bottom: 0; height:" + $(window).height() + 'px';
             });
         }
-        // Containing html element of the VR player
-        heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height:" + $(window).height() + 'px';
 
         // For photo and floorplan selection
         $scope.selectPhoto = false;
