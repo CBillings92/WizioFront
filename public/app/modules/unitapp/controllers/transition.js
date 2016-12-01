@@ -16,7 +16,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var heightContainerElem = document.getElementById('height-container');
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
-        bodyTag.style["margin-bottom"] = 0;
+        if($state.current.name === 'NewExternalApi' || $state.current.name === 'Demo'){
+            bodyTag.style["margin-bottom"] = "0" ;
+        }
 
         // Containing html element of the VR player
         heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height: 100vh";
