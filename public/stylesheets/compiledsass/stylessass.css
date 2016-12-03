@@ -7435,7 +7435,8 @@ body {
   .home-pin__orange__left {
     background-color: #F7AA63;
     height: 100%;
-    width: calc(50% - 575px); }
+    width: calc(50% - 575px);
+    margin-top: -1px; }
   .home-pin__orange__right {
     display: none; }
   .home-pin__orange__left {
@@ -7468,7 +7469,8 @@ body {
   .home-pin__orange__left {
     background-color: #F7AA63;
     height: 100%;
-    width: calc(50% - 644px); }
+    width: calc(50% - 644px);
+    margin-top: -1px; }
   .home-pin__orange__right {
     float: right; }
   .home-pin__orange__left {

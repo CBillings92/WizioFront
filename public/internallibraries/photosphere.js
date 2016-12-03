@@ -18,10 +18,6 @@ THREE.Photosphere = function (domEl, image, options) {
 	var webglSupport = (function(){
 		try {
 			var canvas = document.createElement( 'canvas' );
-			console.dir("___");
-			console.dir(window.WebGLRenderingContext);
-			console.dir("___");
-			console.dir(canvas);
 			return !! (window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
 		} catch(e) {
 			return false;
