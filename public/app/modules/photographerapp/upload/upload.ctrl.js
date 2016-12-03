@@ -29,7 +29,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param3: '@concatAddr',
             param4: '@unitNum',
             param5: '@Floor_Plan'
-        })
+        });
         pinAPIResource = $resource(WizioConfig.baseAPIURL + 'media');
 
         // get the id, pubid, concatAddr, unitnum, and Floor_Plan for all apartments with Floor_Plans
@@ -40,6 +40,9 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param4: 'unitNum',
             param5: "Floor_Plan"
         }, function(response) {
+            alert(response);
+            $scope.units = lodash.groupBy(response, 'Floor_Plan');
+            console.dir($scope.units);
             $scope.units = response;
         });
 
@@ -76,7 +79,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 $scope.amenities = $scope.media.false;
                 $scope.pins = $scope.media.true;
             });
-        };
+        }
 
         /*  SUMMARY - makePinAction(mouseEvent, subScope, clickOnFloorplan)
             mouseEvent provides us with the necessary coordinates for placing and
@@ -113,7 +116,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             var x = (((mouseEvent.offsetX - 17) / mouseEvent.target.clientWidth) * 100).toFixed(2);
             var y = (((mouseEvent.offsetY - 35) / mouseEvent.target.clientHeight) * 100).toFixed(2);
 
-            return {x: x, y: y}
+            return {x: x, y: y};
         }
 
         function movePin(mouseEvent){
@@ -124,10 +127,11 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             pinToMove.y = pinXY.y;
 
             movePinFlag = false;
+            console.dir(pinToMove);
             pinAPIResource.save(pinToMove, function(response){
                 alert('saved');
                 return;
-            })
+            });
         }
 
         function choosePinActionModal() {
