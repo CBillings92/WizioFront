@@ -12,7 +12,7 @@ angular.module('Directives')
                         secretAccessKey: '/Kgh+Jq4up2HLEOVmkZuFF+x2O8ZKp4JH+N7JuJ+'
                     });
                     var bucket = new AWS.S3({
-                        endpoint: 'http://cdn.wizio.co',
+                        endpoint: 'cdn.wizio.co',
                         s3BucketEndpoint: true,
                         region: 'us-east-1',
                         // params: {
@@ -36,7 +36,7 @@ angular.module('Directives')
 
                             var params = {
                                 Bucket: 'equirect-photos',
-                                Key: "test_" + scope.pin.apartmentpubid + '/' + scope.photoTitle,
+                                Key: scope.pin.apartmentpubid + '/' + scope.photoTitle,
                                 ContentType: file.type,
                                 Body: file
                             };
