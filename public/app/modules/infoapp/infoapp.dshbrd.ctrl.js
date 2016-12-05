@@ -9,6 +9,6 @@ angular.module('InfoApp')
             .get(function(response){
                 // alert('in response');
                 $scope.data = response;
-            })
+            });
         }
     ]);

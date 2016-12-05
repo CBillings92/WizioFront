@@ -1,54 +1,24 @@
 <!DOCTYPE html>
 <html ng-app="MainApp" ng-strict-di>
-
 <head>
-    <title>Wizio</title>
+    <title>Wizio Inc.,</title>
+    <!-- mobile friendly browsing! -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- set base of the website url to be / without the angular # -->
     <base href="/">
-    <!-- Bootstrap -->
-   <!--  <link href="../public/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet"> -->
+
+    <!-- Fonts and Font Awesome, respectively -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="../public/build/stylessass.css" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'>
-
-    <!--jquery-->
-    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <!--angularJS-->
-    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-    <!--angular Resource-->
-    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.min.js"></script>
-    <!--angular ui.router-->
-    <script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <!--bootstrap JS-->
-    <script type="text/javascript" src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!--angular lodash-->
-    <script type="text/javascript" src="../bower_components/ng-lodash/build/ng-lodash.min.js"></script>
-    <!--angular storage-->
-    <script type="text/javascript" src="../bower_components/ngstorage/ngStorage.min.js"></script>
-    <!--angular jwt-->
-    <script type="text/javascript" src="../bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
-    <!--angular bootstrap ui-->
-    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
-    <script type="text/javascript" src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <script type="text/javascript" src="../bower_components/clipboard/dist/clipboard.min.js"></script>
-    <!--Stuff for the AWS upload controller-->
-    <!-- <script src="../bower_components/toastr/build/toastr.min.js"></script> -->
-    <script src="../bower_components/moment/min/moment.min.js"></script>
-    <script src="../bower_components/ng-facebook/ngFacebook.js"></script>
-    <script src="../bower_components/angular-moment/angular-moment.min.js"></script>
-    <script src="../bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="../bower_components/ng-facebook/ngFacebook.js"></script>
-
-
-    <script type="text/javascript" src="../bower_components/angulartics/dist/angulartics.min.js"></script>
-    <script type="text/javascript" src="../bower_components/angulartics-google-analytics/dist/angulartics-google-analytics.min.js"></script>
-    <script type="text/javascript" src="../public/build/scripts.js"></script>
+    <!-- Dependencies -->
+    <script type="text/javascript" src="../public/build/lib.min.js
+    "></script>
+    <!-- Wizio App -->
+    <script type="text/javascript" src="../public/build/scripts.min.js"></script>
     <!--GOOGLE API STUFF-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
@@ -83,51 +53,7 @@
     <meta name="msapplication-TileImage" content="public/viewtemplates/images/favicons/mstile-144x144.png">
     <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
     <meta name="theme-color" content="#fa9a29">
-    <!--=======================================================================================-->
-
-    <!--Settings App-->
-    <!--BUYER APPLICATION-->
-    <!--ANALTICS APP -->
-
-    <!-- APPLICATION APP END -->
-    <!-- SELLER APPLICATION END-->
-
-
-    <!--ACCOUNT JAVASCRIPT END-->
-
-    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>  -->
-    <!--    <script src="https://maps.googleapis.com/maps/api/js?v=3.11&sensor=false" type="text/javascript"></script>  Might not need components-->
 </head>
-<!-- Start of Async HubSpot Analytics Code -->
-<script type="text/javascript">
-    (function(d, s, i, r) {
-        if (d.getElementById(i)) {
-            return;
-        }
-        var n = d.createElement(s),
-            e = d.getElementsByTagName(s)[0];
-        n.id = i;
-        n.src = '//js.hs-analytics.net/analytics/' + (Math.ceil(new Date() / r) * r) + '/1721151.js';
-        e.parentNode.insertBefore(n, e);
-    })(document, "script", "hs-analytics", 300000);
-</script>
-<!-- End of Async HubSpot Analytics Code -->
-<!-- Start of Google Analytics Code -->
-<script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-69688409-1', 'none');
-    // ga('send', 'pageview');
-</script>
 <!-- End of Google Analytics Code -->
 
 <!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
@@ -139,6 +65,21 @@
     <script type="text/javascript" src='../public/internallibraries/orbitcontrols.js'></script>
     <script type="text/javascript" src='../public/internallibraries/detector.js'> </script>
     <script type="text/javascript" src='../public/internallibraries/photosphere.js'> </script>
+    <!-- Start of Google Analytics Code -->
+    <script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-69688409-1', 'none');
+    </script>
 </body>
 
 

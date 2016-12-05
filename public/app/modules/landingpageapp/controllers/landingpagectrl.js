@@ -80,7 +80,7 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
                     });
                 }
             });
-        }
+        };
 
         function goAccountCreate() {
 

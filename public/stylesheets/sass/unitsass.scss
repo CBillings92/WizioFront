@@ -338,6 +338,27 @@
 		width: 90vw;
 	}
 }
+.photo-buttons-container__landingpage {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+.floorplan-container__landingpage {
+	height:100%;
+	width:100%;
+	text-align:center;
+	display:inline-block;
+	position:absolute;
+	z-index: 700;
+	vertical-align:middle;
+}
+.floorplan-pushdown-span {
+	height:100%;
+	display:inline-block; 
+	vertical-align:middle;
+}
 #photo-button-container{
     @media (max-width: $screen-sm){
         height:85%;

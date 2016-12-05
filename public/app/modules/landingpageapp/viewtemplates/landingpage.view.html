@@ -1,5 +1,7 @@
+<!-- VR Player Container for Landing Page -->
 <div class="home-hero">
-    <div style="position:absolute; top:0; left:0; width:100%; height:100%" ng-hide="viewFloorPlan">
+    <!-- Photo Selection Button Overlay  -->
+    <div class="photo-buttons-container__landingpage" ng-hide="viewFloorPlan">
         <div class="container-fluid" style="height:100%">
             <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
                 <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
@@ -8,17 +10,31 @@
             </div>
         </div>
     </div>
-    <div style="height:100%; width:100%; text-align:center; display:inline-block; position:absolute; z-index: 700;" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
-        <div style="height:100%; vertical-align:middle; display:inline-block">
-            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
-            <div style="position:relative; display:inline-block">
-                <img src="{{floorplan}}" id="floorplan" alt="" />
-                <span ng-repeat="photo in media.vrphoto track by $index">
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+    <!-- Floor Plan Overlay -->
+    <div class="floorplan-container__landingpage" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
+        <!-- span used to push floorplan down to middle of page -->
+        <span class="floorplan-pushdown-span"></span>
+        <div style="position:relative; display:inline-block">
+            <img src="{{floorplan}}" id="floorplan" alt=""/>
+            <span ng-repeat="photo in media.vrphoto track by $index">
+                <img
+                    src="public/viewtemplates/images/brand_assets/map_pin.png"
+                    class="unit-details-floorplan-pin"
+                    ng-hide="photoIndex === $index"
+                    ng-click="changePhoto($index)"
+                    ng-if="media.vrphoto[$index].isUnit"
+                    style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%"
+                    alt=""/>
+                <img
+                    src="public/viewtemplates/images/favicons/mstile-70x70.png"
+                    ng-show="photoIndex === $index"
+                    ng-click='changePhoto($index)'
+                    class="unit-details-floorplan-pin"
+                    ng-if="media.vrphoto[$index].isUnit"
+                    alt=""
+                    style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;"/>
 
-                </span>
-            </div>
+            </span>
         </div>
     </div>
     <div class="home-hero__video" id="vr-player-container">
@@ -27,12 +43,12 @@
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan"> View Map of Our Inventory </button>
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan">
+            View Map of Our Inventory
+        </button>
 
-            <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;">
-
-            </div>
-            <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv>
+        <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;"></div>
+        <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv>
 
     </div>
     <div class="container">
@@ -46,7 +62,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="home-tenants">
 
@@ -63,29 +78,43 @@
     <div class="container">
         <div class="row">
             <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
-            <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;
-                    <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a>
-                    <!-- <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button> -->
+            <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half. &nbsp;&nbsp;&nbsp;
+                <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank">
+                    <button class="btn btn-fill--blue btn-md">
+                        Request now.
+                    </button>
+                </a>
+                <!-- <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button> -->
             </h2>
         </div>
         <div class="row">
             <div class="home-blurbs">
                 <div class="home-blurb col-xs-12 col-sm-6 col-sm-offset-0 col-lg-5 col-lg-offset-1">
                     <h3 class="home-blurb__header">What We Do:</h3>
-                    <h5 class="home-blurb__desc"><ul>
-            <li>Create high quality virtual reality tours. </li>
-            <li>Best in class tour viewer. </li>
-            <li>Integrate our tours with YGL & your website. </li>
-        </ul></h5>
+                    <h5 class="home-blurb__desc">
+                        <ul>
+                            <li>Create high quality virtual reality tours.
+                            </li>
+                            <li>Best in class tour viewer.
+                            </li>
+                            <li>Integrate our tours with YGL & your website.
+                            </li>
+                        </ul>
+                    </h5>
                 </div>
                 <div class="home-blurb col-xs-12 col-sm-6">
                     <h3 class="home-blurb__header">Why You Benefit:</h3>
-                    <h5 class="home-blurb__desc"><ul>
-            <li>Cut lead qualification time in half. </li>
-            <li>Virtual reality can double sight-unseen deals. </li>
-            <li>Give your clients the best viewing experience. </li>
-        </ul></h5>
-        </div>
+                    <h5 class="home-blurb__desc">
+                        <ul>
+                            <li>Cut lead qualification time in half.
+                            </li>
+                            <li>Virtual reality can double sight-unseen deals.
+                            </li>
+                            <li>Give your clients the best viewing experience.
+                            </li>
+                        </ul>
+                    </h5>
+                </div>
 
             </div>
         </div>
@@ -101,14 +130,18 @@
     <div class="container">
         <div class="row">
             <div class="home-blurb">
-                 <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">How It Works:</h2>
-                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6"><ol>
-                    <li>Sign up above! </li>
-                    <li>Get access to a growing database of VR. </li>
-                    <li>Tour your clients virtually through YGL or your own website. </li>
-                </ol></h5>
-                <div class="home-landlord__button col-xs-4 col-sm-offset-4 col-lg-offset-6">
-                </div>
+                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">How It Works:</h2>
+                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">
+                    <ol>
+                        <li>Sign up above!
+                        </li>
+                        <li>Get access to a growing database of VR.
+                        </li>
+                        <li>Tour your clients virtually through YGL or your own website.
+                        </li>
+                    </ol>
+                </h5>
+                <div class="home-landlord__button col-xs-4 col-sm-offset-4 col-lg-offset-6"></div>
             </div>
         </div>
     </div>

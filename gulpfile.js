@@ -13,6 +13,7 @@ var plugins = require("gulp-load-plugins")({
     pattern: ['gulp-*', 'gulp.*', 'main-bower-files'],
     replaceString: /\bgulp[\-.]/
 });
+var lib = require('bower-files')();
 var gutil = require('gulp-util');
 var mainBowerFiles = require('main-bower-files');
 var resourceDest = '/public';
@@ -28,11 +29,16 @@ gulp.task('jshint', function() {
 gulp.task('scripts', function() {
     gulp.src(['./public/app/**/*.js'])
         //   .pipe(stripDebug())
-        .pipe(concat('scripts.js'))
+        .pipe(concat('scripts.min.js'))
         .pipe(uglify({
             file: 'scripts.min.js',
             outSourceMap: true
         })).on('error', gutil.log)
+        .pipe(gulp.dest('./public/build'));
+
+    gulp.src(lib.ext('js').files)
+        .pipe(concat('lib.min.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('./public/build'));
 });
 

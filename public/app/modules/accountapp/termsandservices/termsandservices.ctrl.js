@@ -21,9 +21,7 @@ angular.module('AccountApp')
             };
 
             $scope.ok = function() {
-                console.dir('wtf');
                 $uibModalInstance.close('success');
-            }
+            };
         }
-
-    ])
+    ]);

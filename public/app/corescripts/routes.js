@@ -801,10 +801,6 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                if (response.data.facebook) {
-                                    //alert("Facebook Login Error: Please login again with facebook.");
-                                    return $q.reject(response);
-                                }
                                 alert('Authentication Failed');
                             }
                             return response;
