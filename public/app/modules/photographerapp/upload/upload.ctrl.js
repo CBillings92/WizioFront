@@ -18,7 +18,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-
+        $scope.displayNoFloorplanMessage = false;
         $scope.selectedUnit = false;
         $scope.pins = [];
         $scope.showAmenityButton = false;
@@ -60,6 +60,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
 
             // get the Floor_Plan URL from the selected unit
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
+            $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
 
