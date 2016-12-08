@@ -229,9 +229,10 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 awsurl: 'http://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
-
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(result) {
                 // result is what's passed back from modal button selection
+                amenity.title = result;
+                $scope.amenities.push(amenity);
                 return result;
             });
 
