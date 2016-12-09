@@ -27,6 +27,8 @@ angular.module('MainApp')
                     return 'prod';
                 case "https://wizio.co":
                     return 'prod';
+                case "https://www.wizio.co":
+                    return 'prod';
                 default:
                     return "dev";
             }
