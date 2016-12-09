@@ -198,7 +198,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 isUnit: 1,
                 type: 'vrphoto',
                 title: null,
-                awsurl: 'http://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
 
@@ -226,7 +226,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 isUnit: 0,
                 type: 'vrphoto',
                 title: null,
-                awsurl: 'http://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(result) {
