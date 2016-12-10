@@ -125,13 +125,13 @@
         a.src = g;
         m.parentNode.insertBefore(a, m)
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
     ga('create', 'UA-69688409-1', 'none');
     // ga('send', 'pageview');
 </script>
 <!-- End of Google Analytics Code -->
 
-<body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}">
+<!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
+<body>
     <div ui-view="navbar"></div>
     <div ui-view="maincontent" class=""></div>
     <div ui-view="footer"></div>

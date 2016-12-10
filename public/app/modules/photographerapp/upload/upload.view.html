@@ -1,44 +1,70 @@
-<div>
-    <div class="col-md-8 col-md-offset-4" style="padding-top:25px;">
-        <div style="width:50%; float:left">
-            <input style="width:250px;" ng-model="searchText.concatAddr" id="searchText" type="text" placeholder="Search for unit by address"></input>
-            <div ng-repeat="unit in units | filter:searchText" ng-click="loadFloorplan(this)" style="border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
-                <p> Unit Num: <strong>{{unit.unitNum}}</strong>, at <strong>{{unit.concatAddr}}</strong></p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" style="padding-top:25px; text-align:center;">
+            <input style="width:250px;" ng-model="searchText.concatAddr" ng-change="selectedUnit = false" id="searchText" type="text" placeholder="Search for unit by address"></input>
+            <div ng-repeat="unit in units | filter:searchText" ng-click="loadFloorplan(this)" ng-show="selectedUnit === false" style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
+                <p>
+                    Unit Num:
+                    <strong>{{unit.unitNum}}</strong>, at
+                    <strong>{{unit.concatAddr}}</strong>
+                </p>
             </div>
         </div>
     </div>
-    <div class="text-center">
-        <br>
+</div>
+<div class="container" ng-show="selectedUnit !== false">
+    <div class="row">
+        <div class="col-md-12" style="padding-top:25px; text-align:center;">
+            <div style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
+                <p>
+                    Unit Num:
+                    <strong>{{selectedUnit.unitNum}}</strong>, at
+                    <strong>{{selectedUnit.concatAddr}}</strong>
+                </p>
+            </div>
+        </div>
     </div>
-    <div id="unit-details-pins-container">
-        <div class="panel-container">
-            <div style="display: inline-block; position: relative;" class="">
-                <div>
-                    <img id="floorplan" id="unit-details-floorplan-img" src="{{selectedFloorplan}}" style="width: 325px;" alt="">
-                    <img
-                    src="public/viewtemplates/images/brand_assets/map_pin.png"
-                    id="existingUnitPin_{{index}}"
-                    class="unit-details-floorplan-pin"
-                    ng-repeat="pin in unitPhotos"
-                    style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
-                    alt=""
-                    />
-                    <img
-                    src="public/viewtemplates/images/brand_assets/map_pin.png"
-                    id="pin_{{$index}}"
-                    class="unit-details-floorplan-pin"
-                    ng-repeat="pin in pins"
-                    alt=""
-                    style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;"
-                    />
+</div>
+<div class="container">
+    <div class="row">
+        <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" ng-click="viewFloorPlan = !viewFloorPlan">
+            <div>
+                <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+                <div class="">
+
+                </div>
+                <div style="position:relative; display:inline-block" id="floorplanOverlay">
+                    <img src="{{selectedFloorplan}}" ng-click="makePinAction($event, this, true)" id="floorplan" alt=""/>
+                    <!-- this loop is for displaying newly created pins -->
+                    <span>
+                        <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                    </span>
                 </div>
             </div>
-
         </div>
     </div>
+</div>
+<!-- <div id="unit-details-pins-container">
+    <div class="panel-container">
+        <div style="display: inline-block; position: relative;" class="">
+            <div>
+                <img id="floorplan" id="unit-details-floorplan-img" src="{{selectedFloorplan}}" style="width: 325px;" alt="">
+                <img src="public/viewtemplates/images/brand_assets/map_pin.png" id="existingUnitPin_{{index}}" class="unit-details-floorplan-pin" ng-repeat="pin in unitPhotos" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;" alt="" />
+                <img src="public/viewtemplates/images/brand_assets/map_pin.png" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt="" style="cursor: pointer; top: {{pins[$index].y}}%; left: {{pins[$index].x}}%;" />
+            </div>
+        </div>
 
-    <div style="padding:30px;" ng-show="showAmenityButton">
-        <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add Amenity</button>
-        <p ng-repeat="amenity in amenities"> <a ng-href="{{amenity.awsurl}}" target="_blank"> {{amenity.title}} </a></p>
+    </div>
+</div> -->
+<div class="container">
+    <div class="row">
+        <div style="padding:30px;" ng-show="showAmenityButton">
+            <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add Amenity</button>
+            <p ng-repeat="amenity in amenities">
+                <a ng-href="{{amenity.awsurl}}" target="_blank">
+                    {{amenity.title}}
+                </a>
+            </p>
+        </div>
     </div>
 </div>

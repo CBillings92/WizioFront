@@ -332,6 +332,31 @@
 		}
 	}
 }
+
+#floorplan {
+    @media (max-width: $screen-sm) {
+		width: 90vw;
+	}
+}
+#photo-button-container{
+    @media (max-width: $screen-sm){
+        height:85%;
+        overflow: scroll;
+    }
+}
+.vr-control-container {
+    position: absolute;
+    bottom: 50px;
+    left:100px;
+    margin: 0 auto;
+    opacity: .9;
+    z-index: 1200;
+    @media (max-width: $screen-lg) {
+        left:0;
+        bottom:0;
+        width:100%;
+    }
+}
 /*DEMO STYLES*/
 #unit-details-pins-container {
     position: absolute;
@@ -344,6 +369,10 @@
 }
 .unit-details-floorplan-pin {
     position: absolute;
+    @media (max-width: $screen-xs){
+        width:27px;
+        height: auto;
+    }
 }
 #panel-container {
     top:20px;

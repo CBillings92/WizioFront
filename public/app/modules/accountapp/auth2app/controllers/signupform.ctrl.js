@@ -2,31 +2,32 @@ angular.module('AccountApp')
     .controller('SignupFormCtrl', [
         '$scope',
         '$state',
-        '$uibModal',
         '$uibModalInstance',
         '$window',
         '$resource',
         'ModalSvc',
         'TokenSvc',
-        'data',
+        'modalData',
         'WizioConfig',
         'UserRegistrationSvc',
         'ModalBuilderFct',
         'AuthFct',
-        function($scope, $state, $uibModal, $uibModalInstance, $window, $resource, ModalSvc, TokenSvc, data, WizioConfig, UserRegistrationSvc, ModalBuilderFct, AuthFct) {
+        function($scope, $state, $uibModalInstance, $window, $resource, ModalSvc, TokenSvc, modalData, WizioConfig, UserRegistrationSvc, ModalBuilderFct, AuthFct) {
             //Set a standard, local user object to save for local authentication
             $scope.waitlist = false;
             $scope.user = {};
             $scope.hasRegistered = false;
             //data comes from previous modal
-            $scope.data = data;
+            $scope.data = modalData;
             var stripetoken;
             var handler = $window.StripeCheckout.configure({
                 key: WizioConfig.stripe_test_key,
                 image: 'https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471400059126-Untitled-1.png',
                 locale: 'auto',
                 token: function stripecb(token) {
+                    console.dir('hi');
                     stripetoken = token;
+                    console.dir(token);
                     stripetoken.userid = TokenSvc.decode().id;
                     stripetoken.user = TokenSvc.decode();
                     $resource(WizioConfig.baseAPIURL + "user/subscribe")
@@ -56,7 +57,7 @@ angular.module('AccountApp')
                     passwordsMatch = AuthFct.confirmPasswords(passwordOne, passwordTwo);
                     if (passwordsMatch) {
                         //assign user type
-                        $scope.user = AuthFct.setUserType($scope.user, data);
+                        $scope.user = AuthFct.setUserType($scope.user, modalData);
                         //save user to DB
                         UserRegistrationSvc.saveUser($scope.user, function(data) {
                             if (data.status === "ERR") {

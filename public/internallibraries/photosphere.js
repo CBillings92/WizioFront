@@ -1,8 +1,20 @@
+/*
+	Create a new THREE PhotoSphere for displaying
+	equirectangular photos.
+
+	Expects the dom element, the image and any options
+*/
 THREE.Photosphere = function (domEl, image, options) {
+	// If no options are passed then just store options as a blank object
 	options = options || {};
 
-	var camera, controls, scene, renderer, sphere;
+	var camera;
+	var controls;
+	var scene;
+	var renderer;
+	var sphere;
 
+	// Check if the browser supports WebGL
 	var webglSupport = (function(){
 		try {
 			var canvas = document.createElement( 'canvas' );

@@ -4,11 +4,8 @@ angular.module('PhotographerApp')
         'modalData',
         '$uibModalInstance',
         function ($scope, modalData, $uibModalInstance) {
-            $scope.ok = function(){
-                return $uibModalInstance.close('ok');
-            };
-            $scope.notok = function(){
-                return $uibModalInstance.close('notok');
+            $scope.buttonClick = function(action){
+                return $uibModalInstance.close(action);
             };
         }
     ]);

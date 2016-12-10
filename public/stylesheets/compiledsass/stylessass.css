@@ -6962,6 +6962,28 @@ body {
       border-right: 0;
       width: 34%; }
 
+@media (max-width: 768px) {
+  #floorplan {
+    width: 90vw; } }
+
+@media (max-width: 768px) {
+  #photo-button-container {
+    height: 85%;
+    overflow: scroll; } }
+
+.vr-control-container {
+  position: absolute;
+  bottom: 50px;
+  left: 100px;
+  margin: 0 auto;
+  opacity: .9;
+  z-index: 1200; }
+  @media (max-width: 1200px) {
+    .vr-control-container {
+      left: 0;
+      bottom: 0;
+      width: 100%; } }
+
 /*DEMO STYLES*/
 #unit-details-pins-container {
   position: absolute; }
@@ -6974,6 +6996,10 @@ body {
 
 .unit-details-floorplan-pin {
   position: absolute; }
+  @media (max-width: 480px) {
+    .unit-details-floorplan-pin {
+      width: 27px;
+      height: auto; } }
 
 #panel-container {
   top: 20px;
@@ -7409,7 +7435,8 @@ body {
   .home-pin__orange__left {
     background-color: #F7AA63;
     height: 100%;
-    width: calc(50% - 575px); }
+    width: calc(50% - 575px);
+    margin-top: -1px; }
   .home-pin__orange__right {
     display: none; }
   .home-pin__orange__left {
@@ -7442,7 +7469,8 @@ body {
   .home-pin__orange__left {
     background-color: #F7AA63;
     height: 100%;
-    width: calc(50% - 644px); }
+    width: calc(50% - 644px);
+    margin-top: -1px; }
   .home-pin__orange__right {
     float: right; }
   .home-pin__orange__left {

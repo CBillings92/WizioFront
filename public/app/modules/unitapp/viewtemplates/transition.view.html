@@ -1,45 +1,6 @@
-<div style="position:absolute; top:0; left:0; width:100%; height:100%">
-    <div class="container-fluid">
-        <div class="row" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
-            <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
-                <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="height:100%; width:100%; text-align:center; display:inline-block; position:absolute; z-index: 700;" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
-    <div style="height:100%; vertical-align:middle; display:inline-block">
-        <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
-        <div style="position:relative; display:inline-block">
-            <img src="{{floorplan}}" id="" alt="" />
-            <span ng-repeat="photo in media.vrphoto track by $index">
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
-
-                </span>
-        </div>
-    </div>
-</div>
 <div class="" style="height:100%; width:100%;" ng-show="media.vrphoto[0].awsurl">
-    <div class="" style="height:100%">
-        <div class="embed-responsive embede-responsive-16by9" id="height-container" style="height:100vh">
-            <!-- <div class="" id="unit-details-pins-container" style="z-index:1000">
-                <div class="" id="panel-container">
-                    <div class="" id="panel-text">
-                        Floor Plan
-                    </div>
-                    <div style="{{style}}" ng-show="floorplan">
-                        <img src="{{floorplan}}" id="unit-details-floorplan-img" alt="" />
-                        <span ng-repeat="photo in media.vrphoto track by $index">
-                                <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                                <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
-
-                            </span>
-                    </div>
-                </div>
-
-            </div> -->
-            <img src="public/assets/black.png" height="100%" width="100%" style="
+    <div class="embed-responsive embed-responsive-16by9" id="height-container">
+        <img src="public/assets/black.png" height="100%" width="100%" style="
                 opacity: 0;
                 position: absolute;
                 left: 0;
@@ -50,19 +11,20 @@
                 z-index: 500;
                 ">
 
-            <div ng-show="selectPhoto || viewFloorPlan" class="vr-control-overlay"></div>
-            <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
-            <div id="sphere"></div>
-        </div>
+        <div ng-show="selectPhoto || viewFloorPlan" class="vr-control-overlay"></div>
+        <!-- <iframe ng-hide="media.vrphoto[0].awsurl" allowfullscreen="allowfullscreen" frameborder="0" height="480" src={{trust.trustAsResourceUrl(photoUrl)}} width="640"></iframe> -->
+        <div id="sphere"></div>
     </div>
 </div>
-<div class="" style="position: absolute; bottom:25px; left: 50px; bottom:0; margin:0 auto; opacity:.9; z-index:1200;">
+<div class="vr-control-container">
+    <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <button class="btn btn-fill--orange btn-md form-control" ng-click="selectPhoto = !selectPhoto;" style="margin:5px" type="submit">Photos</button>
+            <div class="col-xs-6 col-md-3">
+                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="selectPhoto = !selectPhoto;" style="margin:5px" type="submit">Photos</button>
             </div>
-            <div class="col-md-6">
-                <button class="btn btn-fill--orange btn-md form-control" ng-click="viewFloorPlan = !viewFloorPlan;" style="margin: 5px;" type="submit">Floor Plan</button>
+            <div class="col-xs-6 col-md-3">
+                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="viewFloorPlan = !viewFloorPlan;" style="margin: 5px;" type="submit">Floor Plan</button>
             </div>
         </div>
+    </div>
 </div>

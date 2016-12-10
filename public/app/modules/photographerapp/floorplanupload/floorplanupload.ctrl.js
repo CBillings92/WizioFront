@@ -8,8 +8,7 @@ angular.module('PhotographerApp')
     .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', function($scope, $resource, WizioConfig,$q) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
-
-
+        $scope.noFloorPlanChkBox = false;
         // put apartment on the scope for the form input
         $scope.apartment = {
             address: null,
@@ -77,14 +76,18 @@ angular.module('PhotographerApp')
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
                 var key = response.pubid + '/floorplan.png';
-                saveFloorPlanToS3(key)
+                if($scope.noFloorPlanChkBox){
+                    alert('Saved with no floorplan');
+                    return;
+                } else {
+                    saveFloorPlanToS3(key)
                     .then(function(response){
                         alert('finished');
                     })
                     .catch(function (err) {
                         alert(err);
                     });
-
+                }
             });
         }
 

@@ -16,10 +16,16 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var heightContainerElem = document.getElementById('height-container');
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
-        bodyTag.style["margin-bottom"] = 0;
+        heightContainerElem.style['padding-bottom'] = '0';
+        heightContainerElem.style.height = $(window).height() + 'px';
 
-        // Containing html element of the VR player
-        heightContainerElem.style = state === 'LandingPage' ? "padding-bottom: 0; height: 100vh" : "padding-bottom: 0; height: 100vh";
+        if(state === 'NewExternalApi' || state === 'Demo'){
+            bodyTag.style["margin-bottom"] = "0" ;
+            $(window).resize(function(){
+                heightContainerElem.style['padding-bottom'] = '0';
+                heightContainerElem.style.height = $(window).height() + 'px';
+            });
+        }
 
         // For photo and floorplan selection
         $scope.selectPhoto = false;

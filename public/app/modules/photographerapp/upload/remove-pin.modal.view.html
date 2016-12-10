@@ -1,10 +1,21 @@
 <div class="modal-header">
-    <h2>Remove this pin?</h2>
+    <h2>Move or Remove this pin?</h2>
 </div>
 <div class="modal-body">
-    Removing this pin will revert all upload actions. This photo will need to be re-uploaded by placing a pin. Continue?
+    <p>
+        <h4>Removing the Pin</h4>
+        Removing this pin will revert all upload actions. This photo will need to be re-uploaded by placing a pin. Continue?
+        <br>
+        <br>
+        <h4>Moving the Pin</h4>
+        Moving the pin will simply move the pin and leave everything else as is.If
+        you select to move the pin, this modal will disappear. Then click on the floorplan
+        where you would like to place the pin. The pin should appear there which also
+        constitutes the end of the pin move.
+    </p>
 </div>
 <div class="modal-footer">
-    <button type="button" ng-click="ok('ok')" name="button">Fuck Yah</button>
-    <button type="button" ng-click="notok('notok')" name="button">Fuck No</button>
+    <button type="button" class="btn btn-primary" ng-click="buttonClick('removePin')" name="button">Fuck Yah</button>
+    <button type="button" class="btn btn-warning" ng-click="buttonClick('movePin')" name="button">Move! That! Pin!</button>
+    <button type="button" class="btn btn-danger" ng-click="buttonClick('cancel')" name="button">Fuck No</button>
 </div>

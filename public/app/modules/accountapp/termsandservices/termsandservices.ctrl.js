@@ -5,6 +5,7 @@ angular.module('AccountApp')
         function($scope, $uibModalInstance) {
             // flag for displaying continue button on modal
             $scope.pass = false;
+            $scope.allChecked = false;
 
             // Each time a check box is clicked, run this function
             $scope.showContinue = function() {
@@ -13,12 +14,14 @@ angular.module('AccountApp')
                 var lastChkBx = document.getElementById('last').checked;
                 var continueButton = document.getElementById('contbutton');
                 if (termsChkBx && nextChkBx && lastChkBx) {
-
-                    continueButton.style.visibility = "visible";
+                    $scope.allChecked = true;
+                } else {
+                    $scope.allChecked = false;
                 }
             };
 
             $scope.ok = function() {
+                console.dir('wtf');
                 $uibModalInstance.close('success');
             }
         }

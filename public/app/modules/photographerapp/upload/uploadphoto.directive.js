@@ -36,7 +36,7 @@ angular.module('Directives')
 
                             var params = {
                                 Bucket: 'equirect-photos',
-                                Key: scope.pin.apartmentpubid + '/' + scope.photoTitle,
+                                Key: "test_" + scope.pin.apartmentpubid + '/' + scope.photoTitle,
                                 ContentType: file.type,
                                 Body: file
                             };
