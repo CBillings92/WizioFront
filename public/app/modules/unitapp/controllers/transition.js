@@ -14,6 +14,10 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var apitoken;
         var state = $state.current.name;
         var heightContainerElem = document.getElementById('height-container');
+        var floorplanImgElem = document.getElementById('floorplan');
+        var maxFloorPlanHeight = $(window).height() * .85;
+
+        floorplanImgElem.style['max-height'] = $(window).height() + 'px';
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         heightContainerElem.style['padding-bottom'] = '0';
@@ -24,6 +28,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             $(window).resize(function(){
                 heightContainerElem.style['padding-bottom'] = '0';
                 heightContainerElem.style.height = $(window).height() + 'px';
+                floorplanImgElem.style['max-height'] = $(window).height() + 'px';
             });
         }
 

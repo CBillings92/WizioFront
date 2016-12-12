@@ -48,7 +48,6 @@ angular.module('MainApp')
                 .state('InfoDashboard', {
                     url: '/info/dashboard',
                     views: {
-                        "navbar": '',
                         "footer": footer,
                         "maincontent": {
                             templateUrl: WizioConfig.infoAppViews + 'infoapp.dshbrd.view.html',

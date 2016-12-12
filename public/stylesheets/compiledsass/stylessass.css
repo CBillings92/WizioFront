@@ -8147,6 +8147,12 @@ div.item {
   justify-content: center;
   text-align: center; }
 
+.info-logo-footer {
+  float: right; }
+  .info-logo-footer img {
+    width: 50px;
+    height: auto; }
+
 .flex-column {
   display: flex;
   justify-content: center;
