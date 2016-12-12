@@ -356,7 +356,7 @@
 }
 .floorplan-pushdown-span {
 	height:100%;
-	display:inline-block; 
+	display:inline-block;
 	vertical-align:middle;
 }
 #photo-button-container{
@@ -371,7 +371,7 @@
     left:100px;
     margin: 0 auto;
     opacity: .9;
-    z-index: 1200;
+    z-index: 1000;
     @media (max-width: $screen-lg) {
         left:0;
         bottom:0;

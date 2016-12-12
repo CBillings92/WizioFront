@@ -5,6 +5,17 @@ angular.module('UnitApp')
             var mapDefaultOptions;
             var defaultGoogleMap = new google.maps.LatLng(42.3601, -71.0589);
 
+            function createMap(DOMElemId, scrollwheel, zoom, center, mapTypeId) {
+                var googleMap = new google.maps.Map(document.getElementById(DOMElemId), {
+                    scrollwheel: scrollwheel || false,
+                    zoom: zoom || 12,
+                    center: center || new google.maps.LatLng(42.3601, -71.0589),
+                    mapTypeId: mapTypeId || google.maps.MapTypeId.ROADMAP
+                });
+
+                return googleMap;
+            }
+
             function setMapOptions(listOfUnits) {
                 mapDefaultOptions = {
                     scrollwheel: false,
@@ -42,16 +53,13 @@ angular.module('UnitApp')
             function addMapPinsToMap(listOfUnits, googleMap) {
                 var markers = [];
                 var groupedAddresses = lodash.groupBy(listOfUnits, 'street');
-                console.dir(groupedAddresses);
                 for (var i = 0; i < listOfUnits.length; i++) {
                     markers.push(makeMapMarker(listOfUnits[i], googleMap, groupedAddresses));
                 }
-                console.dir(markers);
                 return;
             }
 
             function makeMapMarker(latLngObj, googleMap, groupedAddresses) {
-                console.dir(latLngObj);
                 var marker = new google.maps.Marker({
                     map: googleMap,
                     position: new google.maps.LatLng(latLngObj.latitude, latLngObj.longitude),
@@ -63,6 +71,7 @@ angular.module('UnitApp')
             }
 
             return {
+                createMap: createMap,
                 setMapOptions: setMapOptions,
                 addMapPinsToMap: addMapPinsToMap,
             };
