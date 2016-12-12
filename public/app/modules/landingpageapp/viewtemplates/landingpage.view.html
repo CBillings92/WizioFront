@@ -84,7 +84,8 @@
                         Request now.
                     </button>
                 </a> -->
-                <button class="btn btn-fill--blue btn-md" ng-click="openTermsOfServicesModal()"> Request now. </button>
+                <button class="btn btn-fill--blue btn-md" ng-hide="userIsLoggedIn" ng-click="openTermsOfServicesModal()"> Request now. </button>
+                <button class="btn btn-fill--blue btn-md" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
             </h2>
         </div>
         <div class="row">

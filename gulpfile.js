@@ -29,16 +29,11 @@ gulp.task('jshint', function() {
 gulp.task('scripts', function() {
     gulp.src(['./public/app/**/*.js'])
         //   .pipe(stripDebug())
-        .pipe(concat('scripts.min.js'))
+        .pipe(concat('scripts.js'))
         .pipe(uglify({
-            file: 'scripts.min.js',
+            file: 'scripts.js',
             outSourceMap: true
         })).on('error', gutil.log)
-        .pipe(gulp.dest('./public/build'));
-
-    gulp.src(lib.ext('js').files)
-        .pipe(concat('lib.min.js'))
-        .pipe(uglify())
         .pipe(gulp.dest('./public/build'));
 });
 

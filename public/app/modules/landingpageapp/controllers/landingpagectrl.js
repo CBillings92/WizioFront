@@ -12,7 +12,8 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
     'ModalSvc',
     'ModalBuilderFct',
     'UnitMapFct',
-    function($scope, $state, $resource, LandingPageFct, SmartSearchSvc, SearchFct, WizioConfig, ModalSvc, ModalBuilderFct, UnitMapFct) {
+    'AuthFct',
+    function($scope, $state, $resource, LandingPageFct, SmartSearchSvc, SearchFct, WizioConfig, ModalSvc, ModalBuilderFct, UnitMapFct, AuthFct) {
         $scope.data = {};
         $scope.mapViewSelected = false;
         $scope.filters = {
@@ -22,6 +23,12 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
             maxPrice: null
         };
         var listOfUnits = null;
+        $scope.userIsLoggedIn = AuthFct.isLoggedin();
+        alert($scope.userIsLoggedIn);
+
+        $scope.goToAccountPage = function(){
+            $state.go('Account.Dashboard');
+        }
 
         // on toggle map view click, if the units have already been loaded,
         // don't make  a new map, just invert the show map variable.

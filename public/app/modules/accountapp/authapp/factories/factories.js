@@ -12,7 +12,7 @@ angular.module('AuthApp')
             var isLoggedin = function() {
                 var tokenExp = true;
                 var token = TokenSvc.getToken();
-                if (token === "No Token" || tokenSvc.checkExp(token)) {
+                if (token === "No Token" || TokenSvc.checkExp(token)) {
                     return false;
                 } else {
                     return true;

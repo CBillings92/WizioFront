@@ -20,22 +20,24 @@ angular.module('AccountApp')
             //data comes from previous modal
             $scope.data = modalData;
             var stripetoken;
-            var handler = $window.StripeCheckout.configure({
-                key: WizioConfig.stripe_test_key,
-                image: 'https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471400059126-Untitled-1.png',
-                locale: 'auto',
-                token: function stripecb(token) {
-                    console.dir('hi');
-                    stripetoken = token;
-                    console.dir(token);
-                    stripetoken.userid = TokenSvc.decode().id;
-                    stripetoken.user = TokenSvc.decode();
-                    $resource(WizioConfig.baseAPIURL + "user/subscribe")
-                    .save(stripetoken, function(response) {
-                        return response;
-                    });
-                }
-            });
+
+            // LAUNCH STRIPE MODAL
+            // var handler = $window.StripeCheckout.configure({
+            //     key: WizioConfig.stripe_test_key,
+            //     image: 'https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471400059126-Untitled-1.png',
+            //     locale: 'auto',
+            //     token: function stripecb(token) {
+            //         console.dir('hi');
+            //         stripetoken = token;
+            //         console.dir(token);
+            //         stripetoken.userid = TokenSvc.decode().id;
+            //         stripetoken.user = TokenSvc.decode();
+            //         $resource(WizioConfig.baseAPIURL + "user/subscribe")
+            //         .save(stripetoken, function(response) {
+            //             return response;
+            //         });
+            //     }
+            // });
 
             //the back button functionality
             function backstep() {
@@ -47,14 +49,10 @@ angular.module('AccountApp')
             }
 
             function save() {
-                if ($scope.waitlist) {
-
-                } else {
                     var passwordOne = $scope.user.password;
                     var passwordTwo = $scope.user.passwordConfirm;
-                    var passwordsMatch;
+                    var passwordsMatch = AuthFct.confirmPasswords(passwordOne, passwordTwo);
 
-                    passwordsMatch = AuthFct.confirmPasswords(passwordOne, passwordTwo);
                     if (passwordsMatch) {
                         //assign user type
                         $scope.user = AuthFct.setUserType($scope.user, modalData);
@@ -71,13 +69,13 @@ angular.module('AccountApp')
                                 });
                             } else {
                                 $scope.hasRegistered = true;
-                                handler.open({
-                                    name: 'Wizio Inc.,',
-                                    description: 'Subscription:',
-                                    zipCode: true,
-                                    email: $scope.user.email,
-                                    amount: 10000
-                                });
+                                // handler.open({
+                                //     name: 'Wizio Inc.,',
+                                //     description: 'Subscription:',
+                                //     zipCode: true,
+                                //     email: $scope.user.email,
+                                //     amount: 10000
+                                // });
 
                             }
 
@@ -87,14 +85,13 @@ angular.module('AccountApp')
                                 'Close',
                                 'OK',
                                 'Password Error',
-                                'The two passwords you typed do not match'
+                                'Passwords do not match!'
                             )
                             .then(function(result) {
                                 return;
                             });
                         return;
                     }
-                }
 
             }
             $scope.backStep = backstep;
