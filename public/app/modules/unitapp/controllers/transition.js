@@ -14,10 +14,13 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var apitoken;
         var state = $state.current.name;
         var heightContainerElem = document.getElementById('height-container');
+        // jquery workaround for vh and vw (doesn't work on apple);
+        var windowHeight = $(window).height();
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         heightContainerElem.style['padding-bottom'] = '0';
-        heightContainerElem.style.height = $(window).height() + 'px';
+
+        heightContainerElem.style.height = windowHeight + 'px';
 
         if(state === 'NewExternalApi' || state === 'Demo'){
             bodyTag.style["margin-bottom"] = "0" ;
@@ -34,28 +37,11 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         // For styling VR player floorplan programatically
         $scope.style = 'margin: 0 auto; width:325px';
 
-        // Get the containing element of the VR player floorplan panel
-        // panelContainer = document.getElementById('panel-container');
-        // panelContainer.addEventListener('click', togglePanel, false);
-        // floor plan animation
-        // var panelOpened = false;
-        //
-        // function togglePanel() {
-        //     panelOpened = !panelOpened;
-        //     if (panelOpened) {
-        //         this.classList.add('open');
-        //         this.classList.remove('close');
-        //     } else {
-        //         this.classList.add('close');
-        //         this.classList.remove('open');
-        //     }
-        // }
-        // end floorplan animation and controls
-
         // for loading CORS images....UGH
         $scope.trust = $sce;
 
-        //get parameters from URL
+        // If the state is the Demo page or Landing page, get the apitoken and
+        // apartmentpubid from the config file, else get it from the state params
         switch (state) {
             case 'LandingPage':
                 apitoken = WizioConfig.static_vr.apikey;
@@ -70,6 +56,8 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                 apitoken = $state.params.apitoken;
                 apartmentpubid = $state.params.apartmentpubid;
         }
+
+        // Get the floor plan and the apartment photos.
         $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
             apitoken: '@apitoken',
             apartmentid: '@apartmentid'
@@ -93,15 +81,20 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
             } else {
                 photoIndex = 0;
             }
+
+            // broadcasts a change photo event to our VR player directive
             $scope.$broadcast('CHANGE', {});
 
-
+            // If the photo is stored in AWS
             if ($scope.media.vrphoto[0].awsurl) {
-                // $scope.media.vrphoto = vrphotos;
+                // Set the photo index to the selected photo index
                 $scope.photoIndex = photoIndex;
+                // Get the photourl and set it on scope
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
+                // Broadcast to our VR player directive to load the new image
                 $scope.$broadcast('IMGLOAD', {media: media});
-                // $scope.media.vrphoto = vrphotos;
+
+                // Allow the user to change photos
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoIndex = photoIndex;
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
@@ -114,17 +107,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 };
                 $scope.trust = $sce;
-            }
-
-            function handleStyle() {
-                switch (apartmentpubid) {
-                    case 'c87a0162-27f1-4862-ae4e-32c4f74f1c0d':
-                        $scope.style = 'margin: 0 auto';
-                        // $scope.floorPlanStyle =
-                        break;
-                    default:
-
-                }
             }
 
             $scope.trust = $sce;
