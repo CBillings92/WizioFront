@@ -17,7 +17,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         var floorplanImgElem = document.getElementById('floorplan');
         var maxFloorPlanHeight = $(window).height() * .85;
 
-        floorplanImgElem.style['max-height'] = $(window).height() + 'px';
+        floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         heightContainerElem.style['padding-bottom'] = '0';
