@@ -21,13 +21,13 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         heightContainerElem.style['padding-bottom'] = '0';
-        heightContainerElem.style.height = $(window).height() + 'px';
+        // heightContainerElem.style.height = $(window).height() + 'px';
 
         if(state === 'NewExternalApi' || state === 'Demo'){
             bodyTag.style["margin-bottom"] = "0" ;
             $(window).resize(function(){
                 heightContainerElem.style['padding-bottom'] = '0';
-                heightContainerElem.style.height = $(window).height() + 'px';
+                // heightContainerElem.style.height = $(window).height() + 'px';
                 floorplanImgElem.style['max-height'] = $(window).height() + 'px';
             });
         }
