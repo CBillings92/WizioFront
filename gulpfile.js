@@ -35,6 +35,11 @@ gulp.task('scripts', function() {
             outSourceMap: true
         })).on('error', gutil.log)
         .pipe(gulp.dest('./public/build'));
+
+    gulp.src(lib.ext('js').files)
+        .pipe(concat('lib.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/build'));
 });
 
 gulp.task('sass', function() {

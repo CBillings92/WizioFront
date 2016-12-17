@@ -69,8 +69,26 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Signup', {
+                    // abstract: true,
+                    url: '/signup',
+                    views: {
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/subscriptionapp/subscription.main.view.html'
+                        }
+                    }
+                })
+                .state('Signup.Invite', {
+                    url: '/85f61303',
+                    // views: {
+                    //     'subscription-top':
+                    //     'subscription-middle':
+                    //     'subscription-bottom':
+                    // }
+                })
                 .state('Demo', {
-                    url: '/demo',
+                    url: '/invite/',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
