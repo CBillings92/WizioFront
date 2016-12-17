@@ -75,7 +75,8 @@ angular.module('MainApp')
                     views: {
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/subscriptionapp/subscription.main.view.html'
+                            templateUrl: 'public/app/modules/subscriptionapp/main/subscription.main.view.html',
+                            controller: 'SubscriptionMainCtrl'
                         }
                     }
                 })

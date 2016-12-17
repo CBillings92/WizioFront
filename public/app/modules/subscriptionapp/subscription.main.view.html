@@ -5,21 +5,17 @@
         <br>
         <h4>Step 1: <small>Choose your subscription plan:</small></h4>
     </div>
-    <div class="subscription-middle row">
-        <!-- <div ng-repeat="subscription in subscriptions track by $index">
-
-    </div> -->
+    <div class="row">
+        <!-- SUBSCRIPTION LIST DIRECTIVE _ MAKES SUBSCRIPTION TILES -->
         <subscription-list-dir></subscription-list-dir>
-    </div>
-    <div class="subscription-bottom">
     </div>
 </div>
 <div class="container">
     <div class="page-header row">
         <h4>Step 2: <small>Enter Your Account Information:</small></h4>
-
     </div>
     <div class="row">
+        <!-- CREATE ACCOUNT FORM DIRECTIVE -->
         <account-creation-form-dir></account-creation-form-dir>
     </div>
 </div>
@@ -28,6 +24,6 @@
         <h4>Step 3: <small>Submit!</small></h4>
     </div>
     <div class="row" style="text-align: center">
-        <input type="button" name="button" class="btn btn-primary btn-lg" ng-click="test()" style="margin-bottom:10px;">Submit</input>
+        <button type="button" name="button" class="btn btn-primary btn-lg" style="margin-bottom:10px;">Submit</button>
     </div>
 </div>

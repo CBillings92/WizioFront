@@ -1,8 +1,22 @@
 <!-- A subscription tile (one of those subscription banners) -->
-<div class="row">
-    <div style="border:1px solid black; height:100px;">
-        {{subscriptionPlan}}
-        {{subscriptionPlan.name}}
+<div class="subscription-banner-container" style="border:1px solid black; height: 300px;">
+    <div class="subscription-banner-header">
+        <div class="subscription-banner-header__main" style="text-align: center;">
+            <h3>
+                {{subscriptionPlan.name}}
+            </h3>
+        </div>
+        <div class="subscription-banner-header__sub">
+            <h4>
+                {{subscriptionPlan.subHeader}}
+            </h4>
+        </div>
+        <div class="subscription-banner__features">
+            <span><strong>Included in {{subscriptionPlan.name}}:</strong></span>
+            <ul>
+                <li ng-repeat="feature in subscription.features track by $index"> {{feature}}</li>
+            </ul>
+        </div>
         {{subscriptionPlan.costPerMonth}}
     </div>
 </div>

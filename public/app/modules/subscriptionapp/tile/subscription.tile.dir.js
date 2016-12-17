@@ -8,6 +8,6 @@ angular.module('AccountApp')
                 transclude:true,
                 scope: {
                     subscriptionPlan: "=subscriptionPlan"
-                },
+                }
             };
     }]);
