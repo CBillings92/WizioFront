@@ -5,10 +5,7 @@ angular.module('AccountApp')
             templateUrl: 'public/app/modules/accountcreationapp/accountcreation.form.html',
             controller: 'AccountCreationFormCtrl',
             scope: {
-                firstName: '=',
-                lastName: '=',
-                email: '=',
-                password: '='
+                user: '=user'
             },
             restrict: 'E'
         }

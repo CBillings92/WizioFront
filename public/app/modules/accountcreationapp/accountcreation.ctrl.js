@@ -3,7 +3,6 @@ angular.module('AccountApp')
         '$scope',
         function($scope) {
             //test
-
             function submit() {
                 if($scope.password === $scope.passwordConfirm){
 

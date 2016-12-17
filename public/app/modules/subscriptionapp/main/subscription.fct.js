@@ -16,6 +16,7 @@ angular.module('AccountApp')
                 var subscriptions = [
                     {
                         name: 'Free Trial',
+                        id: '1',
                         subHeader: 'Experience the power of Wizio Virtual Reality tours for free for thirty days.',
                         costPerMonth: 0,
                         features: [
@@ -24,6 +25,7 @@ angular.module('AccountApp')
                         ]
                     },
                     {
+                        id: '2',
                         name: 'Agent',
                         subHeader: 'Introductury tool for sharing virtual reality tours',
                         costPerMonth: 100,
@@ -33,6 +35,7 @@ angular.module('AccountApp')
                         ]
                     },
                     {
+                        id: '3',
                         name: 'Broker',
                         subHeader: 'High powered tool for sharing many virtual reality tours',
                         costPerMonth: 200,
@@ -42,6 +45,7 @@ angular.module('AccountApp')
                         ]
                     },
                     {
+                        id: '4',
                         name: 'Office',
                         subHeader: 'Multi-user account perfect for teams',
                         costPerMonth: 300,
