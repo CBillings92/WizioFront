@@ -27,7 +27,6 @@ angular.module('Directives')
                     render();
 
                     function init(elem) {
-                        console.dir(canvasParent);
                         camera = new THREE.PerspectiveCamera(100, canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
@@ -78,7 +77,6 @@ angular.module('Directives')
                         var loader = new THREE.TextureLoader();
                         loader.crossOrigin = '';
                         loader.load(scope.photoUrl, function(texture) {
-                          console.dir(texture);
                             texture.minFilter = THREE.LinearFilter;
 
                             if(sphere){
@@ -90,7 +88,6 @@ angular.module('Directives')
                                 })
                               );
 
-                              console.dir(sphere);
                               sphere.scale.x = -1;
                               scene.add(sphere);
 

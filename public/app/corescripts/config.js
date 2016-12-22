@@ -27,6 +27,8 @@ angular.module('MainApp')
                     return 'prod';
                 case "https://wizio.co":
                     return 'prod';
+                case "https://www.wizio.co":
+                    return 'prod';
                 default:
                     return "dev";
             }
@@ -194,7 +196,6 @@ angular.module('MainApp')
                 // var test = {
                 //
                 // };
-                console.dir(env);
                 switch (env) {
                     case "dev":
                         data.apikey = 'b04fa14a-3486-11e6-85e0-0a8adbb20c4d';

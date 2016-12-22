@@ -38,15 +38,9 @@
         </div>
     </div>
     <div class="home-hero__video" id="vr-player-container">
-        <!-- <iframe ng-show="devEnvironmentCheck !== 'http://172.16.0.2:3000'" allowfullscreen="allowfullscreen" frameborder="0" height="100%" src="https://www.bubl.io/embed/be140e00-8b6b-48fa-aa2a-6fc2e42cb06f" width="100%"></iframe> -->
-        <!-- <video autoplay width="400" height="300" loop poster="public/viewtemplates/images/home/sequence.png">
-            <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
-            <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
-        </video> -->
         <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan">
             View Map of Our Inventory
         </button>
-
         <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;"></div>
         <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv>
 

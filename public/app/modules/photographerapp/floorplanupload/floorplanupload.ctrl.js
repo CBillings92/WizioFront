@@ -26,7 +26,7 @@ angular.module('PhotographerApp')
 
         // config the AWS S3 object for upload
         var bucket = new AWS.S3({
-            endpoint: 'http://cdn.wizio.co',
+            endpoint: 'https://cdn.wizio.co',
             s3BucketEndpoint: true,
             region: 'us-east-1',
         });

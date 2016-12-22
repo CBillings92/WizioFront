@@ -55,7 +55,8 @@
                 'self',
                 // Allow loading from our assets domain.  Notice the difference between * and **.
                 'cdn.wizio.co/**',
-                'http://cdn.wizio.co/**',
+                'https://cdn.wizio.co/**',
+                'https://cdn.wizio.co/**',
                 'https://youtu.be/**',
                 'https://www.youtube.com/watch?v=**',
                 'https://www.youtube.com/watch?v=*&feature=youtu.be',
