@@ -69,6 +69,16 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Search', {
+                    url: '/search',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/searchapp/view.html',
+                        }
+                    }
+                })
                 .state('Demo', {
                     url: '/demo',
                     views: {
