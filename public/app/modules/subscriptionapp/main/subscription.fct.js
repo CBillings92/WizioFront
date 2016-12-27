@@ -3,11 +3,23 @@
 */
 angular.module('AccountApp')
     .factory('SubscriptionFct', [
-        function() {
+        '$resource',
+        '$q',
+        'WizioConfig',
+        function($resource, $q, WizioConfig) {
+            var resources = {
+              user: {
+                registration: WizioConfig.baseAPIURL + 'user/registration'
+              }
+            }
 
             // All of our get requests
             var get = {
                 subscriptions: getSubscriptions,
+            }
+
+            var post = {
+              saveNewUser: saveNewUser
             }
 
             // Pull subscription information from database
@@ -60,7 +72,21 @@ angular.module('AccountApp')
                 return subscriptions;
             }
 
+            function saveNewUser(user, subscription) {
+              var dataForAPI = {
+                user: user,
+                subscription: subscription
+              }
+              return $q(function(response, resolve){
+                $resource(resources.user.registration)
+                .save(dataForAPI, function(response){
+                  return resolve(response);
+                })
+              })
+            }
+
             return {
-                get: get
+                get: get,
+                post: post
             };
 }]);

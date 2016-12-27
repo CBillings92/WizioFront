@@ -3,7 +3,9 @@ angular.module('AccountApp')
       return {
         templateUrl: 'public/app/modules/subscriptionapp/list/subscription.list.html',
         controller: 'SubscriptionListCtrl',
-        scope: {},
+        scope: {
+          chosenSubscription: '=chosenSubscription'
+        },
         restrict: 'EA'
       }
     })
