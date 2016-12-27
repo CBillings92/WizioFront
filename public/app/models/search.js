@@ -11,7 +11,7 @@ angular.module('Models')
         Search.prototype.send = function(callback){
 
             var data = this;
-            return $resource(WizioConfig.baseAPIURL + "search",
+            return $resource(WizioConfig.baseAPIURL + "search/new",
             {},
             {
                 save: {

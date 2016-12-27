@@ -1,8 +1,10 @@
 angular.module('SearchApp')
     .controller('SearchCtrl', [
         '$scope',
+        '$state',
         'SmartSearchSvc',
-        function($scope, SmartSearchSvc) {
+        'SearchFct',
+        function($scope, $state, SmartSearchSvc, SearchFct) {
         // ADD TYPE AHEAD CODE
         //smart search/typeahead functionality
         $scope.getLocation = function(val) {
@@ -11,6 +13,13 @@ angular.module('SearchApp')
 
         // ADD SUBMIT SEARCH ADDRESS function
         $scope.submitSearch = function() {
+            //massage data into proper form for building a new apartment instance
+                var data = {
+                    concatAddr : $scope.searchString
+                };
+                SearchFct.search(data, $scope.filters, function(response){
+                    $state.go('Unit.Display');
+                });
 
         }
     }]);
