@@ -1,0 +1,29 @@
+<!-- STEP 1 - CHOOSE SUBSCRIPTION -->
+<div class="container">
+    <div class="subscription-top page-header row">
+        <h1>Welcome to Wizio!<small> Now let's get your clients some Virtual Reality</small></h1>
+        <br>
+        <br>
+        <h4>Step 1: <small>Choose your subscription plan:</small></h4>
+    </div>
+    <div class="subscription-middle row">
+        <subscription-list-dir chosen-subscription='chosenSubscription'></subscription-list-dir>
+    </div>
+</div>
+<!-- STEP 2 - ENTER ACCOUNT INFORMATION -->
+<div class="container">
+    <div class="page-header row">
+        <h4>Step 2: <small>Enter Your Account Information:</small></h4>
+    </div>
+    <div class="row">
+        <account-creation-form-dir user='user'></account-creation-form-dir>
+    </div>
+</div>
+<div class="container">
+    <div class="page-header row">
+        <h4>Step 3: <small>Submit!</small></h4>
+    </div>
+    <div class="row" style="text-align: center">
+        <button name="button" class="btn btn-primary btn-lg" ng-click="submit()" style="margin-bottom:10px;">submit</button>
+    </div>
+</div>
