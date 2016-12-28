@@ -1,8 +1,5 @@
 <div>
     <div ng-repeat="apartment in apartmentResults track by $index">
-        <div>Apartment Address:</div>
-        <div>Unit Number:</div>
-        <button>Copy Link</button>
-        <button>Activate Apartment</button>
+        <search-results-tile-dir apartment="apartment"></search-results-tile-dir>
     </div>
 </div>
