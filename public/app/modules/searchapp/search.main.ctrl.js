@@ -1,8 +1,9 @@
 angular.module('SearchApp')
     .controller('SearchAppCtrl', [
       '$stateParams',
+      '$sessionStorage',
       '$scope',
-      function($stateParams, $scope) {
+      function($stateParams, $sessionStorage, $scope) {
     //   console.dir($scope.apartments);
     //   $scope.apartments = [
     //       {
@@ -13,7 +14,7 @@ angular.module('SearchApp')
     //       }
     //   ]
      $scope.apartments = $stateParams.apartments;
-
+     $sessionStorage.apartmentSearch = $stateParams.apartments;
      console.log($scope.apartments);
 
     }])
