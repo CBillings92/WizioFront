@@ -15,7 +15,7 @@
         <!-- span used to push floorplan down to middle of page -->
         <span class="floorplan-pushdown-span"></span>
         <div style="position:relative; display:inline-block">
-            <img src="{{floorplan}}" id="floorplan" alt=""/>
+            <img src="{{floorplan}}" id="floorplan" alt="" />
             <span ng-repeat="photo in media.vrphoto track by $index">
                 <img
                     src="public/viewtemplates/images/brand_assets/map_pin.png"
@@ -76,23 +76,37 @@
 
     <div class="container">
         <div class="row">
-            <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
-            <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half. &nbsp;&nbsp;&nbsp;
-                <!-- <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank">
+            <div class="col-md-7">
+                <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
+                <h2 class="">Cut your lead time in half. &nbsp;&nbsp;&nbsp;
+                    <!-- <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank">
                     <button class="btn btn-fill--blue btn-md">
-                        Request now.
-                    </button>
-                </a> -->
-                <search-dirv></search-dirv>
-                <button class="btn btn-fill--blue btn-md" ng-hide="userIsLoggedIn" ng-click="openTermsOfServicesModal()"> Request now. </button>
-                <button class="btn btn-fill--blue btn-md" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
-            </h2>
-        </div>
-        <div class="row">
-            <div class="home-blurbs">
-                <div class="home-blurb col-xs-12 col-sm-6 col-sm-offset-0 col-lg-5 col-lg-offset-1">
-                    <h3 class="home-blurb__header">What We Do:</h3>
-                    <h5 class="home-blurb__desc">
+                    Request now.
+                </button>
+            </a> -->
+            <!-- <search-dirv></search-dirv> -->
+            </div>
+            <div class=col-md-5>
+                <div class="row">
+                    <div class="col-md-12" style="padding-bottom:10px;">
+                        <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-hide="userIsLoggedIn" ng-click="openTermsOfServicesModal()"> Request now. </button>
+                        <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
+                    </div>
+                    <div class="col-md-7" style="vertical-align: center;">
+                        <span class="" style="font-size:2em;" for="">Have an account?</span>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="form-control btn btn-md" name="button">Login</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <hr style="position: relative; border: 0; height: 4px; background-color: white; margin-bottom:-25px;">
+            <div class="row">
+                <div class="home-blurbs">
+                    <div class="home-blurb col-xs-12 col-sm-6 col-sm-offset-0 col-lg-5 col-lg-offset-1">
+                        <h3 class="home-blurb__header">What We Do:</h3>
+                        <h5 class="home-blurb__desc">
                         <ul>
                             <li>Create high quality virtual reality tours.
                             </li>
@@ -101,26 +115,26 @@
                             <li>Integrate our tours with YGL & your website.
                             </li>
                         </ul>
-                        <search-results-list-dir></search-results-list-dir>
+                        <!-- <search-results-list-dir></search-results-list-dir> -->
                     </h5>
-                </div>
-                <div class="home-blurb col-xs-12 col-sm-6">
-                    <h3 class="home-blurb__header">Why You Benefit:</h3>
-                    <h5 class="home-blurb__desc">
-                        <ul>
-                            <li>Cut lead qualification time in half.
-                            </li>
-                            <li>Virtual reality can double sight-unseen deals.
-                            </li>
-                            <li>Give your clients the best viewing experience.
-                            </li>
-                        </ul>
-                    </h5>
-                </div>
+                    </div>
+                    <div class="home-blurb col-xs-12 col-sm-6">
+                        <h3 class="home-blurb__header">Why You Benefit:</h3>
+                        <h5 class="home-blurb__desc">
+                            <ul>
+                                <li>Cut lead qualification time in half.
+                                </li>
+                                <li>Virtual reality can double sight-unseen deals.
+                                </li>
+                                <li>Give your clients the best viewing experience.
+                                </li>
+                            </ul>
+                        </h5>
+                    </div>
 
             </div>
         </div>
-        <!-- <div class="row home-sign-up">
+            <!-- <div class="row home-sign-up">
             <div class="home-sign-up__button col-xs-4 col-sm-3 col-md-2 col-lg-offset-1">
                 <input class="btn btn--cta btn-md" ng-click="goAccoutCreate()" type="button" value="Sign Up"/>
             </div>
@@ -128,11 +142,11 @@
     </div>
 </div>
 
-<div class="home-landlord">
-    <div class="container">
-        <div class="row">
-            <div class="home-blurb">
-                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">How It Works:</h2>
+    <div class="home-landlord">
+        <div class="container">
+            <div class="row">
+                <div class="home-blurb">
+                    <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">How It Works:</h2>
                 <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">
                     <ol>
                         <li>Sign up above!
