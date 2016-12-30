@@ -3,7 +3,9 @@ angular.module('SearchApp')
       return {
         templateUrl: 'public/app/modules/searchapp/results-view/search-results.view.html',
         controller: 'SearchResultsListCtrl',
-        scope: false,
+        scope: {
+            apartments: '=apartments'
+        },
         restrict: 'EA'
       }
     })

@@ -14,6 +14,6 @@ angular.module('SearchApp')
     //   ]
      $scope.apartments = $stateParams.apartments;
 
-     console.log(apartments);
+     console.log($scope.apartments);
 
     }])

@@ -57,6 +57,15 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
             });
         };
 
+        $scope.goToLogin = function() {
+            var authViews = WizioConfig.AccountAuthViewsURL;
+            var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+
+            ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                return;
+            });
+        };
+
         var modalDefaults = function(templateUrl, controller, accountType) {
             return {
                 backdrop: true,
