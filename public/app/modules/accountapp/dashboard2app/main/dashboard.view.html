@@ -5,7 +5,13 @@
         </div>
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <search-dirv></search-dirv>
+            <div class="user-info row" ng-model="accountInfo" style="">
+                <div class="col-md-12">
+                    <h2 class="user-info__name">Search Apartments</h2>
+                    <search-dirv></search-dirv>
+                    <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
