@@ -71,11 +71,15 @@ angular.module('MainApp')
                 })
                 .state('Search', {
                     url: '/search',
+                    params: {
+                        "apartments" : null,
+                    },
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/searchapp/view.html',
+                            controller: 'SearchAppCtrl',
                         }
                     }
                 })

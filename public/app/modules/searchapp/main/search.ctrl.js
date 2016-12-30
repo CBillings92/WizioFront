@@ -18,7 +18,9 @@ angular.module('SearchApp')
                     concatAddr : $scope.searchString
                 };
                 SearchFct.search(data, $scope.filters, function(response){
-                    $state.go('Unit.Display');
+            //        console.log("search done lets go");
+                    $state.go('Search', {apartments:response});
+        //              $state.go("Unit.Display");
                 });
 
         }

@@ -65,7 +65,7 @@ angular.module('SharedServiceApp')
                             var formattedSearchResults = formatSearchResults(response);
                             $sessionStorage.apartmentSearch = formattedSearchResults;
                             $rootScope.$broadcast('searchFinished', formattedSearchResults);
-                            return callback('done');
+                            return callback(formattedSearchResults);
                         });
                     });
             };

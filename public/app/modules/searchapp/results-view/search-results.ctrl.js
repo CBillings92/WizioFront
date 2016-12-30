@@ -3,12 +3,13 @@ angular.module('SearchApp')
       '$scope',
       function($scope) {
       console.dir($scope.apartments);
-      $scope.apartments = [
-          {
-              street: '175 Amory Street'
-          },
-          {
-              street: '193 Chelsea Ave'
-          }
-      ]
+      console.log("hello kevin");
+    //   $scope.apartments = [
+    //       {
+    //           street: '175 Amory Street'
+    //       },
+    //       {
+    //           street: '193 Chelsea Ave'
+    //       }
+    //   ]
     }])
