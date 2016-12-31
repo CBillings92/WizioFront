@@ -7496,6 +7496,16 @@ body {
   .home-pin__orange__left {
     float: left; } }
 
+.unit-block {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+  .unit-block div {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px; }
+
 #map {
   position: relative;
   top: 0;
