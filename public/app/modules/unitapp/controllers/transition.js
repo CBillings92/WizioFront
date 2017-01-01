@@ -58,7 +58,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
         }
 
         // Get the floor plan and the apartment photos.
-        $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
+        $resource(WizioConfig.baseAPIURL + 'apartment/vr/:apitoken/:apartmentid', {
             apitoken: '@apitoken',
             apartmentid: '@apartmentid'
         }).query({

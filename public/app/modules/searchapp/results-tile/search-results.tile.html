@@ -2,9 +2,12 @@
     <div class="col-lg-6">
         <div>Apartment Address: {{apartment.street || apartment.apartmentData.street}}</div>
         <div>Unit Number: {{apartment.unitNum || apartment.apartmentData.unitNum}}</div>
+        <div class="">
+            {{apartment.pubid || apartment.apartmentData.pubid}}
+        </div>
     </div>
     <div class="col-lg-6 search-right">
         <button class="btn btn-md">Copy Link</button>
-        <button class="btn btn-md">Activate Apartment</button>
+        <button class="btn btn-md" ng-click="activateListing(apartment)">Activate Apartment</button>
     </div>
 </div>
