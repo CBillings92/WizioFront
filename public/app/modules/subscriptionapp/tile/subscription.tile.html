@@ -1,6 +1,6 @@
 <!-- A subscription tile (one of those subscription banners) -->
-<div class="subscription-banner-container" style="border:1px solid black; height: 300px;">
-    <div class="subscription-banner-header">
+<div class="subscription-banner-container" style="border:1px solid black; height: 300px;" ng-attr-id="{{subscriptionPlan.id}}" ng-click="changeSelected(subscriptionPlan.id)">
+    <div class="subscription-banner-header" ng-class="selectedplan" >
         <div class="subscription-banner-header__main" style="text-align: center;">
             <h3>
                 {{subscriptionPlan.name}}

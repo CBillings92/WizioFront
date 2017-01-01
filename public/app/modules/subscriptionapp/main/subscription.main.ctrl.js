@@ -3,17 +3,19 @@ angular.module('AccountApp')
       '$scope',
       'SubscriptionFct',
       function($scope, SubscriptionFct) {
-        alert('hello');
-        $scope.test = function(){
-            console.dir('test');
-        }
+        alert('no');
+
+
+
+        
         $scope.submit = function(){
           var user = $scope.user;
           user.accountType = 'local';
           var subscription = $scope.chosenSubscription;
+
             SubscriptionFct.post.saveNewUser(user, subscription)
             .then(function(response){
-              console.dir(response);
+              console.log(response);
             });
-        }
+        };
     }])
