@@ -4,6 +4,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
     'TokenSvc',
     '$resource',
     function($scope, WizioConfig, TokenSvc, $resource) {
+        new Clipboard('.clipboard');
+        $scope.windowLocationOrigin = window.location.origin;
         $scope.activateListing = function(apartment){
             var user = TokenSvc.decode();
             var subscription = user.Subscription;
