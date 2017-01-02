@@ -8171,3 +8171,53 @@ div.item {
 .top-table {
   padding-top: 20px;
   margin-top: 20px; }
+
+.subscription-banner-header {
+  padding-left: 10px;
+  padding-right: 10px; }
+
+.selected-plan {
+  color: white;
+  background-color: #F79739; }
+
+.subscription-banner-container {
+  display: flex;
+  justify-content: center;
+  text-align: center; }
+
+.subscription-banner-container:hover {
+  background-color: #7A9DD1; }
+
+.subscription-banner-header__main h3 {
+  font-size: 30px; }
+
+.subscription-top {
+  background-color: #8E9BB2;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 15px;
+  display: flex;
+  align-items: left; }
+  .subscription-top h1 {
+    margin-top: 0px; }
+
+.subscription-wrapper label {
+  color: #706F72; }
+
+.subscription-wrapper h4 {
+  text-align: left;
+  font-size: 250%; }
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 3px solid #eee; }
+
+.subscription-middle {
+  display: flex; }
+
+.submit-step {
+  padding-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }

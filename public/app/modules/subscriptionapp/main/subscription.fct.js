@@ -29,12 +29,12 @@ angular.module('AccountApp')
                     {
                         id: '1',
                         name: 'Agent',
-                        subHeader: 'Introductury tool for sharing virtual reality tours.',
+                        subHeader: 'Introductury tool for sharing virtual reality tours.  ',
                         costPerMonth: 100,
                         features: [
                             '25 Active Tours',
-                            'Tour Creation Tool (Coming soon)',
-
+                            'Free Tour Requests during Trial Period',
+                            'Tour Creation Tool (Coming soon)'
                         ]
                     },
                     {
@@ -44,6 +44,7 @@ angular.module('AccountApp')
                         costPerMonth: 200,
                         features: [
                             '50 Active Tours',
+                            'Free Tour Requests during Trial Period',
                             'Tour Creation Tool (Coming soon)',
                         ]
                     },
@@ -55,6 +56,7 @@ angular.module('AccountApp')
                         features: [
                             'Unlimited Active Tours',
                             'Wizio API Access',
+                            'Free Tour Requests during Trial Period',
                             'Tour Creation Tool (Coming soon)',
                             'Up to 25 Users ($5+ per month per additional user)'
                         ]
