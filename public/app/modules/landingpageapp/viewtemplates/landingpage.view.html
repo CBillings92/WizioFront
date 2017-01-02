@@ -43,9 +43,13 @@
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan">
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || mapViewSelected">
             View Map of Our Inventory
         </button>
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || !mapViewSelected">
+            View Demo Unit
+        </button>
+
 
         <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;"></div>
         <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv>

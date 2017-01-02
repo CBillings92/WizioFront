@@ -3,13 +3,13 @@ angular.module('AccountApp')
         '$scope',
         function($scope){
 
+            // console.log(subscription.features)
+
             $scope.changeSelected = function(selectedid) {
 
                 $('.selected-plan').removeClass('selected-plan');
 
                 var result = document.getElementById(selectedid);
-                console.log("yo");
-                console.log(result);
                 var target = angular.element(result);
                 target.addClass("selected-plan");
             };

@@ -29,32 +29,32 @@ angular.module('AccountApp')
                     {
                         id: '1',
                         name: 'Agent',
-                        subHeader: 'Introductury tool for sharing virtual reality tours',
+                        subHeader: 'Introductury tool for sharing virtual reality tours.',
                         costPerMonth: 100,
                         features: [
                             '25 Active Tours',
-                            'Tour Creation Toll (Coming Soon)'
+                            'Tour Creation Tool (Coming soon)'
                         ]
                     },
                     {
                         id: '2',
                         name: 'Broker',
-                        subHeader: 'High powered tool for sharing many virtual reality tours',
+                        subHeader: 'High powered tool for sharing many virtual reality tours.',
                         costPerMonth: 200,
                         features: [
                             '50 Active Tours',
-                            'Tour Creation Tool (Coming Soon)',
+                            'Tour Creation Tool (Coming soon)',
                         ]
                     },
                     {
                         id: '3',
                         name: 'Office',
-                        subHeader: 'Multi-user account perfect for teams',
+                        subHeader: 'Multi-user account perfect for teams.',
                         costPerMonth: 300,
                         features: [
                             'Unlimited Active Tours',
                             'Wizio API Access',
-                            'Tour Creation Tool',
+                            'Tour Creation Tool (Coming soon)',
                             'Up to 25 Users ($5+ per month per additional user)'
                         ]
                     }

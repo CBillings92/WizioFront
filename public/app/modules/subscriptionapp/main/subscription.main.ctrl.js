@@ -3,11 +3,8 @@ angular.module('AccountApp')
       '$scope',
       'SubscriptionFct',
       function($scope, SubscriptionFct) {
-        alert('no');
+    
 
-
-
-        
         $scope.submit = function(){
           var user = $scope.user;
           user.accountType = 'local';
