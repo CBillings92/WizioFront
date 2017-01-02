@@ -7,7 +7,8 @@ angular.module('SharedServiceApp')
         'DescriptionModel',
         'LeaseModel',
         'lodash',
-        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash) {
+        'TokenSvc',
+        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash, TokenSvc) {
 
             //to randomize the address for security
             var concealAddress = function(response) {
@@ -51,6 +52,7 @@ angular.module('SharedServiceApp')
             var search = function(data, filters, callback) {
                 //build new apartment instance
                 var apartmentInstance = ApartmentModel.build(data);
+                var user = null;
                 //get get Geocode Data
                 apartmentInstance.getGeocodeData()
                     .then(function(response) {
@@ -60,7 +62,11 @@ angular.module('SharedServiceApp')
                             topLevelType = apartmentInstance.apartmentData.topLevelType;
                         }
                         //create a new search object
-                        var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters);
+                        console.dir(TokenSvc.isLoggedIn);
+                        if(TokenSvc.isLoggedIn()){
+                            user = TokenSvc.decode();
+                        }
+                        var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters, user);
                         //send this new search instance to the backend
                         newSearchInstance.send(function(response) {
                             var formattedSearchResults = formatSearchResults(response);

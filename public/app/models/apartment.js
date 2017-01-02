@@ -41,7 +41,8 @@ angular.module('Models')
                 garage,
                 CreatedById,
                 UpdatedById,
-                pubid
+                pubid,
+                ActiveListings
             ) {
                 this.apartmentData = {
                     id: id || null,
@@ -77,7 +78,8 @@ angular.module('Models')
                     garage: garage,
                     CreatedById: CreatedById || null,
                     UpdatedById: UpdatedById || null,
-                    pubid: pubid
+                    pubid: pubid,
+                    ActiveListings: ActiveListings
                 };
             }
             Apartment.prototype.api = function(){
@@ -254,7 +256,8 @@ angular.module('Models')
                     data.garage,
                     data.CreatedById,
                     data.UpdatedById,
-                    data.pubid
+                    data.pubid,
+                    data.ActiveListings
                 );
             };
 
