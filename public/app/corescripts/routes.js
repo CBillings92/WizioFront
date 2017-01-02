@@ -69,6 +69,14 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Tour', {
+                    url: '/tour/:activelistingid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                        }
+                    }
+                })
                 .state('Search', {
                     url: '/search',
                     params: {
@@ -103,7 +111,7 @@ angular.module('MainApp')
                     // }
                 })
                 .state('Demo', {
-                    url: '/invite/',
+                    url: '/demo',
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',

@@ -32,6 +32,7 @@ angular.module('SharedServiceApp')
                 var apt;
                 for (var i = 0; i < response.length; i++) {
                     apt = response[i];
+                    console.dir(apt);
                     var newApartment = ApartmentModel.build(apt);
                     newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
