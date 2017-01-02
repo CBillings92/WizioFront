@@ -8171,22 +8171,3 @@ div.item {
 .top-table {
   padding-top: 20px;
   margin-top: 20px; }
-
-.subscription-banner-header {
-  padding-left: 10px;
-  padding-right: 10px; }
-
-.selected-plan {
-  color: white;
-  background-color: orange; }
-
-.subscription-banner-container {
-  display: flex;
-  justify-content: center;
-  text-align: center; }
-
-.subscription-banner-header__main h3 {
-  font-size: 30px; }
-
-.subscription-middle {
-  display: flex; }

@@ -33,7 +33,8 @@ angular.module('AccountApp')
                         costPerMonth: 100,
                         features: [
                             '25 Active Tours',
-                            'Tour Creation Tool (Coming soon)'
+                            'Tour Creation Tool (Coming soon)',
+
                         ]
                     },
                     {
