@@ -96,11 +96,13 @@
                         <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-hide="userIsLoggedIn" ng-click="openTermsOfServicesModal()"> Request now. </button>
                         <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
                     </div>
-                    <div class="col-md-7" style="vertical-align: center;">
-                        <span class="" style="font-size:2em;" for="">Have an account?</span>
-                    </div>
-                    <div class="col-md-5">
-                        <button type="button" class="form-control btn btn-md" ng-click="goToLogin()" name="button">Login</button>
+                    <div ng-hide="userIsLoggedIn">
+                        <div class="col-md-7" style="vertical-align: center;">
+                            <span class="" style="font-size:2em;" for="">Have an account?</span>
+                        </div>
+                        <div class="col-md-5">
+                            <button type="button" class="form-control btn btn-md" ng-click="goToLogin()" name="button">Login</button>
+                        </div>
                     </div>
                 </div>
             </div>
