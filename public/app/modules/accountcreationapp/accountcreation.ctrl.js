@@ -4,11 +4,11 @@ angular.module('AccountApp')
         function($scope) {
             //test
             function submit() {
-                if($scope.password === $scope.passwordConfirm){
+                if ($scope.password === $scope.passwordConfirm) {
 
                 } else {
-                    alert('Password does not match!')
+                    alert('Password does not match!');
                 }
             }
         }
-    ])
+    ]);

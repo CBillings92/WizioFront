@@ -206,9 +206,12 @@ angular.module('MainApp')
                         // data.demoWaterMarkOneBed.apartmentpubid = 'ccf9ac72-601e-427b-8898-7ca367cc86e1';
                         return data;
                     case "test":
-                        data.apikey = '59d41d7c-d116-47de-a1cd-2de04e282841';
-                        data.demo.apartmentpubid = '8d0248bc-2e4b-43ba-9ff8-01e76bbe1259';
-                        data.landingpage.apartmentpubid = '8d0248bc-2e4b-43ba-9ff8-01e76bbe1259';
+                    data.apikey = 'b04fa14a-3486-11e6-85e0-0a8adbb20c4d';
+                    data.demo.apartmentpubid = 'cdd02606-bfc7-4aec-90c9-ed78c1462661';
+                    data.landingpage.apartmentpubid = 'b4a4b637-b585-4f21-8f5d-32a382a2ee15';
+                    data.demoOneBackBay.apartmentpubid = 'b170e44b-e859-4c53-b126-614fbf8e1c86';
+                    data.demoGreenStreet.apartmentpubid = '2b48a77d-cf3d-45ed-a8fe-f752d55e027e';
+                    data.demoWellington2Bed.apartmentpubid = '5d65b2a1-5067-44d4-ae75-5ff7bf8127ac';
                         return data;
                     case "prod":
                         data.apikey = 'a2d53f52-7979-11e6-85e0-0a8adbb20c4d';

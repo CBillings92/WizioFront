@@ -27,6 +27,6 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             });
             console.dir(TokenSvc.decode());
             console.dir(apartment);
-        }
+        };
     }
-])
+]);

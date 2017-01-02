@@ -20,6 +20,6 @@ angular.module('Directives')
                     //for removing pins placed already.
                     // elem.addEventListener('click', removePin)
                 }
-            }
+            };
         }
     ]);

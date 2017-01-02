@@ -8,5 +8,5 @@ angular.module('AccountApp')
                 user: '=user'
             },
             restrict: 'E'
-        }
-  })
+        };
+  });

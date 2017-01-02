@@ -24,11 +24,10 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
         };
         var listOfUnits = null;
         $scope.userIsLoggedIn = AuthFct.isLoggedin();
-        alert($scope.userIsLoggedIn);
 
-        $scope.goToAccountPage = function(){
+        $scope.goToAccountPage = function() {
             $state.go('Account.Dashboard');
-        }
+        };
 
         // on toggle map view click, if the units have already been loaded,
         // don't make  a new map, just invert the show map variable.
@@ -44,7 +43,7 @@ angular.module('LandingPageApp').controller('LandingPageCtrl', [
                     listOfUnits = response;
                 }).catch(function(error) {
                     alert(error);
-                })
+                });
             }
             return;
         };

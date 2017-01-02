@@ -43,10 +43,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         // If the state is the Demo page or Landing page, get the apitoken and
         // apartmentpubid from the config file, else get it from the state params
         console.dir('state');
-        alert('WHY STATE')
         switch (state) {
             case 'LandingPage':
-            console.dir('landing pgae');
+                console.dir('landing pgae');
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
                 $scope.style = "margin: 0 auto;";
@@ -75,12 +74,14 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 console.dir('default');
                 activelistingid = $state.params.apitoken || $state.params.activelistingid;
                 apartmentpubid = $state.params.apartmentpubid;
-                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'})
+                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
+                    activelistingid: '@activelistingid'
+                });
                 query = {
                     activelistingid: activelistingid
-                }
+                };
         }
-        apiResource.query(query, function(result){
+        apiResource.query(query, function(result) {
             var media = result;
             // if (state === 'LandingPage' || state === 'Demo') {
             //     media = result[0];
@@ -111,7 +112,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 // Get the photourl and set it on scope
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                 // Broadcast to our VR player directive to load the new image
-                $scope.$broadcast('IMGLOAD', {media: media});
+                $scope.$broadcast('IMGLOAD', {
+                    media: media
+                });
 
                 // Allow the user to change photos
                 $scope.changePhoto = function(photoIndex) {

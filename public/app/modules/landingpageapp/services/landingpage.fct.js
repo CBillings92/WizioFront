@@ -12,10 +12,12 @@ angular.module('LandingPageApp').factory('LandingPageFct', [
                         reject('error retrieving data');
                     }
 
-                })
-            })
+                });
+            });
         }
 
-        return {getUnitsForLandingPageMap: getUnitsForMapDisplay}
+        return {
+            getUnitsForLandingPageMap: getUnitsForMapDisplay
+        };
     }
 ]);

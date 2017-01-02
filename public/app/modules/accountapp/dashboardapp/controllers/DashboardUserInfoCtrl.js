@@ -33,7 +33,7 @@ angular.module('AccountApp')
             ModalBuilderFct.buildComplexModal('md', WizioConfig.AccountDashboardViewsURL + 'feedback.modal.view,html', 'FeedbackModalCtrl', {})
             .then(function(response){
 
-            })
+            });
         };
 
     }
