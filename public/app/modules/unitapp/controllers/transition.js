@@ -1,5 +1,4 @@
-angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
-    '$scope',
+angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
     '$rootScope',
     '$state',
     '$resource',
@@ -22,9 +21,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
 
         heightContainerElem.style.height = windowHeight + 'px';
 
-        if(state === 'NewExternalApi' || state === 'Demo'){
-            bodyTag.style["margin-bottom"] = "0" ;
-            $(window).resize(function(){
+        if (state === 'NewExternalApi' || state === 'Demo') {
+            bodyTag.style["margin-bottom"] = "0";
+            $(window).resize(function() {
                 heightContainerElem.style['padding-bottom'] = '0';
                 heightContainerElem.style.height = $(window).height() + 'px';
             });
@@ -39,33 +38,53 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
 
         // for loading CORS images....UGH
         $scope.trust = $sce;
-
+        var apiResource;
+        var query;
         // If the state is the Demo page or Landing page, get the apitoken and
         // apartmentpubid from the config file, else get it from the state params
+        console.dir('state');
+        alert('WHY STATE')
         switch (state) {
             case 'LandingPage':
+            console.dir('landing pgae');
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
                 $scope.style = "margin: 0 auto;";
+                apiResource = $resource(WizioConfig.baseAPIURL + 'apartment/vr/:apitoken/:apartmentid', {
+                    apitoken: '@apitoken',
+                    apartmentid: '@apartmentid'
+                });
+                query = {
+                    apitoken: apitoken,
+                    apartmentid: apartmentpubid
+                };
                 break;
             case 'Demo':
                 apitoken = WizioConfig.static_vr.apikey;
                 apartmentpubid = WizioConfig.static_vr.demo.apartmentpubid;
+                apiResource = $resource(WizioConfig.baseAPIURL + 'apartment/vr/:apitoken/:apartmentid', {
+                    apitoken: '@apitoken',
+                    apartmentid: '@apartmentid'
+                });
+                query = {
+                    apitoken: apitoken,
+                    apartmentid: apartmentpubid
+                };
                 break;
             default:
-                apitoken = $state.params.apitoken;
+                console.dir('default');
+                activelistingid = $state.params.apitoken || $state.params.activelistingid;
                 apartmentpubid = $state.params.apartmentpubid;
+                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'})
+                query = {
+                    activelistingid: activelistingid
+                }
         }
-
-        // Get the floor plan and the apartment photos.
-        $resource(WizioConfig.baseAPIURL + 'apartment/vr/:apitoken/:apartmentid', {
-            apitoken: '@apitoken',
-            apartmentid: '@apartmentid'
-        }).query({
-            apitoken: apitoken,
-            apartmentid: apartmentpubid
-        }, function(result) {
-            var media = result[0];
+        apiResource.query(query, function(result){
+            var media = result;
+            // if (state === 'LandingPage' || state === 'Demo') {
+            //     media = result[0];
+            // }
             $scope.floorplan = result[1].Floor_Plan;
             $scope.media = lodash.groupBy(media, 'type');
 
@@ -111,7 +130,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
 
             $scope.trust = $sce;
             $scope.mediaTab = 'unitPhotos';
-
         });
     }
 ]);
