@@ -24,47 +24,29 @@ angular.module('AccountApp')
 
             // Pull subscription information from database
             function getSubscriptions(){
-              $resouce(WizioConfig.baseAPIURL + 'subscriptionbase')
-              .query(function(response){
-                console.dir(response);
+              return $q(function(resolve, reject){
+                $resource(WizioConfig.baseAPIURL + 'subscriptionbase')
+                .query(function(response){
+                  response[0].features = [
+                      '25 Active Tours',
+                      'Free Tour Requests during Trial Period',
+                      'Tour Creation Tool (Coming soon)'
+                  ];
+                  response[1].features =  [
+                      '50 Active Tours',
+                      'Free Tour Requests during Trial Period',
+                      'Tour Creation Tool (Coming soon)',
+                  ];
+                  response[2].features = [
+                      'Unlimited Active Tours',
+                      'Wizio API Access',
+                      'Free Tour Requests during Trial Period',
+                      'Tour Creation Tool (Coming soon)',
+                      'Up to 25 Users ($5+ per month per additional user)'
+                  ];
+                  return resolve(response);
+                });
               });
-                // Pull from database eventually
-                var subscriptions = [
-                    {
-                        id: '1',
-                        name: 'Agent',
-                        subHeader: 'Introductury tool for sharing virtual reality tours.',
-                        costPerMonth: 100,
-                        features: [
-                            '25 Active Tours',
-                            'Tour Creation Tool (Coming soon)',
-
-                        ]
-                    },
-                    {
-                        id: '2',
-                        name: 'Broker',
-                        subHeader: 'High powered tool for sharing many virtual reality tours.',
-                        costPerMonth: 200,
-                        features: [
-                            '50 Active Tours',
-                            'Tour Creation Tool (Coming soon)',
-                        ]
-                    },
-                    {
-                        id: '3',
-                        name: 'Office',
-                        subHeader: 'Multi-user account perfect for teams.',
-                        costPerMonth: 300,
-                        features: [
-                            'Unlimited Active Tours',
-                            'Wizio API Access',
-                            'Tour Creation Tool (Coming soon)',
-                            'Up to 25 Users ($5+ per month per additional user)'
-                        ]
-                    }
-                ];
-                return subscriptions;
             }
 
             function saveNewUser(user, subscription) {

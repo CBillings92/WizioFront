@@ -4,7 +4,10 @@ angular.module('AccountApp')
         'SubscriptionFct',
         function($scope, SubscriptionFct) {
             // test
-            $scope.subscriptions = SubscriptionFct.get.subscriptions();
+            SubscriptionFct.get.subscriptions()
+            .then(function(response){
+              $scope.subscriptions = response;
+            });
             $scope.chooseSubscription = function chooseSubscription(subscription) {
                 console.dir(subscription);
                 $scope.chosenSubscription = subscription;
