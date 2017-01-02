@@ -21,7 +21,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
 
         heightContainerElem.style.height = windowHeight + 'px';
 
-        if (state === 'NewExternalApi' || state === 'Demo') {
+        if (state === 'NewExternalApi' || state === 'Demo' || state === 'Tour') {
             bodyTag.style["margin-bottom"] = "0";
             $(window).resize(function() {
                 heightContainerElem.style['padding-bottom'] = '0';
