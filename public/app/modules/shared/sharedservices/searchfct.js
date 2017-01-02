@@ -63,7 +63,7 @@ angular.module('SharedServiceApp')
                         }
                         //create a new search object
                         console.dir(TokenSvc.isLoggedIn);
-                        if(TokenSvc.isLoggedIn){
+                        if(TokenSvc.isLoggedIn()){
                             user = TokenSvc.decode();
                         }
                         var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters, user);

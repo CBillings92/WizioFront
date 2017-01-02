@@ -6,7 +6,7 @@
             {{apartment.pubid || apartment.apartmentData.pubid}}
         </div>
     </div>
-    <div class="col-lg-6 search-right">
+    <div class="col-lg-6 search-right" ng-show="userIsLoggedIn">
         <button ng-show="apartment.apartmentData.ActiveListings.length > 0" data-clipboard-text="{{windowLocationOrigin + '/tour/' + apartment.apartmentData.ActiveListings[0].pubid}}" class="btn btn-md clipboard">Copy Link</button>
         <button ng-hide="apartment.apartmentData.ActiveListings.length > 0" class="btn btn-md" ng-click="activateListing(apartment)">Activate Apartment </button>
     </div>

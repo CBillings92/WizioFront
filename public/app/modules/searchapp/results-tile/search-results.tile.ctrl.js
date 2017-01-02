@@ -5,13 +5,11 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
     '$resource',
     function($scope, WizioConfig, TokenSvc, $resource) {
         new Clipboard('.clipboard');
+        $scope.userIsLoggedIn = TokenSvc.isLoggedIn();
         $scope.windowLocationOrigin = window.location.origin;
         $scope.activateListing = function(apartment){
             var user = TokenSvc.decode();
             var subscription = user.Subscription;
-            console.dir(subscription);
-            console.dir(apartment.apartmentData);
-            console.dir(apartment.apartmentData.pubid);
             var data = {
                 Apartment: {
                     pubid: apartment.apartmentData.pubid
