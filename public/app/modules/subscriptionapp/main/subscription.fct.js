@@ -24,6 +24,10 @@ angular.module('AccountApp')
 
             // Pull subscription information from database
             function getSubscriptions(){
+              $resouce(WizioConfig.baseAPIURL + 'subscriptionbase')
+              .query(function(response){
+                console.dir(response);
+              });
                 // Pull from database eventually
                 var subscriptions = [
                     {
