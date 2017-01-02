@@ -1,0 +1,11 @@
+<div class="col-md-12" ng-repeat="activelisting in activelistings track by $index" style="border: 1px solid red;">
+    <div class="row unit-block">
+        <div class="col-lg-6">
+            <div>Apartment Address: {{activelisting.Apartment.concatAddr}}</div>
+            <div>Unit Number: {{activelisting.Apartment.unitNum}}</div>
+        </div>
+        <div class="col-lg-6 search-right">
+            <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.PubId}}" class="btn btn-md clipboard">Copy Link</button>
+        </div>
+    </div>
+</div>
