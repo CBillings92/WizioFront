@@ -13,6 +13,8 @@ angular.module('AccountApp')
 
                 SubscriptionFct.post.saveNewUser(user, subscription)
                     .then(function(response) {
+                        console.dir('in response');
+                        console.dir($state.go);
                       $state.go('Account.Dashboard');
                     });
             };
