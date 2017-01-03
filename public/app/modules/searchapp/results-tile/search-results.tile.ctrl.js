@@ -3,7 +3,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
     'WizioConfig',
     'TokenSvc',
     '$resource',
-    function($scope, WizioConfig, TokenSvc, $resource) {
+    '$state',
+    function($scope, WizioConfig, TokenSvc, $resource, $state) {
         new Clipboard('.clipboard');
         $scope.newlyActive = false;
         $scope.userIsLoggedIn = TokenSvc.isLoggedIn();
@@ -27,6 +28,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             .save(data, function(response){
               apartment.newlyActive = true
             });
+            $state.reload();
         };
     }
 ]);
