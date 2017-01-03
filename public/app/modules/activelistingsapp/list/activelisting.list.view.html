@@ -6,6 +6,8 @@
         </div>
         <div class="col-lg-6 search-right">
             <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.PubId}}" class="btn btn-md btn-outline--orange clipboard">Copy Link</button>
+            <button class="btn btn-md btn-outline--orange" ng-click="openInNewPage(activelisting.PubId)">Open Tour</button>
+
             <!-- <button class="btn btn-md btn-outline--orange clipboard">Deactivate</button> -->
         </div>
     </div>
