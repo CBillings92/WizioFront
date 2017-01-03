@@ -3,7 +3,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
     'WizioConfig',
     'TokenSvc',
     '$resource',
-    function($scope, WizioConfig, TokenSvc, $resource) {
+    '$state',
+    function($scope, WizioConfig, TokenSvc, $resource, $state) {
         new Clipboard('.clipboard');
         $scope.userIsLoggedIn = TokenSvc.isLoggedIn();
         $scope.windowLocationOrigin = window.location.origin;
@@ -27,6 +28,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             });
             console.dir(TokenSvc.decode());
             console.dir(apartment);
+            $state.reload();
         };
     }
 ]);
