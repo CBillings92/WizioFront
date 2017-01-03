@@ -1,8 +1,9 @@
 angular.module('AccountApp')
     .controller('SubscriptionMainCtrl', [
         '$scope',
+        '$state',
         'SubscriptionFct',
-        function($scope, SubscriptionFct) {
+        function($scope, $state, SubscriptionFct) {
 
 
             $scope.submit = function() {
@@ -12,7 +13,7 @@ angular.module('AccountApp')
 
                 SubscriptionFct.post.saveNewUser(user, subscription)
                     .then(function(response) {
-                        console.log(response);
+                      $state.go('Account.Dashboard');
                     });
             };
         }

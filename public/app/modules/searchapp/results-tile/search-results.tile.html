@@ -4,7 +4,7 @@
         <div>Unit Number: {{apartment.unitNum || apartment.apartmentData.unitNum}}</div>
     </div>
     <div class="col-lg-6 search-right" ng-show="userIsLoggedIn">
-        <button ng-show="apartment.apartmentData.ActiveListings.length > 0" data-clipboard-text="{{windowLocationOrigin + '/tour/' + apartment.apartmentData.ActiveListings[0].pubid}}" class="btn btn-md btn-outline--orange clipboard">Copy Link</button>
-        <button ng-hide="apartment.apartmentData.ActiveListings.length > 0" class="btn btn-md btn-outline--orange" ng-click="activateListing(apartment)">Activate </button>
+        <button ng-show="apartment.newlyActive || apartment.apartmentData.ActiveListings.length > 0" data-clipboard-text="{{windowLocationOrigin + '/tour/' + apartment.apartmentData.ActiveListings[0].pubid}}" class="btn btn-md btn-outline--orange clipboard">Copy Link</button>
+        <button ng-hide="apartment.newlyActive || apartment.apartmentData.ActiveListings.length > 0" class="btn btn-md btn-outline--orange" ng-click="activateListing(apartment)">Activate </button>
     </div>
 </div>

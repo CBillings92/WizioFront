@@ -5,6 +5,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
     '$resource',
     function($scope, WizioConfig, TokenSvc, $resource) {
         new Clipboard('.clipboard');
+        $scope.newlyActive = false;
         $scope.userIsLoggedIn = TokenSvc.isLoggedIn();
         $scope.windowLocationOrigin = window.location.origin;
         $scope.activateListing = function(apartment){
@@ -15,7 +16,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
                     pubid: apartment.apartmentData.pubid
                 },
                 User: {
-                    id: user.id
+                    id: user.id,
+                    email: user.email
                 },
                 Subscription: {
                     pubid: subscription.pubid
@@ -23,10 +25,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             };
             $resource(WizioConfig.baseAPIURL + 'activelisting')
             .save(data, function(response){
-
+              apartment.newlyActive = true
             });
-            console.dir(TokenSvc.decode());
-            console.dir(apartment);
         };
     }
 ]);

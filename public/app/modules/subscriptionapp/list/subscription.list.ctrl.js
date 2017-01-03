@@ -9,7 +9,6 @@ angular.module('AccountApp')
               $scope.subscriptions = response;
             });
             $scope.chooseSubscription = function chooseSubscription(subscription) {
-                console.dir(subscription);
                 $scope.chosenSubscription = subscription;
             };
     }]);

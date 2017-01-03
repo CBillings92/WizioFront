@@ -6,4 +6,8 @@ angular.module('AccountApp')
             console.dir('HELLE');
             $scope.apartments = results;
         });
+        $scope.$on('Unit-Activated', function(event, results) {
+          console.dir(results);
+          $scope.activelistings.push({pubid: results.pubid, Apartment: {concatAddr: results.apartment.concatAddr, unitNum: results.apartment.unitNum}})
+        })
     }]);
