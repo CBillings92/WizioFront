@@ -54,7 +54,7 @@ angular.module('AccountApp')
                     user: user,
                     subscription: subscription
                 };
-                return $q(function(response, resolve) {
+                return $q(function(resolve, reject) {
                     $resource(resources.user.registration)
                         .save(dataForAPI, function(response) {
                             return resolve(response);
