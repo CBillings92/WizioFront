@@ -18,11 +18,12 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-
+        $scope.displayNoFloorplanMessage = false;
         $scope.selectedUnit = false;
         $scope.pins = [];
         $scope.showAmenityButton = false;
 
+        // just store the angular resource for later use
         apartmentAPIResource = $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5', {
             param1: '@id',
             param2: '@pubid',
@@ -30,6 +31,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param4: '@unitNum',
             param5: '@Floor_Plan'
         });
+
+        // just store the angular resource for later use
         pinAPIResource = $resource(WizioConfig.baseAPIURL + 'media');
 
         // get the id, pubid, concatAddr, unitnum, and Floor_Plan for all apartments with Floor_Plans
@@ -40,9 +43,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param4: 'unitNum',
             param5: "Floor_Plan"
         }, function(response) {
-            alert(response);
             $scope.units = lodash.groupBy(response, 'Floor_Plan');
-            console.dir($scope.units);
             $scope.units = response;
         });
 
@@ -59,6 +60,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
 
             // get the Floor_Plan URL from the selected unit
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
+            $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
 
@@ -73,12 +75,44 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 pubid: subScope.unit.pubid
             }, function(response) {
                 var media = response[0];
-                // create an object with keys True, False. False key holds
-                // the ammenitiy photos, True holds the unit photos
-                $scope.media = lodash.groupBy(media, "isUnit");
-                $scope.amenities = $scope.media.false;
-                $scope.pins = $scope.media.true;
+                // Handle whether there are or are not photos
+                handleExistingPhotos(media);
+
+                return;
             });
+        }
+
+        function handleExistingPhotos(unsortedMedia) {
+            var sortedMedia;
+            // Media is an object that contains media objects as keys.
+            // If there are no keys, then there are no photos so create empty arrays
+            // If there are photos, break the photos up into unit and non-unit photos
+            if(Object.keys(unsortedMedia).length === 0){
+                $scope.amenities = [];
+                $scope.pins = [];
+                return;
+            } else {
+                // Break up the photos by unit and non-unit
+                // false means it's not a unit photo, true means it is a unit photo
+                sortedMedia = lodash.groupBy(unsortedMedia, "isUnit");
+                // If there are non-unit photos,
+                if(sortedMedia.false){
+                    $scope.amenities = sortedMedia.false;
+                } else {
+                    $scope.amenities = [];
+                }
+                // Some photos in the database will have a NULL isUnit - makes it an ammenity
+                $scope.amenities.concat(sortedMedia.null);
+
+                // Check to see if there are any unit photos, if there are...
+                if(sortedMedia.true){
+                    $scope.pins = sortedMedia.true;
+                    return;
+                } else {
+                    $scope.pins = [];
+                    return;
+                }
+            }
         }
 
         /*  SUMMARY - makePinAction(mouseEvent, subScope, clickOnFloorplan)
@@ -102,7 +136,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 createPin(mouseEvent);
             } else if (clickOnFloorplan === true && movePinFlag === true) {
                 movePin(mouseEvent);
-                console.dir($scope.pins[selectedPinIndex]);
             } else {
                 choosePinActionModal();
             }
@@ -127,7 +160,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             pinToMove.y = pinXY.y;
 
             movePinFlag = false;
-            console.dir(pinToMove);
             pinAPIResource.save(pinToMove, function(response){
                 alert('saved');
                 return;
@@ -166,7 +198,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 isUnit: 1,
                 type: 'vrphoto',
                 title: null,
-                awsurl: 'http://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
 
@@ -194,12 +226,13 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 isUnit: 0,
                 type: 'vrphoto',
                 title: null,
-                awsurl: 'http://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
-
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(result) {
                 // result is what's passed back from modal button selection
+                amenity.title = result;
+                $scope.amenities.push(amenity);
                 return result;
             });
 

@@ -9,7 +9,7 @@ angular.module('PhotographerApp')
             $scope.photoTitle = null;
             $scope.pin = modalData;
             $scope.ok = function(){
-                return $uibModalInstance.close('ok');
+                return $uibModalInstance.close($scope.photoTitle);
             };
         }
     ]);

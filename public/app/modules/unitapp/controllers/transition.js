@@ -13,19 +13,22 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var apitoken;
         var state = $state.current.name;
         var heightContainerElem = document.getElementById('height-container');
-        // jquery workaround for vh and vw (doesn't work on apple);
-        var windowHeight = $(window).height();
+        var floorplanImgElem = document.getElementById('floorplan');
+        var maxFloorPlanHeight = $(window).height() * 0.75;
+
+        floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
         heightContainerElem.style['padding-bottom'] = '0';
 
-        heightContainerElem.style.height = windowHeight + 'px';
+        heightContainerElem.style.height = $(window).height() + 'px';
 
         if (state === 'NewExternalApi' || state === 'Demo' || state === 'Tour') {
             bodyTag.style["margin-bottom"] = "0";
             $(window).resize(function() {
                 heightContainerElem.style['padding-bottom'] = '0';
                 heightContainerElem.style.height = $(window).height() + 'px';
+                floorplanImgElem.style['max-height'] = $(window).height()*0.75 + 'px';
             });
         }
 

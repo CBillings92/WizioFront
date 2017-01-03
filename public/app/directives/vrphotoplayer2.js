@@ -58,7 +58,6 @@ angular.module('Directives')
                     render();
 
                     function init(elem) {
-                        console.dir(canvasParent);
                         camera = new THREE.PerspectiveCamera(100, canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
@@ -89,7 +88,6 @@ angular.module('Directives')
                     }
 
                     scope.$on('CHANGE', function() {
-                        console.dir('disconnect');
                         newImage();
                     });
 
@@ -109,7 +107,6 @@ angular.module('Directives')
                         THREE.ImageUtils.crossOrigin = '';
                         var loader = new THREE.TextureLoader();
                         loader.crossOrigin = '';
-                        console.dir(scope.photoUrl);
                         loader.load(scope.photoUrl, function(texture) {
                             texture.minFilter = THREE.LinearFilter;
 

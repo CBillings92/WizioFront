@@ -27,7 +27,6 @@ angular.module('Directives')
                     render();
 
                     function init(elem) {
-                        console.dir(canvasParent);
                         camera = new THREE.PerspectiveCamera(100, canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
@@ -80,15 +79,29 @@ angular.module('Directives')
                         loader.load(scope.photoUrl, function(texture) {
                             texture.minFilter = THREE.LinearFilter;
 
-                            sphere = new THREE.Mesh(
-                                new THREE.SphereGeometry(100, 20, 20),
+                            if(sphere){
+                              remove(sphere);
+                              sphere = new THREE.Mesh(
+                                new THREE.SphereGeometry(100, 60, 40),
                                 new THREE.MeshBasicMaterial({
-                                    map: texture
+                                  map: texture
                                 })
-                            );
+                              );
 
-                            sphere.scale.x = -1;
-                            scene.add(sphere);
+                              sphere.scale.x = -1;
+                              scene.add(sphere);
+
+                            } else {
+                              sphere = new THREE.Mesh(
+                                new THREE.SphereGeometry(100, 60, 40),
+                                new THREE.MeshBasicMaterial({
+                                  map: texture
+                                })
+                              );
+
+                              sphere.scale.x = -1;
+                              scene.add(sphere);
+                            }
 
                         });
                     }
@@ -118,6 +131,11 @@ angular.module('Directives')
                         camera.updateProjectionMatrix();
                         renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                         render();
+                    }
+
+                    // http://stackoverflow.com/questions/21548247/clean-up-threejs-webgl-contexts
+                    function remove (sphere) {
+                      scene.remove(sphere);
                     }
                 }
             };
