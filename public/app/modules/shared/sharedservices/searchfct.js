@@ -35,7 +35,6 @@ angular.module('SharedServiceApp')
                     apt = response[i];
                     console.dir(apt);
                     var newApartment = ApartmentModel.build(apt);
-                    newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
                     if(apt.Descriptions && apt.Descriptions.length !== 0){
                         formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
