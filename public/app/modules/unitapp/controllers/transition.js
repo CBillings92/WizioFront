@@ -90,6 +90,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
             //     media = result[0];
             // }
             $scope.floorplan = result[1].Floor_Plan;
+            console.dir($scope.floorplan);
             $scope.media = lodash.groupBy(media, 'type');
 
             var photoIndex;
