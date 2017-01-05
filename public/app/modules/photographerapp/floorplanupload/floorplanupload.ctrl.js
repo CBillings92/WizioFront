@@ -5,10 +5,11 @@
     the units pubid
 */
 angular.module('PhotographerApp')
-    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', function($scope, $resource, WizioConfig,$q) {
+    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
+        $scope.formSubmitted = false;
         // put apartment on the scope for the form input
         $scope.apartment = {
             address: null,
@@ -73,19 +74,26 @@ angular.module('PhotographerApp')
 
         //send apartemnt address and unit number to the backend
         function createAddress(){
+            LoadingSpinnerFct.show("floorplanUpload");
+            $scope.formSubmitted = true;
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
                 var key = response.pubid + '/floorplan.png';
                 if($scope.noFloorPlanChkBox){
+                    LoadingSpinnerFct.hide('floorplanUpload');
+                    $scope.formSubmitted = false;
                     alert('Saved with no floorplan');
                     return;
                 } else {
                     saveFloorPlanToS3(key)
                     .then(function(response){
+                        LoadingSpinnerFct.hide('floorplanUpload');
+                        $scope.formSubmitted = false;
                         alert('finished');
                     })
                     .catch(function (err) {
                         alert(err);
+                        $scope.formSubmitted = false;
                     });
                 }
             });

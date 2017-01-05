@@ -811,12 +811,17 @@ angular.module('MainApp')
                 '$q',
                 '$location',
                 '$localStorage',
+                '$rootScope',
                 '$injector',
                 'TokenSvc',
-                function($q, $location, $localStorage, $injector, TokenSvc) {
+                function($q, $location, $localStorage, $rootScope, $injector, TokenSvc) {
+                    var requestCount = 0;
                     return {
                         request: function(config) {
+                            requestCount++;
+                            console.dir(requestCount);
                             config.headers = config.headers || {};
+                            // console.dir(requestCount);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;
@@ -829,6 +834,12 @@ angular.module('MainApp')
                         },
 
                         response: function(response) {
+                            requestCount--
+                            console.dir(requestCount);
+                            if(requestCount === 0){
+                                console.dir('REQUEST COUNT 0');
+                                $rootScope.$emit('siteLoadDone', {});
+                            }
                             if (typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token) {
 
                                 TokenSvc.storeToken(response.data.token);

@@ -75,7 +75,9 @@
             'jwtHelper',
             'AuthFct',
             'TokenSvc',
-            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc) {
+            'LoadingSpinnerFct',
+            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct) {
+                LoadingSpinnerFct.show('siteLoader');
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;

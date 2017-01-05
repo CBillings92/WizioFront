@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-sm-6">
             <user-info-dir></user-info-dir>
+            <a href="https://hopskins.typeform.com/to/TUMI6t" class="btn btn-fill--blue btn-md">Request Tour</a>
         </div>
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
@@ -21,7 +22,8 @@
         </div>
         <div class=col-md-6>
             <h2 class="user-info__name">Search Results:</h2>
-            <search-results-list-dir apartments='apartments'></search-results-list-dir>
+            <loading-spinner-dir id="account-dashboard-searh-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
+            <search-results-list-dir apartments='apartments' ng-hide="loading"></search-results-list-dir>
         </div>
     </div>
     <div class="row user-info">

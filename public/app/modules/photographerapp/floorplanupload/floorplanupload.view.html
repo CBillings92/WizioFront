@@ -25,9 +25,12 @@
             </div>
             <div class="col-md-1">
                 <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
-                <button class="btn" id="upload-button" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Save Floorplan</button>
+                <button class="btn" id="upload-button" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Save Floorplan</button>
+                <loading-spinner-dir style="color:black; visibility: hidden;" id="floorplanUpload"></loading-spinner-dir>
                 <div id="results"></div>
             </div>
         </form>
     </div>
+</div>
+<div class="row">
 </div>

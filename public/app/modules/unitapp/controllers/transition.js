@@ -6,7 +6,9 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
     '$sce',
     'lodash',
     'ModalSvc',
-    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc) {
+    'LoadingSpinnerFct',
+    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc, LoadingSpinnerFct) {
+        LoadingSpinnerFct.show('vrPlayerLoader');
         var bodyTag = document.getElementsByTagName("BODY")[0];
         // var panelContainer;
         var apartmentpubid;
@@ -84,6 +86,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     activelistingid: activelistingid
                 };
         }
+
         apiResource.query(query, function(result) {
             var media = result[0];
             // if (state === 'LandingPage' || state === 'Demo') {
@@ -122,6 +125,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
 
                 // Allow the user to change photos
                 $scope.changePhoto = function(photoIndex) {
+                    LoadingSpinnerFct.show('vrPlayerLoader');
                     $scope.photoIndex = photoIndex;
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
                     $scope.$broadcast('CHANGE', {});

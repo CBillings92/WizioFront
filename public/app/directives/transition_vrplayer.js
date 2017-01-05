@@ -1,11 +1,12 @@
 angular.module('Directives')
-    .directive('transitionVrPlayerDirv', [ '$state',
-        function($state) {
+    .directive('transitionVrPlayerDirv', [ '$state', 'LoadingSpinnerFct',
+        function($state, LoadingSpinnerFct) {
             return {
                 restrict: 'E',
                 controller: 'TransitionUnitMediaCtrl',
                 templateUrl: 'public/app/modules/unitapp/viewtemplates/transition.view.html',
                 link: function(scope, elem, attr) {
+                    LoadingSpinnerFct.show('vrPlayerLoader');
                     scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;
                     var canvasParent = document.getElementById('sphere');
@@ -21,6 +22,8 @@ angular.module('Directives')
                     var state = $state.current.name;
                     scope.$on('IMGLOAD', function IMGLOAD(event) {
                         newImage();
+                        // LoadingSpinnerFct.hide('vrPlayerLoader');
+
                     });
 
                     init(elem);
@@ -90,6 +93,7 @@ angular.module('Directives')
 
                               sphere.scale.x = -1;
                               scene.add(sphere);
+                              LoadingSpinnerFct.hide('vrPlayerLoader');
 
                             } else {
                               sphere = new THREE.Mesh(
@@ -101,6 +105,7 @@ angular.module('Directives')
 
                               sphere.scale.x = -1;
                               scene.add(sphere);
+                              LoadingSpinnerFct.hide('vrPlayerLoader');
                             }
 
                         });
