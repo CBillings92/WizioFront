@@ -47,13 +47,13 @@ angular.module('Directives').directive('transitionVrPlayerDirv', [
                     // controls.addEventListener('change', render);
                     // Add DeviceOrientation Controls
                     // setupControllerEventHandlers(controls);
-                    controls = new DeviceOrientationController(camera);
-                    controls.connect();
                     scene = new THREE.Scene();
                     renderer = webglSupport
                         ? new THREE.WebGLRenderer()
                         : new THREE.CanvasRenderer();
                     renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
+                    controls = new DeviceOrientationController(camera);
+                    controls.connect();
                     canvasParent.appendChild(renderer.domElement);
 
                     // canvasParent.addEventListener('mousewheel', onMouseWheel, false);
