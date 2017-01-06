@@ -34,13 +34,13 @@ angular.module('Directives')
                         camera.position.x = 0.1;
                         camera.position.y = 0;
 
-                        controls = new THREE.OrbitControls(camera);
-                        controls.noPan = true;
-                        controls.noZoom = true;
-                        controls.autoRotate = true;
-                        controls.autoRotateSpeed = 0.5;
-                        controls.addEventListener('change', render);
-
+                        // controls = new THREE.OrbitControls(camera);
+                        // controls.noPan = true;
+                        // controls.noZoom = true;
+                        // controls.autoRotate = true;
+                        // controls.autoRotateSpeed = 0.5;
+                        // controls.addEventListener('change', render);
+                        controls = new DeviceOrientationController(camera);
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
                         renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
@@ -92,10 +92,13 @@ angular.module('Directives')
                               );
 
                               sphere.scale.x = -1;
+                        //   controls = new THREE.DeviceOrientationControls(sphere, true);
+                            //   controls.update();
                               scene.add(sphere);
                               LoadingSpinnerFct.hide('vrPlayerLoader');
 
                             } else {
+                            // controls = new THREE.DeviceOrientationControls(sphere, true);
                               sphere = new THREE.Mesh(
                                 new THREE.SphereGeometry(100, 60, 40),
                                 new THREE.MeshBasicMaterial({
