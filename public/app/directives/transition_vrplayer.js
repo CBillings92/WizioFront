@@ -40,7 +40,7 @@ angular.module('Directives')
                         // controls.autoRotate = true;
                         // controls.autoRotateSpeed = 0.5;
                         // controls.addEventListener('change', render);
-                        controls = new DeviceOrientationController(camera);
+                        controls = new THREE.DeviceOrientationController(camera);
                         controls.addEventListener('change', render);
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
