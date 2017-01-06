@@ -83,6 +83,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 	}.bind( this );
 
 	this.onDeviceOrientationChange = function ( event ) {
+        console.dir(event);
 		this.deviceOrientation = event;
 	}.bind( this );
 
@@ -115,7 +116,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 		// Set consistent scroll speed based on current viewport width/height
 		scrollSpeedX = ( 1200 / window.innerWidth ) * 0.2;
 		scrollSpeedY = ( 800 / window.innerHeight ) * 0.2;
-
+        console.dir(this.element);
 		this.element.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 		this.element.addEventListener( 'mouseup', this.onDocumentMouseUp, false );
 
@@ -141,8 +142,10 @@ var DeviceOrientationController = function ( object, domElement ) {
 	}.bind( this );
 
 	this.onDocumentTouchStart = function ( event ) {
-		event.preventDefault();
-		event.stopPropagation();
+        console.dir(event);
+        console.dir(this);
+		// event.preventDefault();
+		// event.stopPropagation();
 
 		switch ( event.touches.length ) {
 			case 1: // ROTATE
@@ -436,31 +439,33 @@ var DeviceOrientationController = function ( object, domElement ) {
 	};
 
 	this.connect = function () {
-		window.addEventListener( 'resize', this.constrainObjectFOV, false );
+        var vrDomElement = document.getElementById('vr-player-container');
+		vrDomElement.addEventListener( 'resize', this.constrainObjectFOV, false );
 
-		window.addEventListener( 'orientationchange', this.onScreenOrientationChange, false );
-		window.addEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
+		vrDomElement.addEventListener( 'orientationchange', this.onScreenOrientationChange, false );
+		vrDomElement.addEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
 
-		window.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
+		vrDomElement.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-		this.element.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		this.element.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		vrDomElement.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		vrDomElement.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
 
 		this.freeze = false;
 	};
 
 	this.disconnect = function () {
+        var vrDomElement = document.getElementById('vr-player-container');
 		this.freeze = true;
 
-		window.removeEventListener( 'resize', this.constrainObjectFOV, false );
+		vrDomElement.removeEventListener( 'resize', this.constrainObjectFOV, false );
 
-		window.removeEventListener( 'orientationchange', this.onScreenOrientationChange, false );
-		window.removeEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
+		vrDomElement.removeEventListener( 'orientationchange', this.onScreenOrientationChange, false );
+		vrDomElement.removeEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
 
-		window.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
+		vrDomElement.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-		this.element.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		this.element.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		vrDomElement.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		vrDomElement.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
 	};
 
 };

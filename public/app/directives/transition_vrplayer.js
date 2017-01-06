@@ -46,9 +46,9 @@ angular.module('Directives').directive('transitionVrPlayerDirv', [
                     // controls.autoRotateSpeed = 0.5;
                     // controls.addEventListener('change', render);
                     // Add DeviceOrientation Controls
+                    // setupControllerEventHandlers(controls);
                     controls = new DeviceOrientationController(camera);
                     controls.connect();
-                    // setupControllerEventHandlers(controls);
                     scene = new THREE.Scene();
                     renderer = webglSupport
                         ? new THREE.WebGLRenderer()
@@ -56,8 +56,8 @@ angular.module('Directives').directive('transitionVrPlayerDirv', [
                     renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                     canvasParent.appendChild(renderer.domElement);
 
-                    canvasParent.addEventListener('mousewheel', onMouseWheel, false);
-                    canvasParent.addEventListener('DOMMouseScroll', onMouseWheel, false);
+                    // canvasParent.addEventListener('mousewheel', onMouseWheel, false);
+                    // canvasParent.addEventListener('DOMMouseScroll', onMouseWheel, false);
                     window.addEventListener('resize', resize, false);
 
                     animate();
