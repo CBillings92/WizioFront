@@ -1,0 +1,63 @@
+
+    <form ng-submit="save()" ng-hide="hasRegistered" novalidate>
+        <p>
+            Due to high demand and our desire to provide each of our clients with the best possible experience, we're slowly rolling out our beta to those on our waitlist. Please join our waitlist and we'll contact you.
+        </p>
+        <div class="acct-modal-controls">
+            <div class="form-group">
+                <input type="text" ng-model="user.firstName" placeholder="First Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" ng-model="user.lastName" placeholder="Last Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="text" ng-model="user.email" placeholder="Email" class="form-control" />
+                    <span ng-show='createAcct.email.$invalid'>
+                    <span ng-show="createAcct.email.$error.email">Invalid email address</span>
+                    <span ng-show="createAcct.email.$error.required">Invalid email address</span>
+                </span>
+            </div>
+            <div class="form-group" ng-hide='waitlist'>
+                <input type="text" placeholder="Company" ng-model="user.businessName" class="form-control" value="">
+            </div>
+            <div class="form-group" ng-hide='waitlist'>
+                <input type="text" placeholder="Broker License Number" ng-model="user.licenseID" class="form-control" ng-show ="user.type === 'Broker/Agent'" value="">
+            </div>
+            <!-- <div class="form-group">
+                <input type="text" placeholder="Contact Phone (For Tenants)" ng-model="user.contactPhone" class="form-control" ng-show ="user.type === 'Broker/Agent' || user.type === 'Property Manager'" value="">
+            </div> -->
+            <div class="form-group">
+                <input type="text" placeholder="Phone" ng-model="user.contactPhone" class="form-control" value="">
+            </div>
+            <br>
+            <div class="form-group" ng-hide='waitlist'>
+                <input type="password" ng-minlength="6" ng-model="user.password" required placeholder="Password" class="form-control" />
+            </div>
+            <div class="form-group" ng-hide='waitlist'>
+                <input type="password" ng-minlength="6" ng-model="user.passwordConfirm" required placeholder="Confirm Password" class="form-control" />
+            </div>
+            <br>
+        </div>
+        <div class="acct-modal-footer">
+            <a class="btn acct-modal-footer__btn acct-modal-footer__back-btn" ng-click="backStep()"><span class="fa fa-long-arrow-left"></span> Back</a>
+            <button class="btn acct-modal-footer__btn acct-modal-footer__next-btn" ng-disabled="createAcct.$invalid" type="submit">Next <span class="fa fa-long-arrow-right"></span></button>
+            <ul class="acct-modal-dots">
+                <li class="acct-modal-dots-dot">&nbsp;</li>
+                <li class="acct-modal-dots-dot acct-modal-dots-dot-filled">&nbsp;</li>
+                <li class="acct-modal-dots-dot">&nbsp;</li>
+            </ul>
+        </div>
+    </form>
+    <div class="text-center acct-modal-congrats" ng-show="hasRegistered">
+        <h3>Congratulations!</h3>
+        <p class="acct-modal-congrats-tagline">Now let's find your next home</p>
+        <button class="btn btn-orange" ng-click="closeModal()">Get Started</button>
+        <div class="acct-modal-footer">
+            <ul class="acct-modal-dots">
+                <li class="acct-modal-dots-dot">&nbsp;</li>
+                <li class="acct-modal-dots-dot">&nbsp;</li>
+                <li class="acct-modal-dots-dot acct-modal-dots-dot-filled">&nbsp;</li>
+            </ul>
+        </div>
+    </div>
+</div>

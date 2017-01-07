@@ -7,7 +7,8 @@ angular.module('SharedServiceApp')
         'DescriptionModel',
         'LeaseModel',
         'lodash',
-        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash) {
+        'TokenSvc',
+        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash, TokenSvc) {
 
             //to randomize the address for security
             var concealAddress = function(response) {
@@ -32,8 +33,8 @@ angular.module('SharedServiceApp')
                 var apt;
                 for (var i = 0; i < response.length; i++) {
                     apt = response[i];
+                    console.dir(apt);
                     var newApartment = ApartmentModel.build(apt);
-                    newApartment.concealAddress();
                     formattedApartmentArray.push(newApartment);
                     if(apt.Descriptions && apt.Descriptions.length !== 0){
                         formattedApartmentArray[i].Description = DescriptionModel.build(apt.Descriptions[0]);
@@ -50,6 +51,7 @@ angular.module('SharedServiceApp')
             var search = function(data, filters, callback) {
                 //build new apartment instance
                 var apartmentInstance = ApartmentModel.build(data);
+                var user = null;
                 //get get Geocode Data
                 apartmentInstance.getGeocodeData()
                     .then(function(response) {
@@ -59,13 +61,17 @@ angular.module('SharedServiceApp')
                             topLevelType = apartmentInstance.apartmentData.topLevelType;
                         }
                         //create a new search object
-                        var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters);
+                        console.dir(TokenSvc.isLoggedIn);
+                        if(TokenSvc.isLoggedIn()){
+                            user = TokenSvc.decode();
+                        }
+                        var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters, user);
                         //send this new search instance to the backend
                         newSearchInstance.send(function(response) {
                             var formattedSearchResults = formatSearchResults(response);
                             $sessionStorage.apartmentSearch = formattedSearchResults;
                             $rootScope.$broadcast('searchFinished', formattedSearchResults);
-                            return callback('done');
+                            return callback(formattedSearchResults);
                         });
                     });
             };

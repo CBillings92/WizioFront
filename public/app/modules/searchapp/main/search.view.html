@@ -1,0 +1,15 @@
+<div class="form-group">
+    <input
+        class="form-control nav-search"
+        style="border: 1px solid black; margin-top: 5px;margin-bottom:5px;"
+        ng-model="searchString"
+        placeholder="Search by area"
+        type="text"
+        uib-typeahead-loading="loadingLocations"
+        uib-typeahead-min-length="3"
+        uib-typeahead-no-results="noResults"
+        uib-typeahead="address for address in getLocation($viewValue)"
+    />
+    <button type="button" class="btn btn-fill--blue btn-md form-control" name="button" ng-click=
+    "submitSearch()">Search</button>
+</div>

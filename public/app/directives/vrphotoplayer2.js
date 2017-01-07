@@ -1,11 +1,45 @@
 angular.module('Directives')
-    .directive('newVrPhotoPlayerDirv', [
-        function() {
+    .directive('newVrPhotoPlayerDirv', [ '$state',
+        function($state) {
             return {
                 restrict: 'E',
+                controller: 'UnitMediaCtrl',
+                templateUrl: $state.current.name ===
+                    'LandingPage' ? 'public/app/modules/unitapp/viewtemplates/landingpagedemo.view.html' :
+                    $state.current.name === 'Demo' ? 'public/app/modules/unitapp/viewtemplates/demo.views.html' :
+                    $state.current.name === "DemoOneBackBay" ? 'public/app/modules/unitapp/viewtemplates/demoOneBackBay.views.html':
+                    $state.current.name === 'DemoGreenStreet' ? 'public/app/modules/unitapp/viewtemplates/demoGreenStreet.views.html' :
+                    $state.current.name === 'DemoWellington2Bed' ? 'public/app/modules/unitapp/viewtemplates/demoWellington2bed.view.html' :
+                    $state.current.name === 'DemoWaterMarkOneBed' ? 'public/app/modules/unitapp/viewtemplates/demoWaterMarkOneBed.view.html' :
+                    $state.current.name === 'DemoGreenWay0404' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0404.view.html' :
+                    $state.current.name === 'DemoGreenWay0503' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0503.view.html' :
+                    $state.current.name === 'DemoGreenWay0512' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay0512.view.html' :
+                    $state.current.name === 'DemoGreenWay1401' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1401.view.html' :
+                    $state.current.name === 'DemoGreenWay1209' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1209.view.html' :
+                    $state.current.name === 'DemoGreenWay1707' ? 'public/app/modules/unitapp/viewtemplates/demoGreenWay1707.view.html' :
+                    $state.current.name === 'DemoMetroMark04' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark04.view.html' :
+                    $state.current.name === 'DemoMetroMark06' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark06.view.html' :
+                    $state.current.name === 'DemoMetroMark12' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark12.view.html' :
+                    $state.current.name === 'DemoMetroMark13' ?  'public/app/modules/unitapp/viewtemplates/demoMetroMark13.view.html' :
+                    $state.current.name === 'DemoRiversEdgeB1' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeB1.view.html' :
+                    $state.current.name === 'DemoRiversEdgeA2' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA2.view.html' :
+                    $state.current.name === 'DemoRiversEdgeA9' ?  'public/app/modules/unitapp/viewtemplates/demoRiversEdgeA9.view.html' :
+                    $state.current.name === 'DemoStationLanding1' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1.view.html' :
+                    $state.current.name === 'DemoStationLanding1C' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding1C.view.html' :
+                    $state.current.name === 'DemoStationLanding2' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding2.view.html' :
+                    $state.current.name === 'DemoStationLanding24W' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding24W.view.html' :
+                    $state.current.name === 'DemoStationLanding26E' ?  'public/app/modules/unitapp/viewtemplates/demoStationLanding26E.view.html' :
+                    $state.current.name === 'DemoStationLandingStudioB' ?  'public/app/modules/unitapp/viewtemplates/demoStationLandingStudioB.view.html' :
+                    $state.current.name === 'DemoEddyD' ?  'public/app/modules/unitapp/viewtemplates/demoEddyD.view.html' :
+                    $state.current.name === 'DemoEddyBB' ?  'public/app/modules/unitapp/viewtemplates/demoEddyBB.view.html' :
+                    $state.current.name === 'DemoEddyCC' ?  'public/app/modules/unitapp/viewtemplates/demoEddyCC.view.html' :
+                    $state.current.name === 'DemoEddyK' ?  'public/app/modules/unitapp/viewtemplates/demoEddyK.view.html' :
+                    $state.current.name === 'Externalapi' ? 'public/app/modules/unitapp/viewtemplates/transition.view.html' :
+                    null,
                 link: function(scope, elem, attr) {
-
+                    scope.noPan = true;
                     var camera, controls, scene, renderer, sphere;
+                    var canvasParent = document.getElementById('sphere');
 
                     var webglSupport = (function() {
                         try {
@@ -15,7 +49,7 @@ angular.module('Directives')
                             return false;
                         }
                     })();
-
+                    var state = $state.current.name;
                     scope.$on('IMGLOAD', function IMGLOAD(event) {
                         newImage();
                     });
@@ -24,7 +58,7 @@ angular.module('Directives')
                     render();
 
                     function init(elem) {
-                        camera = new THREE.PerspectiveCamera(100, elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                        camera = new THREE.PerspectiveCamera(100, canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.position.x = 0.1;
                         camera.position.y = 0;
 
@@ -37,11 +71,11 @@ angular.module('Directives')
 
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
-                        renderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
-                        elem[0].appendChild(renderer.domElement);
+                        renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
+                        canvasParent.appendChild(renderer.domElement);
 
-                        elem[0].addEventListener('mousewheel', onMouseWheel, false);
-                        elem[0].addEventListener('DOMMouseScroll', onMouseWheel, false);
+                        canvasParent.addEventListener('mousewheel', onMouseWheel, false);
+                        canvasParent.addEventListener('DOMMouseScroll', onMouseWheel, false);
                         window.addEventListener('resize', resize, false);
 
                         animate();
@@ -62,10 +96,10 @@ angular.module('Directives')
                     }
 
                     function resize() {
-                        camera.aspect = (elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight);
+                        camera.aspect = (canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight);
                         camera.updateProjectionMatrix();
 
-                        webGLRenderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                        webGLRenderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                     }
 
 
@@ -110,9 +144,9 @@ angular.module('Directives')
                     }
 
                     function resize() {
-                        camera.aspect = elem[0].parentElement.clientWidth / elem[0].parentElement.clientHeight;
+                        camera.aspect = canvasParent.parentElement.clientWidth / canvasParent.parentElement.clientHeight;
                         camera.updateProjectionMatrix();
-                        renderer.setSize(elem[0].parentElement.clientWidth, elem[0].parentElement.clientHeight);
+                        renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                         render();
                     }
                 }

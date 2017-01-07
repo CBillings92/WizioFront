@@ -4,9 +4,11 @@ angular.module('AccountApp')
     '$state',
     'TokenSvc',
     'ModalSvc',
+    'ModalBuilderFct',
     'WizioConfig',
-    function($scope, $state, TokenSvc, ModalSvc, WizioConfig){
+    function($scope, $state, TokenSvc, ModalSvc, ModalBuilderFct, WizioConfig){
         $scope.accountInfo = TokenSvc.decode();
+        console.dir($scope.accountInfo);
         //reusable function for creating modalDefaults for ModalSvc
         var modalDefaults = function(size, templateUrl, controller, modalData) {
             return {
@@ -28,13 +30,11 @@ angular.module('AccountApp')
             $state.go('Unit.Claim');
         };
         $scope.leaveFeedback = function leaveFeedback(){
-            var modal = modalDefaults('md', WizioConfig.AccountDashboardViewsURL + 'feedback.modal.view.html', 'FeedbackModalCtrl', {});
+            ModalBuilderFct.buildComplexModal('md', WizioConfig.AccountDashboardViewsURL + 'feedback.modal.view,html', 'FeedbackModalCtrl', {})
+            .then(function(response){
 
-            ModalSvc.showModal(modal, {})
-                .then(function(results){
-
-                });
+            });
         };
-        
+
     }
 ]);

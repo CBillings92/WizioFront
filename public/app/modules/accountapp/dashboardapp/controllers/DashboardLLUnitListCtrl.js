@@ -251,7 +251,7 @@ angular.module('AccountApp')
             $scope.viewLeads = function(apartmentIndex) {
                 var passingData = [$scope.units[apartmentIndex].Leases[0].Leads,
                     $scope.units[apartmentIndex].concatAddr,
-                    $scope.units[apartmentIndex].unitNum
+                    $scope.units[apartmentIndex].unitNum,
                 ];
 
                 var viewLeadsModal = ModalBuilderFct.buildComplexModal('lg', WizioConfig.ApplicationFormViewsURL + 'leadslist.html', 'LeadsListCtrl', passingData);

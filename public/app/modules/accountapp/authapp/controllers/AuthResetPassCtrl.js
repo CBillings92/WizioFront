@@ -5,7 +5,6 @@ angular.module('AccountApp')
         '$state',
         '$localStorage',
         '$stateParams',
-        '$facebook',
         '$location',
         'ModalSvc',
         'AuthFct',
@@ -15,7 +14,7 @@ angular.module('AccountApp')
         'RerouteGetSetSvc',
         'WizioConfig',
         'ModalBuilderFct',
-        function($rootScope, $scope, $state, $localStorage, $stateParams, $facebook, $location, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig, ModalBuilderFct) {
+        function($rootScope, $scope, $state, $localStorage, $stateParams, $location, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig, ModalBuilderFct) {
 
             var authViews = WizioConfig.AccountAuthViewsURL;
             $scope.emailobj = {};

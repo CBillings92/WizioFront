@@ -37,8 +37,311 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
                             controller: 'LandingPageCtrl'
+                        },
+                        "vr-player": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
                         }
 
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('InfoDashboard', {
+                    url: '/info/dashboard',
+                    views: {
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: WizioConfig.infoAppViews + 'infoapp.dshbrd.view.html',
+                            controller: 'InfoAppDashboardCtrl'
+                        }
+
+                    },
+                    data: falseRequiredLogin
+                })
+                .state('Upload', {
+                    url: '/upload',
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
+                            controller: 'UploadPageCtrl'
+                                // controller: 'UnitMediaCtrl'
+                        }
+                    }
+                })
+                .state('Tour', {
+                    url: '/tour/:activelistingid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                        }
+                    }
+                })
+                .state('Search', {
+                    url: '/search',
+                    params: {
+                        "apartments" : null,
+                    },
+                    views: {
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/searchapp/view.html',
+                            controller: 'SearchAppCtrl',
+                        }
+                    }
+                })
+                .state('Signup', {
+                    // abstract: true,
+                    url: '/signup',
+                    views: {
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/subscriptionapp/main/subscription.main.view.html',
+                            controller: 'SubscriptionMainCtrl'
+                        }
+                    }
+                })
+                .state('Signup.Invite', {
+                    url: '/85f61303',
+                    // views: {
+                    //     'subscription-top':
+                    //     'subscription-middle':
+                    //     'subscription-bottom':
+                    // }
+                })
+                .state('Demo', {
+                    url: '/demo',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
+                            // controller: 'LandingPageCtrl'
+                            // controller: 'UnitMediaCtrl'
+                        }
+                    }
+                })
+                .state('DemoOneBackBay', {
+                    url: '/demo/backbay',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenStreet', {
+                    url: '/demo/greenstreet',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoWellington2Bed', {
+                    url: '/demo/wellington',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoWaterMarkOneBed', {
+                    url: '/demo/watermark/onebed',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay0404', {
+                    url: '/demo/greenway/0404',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay0512', {
+                    url: '/demo/greenway/0512',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay0503', {
+                    url: '/demo/greenway/0503',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay1209', {
+                    url: '/demo/greenway/1209',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay1401', {
+                    url: '/demo/greenway/1401',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoGreenWay1707', {
+                    url: '/demo/greenway/1707',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoMetroMark04', {
+                    url: '/demo/metromark/04',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoMetroMark06', {
+                    url: '/demo/metromark/06',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoMetroMark12', {
+                    url: '/demo/metromark/12',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoMetroMark13', {
+                    url: '/demo/metromark/13',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoRiversEdgeB1', {
+                    url: '/demo/riversedge/b1',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoRiversEdgeA2', {
+                    url: '/demo/riversedge/a2',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoRiversEdgeA9', {
+                    url: '/demo/riversedge/a9',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding1', {
+                    url: '/demo/stationlanding/1',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding1C', {
+                    url: '/demo/stationlanding/1c',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding2', {
+                    url: '/demo/stationlanding/2',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding24W', {
+                    url: '/demo/stationlanding/24w',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLanding26E', {
+                    url: '/demo/stationlanding/26e',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoStationLandingStudioB', {
+                    url: '/demo/stationlanding/studiob',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyD', {
+                    url: '/demo/theeddy/d',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyBB', {
+                    url: '/demo/theeddy/bb',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyCC', {
+                    url: '/demo/theeddy/cc',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('DemoEddyK', {
+                    url: '/demo/theeddy/k',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html'
+                        }
+                    }
+                })
+                .state('NewExternalApi', {
+                    url: '/listing/vr/:apitoken/:apartmentpubid',
+                    views: {
+                        "maincontent": {
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                        }
                     },
                     data: falseRequiredLogin
                 })
@@ -46,8 +349,7 @@ angular.module('MainApp')
                     url: '/listing/vr/:apitoken/:apartmentpubid',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'unitmedia.views.html',
-                            controller: 'UnitMediaCtrl'
+                            templateUrl: WizioConfig.UnitViewsURL + 'democontainer.view.html',
                         }
                     },
                     data: falseRequiredLogin
@@ -74,20 +376,38 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-
-                .state('TenantSurvey', {
-                    url: '/survey',
+                .state('Photographer', {
+                    // abstract: true,
+                    url: '/photographer',
                     views: {
-                        'footer': footer,
-                        'navbar': navbar,
-                        'maincontent': {
-                            templateUrl: 'public/app/modules/tenantsurvey/survey.view.html',
-                            // templateUrl: WizioConfig.tenantSurveyFormViews + 'survey.view.html',
-                            // controller: 'AboutListCtrl'
-                            controller: 'TenantSurveyCtrl'
+                        "navbar": navbar,
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/photographerapp/main/photographer-main.view.html',
+                            // controller: 'LandingPageCtrl'
                         }
-                    },
-                    data: falseRequiredLogin
+
+                    }
+
+                })
+                .state('Photographer.Track', {
+                    url: '/track',
+                    views: {
+                        'test': {
+                            // templateUrl: '',
+                            templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
+                            controller: 'PhotographerTrackCtrl',
+                        }
+                    }
+                })
+                .state('Photographer.UploadFloorPlan', {
+                    url: '/upload/floorplan',
+                    views: {
+                        'test': {
+                            templateUrl: 'public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html',
+                            controller: 'FloorPlanUploadCtrl',
+                        }
+                    }
                 })
                 .state('AdminPanel', {
                     abstract: true,
@@ -134,7 +454,8 @@ angular.module('MainApp')
                         }
                     },
                 })
-                .state('AdminPanel.ApiAccessTool', {
+
+            .state('AdminPanel.ApiAccessTool', {
                     url: '/wizioadminpanel/apiaccesstool',
                     views: {
                         'AdminTop': {
@@ -219,8 +540,8 @@ angular.module('MainApp')
                     url: '/dashboard',
                     views: {
                         "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardMain.html',
-                            controller: 'DashboardMainCtrl',
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'dashboard.view.html',
+                            controller: 'DashboardCtrl',
                         }
                     }
                 })
@@ -289,70 +610,15 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
-                // .state('Account.Dashboard.Main', {
-                //     url: '/dashboard',
-                //     views: {
-                //         topHorizontal: {
-                //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                //             controller: 'DashboardUserInfoCtrl'
-                //         },
-                //         controlPanel: {
-                //             templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                //             controller: 'DashboardControlsCtrl'
-                //         },
-                //         midHorizontal: {
-                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                //                 if (TokenSvc.decode().userType >= 2) {
-                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html');
-                //                 } else {
-                //                     return null;
-                //                 }
-                //             }],
-                //             controllerProvider: ['$rootScope', function($rootScope) {
-                //                 if ($rootScope.userType >= 2) {
-                //                     return 'DashboardLLUnitListCtrl';
-                //                 } else {
-                //                     return null;
-                //                 }
-                //             }],
-                //         },
-                //         application: {
-                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                //                 if (TokenSvc.decode().userType == 1) {
-                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html');
-                //                 }
-                //             }],
-                //             controllerProvider: ['$rootScope', function($rootScope) {
-                //                 if ($rootScope.userType == 1) {
-                //                     return 'DashboardApplicationCtrl';
-                //                 } else {
-                //                     return null;
-                //                 }
-                //             }]
-                //         },
-                //         favorites: {
-                //             templateProvider: ['TokenSvc', '$templateFactory', function(TokenSvc, $templateFactory) {
-                //                 if (TokenSvc.decode().userType == 1) {
-                //                     return $templateFactory.fromUrl(WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html');
-                //                 } else {
-                //                     return null;
-                //                 }
-                //             }],
-                //             controllerProvider: ['$rootScope', function($rootScope) {
-                //                 switch ($rootScope.userType) {
-                //                     case 1:
-                //                         console.dir($rootScope.userType);
-                //                         return "DashboardFavoriteCtrl";
-                //                     case 2:
-                //
-                //                         break;
-                //                     default:
-                //                 }
-                //             }],
-                //             data: trueRequiredLogin
-                //         },
-                //     }
-                // })
+                .state('Account.Pay', {
+                    url: '/pay',
+                    views: {
+                        'AccountMain': {
+                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'payment.html',
+                            controller: 'PaymentCtrl'
+                        }
+                    },
+                })
                 .state('Account.Dashboard.Application', {
                     url: '/application',
                     views: {
@@ -362,34 +628,6 @@ angular.module('MainApp')
                         }
                     },
                     data: trueRequiredLogin
-                })
-                .state('Account.Lease', {
-                    abstract: true,
-                    url: '/lease',
-                    views: {
-                        AccountMain: {
-                            templateUrl: WizioConfig.leaseMainViewsURL + 'leasemain.html',
-                            controller: 'LeaseMainCtrl'
-                        }
-                    }
-                })
-                .state('Account.Lease.Create', {
-                    url: "/create",
-                    views: {
-                        LeaseMain: {
-                            templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
-                            controller: 'LeaseFormCtrl'
-                        }
-                    }
-                })
-                .state('Account.Lease.Edit', {
-                    url: "/edit",
-                    views: {
-                        LeaseMain: {
-                            templateUrl: WizioConfig.leaseViewsURL + 'leaseform.html',
-                            controller: 'LeaseFormCtrl'
-                        }
-                    }
                 })
                 .state('Account.Profile', {
                     url: '/profile',
@@ -566,47 +804,6 @@ angular.module('MainApp')
                         }
                     },
                     data: trueRequiredPropertyManager
-                })
-                .state('Campaign', {
-                    url: '/campaign',
-                    abstract: true,
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: WizioConfig.CampaignMainViewsURL + 'CampaignMain.html',
-                            controller: 'CampaignMainCtrl'
-                        }
-                    },
-                })
-                .state('Campaign.VideoUpload', {
-                    abstract: true,
-                    views: {
-                        "CampaignMain": {
-                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + "/VideoUploadMain.html",
-                            controller: 'VideoUploadMainCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
-                .state('Campaign.VideoUpload.Main', {
-                    url: '/apartmentupload',
-                    views: {
-                        "MainContent1": {
-                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadSplash.html',
-                            controller: 'VideoUploadSplashCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
-                .state('Campaign.VideoUpload.Form', {
-                    url: '/form',
-                    views: {
-                        "VideoUploadMain": {
-                            templateUrl: WizioConfig.CampaignVideoUploadViewsURL + '/VideoUploadForm.html',
-                            controller: 'VideoUploadFormCtrl'
-                        }
-                    }
                 });
             $urlRouterProvider.otherwise('/');
 
@@ -614,12 +811,17 @@ angular.module('MainApp')
                 '$q',
                 '$location',
                 '$localStorage',
+                '$rootScope',
                 '$injector',
                 'TokenSvc',
-                function($q, $location, $localStorage, $injector, TokenSvc) {
+                function($q, $location, $localStorage, $rootScope, $injector, TokenSvc) {
+                    var requestCount = 0;
                     return {
                         request: function(config) {
+                            requestCount++;
+                            console.dir(requestCount);
                             config.headers = config.headers || {};
+                            // console.dir(requestCount);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;
@@ -632,6 +834,12 @@ angular.module('MainApp')
                         },
 
                         response: function(response) {
+                            requestCount--
+                            console.dir(requestCount);
+                            if(requestCount === 0){
+                                console.dir('REQUEST COUNT 0');
+                                $rootScope.$emit('siteLoadDone', {});
+                            }
                             if (typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token) {
 
                                 TokenSvc.storeToken(response.data.token);
@@ -644,10 +852,6 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                if (response.data.facebook) {
-                                    //alert("Facebook Login Error: Please login again with facebook.");
-                                    return $q.reject(response);
-                                }
                                 alert('Authentication Failed');
                             }
                             return response;

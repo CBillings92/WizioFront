@@ -64,6 +64,7 @@ angular.module('SharedServiceApp')
         '$localStorage',
         'jwtHelper',
         function($rootScope, $localStorage, jwtHelper) {
+
             //decode auth token for front end. Retrieves user information
             var decode = function() {
                 if ($localStorage.token && !jwtHelper.isTokenExpired($localStorage.token)) {
@@ -116,13 +117,24 @@ angular.module('SharedServiceApp')
                     return false;
                 }
             };
+            //check if a user is logged in
+            var isLoggedIn = function() {
+                var tokenExp = true;
+                var token = getToken();
+                if (token === "No Token" || checkExp(token)) {
+                    return false;
+                } else {
+                    return true;
+                }
+            };
             //return all functions
             return {
                 decode: decode,
                 checkExp: checkExp,
                 storeToken: storeToken,
                 getToken: getToken,
-                deleteToken: deleteToken
+                deleteToken: deleteToken,
+                isLoggedIn: isLoggedIn
             };
         }
     ])
