@@ -82,7 +82,11 @@
 
 .home-tenants__header {
   position: relative;
-  margin-top: 70px;
+  margin-top: 55px;
+
+  button {
+    font-size: 40px;
+  }
 
     &:after {
       content: '';
@@ -208,7 +212,7 @@
     margin-top: 30px;
   }
   .home-blurb__header {
-    font-size: 22px;
+    font-size: 25px;
   }
   .home-blurb__desc {
     font-size: 18px;
@@ -235,12 +239,16 @@
     background-color: $light-orange;
     height: 100%;
     width: calc(50% - 575px);
+    margin-top: -1px;
   }
   .home-pin__orange__right {
     display: none;
   }
   .home-pin__orange__left {
     float: left;
+  }
+  .home-blurb__desc {
+    font-size: 25px;
   }
 }
 @media (min-width: 1170px) {
@@ -260,7 +268,7 @@
   }
   .home-landlord {
     margin-top: -106px;
-    padding-top: 240px;
+    // padding-top: 240px;
   }
   .home-pin {
     top: -330px;
@@ -277,6 +285,7 @@
     background-color: $light-orange;
     height: 100%;
     width: calc(50% - 644px);
+    margin-top: -1px;
   }
   .home-pin__orange__right {
     float: right;

@@ -17,10 +17,10 @@ angular.module('AccountApp')
             $scope.data = data;
             $scope.dropdownvals = [
                 "Broker/Agent",
-                "Property Manager"
+                "Property Manager",
             ];
             //the back button functionality
-            function backStep() {
+            function backstep() {
                 return $uibModalInstance.close('backStep');
             }
             function closeModal() {
@@ -70,7 +70,7 @@ angular.module('AccountApp')
             $scope.closeModal = closeModal;
 
             $scope.save = save;
-            
+
             $scope.login = function() {
                 return $uibModalInstance.close('login');
             };

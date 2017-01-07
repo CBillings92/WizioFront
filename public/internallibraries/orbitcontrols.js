@@ -79,7 +79,6 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	// Mouse buttons
 	this.mouseButtons = { ORBIT: THREE.MOUSE.LEFT, ZOOM: THREE.MOUSE.MIDDLE, PAN: THREE.MOUSE.RIGHT };
-
 	////////////
 	// internals
 
@@ -356,10 +355,10 @@ THREE.OrbitControls = function ( object, domElement ) {
         //if the controls are disabled, return immediately
 		if ( scope.enabled === false ) return;
         //prevent any pre-made, default event associated with a mouse-down trigger
-		event.preventDefault();
 
         //if the mouse button clicked is the left mouse button
 		if ( event.button === scope.mouseButtons.ORBIT ) {
+			event.preventDefault();
             //if rotation controls are turned off, return
 			if ( scope.noRotate === true ) return;
             // STATE object { NONE : -1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };
@@ -368,21 +367,22 @@ THREE.OrbitControls = function ( object, domElement ) {
 			rotateStart.set( event.clientX, event.clientY );
 
 		} else if ( event.button === scope.mouseButtons.ZOOM ) {
+			event.preventDefault();
             //if zoom controls are turned off, return
 			if ( scope.noZoom === true ) return;
             //STATE objcet { NONE : -1, ROTATE : 0, DOLLY : 1, PAN : 2, TOUCH_ROTATE : 3, TOUCH_DOLLY : 4, TOUCH_PAN : 5 };
 			state = STATE.DOLLY;
             //get mouse coordinates
 			dollyStart.set( event.clientX, event.clientY );
-
-		} else if ( event.button === scope.mouseButtons.PAN ) {
-			if ( scope.noPan === true ) return;
-
-			state = STATE.PAN;
-
-			panStart.set( event.clientX, event.clientY );
-
 		}
+		// } else if ( event.button === scope.mouseButtons.PAN ) {
+		// 	if ( scope.noPan === true ) return;
+		//
+		// 	state = STATE.PAN;
+		//
+		// 	panStart.set( event.clientX, event.clientY );
+		//
+		// }
 
 		if ( state !== STATE.NONE ) {
             //if the state has been modified
@@ -662,16 +662,17 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	}
 
-	this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-	this.domElement.addEventListener( 'mousedown', onMouseDown, false );
-	this.domElement.addEventListener( 'mousewheel', onMouseWheel, false );
-	this.domElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
+	// this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+	var vrDomElement = document.getElementById('vr-player-container');
+	vrDomElement.addEventListener( 'mousedown', onMouseDown, false );
+	// this.vrDomElement.addEventListener( 'mousewheel', onMouseWheel, false );
+	// this.vrDomElement.addEventListener( 'DOMMouseScroll', onMouseWheel, false ); // firefox
 
-	this.domElement.addEventListener( 'touchstart', touchstart, false );
-	this.domElement.addEventListener( 'touchend', touchend, false );
-	this.domElement.addEventListener( 'touchmove', touchmove, false );
+	vrDomElement.addEventListener( 'touchstart', touchstart, false );
+	vrDomElement.addEventListener( 'touchend', touchend, false );
+	vrDomElement.addEventListener( 'touchmove', touchmove, false );
 
-	window.addEventListener( 'keydown', onKeyDown, false );
+	vrDomElement.addEventListener( 'keydown', onKeyDown, false );
 
 	// force an update at start
 	this.update();

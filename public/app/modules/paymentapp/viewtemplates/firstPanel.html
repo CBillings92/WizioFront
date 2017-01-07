@@ -1,0 +1,21 @@
+<div class="acct-modal">
+  <div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h4 class="modal-title">Accept these Policies</h4>
+  </div>
+  <div class="modal-body">
+    <p> Please read the terms and conditions. </p>
+    <p> I have read and agree to the <a href="" target="_blank">Terms of Service</a> <input type="checkbox" ng-model="checkboxModel.terms"> </p>
+    <p> I have read and agree to the <a href="" target="_blank">Privacy Policy</a>  <input type="checkbox" ng-model="checkboxModel.policy"> </p>
+    <p> I have read and agree to the <a href="" target="_blank">other thing to be filled in later</a> <input type="checkbox" ng-model="checkboxModel.thing"> </p>
+
+    <button ng-show="acceped()" ng-click="close()"> Continue </button>
+    <div class="acct-modal-footer">
+<!--        <button class="btn acct-modal-footer__btn acct-modal-footer__next-btn" ng-disabled="!accountTypeModel" >Next <span class="fa fa-long-arrow-right"></span></button> -->
+        <ul class="acct-modal-dots">
+            <li class="acct-modal-dots-dot acct-modal-dots-dot-filled">&nbsp;</li>
+            <li class="acct-modal-dots-dot">&nbsp;</li>
+            <li class="acct-modal-dots-dot">&nbsp;</li>
+        </ul>
+    </div>
+</div>
