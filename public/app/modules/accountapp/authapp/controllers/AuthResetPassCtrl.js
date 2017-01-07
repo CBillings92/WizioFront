@@ -16,6 +16,7 @@ angular.module('AccountApp')
         'ModalBuilderFct',
         function($rootScope, $scope, $state, $localStorage, $stateParams, $location, ModalSvc, AuthFct, AuthResetPasswordResource, AuthUpdatePasswordResource, TokenSvc, RerouteGetSetSvc, WizioConfig, ModalBuilderFct) {
 
+            $scope.passwordObj = {};
             var authViews = WizioConfig.AccountAuthViewsURL;
             $scope.emailobj = {};
             //shorthand - just so we don't need to keep typing this long crap
@@ -31,19 +32,25 @@ angular.module('AccountApp')
             };
             //______________________________________________________________________________
             //FOR RESETING EMAIL - Goes with resetPassword.html
-            var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+            // var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             $scope.resetPassword = function() {
-                $scope.passwordObj = {};
                 var passwordsMatch;
+                alert('1');
                 //check to make sure the password matches
                 passwordsMatch = AuthFct.confirmPasswords($scope.passwordObj.password, $scope.passwordObj.passwordConfirm);
+                alert('2');
 
                 if (passwordsMatch) {
+                    alert('3');
+                    alert($scope.passwordObj.password);
                     var passwordobj = {
-                        password: $scope.password,
+                        password: $scope.passwordObj.password,
                         token: $stateParams.token
                     };
+                    alert('4');
+                    console.dir('HELLO');
                     AuthUpdatePasswordResource.save(passwordobj, function(responseObj) {
+                        alert('4');
                         if (responseObj.status !== "ERR") {
                             ModalBuilderFct.buildSimpleModal(
                                 'Close',
@@ -85,7 +92,7 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData)
                     .then(function(result) {
-                        ModalSvc.showModal(modalDefaultsLogin, {})
+                        ModalBuilderFct.buildComplexModal('md', authViews + 'Login.html', 'AuthLoginModalCtrl', null)
                             .then(function(result) {
                                 return;
                             });
