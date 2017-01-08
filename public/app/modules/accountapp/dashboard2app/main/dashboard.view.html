@@ -7,6 +7,19 @@
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
             <div class="user-info row" ng-model="accountInfo" style="">
+                <h2 class="user-info__name">Invite:</h2>
+                <div class="col-md-8">
+                    <input type="text" name="" class="form-control" style="border: 1px solid black;" placeholder="Email" value="">
+                    <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-blue--fill btn-md">Invite</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
+            <div class="user-info row" ng-model="accountInfo" style="">
                 <div class="col-md-12">
                     <h2 class="user-info__name">Search Apartments:</h2>
                     <search-dirv></search-dirv>
