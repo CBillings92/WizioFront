@@ -4,12 +4,16 @@ angular.module('AccountApp')
         '$state',
         'SubscriptionFct',
         function($scope, $state, SubscriptionFct) {
-
-
+            $scope.invitationSignup = $state.current.name === 'Signup.Invite' ? true : false;
             $scope.submit = function() {
                 var user = $scope.user;
+                console.dir($state.params);
+                if($scope.invitationSignup){
+                    user.invitePubId = $state.params.invitePubId
+                } else {
+                    var subscription = $scope.chosenSubscription;
+                }
                 user.accountType = 'local';
-                var subscription = $scope.chosenSubscription;
 
                 SubscriptionFct.post.saveNewUser(user, subscription)
                     .then(function(response) {

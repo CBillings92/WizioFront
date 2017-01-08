@@ -11,7 +11,8 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
         $scope.windowLocationOrigin = window.location.origin;
         $scope.activateListing = function(apartment){
             var user = TokenSvc.decode();
-            var subscription = user.Subscription;
+            var subscription = user.Subscriptions[0];
+            console.dir(apartment);
             var data = {
                 Apartment: {
                     pubid: apartment.apartmentData.pubid
