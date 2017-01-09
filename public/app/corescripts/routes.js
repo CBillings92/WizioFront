@@ -767,6 +767,24 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Privacy', {
+                    url: '/privacy',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
+                .state('Terms', {
+                    url: '/terms',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
+                .state('AcceptableUse', {
+                    url: '/use',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
                 .state('Unit.Display', {
                     url: '/display',
                     views: {
