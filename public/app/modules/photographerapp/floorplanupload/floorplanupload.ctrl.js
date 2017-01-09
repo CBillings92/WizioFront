@@ -52,7 +52,7 @@ angular.module('PhotographerApp')
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
                         Bucket: 'equirect-photos',
-                        Key: 'test_' + key,
+                        Key: key,
                         ContentType: file.type,
                         Body: file
                     };
