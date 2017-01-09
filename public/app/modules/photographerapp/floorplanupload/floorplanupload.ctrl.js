@@ -5,7 +5,7 @@
     the units pubid
 */
 angular.module('PhotographerApp')
-    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct) {
+    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', 'SmartSearchSvc', '$uibModalInstance', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
@@ -15,9 +15,9 @@ angular.module('PhotographerApp')
             address: null,
             floorPlanModel: null
         };
-
-        // use some vanillaJS to get the element that the floorplan will be uploaded on
-        var fileChooser = document.getElementById('file-chooser');
+        $scope.getLocation = function(val) {
+            return SmartSearchSvc.smartSearch(val);
+        };
 
         // config the AWS object in the global scope
         AWS.config.update({
@@ -42,7 +42,10 @@ angular.module('PhotographerApp')
 
         function saveFloorPlanToS3(key) {
             return new $q(function(resolve, reject){
+                // use some vanillaJS to get the element that the floorplan will be uploaded on
+                var fileChooser = document.getElementById('file-chooser');
                 //grab the first file in the file array (our floorplan)
+                console.dir(fileChooser);
                 var file = fileChooser.files[0];
                 //check if the file exists
                 if (file) {
@@ -50,7 +53,7 @@ angular.module('PhotographerApp')
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
                         Bucket: 'equirect-photos',
-                        Key: key,
+                        Key: 'test_' + key,
                         ContentType: file.type,
                         Body: file
                     };
@@ -83,6 +86,7 @@ angular.module('PhotographerApp')
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
                     alert('Saved with no floorplan');
+                    $uibModalInstance.close('finished');
                     return;
                 } else {
                     saveFloorPlanToS3(key)
@@ -90,6 +94,7 @@ angular.module('PhotographerApp')
                         LoadingSpinnerFct.hide('floorplanUpload');
                         $scope.formSubmitted = false;
                         alert('finished');
+                        $uibModalInstance.close('finished');
                     })
                     .catch(function (err) {
                         alert(err);

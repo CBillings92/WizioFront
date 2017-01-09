@@ -11,7 +11,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     'WizioConfig',
     'ModalBuilderFct',
     'lodash',
-    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash) {
+    '$uibModalInstance',
+    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance) {
         var units;
         var movePinFlag = false;
         var selectedPinIndex;
@@ -22,6 +23,10 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.selectedUnit = false;
         $scope.pins = [];
         $scope.showAmenityButton = false;
+
+        $scope.closeModal= function(){
+            $uibModalInstance.close();
+        }
 
         // just store the angular resource for later use
         apartmentAPIResource = $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5', {

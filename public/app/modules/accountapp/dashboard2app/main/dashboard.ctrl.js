@@ -4,11 +4,21 @@ angular.module('AccountApp').controller('DashboardCtrl', [
     'TokenSvc',
     'LoadingSpinnerFct',
     'WizioConfig',
-    function($scope, $resource, TokenSvc, LoadingSpinnerFct, WizioConfig) {
+    'ModalBuilderFct',
+    function($scope, $resource, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct) {
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
         $scope.activelistings = TokenSvc.decode().ActiveListings;
+        $scope.createTour = function(){
+            ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html', 'FloorPlanUploadCtrl', {})
+            .then(function(response){
+                ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/upload/upload.view.html', 'UploadPageCtrl', {})
+                .then(function(response){
+
+                })
+            });
+        }
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-searh-loader')
             $scope.apartments = results;
