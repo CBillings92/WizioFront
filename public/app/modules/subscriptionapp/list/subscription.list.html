@@ -1,7 +1,165 @@
 <div class="container">
     <div class="row subscription-middle">
-        <div class="col-sm-4" ng-repeat="subscription in subscriptions track by $index" ng-click="chooseSubscription(subscriptions[$index])">
-            <subscription-tile-dir subscription-plan="subscription"></subscription-tile-dir>
+        <div class="col-sm-4" ng-click="chooseSubscription(subscriptions['1'])">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner-container btn-outline--blue" id="1" ng-click="changeSelected('1')">
+                <div class="subscription-banner-header" ng-class="selectedplan" >
+                    <div class="subscription-banner-header__main" style="text-align: center;">
+                        <h3>
+                            Agent
+                        </h3>
+                    </div>
+                    <div class="subscription-banner-header__sub">
+                        <h5>
+                            Introductory tool for sharing virtual tours.
+                        </h5>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <span style="font-size:150%"> $100 </span> <br>
+                        <i> billed monthly </i>
+                    </div>
+                    <div class="subscription-banner__features">
+                        <div style="margin-bottom:10px;"><strong>Included in Agent:</strong></div>
+                            <p> 25 Active Tours </p>
+                            <p> Access to our exclusive database of 450 listings <p>
+                            <p> $20 + $5 per floor plan per each requested filming ($30 if you would like to add it to a private database) </p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+
+                            <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" ng-click="chooseSubscription(subscriptions['2'])">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner-container btn-outline--blue" id="2" ng-click="changeSelected('2')">
+                <div class="subscription-banner-header" ng-class="selectedplan" >
+                    <div class="subscription-banner-header__main" style="text-align: center;">
+                        <h3>
+                            Broker
+                        </h3>
+                    </div>
+                    <div class="subscription-banner-header__sub">
+                        <h5>
+                            High-powered tool for many listings.
+                        </h5>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <span style="font-size:150%"> $200 </span> <br>
+                        <i> billed monthly </i>
+                    </div>
+                    <div class="subscription-banner__features">
+                        <div class="subscription-banner__features">
+                            <div style="margin-bottom:10px;"><strong>Included in Broker:</strong></div>
+                                <p> 50 Active Tours </p>
+                                <p> Access to our exclusive database of 450 listings <p>
+                                <p> $20 + $5 per floor plan per each requested filming ($30 if you would like to add it to a private database) </p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+                                <p>&nbsp;</p>
+
+                                <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-sm-4" ng-click="chooseSubscription(subscriptions['3'])">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner-container btn-outline--blue" id="3" ng-click="changeSelected('3')">
+                <div class="subscription-banner-header" ng-class="selectedplan" >
+                    <div class="subscription-banner-header__main" style="text-align: center;">
+                        <h3>
+                            Office
+                        </h3>
+                    </div>
+                    <div class="subscription-banner-header__sub">
+                        <h5>
+                            Multi-user account perfect for teams.
+                        </h5>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <span style="font-size:150%"> $300 </span> <br>
+                        <i> billed monthly </i>
+                    </div>
+                    <div class="subscription-banner__features">
+                        <div style="margin-bottom:10px;"><strong>Included in Office:</strong></div>
+                            <p> Unlimited Active Tours </p>
+                            <p> Access to our exclusive database of 450 listings <p>
+                            <p> $20 + $5 per floor plan per each requested filming ($30 if you would like to add it to a private database) </p>
+                            <p> Wizio API Access </p>
+                            <p> Up to 25 Users  </p>
+                            <p> (+ $5 month per extra user) </p>
+                            <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <br>
+    <div class="" style="font-size: 1.2em; margin-bottom:20px;">
+        <strong>*You've been invited to the thirty day free trial and will be registered for it upon signup. Please choose
+        a subscription you think you'd signup for after the free trial. You'll have the ability to change your subscription.</strong>
+    </div>
+    <br>
+    <div class="row subscription-middle">
+
+        <div class="col-sm-4 col-sm-offset-2" ng-click="chooseSubscription(subscriptions['4'])">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner-container btn-outline--blue" id="4" ng-click="changeSelected('4')">
+                <div class="subscription-banner-header" ng-class="selectedplan" >
+                    <div class="subscription-banner-header__main" style="text-align: center;">
+                        <h3>
+                            Starter
+                        </h3>
+                    </div>
+                    <div class="subscription-banner-header__sub">
+                        <h5>
+                            Introductory tool for creating virtual tours. Bring one of our supported 360 cameras.
+                        </h5>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <span style="font-size:150%"> $50 </span> <br>
+                        <i> billed quarterly </i>
+                    </div>
+                    <div class="subscription-banner__features">
+                        <div style="margin-bottom:10px;"><strong>Included in Agent:</strong></div>
+                            <p> Software and cloud storage to make your own database of virtual tours </p>
+                            <p>&nbsp;</p>
+                            <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" ng-click="chooseSubscription(subscriptions['5'])">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner-container btn-outline--blue" id="5" ng-click="changeSelected('5')">
+                <div class="subscription-banner-header" ng-class="selectedplan" >
+                    <div class="subscription-banner-header__main" style="text-align: center;">
+                        <h3>
+                            Get A Camera
+                        </h3>
+                    </div>
+                    <div class="subscription-banner-header__sub">
+                        <h5>
+                            Build your own virtual reality database, but we'll provide the camera.
+                        </h5>
+                    </div>
+                    <div style="margin-bottom:10px;">
+                        <span style="font-size:150%"> $80 </span> <br>
+                        <i> billed monthly </i>
+                    </div>
+                    <div class="subscription-banner__features">
+                        <div class="subscription-banner__features">
+                            <div style="margin-bottom:10px;"><strong>Included in Broker:</strong></div>
+                                <p> Software and cloud storage to make your own database of virtual tours </p>
+                                <p> Includes 360 camera rental</p>
+                                <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
