@@ -63,7 +63,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             .save(data)
             .$promise
             .then(function(response){
-
+                alert('User Invited');
             })
         }
     }
