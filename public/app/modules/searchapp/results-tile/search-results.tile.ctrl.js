@@ -15,7 +15,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             console.dir(apartment);
             var data = {
                 Apartment: {
-                    pubid: apartment.apartmentData.pubid
+                    pubid: apartment.pubid
                 },
                 User: {
                     id: user.id,

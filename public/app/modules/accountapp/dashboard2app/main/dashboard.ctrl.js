@@ -9,6 +9,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
+        var user = TokenSvc.decode();
+        $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
         console.dir(TokenSvc.decode());
         $scope.activelistings = TokenSvc.decode().ActiveListings;
         $scope.createTour = function(){
@@ -22,7 +24,15 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         }
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-searh-loader')
-            $scope.apartments = results;
+            var apartments = [];
+            console.dir(results);
+            for(var i = 0; i < results.length; i++){
+                console.dir(results[i]);
+                apartments.push(results[i].Apartment);
+            }
+            console.dir(apartments);
+            $scope.apartments = apartments;
+            console.dir($scope.apartments)
             $scope.loading = false;
         });
         $scope.$on('Unit-Activated', function(event, results) {

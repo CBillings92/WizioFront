@@ -80,8 +80,13 @@ angular.module('PhotographerApp')
         function createAddress(){
             LoadingSpinnerFct.show("floorplanUpload");
             $scope.formSubmitted = true;
+            var fileChooser = document.getElementById('file-chooser');
+            var noFloorPlan = false;
+            if(!fileChooser.files[0]){
+                noFloorPlan = true;
+            }
             $resource(apiurl + 'unit')
-            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode()}, function(response){
+            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
                 console.dir('RESPONSE');
                 console.dir(response);
                 var key = response.pubid + '/floorplan.png';

@@ -7,7 +7,7 @@
         </div>
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <div class="user-info row" ng-model="accountInfo" style="">
+            <div class="user-info row" ng-model="accountInfo" style="" ng-show="inviteAccess">
                 <h2 class="user-info__name">Invite:</h2>
                 <div class="col-md-8">
                     <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">

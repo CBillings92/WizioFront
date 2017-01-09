@@ -178,12 +178,20 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 return;
             });
         }
+        function deletePin(pin, callback){
+            $resource(WizioConfig.baseAPIURL + 'unit/delete/pin')
+            .save({pin: pin}, function(response){
+                callback(response);
+            });
 
+        }
         function choosePinActionModal() {
             buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', $scope.pins).then(function(result) {
                 switch (result) {
                     case 'removePin':
-                    selectedPinIndex = $scope.pins.splice(selectedPinIndex, 1);
+                    deletePin($scope.pins[selectedPinIndex], function(response){
+                        selectedPinIndex = $scope.pins.splice(selectedPinIndex, 1);
+                    })
                     break;
                     case 'movePin':
                     movePinFlag = true;
@@ -251,7 +259,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 if(response.result === 'cancel'){
                     return;
                 } else if (response.result === 'ok'){
-                    amenity.title = result;
+                    amenity.title = response.photoTitle;
                     $scope.amenities.push(amenity);
                     return result;
                 }

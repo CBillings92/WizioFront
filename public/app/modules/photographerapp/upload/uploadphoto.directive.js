@@ -2,7 +2,8 @@ angular.module('Directives')
     .directive('uploadPhotoDirv', [
         '$resource',
         'WizioConfig',
-        function($resource,WizioConfig){
+        'LoadingSpinnerFct',
+        function($resource,WizioConfig, LoadingSpinnerFct){
             return {
                 restrict: 'E',
                 templateUrl: 'public/app/modules/photographerapp/upload/uploadphoto.directive.view.html',
@@ -24,6 +25,7 @@ angular.module('Directives')
                     var button = document.getElementById('upload-button');
                     var results = document.getElementById('results');
                     button.addEventListener('click', function() {
+                        LoadingSpinnerFct.show('upload-photo-loader');
                         var file = fileChooser.files[0];
                         if(scope.photoTitle === null){
                             results.innerHTML = "Please enter a title for the photo";
@@ -47,8 +49,8 @@ angular.module('Directives')
                                     $resource(WizioConfig.baseAPIURL + 'media')
                                         .save(scope.pin, function(response){
                                             alert('finished');
-                                            alert(response);
-                                            results.innerHTML = 'UPLOADED, PLEASE PROCEED AT BEING AWESOME';
+                                            LoadingSpinnerFct.hide('upload-photo-loader');
+                                            results.innerHTML = 'UPLOADED';
                                         });
 
                                     // scope.$emit('doneUploadingPhoto', 'OK')
