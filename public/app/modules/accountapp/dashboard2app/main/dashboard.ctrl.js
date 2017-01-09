@@ -8,7 +8,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
-        console.dir(TokenSvc.decode());
         $scope.activelistings = TokenSvc.decode().ActiveListings;
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-searh-loader')
@@ -28,8 +27,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             $scope.loading = true;
         });
         $scope.inviteUser = function(){
-            console.dir('hi');
-            console.dir($scope.emailOfInvitee);
             var user = TokenSvc.decode();
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,
@@ -37,7 +34,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 BusinessId: user.Subscriptions[0].UserSubscriptions.BusinessPubId,
                 SubscriptionId: user.Subscriptions[0].UserSubscriptions.SubscriptionPubId,
                 firstName: user.firstName,
-                lastName: user.lastName
+                lastName: user.lastName,
             };
             console.dir(data);
             $resource(WizioConfig.baseAPIURL + 'subscription/invite')

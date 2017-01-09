@@ -23,6 +23,9 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
                 },
                 Subscription: {
                     pubid: subscription.pubid
+                },
+                UserSubscriptions: {
+                    pubid: user.Subscriptions[0].UserSubscriptions.pubid
                 }
             };
             $resource(WizioConfig.baseAPIURL + 'activelisting')
