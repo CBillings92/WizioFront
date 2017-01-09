@@ -49,7 +49,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         });
         $scope.inviteUser = function(){
             var user = TokenSvc.decode();
-            var userSubscriptions = user.Subscriptions[0].userSubscriptions;
+            var userSubscriptions = user.Subscriptions[0].UserSubscriptions;
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,
                 UserId: user.id,
