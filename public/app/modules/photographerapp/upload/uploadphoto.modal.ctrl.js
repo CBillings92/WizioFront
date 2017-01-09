@@ -8,8 +8,12 @@ angular.module('PhotographerApp')
             $scope.disabled = false;
             $scope.photoTitle = null;
             $scope.pin = modalData;
-            $scope.ok = function(){
-                return $uibModalInstance.close($scope.photoTitle);
+            $scope.ok = function(result){
+                var data = {
+                    result: result,
+                    photoTitle: $scope.photoTitle
+                };
+                return $uibModalInstance.close(data);
             };
         }
     ]);

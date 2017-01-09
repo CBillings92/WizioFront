@@ -5,7 +5,7 @@
     the units pubid
 */
 angular.module('PhotographerApp')
-    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', 'SmartSearchSvc', '$uibModalInstance', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance) {
+    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', 'SmartSearchSvc', '$uibModalInstance', 'TokenSvc', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance, TokenSvc) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
@@ -39,7 +39,6 @@ angular.module('PhotographerApp')
 
             returns a promise
         */
-
         function saveFloorPlanToS3(key) {
             return new $q(function(resolve, reject){
                 // use some vanillaJS to get the element that the floorplan will be uploaded on
@@ -74,13 +73,17 @@ angular.module('PhotographerApp')
         // var results = document.getElementById('results');
         // button.addEventListener('click', function() {
         // }, false);
-
+        $scope.closeModal = function(){
+            $uibModalInstance.close('skip');
+        }
         //send apartemnt address and unit number to the backend
         function createAddress(){
             LoadingSpinnerFct.show("floorplanUpload");
             $scope.formSubmitted = true;
             $resource(apiurl + 'unit')
-            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
+            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode()}, function(response){
+                console.dir('RESPONSE');
+                console.dir(response);
                 var key = response.pubid + '/floorplan.png';
                 if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
@@ -89,6 +92,8 @@ angular.module('PhotographerApp')
                     $uibModalInstance.close('finished');
                     return;
                 } else {
+                    console.dir(key);
+                    console.dir(response);
                     saveFloorPlanToS3(key)
                     .then(function(response){
                         LoadingSpinnerFct.hide('floorplanUpload');

@@ -9,6 +9,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
+        console.dir(TokenSvc.decode());
         $scope.activelistings = TokenSvc.decode().ActiveListings;
         $scope.createTour = function(){
             ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html', 'FloorPlanUploadCtrl', {})

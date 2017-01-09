@@ -12,7 +12,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     'ModalBuilderFct',
     'lodash',
     '$uibModalInstance',
-    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance) {
+    'TokenSvc',
+    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc) {
         var units;
         var movePinFlag = false;
         var selectedPinIndex;
@@ -29,12 +30,13 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         }
 
         // just store the angular resource for later use
-        apartmentAPIResource = $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5', {
+        apartmentAPIResource = $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
             param1: '@id',
             param2: '@pubid',
             param3: '@concatAddr',
             param4: '@unitNum',
-            param5: '@Floor_Plan'
+            param5: '@Floor_Plan',
+            param6: '@subscriptionPubId'
         });
 
         // just store the angular resource for later use
@@ -46,10 +48,16 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param2: 'pubid',
             param3: 'concatAddr',
             param4: 'unitNum',
-            param5: "Floor_Plan"
+            param5: "Floor_Plan",
+            param6: TokenSvc.decode().Subscriptions[0].id
         }, function(response) {
-            $scope.units = lodash.groupBy(response, 'Floor_Plan');
-            $scope.units = response;
+            units = [];
+            for(var i = 0; i < response.length; i++){
+                units.push(response[i].Apartment);
+            }
+            // console.dir(units);
+            // $scope.units = lodash.groupBy(units, 'Floor_Plan');
+            $scope.units = units;
         });
 
         // On selecting a unit, load the floorplan image and pins/photos
@@ -62,7 +70,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             click in the HTML
         */
         function loadFloorplan(subScope) {
-
+            console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
             $scope.selectedFloorplan = subScope.unit.Floor_Plan;
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
@@ -216,9 +224,13 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
 
             // build and display a modal with the templateUrl and controller,
             // pass the current pin as 'modalData' into the called modal controller
-            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(result) {
+            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(response) {
                 // result is what's passed back from modal button selection
-                return result;
+                console.dir(response.result);
+                if(response.result === 'cancel'){
+                    $scope.pins.pop();
+                }
+                return response.photoTitle;
             });
         }
 
@@ -234,11 +246,16 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                 ApartmentId: $scope.selectedUnit.id
             };
-            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(result) {
+            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
                 // result is what's passed back from modal button selection
-                amenity.title = result;
-                $scope.amenities.push(amenity);
-                return result;
+                if(response.result === 'cancel'){
+                    return;
+                } else if (response.result === 'ok'){
+                    amenity.title = result;
+                    $scope.amenities.push(amenity);
+                    return result;
+                }
+                return;
             });
 
         };
