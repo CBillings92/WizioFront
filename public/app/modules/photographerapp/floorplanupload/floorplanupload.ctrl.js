@@ -10,6 +10,7 @@ angular.module('PhotographerApp')
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
         $scope.formSubmitted = false;
+        console.dir(TokenSvc.decode());
         // put apartment on the scope for the form input
         $scope.apartment = {
             address: null,
