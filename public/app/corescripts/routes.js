@@ -858,7 +858,6 @@ angular.module('MainApp')
                                 $rootScope.$emit('siteLoadDone', {});
                             }
                             if (typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token) {
-
                                 TokenSvc.storeToken(response.data.token);
                                 $injector.get('$state').reload();
                                 return response;

@@ -5,11 +5,13 @@ angular.module('AccountApp')
     .factory('SubscriptionFct', [
         '$resource',
         '$q',
+        '$state',
         'WizioConfig',
-        function($resource, $q, WizioConfig) {
+        function($resource, $q, $state, WizioConfig) {
             var resources = {
                 user: {
-                    registration: WizioConfig.baseAPIURL + 'user/registration'
+                    invitedUser: WizioConfig.baseAPIURL + 'user/registration',
+                    newUser: WizioConfig.baseAPIURL + 'user/register/newuser'
                 }
             };
 
@@ -55,10 +57,18 @@ angular.module('AccountApp')
                     subscription: subscription
                 };
                 return $q(function(resolve, reject) {
-                    $resource(resources.user.registration)
+                    if($state.current.name === 'Signup.Invite'){
+                        $resource(resources.user.invitedUser)
                         .save(dataForAPI, function(response) {
                             return resolve(response);
                         });
+                    } else {
+                        $resource(resources.user.newUser)
+                        .save(dataForAPI, function(response) {
+                            return resolve(response);
+                        });
+
+                    }
                 });
             }
 
