@@ -8,7 +8,6 @@ angular.module('AccountApp')
             $scope.submit = function() {
                 var user = $scope.user;
                 var subscription;
-                console.dir($state.params);
                 if($scope.invitationSignup){
                     user.invitePubId = $state.params.invitePubId
                 } else {

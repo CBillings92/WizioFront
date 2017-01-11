@@ -9,7 +9,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
-        console.dir(TokenSvc.decode());
         var user = TokenSvc.decode();
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
         $scope.activelistings = TokenSvc.decode().ActiveListings;
@@ -33,9 +32,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 console.dir(results[i]);
                 apartments.push(results[i].Apartment);
             }
-            console.dir(apartments);
             $scope.apartments = apartments;
-            console.dir($scope.apartments)
             $scope.loading = false;
         });
         $scope.$on('Unit-Activated', function(event, results) {
