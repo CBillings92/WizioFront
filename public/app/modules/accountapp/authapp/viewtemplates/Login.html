@@ -14,8 +14,9 @@
                 </div>
                 <div class="form-group">
                     <button class="btn btn-success btn-lg acct-modal-btn acct-modal-btn__orange" ng-click="requestLogin()">Log In</button>
-                    <p class="forgot-password"><a ng-click="forgotPassword()">Forgot password?</a></p>
+                    <p class="forgot-password"><a ng-click="forgotPassword()" style="cursor: pointer;">Forgot password?</a></p>
                 </div>
+                <change-password-email-form-dir ng-show="changePassword"></change-password-email-form-dir>
                 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                 </fb:login-button>
             </div>

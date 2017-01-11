@@ -1,9 +1,11 @@
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="">
+    <div class="col-md-4" style="margin-top:20px;">
         <input type="file" id="file-chooser" />
     </div>
-    <div class="col-md-4">
-        <button id="upload-button">Commence Launch</button>
+    <div class="col-md-4" style="margin-top:20px;">
+        <button id="upload-button" class="btn btn-fill--blue btn-md">Upload Photo</button>
+        <loading-spinner-dir id="upload-photo-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
+
     </div>
     <div class="col-md-4">
         <div id="results"></div>

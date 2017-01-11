@@ -5,19 +5,20 @@
     the units pubid
 */
 angular.module('PhotographerApp')
-    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct) {
+    .controller('FloorPlanUploadCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', 'SmartSearchSvc', '$uibModalInstance', 'TokenSvc', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance, TokenSvc) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
         $scope.formSubmitted = false;
+        console.dir(TokenSvc.decode());
         // put apartment on the scope for the form input
         $scope.apartment = {
             address: null,
             floorPlanModel: null
         };
-
-        // use some vanillaJS to get the element that the floorplan will be uploaded on
-        var fileChooser = document.getElementById('file-chooser');
+        $scope.getLocation = function(val) {
+            return SmartSearchSvc.smartSearch(val);
+        };
 
         // config the AWS object in the global scope
         AWS.config.update({
@@ -39,10 +40,12 @@ angular.module('PhotographerApp')
 
             returns a promise
         */
-
         function saveFloorPlanToS3(key) {
             return new $q(function(resolve, reject){
+                // use some vanillaJS to get the element that the floorplan will be uploaded on
+                var fileChooser = document.getElementById('file-chooser');
                 //grab the first file in the file array (our floorplan)
+                console.dir(fileChooser);
                 var file = fileChooser.files[0];
                 //check if the file exists
                 if (file) {
@@ -71,25 +74,38 @@ angular.module('PhotographerApp')
         // var results = document.getElementById('results');
         // button.addEventListener('click', function() {
         // }, false);
-
+        $scope.closeModal = function(){
+            $uibModalInstance.close('skip');
+        }
         //send apartemnt address and unit number to the backend
         function createAddress(){
             LoadingSpinnerFct.show("floorplanUpload");
             $scope.formSubmitted = true;
+            var fileChooser = document.getElementById('file-chooser');
+            var noFloorPlan = false;
+            if(!fileChooser.files[0]){
+                noFloorPlan = true;
+            }
             $resource(apiurl + 'unit')
-            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
+            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
+                console.dir('RESPONSE');
+                console.dir(response);
                 var key = response.pubid + '/floorplan.png';
                 if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
-                    alert('Saved with no floorplan');
+                    alert('Unit created without a floorplan. Please click ok to continue.');
+                    $uibModalInstance.close('finished');
                     return;
                 } else {
+                    console.dir(key);
+                    console.dir(response);
                     saveFloorPlanToS3(key)
                     .then(function(response){
                         LoadingSpinnerFct.hide('floorplanUpload');
                         $scope.formSubmitted = false;
                         alert('finished');
+                        $uibModalInstance.close('finished');
                     })
                     .catch(function (err) {
                         alert(err);

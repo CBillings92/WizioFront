@@ -8,7 +8,8 @@ angular.module('SharedServiceApp')
         'LeaseModel',
         'lodash',
         'TokenSvc',
-        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash, TokenSvc) {
+        '$state',
+        function($sessionStorage, $rootScope, ApartmentModel, SearchModel, DescriptionModel, LeaseModel, lodash, TokenSvc, $state) {
 
             //to randomize the address for security
             var concealAddress = function(response) {
@@ -68,7 +69,10 @@ angular.module('SharedServiceApp')
                         var newSearchInstance = new SearchModel(apartmentInstance, topLevelType, filters, user);
                         //send this new search instance to the backend
                         newSearchInstance.send(function(response) {
-                            var formattedSearchResults = formatSearchResults(response);
+                            var formattedSearchResults = response;
+                            if(!$state.current.name === 'Account.Dashboard'){
+                                formattedSearchResults = formatSearchResults(response);
+                            }
                             $sessionStorage.apartmentSearch = formattedSearchResults;
                             $rootScope.$broadcast('searchFinished', formattedSearchResults);
                             return callback(formattedSearchResults);
