@@ -13,13 +13,12 @@
         <account-creation-form-dir user='user'></account-creation-form-dir>
     </div>
 </div>
-<div class="container">
+<div class="container" ng-hide="invitationSignup">
     <div class="page-header row">
         <h4> Choose A Subscription Plan</h4>
     </div>
     <div class="" style="font-size: 1.2em; margin-bottom:20px;">
-        <strong>*You've been invited to the thirty day free trial and will be registered for it upon signup. Please choose
-        a subscription you think you'd signup for after the free trial. You'll have the ability to change your subscription.</strong>
+        <strong>*By signing up now, as an early adopter, you will get access to Wizio's beta, from Janurary 9th to February 9th!</strong>
     </div>
     <div class="subscription-middle row">
         <subscription-list-dir chosen-subscription='chosenSubscription'></subscription-list-dir>
@@ -27,6 +26,7 @@
 </div>
 
 <div class="container submit-step">
-        <button name="button" class="btn btn-lg btn-outline--orange" ng-click="submit()" style="margin-bottom:25px; height:60px; font-size:2em;">Submit</button>
+        <p> <input type="checkbox" ng-model="checked"></input> I agree to the <a href="https://wizio.co/privacy" target="_blank">Privacy Policy</a>, <a href="https://wizio.co/terms" target="_blank">Terms of Use</a>, and <a href="https://wizio.co/use" target="_blank">Acceptable Use Policy</a>. </p>
+         <button name="button" class="btn btn-lg btn-outline--orange" ng-click="submit()" ng-disabled="!checked" style="margin-bottom:25px; height:60px; font-size:2em;">Submit</button>
 </div>
 </div>

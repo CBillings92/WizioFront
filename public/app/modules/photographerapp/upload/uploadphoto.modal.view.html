@@ -1,13 +1,17 @@
 <div class="modal-header">
-    Upload A Photo
+    <h1>
+        Upload a photo with a pin
+    </h1>
+    <h4>Give the photo a name users will see when they're in the tour. Then select the photo from your device and upload!</h4>
 </div>
 <div class="modal-body">
     <div>
         <label class="control-label">Name Photo (Ex: Kitchen, Living Room, etc)</label>
-        <input type="text" ng-model="photoTitle" class="form-control"/>
+        <input type="text" class="form-control" style="border: 1px solid black;" ng-model="photoTitle" class="form-control"/>
     </div>
     <upload-photo-dirv></upload-photo-dirv>
 </div>
 <div class="modal-footer">
-    <button type="button" ng-disabled="disabled" ng-click="ok('test')" name="button">Finish</button>
+    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('cancel')" name="button">Cancel</button>
+    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('ok')" name="button">Finish</button>
 </div>

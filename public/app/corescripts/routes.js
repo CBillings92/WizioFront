@@ -103,12 +103,14 @@ angular.module('MainApp')
                     }
                 })
                 .state('Signup.Invite', {
-                    url: '/85f61303',
-                    // views: {
-                    //     'subscription-top':
-                    //     'subscription-middle':
-                    //     'subscription-bottom':
-                    // }
+                    url: '/invite/:invitePubId',
+                    views: {
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/subscriptionapp/main/subscription.main.view.html',
+                            controller: 'SubscriptionMainCtrl'
+                        }
+                    }
                 })
                 .state('Demo', {
                     url: '/demo',
@@ -765,6 +767,24 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('Privacy', {
+                    url: '/privacy',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
+                .state('Terms', {
+                    url: '/terms',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
+                .state('AcceptableUse', {
+                    url: '/use',
+                    onEnter: function() {
+                        window.open('http://www.google.com', '_self');
+                    }
+                })
                 .state('Unit.Display', {
                     url: '/display',
                     views: {
@@ -819,7 +839,6 @@ angular.module('MainApp')
                     return {
                         request: function(config) {
                             requestCount++;
-                            console.dir(requestCount);
                             config.headers = config.headers || {};
                             // console.dir(requestCount);
                             if (config.headers.searchCheck) {
@@ -835,13 +854,10 @@ angular.module('MainApp')
 
                         response: function(response) {
                             requestCount--
-                            console.dir(requestCount);
                             if(requestCount === 0){
-                                console.dir('REQUEST COUNT 0');
                                 $rootScope.$emit('siteLoadDone', {});
                             }
                             if (typeof(response.data.token) !== 'undefined' && response.data.token !== null && response.data.token) {
-
                                 TokenSvc.storeToken(response.data.token);
                                 $injector.get('$state').reload();
                                 return response;

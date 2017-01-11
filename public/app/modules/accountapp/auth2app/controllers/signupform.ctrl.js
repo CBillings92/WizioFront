@@ -13,6 +13,7 @@ angular.module('AccountApp')
         'ModalBuilderFct',
         'AuthFct',
         function($scope, $state, $uibModalInstance, $window, $resource, ModalSvc, TokenSvc, modalData, WizioConfig, UserRegistrationSvc, ModalBuilderFct, AuthFct) {
+            alert("no?");
             //Set a standard, local user object to save for local authentication
             $scope.waitlist = false;
             $scope.user = {};
@@ -47,7 +48,7 @@ angular.module('AccountApp')
             function closeModal() {
                 return $uibModalInstance.close('ok');
             }
-
+            console.dir(ModalSvc);
             function save() {
                     var passwordOne = $scope.user.password;
                     var passwordTwo = $scope.user.passwordConfirm;

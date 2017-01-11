@@ -6,7 +6,8 @@ angular.module('SearchApp')
         'SmartSearchSvc',
         'SearchFct',
         'LoadingSpinnerFct',
-        function($scope, $state, $sessionStorage, SmartSearchSvc, SearchFct, LoadingSpinnerFct) {
+        'TokenSvc',
+        function($scope, $state, $sessionStorage, SmartSearchSvc, SearchFct, LoadingSpinnerFct, TokenSvc) {
             // ADD TYPE AHEAD CODE
             //smart search/typeahead functionality
             $scope.getLocation = function(val) {
@@ -16,16 +17,18 @@ angular.module('SearchApp')
             // ADD SUBMIT SEARCH ADDRESS function
             $scope.submitSearch = function() {
                 $scope.$emit('searchInitiated', {});
-                if($state.current.name === 'Account.Dashboard'){
-                    LoadingSpinnerFct.show('account-dashboard-searh-loader')
-                }
                 //massage data into proper form for building a new apartment instance
                 var data = {
                     concatAddr: $scope.searchString
                 };
+                if($state.current.name === 'Account.Dashboard'){
+                    LoadingSpinnerFct.show('account-dashboard-search-loader');
+                    data.SubscriptionId = TokenSvc.decode().Subscriptions[0].id
+                }
                 SearchFct.search(data, $scope.filters, function(response) {
+                    console.dir(response);
                     //        console.log("search done lets go");
-                    $sessionStorage.apartmentSearh = response;
+                    $sessionStorage.apartmentSearch = response;
                     $scope.$emit('searchReturned', response);
                     if ($state.current.name === 'LandingPage') {
                         $state.go('Search', {

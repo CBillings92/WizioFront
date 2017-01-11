@@ -11,10 +11,11 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
         $scope.windowLocationOrigin = window.location.origin;
         $scope.activateListing = function(apartment){
             var user = TokenSvc.decode();
-            var subscription = user.Subscription;
+            var subscription = user.Subscriptions[0];
+            console.dir(apartment);
             var data = {
                 Apartment: {
-                    pubid: apartment.apartmentData.pubid
+                    pubid: apartment.pubid
                 },
                 User: {
                     id: user.id,
@@ -22,6 +23,9 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
                 },
                 Subscription: {
                     pubid: subscription.pubid
+                },
+                UserSubscriptions: {
+                    pubid: user.Subscriptions[0].UserSubscriptions.pubid
                 }
             };
             $resource(WizioConfig.baseAPIURL + 'activelisting')
