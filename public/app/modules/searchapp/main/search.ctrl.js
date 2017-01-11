@@ -22,13 +22,13 @@ angular.module('SearchApp')
                     concatAddr: $scope.searchString
                 };
                 if($state.current.name === 'Account.Dashboard'){
-                    LoadingSpinnerFct.show('account-dashboard-searh-loader');
+                    LoadingSpinnerFct.show('account-dashboard-search-loader');
                     data.SubscriptionId = TokenSvc.decode().Subscriptions[0].id
                 }
                 SearchFct.search(data, $scope.filters, function(response) {
                     console.dir(response);
                     //        console.log("search done lets go");
-                    $sessionStorage.apartmentSearh = response;
+                    $sessionStorage.apartmentSearch = response;
                     $scope.$emit('searchReturned', response);
                     if ($state.current.name === 'LandingPage') {
                         $state.go('Search', {

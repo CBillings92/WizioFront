@@ -35,22 +35,16 @@ angular.module('AccountApp')
             // var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
             $scope.resetPassword = function() {
                 var passwordsMatch;
-                alert('1');
                 //check to make sure the password matches
                 passwordsMatch = AuthFct.confirmPasswords($scope.passwordObj.password, $scope.passwordObj.passwordConfirm);
-                alert('2');
 
                 if (passwordsMatch) {
-                    alert('3');
-                    alert($scope.passwordObj.password);
                     var passwordobj = {
                         password: $scope.passwordObj.password,
                         token: $stateParams.token
                     };
-                    alert('4');
                     console.dir('HELLO');
                     AuthUpdatePasswordResource.save(passwordobj, function(responseObj) {
-                        alert('4');
                         if (responseObj.status !== "ERR") {
                             ModalBuilderFct.buildSimpleModal(
                                 'Close',
