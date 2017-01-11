@@ -22,8 +22,11 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 })
             });
         }
+        $scope.changeApartment = function() {
+            ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/upload/upload.view.html', 'UploadPageCtrl', {});
+        }
         $scope.$on('searchReturned', function(event, results) {
-            LoadingSpinnerFct.hide('account-dashboard-searh-loader')
+            LoadingSpinnerFct.hide('account-dashboard-search-loader')
             var apartments = [];
             console.dir(results);
             for(var i = 0; i < results.length; i++){

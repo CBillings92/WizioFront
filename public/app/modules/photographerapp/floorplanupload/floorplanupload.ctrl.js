@@ -94,7 +94,7 @@ angular.module('PhotographerApp')
                 if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
-                    alert('Saved with no floorplan');
+                    alert('Unit created without a floorplan. Please click ok to continue.');
                     $uibModalInstance.close('finished');
                     return;
                 } else {

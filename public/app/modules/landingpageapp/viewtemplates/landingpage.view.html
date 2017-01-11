@@ -43,12 +43,14 @@
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || mapViewSelected">
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:85%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || mapViewSelected">
             View Map of Our Inventory
         </button>
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || !mapViewSelected">
+        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:85%;right:2%;z-index:2100;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || !mapViewSelected">
             View Demo Unit
         </button>
+        <button type="button" class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="goToLogin()" name="button">Login</button>
+
 
 
         <div class="" ng-show="mapViewSelected" id="mapLP" style="height:100%;z-index:2000;"></div>
@@ -97,11 +99,9 @@
                         <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
                     </div>
                     <div ng-hide="userIsLoggedIn">
-                        <div class="col-md-7" style="vertical-align: center;">
-                            <span class="" style="font-size:2em;" for="">Have an account?</span>
-                        </div>
-                        <div class="col-md-5">
-                            <button type="button" class="form-control btn btn-md" ng-click="goToLogin()" name="button">Login</button>
+                        <div class="col-md-12" style="vertical-align: center;">
+                            <span class="" style="font-size:2em;" for="">Have an account?</span> &nbsp;&nbsp;&nbsp;
+                            <button type="button" class=" btn btn-lg btn-fill--blue" style="margin-bottom:10px;" ng-click="goToLogin()" name="button">Login</button>
                         </div>
                     </div>
                 </div>

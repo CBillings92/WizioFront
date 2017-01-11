@@ -25,6 +25,12 @@ angular.module('Directives')
                     var button = document.getElementById('upload-button');
                     var results = document.getElementById('results');
                     button.addEventListener('click', function() {
+
+                        if (document.getElementById("file-chooser").value == "") {
+                            alert("Please select a photo before uploading it.");
+                            return;
+                        };
+
                         LoadingSpinnerFct.show('upload-photo-loader');
                         var file = fileChooser.files[0];
                         if(scope.photoTitle === null){
@@ -38,7 +44,7 @@ angular.module('Directives')
 
                             var params = {
                                 Bucket: 'equirect-photos',
-                                Key: scope.pin.apartmentpubid + '/' + scope.photoTitle,
+                                Key:  scope.pin.apartmentpubid + '/' + scope.photoTitle,
                                 ContentType: file.type,
                                 Body: file
                             };
