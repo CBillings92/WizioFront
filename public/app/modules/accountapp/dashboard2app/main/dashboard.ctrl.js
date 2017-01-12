@@ -10,6 +10,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.apartments = null;
         $scope.loading = false;
         var user = TokenSvc.decode();
+        console.dir(user);
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
         $scope.activelistings = TokenSvc.decode().ActiveListings;
         $scope.createTour = function(){

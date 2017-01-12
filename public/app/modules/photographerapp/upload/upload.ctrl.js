@@ -53,6 +53,10 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         }, function(response) {
             units = [];
             for(var i = 0; i < response.length; i++){
+                response[i].Apartment["SubscriptionApartmentPubId"] = "";
+                console.dir(response[i].Apartment);
+
+                response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
                 units.push(response[i].Apartment);
             }
             // console.dir(units);
@@ -76,23 +80,37 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
+            var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
+            var SubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
 
-            // get the photos associated with the unit selected - response is
-            // array of two arrays. First array is the array of photo OBJECTS
-            // second array is object with the unit Floor_Plan URL
-            $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:pubid', {
-                apitoken: '@apitoken',
-                pubid: '@pubid'
-            }).query({
-                apitoken: WizioConfig.static_vr.apikey,
-                pubid: subScope.unit.pubid
-            }, function(response) {
-                var media = response[0];
-                // Handle whether there are or are not photos
+            $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId', {
+                SubscriptionPubId: '@SubscriptionPubId',
+                SubscriptionApartmentPubId: '@SubscriptionApartmentPubId',
+            })
+            .query({
+                SubscriptionPubId: SubscriptionPubId,
+                SubscriptionApartmentPubId: SubscriptionApartmentPubId
+            }, function(response){
+                var media = response;
                 handleExistingPhotos(media);
-
-                return;
             });
+
+            // // get the photos associated with the unit selected - response is
+            // // array of two arrays. First array is the array of photo OBJECTS
+            // // second array is object with the unit Floor_Plan URL
+            // $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:pubid', {
+            //     apitoken: '@apitoken',
+            //     pubid: '@pubid'
+            // }).query({
+            //     apitoken: WizioConfig.static_vr.apikey,
+            //     pubid: subScope.unit.pubid
+            // }, function(response) {
+            //     var media = response[0];
+            //     // Handle whether there are or are not photos
+            //     handleExistingPhotos(media);
+            //
+            //     return;
+            // });
         }
 
         function handleExistingPhotos(unsortedMedia) {
