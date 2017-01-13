@@ -101,7 +101,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         }
 
         apiResource.query(query, function(result) {
-            var media = result;
+            var media = result[0];
             // if (state === 'LandingPage' || state === 'Demo') {
             //     media = result[0];
             // }
