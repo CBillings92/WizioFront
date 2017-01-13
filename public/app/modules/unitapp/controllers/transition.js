@@ -65,17 +65,15 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         console.dir('state');
         switch (state) {
             case 'LandingPage':
-                console.dir('landing pgae');
-                apitoken = WizioConfig.static_vr.apikey;
-                apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+                // apitoken = WizioConfig.static_vr.apikey;
+                // apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
+                activelistingid = '32dec8d5-d99d-11e6-903a-12e04a9cd045';
                 $scope.style = "margin: 0 auto;";
-                apiResource = $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:apartmentid', {
-                    apitoken: '@apitoken',
-                    apartmentid: '@apartmentid'
+                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
+                    activelistingid: '@activelistingid'
                 });
                 query = {
-                    apitoken: apitoken,
-                    apartmentid: apartmentpubid
+                    activelistingid: activelistingid
                 };
                 break;
             case 'Demo':
