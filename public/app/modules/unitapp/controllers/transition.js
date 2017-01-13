@@ -67,7 +67,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
             case 'LandingPage':
                 // apitoken = WizioConfig.static_vr.apikey;
                 // apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
-                activelistingid = '32dec8d5-d99d-11e6-903a-12e04a9cd045';
+                activelistingid = 'a55f59b2-d99d-11e6-903a-12e04a9cd045';
                 $scope.style = "margin: 0 auto;";
                 apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
                     activelistingid: '@activelistingid'
