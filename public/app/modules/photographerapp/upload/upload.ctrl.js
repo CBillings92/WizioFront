@@ -77,7 +77,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         function loadFloorplan(subScope) {
             console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
-            $scope.selectedFloorplan = subScope.unit.SubscriptionApartmentPubId;
+            $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
