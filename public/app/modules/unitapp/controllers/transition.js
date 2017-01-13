@@ -103,14 +103,16 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         }
 
         apiResource.query(query, function(result) {
-            var media = result[0];
+            var media = result;
             // if (state === 'LandingPage' || state === 'Demo') {
             //     media = result[0];
             // }
-            $scope.floorplan = result[1].Floor_Plan;
-            console.dir($scope.floorplan);
+            if(result[0].Floor_Plan){
+                $scope.floorplan = 'https://cdn.wizio.co/' + result[0].SubscriptionApartmentPubId + '/floorplan.png';
+            } else {
+                $scope.floorplan = false;
+            }
             $scope.media = lodash.groupBy(media, 'type');
-
             var photoIndex;
 
             if (state === 'LandingPage') {
@@ -132,7 +134,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 // Set the photo index to the selected photo index
                 $scope.photoIndex = photoIndex;
                 // Get the photourl and set it on scope
-                $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
+                $scope.photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
                 // Broadcast to our VR player directive to load the new image
                 $scope.$broadcast('IMGLOAD', {
                     media: media
@@ -142,7 +144,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 $scope.changePhoto = function(photoIndex) {
                     LoadingSpinnerFct.show('vrPlayerLoader');
                     $scope.photoIndex = photoIndex;
-                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].awsurl;
+                    $scope.photoUrl ="https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;;
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {
