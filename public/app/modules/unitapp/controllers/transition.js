@@ -101,10 +101,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         }
 
         apiResource.query(query, function(result) {
-            console.dir(result);
-            console.dir('1111111');
-            var media = result[0];
-            console.dir(media);
+            var media = result;
             // if (state === 'LandingPage' || state === 'Demo') {
             //     media = result[0];
             // }
@@ -114,7 +111,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 $scope.floorplan = false;
             }
             $scope.media = lodash.groupBy(media, 'type');
-            console.dir($scope.media);
             var photoIndex;
 
             if (state === 'LandingPage') {
