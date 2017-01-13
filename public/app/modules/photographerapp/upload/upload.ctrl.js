@@ -77,7 +77,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         function loadFloorplan(subScope) {
             console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
-            $scope.selectedFloorplan = subScope.unit.Floor_Plan;
+            $scope.selectedFloorplan = subScope.unit.SubscriptionApartmentPubId;
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
