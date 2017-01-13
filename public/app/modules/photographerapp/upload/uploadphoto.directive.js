@@ -24,6 +24,7 @@ angular.module('Directives')
                     var fileChooser = document.getElementById('file-chooser');
                     var button = document.getElementById('upload-button');
                     var results = document.getElementById('results');
+                    console.dir(scope.pin);
                     button.addEventListener('click', function() {
 
                         if (document.getElementById("file-chooser").value == "") {
@@ -44,7 +45,7 @@ angular.module('Directives')
 
                             var params = {
                                 Bucket: 'equirect-photos',
-                                Key:  scope.pin.apartmentpubid + '/' + scope.photoTitle,
+                                Key:  scope.pin.SubscriptionApartmentPubId + '/' + scope.photoTitle,
                                 ContentType: file.type,
                                 Body: file
                             };

@@ -24,6 +24,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.selectedUnit = false;
         $scope.pins = [];
         $scope.showAmenityButton = false;
+        console.dir($scope.selectedUnit);
 
         $scope.closeModal= function(){
             $uibModalInstance.close();
@@ -238,7 +239,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 type: 'vrphoto',
                 title: null,
                 awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
-                ApartmentId: $scope.selectedUnit.id
+                ApartmentId: $scope.selectedUnit.id,
+                SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
             };
 
             // push this pin to the $scope.pins array - will display on the
@@ -270,7 +272,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 type: 'vrphoto',
                 title: null,
                 awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
-                ApartmentId: $scope.selectedUnit.id
+                ApartmentId: $scope.selectedUnit.id,
+                SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
             };
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
                 // result is what's passed back from modal button selection

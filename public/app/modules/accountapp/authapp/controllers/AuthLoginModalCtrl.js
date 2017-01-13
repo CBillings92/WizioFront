@@ -25,7 +25,7 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData)
                     .then(function(result) {
-
+                        $state.go('Account.Dashboard');
                         return $uibModalInstance.close('ok');
                     })
                     .catch(function(result) {

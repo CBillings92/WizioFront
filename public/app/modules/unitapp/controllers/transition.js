@@ -38,6 +38,21 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         $scope.selectPhoto = false;
         $scope.viewFloorPlan = false;
 
+        $scope.buttonAction = function(toggle){
+            if(toggle === 'toggleFloorplan'){
+                $scope.viewFloorPlan = !$scope.viewFloorPlan
+                if($scope.selectPhoto && $scope.viewFloorPlan) {
+                    $scope.selectPhoto = !$scope.selectPhoto;
+                }
+            } else {
+                $scope.selectPhoto = !$scope.selectPhoto
+                if($scope.viewFloorPlan && $scope.selectPhoto) {
+                    $scope.viewFloorPlan = !$scope.viewFloorPlan;
+                }
+
+            }
+        }
+
         // For styling VR player floorplan programatically
         $scope.style = 'margin: 0 auto; width:325px';
 

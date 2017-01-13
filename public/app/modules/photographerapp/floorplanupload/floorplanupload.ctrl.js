@@ -90,7 +90,7 @@ angular.module('PhotographerApp')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
                 console.dir('RESPONSE');
                 console.dir(response);
-                var key = 'test_' + response.SubscriptionApartment.pubid + '/floorplan.png';
+                var key = response.SubscriptionApartment.pubid + '/floorplan.png';
                 if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
