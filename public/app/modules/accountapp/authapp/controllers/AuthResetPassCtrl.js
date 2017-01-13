@@ -43,7 +43,6 @@ angular.module('AccountApp')
                         password: $scope.passwordObj.password,
                         token: $stateParams.token
                     };
-                    console.dir('HELLO');
                     AuthUpdatePasswordResource.save(passwordobj, function(responseObj) {
                         if (responseObj.status !== "ERR") {
                             ModalBuilderFct.buildSimpleModal(

@@ -13,7 +13,6 @@ angular.module('AccountApp')
             };
 
             $scope.forgotPassword = function() {
-                console.dir('hi');
                 $scope.changePassword = true;
                 // $state.go('SendResetEmail');
                 // return $uibModalInstance.close('ok');

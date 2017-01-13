@@ -11,7 +11,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.loading = false;
         var user = TokenSvc.decode();
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
-        console.dir(TokenSvc.decode());
         $scope.activelistings = TokenSvc.decode().ActiveListings;
         $scope.createTour = function(){
             ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html', 'FloorPlanUploadCtrl', {})
@@ -33,9 +32,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 console.dir(results[i]);
                 apartments.push(results[i].Apartment);
             }
-            console.dir(apartments);
             $scope.apartments = apartments;
-            console.dir($scope.apartments)
             $scope.loading = false;
         });
         $scope.$on('Unit-Activated', function(event, results) {

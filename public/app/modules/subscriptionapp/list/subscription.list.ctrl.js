@@ -8,7 +8,7 @@ angular.module('AccountApp')
             .then(function(response){
               $scope.subscriptions = response;
             });
-            $scope.chooseSubscription = function chooseSubscription(subscription) {
+            $scope.chooseSubscription = function (subscription) {
                 $scope.chosenSubscription = subscription;
             };
 
