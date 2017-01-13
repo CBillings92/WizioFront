@@ -9,12 +9,12 @@ angular.module('AccountApp')
                 var user = $scope.user;
                 var subscription;
                 if($scope.invitationSignup){
-                    user.invitePubId = $state.params.invitePubId
+                    user.invitePubId = $state.params.invitePubId;
                 } else {
                     user.subscription = $scope.chosenSubscription;
                 }
-                user.accountType = 'local';
-                SubscriptionFct.post.saveNewUser(user)
+                
+                SubscriptionFct.post.saveNewUser(user, subscription)
                     .then(function(response) {
                       $state.go('Account.Dashboard');
                     });

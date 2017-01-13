@@ -8181,7 +8181,8 @@ div.item {
 
 .subscription-banner-container {
   justify-content: center;
-  text-align: center; }
+  text-align: center;
+  border-radius: 5px; }
   @media (min-width: 992px) {
     .subscription-banner-container {
       display: flex; } }
