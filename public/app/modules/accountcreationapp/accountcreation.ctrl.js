@@ -2,12 +2,14 @@ angular.module('AccountApp')
     .controller('AccountCreationFormCtrl', [
         '$scope',
         '$state',
-        function($scope, $state) {
+        'SubscriptionFct',
+        function($scope, $state, SubscriptionFct) {
             //test
             $scope.signupInvite = $state.current.name === "Signup.Invite" ? true : false;
 
             $scope.submit = function() {
-                if ($scope.password != $scope.passwordConfirm) {
+
+                if ($scope.user.password != $scope.user.passwordConfirm) {
                     alert("Passwords do not match!");
                     return;
                 }
