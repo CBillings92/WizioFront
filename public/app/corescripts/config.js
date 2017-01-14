@@ -63,6 +63,17 @@ angular.module('MainApp')
             //frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
             frontEndURL: window.location.origin,
 
+            LandingPage: {
+                activeListingId: function(){
+                  var activeListingId = env === 'test' ? 'a55f59b2-d99d-11e6-903a-12e04a9cd045' : 'b19e3352-d9fd-11e6-85e0-0a8adbb20c4d'
+                  return activeListingId;
+                }
+            },
+            DemoPage: {
+              activeListingId: function(){
+                var activeListingId = env === 'test' ? '' : '0a68e5a9-da00-11e6-85e0-0a8adbb20c4d'
+              }
+            },
 
             //angular app URLs - views
             //
