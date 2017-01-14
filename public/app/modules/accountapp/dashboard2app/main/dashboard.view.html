@@ -8,7 +8,7 @@
         </div>
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <div class="user-info row" ng-model="accountInfo" style="" ng-show="inviteAccess">
+            <div class="user-info " ng-model="accountInfo" style="" ng-show="inviteAccess">
                 <h2 class="user-info__name">Invite:</h2>
                 <div class="col-md-8">
                     <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-6">
             <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <div class="user-info row" ng-model="accountInfo" style="">
+            <div class="user-info" ng-model="accountInfo" style="">
                 <h2 class="user-info__name">Search Apartments:</h2>
                 <search-dirv></search-dirv>
                 <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
@@ -38,8 +38,6 @@
             <loading-spinner-dir id="account-dashboard-search-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
             <search-results-list-dir apartments='apartments' ng-hide="loading"></search-results-list-dir>
         </div>
-    </div>
-    <div class="row user-info">
     </div>
     <!-- <div class="row">
         <div class="col-md-10 col-md-offset-1">
