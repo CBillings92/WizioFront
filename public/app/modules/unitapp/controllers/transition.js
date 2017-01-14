@@ -124,13 +124,18 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
 
             // broadcasts a change photo event to our VR player directive
             $scope.$broadcast('CHANGE', {});
-
+            var photoUrl = "";
             // If the photo is stored in AWS
             if ($scope.media.vrphoto[0].awsurl) {
                 // Set the photo index to the selected photo index
                 $scope.photoIndex = photoIndex;
                 // Get the photourl and set it on scope
-                $scope.photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                if(state === 'LandingPage' || state === "Demo"){
+                    photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                } else {
+                    photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
+                }
+                $scope.photoUrl = photoUrl;
                 // Broadcast to our VR player directive to load the new image
                 $scope.$broadcast('IMGLOAD', {
                     media: media
@@ -138,9 +143,15 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
 
                 // Allow the user to change photos
                 $scope.changePhoto = function(photoIndex) {
+                    var photoUrl = "";
+                    if(state === 'LandingPage' || state === "Demo"){
+                        photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                    } else {
+                        photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
+                    }
                     LoadingSpinnerFct.show('vrPlayerLoader');
                     $scope.photoIndex = photoIndex;
-                    $scope.photoUrl ="https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;;
+                    $scope.photoUrl =photoUrl;
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {
