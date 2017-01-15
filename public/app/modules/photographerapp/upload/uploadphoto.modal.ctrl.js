@@ -12,6 +12,10 @@ angular.module('PhotographerApp')
 
             $scope.ok = function(result){
 
+                if (result == 'cancel') {
+                    return $uibModalInstance.close();
+                }
+
                 if (document.getElementById("file-chooser").value == "") {
                     alert("Please upload a photo before continuing");
                     return;
