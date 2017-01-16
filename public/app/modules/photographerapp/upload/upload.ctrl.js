@@ -69,7 +69,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.loadFloorplan = loadFloorplan;
         // On clicking on either a pin or the floorplan, remove, move or create a pin
         $scope.makePinAction = makePinAction;
-
+        $scope.selectedSubscriptionApartmentPubId = null;
         /*  SUMMARY - called when an address is selected from the menu - loads the floorplan
             and the photos for the unit - subScope is `this` from the element
             click in the HTML
@@ -78,6 +78,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
             $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            $scope.selectedSubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;

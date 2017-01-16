@@ -25,8 +25,12 @@ angular.module('AccountApp')
                 };
                 AuthFct.signin(userData)
                     .then(function(result) {
-                        $state.go('Account.Dashboard');
-                        return $uibModalInstance.close('ok');
+                        if(result === 'failed'){
+                          return $uibModalInstance.close('ok');
+                        } else {
+                          $state.go('Account.Dashboard');
+                          return $uibModalInstance.close('ok');
+                        }
                     })
                     .catch(function(result) {
                         $scope.password = '';

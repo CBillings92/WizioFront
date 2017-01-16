@@ -45,7 +45,6 @@ angular.module('PhotographerApp')
                 // use some vanillaJS to get the element that the floorplan will be uploaded on
                 var fileChooser = document.getElementById('file-chooser');
                 //grab the first file in the file array (our floorplan)
-                console.dir(fileChooser);
                 var file = fileChooser.files[0];
                 //check if the file exists
                 if (file) {
@@ -61,7 +60,6 @@ angular.module('PhotographerApp')
                     //save the floorplan to S3
                     bucket.putObject(params, function(err, data) {
                         results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
-                        console.dir(data);
                         resolve(data);
                     });
                 } else {
@@ -88,29 +86,31 @@ angular.module('PhotographerApp')
             }
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
-                console.dir('RESPONSE');
-                console.dir(response);
-                var key = response.SubscriptionApartment.pubid + '/floorplan.png';
-                if($scope.noFloorPlanChkBox){
+                if(response.message){
+                  alert("Apartment already created! Search for this apartment in your account's search bar, or search for it after selecting Modify Existing Tours on your account page");
+                  LoadingSpinnerFct.hide("floorplanUpload");
+                  return;
+                } else {
+                  var key = response.SubscriptionApartment.pubid + '/floorplan.png';
+                  if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
                     alert('Unit created without a floorplan. Please click ok to continue.');
                     $uibModalInstance.close('finished');
                     return;
-                } else {
-                    console.dir(key);
-                    console.dir(response);
+                  } else {
                     saveFloorPlanToS3(key)
                     .then(function(response){
-                        LoadingSpinnerFct.hide('floorplanUpload');
-                        $scope.formSubmitted = false;
-                        alert('finished');
-                        $uibModalInstance.close('finished');
+                      LoadingSpinnerFct.hide('floorplanUpload');
+                      $scope.formSubmitted = false;
+                      alert('finished');
+                      $uibModalInstance.close('finished');
                     })
                     .catch(function (err) {
-                        alert(err);
-                        $scope.formSubmitted = false;
+                      alert(err);
+                      $scope.formSubmitted = false;
                     });
+                  }
                 }
             });
         }

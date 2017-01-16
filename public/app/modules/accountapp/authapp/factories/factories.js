@@ -28,9 +28,15 @@ angular.module('AuthApp')
                     var postRequest = AuthLoginResource.save(data);
                     postRequest.$promise
                         .then(function(result) {
-                            $rootScope.isLoggedin = true;
-                            $rootScope.userType = TokenSvc.decode().userType;
-                            resolve('success');
+                            if(result.status === "ERR"){
+                                $rootScope.error = "Failed to sign in!";
+                                resolve('failed');
+                            } else {
+                              $rootScope.isLoggedin = true;
+
+                              $rootScope.userType = TokenSvc.decode().userType;
+                              resolve('success');
+                            }
                         })
                         .catch(function(result) {
                             $rootScope.error = "Failed to sign in!";

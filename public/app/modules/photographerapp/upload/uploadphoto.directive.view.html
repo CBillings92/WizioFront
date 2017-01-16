@@ -1,13 +1,34 @@
+<div class="modal-header">
+    <h1>
+        Upload a photo with a pin
+    </h1>
+    <h4>Give the photo a name users will see when they're in the tour. Then select the photo from your device and upload!</h4>
+</div>
+<div class="modal-body">
+    <div>
+        <label class="control-label">Name Photo (Ex: Kitchen, Living Room, etc)</label>
+        <input type="text" class="form-control" style="border: 1px solid black;" ng-model="photoTitle" class="form-control"/>
+    </div>
 <div class="row" style="">
     <div class="col-md-4" style="margin-top:20px;">
-        <input type="file" id="file-chooser" />
+        <input type="file" onchange="angular.element(this).scope().previewPhoto(this)" id="file-chooser" />
     </div>
+    <div class="col-md-8">
+      <img id="imgPreview" width="90%" alt="">
+    </div>
+</div>
+<!-- <div class="row">
     <div class="col-md-4" style="margin-top:20px;">
-        <button id="upload-button" class="btn btn-fill--blue btn-md">Upload Photo</button>
-        <loading-spinner-dir id="upload-photo-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
 
     </div>
     <div class="col-md-4">
-        <div id="results"></div>
     </div>
+</div> -->
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('cancel')" name="button">Cancel</button>
+    <!-- <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('ok')" name="button">Finish</button> -->
+    <button id="upload-button" ng-click="ok('ok')" class="btn btn-fill--blue btn-lg">Upload Photo</button>
+    <div id="results"></div>
+    <loading-spinner-dir id="upload-photo-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
 </div>
