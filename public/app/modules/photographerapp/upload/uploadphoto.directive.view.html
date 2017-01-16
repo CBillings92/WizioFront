@@ -1,4 +1,5 @@
 <div class="modal-header">
+  <close-modal-dirv></close-modal-dirv>
     <h1>
         Upload a photo with a pin
     </h1>
@@ -28,7 +29,9 @@
 <div class="modal-footer">
     <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('cancel')" name="button">Cancel</button>
     <!-- <button type="button" class="btn btn-fill--blue btn-lg" ng-click="ok('ok')" name="button">Finish</button> -->
-    <button id="upload-button" ng-click="ok('ok')" class="btn btn-fill--blue btn-lg">Upload Photo</button>
+    <button id="upload-button" class="btn btn-fill--blue btn-lg" ng-hide="uploaded">Upload Photo</button>
+    <button id="upload-button" ng-click="ok('ok')" ng-show="uploaded" class="btn btn-fill--blue btn-lg">Upload Photo</button>
+
     <div id="results"></div>
     <loading-spinner-dir id="upload-photo-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
 </div>

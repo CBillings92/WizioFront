@@ -10,6 +10,7 @@ angular.module('PhotographerApp')
             $scope.pin = modalData;
             $scope.previewPhotoImage = false;
             $scope.photo = "";
+            $scope.uploaded=false;
             // $scope.test;
 
             $scope.previewPhoto = function(photo) {
@@ -26,11 +27,18 @@ angular.module('PhotographerApp')
               }
             }
 
+            $scope.ok = function (result) {
+              data = {
+                message: 'cancel'
+              };
+              return $uibModalInstance.close(data);
+            }
+
             $scope.$on('Upload-Finished', function(event, data){
-              alert('upload done');
 
               data = {
-                photoTitle: data.photoTitle
+                photoTitle: $scope.photoTitle,
+                message: 'success'
               };
 
               return $uibModalInstance.close(data);
