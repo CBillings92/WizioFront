@@ -27,12 +27,11 @@ angular.module('PhotographerApp')
             }
 
             $scope.$on('Upload-Finished', function(event, data){
+              alert('upload done');
 
-
-              var data = {
-                photoTitle: $scope.photoTitle
+              data = {
+                photoTitle: data.photoTitle
               };
-
 
               return $uibModalInstance.close(data);
             });

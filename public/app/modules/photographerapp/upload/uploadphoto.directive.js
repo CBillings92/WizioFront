@@ -58,7 +58,7 @@ angular.module('Directives')
                                             // alert('finished');
                                             LoadingSpinnerFct.hide('upload-photo-loader');
                                             results.innerHTML = 'UPLOADED';
-                                            scope.$emit('Upload-Finished', {});
+                                            scope.$emit('Upload-Finished', {photoTitle: scope.photoTitle});
                                         });
 
                                     // scope.$emit('doneUploadingPhoto', 'OK')
