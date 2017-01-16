@@ -32,7 +32,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             .save(data, function(response){
               apartment.newlyActive = true
             });
-            $state.reload();
+            // $state.reload();
         };
     }
 ]);
