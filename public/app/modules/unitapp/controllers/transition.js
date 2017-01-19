@@ -17,6 +17,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var heightContainerElem = document.getElementById('height-container');
         var floorplanImgElem = document.getElementById('floorplan');
         var maxFloorPlanHeight = $(window).height() * 0.75;
+        $scope.toggle = false;
 
         floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
@@ -33,7 +34,10 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 floorplanImgElem.style['max-height'] = $(window).height()*0.75 + 'px';
             });
         }
-
+        $scope.accelerometerToggle = function(){
+          $scope.toggle = !$scope.toggle;
+          $scope.$broadcast('accelerometer-toggle', {flag: $scope.toggle});
+        }
         // For photo and floorplan selection
         $scope.selectPhoto = false;
         $scope.viewFloorPlan = false;

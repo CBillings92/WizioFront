@@ -1,8 +1,8 @@
 <div style="position:absolute; top:0; left:0; width:100%; height:100%" ng-hide="viewFloorPlan">
-    <div class="container-fluid" style="height:100%; display:flex; align-items:center;">
-        <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="width:100%;overflow: hidden;z-index:1100; cursor: pointer; text-align: center; margin-top:auto; margin-bottom:auto">
+    <div class="container-fluid" style="height:100%">
+        <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
             <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
-                <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md vr-control-button" name="button">{{photo.title}}</button>
+                <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
             </div>
         </div>
     </div>

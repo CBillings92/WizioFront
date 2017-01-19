@@ -13,16 +13,20 @@
 
 var DeviceOrientationController = function ( object, domElement ) {
 
+	// assign DeviceOrientationController.object
 	this.object = object;
+	// assign DeviceOrientationController.element
 	this.element = domElement || document;
 
+	// Set control flags
 	this.freeze = true;
 
-	this.enableManualDrag = true; // enable manual user drag override control by default
-	this.enableManualZoom = true; // enable manual user zoom override control by default
-
+	this.enableManualDrag = false; // enable manual user drag override control by default
+	this.enableManualZoom = false; // enable manual user zoom override control by default
+	// as opposed to the other thing that is bad and could cause locking... forgot name
 	this.useQuaternions = true; // use quaternions for orientation calculation by default
 
+	// set base objects
 	this.deviceOrientation = {};
 	this.screenOrientation = window.orientation || 0;
 
@@ -44,8 +48,10 @@ var DeviceOrientationController = function ( object, domElement ) {
 		MANUAL_ZOOM: 2
 	};
 
+	// set CONTROLLER_STATE.AUTO os default for application
 	var appState = CONTROLLER_STATE.AUTO;
 
+	// possible controller events
 	var CONTROLLER_EVENT = {
 		CALIBRATE_COMPASS:  'compassneedscalibration',
 		SCREEN_ORIENTATION: 'orientationchange',
@@ -116,7 +122,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 		// Set consistent scroll speed based on current viewport width/height
 		scrollSpeedX = ( 1200 / window.innerWidth ) * 0.2;
 		scrollSpeedY = ( 800 / window.innerHeight ) * 0.2;
-        console.dir(this.element);
 		this.element.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 		this.element.addEventListener( 'mouseup', this.onDocumentMouseUp, false );
 
@@ -166,7 +171,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 				this.element.addEventListener( 'touchmove', this.onDocumentTouchMove, false );
 				this.element.addEventListener( 'touchend', this.onDocumentTouchEnd, false );
-
+				// alert('break');
 				fireEvent( CONTROLLER_EVENT.MANUAL_CONTROL + 'start' );
 				fireEvent( CONTROLLER_EVENT.ROTATE_CONTROL + 'start' );
 
@@ -199,8 +204,10 @@ var DeviceOrientationController = function ( object, domElement ) {
 	this.onDocumentTouchMove = function ( event ) {
 		switch( event.touches.length ) {
 			case 1:
+				console.dir(event.touches[0]);
 				currentX = event.touches[ 0 ].pageX;
 				currentY = event.touches[ 0 ].pageY;
+				console.dir(window.orientation);
 				break;
 
 			case 2:
@@ -215,7 +222,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 		this.element.removeEventListener( 'touchend', this.onDocumentTouchEnd, false );
 
 		if ( appState === CONTROLLER_STATE.MANUAL_ROTATE ) {
-
+			console.dir('IN HERE');
 			appState = CONTROLLER_STATE.AUTO; // reset control state
 
 			this.freeze = false;
@@ -224,7 +231,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 			fireEvent( CONTROLLER_EVENT.ROTATE_CONTROL + 'end' );
 
 		} else if ( appState === CONTROLLER_STATE.MANUAL_ZOOM ) {
-
 			this.constrainObjectFOV(); // re-instate original object FOV
 
 			appState = CONTROLLER_STATE.AUTO; // reset control state
@@ -442,13 +448,13 @@ var DeviceOrientationController = function ( object, domElement ) {
         var vrDomElement = document.getElementById('vr-player-container');
 		vrDomElement.addEventListener( 'resize', this.constrainObjectFOV, false );
 
-		vrDomElement.addEventListener( 'orientationchange', this.onScreenOrientationChange, false );
-		vrDomElement.addEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
+		window.addEventListener( 'orientationchange', this.onScreenOrientationChange, false );
+		window.addEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
 
-		vrDomElement.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
+		 window.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-		vrDomElement.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		vrDomElement.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		// vrDomElement.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		// vrDomElement.addEventListener( 'touchstart', this.onDocumentTouchStart, false );
 
 		this.freeze = false;
 	};
@@ -459,13 +465,13 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 		vrDomElement.removeEventListener( 'resize', this.constrainObjectFOV, false );
 
-		vrDomElement.removeEventListener( 'orientationchange', this.onScreenOrientationChange, false );
-		vrDomElement.removeEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
+		window.removeEventListener( 'orientationchange', this.onScreenOrientationChange, false );
+		window.removeEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
 
-		vrDomElement.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
+		window.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-		vrDomElement.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
-		vrDomElement.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
+		// vrDomElement.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
+		// vrDomElement.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
 	};
 
 };

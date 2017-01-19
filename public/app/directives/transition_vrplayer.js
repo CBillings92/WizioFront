@@ -41,14 +41,17 @@ angular.module('Directives')
                         controls.autoRotateSpeed = 0.5;
                         controls.addEventListener('change', render);
 
+
+
+                    //  setupControllerEventHandlers(controls);
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
                         renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                         canvasParent.appendChild(renderer.domElement);
-
                         canvasParent.addEventListener('mousewheel', onMouseWheel, false);
                         canvasParent.addEventListener('DOMMouseScroll', onMouseWheel, false);
                         window.addEventListener('resize', resize, false);
+                        // controls.addEventListener('change', render);
 
                         animate();
 
@@ -62,7 +65,22 @@ angular.module('Directives')
                     scope.$on('CHANGE', function() {
                         newImage();
                     });
-
+                    scope.$on('accelerometer-toggle', function(event,accelToggle){
+                      console.dir(accelToggle);
+                        if(accelToggle.flag){
+                          controls = new DeviceOrientationController(camera);
+                          controls.connect();
+                          controls.update();
+                        } else {
+                          controls = new THREE.OrbitControls(camera);
+                          controls.noPan = true;
+                          controls.noZoom = true;
+                          controls.autoRotate = true;
+                          controls.autoRotateSpeed = 0.5;
+                          controls.update();
+                          //controls.addEventListener('change', render);
+                        }
+                    })
                     function render() {
                         renderer.render(scene, camera);
                     }
@@ -113,8 +131,8 @@ angular.module('Directives')
 
                     function animate() {
                         requestAnimationFrame(animate);
-                        render();
                         controls.update();
+                        render();
                     }
 
                     function onMouseWheel(evt) {
