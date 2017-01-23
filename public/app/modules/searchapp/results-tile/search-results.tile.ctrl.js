@@ -12,7 +12,6 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
         $scope.activateListing = function(apartment){
             var user = TokenSvc.decode();
             var subscription = user.Subscriptions[0];
-            console.dir(apartment);
             var data = {
                 Apartment: {
                     pubid: apartment.pubid
@@ -32,7 +31,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
             .save(data, function(response){
               apartment.newlyActive = true
             });
-            $state.reload();
+            // $state.reload();
         };
     }
 ]);

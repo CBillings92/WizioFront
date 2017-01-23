@@ -55,9 +55,12 @@ angular.module('Directives')
                                 } else {
                                     $resource(WizioConfig.baseAPIURL + 'media')
                                         .save(scope.pin, function(response){
-                                            alert('finished');
+                                            // alert('finished');
                                             LoadingSpinnerFct.hide('upload-photo-loader');
                                             results.innerHTML = 'UPLOADED';
+                                            console.dir(scope);
+                                            scope.uploaded = true;
+                                            scope.$emit('Upload-Finished', {photoTitle: scope.photoTitle});
                                         });
 
                                     // scope.$emit('doneUploadingPhoto', 'OK')
@@ -65,6 +68,7 @@ angular.module('Directives')
                                 results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
                             });
                         } else {
+                            alert("Please upload a photo before continuing");
                             results.innerHTML = 'Nothing to upload.';
                             return;
                         }

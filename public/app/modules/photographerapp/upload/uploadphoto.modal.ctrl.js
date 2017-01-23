@@ -8,27 +8,42 @@ angular.module('PhotographerApp')
             $scope.disabled = false;
             $scope.photoTitle = null;
             $scope.pin = modalData;
+            $scope.previewPhotoImage = false;
+            $scope.photo = "";
+            $scope.uploaded=false;
+            // $scope.test;
 
+            $scope.previewPhoto = function(photo) {
+              var preview = document.getElementById('imgPreview');
+              var file    = document.querySelector('input[type=file]').files[0];
+              var reader  = new FileReader();
 
-            $scope.ok = function(result){
+              reader.addEventListener("load", function () {
+                preview.src = reader.result;
+              }, false);
 
-                if (result == 'cancel') {
-                    return $uibModalInstance.close();
-                }
+              if (file) {
+                reader.readAsDataURL(file);
+              }
+            }
 
-                if (document.getElementById("file-chooser").value == "") {
-                    alert("Please upload a photo before continuing");
-                    return;
-                };
+            $scope.ok = function (result) {
+              data = {
+                message: 'cancel'
+              };
+              return $uibModalInstance.close(data);
+            }
 
-                var data = {
-                    result: result,
-                    photoTitle: $scope.photoTitle
-                };
+            $scope.$on('Upload-Finished', function(event, data){
 
+              data = {
+                photoTitle: $scope.photoTitle,
+                message: 'success'
+              };
 
-                return $uibModalInstance.close(data);
-            };
+              return $uibModalInstance.close(data);
+            });
+
         }
 
 

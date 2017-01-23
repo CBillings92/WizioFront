@@ -23,6 +23,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.displayNoFloorplanMessage = false;
         $scope.selectedUnit = false;
         $scope.pins = [];
+        $scope.uploaded = false;
         $scope.showAmenityButton = false;
         console.dir($scope.selectedUnit);
 
@@ -69,7 +70,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.loadFloorplan = loadFloorplan;
         // On clicking on either a pin or the floorplan, remove, move or create a pin
         $scope.makePinAction = makePinAction;
-
+        $scope.selectedSubscriptionApartmentPubId = null;
         /*  SUMMARY - called when an address is selected from the menu - loads the floorplan
             and the photos for the unit - subScope is `this` from the element
             click in the HTML
@@ -78,6 +79,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
             $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            $scope.selectedSubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
             $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
@@ -258,6 +260,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 if(response.result === 'cancel'){
                     $scope.pins.pop();
                 }
+                $scope.uploaded=true;
                 return response.photoTitle;
             });
         }
@@ -277,12 +280,13 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             };
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
                 // result is what's passed back from modal button selection
-                if(response.result === 'cancel'){
+                $scope.uploaded=true;
+                if(response.message === 'cancel'){
                     return;
-                } else if (response.result === 'ok'){
+                } else if (response.message === 'success'){
                     amenity.title = response.photoTitle;
                     $scope.amenities.push(amenity);
-                    return result;
+                    return;
                 }
                 return;
             });
