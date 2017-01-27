@@ -1,74 +1,75 @@
 <div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
     <h1>Upload Photos</h1>
-    <h4>
-        Search for the apartment you want to upload photos for and select it. If it has a floor plan,
-        the floor plan will be displayed. Click on the floor plan where you want to drop a pin and upload a photo for that pin.
+    <h5>
+        Search for the apartment you want to upload photos for and select it.
+    </h5>
+    <h5>
+        If it has a floor plan, the floor plan will be displayed.
+    </h5>
+    <h5>
+        Click on the floor plan where you want to drop a pin and upload a photo for that pin.
         If there are photos you want to upload that are not associated with a pin (or an ammenity), click the Add Ammenity button.
-    </h4>
+    </h5>
 </div>
 <div class="modal-body">
-        <div class="row">
-            <div class="col-md-offset-3 col-md-6">
-                <h3>Search by Address</h3>
-                <input style="border: 1px solid black;" class="form-control" ng-model="searchText.concatAddr" ng-change="selectedUnit = false" id="searchText" type="text" placeholder="address"></input>
-            </div>
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <h3>Search by Address</h3>
+            <input style="border: 1px solid black;" class="form-control" ng-model="searchText.concatAddr" ng-change="selectedUnit = false" id="searchText" type="text" placeholder="address"></input>
         </div>
-        <div class="row">
-            <div class="col-md-12" style="padding-top:25px; text-align:center;">
-                <div ng-repeat="unit in units | filter:searchText" ng-click="loadFloorplan(this)" ng-show="selectedUnit === false" style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
-                    <p>
-                        Unit Num:
-                        <strong>{{unit.unitNum}}</strong>, at
-                        <strong>{{unit.concatAddr}}</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row" ng-show="selectedUnit !== false">
-            <div class="col-md-12" style="padding-top:25px; text-align:center;">
-                <div style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
-                    <p>
-                        Unit Num:
-                        <strong>{{selectedUnit.unitNum}}</strong>, at
-                        <strong>{{selectedUnit.concatAddr}}</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" ng-click="viewFloorPlan = !viewFloorPlan">
-                <div>
-                    <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
-                    <div class="">
-
-                    </div>
-                    <div style="position:relative; display:inline-block" id="floorplanOverlay">
-                        <img src="{{selectedFloorplan}}" ng-hide="displayNoFloorplanMessage" ng-click="makePinAction($event, this, true)" id="floorplan" alt=""/>
-                        <h2 ng-show="displayNoFloorplanMessage">
-                            No Floorplan Available. If A floorplan has been created or can be attained, please upload
-                            <br>
-                            <br>
-                            If no floor plan is expected/a floor plan can't be acquired, upload photos using the button below
-
-                        </h2>
-                        <!-- this loop is for displaying newly created pins -->
-                        <span>
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div style="padding:30px;" ng-show="showAmenityButton">
-                <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add {{selectedFloorplan ? "Amenity" : "Photo"}}</button>
-                <p ng-repeat="amenity in amenities">
-                    <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
-                        {{amenity.title}}
-                    </a>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="padding-top:25px; text-align:center;">
+            <div ng-repeat="unit in units | filter:searchText" ng-click="loadFloorplan(this)" ng-show="selectedUnit === false" style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
+                <p>
+                    Unit Num:
+                    <strong>{{unit.unitNum}}</strong>, at
+                    <strong>{{unit.concatAddr}}</strong>
                 </p>
             </div>
         </div>
+    </div>
+    <div class="row" ng-show="selectedUnit !== false">
+        <div class="col-md-12" style="padding-top:25px; text-align:center;">
+            <div style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
+                <p>
+                    Unit Num:
+                    <strong>{{selectedUnit.unitNum}}</strong>, at
+                    <strong>{{selectedUnit.concatAddr}}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
+            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+            <div style="position:relative; display:inline-block;" id="floorplanOverlay">
+                <img src="{{selectedFloorplan}}" ng-hide="displayNoFloorplanMessage" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
+                <h4 ng-show="displayNoFloorplanMessage">
+                            No floor plan available. Please upload photos using the Add Photo button below.
+                        </h4>
+                <br>
+                <p ng-show="displayNoFloorplanMessage" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p>
+                <!-- this loop is for displaying newly created pins -->
+                <span>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div style="padding:30px;" ng-show="showAmenityButton">
+            <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add {{selectedFloorplan ? "Amenity" : "Photo"}}</button>
+            <h3>Your {{selectedFloorplan ? "Amenities" : "Photos"}}</h3>
+            <div ng-repeat="amenity in amenities">
+                <button type="button" class="btn btn-primary" style="margin:5px;" ng-click="makeAmmenityAction(amenity)" name="button">{{amenity.title}}</button>
+                <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
+                        {{amenity.title}}
+                    </a> -->
+            </div>
+        </div>
+    </div>
 
 </div>
 <div class="modal-footer">

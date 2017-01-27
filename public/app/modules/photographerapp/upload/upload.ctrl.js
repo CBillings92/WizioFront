@@ -13,7 +13,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     'lodash',
     '$uibModalInstance',
     'TokenSvc',
-    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc) {
+    'UploadFct',
+    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct) {
         var units;
         var movePinFlag = false;
         var selectedPinIndex;
@@ -25,7 +26,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.pins = [];
         $scope.uploaded = false;
         $scope.showAmenityButton = false;
-        console.dir($scope.selectedUnit);
 
         $scope.closeModal= function(){
             $uibModalInstance.close();
@@ -52,16 +52,15 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param4: 'unitNum',
             param5: "Floor_Plan",
             param6: TokenSvc.decode().Subscriptions[0].id
-        }, function(response) {
+        },
+        function(response) {
             units = [];
             for(var i = 0; i < response.length; i++){
                 response[i].Apartment["SubscriptionApartmentPubId"] = "";
-                console.dir(response[i].Apartment);
 
                 response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
                 units.push(response[i].Apartment);
             }
-            // console.dir(units);
             // $scope.units = lodash.groupBy(units, 'Floor_Plan');
             $scope.units = units;
         });
@@ -76,11 +75,15 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             click in the HTML
         */
         function loadFloorplan(subScope) {
-            console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
-            $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            if(subScope.unit.Floor_Plan){
+
+                $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            } else {
+                $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
+
+            }
             $scope.selectedSubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
-            $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
             var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
@@ -171,8 +174,13 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             } else if (clickOnFloorplan === true && movePinFlag === true) {
                 movePin(mouseEvent);
             } else {
-                choosePinActionModal();
+                choosePinActionModal(selectedPinIndex);
             }
+        }
+
+        $scope.makeAmmenityAction = function makeAmmenityAction(media) {
+            media.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
+            renameMedia(media);
         }
 
         // Used to calculate the pin X and Y based on the mouse click
@@ -186,27 +194,39 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             return {x: x, y: y};
         }
 
+        // For moving pins after they have been placed
         function movePin(mouseEvent){
-            var pinXY = calculatePinXandY(mouseEvent);
+            movePinFlag = false;
+
+            // Calculate the new pin X and Y
+            var newPinPosition = calculatePinXandY(mouseEvent);
+
+            // Get the pin that will be moved
             var pinToMove = $scope.pins[selectedPinIndex];
 
-            pinToMove.x = pinXY.x;
-            pinToMove.y = pinXY.y;
+            pinToMove.x = newPinPosition.x;
+            pinToMove.y = newPinPosition.y;
 
-            movePinFlag = false;
+            // send the new pin data to the API to be saved
             pinAPIResource.save(pinToMove, function(response){
                 alert('saved');
                 return;
             });
         }
+
+        // For deleting a pin that has been placed already
         function deletePin(pin, callback){
+            // Send the request to the API to have the media record deleted
             $resource(WizioConfig.baseAPIURL + 'unit/delete/pin')
             .save({pin: pin}, function(response){
                 callback(response);
             });
 
         }
-        function choosePinActionModal() {
+
+        // When a pin is clicked provide the user a modal with possible options
+        // for the already placed pins
+        function choosePinActionModal(selectedPinIndex) {
             buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', $scope.pins).then(function(result) {
                 switch (result) {
                     case 'removePin':
@@ -217,9 +237,24 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                     case 'movePin':
                     movePinFlag = true;
                     break;
+                    case 'renamePhoto':
+                      var selectedMedia = $scope.pins[selectedPinIndex];
+                      selectedMedia.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
+                      renameMedia($scope.pins[selectedPinIndex]);
+                      break;
                     case 'cancel':
                     break;
                     default:
+                }
+            });
+        }
+        function renameMedia(media) {
+            UploadFct.buildModal.renameMedia(media)
+            .then(function(response){
+                if(response === 'exit'){
+                    return;
+                } else {
+                    alert('Photo Renamed Successfully');
                 }
             });
         }
@@ -256,7 +291,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             // pass the current pin as 'modalData' into the called modal controller
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(response) {
                 // result is what's passed back from modal button selection
-                console.dir(response.result);
                 if(response.result === 'cancel'){
                     $scope.pins.pop();
                 }
