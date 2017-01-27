@@ -22,11 +22,12 @@ angular.module('PhotographerApp').factory('MediaFct', [
                             method: 'PUT'
                         }
                     }).update(dataToBeTransferred, function(response) {
-                        if (respone.status === 'ERR') {
-                            return reject({status: 'ERR', source: 'API', file: 'media.fct.js', log: response.log});
-                        } else {
-                            return resolve(response);
-                        }
+                        resolve(resonse);
+                        // if (respone.status === 'ERR') {
+                        //     return reject({status: 'ERR', source: 'API', file: 'media.fct.js', log: response.log});
+                        // } else {
+                        //     return resolve(response);
+                        // }
                     });
                 } else {
                     return reject({status: 'ERR', source: 'front end', file: 'media.fct.js', log: 'media object and new media name required'});
