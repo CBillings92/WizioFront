@@ -33,6 +33,8 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 heightContainerElem.style.height = $(window).height() + 'px';
                 floorplanImgElem.style['max-height'] = $(window).height()*0.75 + 'px';
             });
+        } else {
+            heightContainerElem.style.height = "100%";
         }
         $scope.accelerometerToggle = function(){
           $scope.toggle = !$scope.toggle;

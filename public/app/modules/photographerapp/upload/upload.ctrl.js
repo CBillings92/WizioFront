@@ -61,7 +61,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
                 units.push(response[i].Apartment);
             }
-            // console.dir(units);
             // $scope.units = lodash.groupBy(units, 'Floor_Plan');
             $scope.units = units;
         });
@@ -76,11 +75,15 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             click in the HTML
         */
         function loadFloorplan(subScope) {
-            console.dir(subScope);
             // get the Floor_Plan URL from the selected unit
-            $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            if(subScope.unit.Floor_Plan){
+
+                $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
+            } else {
+                $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
+
+            }
             $scope.selectedSubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
-            $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
             $scope.selectedUnit = subScope.unit;
             $scope.showAmenityButton = true;
             var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
@@ -175,6 +178,11 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             }
         }
 
+        $scope.makeAmmenityAction = function makeAmmenityAction(media) {
+            media.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
+            renameMedia(media);
+        }
+
         // Used to calculate the pin X and Y based on the mouse click
         function calculatePinXandY(mouseEvent) {
             // hardcoded values account for the size of the rectangle pin image
@@ -241,8 +249,14 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             });
         }
         function renameMedia(media) {
-            console.dir(media);
-            UploadFct.buildModal.renameMedia(media);
+            UploadFct.buildModal.renameMedia(media)
+            .then(function(response){
+                if(response === 'exit'){
+                    return;
+                } else {
+                    alert('Photo Renamed Successfully');
+                }
+            });
         }
         // function for dropping a pin on the floorplan. e is the click event
         function createPin(e) {
@@ -277,7 +291,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             // pass the current pin as 'modalData' into the called modal controller
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(response) {
                 // result is what's passed back from modal button selection
-                console.dir(response.result);
                 if(response.result === 'cancel'){
                     $scope.pins.pop();
                 }

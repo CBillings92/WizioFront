@@ -16,7 +16,7 @@ angular.module('PhotographerApp')
                     mediaObj
                   )
                   .then(function(response){
-
+                      resolve(response);
                   });
                 })
             }

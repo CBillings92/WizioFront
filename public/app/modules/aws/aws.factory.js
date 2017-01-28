@@ -26,12 +26,10 @@ angular.module('AWSApp')
         function copyFile(newFileName, oldFileName, fileFolderName) {
           // create a new S3 object from AWS library
           var bucket = createS3Object();
-
           // Create the oldFileEndPoint which defines the file to be copied
-          var oldFileEndPoint = fileFolderName + '/' + oldFileName;
+          var oldFileEndPoint = 'equirect-photos/'+ fileFolderName + '/' + oldFileName + '.JPG';
           // Create the newFileEndPoint which defines the file's end state
-          var newFileEndPoint = fileFolderName + '/' + newFileName;
-
+          var newFileEndPoint = fileFolderName + '/' + newFileName + '.JPG';
           var params = {
             Bucket: 'equirect-photos',
             CopySource: oldFileEndPoint,
@@ -43,7 +41,6 @@ angular.module('AWSApp')
                 console.log(err, err.stack);
                 reject(err);
               } else {
-                console.dir(success);
                 resolve(success);
               }
             });
@@ -54,16 +51,14 @@ angular.module('AWSApp')
           var bucket = createS3Object();
           var params = {
             Bucket: 'equirect-photos',
-            Key: folderName + '/' + fileName
+            Key: folderName + '/' + fileName + '.JPG'
           };
-
           return $q(function(resolve, reject){
             bucket.deleteObject(params, function(err, success){
               if(err){
                 console.log(err, err.stack);
                 reject(err);
               } else {
-                console.dir(success);
                 resolve(success);
               }
             });
@@ -81,6 +76,9 @@ angular.module('AWSApp')
                     .then(function(response){
                         // delete the old file once the new file is copied
                         return deleteFile(oldFileName, fileFolderName);
+                    })
+                    .then(function(response){
+                        resolve(response);
                     })
                     .catch(function(err){
 

@@ -6,14 +6,19 @@ angular.module('PhotographerApp')
       '$scope',
       'modalData',
       'AWSFct',
-      function($scope, modalData, AWSFct){
+      'MediaFct',
+      '$uibModalInstance',
+      function($scope, modalData, AWSFct, MediaFct, $uibModalInstance){
           $scope.media = modalData;
-          console.dir($scope.media);
           $scope.formData = {};
+
+          $scope.closeModal = function() {
+              $uibModalInstance.close('exit');
+          };
 
           // On submit button press in modal,
           $scope.saveNewMediaName = function saveNewMediaName(){
-            AWSFct.renameMedia(
+            AWSFct.s3.equirectPhotos.renameFile(
               $scope.formData.newMediaName,
               $scope.media.title,
               $scope.media.SubscriptionApartmentPubId
@@ -23,6 +28,9 @@ angular.module('PhotographerApp')
                 $scope.media,
                 $scope.formData.newMediaName
               )
+            })
+            .then(function(response){
+                $uibModalInstance.close('success');
             })
             .catch(function(response){
 
