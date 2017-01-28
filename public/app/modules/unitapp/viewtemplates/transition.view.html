@@ -21,13 +21,13 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-4 col-md-3" >
-                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="selectPhoto = !selectPhoto;" style="margin:5px" type="submit">Photos</button>
+                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-hide="state === 'LandingPage'" ng-click="selectPhoto = !selectPhoto;" style="margin:5px" type="submit">Photos</button>
             </div>
             <div class="col-xs-4 col-md-3">
-                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="buttonAction('toggleFloorplan')" style="margin: 5px;" type="submit">Floor Plan</button>
+                <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-hide="state === 'LandingPage'" ng-click="buttonAction('toggleFloorplan')" style="margin: 5px;" type="submit">Floor Plan</button>
             </div>
             <div class="col-xs-4 col-md-3">
-                <button class="{{!toggle ? 'btn btn-fill--orange btn-md form-control vr-player-control' : 'btn btn-fill--blue btn-md form-control vr-player-control'}}" ng-click="accelerometerToggle()" style="margin: 5px;" type="submit">{{!toggle ? 'Enable Accelerometer' : 'Disable Accelerometer'}}</button>
+                <button class="{{!toggle ? 'btn btn-fill--orange btn-md form-control vr-player-control' : 'btn btn-fill--blue btn-md form-control vr-player-control'}}" ng-hide="state === 'LandingPage'" ng-click="accelerometerToggle()" style="margin: 5px;" type="submit">{{!toggle ? 'Enable Accelerometer' : 'Disable Accelerometer'}}</button>
             </div>
         </div>
     </div>
