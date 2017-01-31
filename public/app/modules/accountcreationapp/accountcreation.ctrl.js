@@ -15,8 +15,7 @@ angular.module('AccountApp')
                 }
 
                 var user = $scope.user;
-                console.dir($state.params);
-                if($scope.invitationSignup){
+                if($scope.signupInvite){
                     user.invitePubId = $state.params.invitePubId;
                 } else {
                     var subscription = $scope.chosenSubscription;
