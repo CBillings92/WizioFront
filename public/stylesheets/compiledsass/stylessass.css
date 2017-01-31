@@ -7053,6 +7053,18 @@ body {
   margin: 0 auto;
   bottom: 20px; }
 
+#vr-player-powered-by-wizio {
+  padding: 5px;
+  border-radius: 3px;
+  position: absolute;
+  right: -90px;
+  bottom: 160px;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  background-color: rgba(0, 0, 0, 0.3); }
+
 #panel-text {
   position: relative;
   top: 140px;
