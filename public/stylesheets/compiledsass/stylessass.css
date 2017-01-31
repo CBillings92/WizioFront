@@ -7322,9 +7322,6 @@ body {
     padding-left: 13px; }
   .home-search__bar input {
     border-radius: 3px 0 0 3px; }
-  .home-search__bar .btn {
-    padding: 7px 14px 8px 14px;
-    border-radius: 0 3px 3px 0; }
 
 .home-tenants {
   color: white;

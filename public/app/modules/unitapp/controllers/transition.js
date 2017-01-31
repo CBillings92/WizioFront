@@ -18,7 +18,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var floorplanImgElem = document.getElementById('floorplan');
         var maxFloorPlanHeight = $(window).height() * 0.75;
         $scope.toggle = false;
-
+        $scope.hideControls = false;
         floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
@@ -27,6 +27,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         heightContainerElem.style.height = $(window).height() + 'px';
 
         if (state === 'NewExternalApi' || state === 'Demo' || state === 'Tour') {
+            $scope.hideControls=false;
             bodyTag.style["margin-bottom"] = "0";
             $(window).resize(function() {
                 heightContainerElem.style['padding-bottom'] = '0';
@@ -34,6 +35,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 floorplanImgElem.style['max-height'] = $(window).height()*0.75 + 'px';
             });
         } else {
+            $scope.hideControls = true;
             heightContainerElem.style.height = "100%";
         }
         $scope.accelerometerToggle = function(){

@@ -43,13 +43,13 @@
             <source src="public/viewtemplates/images/home/sequence.mp4" type="video/mp4">
             <source src="public/viewtemplates/images/home/sequence.webm" type="video/webm">
         </video> -->
-        <button class="btn btn-fill--blue btn-md" style="position:absolute;top:85%;right:2%;z-index:501;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || mapViewSelected">
+        <!-- <button class="btn btn-fill--blue btn-md" style="position:absolute;top:85%;right:2%;z-index:501;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || mapViewSelected">
             View Map of Our Inventory
         </button>
         <button class="btn btn-fill--blue btn-md" style="position:absolute;top:85%;right:2%;z-index:501;" ng-click="toggleMapView()" ng-hide="selectPhoto || viewFloorPlan || !mapViewSelected">
             View Demo Unit
-        </button>
-        <button type="button" class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-click="goToLogin()" name="button">Login</button>
+        </button> -->
+        <button type="button" class="btn btn-fill--blue btn-md" style="position:absolute;top:2%;right:2%;z-index:2100;" ng-hide="userIsLoggedIn" ng-click="goToLogin()" name="button">Login</button>
 
 
 
@@ -60,7 +60,7 @@
     <div class="container">
         <div class="row">
             <div class="home-hero__text col-xs-9 col-xs-offset-1 col-lg-6 col-lg-offset-1">
-                <h2 class="home-hero__heading">Tour Less, Close More.</h2>
+                <h2 class="home-hero__heading">Tour Less, Close More</h2>
                 <!-- <br>at your fingertips</h2> -->
                 <!-- <h4 class="home-hero__subheading">Watch virtual reality videos of awesome apartments until you find the right one for you!</h4> -->
                 <h4 class="home-hero__subheading">Showing apartments has never been easier.</h4>
@@ -68,98 +68,80 @@
         </div>
     </div>
 </div>
-
-<div class="home-tenants">
-    <div class="home-pin">
-        <div class="home-pin__orange">
-            <div class="home-pin__orange__left"></div>
-            <div class="home-pin__orange__right"></div>
-        </div>
-    </div>
-
-    <div style="background-color:black; width:100%; height;30px;">&nbsp;&nbsp;&nbsp;
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <!-- <h2 class="home-tenants__header col-sm-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Cut your lead time in half.  &nbsp;&nbsp;&nbsp;  <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank"><button class="btn btn-fill--blue btn-md"> Request now. </button></a></h2> -->
-                <h2 class="">Cut your lead time in half. &nbsp;&nbsp;&nbsp;
-            <search-dirv ng-hide="true"></search-dirv>
-            </div>
-            <div class=col-md-5>
-                <div class="row">
-                    <div class="col-md-12" style="padding-bottom:10px;">
-                        <a href="https://hopskins.typeform.com/to/ByD6BO" target="_blank">
-                            <button class="btn btn-fill--blue btn-md form-control" ng-hide="userIsLoggedIn" style="height:50px; font-size:2em;">
-                                Request now.
-                            </button>
+<div class="home-search" style="z-index:1000;">
+        <div class="home-search__background"></div>
+        <div class="container">
+            <div class="row">
+                <div class="home-search__bar col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2" style="z-index:1200">
+                    <div ng-hide="userIsLoggedIn" class="col-md-8 col-md-offset-2">
+                        <a href="https://hopskins.typeform.com/to/ByD6BO" class="btn btn-fill--blue btn-md form-control" target="_blank">
+                                Start Creating VR Tours.
                         </a>
-                        <!-- <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-hide="userIsLoggedIn" ng-click="openTermsOfServicesModal()"> Request now. </button> -->
-                        <button class="btn btn-fill--blue btn-md form-control" style="height:50px; font-size:2em;" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
+                        <!-- <button type="button" class="btn btn-fill--blue btn-lg form-control" name="button">Start Creating VR Tours</button> -->
                     </div>
-                    <div ng-hide="userIsLoggedIn">
-                        <div class="col-md-12" style="vertical-align: center;">
-                            <span class="" style="font-size:2em;" for="">Have an account?</span> &nbsp;&nbsp;&nbsp;
-                            <button type="button" class=" btn btn-lg btn-fill--blue" style="margin-bottom:10px;" ng-click="goToLogin()" name="button">Login</button>
+                    <div class="col-md-12">
+                        <button class="btn btn-fill--blue btn-md form-control btn-block" style="" ng-show="userIsLoggedIn" ng-click="goToAccountPage()"> View Account </button>
+                        <!-- <button type="button" class="btn btn-md btn-fill--blue btn-block" style="" ng-hide="userIsLoggedIn" ng-click="goToLogin()" name="button">Login</button> -->
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="home-tenants">
+            <div class="home-pin">
+                <div class="home-pin__orange">
+                    <div class="home-pin__orange__left">
+                    </div>
+                    <div class="home-pin__orange__right">
+                    </div>
+                </div>
             </div>
-            <hr style="position: relative; border: 0; height: 4px; background-color: white; margin-bottom:-25px;">
+
+        <div class="container">
+            <div class="row">
+                <h2 class="home-tenants__header col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Wizio gives you everything you need.</h2>
+            </div>
             <div class="row">
                 <div class="home-blurbs">
-                    <div class="home-blurb col-xs-12 col-sm-6 col-sm-offset-0 col-lg-5 col-lg-offset-1">
-                        <h3 class="home-blurb__header">What We Do:</h3>
-                        <h5 class="home-blurb__desc">
-                        <ul>
-                            <li>Create high quality virtual reality tours.
-                            </li>
-                            <li>Best in class tour viewer.
-                            </li>
-                            <li>Integrate our tours with YGL & your website.
-                            </li>
-                        </ul>
-                        <!-- <search-results-list-dir></search-results-list-dir> -->
-                    </h5>
+                    <div class="home-blurb col-xs-12 col-sm-4 col-sm-offset-0 col-lg-3 col-lg-offset-1">
+                        <h3 class="home-blurb__header">Camera/Tripod</h3>
+                        <h5 class="home-blurb__desc">You'll receive your very own camera and tripod with your Wizio subscription.</h5>
                     </div>
-                    <div class="home-blurb col-xs-12 col-sm-6">
-                        <h3 class="home-blurb__header">Why You Benefit:</h3>
-                        <h5 class="home-blurb__desc">
-                            <ul>
-                                <li>Cut lead qualification time in half.
-                                </li>
-                                <li>Virtual reality can double sight-unseen deals.
-                                </li>
-                                <li>Give your clients the best viewing experience.
-                                </li>
-                            </ul>
-                        </h5>
+                    <div class="home-blurb col-xs-12 col-sm-4">
+                        <h3 class="home-blurb__header">In Office Training</h3>
+                        <h5 class="home-blurb__desc">A Wizio team member will provide your entire office with an in person training.</h5>
                     </div>
-
+                    <div class="home-blurb col-xs-12 col-sm-4 col-lg-3 ">
+                        <h3 class="home-blurb__header">VR Tour Creation Tool.</h3>
+                        <h5 class="home-blurb__desc">Create and share a virtual reality tour in fifteen minutes tops.</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row home-sign-up">
+                <div class="home-sign-up__button col-xs-8 col-sm-5 col-md-3 col-lg-offset-1">
+                    <div ng-hide="userIsLoggedIn" class="col-md-12" style="width:100%">
+                    <a href="https://hopskins.typeform.com/to/ByD6BO" class="btn btn-fill--blue btn-md form-control" target="_blank">
+                        Start Creating VR Tours.
+                    </a>
+                </div>
+                </div>
             </div>
         </div>
-            <!-- <div class="row home-sign-up">
-            <div class="home-sign-up__button col-xs-4 col-sm-3 col-md-2 col-lg-offset-1">
-                <input class="btn btn--cta btn-md" ng-click="goAccoutCreate()" type="button" value="Sign Up"/>
-            </div>
-        </div> -->
     </div>
-</div>
 
     <div class="home-landlord">
         <div class="container">
             <div class="row">
                 <div class="home-blurb">
-                    <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">How It Works:</h2>
+                    <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">Virtual Reality is Redefining Real Estate:</h2>
                 <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">
                     <ol>
                         <li>Sign up above!
                         </li>
-                        <li>Get access to a growing database of VR.
+                        <li>More easily and quickly qualify clients.
                         </li>
-                        <li>Tour your clients virtually through YGL or your own website.
+                        <li>Close sight unseen deals easier than ever before.
                         </li>
                     </ol>
                 </h5>
