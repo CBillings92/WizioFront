@@ -6,6 +6,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
     'WizioConfig',
     'ModalBuilderFct',
     function($scope, $resource, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct) {
+
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
@@ -67,5 +68,12 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 alert('User Invited');
             })
         }
+
+
+        $scope.currentview = "share";
+
+
+
+
     }
 ]);
