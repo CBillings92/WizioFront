@@ -7276,6 +7276,10 @@ body {
       .account-type-buttons .btn {
         width: 40%; } }
 
+.btn-div button {
+  margin-top: 10px;
+  margin-bottom: 10px; }
+
 .home-hero {
   position: relative;
   background-color: #706f72;
