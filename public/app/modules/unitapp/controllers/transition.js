@@ -70,7 +70,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var query;
         // If the state is the Demo page or Landing page, get the apitoken and
         // apartmentpubid from the config file, else get it from the state params
-        console.dir('state');
         switch (state) {
             case 'LandingPage':
                 // apitoken = WizioConfig.static_vr.apikey;
@@ -95,7 +94,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 };
                 break;
             default:
-                console.dir('default');
                 activelistingid = $state.params.apitoken || $state.params.activelistingid;
                 apartmentpubid = $state.params.apartmentpubid;
                 apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
@@ -111,10 +109,11 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
             // if (state === 'LandingPage' || state === 'Demo') {
             //     media = result[0];
             // }
-            if(result[0].Floor_Plan){
+            if(result[0].Floor_Plan !== null){
                 $scope.floorplan = 'https://cdn.wizio.co/' + result[0].SubscriptionApartmentPubId + '/floorplan.png';
             } else {
                 $scope.floorplan = false;
+                $scope.hideFloorPlanButton = true;
             }
             $scope.media = lodash.groupBy(media, 'type');
             var photoIndex;
@@ -163,7 +162,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     $scope.$broadcast('CHANGE', {});
                 };
             } else {
-                console.dir(photoIndex + ' in bubl');
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
                 $scope.changePhoto = function(photoIndex) {
                     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
