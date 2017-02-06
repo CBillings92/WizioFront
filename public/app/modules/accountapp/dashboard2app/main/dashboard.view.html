@@ -1,92 +1,48 @@
 <div class="container">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-md-3">
             <user-info-dir></user-info-dir>
-            <a href="https://hopskins.typeform.com/to/TUMI6t" ng-hide="true" class="btn btn-fill--blue btn-md">Request Tour</a>
-            <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-click="changeApartment()">Modify Existing Tours</button>
-            <button class="btn btn-fill--blue btn-lg" ng-click="createTour()">Create Tour</button>
-        </div>
-        <div class="col-sm-6">
-            <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <div class="user-info " ng-model="accountInfo" style="" ng-show="inviteAccess">
-                <h2 class="user-info__name">Invite:</h2>
-                <div class="col-md-8">
-                    <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
-                    <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()">Invite</button>
-                </div>
+            <div class="col-md-12 btn-div" >
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'share'" ng-hide="currentview == 'share'">Share Tour</button>
+                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'share'" ng-show="currentview == 'share'">Share Tour</button>
+                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="changeApartment()">Modify Existing Tours</button>
+                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="createTour()">Create Tour</button>
+                <button ng-click="changeApartment()" type="button" class="btn btn-fill--blue btn-lg btn-block">Modify Tour</button>
+                <button  class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'search'" ng-hide="currentview == 'search'">Search</button>
+                <button  class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'search'" ng-show="currentview == 'search'">Search</button>
+                <button  class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'invite'" ng-hide="currentview == 'invite'">Invite</button>
+                <button  class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'invite'" ng-show="currentview == 'invite'">Invite</button>
             </div>
         </div>
-        <div class="col-sm-6">
-            <!-- <payment-manager-dirv ng-show="userIsSubscriber"></payment-manager-dirv> -->
-            <div class="user-info" ng-model="accountInfo" style="">
+        <div class="col-md-9" >
+
+            <div ng-show="currentview == 'search'" class="user-info" ng-model="accountInfo" style="margin-bottom:50px">
                 <h2 class="user-info__name">Search Apartments:</h2>
                 <search-dirv></search-dirv>
+                <h2 class="user-info__name">Search Results:</h2>
+                <loading-spinner-dir id="account-dashboard-search-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
+                <search-results-list-dir apartments='apartments' ng-hide="loading"></search-results-list-dir>
                 <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
             </div>
-        </div>
-    </div>
-    <div class="row user-info">
-        <div class="col-md-6">
-            <h2 class="user-info__name">Your Activated Apartments:</h2>
-            <active-listing-list-dir activelistings='activelistings'></active-listing-list-dir>
-        </div>
-        <div class=col-md-6>
-            <h2 class="user-info__name">Search Results:</h2>
-            <loading-spinner-dir id="account-dashboard-search-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
-            <search-results-list-dir apartments='apartments' ng-hide="loading"></search-results-list-dir>
-        </div>
-    </div>
-    <!-- <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div ui-view="controlPanel"></div>
-        </div>
-    </div> -->
-    <div class="row" ng-show="userType >= 2">
-        <!-- <div class="col-md-10 col-md-offset-1"> -->
-        <div ui-view="midHorizontal"></div>
-        <!-- </div> -->
-    </div>
-    <!-- row -->
-    <!-- <div class="row" ng-show="userType == 1 || userType == 0">
-        <div class="account container">
-            <div class="row account-filter-options">
-                <div class="col-xs-12">
-                    <div class="account__waitlisted" ng-class="{'active-option': myApartmentsSelected}" ng-click="toggleMyApartments()" ng-show="userType == 2">
-                        <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
-                        My Apartments
-                    </div>
-                    <div class="account__favorites" ng-class="{'active-option': myApplicationsSelected}" ng-click="toggleMyApplications()" ng-show="userType == 2">
-                        <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
-                        My Applications
-                    </div>
-                    <div class="account__waitlisted" ng-class="{'active-option': applicationSelected}" ng-click="toggleapplication()" ng-show="userType == 1">
-                        <ng-include src="'public/assets/icons/waitlist.svg'"></ng-include>
-                        application
-                    </div>
-                    <div class="account__favorites" ng-class="{'active-option': favoritesSelected}" ng-click="toggleFavorites()" ng-show="userType == 1">
-                        <ng-include src="'public/assets/icons/favorite.svg'"></ng-include>
-                        Favorites
-                    </div>
 
-                    <div class="grid-list-buttons">
-                        <div class="account__grid" ng-class="{'active-option': gridViewSelected}" ng-click="toggleGridView()">
-                            <i class="fa fa-th-large"></i>
-                            Grid
-                        </div>
-                        <div class="account__list" ng-class="{'active-option': listViewSelected}" ng-click="toggleListView()">
-                            <i class="fa fa-bars"></i>
-                            List
-                        </div>
+            <div ng-show="currentview == 'share'" style="margin-top:40px;margin-bottom:50px">
+                <h2 class="user-info__name">Your Activated Apartments:</h2>
+                <active-listing-list-dir activelistings='activelistings'></active-listing-list-dir>
+            </div>
+
+            <div ng-show="currentview == 'invite'" style="margin-bottom:50px">
+                <div class="user-info " ng-model="accountInfo" style="" ng-show="inviteAccess">
+                    <h2 class="user-info__name">Invite:</h2>
+                    <div class="col-md-8">
+                        <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
+                        <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()">Invite</button>
                     </div>
                 </div>
             </div>
-            <div class="row" ng-class="{'apt-grid-view': gridViewSelected, 'apt-list-view': listViewSelected}">
-                <div class="col-xs-12" ng-show="applicationSelected" ui-view="application"></div>
-                <div class="col-xs-12" ng-show="favoritesSelected" ui-view="favorites"></div>
-            </div>
+
         </div>
-    </div> -->
+    </div>
 </div>
