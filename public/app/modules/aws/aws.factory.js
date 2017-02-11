@@ -4,7 +4,11 @@
 angular.module('AWSApp')
   .factory('AWSFct', [
     '$q',
-    function($q){
+    'WizioConfig',
+    function(
+        $q,
+        WizioConfig
+    ){
         AWS.config.update({
           accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
           secretAccessKey: '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'
@@ -17,9 +21,21 @@ angular.module('AWSApp')
             region: region || 'us-east-1'
           });
           return S3Object;
-        }
+      }
 
-        /*
+      /* modifyKeyForEnvironment - SUMMARY
+        Modify the key of the S3 object based on the current environment the
+        codebase is running in. If it's dev (local) or test (test AWS server)
+        append 'test_' to the data so it's easily findable and deleteable.
+      */
+      function modifyKeyForEnvironment(key) {
+          if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
+              key = 'test_' + key;
+          }
+          return key
+      }
+
+        /* copyFile - SUMMARY
           Rename a file in an S3 bucket - happnes by copying the file with
           the new name and then deletes the old file
         */
@@ -47,6 +63,9 @@ angular.module('AWSApp')
           });
         }
 
+        /* deleteFile - SUMMARY
+            delete a file from AWS S3 buckets
+        */
         function deleteFile(fileName, folderName) {
           var bucket = createS3Object();
           var params = {
@@ -86,10 +105,35 @@ angular.module('AWSApp')
             });
         }
 
+        function uploadFloorPlanFile(file, key, bucket, region) {
+            return new $q(function(resolve, reject){
+                var properKey = modifyKeyForEnvironment(key);
+                //check if the file exists
+                if (file) {
+                    var bucket = createS3Object();
+                    //parameters to be sent to S3 - key is the path in the S3 bucket
+                    var params = {
+                        Bucket: 'equirect-photos',
+                        Key: properKey,
+                        ContentType: 'png',
+                        Body: file
+                    };
+
+                    //save the floorplan to S3
+                    bucket.putObject(params, function(err, data) {
+                        resolve(data);
+                    });
+                } else {
+                    reject('Could not reach S3 - Please yell at Cameron');
+                }
+            });
+        }
+
         return {
           s3: {
             equirectPhotos:{
-              renameFile: renameFile
+              renameFile: renameFile,
+              uploadFloorPlanFile: uploadFloorPlanFile
             }
           }
         };
