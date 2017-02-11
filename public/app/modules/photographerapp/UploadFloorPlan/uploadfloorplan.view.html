@@ -1,0 +1,21 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h3>Please choose your floor plan file</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <form id="upload-floorplan-form" name="createAptForm">
+                <!-- Choose Floor Plan Photo -->
+                <div class="col-md-6" ng-hide="noFloorPlanChkBox" style="margin-top:10px;margin-bottom:10px;">
+                        <input type="file" name="floorplan-file" id="file-chooser" hidden ng-required="!noFloorPlanChkBox"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
+    <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-click="handleSubmitClick()" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Submit</button>
+    <div id="results"></div>
+</div>

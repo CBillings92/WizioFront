@@ -35,6 +35,7 @@ angular.module('MainApp')
         }
 
         return {
+            ENV: env,
             baseAPIURL: (function() {
                 switch (env) {
                     case 'dev':
@@ -47,28 +48,17 @@ angular.module('MainApp')
                         return 'http://172.16.0.3:4000/api/';
                 }
             }()),
-            //LIVETESTER URL
-            // baseAPIURL: 'http://betaTestProd.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/',
 
-
-            //FRONT END SERVER URL
-            //This frontEndURL may seem pointless, its NOT, go to sharedfactories map function to find out why we need it
-            //
-            //The following line should be uncometed before testing on vagrant on your local machine
-            //frontEndURL: 'http://beta.wizio.co/',
-            //
-            //The following line should be uncometed before pushing to the AWS elasticbeanstalk server
-            //frontEndURL: 'http://frontbeta-4qbeydmczn.elasticbeanstalk.com/',
-            //frontEndURL: 'http://MatanBetaTest-j5t4cpkddg.elasticbeanstalk.com/',
-            //frontEndURL: 'http://TESTENVF-4tjbtepvhi.elasticbeanstalk.com/',
             frontEndURL: window.location.origin,
 
+            // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
             LandingPage: {
                 activeListingId: function(){
                   var activeListingId = env === 'test' ? 'a55f59b2-d99d-11e6-903a-12e04a9cd045' : 'b19e3352-d9fd-11e6-85e0-0a8adbb20c4d'
                   return activeListingId;
                 }
             },
+
             DemoPage: {
               activeListingId: function(){
                 var activeListingId = env === 'test' ? '' : '0a68e5a9-da00-11e6-85e0-0a8adbb20c4d';
@@ -77,8 +67,14 @@ angular.module('MainApp')
             },
 
             //angular app URLs - views
-            //
             modulesURL: 'public/app/modules',
+            PhotographerApp: {
+                Views: {
+                    CreateUnitModal: 'public/app/modules/photographerapp/CreateUnit/createunit.modal.view.html',
+                    UploadFloorPlanDescision: 'public/app/modules/photographerapp/UploadFloorPlanDecision/uploadfloorplandecision.modal.html',
+                    UploadFloorPlan: 'public/app/modules/photographerapp/UploadFloorPlan/uploadfloorplan.view.html',
+                }
+            },
             //AdminPanel App
             AdminPanelAppMainViewsURL: 'public/app/modules/adminpanelapp/main/',
             AdminPanelAppViewsURL: 'public/app/modules/adminpanelapp/viewtemplates/',
@@ -114,6 +110,8 @@ angular.module('MainApp')
                 renameMedia: "public/app/modules/photographerapp/upload/rename-media.modal.view.html"
               }
             },
+
+            // STRIPE TEST KEY
             stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",
             static_vr: (function() {
                 var data = {
