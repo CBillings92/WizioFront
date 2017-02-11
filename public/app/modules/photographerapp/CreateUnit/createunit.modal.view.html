@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h3>Enter Address Information</h3>
+</div>
+<div class="modal-body">
+    <p>Enter the address followed by the unit number or (floorplan model number).</p>
+    <div class="row">
+        <div class="form-group">
+            <form id="upload-floorplan-form" name="createAptForm" ng-submit="functions.saveForm()">
+                <!-- Apartment Address Input -->
+                <div class="col-md-8">
+                    <label class="control-label" for="apartmentAddress">Apartment Address</label>
+                    <input class="nav-search form-control" style="border: 1px solid black; form-control" ng-model="apartment.address" placeholder="Search by area" type="text" uib-typeahead-loading="loadingLocations" uib-typeahead-min-length="3" uib-typeahead-no-results="noResults"
+                        uib-typeahead="address for address in getLocation($viewValue)" />
+                </div>
+                <!-- Floor Plan/Unit Number Input -->
+                <div class="col-md-4">
+                    <label class="control-label" for="apartmentAddress">Floor Plan/Unit Number</label>
+                    <input type="text" class="form-control" name="apartmentAddress" ng-model="apartment.floorPlanModel" style="border: 1px solid black" required/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
+    <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Submit</button>
+    <loading-spinner-dir style="color:black; visibility: hidden;" id="floorplanUpload"></loading-spinner-dir>
+    <div id="results"></div>
+</div>
