@@ -73,7 +73,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
+                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
+                            
                         }
                     }
                 })
