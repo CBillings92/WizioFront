@@ -12,6 +12,8 @@
                 <button  class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'search'" ng-show="currentview == 'search'">Search</button>
                 <button  class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'invite'" ng-hide="currentview == 'invite'">Invite</button>
                 <button  class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'invite'" ng-show="currentview == 'invite'">Invite</button>
+                <button  class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'profile'" ng-hide="currentview == 'profile'">Agent Info</button>
+                <button  class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'profile'" ng-show="currentview == 'profile'">Agent Info</button>
             </div>
         </div>
         <div class="col-md-9" >
@@ -42,6 +44,15 @@
                         <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()">Invite</button>
                     </div>
                 </div>
+            </div>
+
+            <div ng-show="currentview == 'profile'" style="margin-bottom:50px">
+                <h2 class="user-info__name"> Update Agent Info: </h2>
+                <p> Upload Photo </p>
+                <input type="text" name="" class="form-control" style="border: 1px solid black;" placeholder="" value="">
+                <p> Phone Number <p>
+                <input type="text" name="" class="form-control" style="border: 1px solid black;" placeholder="555-555-5555" value="">
+                <button>Save</button>
             </div>
 
         </div>
