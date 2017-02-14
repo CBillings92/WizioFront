@@ -1,5 +1,26 @@
 angular.module('AgentProfileApp')
-.controller('AgentProfileCtrl', ['$scope', function($scope) {
+.controller('AgentProfileCtrl',
+    ['$scope',
+    '$resource',
+    'WizioConfig',
+    '$stateParams',
+    '$state',
+    function($scope, $resource, WizioConfig, $stateParams, $state) {
+
+
+
+    if ($state.current.name == "Demo") {
+        $resource(WizioConfig.baseAPIURL + '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d').query(function(response){
+            console.log(response[response.length - 1]);
+        });
+    } else  {
+
+        $resource(WizioConfig.baseAPIURL + 'activelisting').get(function(response){
+            console.log("what");
+        });
+    }
+
+
 
     // var out = false;
     $scope.animation_var = "animation-start";
@@ -11,9 +32,9 @@ angular.module('AgentProfileApp')
         $scope.animation_var = "animation-end";
     else
         $scope.animation_var = "animation-start";
-
-
     }
+
+
 
 
     // $.fn.flyout = function(options) {

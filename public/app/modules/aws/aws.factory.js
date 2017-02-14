@@ -129,11 +129,38 @@ angular.module('AWSApp')
             });
         }
 
+        function uploadProfileFile(file, key, bucket, region) {
+            return new $q(function(resolve, reject){
+                var properKey = modifyKeyForEnvironment(key);
+                //check if the file exists
+                if (file) {
+                    var bucket = createS3Object();
+                    //parameters to be sent to S3 - key is the path in the S3 bucket
+                    var params = {
+                        Bucket: 'wizio-profile-photos',
+                        Key: properKey,
+                        ContentType: file.type,
+                        Body: file
+                    };
+
+                    //save the floorplan to S3
+                    bucket.putObject(params, function(err, data) {
+                        resolve(data);
+                    });
+                } else {
+                    reject('Could not reach S3 - Please yell at Cameron');
+                }
+            });
+        }
+
         return {
           s3: {
             equirectPhotos:{
               renameFile: renameFile,
               uploadFloorPlanFile: uploadFloorPlanFile
+            },
+            profilePhotos: {
+                uploadphoto: uploadProfileFile
             }
           }
         };
