@@ -152,5 +152,50 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 alert('User Invited');
             })
         }
+
+        var apiurl = WizioConfig.baseAPIURL;
+
+
+        $scope.saveProfilePhoto = function() {
+
+            var fileChooser = document.getElementById('file-chooser');
+            //grab the first file in the file array (our floorplan)
+            var file = fileChooser.files[0];
+            //check if the file exists
+            if (file) {
+                var key = 'profile-photos/' + user.firstName + '_' + user.lastName + '_' + user.id + '.png';
+                // file, key, bucket, region
+                AWSFct.s3.profilePhotos.uploadphoto(file, key, false).then(function (response) {
+
+                    key = AWSFct.utilities.modifyKeyForEnvironment(key);
+                    $resource(apiurl + 'user/update-user-profile-photo' )
+                    .save({awsProfilePhotoUrl: "https://cdn.wizio.co/" + key, id: user.id }, function(response){
+
+                    })
+                });
+
+            } else {
+                alert('please select a valid file');
+            }
+        }
+
+        $scope.savePhoneNumber = function() {
+            var phoneNumberInput = document.getElementById('phone-input');
+
+            if (phoneNumberInput.value) {
+                $resource(apiurl + 'user/update-user-phone-number' )
+                .save({phoneNumber: phoneNumberInput.value, id: user.id }, function(response){
+
+                })
+            }
+
+        }
+
+
+
+
+
+
+
     }
 ]);
