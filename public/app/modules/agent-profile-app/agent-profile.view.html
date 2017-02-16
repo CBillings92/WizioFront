@@ -6,16 +6,17 @@
             <span style="color:white; font-size:1.5em; width:90px; padding-left:130px; padding-right:40px; ">&nbsp;Agent&nbsp;</span>
             <div style="position:relative; display:flex; flex-direction:column; justify-content:center; align-items:center; right:0px; bottom:-30px;  -webkit-transform: rotate(90deg); -moz-transform: rotate(90deg); color:white">
                 <div class="row">
-                    <div class="" id="Agent-Profile__Photo"><img style="width:200px;" src="/public/viewtemplates/images/aboutimages/trentduffy.png" /></div>
+                    <div ng-show="{{agent.awsProfilePhotoUr}}" class="" id="Agent-Profile__Photo"><img style="width:200px;height:200px;" ng-src="{{agent.awsProfilePhotoUrl}}" /></div>
+                    <div ng-hide="{{agent.awsProfilePhotoUr}}" class="" id="Agent-Profile__Photo"><img style="width:200px;height:200px;" ng-src="{{blank}}" /></div>
                 </div>
                 <div class="row"s>
-                    <div class="" id="Agent-Profile__Name" style="padding-right:auto; padding-left:auto;padding-top:25px;">Trent Duffy</div>
+                    <div class="" id="Agent-Profile__Name" style="padding-right:auto; padding-left:auto;padding-top:25px;">{{agent.firstName}} {{agent.lastName}}</div>
                 </div>
                 <div class="row">
-                    <div class="" id="Agent-Profile__Email"><a href="mailto:trent@wizio.co">trent@wizio.co</div>
+                    <div class="" id="Agent-Profile__Email"><a href="{{agent.email}}">{{agent.email}}</div>
                 </div>
                 <div class="row">
-                    <div class="" id="Agent-Profile__PhoneNumber"><a href="tel:860-304-6131">860-304-6131</div>
+                    <div class="" id="Agent-Profile__PhoneNumber"><a href="tel:{{agent.phoneNumber}}">{{agent.phoneNumber}}</div>
                 </div>
             </div>
         </div>
