@@ -122,7 +122,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 //hardcoded
                 photoIndex = 6;
             } else if (state === 'Demo') {
-                photoIndex = 17;
+                photoIndex = 0;
             } else if (state === 'DemoOneBackBay') {
                 photoIndex = 9;
             } else {
