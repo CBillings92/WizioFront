@@ -137,7 +137,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 // Set the photo index to the selected photo index
                 $scope.photoIndex = photoIndex;
                 // Get the photourl and set it on scope
-                if(state === 'LandingPage' || state === "Demo"){
+                if(state === 'LandingPage'){
                     photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
                 } else {
                     photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
@@ -151,7 +151,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 // Allow the user to change photos
                 $scope.changePhoto = function(photoIndex) {
                     var photoUrl = "";
-                    if(state === 'LandingPage' || state === "Demo"){
+                    if(state === 'LandingPage'){
                         photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
                     } else {
                         photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
