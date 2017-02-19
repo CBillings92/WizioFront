@@ -1,5 +1,5 @@
-<!---<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" ng-style="landingPageStyle" role="navigation"> --->
-<nav class="navbar" ng-style="landingPageStyle" ng-hide="onLandingPage" role="navigation">
+<nav class="navbar" ng-class="{transparent_nav: isActive('/') || isActive('/about')}" ng-style="landingPageStyle" role="navigation">
+<!-- <nav class="navbar" ng-style="landingPageStyle" ng-hide="onLandingPage" role="navigation"> -->
     <div class="container">
         <div class="navbar-header">
             <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
@@ -9,7 +9,10 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" ng-click="goHome()">
+            <a class="navbar-brand-gray" ng-hide="onLandingPage" ng-click="goHome()">
+                <img id="navbarlogo"/>
+            </a>
+            <a class="navbar-brand-white" ng-show="onLandingPage" ng-click="goHome()">
                 <img id="navbarlogo"/>
             </a>
         </div>
@@ -41,9 +44,9 @@
                     <a href="">Account</a>
                 </li>
 
-                <li id="" ng-click="signup()" ng-hide="isLoggedIn">
+                <!-- <li id="" ng-click="signup()" ng-hide="isLoggedIn">
                     <a href="">Sign Up</a>
-                </li>
+                </li> -->
                 <li ng-click="logout()" ng-show="isLoggedIn">
                     <a href="">Logout</a>
                 </li>

@@ -2,7 +2,7 @@
 
 */
 angular.module('PhotographerApp')
-    .controller('UploadFloorPlanDescisionCtrl', [
+    .controller('UploadFloorPlanDecisionCtrl', [
         '$scope',
         'modalData',
         '$uibModalInstance',

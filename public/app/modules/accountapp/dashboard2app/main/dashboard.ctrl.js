@@ -7,13 +7,16 @@ angular.module('AccountApp').controller('DashboardCtrl', [
     'WizioConfig',
     'ModalBuilderFct',
     'AWSFct',
-    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct) {
+    'DashboardFct',
+    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct) {
         // set flags
+        $scope.currentview = 'share';
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
 
-        var createModal = ModalBuilderFct.buildComplexModal;
+        // short hand the factory function for ease of use
+        var createModal = ModalBuilderFct.buildModalWithController;
 
         // get the user from session storage
         var user = TokenSvc.decode();
@@ -22,79 +25,66 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
 
         // get all active listings for this user
-        $scope.activelistings = TokenSvc.decode().ActiveListings;
+        $scope.activelistings = user.ActiveListings;
 
         // create tour functionailty - button click
         $scope.createTour = function() {
             createModalWorkFlow()
-            .then(saveUnitAndFloorPlan)
             .then(function(response) {})
             .catch(function(err){
                 console.dir(err);
             })
         }
-        function saveUnitAndFloorPlan(state) {
-            var apiurl = WizioConfig.baseAPIURL;
-            //send apartemnt address and unit number to the backend
-            LoadingSpinnerFct.show("floorplanUpload");
-            noFloorPlan = false;
-            // if there is no file on the state, then there is no floor plan
-            if (state.upload_floor_plan_flag) {
-                noFloorPlan = true;
-            };
-            $resource(apiurl + 'unit').save({
-                apartmentAddress: state.address,
-                floorPlanModel: state.floorPlanModel,
-                user: TokenSvc.decode(),
-                noFloorPlan: noFloorPlan
-            }, function(response) {
-                if (response.message) {
-                    alert("Apartment already created! Search for this apartment in your account's search bar, or search for it after selecting Modify Existing Tours on your account page");
-                    LoadingSpinnerFct.hide("floorplanUpload");
-                    return;
-                } else {
 
-                    var key = response.SubscriptionApartment.pubid + '/floorplan.png';
-
-                    if (noFloorPlan) {
-                        // stop the loading spinner
-                        LoadingSpinnerFct.hide('floorplanUpload');
-
-                        // reset form displays
-                        $scope.formSubmitted = false;
-                        alert('Unit created without a floorplan. Please click ok to continue.');
-                        return;
-                    } else {
-                        AWSFct.s3.equirectPhotos.uploadFloorPlanFile(state.file, key)
-                        .then(function(response){
-                            LoadingSpinnerFct.hide('floorplanUpload');
-                            alert('finished upload');
-                        })
-                    }
-                }
-            });
-        }
+        /*
+            FIRST - CREATE MODAL TO CAPTURE APARTMENT ADDRESS AND UNIT number
+            SECOND - CREATE MODAL TO ASK IF THEY'LL BE UPLOADING A FLOOR plan
+            THIRD - IF NO FLOOR PLAN, TERMINATE MODAL workflow
+            THIRD - IF FLOOR PLAN, CREATE MODAL TO GET FLOOR PLAN file
+            FOURTH - SAVE UNIT AND UPLOAD FLOOR PLAN IF APPLICABLE
+        */
         function createModalWorkFlow() {
             return $q(function(resolve, reject) {
-                /*
-                    Create the Create Unit Modal - gets the address information
-                    THEN create the Upload Floor Plan Decision modal - Gets whether user
-                         will upload a floor plan.
-                    THEN if the user chooses to upload a floor plan, display upload floor plan modal
-                         if the user chooses not to upload a floor plan, save the unit and end
-                    THEN save unit and floor plan
-                */
-                createModal('md', WizioConfig.PhotographerApp.Views.CreateUnitModal, 'CreateUnitModalCtrl', {})
+                var createUnitModalConfig = {
+                    size: 'md',
+                    templateUrl: WizioConfig.PhotographerApp.Views.CreateUnitModal,
+                    controller: 'CreateUnitModalCtrl',
+                    modalData: {}
+                };
+                var uploadFloorPlanDecisionModalConfig = {
+                    size: 'md',
+                    templateUrl: WizioConfig.PhotographerApp.Views.UploadFloorPlanDescision,
+                    controller: 'UploadFloorPlanDecisionCtrl',
+                    modalData: null
+                }
+                var uploadFloorPlanModalConfig = {
+                    size: 'md',
+                    templateUrl: WizioConfig.PhotographerApp.Views.UploadFloorPlan,
+                    controller: 'UploadFloorPlanCtrl',
+                    modalData: null
+                }
+
+                // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
+                createModal(createUnitModalConfig)
                 .then(function(state) {
-                    return createModal('md', WizioConfig.PhotographerApp.Views.UploadFloorPlanDescision, 'UploadFloorPlanDescisionCtrl', state);
-                }).then(function(state) {
+
+                    // CREATE A FLOOR PLAN? MODAL
+                    uploadFloorPlanDecisionModalConfig.modalData = state;
+                    return createModal(uploadFloorPlanDecisionModalConfig);
+                })
+                .then(function(state) {
                     if(state.upload_floor_plan_flag) {
-                        return createModal('md', WizioConfig.PhotographerApp.Views.UploadFloorPlan, 'UploadFloorPlanCtrl', state)
+                        // UPLOAD FLOOR PLAN MODAL - WILL CREATE UNIT TOO
+                        uploadFloorPlanModalConfig.modalData = state;
+                        createModal(uploadFloorPlanModalConfig)
+                        .then(function(response){
+                            resolve(response);
+                        });
                     } else {
+                        // CREATE ONLY THE UNIT - WITH NO FLOOR PLAN
+                        return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false)
                         return resolve(state);
                     }
-                }).then(function(state) {
-                    return resolve(state);
                 })
                 .catch(function(err){
                     alert('in catch')

@@ -6128,9 +6128,14 @@ a:focus {
     height: 4px; }
   .navbar #navbarlogo {
     cursor: pointer; }
-  .navbar .navbar-brand {
+  .navbar .navbar-brand-white {
     padding: 9px 0 0 15px; }
-    .navbar .navbar-brand img {
+    .navbar .navbar-brand-white img {
+      width: 112px;
+      content: url("/public/viewtemplates/images/brand_assets/wizio_logo_white.png"); }
+  .navbar .navbar-brand-gray {
+    padding: 9px 0 0 15px; }
+    .navbar .navbar-brand-gray img {
       width: 112px;
       content: url("/public/viewtemplates/images/brand_assets/wizio_logo_gray.png"); }
   .navbar .navbar-right {
@@ -6164,7 +6169,8 @@ a:focus {
     color: #f79739; }
 
 .transparent_nav {
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  z-index: 1600; }
   .transparent_nav .navbar-nav > li > a {
     color: #706f72; }
 

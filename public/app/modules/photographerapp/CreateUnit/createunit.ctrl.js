@@ -39,27 +39,6 @@ angular.module('PhotographerApp')
             return SmartSearchSvc.smartSearch(val);
         };
 
-        // config the AWS object in the global scope
-        AWS.config.update({
-            accessKeyId: 'AKIAJ3OKI45M7I25XVNQ',
-            secretAccessKey: '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'
-        });
-
-        // config the AWS S3 object for upload
-        var bucket = new AWS.S3({
-            endpoint: 'https://cdn.wizio.co',
-            s3BucketEndpoint: true,
-            region: 'us-east-1',
-        });
-
-        /*  saveFloorPlanToS3 - SUMMARY
-            saves tho floorplan image to S3, expects to receive the key which is
-            a string that states what the folder name will be in S3 for the unit.
-            should be the unit's public id.
-
-            returns a promise
-        */
-
         $scope.closeModal = function(){
             $uibModalInstance.dismiss('exit');
         }
