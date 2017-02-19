@@ -29,10 +29,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
 
         // create tour functionailty - button click
         $scope.createTour = function() {
-            createModalWorkFlow()
-            .then(function(response) {})
-            .catch(function(err){
-                console.dir(err);
+            createModalWorkFlow().then(function(response) {}).catch(function(err) {
             })
         }
 
@@ -63,44 +60,46 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     controller: 'UploadFloorPlanCtrl',
                     modalData: null
                 }
+                var addPhotosModalConfig = {
+                    size: 'lg',
+                    templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
+                    controller: 'UploadPageCtrl',
+                    modalData: {}
+                }
 
                 // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
-                createModal(createUnitModalConfig)
-                .then(function(state) {
+                createModal(createUnitModalConfig).then(function(state) {
 
                     // CREATE A FLOOR PLAN? MODAL
                     uploadFloorPlanDecisionModalConfig.modalData = state;
                     return createModal(uploadFloorPlanDecisionModalConfig);
-                })
-                .then(function(state) {
-                    if(state.upload_floor_plan_flag) {
+                }).then(function(state) {
+                    if (state.upload_floor_plan_flag) {
                         // UPLOAD FLOOR PLAN MODAL - WILL CREATE UNIT TOO
                         uploadFloorPlanModalConfig.modalData = state;
-                        createModal(uploadFloorPlanModalConfig)
-                        .then(function(response){
-                            resolve(response);
-                        });
+                        return createModal(uploadFloorPlanModalConfig);
                     } else {
                         // CREATE ONLY THE UNIT - WITH NO FLOOR PLAN
                         return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false)
-                        return resolve(state);
                     }
                 })
-                .catch(function(err){
+                .then(function(response){
+                    addPhotosModalConfig.modalData = response;
+                    return createModal(addPhotosModalConfig)
+                })
+                .catch(function(err) {
                     alert('in catch')
                     return reject(err);
                 })
             })
         }
-        $scope.changeApartment = function() {
+        $scope.modifyExistingTour = function() {
             ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/upload/upload.view.html', 'UploadPageCtrl', {});
         }
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-search-loader')
             var apartments = [];
-            console.dir(results);
             for (var i = 0; i < results.length; i++) {
-                console.dir(results[i]);
                 apartments.push(results[i].Apartment);
             }
             $scope.apartments = apartments;
@@ -129,14 +128,12 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 firstName: user.firstName,
                 lastName: user.lastName
             };
-            console.dir(data);
             $resource(WizioConfig.baseAPIURL + 'subscription/invite').save(data).$promise.then(function(response) {
                 alert('User Invited');
             })
         }
 
         var apiurl = WizioConfig.baseAPIURL;
-
 
         $scope.saveProfilePhoto = function() {
 
@@ -147,13 +144,13 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             if (file) {
                 var key = 'profile-photos/' + user.firstName + '_' + user.lastName + '_' + user.id + '.png';
                 // file, key, bucket, region
-                AWSFct.s3.profilePhotos.uploadphoto(file, key, false).then(function (response) {
+                AWSFct.s3.profilePhotos.uploadphoto(file, key, false).then(function(response) {
 
                     key = AWSFct.utilities.modifyKeyForEnvironment(key);
-                    $resource(apiurl + 'user/update-user-profile-photo' )
-                    .save({awsProfilePhotoUrl: "https://cdn.wizio.co/" + key, id: user.id }, function(response){
-
-                    })
+                    $resource(apiurl + 'user/update-user-profile-photo').save({
+                        awsProfilePhotoUrl: "https://cdn.wizio.co/" + key,
+                        id: user.id
+                    }, function(response) {})
                 });
 
             } else {
@@ -165,19 +162,13 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             var phoneNumberInput = document.getElementById('phone-input');
 
             if (phoneNumberInput.value) {
-                $resource(apiurl + 'user/update-user-phone-number' )
-                .save({phoneNumber: phoneNumberInput.value, id: user.id }, function(response){
-
-                })
+                $resource(apiurl + 'user/update-user-phone-number').save({
+                    phoneNumber: phoneNumberInput.value,
+                    id: user.id
+                }, function(response) {})
             }
 
         }
-
-
-
-
-
-
 
     }
 ]);

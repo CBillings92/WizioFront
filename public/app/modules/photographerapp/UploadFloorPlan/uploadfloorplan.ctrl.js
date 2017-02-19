@@ -10,28 +10,28 @@ angular.module('PhotographerApp')
         '$uibModalInstance',
         'modalData',
         'DashboardFct',
+        'LoadingSpinnerFct',
         function(
             $scope,
             $uibModalInstance,
             modalData,
-            DashboardFct
+            DashboardFct,
+            LoadingSpinnerFct
         ) {
-            alert('hello');
             $scope.handleSubmitClick = function () {
-                alert('success');
                 var state = modalData;
                 var fileChooser = document.getElementById('file-chooser');
                 var file = fileChooser.files[0];
-                console.dir(state);
                 if (file) {
+                    LoadingSpinnerFct.show('create-unit-floor-plan-spinner');
                     DashboardFct.workflow.createTourAndFloorPlan(
                         state.address,
                         state.floorPlanModel,
                         file
                     )
                     .then(function(response){
-                        LoadingSpinnerFct.hide('floorplanUpload');
-                        $uibModalInstance.close(newState);
+                        LoadingSpinnerFct.hide('create-unit-floor-plan-spinner');
+                        $uibModalInstance.close(response);
                     });
                 } else {
                     alert("You haven't chosen a floor plan photo yet!");
