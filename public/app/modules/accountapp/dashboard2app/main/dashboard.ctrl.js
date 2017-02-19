@@ -21,6 +21,9 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         // get the user from session storage
         var user = TokenSvc.decode();
 
+        $scope.phoneNumber = user.phoneNumber;
+        // console.log(user);
+
         // get whether the user has access to invite others
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
 
@@ -159,13 +162,16 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         }
 
         $scope.savePhoneNumber = function() {
-            var phoneNumberInput = document.getElementById('phone-input');
+            var phoneNumberInput = {};
+            phoneNumberInput.value = document.getElementById('phone-input');
 
             if (phoneNumberInput.value) {
-                $resource(apiurl + 'user/update-user-phone-number').save({
-                    phoneNumber: phoneNumberInput.value,
-                    id: user.id
-                }, function(response) {})
+                $resource(apiurl + 'user/update-user-phone-number' )
+                .save({phoneNumber: phoneNumberInput.value, id: user.id }, function(response){
+                    // $scope.phoneNumber = phoneNumberInput.value;
+                    alert("Your phone number has been updated to: " + phoneNumberInput.value);
+                    // user = TokenSvc.decode();
+                })
             }
 
         }
