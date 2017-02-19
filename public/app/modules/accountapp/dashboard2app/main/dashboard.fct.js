@@ -81,7 +81,7 @@ angular.module('AccountApp').factory('DashboardFct', [
                 var createdUnit;
                 createUnit(address, unitNum, true)
                 .then(function(data) {
-                    return uploadFloorPlan(data.Apartment.SubscriptionApartment.pubid, file);
+                    return uploadFloorPlan(data.SubscriptionApartment.pubid, file);
                 })
                 .then(function(response){
                     resolve(data);
