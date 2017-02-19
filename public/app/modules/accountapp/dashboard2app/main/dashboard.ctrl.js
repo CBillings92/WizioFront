@@ -183,7 +183,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         }
 
         $scope.savePhoneNumber = function() {
-            var phoneNumberInput.value = document.getElementById('phone-input');
+            var phoneNumberInput = {};
+            phoneNumberInput.value = document.getElementById('phone-input');
 
             if (phoneNumberInput.value) {
                 $resource(apiurl + 'user/update-user-phone-number' )
