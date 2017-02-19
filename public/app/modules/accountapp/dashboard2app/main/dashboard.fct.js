@@ -81,10 +81,11 @@ angular.module('AccountApp').factory('DashboardFct', [
                 var createdUnit;
                 createUnit(address, unitNum, true)
                 .then(function(data) {
+                    createdUnit = data;
                     return uploadFloorPlan(data.SubscriptionApartment.pubid, file);
                 })
                 .then(function(response){
-                    resolve(data);
+                    resolve(createdUnit);
                 })
                 .catch(function(error) {
                     alert('error');
