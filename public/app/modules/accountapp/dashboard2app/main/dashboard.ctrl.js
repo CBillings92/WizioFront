@@ -70,14 +70,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                             LoadingSpinnerFct.hide('floorplanUpload');
                             alert('finished upload');
                         })
-                        // saveFloorPlanToS3(key).then(function(response) {
-                        //     $scope.formSubmitted = false;
-                        //     alert('finished');
-                        //     $uibModalInstance.close('finished');
-                        // }).catch(function(err) {
-                        //     alert(err);
-                        //     $scope.formSubmitted = false;
-                        // });
                     }
                 }
             });
