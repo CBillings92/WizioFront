@@ -170,10 +170,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             }
         }
 
-        function bulkUploadPhotos() {
-            
-        }
-
         /*  SUMMARY - makePinAction(mouseEvent, subScope, clickOnFloorplan)
             mouseEvent provides us with the necessary coordinates for placing and
             moving pins. It also provides us with the ID of the pin that has been

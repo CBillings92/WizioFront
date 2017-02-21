@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h1>Create Your Tour <small>$scope.unit.</small></h1>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+        <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
+            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+            <div style="position:relative; display:inline-block;" id="floorplanOverlay">
+                <img src="{{selectedFloorplan}}" ng-hide="displayNoFloorplanMessage" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
+                <h4 ng-show="displayNoFloorplanMessage">
+                            No floor plan available. Please upload photos using the Add Photo button below.
+                        </h4>
+                <br>
+                <p ng-show="displayNoFloorplanMessage" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p>
+                <!-- this loop is for displaying newly created pins -->
+                <span>
+                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-group" style="padding:30px;" ng-show="showAmenityButton">
+            <button class="btn btn--cta form-control" ng-click="addAmenity()">Upload {{selectedFloorplan ? "Amenities" : "Photos"}}</button>
+            <label class="control-label">You may upload more than 1 photo at a time</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Your {{selectedFloorplan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
+            <div ng-repeat="amenity in amenities">
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <span class="btn btn-default btn-file"><span>Choose file</span><input type="file" multiple /></span>
+                    <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
+                </div>
+                <div class="col-md-4">
+                    <button type="button" class="btn btn-primary form-control" style="margin:5px;" ng-click="makeAmmenityAction(amenity)" name="button">{{amenity.title}}</button>
+                </div>
+                <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
+                {{amenity.title}}
+            </a> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="closeModal()" name="button">Finish</button>
+</div>
