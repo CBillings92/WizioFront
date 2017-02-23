@@ -26,6 +26,20 @@ angular.module('SharedFactoryApp')
                 });
             }
 
+            function buildModalWithControllerObj(modalConfig) {
+                return $q(function(resolve, reject){
+                    buildModalWithController(
+                        modalConfig.size,
+                        modalConfig.templateUrl,
+                        modalConfig.controller,
+                        modalConfig.modalData
+                    )
+                    .then(function(response){
+                        return resolve(response);
+                    })
+                });
+            }
+
             function buildModalWithNoController(closeBtnText, actionBtnText, headerText, bodyText) {
                 return new $q(function(resolve, reject) {
                     ModalSvc.showModal({}, {
@@ -41,7 +55,8 @@ angular.module('SharedFactoryApp')
             }
             return {
                 buildComplexModal: buildModalWithController,
-                buildSimpleModal: buildModalWithNoController
+                buildSimpleModal: buildModalWithNoController,
+                buildModalWithController: buildModalWithControllerObj
             };
         }
     ]);

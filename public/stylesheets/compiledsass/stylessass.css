@@ -6128,9 +6128,14 @@ a:focus {
     height: 4px; }
   .navbar #navbarlogo {
     cursor: pointer; }
-  .navbar .navbar-brand {
+  .navbar .navbar-brand-white {
     padding: 9px 0 0 15px; }
-    .navbar .navbar-brand img {
+    .navbar .navbar-brand-white img {
+      width: 112px;
+      content: url("/public/viewtemplates/images/brand_assets/wizio_logo_white.png"); }
+  .navbar .navbar-brand-gray {
+    padding: 9px 0 0 15px; }
+    .navbar .navbar-brand-gray img {
       width: 112px;
       content: url("/public/viewtemplates/images/brand_assets/wizio_logo_gray.png"); }
   .navbar .navbar-right {
@@ -6164,7 +6169,8 @@ a:focus {
     color: #f79739; }
 
 .transparent_nav {
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  z-index: 1600; }
   .transparent_nav .navbar-nav > li > a {
     color: #706f72; }
 
@@ -7137,6 +7143,29 @@ body {
     left: -10px; }
   to {
     left: -420px; } }
+
+.agent-profile-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  z-index: 600;
+  justify-content: flex-end; }
+
+.animation {
+  transition: transform 0.4s cubic-bezier(0, 0, 0, 1); }
+
+.animation-start {
+  transform: translateX(300px);
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px); }
+
+.animation-end {
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px); }
+
+#flyout a {
+  color: white; }
 
 .acct-modal-btn {
   border: 0;
@@ -8341,3 +8370,7 @@ body {
   #wrapper.toggled #page-content-wrapper {
     position: relative;
     margin-right: 0; } }
+
+.agent-profile-container {
+  position: absolute;
+  width: 100%; }

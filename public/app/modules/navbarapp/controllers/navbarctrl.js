@@ -4,26 +4,16 @@ angular.module('NavbarApp')
         '$location',
         '$scope',
         '$state',
-        '$http',
         '$uibModal',
-        '$sessionStorage',
         'ApartmentModel',
-        'SearchModel',
-        'SearchFct',
         'AuthFct',
         'SmartSearchSvc',
         'ModalSvc',
         'WizioConfig',
-        'DashboardFactory',
-        function($rootScope, $location, $scope, $state, $http, $uibModal, $sessionStorage, ApartmentModel, SearchModel, SearchFct, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig, DashboardFactory) {
+        function($rootScope, $location, $scope, $state, $uibModal, ApartmentModel, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.onLandingPage = $state.current.name === 'LandingPage' ? true : false;
-            $scope.filters = {
-                beds: null,
-                baths: null,
-                minPrice: null,
-                maxPrice: null
-            };
+
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
                     closeButtonText: closeButtonText,
@@ -71,9 +61,9 @@ angular.module('NavbarApp')
                 var data = {
                     concatAddr : $scope.searchString
                 };
-                SearchFct.search(data, $scope.filters, function(response){
-                    $state.go('Unit.Display');
-                });
+                // SearchFct.search(data, $scope.filters, function(response){
+                //     $state.go('Unit.Display');
+                // });
 
             };
             $scope.getLocation = function(val) {
@@ -154,7 +144,7 @@ angular.module('NavbarApp')
 
             };
             $scope.goAccountDashboard = function() {
-                DashboardFactory.routeToAccount();
+                $state.go('Account.Dashboard');
                 return;
                 // $state.go('Account.Dashboard.Main');
             };

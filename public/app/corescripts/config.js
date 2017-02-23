@@ -61,7 +61,7 @@ angular.module('MainApp')
 
             DemoPage: {
               activeListingId: function(){
-                var activeListingId = env === 'test' ? '' : '0a68e5a9-da00-11e6-85e0-0a8adbb20c4d';
+                var activeListingId = env === 'test' ? '' : 'ddef35a3-0afb-4e8c-97b5-60e057004034';
                 return activeListingId;
               }
             },

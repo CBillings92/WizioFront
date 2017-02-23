@@ -15,6 +15,7 @@
     </div>
 </div>
 <div class="modal-footer">
+    <loading-spinner-dir id="create-unit-floor-plan-spinner" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
     <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
     <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-click="handleSubmitClick()" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Submit</button>
     <div id="results"></div>
