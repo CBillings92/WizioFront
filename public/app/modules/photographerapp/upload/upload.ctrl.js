@@ -116,7 +116,9 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 SubscriptionApartmentPubId: SubscriptionApartmentPubId
             }, function(response){
                 var media = response;
-                handleExistingPhotos(media);
+                $scope.selectedUnit.Media = response;
+                $uibModalInstance.close($scope.selectedUnit);
+                // handleExistingPhotos(media);
             });
 
             // // get the photos associated with the unit selected - response is

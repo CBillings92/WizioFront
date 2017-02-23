@@ -5,7 +5,7 @@
     their photos. Allows for uploading of photos to S3 and associating pins
     and Wizio API.
 */
-angular.module('UploadPageApp').controller('UploadPageCtrl', [
+angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     '$scope',
     '$resource',
     'filterFilter',
@@ -17,13 +17,15 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
     'UploadFct',
     'modalData',
     function($scope, $resource, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData) {
+        console.dir(modalData);
         var movePinFlag = false;
         var selectedPinIndex;
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
         var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
-        $scope.Apartment = modalData.Apartment;
+        $scope.Apartment = modalData;
+        console.dir(modalData.unitNum);
         $scope.fullAddress = $scope.Apartment + ' ' + $scope.Apartment.unitNum
         $scope.searchText = {
             concatAddr: ''
