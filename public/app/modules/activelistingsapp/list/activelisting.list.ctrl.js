@@ -1,8 +1,71 @@
 angular.module('AccountApp')
-    .controller('ActiveListingListCtrl', ['$scope', function($scope) {
+    .controller('ActiveListingListCtrl', [
+        '$scope',
+        '$resource',
+        'WizioConfig',
+        'ModalBuilderFct',
+        function($scope, $resource, WizioConfig, ModalBuilderFct) {
         new Clipboard('.clipboard');
         $scope.windowLocationOrigin = window.location.origin;
         $scope.openInNewPage = function(pubid){
           window.open($scope.windowLocationOrigin + '/tour/' + pubid, '_blank');
+        }
+
+        $scope.makeActiveListingPublic = function(activeListing, activeListingsIndex) {
+            ModalBuilderFct.buildSimpleModal(
+                'Cancel',
+                'Ok',
+                'Remove Password Protection?',
+                'Removing password protection from this tour will enable anyone with the tour link to open and view the tour.' +
+                ' The tour can be easily password protected again once the tour is made public.'
+            )
+            .then(function(response){
+                console.dir('correcct');
+                console.dir(response);
+                if(response === 'ok'){
+                    $resource(WizioConfig.baseAPIURL +  'activelisting/ispublic')
+                    .save({pubid: activeListing.PubId,'isPublic': true}, function(response){
+                        $scope.activelistings[activeListingsIndex].isPublic = response.isPublic;
+                    });
+                }
+            })
+            .catch(function(err){
+                console.dir('wat');
+                console.dir(err);
+            })
+        }
+
+        // Generate a password for a given tour.
+        $scope.generatePassword = function(activelisting, activeListingsIndex){
+            console.dir(activelisting);
+            console.dir($scope.activelistings);
+            // Create the config object for building the TourPasswordConfirm modal
+            var tourPasswordConfirmModalConfig = {
+                controller: 'TourPasswordConfirmModalCtrl',
+                templateUrl: WizioConfig.TourPasswordApp.Views.TourPasswordConfirmModal,
+                size: 'md',
+                modalData: {}
+            }
+
+            // Modal Workflow
+            ModalBuilderFct.buildSimpleModal(
+                'Cancel',
+                'Ok',
+                'Password Protect This Tour?',
+                "If you password protect this tour, the link to this tour won't be accessible to anyone without the password. You can remove the password protection if you decide you'd like to open the tour. You will be provided the auto-generated password to your tour upon clicking 'Ok'."
+            )
+            .then(function(response){
+                $resource(WizioConfig.baseAPIURL + 'tourpassword')
+                .save(activelisting, function(response){
+                    tourPasswordConfirmModalConfig.modalData = response;
+                    ModalBuilderFct.buildModalWithController(tourPasswordConfirmModalConfig)
+                    .then(function(response){
+                        console.dir($scope.activelistings);
+                        $scope.activelistings[activeListingsIndex].isPublic = false;
+                    })
+                });
+                console.dir(response);
+            })
+            return;
         }
     }]);

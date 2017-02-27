@@ -115,8 +115,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     result
                 )
                 .then(function(result){
-                    console.dir(1);
-                    console.dir(2);
                     var media = result;
                     // if (state === 'LandingPage' || state === 'Demo') {
                     //     media = result[0];

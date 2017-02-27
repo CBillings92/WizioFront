@@ -75,6 +75,11 @@ angular.module('MainApp')
                     UploadFloorPlan: 'public/app/modules/photographerapp/UploadFloorPlan/uploadfloorplan.view.html',
                 }
             },
+            TourPasswordApp: {
+                Views: {
+                    TourPasswordConfirmModal: 'public/app/modules/tourpasswordapp/tourpasswordconfirm.modal.html'
+                }
+            },
             //AdminPanel App
             AdminPanelAppMainViewsURL: 'public/app/modules/adminpanelapp/main/',
             AdminPanelAppViewsURL: 'public/app/modules/adminpanelapp/viewtemplates/',
