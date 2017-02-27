@@ -277,30 +277,34 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         $scope.addAmenity = function addAmenity() {
-
-            var amenity = {
-                x: null,
-                y: null,
-                apartmentpubid: $scope.selectedUnit.pubid,
-                isUnit: 0,
-                type: 'vrphoto',
-                title: null,
-                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
-                ApartmentId: $scope.selectedUnit.id,
-                SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
-            };
-            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
-                // result is what's passed back from modal button selection
-                $scope.uploaded=true;
-                if(response.message === 'cancel'){
-                    return;
-                } else if (response.message === 'success'){
-                    amenity.title = response.photoTitle;
-                    $scope.amenities.push(amenity);
-                    return;
-                }
-                return;
-            });
+            document.getElementById('uploadMultiplePhotosInputButton')
+            .onchange = function(){
+                console.dir(this.files);
+            }
+            $('#uploadMultiplePhotosInputButton').trigger('click');
+            // var amenity = {
+            //     x: null,
+            //     y: null,
+            //     apartmentpubid: $scope.selectedUnit.pubid,
+            //     isUnit: 0,
+            //     type: 'vrphoto',
+            //     title: null,
+            //     awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+            //     ApartmentId: $scope.selectedUnit.id,
+            //     SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
+            // };
+            // buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
+            //     // result is what's passed back from modal button selection
+            //     $scope.uploaded=true;
+            //     if(response.message === 'cancel'){
+            //         return;
+            //     } else if (response.message === 'success'){
+            //         amenity.title = response.photoTitle;
+            //         $scope.amenities.push(amenity);
+            //         return;
+            //     }
+            //     return;
+            // });
 
         };
 

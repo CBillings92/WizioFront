@@ -29,7 +29,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 form-group" style="padding:30px;" ng-show="showAmenityButton">
+        <div class="col-md-8 col-md-offset-2 form-group" style="padding:30px;">
+            <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; z-index:-100" multiple>
             <button class="btn btn--cta form-control" ng-click="addAmenity()">Upload {{selectedFloorplan ? "Amenities" : "Photos"}}</button>
             <label class="control-label">You may upload more than 1 photo at a time</label>
         </div>
