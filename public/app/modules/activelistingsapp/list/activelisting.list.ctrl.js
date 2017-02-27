@@ -20,8 +20,6 @@ angular.module('AccountApp')
                 ' The tour can be easily password protected again once the tour is made public.'
             )
             .then(function(response){
-                console.dir('correcct');
-                console.dir(response);
                 if(response === 'ok'){
                     $resource(WizioConfig.baseAPIURL +  'activelisting/ispublic')
                     .save({pubid: activeListing.PubId,'isPublic': true}, function(response){
@@ -30,15 +28,12 @@ angular.module('AccountApp')
                 }
             })
             .catch(function(err){
-                console.dir('wat');
                 console.dir(err);
             })
         }
 
         // Generate a password for a given tour.
         $scope.generatePassword = function(activelisting, activeListingsIndex){
-            console.dir(activelisting);
-            console.dir($scope.activelistings);
             // Create the config object for building the TourPasswordConfirm modal
             var tourPasswordConfirmModalConfig = {
                 controller: 'TourPasswordConfirmModalCtrl',
@@ -64,7 +59,6 @@ angular.module('AccountApp')
                         $scope.activelistings[activeListingsIndex].isPublic = false;
                     })
                 });
-                console.dir(response);
             })
             return;
         }
