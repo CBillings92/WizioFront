@@ -52,7 +52,11 @@ angular.module('AccountApp')
             .then(function(response){
                 $resource(WizioConfig.baseAPIURL + 'tourpassword')
                 .save(activelisting, function(response){
-                    tourPasswordConfirmModalConfig.modalData = response;
+                    var modalData = {
+                        tourPassword: response,
+                        activeListing: activelisting
+                    };
+                    tourPasswordConfirmModalConfig.modalData = modalData;
                     ModalBuilderFct.buildModalWithController(tourPasswordConfirmModalConfig)
                     .then(function(response){
                         console.dir($scope.activelistings);
