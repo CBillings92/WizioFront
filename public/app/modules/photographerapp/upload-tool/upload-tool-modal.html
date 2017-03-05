@@ -38,9 +38,15 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Your {{selectedFloorplan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
-            <div ng-repeat="amenity in amenities">
+            <div ng-repeat="amenity in amenities track by $index">
+                <div style="border: 1px-solid-black" >
+
+                </div>
                 <div class="col-md-4">
                     <input type="text" ng-model="amenities[$index].name" class="form-control" style="border:1px solid black;" name="button"></input>
+                </div>
+                <div class="col-md-6">
+                    <img id="{{'imgPreview' + $index}}" width="90%" alt="">
                 </div>
                 <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
                 {{amenity.title}}

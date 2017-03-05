@@ -50,15 +50,23 @@ angular.module('AccountApp')
                 "If you password protect this tour, the link to this tour won't be accessible to anyone without the password. You can remove the password protection if you decide you'd like to open the tour. You will be provided the auto-generated password to your tour upon clicking 'Ok'."
             )
             .then(function(response){
-                $resource(WizioConfig.baseAPIURL + 'tourpassword')
-                .save(activelisting, function(response){
-                    tourPasswordConfirmModalConfig.modalData = response;
-                    ModalBuilderFct.buildModalWithController(tourPasswordConfirmModalConfig)
-                    .then(function(response){
-                        console.dir($scope.activelistings);
-                        $scope.activelistings[activeListingsIndex].isPublic = false;
-                    })
-                });
+                if(response === 'cancel'){
+                    return
+                } else {
+                    $resource(WizioConfig.baseAPIURL + 'tourpassword')
+                    .save(activelisting, function(response){
+                        var modalData = {
+                            tourPassword: response,
+                            activeListing: activelisting
+                        };
+                        tourPasswordConfirmModalConfig.modalData = modalData;
+                        ModalBuilderFct.buildModalWithController(tourPasswordConfirmModalConfig)
+                        .then(function(response){
+                            console.dir($scope.activelistings);
+                            $scope.activelistings[activeListingsIndex].isPublic = false;
+                        })
+                    });
+                }
             })
             return;
         }

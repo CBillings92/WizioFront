@@ -189,9 +189,9 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             }
         }
 
-        $scope.makeAmmenityAction = function makeAmmenityAction(media) {
+        $scope.makeAmmenityAction = function makeAmmenityAction(media, indexInArray) {
             media.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
-            renameMedia(media);
+            renameMedia(media, indexInArray);
         }
 
         // Used to calculate the pin X and Y based on the mouse click
@@ -217,6 +217,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
 
             pinToMove.x = newPinPosition.x;
             pinToMove.y = newPinPosition.y;
+
 
             // send the new pin data to the API to be saved
             pinAPIResource.save(pinToMove, function(response){
@@ -259,13 +260,16 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                 }
             });
         }
-        function renameMedia(media) {
+        function renameMedia(media, indexInArray) {
             UploadFct.buildModal.renameMedia(media)
             .then(function(response){
                 if(response === 'exit'){
                     return;
                 } else {
-                    alert('Photo Renamed Successfully');
+                    console.dir(indexInArray);
+                    console.dir(response.Media);
+                    $scope.amenities[indexInArray] = response.Media;
+                    alert('Photo renamed successfully!');
                 }
             });
         }
@@ -330,7 +334,7 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
                     return;
                 } else if (response.message === 'success'){
                     amenity.title = response.photoTitle;
-                    $scope.amenities.push(amenity);
+                    $scope.amenities.push(response.photo);
                     return;
                 }
                 return;

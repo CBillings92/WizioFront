@@ -38,7 +38,8 @@ angular.module('PhotographerApp')
 
               data = {
                 photoTitle: $scope.photoTitle,
-                message: 'success'
+                message: 'success',
+                photo: data.photo
               };
 
               return $uibModalInstance.close(data);
