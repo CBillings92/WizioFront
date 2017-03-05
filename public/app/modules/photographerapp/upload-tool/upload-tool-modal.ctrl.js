@@ -31,6 +31,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             concatAddr: ''
         };
         $scope.displayNoFloorplanMessage = false;
+        $scope.amenities = [];
         $scope.selectedUnit = false;
         $scope.pins = [];
         $scope.uploaded = false;
@@ -51,11 +52,11 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         */
         function loadFloorplan(subScope) {
             // get the Floor_Plan URL from the selected unit
-            if(modalData.Apartment.Floor_Plan){
+            if(modalData.Floor_Plan){
 
                 $scope.selectedFloorplan = "https://cdn.wizio.co/" + modalData.Apartment.SubscriptionApartmentPubId + '/floorplan.png';
             } else {
-                $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
+                $scope.displayNoFloorplanMessage = modalData.Floor_Plan ? false : true;
 
             }
             $scope.unit = modalData.Apartment;
@@ -279,7 +280,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.addAmenity = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton')
             .onchange = function(){
+              $scope.amenities = [];
                 console.dir(this.files);
+                for (var i = 0; i < this.files.length; i++) {
+                  console.dir(this.files[i]);
+                  $scope.amenities.push(this.files[i]);
+                  console.dir($scope.amenities.length);
+                  $scope.$apply();
+                }
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
             // var amenity = {

@@ -93,17 +93,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             click in the HTML
         */
         function loadFloorplan(subScope) {
-            // get the Floor_Plan URL from the selected unit
-            if(subScope.unit.Floor_Plan){
 
-                $scope.selectedFloorplan = "https://cdn.wizio.co/" + subScope.unit.SubscriptionApartmentPubId + '/floorplan.png';
-            } else {
-                $scope.displayNoFloorplanMessage = $scope.selectedFloorplan ? false : true;
-
-            }
-            $scope.selectedSubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
             $scope.selectedUnit = subScope.unit;
-            $scope.showAmenityButton = true;
             var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
             var SubscriptionApartmentPubId = subScope.unit.SubscriptionApartmentPubId;
 

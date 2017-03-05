@@ -15,7 +15,7 @@
         <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
             <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
             <div style="position:relative; display:inline-block;" id="floorplanOverlay">
-                <img src="{{selectedFloorplan}}" ng-hide="displayNoFloorplanMessage" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
+                <img src="{{Apartment.Floor_Plan}}" ng-hide="displayNoFloorplanMessage" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
                 <h4 ng-show="displayNoFloorplanMessage">
                             No floor plan available. Please upload photos using the Add Photo button below.
                         </h4>
@@ -39,12 +39,8 @@
         <div class="col-md-12">
             <h3>Your {{selectedFloorplan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
             <div ng-repeat="amenity in amenities">
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <span class="btn btn-default btn-file"><span>Choose file</span><input type="file" multiple /></span>
-                    <span class="fileinput-filename"></span><span class="fileinput-new">No file chosen</span>
-                </div>
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-primary form-control" style="margin:5px;" ng-click="makeAmmenityAction(amenity)" name="button">{{amenity.title}}</button>
+                    <input type="text" ng-model="amenities[$index].name" class="form-control" style="border:1px solid black;" name="button"></input>
                 </div>
                 <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
                 {{amenity.title}}
