@@ -30,6 +30,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.searchText = {
             concatAddr: ''
         };
+        $scope.amenities = [];
         $scope.displayNoFloorplanMessage = false;
         $scope.selectedUnit = false;
         $scope.pins = [];
@@ -97,7 +98,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             // Media is an object that contains media objects as keys.
             // If there are no keys, then there are no photos so create empty arrays
             // If there are photos, break the photos up into unit and non-unit photos
+            console.dir(unsortedMedia);
             if(Object.keys(unsortedMedia).length === 0){
+                console.dir(unsortedMedia);
+                console.dir('unsortedMedia');
                 $scope.amenities = [];
                 $scope.pins = [];
                 return;
@@ -276,12 +280,84 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
 
+        $scope.previewPhoto = function(photo) {
+          var preview = document.getElementById('imgPreview');
+          var file    = document.querySelector('input[type=file]').files[0];
+          var reader  = new FileReader();
+
+          reader.addEventListener("load", function () {
+            preview.src = reader.result;
+          }, false);
+
+          if (file) {
+            reader.readAsDataURL(file);
+          }
+        }
+
         $scope.addAmenity = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton')
             .onchange = function(){
                 console.dir(this.files);
+
+                var i = 0;
+                var elementId = 'imgPreview';
+                var files = [];
+                var readers = [];
+                var previews = [];
+                while (i < this.files.length) {
+                    console.dir(this.files[i]);
+                    console.dir($scope.amenities);
+                    $scope.amenities.push({
+                        x: null,
+                        y: null,
+                        apartmentpubid: $scope.selectedUnit.pubid,
+                        isUnit: 0,
+                        type: 'vrphoto',
+                        title: this.files[i].name,
+                        awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                        ApartmentId: $scope.selectedUnit.id,
+                        SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
+                    })
+
+                    $scope.$apply();
+                    preview = document.getElementById(elementId + i);
+                    files.push(this.files[i]);
+                    readers.push(new FileReader());
+                    readers[i].addEventListener("load", function () {
+                        preview.src = readers[i].result;
+                    }, false);
+
+                    if (files[i]) {
+                        readers[i].readAsDataURL(files[i]);
+                        i++;
+                    }
+                }
+
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
+            var amenity = {
+                x: null,
+                y: null,
+                apartmentpubid: $scope.selectedUnit.pubid,
+                isUnit: 0,
+                type: 'vrphoto',
+                title: null,
+                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                ApartmentId: $scope.selectedUnit.id,
+                SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
+            };
+            // buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
+            //     // result is what's passed back from modal button selection
+            //     $scope.uploaded=true;
+            //     if(response.message === 'cancel'){
+            //         return;
+            //     } else if (response.message === 'success'){
+            //         amenity.title = response.photoTitle;
+            //         $scope.amenities.push(response.photo);
+            //         return;
+            //     }
+            //     return;
+            // });
             // var amenity = {
             //     x: null,
             //     y: null,
