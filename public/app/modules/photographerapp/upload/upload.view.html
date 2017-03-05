@@ -62,8 +62,8 @@
         <div style="padding:30px;" ng-show="showAmenityButton">
             <button class="btn btn--cta btn-lg" ng-click="addAmenity()">Add {{selectedFloorplan ? "Amenity" : "Photo"}}</button>
             <h3>Your {{selectedFloorplan ? "Amenities" : "Photos"}}</h3>
-            <div ng-repeat="amenity in amenities">
-                <button type="button" class="btn btn-primary" style="margin:5px;" ng-click="makeAmmenityAction(amenity)" name="button">{{amenity.title}}</button>
+            <div ng-repeat="amenity in amenities track by $index">
+                <button type="button" class="btn btn-primary" style="margin:5px;" ng-click="makeAmmenityAction(amenity, $index)" name="button">{{amenity.title}}</button>
                 <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
                         {{amenity.title}}
                     </a> -->
