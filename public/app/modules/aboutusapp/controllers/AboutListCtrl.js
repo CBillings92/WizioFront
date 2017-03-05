@@ -23,6 +23,13 @@ angular.module("AboutUsApp")
                 twitter: "trentolol",
                 linkedin: "trentduffy",
                 email: "trent@wizio.co",
+            }, {
+                name: "John Puma",
+                title: "Business Development",
+                picture: "johnjpuma.jpg",
+                twitter: "JohnJPuma",
+                linkedin: "johnjpuma",
+                email: "john@wizio.co",
             }];
 
         }

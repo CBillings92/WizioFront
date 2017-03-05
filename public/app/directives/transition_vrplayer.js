@@ -46,6 +46,8 @@ angular.module('Directives')
                     //  setupControllerEventHandlers(controls);
                         scene = new THREE.Scene();
                         renderer = webglSupport ? new THREE.WebGLRenderer() : new THREE.CanvasRenderer();
+                        // Commented and kept for testing purposes
+                        // renderer = new THREE.CanvasRenderer();
                         renderer.setSize(canvasParent.parentElement.clientWidth, canvasParent.parentElement.clientHeight);
                         canvasParent.appendChild(renderer.domElement);
                         canvasParent.addEventListener('mousewheel', onMouseWheel, false);
@@ -105,7 +107,15 @@ angular.module('Directives')
                               sphere = new THREE.Mesh(
                                 new THREE.SphereGeometry(100, 60, 40),
                                 new THREE.MeshBasicMaterial({
-                                  map: texture
+                                    // color: 0x000000,
+                                    // shading: THREE.FlatShading,
+                                    map: texture,
+                                    // transparent: true
+                                    // side: THREE.BackSide,
+                                    overdraw: .5
+                                    // wireframe: false,
+                                    // overdraw: 1,
+
                                 })
                               );
 
@@ -117,7 +127,12 @@ angular.module('Directives')
                               sphere = new THREE.Mesh(
                                 new THREE.SphereGeometry(100, 60, 40),
                                 new THREE.MeshBasicMaterial({
-                                  map: texture
+                                  map: texture,
+                                  overdraw: .5,
+                                //   wireframe: false,
+                                //   wireframe: false,
+                                //   color: 0x000000,
+                                //   shading: THREE.FlatShading,
                                 })
                               );
 

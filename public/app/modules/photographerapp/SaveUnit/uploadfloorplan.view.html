@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <h2>Please choose your floor plan file</h2>
+    <h3>Add the address of the unit you would like to create, followed by the unit number or floorplan model number. If there is no floorplan, check the No Floor Plan check box.</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="form-group">
+            <form id="upload-floorplan-form" name="createAptForm" ng-submit="functions.saveForm()">
+                <!-- Choose Floor Plan Photo -->
+                <div class="col-md-6" ng-hide="noFloorPlanChkBox" style="margin-top:10px;margin-bottom:10px;">
+                    <label for="" class="control-label">Choose Floor Plan</label>
+                    <input type="file" name="floorplan-file" id="file-chooser" class=" form-control" ng-required="!noFloorPlanChkBox"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
+    <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Submit</button>
+    <loading-spinner-dir style="color:black; visibility: hidden;" id="floorplanUpload"></loading-spinner-dir>
+    <div id="results"></div>
+</div>

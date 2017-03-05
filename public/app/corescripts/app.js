@@ -21,6 +21,7 @@
     angular.module('PhotographerApp', []);
     angular.module('SearchApp', []);
     angular.module('AWSApp', []);
+    angular.module('AgentProfileApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -41,6 +42,7 @@
             'PhotographerApp',
             'SearchApp',
             'AWSApp',
+            'AgentProfileApp',
             'UnitApp',
             'Models',
             'ui.router',

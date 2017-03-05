@@ -6128,9 +6128,14 @@ a:focus {
     height: 4px; }
   .navbar #navbarlogo {
     cursor: pointer; }
-  .navbar .navbar-brand {
+  .navbar .navbar-brand-white {
     padding: 9px 0 0 15px; }
-    .navbar .navbar-brand img {
+    .navbar .navbar-brand-white img {
+      width: 112px;
+      content: url("/public/viewtemplates/images/brand_assets/wizio_logo_white.png"); }
+  .navbar .navbar-brand-gray {
+    padding: 9px 0 0 15px; }
+    .navbar .navbar-brand-gray img {
       width: 112px;
       content: url("/public/viewtemplates/images/brand_assets/wizio_logo_gray.png"); }
   .navbar .navbar-right {
@@ -6164,7 +6169,8 @@ a:focus {
     color: #f79739; }
 
 .transparent_nav {
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  z-index: 1600; }
   .transparent_nav .navbar-nav > li > a {
     color: #706f72; }
 
@@ -7138,6 +7144,29 @@ body {
   to {
     left: -420px; } }
 
+.agent-profile-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  z-index: 600;
+  justify-content: flex-end; }
+
+.animation {
+  transition: transform 0.4s cubic-bezier(0, 0, 0, 1); }
+
+.animation-start {
+  transform: translateX(300px);
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px); }
+
+.animation-end {
+  transform: translateX(0px);
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px); }
+
+#flyout a {
+  color: white; }
+
 .acct-modal-btn {
   border: 0;
   padding: 4px 10px;
@@ -7275,6 +7304,10 @@ body {
     @media (min-width: 768px) {
       .account-type-buttons .btn {
         width: 40%; } }
+
+.btn-div button {
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 .home-hero {
   position: relative;
@@ -7484,8 +7517,6 @@ body {
       padding-left: 65px; }
     .home-blurbs div:nth-child(3) {
       padding-left: 30px; }
-  .home-landlord {
-    margin-top: -106px; }
   .home-pin {
     top: -330px;
     background-size: 1296px;
@@ -8239,3 +8270,107 @@ div.item {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+body {
+  overflow-x: hidden; }
+
+/* Toggle Styles */
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+
+#wrapper.toggled {
+  padding-left: 250px; }
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px; }
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+  padding: 15px; }
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px; }
+
+/* Sidebar Styles */
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px; }
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999; }
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2); }
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none; }
+
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px; }
+
+.sidebar-nav > .sidebar-brand a {
+  color: #999999; }
+
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none; }
+
+@media (min-width: 768px) {
+  #wrapper {
+    padding-left: 250px; }
+  #wrapper.toggled {
+    padding-left: 0; }
+  #sidebar-wrapper {
+    width: 250px; }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0; }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative; }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0; } }
+
+.agent-profile-container {
+  position: absolute;
+  width: 100%; }

@@ -1,3 +1,5 @@
+<agent-profile-dir ></agent-profile-dir>
+
 <loading-spinner-dir id="vrPlayerLoader" style="position: absolute; z-index:1000; top:50%; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
 <div class="" style="height:100%; width:100%;" ng-show="media.vrphoto[0].awsurl">
     <div class="embed-responsive embed-responsive-16by9" id="height-container">
@@ -23,7 +25,7 @@
             <div class="col-sm-3 col-md-3" >
                 <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="selectPhoto = !selectPhoto;" ng-hide="hideControls" style="margin:5px" type="submit">Photos</button>
             </div>
-            <div class="col-sm-3 col-md-3">
+            <div class="col-sm-3 col-md-3" ng-hide="hideFloorPlanButton">
                 <button class="btn btn-fill--orange btn-md form-control vr-player-control" ng-click="buttonAction('toggleFloorplan')" ng-hide="hideControls" style="margin: 5px;" type="submit">Floor Plan</button>
             </div>
             <div class="col-sm-4 col-md-3">

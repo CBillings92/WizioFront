@@ -8,19 +8,24 @@
 angular.module('UploadPageApp').controller('UploadPageCtrl', [
     '$scope',
     '$resource',
+    'filterFilter',
     'WizioConfig',
     'ModalBuilderFct',
     'lodash',
     '$uibModalInstance',
     'TokenSvc',
     'UploadFct',
-    function($scope, $resource, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct) {
+    'modalData',
+    function($scope, $resource, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData) {
         var units;
         var movePinFlag = false;
         var selectedPinIndex;
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
+        $scope.searchText = {
+            concatAddr: ''
+        };
         $scope.displayNoFloorplanMessage = false;
         $scope.selectedUnit = false;
         $scope.pins = [];
@@ -55,11 +60,24 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         },
         function(response) {
             units = [];
-            for(var i = 0; i < response.length; i++){
-                response[i].Apartment["SubscriptionApartmentPubId"] = "";
+            if(modalData.Apartment){
 
-                response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
-                units.push(response[i].Apartment);
+                for(var i = 0; i < response.length; i++){
+                    response[i].Apartment["SubscriptionApartmentPubId"] = "";
+
+                    response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
+                    if(response[i].Apartment.concatAddr === modalData.Apartment.concatAddr && response[i].Apartment.unitNum === modalData.Apartment.unitNum){
+                        units.push(response[i].Apartment);
+                    }
+                }
+            } else {
+
+                for(var i = 0; i < response.length; i++){
+                    response[i].Apartment["SubscriptionApartmentPubId"] = "";
+
+                    response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
+                    units.push(response[i].Apartment);
+                }
             }
             // $scope.units = lodash.groupBy(units, 'Floor_Plan');
             $scope.units = units;

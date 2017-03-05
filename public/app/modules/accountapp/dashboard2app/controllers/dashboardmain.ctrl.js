@@ -3,4 +3,5 @@ angular.module('AccountApp')
       //this is the main controller
       //make this the parent of the directives
       console.dir(TokenSvc.decode());
+
   }]);
