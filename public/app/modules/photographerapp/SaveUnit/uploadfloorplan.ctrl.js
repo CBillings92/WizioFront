@@ -85,6 +85,8 @@ angular.module('PhotographerApp')
             }
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
+                console.dir(response);
+                console.dir(response.message);
                 if(response.message){
                   alert("Apartment already created! Search for this apartment in your account's search bar, or search for it after selecting Modify Existing Tours on your account page");
                   LoadingSpinnerFct.hide("floorplanUpload");
