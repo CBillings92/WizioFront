@@ -18,7 +18,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     'UploadFct',
     'modalData',
     'LoadingSpinnerFct',
-    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct) {
+    'AWSFct',
+    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct) {
         console.dir(modalData);
         var movePinFlag = false;
         var selectedPinIndex;
@@ -133,8 +134,27 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         function bulkUploadPhotos() {
+          var key;
+          var promises = [];
+          console.dir($scope.amenities);
 
+          for (var i = 0; i < $scope.files.length; i++) {
+            console.dir(i);
+            key = modalData.SubscriptionApartmentPubId + '/' + $scope.amenities[i].title + '.JPG';
+            promises.push(
+              AWSFct
+              .s3
+              .equirectPhotos
+              .uploadTourPhoto($scope.files[i], key)
+            );
+          }
+          console.dir(promises);
+          $q.all(promises)
+          .then(function(response){
+            alert('finished!');
+          });
         }
+        $scope.bulkUploadPhotos = bulkUploadPhotos;
 
         /*  SUMMARY - makePinAction(mouseEvent, subScope, clickOnFloorplan)
             mouseEvent provides us with the necessary coordinates for placing and
@@ -303,6 +323,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
           })
         }
 
+        function uploadPhotos() {
+          for (var i = 0; i < $scope.amenities.length; i++) {
+            $scope.amenities[i]
+          }
+        }
+
         $scope.addAmenity = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton')
             .onchange = function(){
@@ -310,22 +336,24 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var i = 0;
                 var elementId = 'imgPreview';
                 var preview;
-                LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
+                $scope.files = [];
+                // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 while (i < this.files.length) {
                     console.dir(this.files[i]);
                     console.dir($scope.amenities);
                     this.files[i].name = 'Photo ' + i;
                     console.dir(this.files[i].name);
+                    $scope.files.push(this.files[i]);
                     $scope.amenities.push({
                         x: null,
                         y: null,
-                        apartmentpubid: $scope.selectedUnit.pubid,
-                        isUnit: 0,
+                        apartmentpubid: modalData.pubid,
+                        isUnit: 1,
                         type: 'vrphoto',
                         title: 'Photo ' + i,
-                        awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
+                        awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
                         ApartmentId: $scope.selectedUnit.id,
-                        SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
+                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId
                     })
 
                     $scope.$apply();
@@ -333,20 +361,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     previewPhoto(this.files[i], preview);
                     i++;
                 }
-                LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
+                // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
-            var amenity = {
-                x: null,
-                y: null,
-                apartmentpubid: $scope.selectedUnit.pubid,
-                isUnit: 0,
-                type: 'vrphoto',
-                title: null,
-                awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
-                ApartmentId: $scope.selectedUnit.id,
-                SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
-            };
+
             // buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
             //     // result is what's passed back from modal button selection
             //     $scope.uploaded=true;

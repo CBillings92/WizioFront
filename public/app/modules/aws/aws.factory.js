@@ -129,6 +129,31 @@ angular.module('AWSApp')
             });
         }
 
+        function uploadTourPhoto(file, key, bucket, region) {
+          return $q(function(resolve, reject){
+            var properKey = modifyKeyForEnvironment(key);
+
+
+              if (file) {
+                var bucket = createS3Object();
+
+                var params = {
+                  Bucket: 'equirect-photos',
+                  Key: properKey,
+                  ContentType: 'JPG',
+                  Body: file
+                }
+                alert('in sending');
+                console.dir(bucket.putObject);
+                console.dir(params);
+                bucket.putObject(params, function (err, data) {
+                  console.dir(err);
+                  resolve(data);
+                })
+              }
+          })
+        }
+
         function uploadProfileFile(file, key, bucket) {
             return new $q(function(resolve, reject){
                 var properKey = modifyKeyForEnvironment(key);
@@ -164,7 +189,8 @@ angular.module('AWSApp')
           s3: {
                 equirectPhotos:{
                   renameFile: renameFile,
-                  uploadFloorPlanFile: uploadFloorPlanFile
+                  uploadFloorPlanFile: uploadFloorPlanFile,
+                  uploadTourPhoto: uploadTourPhoto
                 },
                 profilePhotos: {
                     uploadphoto: uploadProfileFile
