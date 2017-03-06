@@ -19,7 +19,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     'modalData',
     'LoadingSpinnerFct',
     'AWSFct',
-    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct) {
+    'MediaFct',
+    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct, MediaFct) {
         console.dir(modalData);
         var movePinFlag = false;
         var selectedPinIndex;
@@ -151,8 +152,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
           console.dir(promises);
           $q.all(promises)
           .then(function(response){
-            alert('finished!');
-            
+            return MediaFct.save.bulk.media($scope.amenities)
+          })
+          .then(function(response){
+              alert('Finished!')
           });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;
@@ -354,7 +357,9 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         title: 'Photo ' + i,
                         awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
                         ApartmentId: $scope.selectedUnit.id,
-                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId
+                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId,
+                        useremail: TokenSvc.decode().email,
+                        token: TokenSvc.getToken()
                     })
 
                     $scope.$apply();
