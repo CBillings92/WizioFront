@@ -152,6 +152,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
           $q.all(promises)
           .then(function(response){
             alert('finished!');
+            
           });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;

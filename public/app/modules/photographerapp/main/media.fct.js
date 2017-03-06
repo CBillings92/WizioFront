@@ -37,11 +37,29 @@ angular.module('PhotographerApp').factory('MediaFct', [
                 }
             })
         }
+        function saveMedia(media) {
+          return $q(function(resolve, reject){
+            $resource(baseAPIURL + 'media')
+            .save(media, function(response){
+              resolve(response);
+            })
+          })
+        }
+        function saveBulkMedia() {
+          return $q(function(resolve, reject){
+
+          });
+        }
         return {
             update: {
                 one: {
                     title: renameMedia
                 }
+            },
+            save: {
+              bulk: {
+                media: saveBulkMedia
+              }
             }
         }
     }
