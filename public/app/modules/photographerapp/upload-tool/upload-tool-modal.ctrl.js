@@ -8,6 +8,7 @@
 angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     '$scope',
     '$resource',
+    '$q',
     'filterFilter',
     'WizioConfig',
     'ModalBuilderFct',
@@ -16,7 +17,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     'TokenSvc',
     'UploadFct',
     'modalData',
-    function($scope, $resource, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData) {
+    'LoadingSpinnerFct',
+    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct) {
         console.dir(modalData);
         var movePinFlag = false;
         var selectedPinIndex;
@@ -281,40 +283,46 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
 
-        $scope.previewPhoto = function(photo) {
-          var preview = document.getElementById('imgPreview');
-          var file    = document.querySelector('input[type=file]').files[0];
-          var reader  = new FileReader();
+        $scope.previewPhoto = previewPhoto;
 
-          reader.addEventListener("load", function () {
-            preview.src = reader.result;
-          }, false);
+        function previewPhoto(photo, htmltag) {
+          return $q(function(resolve, reject){
 
-          if (file) {
-            reader.readAsDataURL(file);
-          }
+            var file    =photo;
+            var reader  = new FileReader();
+
+            reader.addEventListener("load", function () {
+              htmltag.src = reader.result;
+              console.dir('IN LOAD');
+            }, false);
+
+            if (file) {
+              console.dir('IN IF');
+              reader.readAsDataURL(file);
+            }
+          })
         }
 
         $scope.addAmenity = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton')
             .onchange = function(){
               $scope.amenities = [];
-                console.dir(this.files);
                 var i = 0;
                 var elementId = 'imgPreview';
-                var files = [];
-                var readers = [];
-                var previews = [];
+                var preview;
+                LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 while (i < this.files.length) {
                     console.dir(this.files[i]);
                     console.dir($scope.amenities);
+                    this.files[i].name = 'Photo ' + i;
+                    console.dir(this.files[i].name);
                     $scope.amenities.push({
                         x: null,
                         y: null,
                         apartmentpubid: $scope.selectedUnit.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
-                        title: this.files[i].name,
+                        title: 'Photo ' + i,
                         awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
                         ApartmentId: $scope.selectedUnit.id,
                         SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
@@ -322,17 +330,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 
                     $scope.$apply();
                     preview = document.getElementById(elementId + i);
-                    files.push(this.files[i]);
-                    readers.push(new FileReader());
-                    readers[i].addEventListener("load", function () {
-                        preview.src = readers[i].result;
-                    }, false);
-
-                    if (files[i]) {
-                        readers[i].readAsDataURL(files[i]);
-                        i++;
-                    }
+                    previewPhoto(this.files[i], preview);
+                    i++;
                 }
+                LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
             var amenity = {
