@@ -20,143 +20,52 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     'LoadingSpinnerFct',
     'AWSFct',
     'MediaFct',
-    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct, MediaFct) {
-        console.dir(modalData);
+    'UploadToolFct',
+    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct, MediaFct, UploadToolFct) {
         var movePinFlag = false;
         var selectedPinIndex;
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-        var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
-        $scope.Apartment = modalData;
-        console.dir(modalData.unitNum);
-        $scope.fullAddress = $scope.Apartment + ' ' + $scope.Apartment.unitNum
-        $scope.searchText = {
-            concatAddr: ''
-        };
+        var apartment = modalData;
         $scope.amenities = [];
-        $scope.displayNoFloorplanMessage = false;
-        $scope.amenities = [];
-        $scope.selectedUnit = false;
-        $scope.pins = [];
         $scope.uploaded = false;
-        $scope.showAmenityButton = false;
 
-        $scope.closeModal= function(){
+        $scope.closeModal = function() {
             $uibModalInstance.close();
         }
 
-        // On selecting a unit, load the floorplan image and pins/photos
-        $scope.loadFloorplan = loadFloorplan;
+        // Laod the data for the CreateTourModal
+        UploadToolFct.workflow.init(apartment).then(function(media) {
+            var sortedMedia = UploadToolFct.sortMedia(media);
+            apartment.sortedMedia = sortedMedia;
+            $scope.apartment = apartment;
+            return;
+        }).catch(function(error) {
+            console.dir(error);
+        })
+        
+
         // On clicking on either a pin or the floorplan, remove, move or create a pin
         $scope.makePinAction = makePinAction;
         $scope.selectedSubscriptionApartmentPubId = null;
-        /*  SUMMARY - called when an address is selected from the menu - loads the floorplan
-            and the photos for the unit - subScope is `this` from the element
-            click in the HTML
-        */
-        function loadFloorplan(subScope) {
-            // get the Floor_Plan URL from the selected unit
-            if(modalData.Floor_Plan){
-
-                $scope.selectedFloorplan = "https://cdn.wizio.co/" + modalData.Apartment.SubscriptionApartmentPubId + '/floorplan.png';
-            } else {
-                $scope.displayNoFloorplanMessage = modalData.Floor_Plan ? false : true;
-
-            }
-            $scope.unit = modalData.Apartment;
-            $scope.SubscriptionApartmentPubId = $scope.unit.SubscriptionApartmentPubId;
-            $scope.showAmenityButton = true;
-
-            // Get the media data for the apartment
-            $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId', {
-                SubscriptionPubId: '@SubscriptionPubId',
-                SubscriptionApartmentPubId: '@SubscriptionApartmentPubId',
-            })
-            .query({
-                SubscriptionPubId: SubscriptionPubId,
-                SubscriptionApartmentPubId: SubscriptionApartmentPubId
-            }, function(media){
-                handleExistingPhotos(media);
-            });
-
-            // // get the photos associated with the unit selected - response is
-            // // array of two arrays. First array is the array of photo OBJECTS
-            // // second array is object with the unit Floor_Plan URL
-            // $resource(WizioConfig.baseAPIURL + 'vr/listing/:apitoken/:pubid', {
-            //     apitoken: '@apitoken',
-            //     pubid: '@pubid'
-            // }).query({
-            //     apitoken: WizioConfig.static_vr.apikey,
-            //     pubid: subScope.unit.pubid
-            // }, function(response) {
-            //     var media = response[0];
-            //     // Handle whether there are or are not photos
-            //     handleExistingPhotos(media);
-            //
-            //     return;
-            // });
-        }
-
-        function handleExistingPhotos(unsortedMedia) {
-            var sortedMedia;
-            // Media is an object that contains media objects as keys.
-            // If there are no keys, then there are no photos so create empty arrays
-            // If there are photos, break the photos up into unit and non-unit photos
-            console.dir(unsortedMedia);
-            if(Object.keys(unsortedMedia).length === 0){
-                console.dir(unsortedMedia);
-                console.dir('unsortedMedia');
-                $scope.amenities = [];
-                $scope.pins = [];
-                return;
-            } else {
-                // Break up the photos by unit and non-unit
-                // false means it's not a unit photo, true means it is a unit photo
-                sortedMedia = lodash.groupBy(unsortedMedia, "isUnit");
-                // If there are non-unit photos,
-                if(sortedMedia.false){
-                    $scope.amenities = sortedMedia.false;
-                } else {
-                    $scope.amenities = [];
-                }
-                // Some photos in the database will have a NULL isUnit - makes it an ammenity
-                $scope.amenities.concat(sortedMedia.null);
-
-                // Check to see if there are any unit photos, if there are...
-                if(sortedMedia.true){
-                    $scope.pins = sortedMedia.true;
-                    return;
-                } else {
-                    $scope.pins = [];
-                    return;
-                }
-            }
-        }
 
         function bulkUploadPhotos() {
-          var key;
-          var promises = [];
-          console.dir($scope.amenities);
+            var key;
+            var promises = [];
+            console.dir($scope.amenities);
 
-          for (var i = 0; i < $scope.files.length; i++) {
-            console.dir(i);
-            key = modalData.SubscriptionApartmentPubId + '/' + $scope.amenities[i].title + '.JPG';
-            promises.push(
-              AWSFct
-              .s3
-              .equirectPhotos
-              .uploadTourPhoto($scope.files[i], key)
-            );
-          }
-          console.dir(promises);
-          $q.all(promises)
-          .then(function(response){
-            return MediaFct.save.bulk.media($scope.amenities)
-          })
-          .then(function(response){
-              alert('Finished!')
-          });
+            for (var i = 0; i < $scope.files.length; i++) {
+                console.dir(i);
+                key = modalData.SubscriptionApartmentPubId + '/' + $scope.amenities[i].title + '.JPG';
+                promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto($scope.files[i], key));
+            }
+            console.dir(promises);
+            $q.all(promises).then(function(response) {
+                return MediaFct.save.bulk.media($scope.amenities)
+            }).then(function(response) {
+                alert('Finished!')
+            });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;
 
@@ -203,7 +112,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         // For moving pins after they have been placed
-        function movePin(mouseEvent){
+        function movePin(mouseEvent) {
             movePinFlag = false;
 
             // Calculate the new pin X and Y
@@ -216,17 +125,18 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             pinToMove.y = newPinPosition.y;
 
             // send the new pin data to the API to be saved
-            pinAPIResource.save(pinToMove, function(response){
+            pinAPIResource.save(pinToMove, function(response) {
                 alert('saved');
                 return;
             });
         }
 
         // For deleting a pin that has been placed already
-        function deletePin(pin, callback){
+        function deletePin(pin, callback) {
             // Send the request to the API to have the media record deleted
-            $resource(WizioConfig.baseAPIURL + 'unit/delete/pin')
-            .save({pin: pin}, function(response){
+            $resource(WizioConfig.baseAPIURL + 'unit/delete/pin').save({
+                pin: pin
+            }, function(response) {
                 callback(response);
             });
 
@@ -238,28 +148,27 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', $scope.pins).then(function(result) {
                 switch (result) {
                     case 'removePin':
-                    deletePin($scope.pins[selectedPinIndex], function(response){
-                        selectedPinIndex = $scope.pins.splice(selectedPinIndex, 1);
-                    })
-                    break;
+                        deletePin($scope.pins[selectedPinIndex], function(response) {
+                            selectedPinIndex = $scope.pins.splice(selectedPinIndex, 1);
+                        });
+                        break;
                     case 'movePin':
-                    movePinFlag = true;
-                    break;
+                        movePinFlag = true;
+                        break;
                     case 'renamePhoto':
-                      var selectedMedia = $scope.pins[selectedPinIndex];
-                      selectedMedia.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
-                      renameMedia($scope.pins[selectedPinIndex]);
-                      break;
+                        var selectedMedia = $scope.pins[selectedPinIndex];
+                        selectedMedia.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
+                        renameMedia($scope.pins[selectedPinIndex]);
+                        break;
                     case 'cancel':
-                    break;
+                        break;
                     default:
                 }
             });
         }
         function renameMedia(media) {
-            UploadFct.buildModal.renameMedia(media)
-            .then(function(response){
-                if(response === 'exit'){
+            UploadFct.buildModal.renameMedia(media).then(function(response) {
+                if (response === 'exit') {
                     return;
                 } else {
                     alert('Photo Renamed Successfully');
@@ -299,10 +208,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             // pass the current pin as 'modalData' into the called modal controller
             buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(response) {
                 // result is what's passed back from modal button selection
-                if(response.result === 'cancel'){
+                if (response.result === 'cancel') {
                     $scope.pins.pop();
                 }
-                $scope.uploaded=true;
+                $scope.uploaded = true;
                 return response.photoTitle;
             });
         }
@@ -310,45 +219,44 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
-          return $q(function(resolve, reject){
+            return $q(function(resolve, reject) {
 
-            var file    =photo;
-            var reader  = new FileReader();
+                var file = photo;
+                var reader = new FileReader();
 
-            reader.addEventListener("load", function () {
-              htmltag.src = reader.result;
-              console.dir('IN LOAD');
-            }, false);
+                reader.addEventListener("load", function() {
+                    htmltag.src = reader.result;
+                    console.dir('IN LOAD');
+                }, false);
 
-            if (file) {
-              console.dir('IN IF');
-              reader.readAsDataURL(file);
-            }
-          })
+                if (file) {
+                    console.dir('IN IF');
+                    reader.readAsDataURL(file);
+                }
+            })
         }
 
         function uploadPhotos() {
-          for (var i = 0; i < $scope.amenities.length; i++) {
-            $scope.amenities[i]
-          }
+            for (var i = 0; i < $scope.amenities.length; i++) {
+                $scope.amenities[i]
+            }
         }
 
         $scope.addAmenity = function addAmenity() {
-            document.getElementById('uploadMultiplePhotosInputButton')
-            .onchange = function(){
-              $scope.amenities = [];
-                var i = 0;
+            document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 var elementId = 'imgPreview';
                 var preview;
                 $scope.files = [];
+                $scope.apartment.sortedMedia.newMedia = [];
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
+                var i = 0;
                 while (i < this.files.length) {
                     console.dir(this.files[i]);
                     console.dir($scope.amenities);
                     this.files[i].name = 'Photo ' + i;
                     console.dir(this.files[i].name);
                     $scope.files.push(this.files[i]);
-                    $scope.amenities.push({
+                    $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
                         apartmentpubid: modalData.pubid,
@@ -356,7 +264,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         type: 'vrphoto',
                         title: 'Photo ' + i,
                         awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
-                        ApartmentId: $scope.selectedUnit.id,
+                        ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId,
                         useremail: TokenSvc.decode().email,
                         token: TokenSvc.getToken()

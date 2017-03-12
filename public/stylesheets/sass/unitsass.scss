@@ -458,11 +458,11 @@
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation= 3);
 }
 .open {
-    -webkit-animation: open ease 1s forwards;
-    font-size: 2em;
-    top: 20px;
-    bottom: 20px;
-    line-height: 1;
+    // -webkit-animation: open ease 1s forwards;
+    // font-size: 2em;
+    // top: 20px;
+    // bottom: 20px;
+    // line-height: 1;
 }
 .close {
     -webkit-animation: close ease 2s;
