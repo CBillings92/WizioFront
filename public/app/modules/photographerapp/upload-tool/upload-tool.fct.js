@@ -36,6 +36,7 @@ angular.module('PhotographerApp')
                     if (sortedMedia.true) {
                         sortedMedia.pins = sortedMedia.true;
                     }
+                    sortedMedia.newMedia = [];
                     return sortedMedia;
                 }
             }

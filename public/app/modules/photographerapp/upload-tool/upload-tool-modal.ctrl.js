@@ -57,7 +57,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 
             for (var i = 0; i < $scope.files.length; i++) {
                 console.dir(i);
-                key = modalData.SubscriptionApartmentPubId + '/' + $scope.amenities[i].title + '.JPG';
+                key = modalData.SubscriptionApartmentPubId + '/' + $scope.apartment.sortedMedia.newMedia[i].title + '.JPG';
                 promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto($scope.files[i], key));
             }
             console.dir(promises);
@@ -238,12 +238,19 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             }
         }
 
+        function removeNewMedia(index) {
+            alert('in here');
+            console.dir('---');
+            console.dir(apartment);
+            apartment.sortedMedia.newMedia.splice(index, 1);
+            return;
+        }
+        $scope.removeNewMedia = removeNewMedia;
         $scope.addAmenity = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 var elementId = 'imgPreview';
                 var preview;
                 $scope.files = [];
-                $scope.apartment.sortedMedia.newMedia = [];
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 var i = 0;
                 while (i < this.files.length) {
