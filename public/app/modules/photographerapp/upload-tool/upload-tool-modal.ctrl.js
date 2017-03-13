@@ -29,6 +29,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var buildModal = ModalBuilderFct.buildComplexModal;
         var apartment = modalData;
         $scope.amenities = [];
+        $scope.files = [];
         $scope.uploaded = false;
 
         $scope.closeModal = function() {
@@ -53,18 +54,26 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function bulkUploadPhotos() {
             var key;
             var promises = [];
-            console.dir($scope.amenities);
 
+            if($scope.files.length === 0) {
+                alert('No new photos uploaded');
+                $uibModalInstance.close();
+                return;
+            }
+
+            // loop through new files and create array of promises that send
+            // files to our S3 bucket
             for (var i = 0; i < $scope.files.length; i++) {
-                console.dir(i);
                 key = modalData.SubscriptionApartmentPubId + '/' + $scope.apartment.sortedMedia.newMedia[i].title + '.JPG';
                 promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto($scope.files[i], key));
             }
-            console.dir(promises);
+
+            // Upon all of the promises finishing, alert the user
             $q.all(promises).then(function(response) {
                 return MediaFct.save.bulk.media($scope.amenities)
             }).then(function(response) {
                 alert('Finished!')
+                $uibModalInstance.close();
             });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;
@@ -250,7 +259,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 var elementId = 'imgPreview';
                 var preview;
-                $scope.files = [];
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 var i = 0;
                 while (i < this.files.length) {
