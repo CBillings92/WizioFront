@@ -39,58 +39,43 @@
         <div class="col-md-12">
             <h3>New {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
             <div ng-repeat="amenity in apartment.sortedMedia.newMedia track by $index">
-                <div style="border: 1px-solid-black; margin:5px;">
-                    <div class="col-md-4">
-                        <input type="text" ng-model="amenity.title" class="form-control" style="border:1px solid black;" name="button"></input>
-                    </div>
-                    <div class="col-md-6">
-                        <img id="{{'imgPreview' + $index}}" width="90%" alt="">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{amenity.title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img id="{{'imgPreview' + $index}}" width="90%" alt="">
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Rename</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Drop Pin</button>
+                            <button type="button" style="left: 100px;" class="btn btn-outline--orange" name="button">Delete</button>
+                        </div>
                     </div>
                 </div>
-                <loading-spinner-dir id="upload-tool-photo-preview-spinner" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
-                <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
-                {{amenity.title}}
-            </a> -->
             </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
-            <h3>Current Tour {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
+            <h3>Current {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
             <div ng-repeat="amenity in apartment.sortedMedia.amenities track by $index">
-                <div class="input-group">
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Preview Photo</a></li>
-                            <li><a href="#">Rename Photo</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Delete Photo</a></li>
-                        </ul>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{amenity.title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img src="{{'https://cdn.wizio.co/' + apartment.SubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" style="width:90%" alt="">
+                        </div>
+                        <div class="panel-footer">
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Rename</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" name="button">Delete</button>
+                        </div>
                     </div>
-                    <!-- /btn-group -->
-                    <input type="text" class="form-control" aria-label="..." ng-model="amenity.title">
                 </div>
-                <!-- /input-group -->
-            </div>
-        </div>
-        <div class="col-md-12">
-            <h3>Current Tour {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
-            <div ng-repeat="amenity in apartment.sortedMedia.amenities track by $index">
-                <div style="border: 1px-solid-black; margin:5px;">
-                    <div class="col-md-4">
-                        <input type="text" ng-model="amenity.title" class="form-control" style="border:1px solid black;" name="button"></input>
-                    </div>
-                    {{amenity}}
-                    <div class="col-md-6">
-                        <img src="{{'https://cdn.wizo.co/' + apartment.SubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" style="width:90%" alt="">
-                    </div>
-                    <!-- <div class="col-md-6">
-                    <img id="{{'imgPreview' + $index}}" width="90%" alt="">
-                  </div> -->
-                </div>
-                <loading-spinner-dir id="upload-tool-photo-preview-spinner" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
-                <!-- <a ng-href="{{'https://cdn.wizio.co/' + selectedSubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" target="_blank">
-                {{amenity.title}}
-            </a> -->
             </div>
         </div>
     </div>

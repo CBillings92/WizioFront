@@ -44,7 +44,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }).catch(function(error) {
             console.dir(error);
         })
-        
+
 
         // On clicking on either a pin or the floorplan, remove, move or create a pin
         $scope.makePinAction = makePinAction;
@@ -94,12 +94,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 choosePinActionModal(selectedPinIndex);
             }
         }
-
-        $scope.makeAmmenityAction = function makeAmmenityAction(media) {
-            media.SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartmentPubId;
-            renameMedia(media);
-        }
-
         // Used to calculate the pin X and Y based on the mouse click
         function calculatePinXandY(mouseEvent) {
             // hardcoded values account for the size of the rectangle pin image
@@ -167,6 +161,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
         function renameMedia(media) {
+            media.SubscriptionApartmentPubId = apartment.SubscriptionApartmentPubId;
             UploadFct.buildModal.renameMedia(media).then(function(response) {
                 if (response === 'exit') {
                     return;
@@ -175,6 +170,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 }
             });
         }
+        $scope.renameMedia = renameMedia;
         // function for dropping a pin on the floorplan. e is the click event
         function createPin(e) {
             // hardcoded values account for the size of the rectangle pin image
@@ -278,42 +274,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
-
-            // buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
-            //     // result is what's passed back from modal button selection
-            //     $scope.uploaded=true;
-            //     if(response.message === 'cancel'){
-            //         return;
-            //     } else if (response.message === 'success'){
-            //         amenity.title = response.photoTitle;
-            //         $scope.amenities.push(response.photo);
-            //         return;
-            //     }
-            //     return;
-            // });
-            // var amenity = {
-            //     x: null,
-            //     y: null,
-            //     apartmentpubid: $scope.selectedUnit.pubid,
-            //     isUnit: 0,
-            //     type: 'vrphoto',
-            //     title: null,
-            //     awsurl: 'https://cdn.wizio.co/' + $scope.selectedUnit.pubid + '/',
-            //     ApartmentId: $scope.selectedUnit.id,
-            //     SubscriptionApartmentPubId: $scope.selectedUnit.SubscriptionApartmentPubId
-            // };
-            // buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', amenity).then(function(response) {
-            //     // result is what's passed back from modal button selection
-            //     $scope.uploaded=true;
-            //     if(response.message === 'cancel'){
-            //         return;
-            //     } else if (response.message === 'success'){
-            //         amenity.title = response.photoTitle;
-            //         $scope.amenities.push(amenity);
-            //         return;
-            //     }
-            //     return;
-            // });
 
         };
 
