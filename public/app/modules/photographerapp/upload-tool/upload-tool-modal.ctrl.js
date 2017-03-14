@@ -46,34 +46,20 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             console.dir(error);
         })
 
-
         // On clicking on either a pin or the floorplan, remove, move or create a pin
         $scope.makePinAction = makePinAction;
         $scope.selectedSubscriptionApartmentPubId = null;
 
         function bulkUploadPhotos() {
-            var key;
-            var promises = [];
-
-            if($scope.files.length === 0) {
-                alert('No new photos uploaded');
-                $uibModalInstance.close();
-                return;
-            }
-
-            // loop through new files and create array of promises that send
-            // files to our S3 bucket
-            for (var i = 0; i < $scope.files.length; i++) {
-                key = modalData.SubscriptionApartmentPubId + '/' + $scope.apartment.sortedMedia.newMedia[i].title + '.JPG';
-                promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto($scope.files[i], key));
-            }
-
-            // Upon all of the promises finishing, alert the user
-            $q.all(promises).then(function(response) {
-                return MediaFct.save.bulk.media($scope.amenities)
-            }).then(function(response) {
+            UploadToolFct.bulkUploadPhotos($scope.files, apartment).then(function(response) {
                 alert('Finished!')
                 $uibModalInstance.close();
+            }).catch(function(error) {
+                if (error === 'No Files To Upload') {
+                    alert('No new photos uploaded');
+                    $uibModalInstance.close();
+                    return;
+                }
             });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;

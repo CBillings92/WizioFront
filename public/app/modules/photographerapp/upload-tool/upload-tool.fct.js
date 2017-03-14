@@ -5,7 +5,9 @@ angular.module('PhotographerApp')
         'lodash',
         'WizioConfig',
         'TokenSvc',
-        function($q, $resource, lodash, WizioConfig, TokenSvc){
+        'MediaFct',
+        'AWSFct',
+        function($q, $resource, lodash, WizioConfig, TokenSvc, MediaFct, AWSFct){
             var API = {
                 subscriptionApartment: {
                     media: $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId', {
@@ -53,11 +55,35 @@ angular.module('PhotographerApp')
                     })
                 })
             }
+
+            function bulkUploadPhotos(filesArray, apartment) {
+                return $q(function (resolve, reject) {
+                    var key;
+                    var promises = [];
+
+                    if (files.length === 0) {
+                        return reject('No Files To Upload');
+                    }
+
+                    for (var i = 0; i < files.length; i++) {
+                        key = apartment.SubscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].titel + '.JPG';
+                        promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(files[i], key));
+                        continue;
+                    }
+
+                    $q.all(promises)
+                    .then(function(response){
+                        return resolve('Finished');
+                    })
+                })
+            }
+
             return {
                 workflow: {
                     init: initializeUploadTool
                 },
-                sortMedia: sortMedia
+                sortMedia: sortMedia,
+                bulkUploadPhotos: bulkUploadPhotos
             }
         }
     ])
