@@ -65,8 +65,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 }
                 var addPhotosModalConfig = {
                     size: 'lg',
-                    templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
-                    controller: 'UploadPageCtrl',
+                    templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
+                    controller: 'UploadPageNewCtrl',
                     modalData: {}
                 }
 

@@ -15,7 +15,7 @@
         <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
             <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
             <div style="position:relative; display:inline-block;" id="floorplanOverlay">
-                <img src="{{Apartment.Floor_Plan}}" ng-show="apartment.Floor_Plan" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
+                <img src="{{apartment.Floor_Plan}}" ng-show="apartment.Floor_Plan" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
                 <h4 ng-show="!apartment.Floor_Plan">
                             No floor plan available. Please upload photos using the Add Photo button below.
                         </h4>
@@ -48,8 +48,8 @@
                             <img id="{{'imgPreview' + $index}}" width="90%" alt="">
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Drop Pin</button>
                             <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
                             <img src="{{'https://cdn.wizio.co/' + apartment.SubscriptionApartmentPubId + '/' + amenity.title + '.JPG'}}" style="width:90%" alt="">
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity)" name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Drop Pin</button>
                             <button type="button" class="btn btn-outline--orange" name="button">Delete</button>
                         </div>
                     </div>
