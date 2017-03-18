@@ -24,7 +24,7 @@ angular.module('SearchApp').controller('SearchResultsTileCtrl', [
                     pubid: subscription.pubid
                 },
                 UserSubscriptions: {
-                    pubid: user.Subscriptions[0].UserSubscriptions.pubid
+                    pubid: user.Subscriptions[0].UserSubscriptions_Migration.pubid
                 }
             };
             $resource(WizioConfig.baseAPIURL + 'activelisting')

@@ -25,7 +25,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         // console.log(user);
 
         // get whether the user has access to invite others
-        $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
+        $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;
 
         // get all active listings for this user
         $scope.activelistings = user.ActiveListings;
@@ -122,12 +122,12 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         });
         $scope.inviteUser = function() {
             var user = TokenSvc.decode();
-            var userSubscriptions = user.Subscriptions[0].UserSubscriptions;
+            var userSubscriptions = user.Subscriptions[0].UserSubscriptions_Mig;
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,
                 UserId: user.id,
-                BusinessId: userSubscriptions.BusinessId || userSubscriptions.BusinessPubId,
-                SubscriptionId: userSubscriptions.SubscriptionId || userSubscriptions.SubscriptionPubId,
+                BusinessId: UserSubscriptions_Migration.BusinessId || UserSubscriptions_Migration.BusinessPubId,
+                SubscriptionId: UserSubscriptions_Migration.SubscriptionId || UserSubscriptions_Migration.SubscriptionPubId,
                 firstName: user.firstName,
                 lastName: user.lastName
             };
