@@ -35,7 +35,6 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
         $scope.closeModal= function(){
             $uibModalInstance.close();
         }
-
         // just store the angular resource for later use
         apartmentAPIResource = $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
             param1: '@id',
@@ -46,9 +45,9 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param6: '@subscriptionPubId'
         });
 
-        // just store the angular resource for later use
+        // Store the angular resource for later use
         pinAPIResource = $resource(WizioConfig.baseAPIURL + 'media');
-
+        alert('make request');
         // get the id, pubid, concatAddr, unitnum, and Floor_Plan for all apartments with Floor_Plans
         apartmentAPIResource.query({
             param1: 'id',
@@ -59,28 +58,24 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             param6: TokenSvc.decode().Subscriptions[0].id
         },
         function(response) {
+            console.dir('AAA');
+            console.dir(response);
+            console.dir(modalData);
+            console.dir('AAA');
             units = [];
-            if(modalData.Apartment){
 
-                for(var i = 0; i < response.length; i++){
-                    response[i].Apartment["SubscriptionApartmentPubId"] = "";
-
-                    response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
-                    if(response[i].Apartment.concatAddr === modalData.Apartment.concatAddr && response[i].Apartment.unitNum === modalData.Apartment.unitNum){
-                        units.push(response[i].Apartment);
-                    }
-                }
-            } else {
-
-                for(var i = 0; i < response.length; i++){
-                    response[i].Apartment["SubscriptionApartmentPubId"] = "";
-
-                    response[i].Apartment["SubscriptionApartmentPubId"] = response[i].pubid;
-                    units.push(response[i].Apartment);
-                }
+            for(var i = 0; i < response.length; i++){
+                response[i].SubscriptionApartment = {
+                    pubid: response[i].pubid
+                };
+                units.push(response[i]);
             }
+
             // $scope.units = lodash.groupBy(units, 'Floor_Plan');
             $scope.units = units;
+            console.dir('BBB');
+            console.dir($scope.units);
+            console.dir('BBB');
         });
 
         // On selecting a unit, load the floorplan image and pins/photos

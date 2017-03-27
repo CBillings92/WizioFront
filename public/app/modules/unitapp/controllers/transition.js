@@ -148,7 +148,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                         $scope.photoIndex = photoIndex;
                         // Get the photourl and set it on scope
                         if(state === 'LandingPage'){
-                            photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                            photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
                         } else {
                             photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
                         }
@@ -162,7 +162,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                         $scope.changePhoto = function(photoIndex) {
                             var photoUrl = "";
                             if(state === 'LandingPage'){
-                                photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                                photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + 'jpg';
                             } else {
                                 photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
                             }
@@ -218,7 +218,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     $scope.photoIndex = photoIndex;
                     // Get the photourl and set it on scope
                     if(state === 'LandingPage'){
-                        photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                        photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
                     } else {
                         photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
                     }
@@ -232,7 +232,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     $scope.changePhoto = function(photoIndex) {
                         var photoUrl = "";
                         if(state === 'LandingPage'){
-                            photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title;
+                            photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + 'jpg';
                         } else {
                             photoUrl = "https://cdn.wizio.co/" + $scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
                         }

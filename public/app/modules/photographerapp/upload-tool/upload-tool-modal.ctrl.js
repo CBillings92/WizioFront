@@ -27,10 +27,11 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-        var apartment = modalData;
-        console.dir('---------------------');
+        var apartment = modalData.Apartment;
+        var subscriptionApartment = modalData.SubscriptionApartment;
+        console.dir('---');
         console.dir(apartment);
-        console.dir('---------------------');
+        console.dir('---');
         $scope.amenities = [];
         $scope.files = [];
         $scope.uploaded = false;
@@ -40,7 +41,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         // Laod the data for the CreateTourModal
-        UploadToolFct.workflow.init(apartment).then(function(media) {
+        UploadToolFct.workflow.init(apartment, subscriptionApartment.pubid)
+        .then(function(media) {
             var sortedMedia = UploadToolFct.sortMedia(media);
             apartment.sortedMedia = sortedMedia;
             $scope.apartment = apartment;
@@ -83,7 +85,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             }
 
             // If statement handles logic for dictating what action to take
-            // Either removal of a pin, moving a pin, or creating a new pin
+            // Either removal of a pin, movi|ng a pin, or creating a new pin
             if (clickOnFloorplan === true && movePinFlag === false) {
                 createPin(mouseEvent);
             } else if (clickOnFloorplan === true && movePinFlag === true) {
@@ -276,6 +278,42 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             $('#uploadMultiplePhotosInputButton').trigger('click');
 
         };
+        $scope.createPinForPhoto = function(photo, index) {
+
+        }
+        $scope.addPhotoForUpload = function(){
+            var uploadPhotosButton = document.getElementById('uploadMultiplePhotosInputButton');
+            uploadPhotosButton.onChange = function(){
+                var elemId = 'imgPreview';
+                var files = this.files;
+                var preview;
+
+                var i = 0;
+                while (i < files.length){
+                    files[i].name = 'Photo ' + i;
+                    $scope.files.push(files[i]);
+                    $scope.apartment.sortedMedia.newMedia.push({
+                        x: null,
+                        y: null,
+                        apartmentpubid: modalData.pubid,
+                        isUnit: 0,
+                        type: 'vrphoto',
+                        title: 'Photo ' + i,
+                        awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
+                        ApartmentId: modalData.id,
+                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId,
+                        useremail: TokenSvc.decode().email,
+                        token: TokenSvc.getToken()
+                    });
+
+                    $scope.$apply();
+                    preview = document.getElementById(elemId + i);
+                    previewPhoto(files[i], preview);
+                    i++;
+                };
+            }
+            $('#uploadMultiplePhotosInputButton').trigger('click');
+        }
 
     }
 ]);

@@ -16,6 +16,7 @@ angular.module('PhotographerApp')
                         })
                 }
             }
+
             function sortMedia(unsortedMedia) {
                 var sortedMedia = {
                     pins: [],
@@ -46,16 +47,23 @@ angular.module('PhotographerApp')
                     return sortedMedia;
                 }
             }
-            function initializeUploadTool(Apartment) {
+
+            /*
+                Get the photo data for the given SubscriptionApartment for the upload tool.
+            */
+            function initializeUploadTool(apartment, subscriptionApartmentPubId) {
                 return $q(function(resolve, reject){
-                    if (Apartment.Floor_Plan) {
-                        var key = Apartment.SubscriptionApartmentPubId + '/floorplan.png';
+                    // If there is a Floor Plan, create the URL for the floor plan
+                    if (apartment.Floor_Plan) {
+                        var key = subscriptionApartmentPubId + '/floorplan.png';
                         var modifiedKey = AWSFct.utilities.modifyKeyForEnvironment(key);
-                        Apartment.Floor_Plan = "https://cdn.wizio.co/" + modifiedKey;
+                        apartment.Floor_Plan = "https://cdn.wizio.co/" + modifiedKey;
                     }
+
+                    // Query for the photos of the unit
                     API.subscriptionApartment.media.query({
                         SubscriptionPubId: TokenSvc.decode().Subscriptions[0].pubid,
-                        SubscriptionApartmentPubId: Apartment.SubscriptionApartmentPubId
+                        SubscriptionApartmentPubId: subscriptionApartmentPubId
                     }, function(media){
                         return resolve(media);
                     })
@@ -89,7 +97,7 @@ angular.module('PhotographerApp')
                     init: initializeUploadTool
                 },
                 sortMedia: sortMedia,
-                bulkUploadPhotos: bulkUploadPhotos
+                bulkUploadPhotos: bulkUploadPhotos,
             }
         }
     ])
