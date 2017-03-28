@@ -43,16 +43,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             subScope is `this` from the element click in the HTML
         */
         $scope.chooseUnit = function(selectedUnitIndex) {
-            var SubscriptionPubId = TokenSvc.decode().Subscriptions[0].pubid;
             $scope.selectedUnit = $scope.units[selectedUnitIndex];
-            var SubscriptionApartmentPubId = $scope.selectedUnit.SubscriptionApartment.pubid;
-
-            UploadToolFct.workflow.init($scope.selectedUnit, SubscriptionApartmentPubId)
-            .then(function(media){
-                $scope.selectedUnit.Media = media;
-                $uibModalInstance.close($scope.selectedUnit);
-            })
-
+            $uibModalInstance.close($scope.selectedUnit);
         }
     }
 ]);

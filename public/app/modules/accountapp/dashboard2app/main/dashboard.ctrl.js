@@ -111,8 +111,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
               modalData: {}
             };
             createModal(searchModifyModalConfig)
-            .then(function(selectedApartment){
-              uploadTourPageModalConfig.modalData.Apartment = selectedApartment;
+            .then(function(data){
+              uploadTourPageModalConfig.modalData = data;
               createModal(uploadTourPageModalConfig)
               .then(function(response){
 

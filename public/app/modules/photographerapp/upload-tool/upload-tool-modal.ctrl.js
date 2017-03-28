@@ -27,8 +27,9 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-        var apartment = modalData.Apartment;
+        var apartment = modalData;
         var subscriptionApartment = modalData.SubscriptionApartment;
+        $scope.subscriptionApartment = subscriptionApartment;
         $scope.amenities = [];
         $scope.files = [];
         $scope.uploaded = false;
