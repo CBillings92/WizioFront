@@ -29,9 +29,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var buildModal = ModalBuilderFct.buildComplexModal;
         var apartment = modalData.Apartment;
         var subscriptionApartment = modalData.SubscriptionApartment;
-        console.dir('---');
-        console.dir(apartment);
-        console.dir('---');
         $scope.amenities = [];
         $scope.files = [];
         $scope.uploaded = false;

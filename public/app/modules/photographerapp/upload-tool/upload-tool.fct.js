@@ -14,6 +14,16 @@ angular.module('PhotographerApp')
                             SubscriptionPubId: '@SubscriptionPubId',
                             SubscriptionApartmentPubId: '@SubscriptionApartmentPubId',
                         })
+                },
+                apartment: {
+                    chooseParams: $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
+                        param1: '@id',
+                        param2: '@pubid',
+                        param3: '@concatAddr',
+                        param4: '@unitNum',
+                        param5: '@Floor_Plan',
+                        param6: '@subscriptionPubId'
+                    })
                 }
             }
 
@@ -47,7 +57,28 @@ angular.module('PhotographerApp')
                     return sortedMedia;
                 }
             }
+            // Initialize modal for choosing a unit to upload photos to
+            function initializeChooseUnitModal() {
+                return $q(function(resolve, reject){
+                    API.apartment.chooseParams.query({
+                        param1: 'id',
+                        param2: 'pubid',
+                        param3: 'concatAddr',
+                        param4: 'unitNum',
+                        param5: "Floor_Plan",
+                        param6: TokenSvc.decode().Subscriptions[0].id
+                    }, function(response){
+                        // For each unit, add SubscriptionApartment object as key onto it
+                        for(var i = 0; i < response.length; i++){
+                            response[i].SubscriptionApartment = {
+                                pubid: response[i].pubid
+                            };
+                        }
 
+                        return resolve(response);
+                    });
+                })
+            }
             /*
                 Get the photo data for the given SubscriptionApartment for the upload tool.
             */
@@ -98,6 +129,7 @@ angular.module('PhotographerApp')
                 },
                 sortMedia: sortMedia,
                 bulkUploadPhotos: bulkUploadPhotos,
+                initializeChooseUnitModal: initializeChooseUnitModal
             }
         }
     ])
