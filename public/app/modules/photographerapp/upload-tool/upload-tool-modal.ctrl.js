@@ -27,7 +27,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var apartmentAPIResource;
         var pinAPIResource;
         var buildModal = ModalBuilderFct.buildComplexModal;
-        var apartment = modalData;
+        var apartment = modalData.Apartment;
         var subscriptionApartment = modalData.SubscriptionApartment;
         $scope.subscriptionApartment = subscriptionApartment;
         $scope.amenities = [];
@@ -54,7 +54,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.selectedSubscriptionApartmentPubId = null;
 
         function bulkUploadPhotos() {
-            UploadToolFct.bulkUploadPhotos($scope.files, apartment).then(function(response) {
+            UploadToolFct.bulkUploadPhotos($scope.files, apartment, subscriptionApartment.pubid).then(function(response) {
                 alert('Finished!')
                 $uibModalInstance.close();
             }).catch(function(error) {
@@ -243,7 +243,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             return;
         }
         $scope.removeNewMedia = removeNewMedia;
-        $scope.addAmenity = function addAmenity() {
+        $scope.addPhotosForUpload = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 var elementId = 'imgPreview';
                 var preview;
@@ -255,13 +255,13 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
-                        apartmentpubid: modalData.pubid,
+                        apartmentpubid: apartment.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
                         title: 'Photo ' + i,
-                        awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
+                        awsurl: 'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/',
                         ApartmentId: modalData.id,
-                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId,
+                        SubscriptionApartmentPubId: subscriptionApartment.pubid,
                         useremail: TokenSvc.decode().email,
                         token: TokenSvc.getToken()
                     })
@@ -278,39 +278,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         };
         $scope.createPinForPhoto = function(photo, index) {
 
-        }
-        $scope.addPhotoForUpload = function(){
-            var uploadPhotosButton = document.getElementById('uploadMultiplePhotosInputButton');
-            uploadPhotosButton.onChange = function(){
-                var elemId = 'imgPreview';
-                var files = this.files;
-                var preview;
-
-                var i = 0;
-                while (i < files.length){
-                    files[i].name = 'Photo ' + i;
-                    $scope.files.push(files[i]);
-                    $scope.apartment.sortedMedia.newMedia.push({
-                        x: null,
-                        y: null,
-                        apartmentpubid: modalData.pubid,
-                        isUnit: 0,
-                        type: 'vrphoto',
-                        title: 'Photo ' + i,
-                        awsurl: 'https://cdn.wizio.co/' + modalData.pubid + '/',
-                        ApartmentId: modalData.id,
-                        SubscriptionApartmentPubId: modalData.SubscriptionApartmentPubId,
-                        useremail: TokenSvc.decode().email,
-                        token: TokenSvc.getToken()
-                    });
-
-                    $scope.$apply();
-                    preview = document.getElementById(elemId + i);
-                    previewPhoto(files[i], preview);
-                    i++;
-                };
-            }
-            $('#uploadMultiplePhotosInputButton').trigger('click');
         }
 
     }

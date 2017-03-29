@@ -15,6 +15,7 @@ angular.module('PhotographerApp')
                             SubscriptionApartmentPubId: '@SubscriptionApartmentPubId',
                         })
                 },
+                media: $resource(WizioConfig.baseAPIURL + 'media'),
                 apartment: {
                     chooseParams: $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
                         param1: '@id',
@@ -101,24 +102,40 @@ angular.module('PhotographerApp')
                 })
             }
 
-            function bulkUploadPhotos(filesArray, apartment) {
+            function savePhotoToWizioAPI(mediaObject) {
+                return $q(function(resolve, reject){
+                    API.media.save(mediaObject, function (response) {
+                        return resolve(response);
+                    })
+                })
+            }
+
+            function bulkUploadPhotos(filesArray, apartment, subscriptionApartmentPubId) {
                 return $q(function (resolve, reject) {
                     var key;
-                    var promises = [];
-
+                    var s3Promises = [];
+                    var wizioAPIPromises = [];
+                    var newMedia = apartment.sortedMedia.newMedia;
+                    console.dir(apartment);
                     if (filesArray.length === 0) {
                         return reject('No Files To Upload');
                     }
 
                     for (var i = 0; i < filesArray.length; i++) {
-                        key = apartment.SubscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
-                        promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
+                        key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
+                        s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
                         continue;
                     }
 
-                    $q.all(promises)
+                    $q.all(s3Promises)
                     .then(function(response){
-                        return resolve('Finished');
+                        for (var i = 0; i < newMedia.length; i++) {
+                            wizioAPIPromises.push(savePhotoToWizioAPI(newMedia[i]))
+                        }
+                        $q.all(wizioAPIPromises)
+                        .then(function(response){
+                            return resolve('Finished');
+                        })
                     })
                 })
             }
