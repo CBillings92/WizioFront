@@ -48,7 +48,7 @@ angular.module('MainApp')
                         return 'http://172.16.0.3:4000/api/';
                 }
             }()),
-
+            S3_EQUIRECTPHOTOS_BUCKET: env === 'prod' ? 'equirect-photos' : 'test-equirect-photos',
             frontEndURL: window.location.origin,
 
             // FOR DISPLAYING DEMO AND LANDING PAGE TOURS

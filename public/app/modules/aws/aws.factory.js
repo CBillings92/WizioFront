@@ -43,11 +43,11 @@ angular.module('AWSApp')
           // create a new S3 object from AWS library
           var bucket = createS3Object();
           // Create the oldFileEndPoint which defines the file to be copied
-          var oldFileEndPoint = 'equirect-photos/'+ fileFolderName + '/' + oldFileName + '.JPG';
+          var oldFileEndPoint = WizioConfig.S3_EQUIRECTPHOTOS_BUCKET + '/'+ fileFolderName + '/' + oldFileName + '.JPG';
           // Create the newFileEndPoint which defines the file's end state
           var newFileEndPoint = fileFolderName + '/' + newFileName + '.JPG';
           var params = {
-            Bucket: 'equirect-photos',
+            Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
             CopySource: oldFileEndPoint,
             Key: newFileEndPoint,
           };
@@ -69,7 +69,7 @@ angular.module('AWSApp')
         function deleteFile(fileName, folderName) {
           var bucket = createS3Object();
           var params = {
-            Bucket: 'equirect-photos',
+            Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
             Key: folderName + '/' + fileName + '.JPG'
           };
           return $q(function(resolve, reject){
@@ -113,7 +113,7 @@ angular.module('AWSApp')
                     var bucket = createS3Object();
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: 'png',
                         Body: file
@@ -138,7 +138,7 @@ angular.module('AWSApp')
                 var bucket = createS3Object();
 
                 var params = {
-                  Bucket: 'equirect-photos',
+                  Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                   Key: properKey,
                   ContentType: 'JPG',
                   Body: file
@@ -169,7 +169,7 @@ angular.module('AWSApp')
                     // var bucket = bucket ? bucket : 'equirect-photos';
 
                     var params = {
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: file.type,
                         Body: file

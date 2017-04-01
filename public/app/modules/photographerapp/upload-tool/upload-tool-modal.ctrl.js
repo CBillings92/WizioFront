@@ -159,7 +159,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
         function renameMedia(media, index) {
-            media.SubscriptionApartmentPubId = apartment.SubscriptionApartmentPubId;
+            media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadFct.buildModal.renameMedia(media).then(function(response) {
                 if(response.message){
                     $scope.apartment.sortedMedia.newMedia[index] = response.media;
@@ -214,11 +214,15 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
 
+        // used for formatting the subscriptionapartment pubid for the environment
+        $scope.formatKeyForEnv = function(pubid) {
+            return AWSFct.utilities.modifyKeyForEnvironment(pubid);
+        }
+
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
             return $q(function(resolve, reject) {
-
                 var file = photo;
                 var reader = new FileReader();
 
@@ -247,18 +251,29 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 var elementId = 'imgPreview';
                 var preview;
+                var filename;
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 var i = 0;
                 while (i < this.files.length) {
-                    this.files[i].name = 'Photo ' + i;
+                    if($scope.apartment.sortedMedia.amenities.length === 0) {
+                        filename = 'Photo ' + i;
+                    } else {
+                        filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.amenities);
+                    }
+                    this.files[i].name = filename;
+                    console.dir(filename);
+                    console.dir(this.files[i].name);
                     $scope.files.push(this.files[i]);
+                    console.dir('aaaaaaaaaaa');
+                    console.dir(subscriptionApartment.pubid);
+                    console.dir('aaaaaaaaaaa');
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
                         apartmentpubid: apartment.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
-                        title: 'Photo ' + i,
+                        title: filename,
                         awsurl: 'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/',
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,

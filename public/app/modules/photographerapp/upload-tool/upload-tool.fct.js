@@ -31,10 +31,13 @@ angular.module('PhotographerApp')
             function sortMedia(unsortedMedia) {
                 var sortedMedia = {
                     pins: [],
-                    amenities: []
+                    amenities: [],
+                    newMedia: []
                 };
+                console.dir(unsortedMedia);
                 // Check to see if there are any photos for this SubscriptionApartment
-                if(Object.keys(unsortedMedia).length === 0) {
+                if(unsortedMedia.length === 0) {
+                    console.dir('NO PHOTOS');
                     return sortedMedia;
                 } else {
                     sortedMedia = lodash.groupBy(unsortedMedia, "isUnit");
@@ -110,6 +113,43 @@ angular.module('PhotographerApp')
                 })
             }
 
+            function autoNameNewPhoto(listOfNewPhotos, listOfCurrentAndNewPhotos) {
+                console.dir('____________________________');
+                var photoNumsTaken = [];
+                var newPhotoName = 'Photo';
+                console.dir('hello');
+                console.dir(listOfNewPhotos);
+                console.dir(listOfCurrentAndNewPhotos)
+                for(var i = 0; i < listOfCurrentAndNewPhotos.length; i++) {
+                    console.dir(listOfCurrentAndNewPhotos[i].title.substr(0,4));
+                    if(listOfCurrentAndNewPhotos[i].title.substr(0,5) === 'Photo') {
+                        photoNumsTaken.push(Number(listOfCurrentAndNewPhotos[i].title.substr(6,7)));
+                    }
+                }
+                for(var i = 0; i < listOfNewPhotos.length; i++) {
+                    if(listOfNewPhotos[i].title.substr(0,5) === 'Photo') {
+                        photoNumsTaken.push(Number(listOfNewPhotos[i].title.substr(6,7)));
+                    }
+                }
+                photoNumsTaken = photoNumsTaken.sort();
+                photoNumsTaken.push("");
+                console.dir(photoNumsTaken);
+                console.dir('fuck');
+                for (var i = 0; i <= photoNumsTaken.length; i++) {
+                    console.dir('hello');
+                    console.dir(photoNumsTaken[i]);
+                    console.dir(i);
+                    if(photoNumsTaken[i] === i){
+                        continue;
+                    } else {
+                        newPhotoName = newPhotoName + ' ' + i;
+                        break;
+                    }
+                }
+                console.dir('newPhotoName = ' + newPhotoName)
+                return newPhotoName;
+            }
+
             function bulkUploadPhotos(filesArray, apartment, subscriptionApartmentPubId) {
                 return $q(function (resolve, reject) {
                     var key;
@@ -146,7 +186,8 @@ angular.module('PhotographerApp')
                 },
                 sortMedia: sortMedia,
                 bulkUploadPhotos: bulkUploadPhotos,
-                initializeChooseUnitModal: initializeChooseUnitModal
+                initializeChooseUnitModal: initializeChooseUnitModal,
+                autoNameNewPhoto: autoNameNewPhoto
             }
         }
     ])

@@ -49,7 +49,7 @@
                         </div>
                         <div class="panel-footer">
                             <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index)" name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index)" ng-show='apartment.Floor_Plan' name="button">Drop Pin</button>
                             <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
                         </div>
                     </div>
@@ -67,11 +67,11 @@
                             <h3 class="panel-title">{{amenity.title}}</h3>
                         </div>
                         <div class="panel-body">
-                            <img src="{{'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/' + amenity.title + '.JPG'}}" style="width:90%" alt="">
+                            <img src="{{'https://cdn.wizio.co/' + formatKeyForEnv(subscriptionApartment.pubid) + '/' + amenity.title + '.JPG'}}" style="width:90%" alt="">
                         </div>
                         <div class="panel-footer">
                             <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" ng-show='apartment.Floor_Plan' name="button">Drop Pin</button>
                             <button type="button" class="btn btn-outline--orange" name="button">Delete</button>
                         </div>
                     </div>
