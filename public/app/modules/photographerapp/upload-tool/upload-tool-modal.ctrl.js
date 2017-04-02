@@ -32,6 +32,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var dropPinFlag = false;
         var photoForPinDropIndex;
         var newOrCurrentPhotoForPinDrop;
+        $scope.temporaryPins = [];
+        $scope.choosePhotoForPinFlag = false;
         $scope.subscriptionApartment = subscriptionApartment;
         $scope.photos = [];
         $scope.files = [];
@@ -78,11 +80,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             or removed
             poopie pooop poop poop
         */
-        function makePinAction(mouseEvent, subScope, clickOnFloorplan) {
+        function makePinAction(mouseEvent, subScope, clickOnFloorplan, index) {
             // Only get the pin index (from the pin html id) when a pin was selected
             if (clickOnFloorplan === false) {
-                var onlyNumbersPattern = /\d+/g;
-                selectedPinIndex = Number(mouseEvent.target.id.match(onlyNumbersPattern)[0]);
+                selectedPinIndex = index
             }
 
             // If statement handles logic for dictating what action to take
@@ -140,20 +141,20 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         // When a pin is clicked provide the user a modal with possible options
         // for the already placed pins
         function choosePinActionModal(selectedPinIndex) {
-            buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', apartment.sortedMedia.pins).then(function(result) {
+            buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', apartment.sortedMedia.newMedia[selectedPinIndex]).then(function(result) {
                 switch (result) {
                     case 'removePin':
-                        deletePin(apartment.sortedMedia.pins[selectedPinIndex], function(response) {
-                            selectedPinIndex = apartment.sortedMedia.pins.splice(selectedPinIndex, 1);
+                        deletePin(apartment.sortedMedia.newMedia[selectedPinIndex], function(response) {
+                            selectedPinIndex = apartment.sortedMedia.newMedia.splice(selectedPinIndex, 1);
                         });
                         break;
                     case 'movePin':
                         movePinFlag = true;
                         break;
                     case 'renamePhoto':
-                        var selectedMedia = apartment.sortedMedia.pins[selectedPinIndex];
+                        var selectedMedia = apartment.sortedMedia.newMedia[selectedPinIndex];
                         selectedMedia.SubscriptionApartmentPubId = $scope.apartment.SubscriptionApartmentPubId;
-                        renameMedia(apartment.sortedMedia.pins[selectedPinIndex]);
+                        renameMedia(apartment.sortedMedia.newMedia[selectedPinIndex]);
                         break;
                     case 'cancel':
                         break;
@@ -177,6 +178,11 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
         $scope.renameMedia = renameMedia;
+
+        $scope.cancelPinSelection = function () {
+            $scope.choosePhotoForPinFlag = false;
+            dropPinFlag = false;
+        }
         // function for dropping a pin on the floorplan. e is the click event
         function createPin(e) {
             // hardcoded values account for the size of the rectangle pin image
@@ -188,41 +194,38 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 
             // create the pin object to be saved to the database eventually (a
             // media object)
-            console.dir('drop pin flag ' + dropPinFlag);
-            console.dir('$scope.apartment ' + $scope.apartment);
-            console.dir('photoForPinDropIndex ' + photoForPinDropIndex);
-            console.dir('newOrCurrentPhotoForPinDrop ' + newOrCurrentPhotoForPinDrop);
-            var pin = $scope.apartment.sortedMedia[newOrCurrentPhotoForPinDrop][photoForPinDropIndex];
-            pin.x = x;
-            pin.y = y;
-            pin.isUnit = 1;
-            console.dir('droppin');
-            console.dir($scope.apartment);
+            if (dropPinFlag) {
+                var pin = $scope.apartment.sortedMedia[newOrCurrentPhotoForPinDrop][photoForPinDropIndex];
+                pin.x = x;
+                pin.y = y;
+                pin.isUnit = 1;
+                console.dir('droppin');
+                dropPinFlag = false;
+            } else {
+                alert('Choose a photo below to associate with this pin!');
+                $scope.choosePhotoForPinFlag = true;
+                $scope.temporaryPins.push({
+                    x: x,
+                    y: y
+                });
+            }
+            return;
+        }
 
-
-            // call $scope.$apply to manually refresh scope - needed because of
-            // disconnect between angular and vanilla JS
-            // $scope.$apply();
-
-            // build and display a modal with the templateUrl and controller,
-            // pass the current pin as 'modalData' into the called modal controller
-            buildModal('md', 'public/app/modules/photographerapp/upload/uploadphoto.modal.view.html', 'UploadPhotoModalCtrl', pin).then(function(response) {
-                // result is what's passed back from modal button selection
-                if (response.result === 'cancel') {
-                    apartment.sortedMedia.pins.pop();
-                }
-                $scope.uploaded = true;
-                return response.photoTitle;
-            });
+        $scope.choosePhotoForPin = function (photo, index, typeOfPhoto) {
+            var apartment = $scope.apartment.sortedMedia[typeOfPhoto][index];
+            var temporaryPin = $scope.temporaryPins[0];
+            apartment.x = $scope.temporaryPins[0].x
+            apartment.y = $scope.temporaryPins[0].y
+            apartment.isUnit = true;
+            alert('Photo assigned to pin!');
+            $scope.choosePhotoForPinFlag = false;
+            dropPinFlag = false;
         }
 
         // used for formatting the subscriptionapartment pubid for the environment
         $scope.formatKeyForEnv = function(pubid) {
             return AWSFct.utilities.modifyKeyForEnvironment(pubid);
-        }
-
-        $scope.doesPinExist = function (amenity) {
-            console.dir(amenity);
         }
 
         $scope.previewPhoto = previewPhoto;

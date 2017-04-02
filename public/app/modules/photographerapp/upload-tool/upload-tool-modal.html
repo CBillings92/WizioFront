@@ -23,10 +23,13 @@
                 <p ng-show="!apartment.Floor_Plan" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p>
                 <!-- this loop is for displaying newly created pins -->
                 <span>
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.newMedia track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.newMedia track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" alt=""  ng-click="makePinAction($event, this, false, $index)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
                 </span>
                 <span>
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.photos track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in temporaryPins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" alt="" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                </span>
+                <span>
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.photos track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" alt=""  ng-click="makePinAction($event, this, false, $index)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
                 </span>
             </div>
         </div>
@@ -51,10 +54,17 @@
                             <img id="{{'imgPreview' + $index}}" width="90%" alt="">
                         </div>
                         <div class="panel-footer">
-                            <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !amenity.isUnit' name="button">Drop Pin</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && amenity.isUnit' name="button">Modify Pin</button>
-                            <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
+                            <span ng-hide="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !amenity.isUnit' name="button">Drop Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && amenity.isUnit' name="button">Modify Pin</button>
+                                <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
+                            </span>
+                            <span ng-show="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(amenity, $index, 'newMedia')" name="button">Choose Photo For Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
+
+                            </span>
                         </div>
                     </div>
                 </div>
