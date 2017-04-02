@@ -31,7 +31,7 @@ angular.module('PhotographerApp')
             function sortMedia(unsortedMedia) {
                 var sortedMedia = {
                     pins: [],
-                    amenities: [],
+                    photos: [],
                     newMedia: []
                 };
                 console.dir(unsortedMedia);
@@ -42,13 +42,13 @@ angular.module('PhotographerApp')
                 } else {
                     sortedMedia = lodash.groupBy(unsortedMedia, "isUnit");
 
-                    // store non-unit photos in 'amenities'
+                    // store non-unit photos in 'photos'
                     if (sortedMedia.false){
-                        sortedMedia.amenities = sortedMedia.false;
+                        sortedMedia.photos = sortedMedia.false;
                     }
-                    // some media will have isUnit = nul, make these amenities
+                    // some media will have isUnit = nul, make these photos
                     if (sortedMedia.null) {
-                        sortedMedia.amenities.concat(sortedMedia.null);
+                        sortedMedia.photos.concat(sortedMedia.null);
                     }
 
                     // store the isUnit photos in the pins array

@@ -29,8 +29,11 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         var buildModal = ModalBuilderFct.buildComplexModal;
         var apartment = modalData.Apartment;
         var subscriptionApartment = modalData.SubscriptionApartment;
+        var dropPinFlag = false;
+        var photoForPinDropIndex;
+        var newOrCurrentPhotoForPinDrop;
         $scope.subscriptionApartment = subscriptionApartment;
-        $scope.amenities = [];
+        $scope.photos = [];
         $scope.files = [];
         $scope.uploaded = false;
 
@@ -133,7 +136,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
 
         }
-
+// Trent and Devon Smell like beef and cheese Luv Kyle lol Dix
         // When a pin is clicked provide the user a modal with possible options
         // for the already placed pins
         function choosePinActionModal(selectedPinIndex) {
@@ -158,6 +161,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 }
             });
         }
+        // Rename media
         function renameMedia(media, index) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadFct.buildModal.renameMedia(media).then(function(response) {
@@ -180,24 +184,22 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             // top left of the box the pin is in)
             var x = (((e.offsetX - 17) / e.target.clientWidth) * 100).toFixed(2);
             var y = (((e.offsetY - 35) / e.target.clientHeight) * 100).toFixed(2);
+            var newPin;
 
             // create the pin object to be saved to the database eventually (a
             // media object)
-            var pin = {
-                x: x,
-                y: y,
-                apartmentpubid: $scope.apartment.pubid,
-                isUnit: 1,
-                type: 'vrphoto',
-                title: null,
-                awsurl: 'https://cdn.wizio.co/' + $scope.apartment.pubid + '/',
-                ApartmentId: $scope.apartment.id,
-                SubscriptionApartmentPubId: $scope.apartment.SubscriptionApartmentPubId
-            };
+            console.dir('drop pin flag ' + dropPinFlag);
+            console.dir('$scope.apartment ' + $scope.apartment);
+            console.dir('photoForPinDropIndex ' + photoForPinDropIndex);
+            console.dir('newOrCurrentPhotoForPinDrop ' + newOrCurrentPhotoForPinDrop);
+            var pin = $scope.apartment.sortedMedia[newOrCurrentPhotoForPinDrop][photoForPinDropIndex];
+            pin.x = x;
+            pin.y = y;
+            pin.isUnit = 1;
+            console.dir('droppin');
+            console.dir($scope.apartment);
 
-            // push this pin to the apartment.sortedMedia.pins array - will display on the
-            // floorplan at this point
-            apartment.sortedMedia.pins.push(pin);
+
             // call $scope.$apply to manually refresh scope - needed because of
             // disconnect between angular and vanilla JS
             // $scope.$apply();
@@ -219,6 +221,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             return AWSFct.utilities.modifyKeyForEnvironment(pubid);
         }
 
+        $scope.doesPinExist = function (amenity) {
+            console.dir(amenity);
+        }
+
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
@@ -237,8 +243,8 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         function uploadPhotos() {
-            for (var i = 0; i < $scope.amenities.length; i++) {
-                $scope.amenities[i]
+            for (var i = 0; i < $scope.photos.length; i++) {
+                $scope.photos[i]
             }
         }
 
@@ -255,18 +261,15 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 var i = 0;
                 while (i < this.files.length) {
-                    if($scope.apartment.sortedMedia.amenities.length === 0) {
+                    if($scope.apartment.sortedMedia.photos.length === 0) {
                         filename = 'Photo ' + i;
                     } else {
-                        filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.amenities);
+                        filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
                     }
                     this.files[i].name = filename;
                     console.dir(filename);
                     console.dir(this.files[i].name);
                     $scope.files.push(this.files[i]);
-                    console.dir('aaaaaaaaaaa');
-                    console.dir(subscriptionApartment.pubid);
-                    console.dir('aaaaaaaaaaa');
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
@@ -291,8 +294,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             $('#uploadMultiplePhotosInputButton').trigger('click');
 
         };
-        $scope.createPinForPhoto = function(photo, index) {
-
+        $scope.createPinForPhoto = function(photo, index, newOrCurrentPhoto) {
+            dropPinFlag = true;
+            newOrCurrentPhotoForPinDrop = newOrCurrentPhoto;
+            photoForPinDropIndex = index;
         }
 
     }

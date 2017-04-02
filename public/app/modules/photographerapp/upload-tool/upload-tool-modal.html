@@ -23,21 +23,24 @@
                 <p ng-show="!apartment.Floor_Plan" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p>
                 <!-- this loop is for displaying newly created pins -->
                 <span>
-                            <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-repeat="pin in apartment.sortedMedia.pins track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
-                        </span>
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.newMedia track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                </span>
+                <span>
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" ng-show="pin.isUnit" ng-repeat="pin in apartment.sortedMedia.photos track by $index" id="pin_{{$index}}" class="unit-details-floorplan-pin" ng-repeat="pin in pins" alt=""  ng-click="makePinAction($event, this, false)" style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"/>
+                </span>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2 form-group" style="padding:30px;">
             <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; z-index:-100" multiple>
-            <button class="btn btn--cta form-control" ng-click="addPhotosForUpload()">Upload {{apartment.Floor_Plan ? "Amenities" : "Photos"}}</button>
+            <button class="btn btn--cta form-control" ng-click="addPhotosForUpload()">Upload Photos</button>
             <label class="control-label">You may upload more than 1 photo at a time</label>
         </div>
     </div>
     <div class="row" ng-show="apartment.sortedMedia.newMedia.length > 0" id="new-photos-row">
         <div class="col-md-12">
-            <h3>New {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
+            <h3>New Photos <small>Select a photo to rename it.</small></h3>
             <div ng-repeat="amenity in apartment.sortedMedia.newMedia track by $index">
                 <div class="col-md-6">
                     <div class="panel panel-default">
@@ -49,7 +52,8 @@
                         </div>
                         <div class="panel-footer">
                             <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(amenity, $index)" name="button">Rename</button>
-                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index)" ng-show='apartment.Floor_Plan' name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !amenity.isUnit' name="button">Drop Pin</button>
+                            <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(amenity, $index, 'newMedia')" ng-show='apartment.Floor_Plan && amenity.isUnit' name="button">Modify Pin</button>
                             <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
                         </div>
                     </div>
@@ -59,8 +63,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h3>Current {{apartment.Floor_Plan ? "Amenities" : "Photos"}} <small>Select a photo to rename it.</small></h3>
-            <div ng-repeat="amenity in apartment.sortedMedia.amenities track by $index">
+            <h3>Current Photos <small>Select a photo to rename it.</small></h3>
+            <div ng-repeat="amenity in apartment.sortedMedia.photos track by $index">
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
