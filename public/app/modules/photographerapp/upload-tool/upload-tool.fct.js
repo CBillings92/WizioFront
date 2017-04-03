@@ -109,7 +109,6 @@ angular.module('PhotographerApp')
                 var photoNumsTaken = [];
                 var newPhotoName = 'Photo';
                 for(var i = 0; i < listOfCurrentAndNewPhotos.length; i++) {
-                    console.dir(listOfCurrentAndNewPhotos[i].title.substr(0,4));
                     if(listOfCurrentAndNewPhotos[i].title.substr(0,5) === 'Photo') {
                         photoNumsTaken.push(Number(listOfCurrentAndNewPhotos[i].title.substr(6,7)));
                     }
@@ -139,7 +138,6 @@ angular.module('PhotographerApp')
                     var wizioAPIPromises = [];
                     var wizioAPIUpdatePromises = [];
                     var newMedia = apartment.sortedMedia.newMedia;
-                    console.dir(apartment);
                     if (filesArray.length !== 0) {
 
                         for (var i = 0; i < filesArray.length; i++) {

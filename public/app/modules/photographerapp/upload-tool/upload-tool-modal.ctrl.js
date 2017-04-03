@@ -161,10 +161,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function renameMedia(media, index, newMediaOrPhoto) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadToolFct.renameMedia(media).then(function(response) {
-                alert('hi');
-                    console.dir('_____');
-                    console.dir(response);
-                    console.dir('_____');
                     $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                 if (response === 'exit') {
                     return;
@@ -195,7 +191,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 pin.x = x;
                 pin.y = y;
                 pin.isUnit = 1;
-                console.dir('droppin');
                 dropPinFlag = false;
             } else {
                 alert('Choose a photo below to associate with this pin!');
@@ -266,8 +261,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
                     }
                     this.files[i].name = filename;
-                    console.dir(filename);
-                    console.dir(this.files[i].name);
                     $scope.files.push(this.files[i]);
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,

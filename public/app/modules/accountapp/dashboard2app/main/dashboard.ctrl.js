@@ -97,7 +97,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             })
         }
         $scope.modifyExistingTour = function() {
-            alert('wtf');
             var searchModifyModalConfig = {
               size: 'lg',
               templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
