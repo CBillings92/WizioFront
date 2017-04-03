@@ -74,7 +74,7 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
-                            
+
                         }
                     }
                 })
@@ -89,6 +89,17 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/app/modules/searchapp/view.html',
                             controller: 'SearchAppCtrl',
+                        }
+                    }
+                })
+                .state('Pricing', {
+                    // abstract: true,
+                    url: '/pricing',
+                    views: {
+                        "footer": footer,
+                        "maincontent": {
+                            templateUrl: 'public/app/modules/subscriptionapp/main/pricing.main.view.html',
+                            controller: ''
                         }
                     }
                 })
