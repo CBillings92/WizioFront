@@ -15,13 +15,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
     'lodash',
     '$uibModalInstance',
     'TokenSvc',
-    'UploadFct',
     'modalData',
     'LoadingSpinnerFct',
     'AWSFct',
     'MediaFct',
     'UploadToolFct',
-    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, UploadFct, modalData, LoadingSpinnerFct, AWSFct, MediaFct, UploadToolFct) {
+    function($scope, $resource, $q, filterFilter, WizioConfig, ModalBuilderFct, lodash, $uibModalInstance, TokenSvc, modalData, LoadingSpinnerFct, AWSFct, MediaFct, UploadToolFct) {
         var movePinFlag = false;
         var selectedPinIndex;
         var apartmentAPIResource;
@@ -80,11 +79,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             or removed
             poopie pooop poop poop
         */
-        function makePinAction(mouseEvent, subScope, clickOnFloorplan, index) {
-            // Only get the pin index (from the pin html id) when a pin was selected
-            if (clickOnFloorplan === false) {
-                selectedPinIndex = index
-            }
+        function makePinAction(mouseEvent, photo, clickOnFloorplan, index, newMediaOrPhoto) {
 
             // If statement handles logic for dictating what action to take
             // Either removal of a pin, movi|ng a pin, or creating a new pin
@@ -93,7 +88,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             } else if (clickOnFloorplan === true && movePinFlag === true) {
                 movePin(mouseEvent);
             } else {
-                choosePinActionModal(selectedPinIndex);
+                choosePinActionModal(index, newMediaOrPhoto);
             }
         }
         // Used to calculate the pin X and Y based on the mouse click
@@ -140,21 +135,21 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 // Trent and Devon Smell like beef and cheese Luv Kyle lol Dix
         // When a pin is clicked provide the user a modal with possible options
         // for the already placed pins
-        function choosePinActionModal(selectedPinIndex) {
-            buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', apartment.sortedMedia.newMedia[selectedPinIndex]).then(function(result) {
+        function choosePinActionModal(selectedPinIndex, newMediaOrPhoto) {
+            buildModal('md', 'public/app/modules/photographerapp/upload/remove-pin.modal.view.html', 'RemovePinModalCtrl', apartment.sortedMedia[newMediaOrPhoto][selectedPinIndex]).then(function(result) {
                 switch (result) {
                     case 'removePin':
-                        deletePin(apartment.sortedMedia.newMedia[selectedPinIndex], function(response) {
-                            selectedPinIndex = apartment.sortedMedia.newMedia.splice(selectedPinIndex, 1);
+                        deletePin(apartment.sortedMedia[newMediaOrPhoto][selectedPinIndex], function(response) {
+                            selectedPinIndex = apartment.sortedMedia[newMediaOrPhoto].splice(selectedPinIndex, 1);
                         });
                         break;
                     case 'movePin':
                         movePinFlag = true;
                         break;
                     case 'renamePhoto':
-                        var selectedMedia = apartment.sortedMedia.newMedia[selectedPinIndex];
+                        var selectedMedia = apartment.sortedMedia[newMediaOrPhoto][selectedPinIndex];
                         selectedMedia.SubscriptionApartmentPubId = $scope.apartment.SubscriptionApartmentPubId;
-                        renameMedia(apartment.sortedMedia.newMedia[selectedPinIndex]);
+                        renameMedia(apartment.sortedMedia[newMediaOrPhoto][selectedPinIndex]);
                         break;
                     case 'cancel':
                         break;
@@ -163,13 +158,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
         }
         // Rename media
-        function renameMedia(media, index) {
+        function renameMedia(media, index, newMediaOrPhoto) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
-            UploadFct.buildModal.renameMedia(media).then(function(response) {
-                if(response.message){
-                    $scope.apartment.sortedMedia.newMedia[index] = response.media;
-                    return;
-                }
+            UploadToolFct.renameMedia(media).then(function(response) {
+                alert('hi');
+                    console.dir('_____');
+                    console.dir(response);
+                    console.dir('_____');
+                    $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                 if (response === 'exit') {
                     return;
                 } else {

@@ -4,10 +4,11 @@ angular.module('PhotographerApp')
         '$resource',
         'lodash',
         'WizioConfig',
+        'ModalBuilderFct',
         'TokenSvc',
         'MediaFct',
         'AWSFct',
-        function($q, $resource, lodash, WizioConfig, TokenSvc, MediaFct, AWSFct){
+        function($q, $resource, lodash, WizioConfig, ModalBuilderFct, TokenSvc, MediaFct, AWSFct){
             var API = {
                 subscriptionApartment: {
                     media: $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId', {
@@ -28,38 +29,29 @@ angular.module('PhotographerApp')
                 }
             }
 
-            function sortMedia(unsortedMedia) {
+            // builds the modal and handles the logic for renaming media objects
+            // returns a promise from the $q library
+            function renameMedia(mediaObj) {
+                return $q(function(resolve, reject){
+                  ModalBuilderFct.buildComplexModal(
+                    'md',
+                    WizioConfig.uploadViews.modals.renameMedia,
+                    'RenameMediaCtrl',
+                    mediaObj
+                  )
+                  .then(function(response){
+                      resolve(response);
+                  });
+                })
+            }
+
+            function sortMedia(mediaArray) {
                 var sortedMedia = {
                     pins: [],
-                    photos: [],
+                    photos: mediaArray,
                     newMedia: []
                 };
-                console.dir(unsortedMedia);
-                // Check to see if there are any photos for this SubscriptionApartment
-                if(unsortedMedia.length === 0) {
-                    console.dir('NO PHOTOS');
-                    return sortedMedia;
-                } else {
-                    sortedMedia = lodash.groupBy(unsortedMedia, "isUnit");
-
-                    // store non-unit photos in 'photos'
-                    if (sortedMedia.false){
-                        sortedMedia.photos = sortedMedia.false;
-                    }
-                    // some media will have isUnit = nul, make these photos
-                    if (sortedMedia.null) {
-                        sortedMedia.photos.concat(sortedMedia.null);
-                    }
-
-                    // store the isUnit photos in the pins array
-                    if (sortedMedia.true) {
-                        sortedMedia.pins = sortedMedia.true;
-                    } else {
-                        sortedMedia.pins = [];
-                    }
-                    sortedMedia.newMedia = [];
-                    return sortedMedia;
-                }
+                return sortedMedia;
             }
             // Initialize modal for choosing a unit to upload photos to
             function initializeChooseUnitModal() {
@@ -114,12 +106,8 @@ angular.module('PhotographerApp')
             }
 
             function autoNameNewPhoto(listOfNewPhotos, listOfCurrentAndNewPhotos) {
-                console.dir('____________________________');
                 var photoNumsTaken = [];
                 var newPhotoName = 'Photo';
-                console.dir('hello');
-                console.dir(listOfNewPhotos);
-                console.dir(listOfCurrentAndNewPhotos)
                 for(var i = 0; i < listOfCurrentAndNewPhotos.length; i++) {
                     console.dir(listOfCurrentAndNewPhotos[i].title.substr(0,4));
                     if(listOfCurrentAndNewPhotos[i].title.substr(0,5) === 'Photo') {
@@ -133,12 +121,7 @@ angular.module('PhotographerApp')
                 }
                 photoNumsTaken = photoNumsTaken.sort();
                 photoNumsTaken.push("");
-                console.dir(photoNumsTaken);
-                console.dir('fuck');
                 for (var i = 0; i <= photoNumsTaken.length; i++) {
-                    console.dir('hello');
-                    console.dir(photoNumsTaken[i]);
-                    console.dir(i);
                     if(photoNumsTaken[i] === i){
                         continue;
                     } else {
@@ -146,7 +129,6 @@ angular.module('PhotographerApp')
                         break;
                     }
                 }
-                console.dir('newPhotoName = ' + newPhotoName)
                 return newPhotoName;
             }
 
@@ -155,28 +137,46 @@ angular.module('PhotographerApp')
                     var key;
                     var s3Promises = [];
                     var wizioAPIPromises = [];
+                    var wizioAPIUpdatePromises = [];
                     var newMedia = apartment.sortedMedia.newMedia;
                     console.dir(apartment);
-                    if (filesArray.length === 0) {
-                        return reject('No Files To Upload');
-                    }
+                    if (filesArray.length !== 0) {
 
-                    for (var i = 0; i < filesArray.length; i++) {
-                        key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
-                        s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
-                        continue;
-                    }
-
-                    $q.all(s3Promises)
-                    .then(function(response){
+                        for (var i = 0; i < filesArray.length; i++) {
+                            key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
+                            s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
+                            continue;
+                        }
+                        $q.all(s3Promises)
+                        .then(function(response){
+                            for (var i = 0; i < newMedia.length; i++) {
+                                newMedia[i].useremail = TokenSvc.decode().email;
+                                wizioAPIPromises.push(savePhotoToWizioAPI(newMedia[i]))
+                            }
+                            for (var i = 0; i < apartment.sortedMedia.photos.length; i++) {
+                                apartment.sortedMedia.photos[i].useremail = TokenSvc.decode().email;
+                                wizioAPIPromises.push(savePhotoToWizioAPI(apartment.sortedMedia.photos[i]));
+                            }
+                            $q.all(wizioAPIPromises)
+                            .then(function(response){
+                                return resolve('Finished');
+                            })
+                        })
+                    } else {
                         for (var i = 0; i < newMedia.length; i++) {
+                            newMedia[i].useremail = TokenSvc.decode().email;
                             wizioAPIPromises.push(savePhotoToWizioAPI(newMedia[i]))
+                        }
+                        for (var i = 0; i < apartment.sortedMedia.photos.length; i++) {
+                            apartment.sortedMedia.photos[i].useremail = TokenSvc.decode().email;
+                            wizioAPIPromises.push(savePhotoToWizioAPI(apartment.sortedMedia.photos[i]));
                         }
                         $q.all(wizioAPIPromises)
                         .then(function(response){
                             return resolve('Finished');
                         })
-                    })
+                    }
+
                 })
             }
 
@@ -187,7 +187,8 @@ angular.module('PhotographerApp')
                 sortMedia: sortMedia,
                 bulkUploadPhotos: bulkUploadPhotos,
                 initializeChooseUnitModal: initializeChooseUnitModal,
-                autoNameNewPhoto: autoNameNewPhoto
+                autoNameNewPhoto: autoNameNewPhoto,
+                renameMedia: renameMedia
             }
         }
     ])
