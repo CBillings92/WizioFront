@@ -77,7 +77,7 @@
                             <span ng-hide="choosePhotoForPinFlag" >
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'newMedia')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
-                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
                                 <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
                             </span>
                             <span ng-show="choosePhotoForPinFlag" >
@@ -107,7 +107,7 @@
                             <span ng-hide="choosePhotoForPinFlag" >
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
-                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
                                 <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
                             </span>
                             <span ng-show="choosePhotoForPinFlag" >

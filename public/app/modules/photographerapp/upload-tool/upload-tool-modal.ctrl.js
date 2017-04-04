@@ -86,7 +86,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             if (clickOnFloorplan === true && movePinFlag === false) {
                 createPin(mouseEvent);
             } else if (clickOnFloorplan === true && movePinFlag === true) {
-                movePin(mouseEvent);
+                movePin(mouseEvent, index, newMediaOrPhoto);
             } else {
                 choosePinActionModal(index, newMediaOrPhoto);
             }
@@ -103,23 +103,29 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         // For moving pins after they have been placed
-        function movePin(mouseEvent) {
+        function movePin(mouseEvent, index, newMediaOrPhoto) {
             movePinFlag = false;
 
             // Calculate the new pin X and Y
             var newPinPosition = calculatePinXandY(mouseEvent);
 
             // Get the pin that will be moved
-            var pinToMove = apartment.sortedMedia.pins[selectedPinIndex];
+            var pinToMove = $scope.apartment.sortedMedia[newOrCurrentPhotoForPinDrop][photoForPinDropIndex];
 
             pinToMove.x = newPinPosition.x;
             pinToMove.y = newPinPosition.y;
 
-            // send the new pin data to the API to be saved
-            pinAPIResource.save(pinToMove, function(response) {
-                alert('saved');
+            console.dir(pinToMove.id);
+
+            if(pinToMove.id) {
+                // send the new pin data to the API to be saved
+                UploadToolFct.saveOnePhotoToWizioAPI(pinToMove, function(response){
+                    alert('Saved');
+                })
+
+            } else {
                 return;
-            });
+            }
         }
 
         // For deleting a pin that has been placed already
@@ -145,6 +151,9 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         break;
                     case 'movePin':
                         movePinFlag = true;
+                        newOrCurrentPhotoForPinDrop = newMediaOrPhoto;
+                        photoForPinDropIndex = selectedPinIndex;
+
                         break;
                     case 'renamePhoto':
                         var selectedMedia = apartment.sortedMedia[newMediaOrPhoto][selectedPinIndex];

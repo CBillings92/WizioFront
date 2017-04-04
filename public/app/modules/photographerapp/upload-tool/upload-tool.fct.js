@@ -97,8 +97,13 @@ angular.module('PhotographerApp')
                 })
             }
 
+            // Save one media object to the Wizio DB. Must be a properly formed
+            // Media object
             function savePhotoToWizioAPI(mediaObject) {
                 return $q(function(resolve, reject){
+                    // set the useremail on the object to create a new token
+                    mediaObject.useremail = TokenSvc.decode().email;
+                    // send the object to the API
                     API.media.save(mediaObject, function (response) {
                         return resolve(response);
                     })
@@ -186,7 +191,8 @@ angular.module('PhotographerApp')
                 bulkUploadPhotos: bulkUploadPhotos,
                 initializeChooseUnitModal: initializeChooseUnitModal,
                 autoNameNewPhoto: autoNameNewPhoto,
-                renameMedia: renameMedia
+                renameMedia: renameMedia,
+                saveOnePhotoToWizioAPI: savePhotoToWizioAPI
             }
         }
     ])
