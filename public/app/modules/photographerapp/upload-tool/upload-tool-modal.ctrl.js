@@ -81,13 +81,18 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         */
         function makePinAction(mouseEvent, photo, clickOnFloorplan, index, newMediaOrPhoto) {
 
+            console.dir('not right');
+            console.dir(clickOnFloorplan);
+            console.dir(movePinFlag);
             // If statement handles logic for dictating what action to take
             // Either removal of a pin, movi|ng a pin, or creating a new pin
             if (clickOnFloorplan === true && movePinFlag === false) {
                 createPin(mouseEvent);
             } else if (clickOnFloorplan === true && movePinFlag === true) {
+                console.dir('in here please');
                 movePin(mouseEvent, index, newMediaOrPhoto);
-            } else {
+            }  else {
+                console.dir('dah fuq');
                 choosePinActionModal(index, newMediaOrPhoto);
             }
         }
@@ -105,11 +110,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         // For moving pins after they have been placed
         function movePin(mouseEvent, index, newMediaOrPhoto) {
             movePinFlag = false;
-
+            console.dir('1')
             // Calculate the new pin X and Y
             var newPinPosition = calculatePinXandY(mouseEvent);
-
+            console.dir('2')
+            console.dir(newOrCurrentPhotoForPinDrop);
+            console.dir(photoForPinDropIndex);
             // Get the pin that will be moved
+            console.dir('3')
             var pinToMove = $scope.apartment.sortedMedia[newOrCurrentPhotoForPinDrop][photoForPinDropIndex];
 
             pinToMove.x = newPinPosition.x;
@@ -150,6 +158,9 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         });
                         break;
                     case 'movePin':
+                        console.dir('wat');
+                        console.dir(newMediaOrPhoto);
+                        console.dir(selectedPinIndex);
                         movePinFlag = true;
                         newOrCurrentPhotoForPinDrop = newMediaOrPhoto;
                         photoForPinDropIndex = selectedPinIndex;
