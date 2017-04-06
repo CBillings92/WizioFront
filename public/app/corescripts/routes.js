@@ -566,19 +566,19 @@ angular.module('MainApp')
                 .state('Privacy', {
                     url: '/privacy',
                     onEnter: function() {
-                        window.open('http://www.google.com', '_self');
+                        window.open('https://drive.google.com/open?id=0B0d2YtuXJgS5UFZBT1NRVUdvM1k', '_self');
                     }
                 })
                 .state('Terms', {
                     url: '/terms',
                     onEnter: function() {
-                        window.open('http://www.google.com', '_self');
+                        window.open('https://drive.google.com/open?id=0B0d2YtuXJgS5OGxQaDdTQ2M2ZWM', '_self');
                     }
                 })
                 .state('AcceptableUse', {
                     url: '/use',
                     onEnter: function() {
-                        window.open('http://www.google.com', '_self');
+                        window.open('https://drive.google.com/open?id=0B0d2YtuXJgS5VlRnV042cTBabEU', '_self');
                     }
                 })
                 .state('Unit.Display', {
