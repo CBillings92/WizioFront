@@ -1,14 +1,42 @@
 <div class="col-md-12" ng-repeat="activelisting in activelistings track by $index" style="border: 1px solid black; margin:5px; border-radius:5px;">
     <div class="row unit-block">
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div>Apartment Address: <br> {{activelisting.Apartment.concatAddr}}</div>
             <div>Unit Number: {{activelisting.Apartment.unitNum}}</div>
         </div>
-        <div class="col-lg-6 search-right">
-            <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.PubId}}" class="btn btn-md btn-outline--orange clipboard">Copy Link</button>
-            <button class="btn btn-md btn-outline--orange" ng-click="openInNewPage(activelisting.PubId)">Open Tour</button>
-
+        <div class="col-lg-7 search-right">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.PubId}}" class="btn btn-md btn-outline--orange clipboard form-control">Copy Link</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="openInNewPage(activelisting.PubId)">Open Tour</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-6" ng-show="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">Password Protect</button>
+                        </div>
+                        <div class="col-md-6" ng-hide="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="makeActiveListingPublic(activelisting, $index)">Make Public</button>
+                        </div>
+                        <div class="col-md-6" ng-hide="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">New Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- <button class="btn btn-md btn-outline--orange clipboard">Deactivate</button> -->
+        </div>
+        <div class="" style="width:33px; padding:0px; margin-right:30px; margin-left:-30px;">
+            <div class="" ng-show="!activelisting.isPublic">
+                <i class="fa fa-lock fa-2x" aria-hidden="true"></i>
+            </div>
+            <div class="" ng-show="activelisting.isPublic">
+                <i class="fa fa-2x fa-unlock-alt" aria-hidden="true"></i>
+            </div>
         </div>
     </div>
 </div>

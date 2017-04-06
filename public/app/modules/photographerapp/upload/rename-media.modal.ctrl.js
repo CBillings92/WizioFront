@@ -30,7 +30,7 @@ angular.module('PhotographerApp')
               )
             })
             .then(function(response){
-                $uibModalInstance.close('success');
+                $uibModalInstance.close(response);
             })
             .catch(function(response){
 

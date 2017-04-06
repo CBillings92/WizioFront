@@ -18,8 +18,10 @@ angular.module('AccountApp').factory('DashboardFct', [
                     token: TokenSvc.getToken()
                 };
                 $resource(api + 'unit').save(dataToBePassed, function(createdUnit) {
+                    console.dir(createdUnit);
+                    console.dir(createdUnit.message);
                     if (createdUnit.message) {
-                        alert("Apartment already created! Search for this apartment in your account search section or modify it in your Modify Existing Tour section.");
+                        alert("Apartment already created BANANA! Search for this apartment in your account search section or modify it in your Modify Existing Tour section.");
                         LoadingSpinnerFct.hide('create-unit-floor-plan-spinner');
                         return reject(createdUnit);
                     } else {
@@ -64,7 +66,7 @@ angular.module('AccountApp').factory('DashboardFct', [
                         pubid: subscription.pubid
                     },
                     UserSubscriptions: {
-                        pubid: user.Subscriptions[0].UserSubscriptions.pubid
+                        pubid: user.Subscriptions[0].UserSubscriptions_Migration.pubid
                     }
                 };
                 $resource(WizioConfig.baseAPIURL + 'activelisting')
