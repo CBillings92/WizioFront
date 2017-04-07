@@ -1,0 +1,128 @@
+<div class="modal-header">
+    <close-modal-dirv></close-modal-dirv>
+    <div class="">
+        <h2>{{apartment.Media.length > 0 ? 'Modify Tour' : 'Create Tour'}}</h2>
+    </div>
+    <div class="" style="margin-top:-15px">
+        <h2><small>{{apartment.concatAddr + ' Unit: ' + apartment.unitNum}}.</small></h2>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+        <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
+            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+            <div style="position:relative; display:inline-block;" id="floorplanOverlay">
+                <img src="{{apartment.Floor_Plan}}" ng-show="apartment.Floor_Plan" style="margin:0 auto;" ng-click="makePinAction($event, this, true)" id="floorplan" alt="" />
+                <h4 ng-show="!apartment.Floor_Plan">
+                            No floor plan available. Please upload photos using the Add Photo button below.
+                        </h4>
+                <br>
+                <p ng-show="!apartment.Floor_Plan" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p>
+                <!-- this loop is for displaying newly created pins -->
+                <span>
+                    <img
+                        src="public/viewtemplates/images/brand_assets/map_pin.png"
+                        ng-show="pin.isUnit"
+                        ng-repeat="pin in apartment.sortedMedia.newMedia track by $index" id="pin_{{$index}}"
+                        class="unit-details-floorplan-pin"
+                        alt=""  ng-click="makePinAction($event, pin, false, $index, 'newMedia')"
+                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
+                    />
+                </span>
+                <span>
+                    <img
+                        src="public/viewtemplates/images/brand_assets/map_pin.png"
+                        ng-repeat="pin in temporaryPins track by $index" id="pin_{{$index}}"
+                        class="unit-details-floorplan-pin"
+                        alt=""
+                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
+                    />
+                </span>
+                <span>
+                    <img
+                        src="public/viewtemplates/images/brand_assets/map_pin.png"
+                        ng-show="pin.isUnit"
+                        ng-repeat="pin in apartment.sortedMedia.photos track by $index" id="pin_{{$index}}"
+                        class="unit-details-floorplan-pin"
+                        alt=""  ng-click="makePinAction($event, pin, false, $index, 'photos')"
+                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
+                    />
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 form-group" style="padding:30px;">
+            <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; z-index:-100" multiple>
+            <button class="btn btn--cta form-control" ng-click="addPhotosForUpload()">Upload Photos</button>
+            <label class="control-label">You may upload more than 1 photo at a time</label>
+        </div>
+    </div>
+    <div class="row" ng-show="apartment.sortedMedia.newMedia.length > 0" id="new-photos-row">
+        <div class="col-md-12">
+            <h3>New Photos <small>Select a photo to rename it.</small></h3>
+            <div ng-repeat="photo in apartment.sortedMedia.newMedia track by $index">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{photo.title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img id="{{'imgPreview' + $index}}" width="90%" alt="">
+                        </div>
+                        <div class="panel-footer">
+                            <span ng-hide="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'newMedia')" name="button">Rename</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
+                                <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
+                            </span>
+                            <span ng-show="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'newMedia')" name="button">Choose Photo For Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Current Photos <small>Select a photo to rename it.</small></h3>
+            <div ng-repeat="photo in apartment.sortedMedia.photos track by $index">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{photo.title}}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <img src="{{'https://cdn.wizio.co/' + formatKeyForEnv(subscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
+                        </div>
+                        <div class="panel-footer">
+                            <span ng-hide="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
+                                <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
+                            </span>
+                            <span ng-show="choosePhotoForPinFlag" >
+                                <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'photos')" name="button">Choose Photo For Pin</button>
+                                <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
+
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="bulkUploadPhotos()" name="button">Finish</button>
+</div>

@@ -2,7 +2,7 @@ node_modules/
 #public/build/*
 
 npm-debug.log
-bower_components/
+#bower_components/
 .elasticbeanstalk/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

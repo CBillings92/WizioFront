@@ -1,87 +1,88 @@
 /*
   Contains functionality related to interfacing with AWS S3
 */
-angular.module('AWSApp')
-  .factory('AWSFct', [
+angular.module('AWSApp').factory('AWSFct', [
     '$q',
     'WizioConfig',
-    function(
-        $q,
-        WizioConfig
-    ){
-        AWS.config.update({
-          accessKeyId: 'AKIAIPGWV5OFR73P3VLQ',
-          secretAccessKey: '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'
-        });
+    function($q, WizioConfig) {
+        AWS.config.update({accessKeyId: 'AKIAIPGWV5OFR73P3VLQ', secretAccessKey: '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'});
 
         function createS3Object(endpoint, region) {
-          var S3Object = new AWS.S3({
-            endpoint: endpoint || 'https://cdn.wizio.co',
-            s3BucketEndpoint: true,
-            region: region || 'us-east-1'
-          });
-          return S3Object;
-      }
+            var S3Object = new AWS.S3({
+                endpoint: endpoint || 'https://cdn.wizio.co',
+                s3BucketEndpoint: true,
+                region: region || 'us-east-1'
+            });
+            return S3Object;
+        }
 
-      /* modifyKeyForEnvironment - SUMMARY
+        /* modifyKeyForEnvironment - SUMMARY
         Modify the key of the S3 object based on the current environment the
         codebase is running in. If it's dev (local) or test (test AWS server)
         append 'test_' to the data so it's easily findable and deleteable.
       */
-      function modifyKeyForEnvironment(key) {
-          if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
-              key = 'test_' + key;
-          }
-          return key
-      }
+        function modifyKeyForEnvironment(key) {
+            if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
+                key = 'test_' + key;
+            }
+            return key
+        }
 
         /* copyFile - SUMMARY
           Rename a file in an S3 bucket - happnes by copying the file with
           the new name and then deletes the old file
         */
         function copyFile(newFileName, oldFileName, fileFolderName) {
-          // create a new S3 object from AWS library
-          var bucket = createS3Object();
-          // Create the oldFileEndPoint which defines the file to be copied
-          var oldFileEndPoint = 'equirect-photos/'+ fileFolderName + '/' + oldFileName + '.JPG';
-          // Create the newFileEndPoint which defines the file's end state
-          var newFileEndPoint = fileFolderName + '/' + newFileName + '.JPG';
-          var params = {
-            Bucket: 'equirect-photos',
-            CopySource: oldFileEndPoint,
-            Key: newFileEndPoint,
-          };
-          return $q(function(resolve, reject){
-            bucket.copyObject(params, function(err, success){
-              if(err){
-                console.log(err, err.stack);
-                reject(err);
-              } else {
-                resolve(success);
-              }
+            fileFolderName = modifyKeyForEnvironment(fileFolderName);
+            console.dir(newFileName);
+            console.dir(oldFileName);
+            // create a new S3 object from AWS library
+            var bucket = createS3Object();
+            // Create the oldFileEndPoint which defines the file to be copied
+            // var oldFileEndPoint = WizioConfig.S3_EQUIRECTPHOTOS_BUCKET + '/' + fileFolderName + '/' + oldFileName + '.JPG';
+            var oldFileEndPoint = 'equirect-photos' + '/' + fileFolderName + '/' + oldFileName + '.JPG';
+            // Create the newFileEndPoint which defines the file's end state
+            var newFileEndPoint = fileFolderName + '/' + newFileName + '.JPG';
+            var params = {
+                // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
+                Bucket: 'equirect-photos',
+                CopySource: oldFileEndPoint,
+                Key: newFileEndPoint
+            };
+            return $q(function(resolve, reject) {
+                console.dir(params);
+                bucket.copyObject(params, function(err, success) {
+                    if (err) {
+                        console.log(err, err.stack);
+                        reject(err);
+                    } else {
+                        resolve(success);
+                    }
+                });
             });
-          });
         }
 
         /* deleteFile - SUMMARY
             delete a file from AWS S3 buckets
         */
         function deleteFile(fileName, folderName) {
-          var bucket = createS3Object();
-          var params = {
-            Bucket: 'equirect-photos',
-            Key: folderName + '/' + fileName + '.JPG'
-          };
-          return $q(function(resolve, reject){
-            bucket.deleteObject(params, function(err, success){
-              if(err){
-                console.log(err, err.stack);
-                reject(err);
-              } else {
-                resolve(success);
-              }
+            var bucket = createS3Object();
+            folderName = modifyKeyForEnvironment(folderName);
+            var params = {
+                Bucket: 'equirect-photos',
+                // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
+                Key: folderName + '/' + fileName + '.JPG'
+            };
+            return $q(function(resolve, reject) {
+                bucket.deleteObject(params, function(err, success) {
+                    if (err) {
+                        console.log(err, err.stack);
+                        reject(err);
+                    } else {
+                        resolve(success);
+                    }
+                });
             });
-          });
         }
 
         /*
@@ -89,30 +90,26 @@ angular.module('AWSApp')
         */
         function renameFile(newFileName, oldFileName, fileFolderName) {
             // return a promise
-            return $q(function(resolve, reject){
+            return $q(function(resolve, reject) {
                 // copy the file with the new file name first
-                copyFile(newFileName, oldFileName, fileFolderName)
-                    .then(function(response){
-                        // delete the old file once the new file is copied
-                        return deleteFile(oldFileName, fileFolderName);
-                    })
-                    .then(function(response){
-                        resolve(response);
-                    })
-                    .catch(function(err){
-
-                    });
+                copyFile(newFileName, oldFileName, fileFolderName).then(function(response) {
+                    // delete the old file once the new file is copied
+                    return deleteFile(oldFileName, fileFolderName);
+                }).then(function(response) {
+                    resolve(response);
+                }).catch(function(err) {});
             });
         }
 
         function uploadFloorPlanFile(file, key, bucket, region) {
-            return new $q(function(resolve, reject){
+            return new $q(function(resolve, reject) {
                 var properKey = modifyKeyForEnvironment(key);
                 //check if the file exists
                 if (file) {
                     var bucket = createS3Object();
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
+                        // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Bucket: 'equirect-photos',
                         Key: properKey,
                         ContentType: 'png',
@@ -129,10 +126,34 @@ angular.module('AWSApp')
             });
         }
 
-        function uploadProfileFile(file, key, bucket) {
-            return new $q(function(resolve, reject){
+        function uploadTourPhoto(file, key, bucket, region) {
+            return $q(function(resolve, reject) {
                 var properKey = modifyKeyForEnvironment(key);
 
+                if (file) {
+                    var bucket = createS3Object();
+
+                    var params = {
+                        // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
+                        Bucket: 'equirect-photos',
+                        Key: properKey,
+                        ContentType: 'JPG',
+                        Body: file
+                    }
+                    alert('in sending');
+                    console.dir(bucket.putObject);
+                    console.dir(params);
+                    bucket.putObject(params, function(err, data) {
+                        console.dir(err);
+                        resolve(data);
+                    })
+                }
+            })
+        }
+
+        function uploadProfileFile(file, key, bucket) {
+            return new $q(function(resolve, reject) {
+                var properKey = modifyKeyForEnvironment(key);
 
                 //check if the file exists
                 if (file) {
@@ -145,6 +166,7 @@ angular.module('AWSApp')
 
                     var params = {
                         Bucket: 'equirect-photos',
+                        // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: file.type,
                         Body: file
@@ -161,18 +183,19 @@ angular.module('AWSApp')
         }
 
         return {
-          s3: {
-                equirectPhotos:{
-                  renameFile: renameFile,
-                  uploadFloorPlanFile: uploadFloorPlanFile
+            s3: {
+                equirectPhotos: {
+                    renameFile: renameFile,
+                    uploadFloorPlanFile: uploadFloorPlanFile,
+                    uploadTourPhoto: uploadTourPhoto
                 },
                 profilePhotos: {
                     uploadphoto: uploadProfileFile
                 }
-         },
-        utilities: {
-             modifyKeyForEnvironment : modifyKeyForEnvironment
-         }
-      };
+            },
+            utilities: {
+                modifyKeyForEnvironment: modifyKeyForEnvironment
+            }
+        };
     }
-  ]);
+]);

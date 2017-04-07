@@ -45,7 +45,7 @@ angular.module('Directives')
                             results.innerHTML = '';
 
                             var params = {
-                                Bucket: 'equirect-photos',
+                                Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                                 Key:  scope.pin.SubscriptionApartmentPubId + '/' + scope.photoTitle + '.JPG',
                                 ContentType: file.type,
                                 Body: file

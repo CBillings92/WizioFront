@@ -65,8 +65,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 }
                 var addPhotosModalConfig = {
                     size: 'lg',
-                    templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
-                    controller: 'UploadPageCtrl',
+                    templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
+                    controller: 'UploadPageNewCtrl',
                     modalData: {}
                 }
 
@@ -97,7 +97,26 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             })
         }
         $scope.modifyExistingTour = function() {
-            ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/upload/upload.view.html', 'UploadPageCtrl', {});
+            var searchModifyModalConfig = {
+              size: 'lg',
+              templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
+              controller: 'UploadPageCtrl',
+              modalData: {}
+            };
+            var uploadTourPageModalConfig = {
+              size: 'lg',
+              templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
+              controller: 'UploadPageNewCtrl',
+              modalData: {}
+            };
+            createModal(searchModifyModalConfig)
+            .then(function(data){
+              uploadTourPageModalConfig.modalData = data;
+              createModal(uploadTourPageModalConfig)
+              .then(function(response){
+
+              })
+            })
         }
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-search-loader')
