@@ -141,12 +141,13 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         });
         $scope.inviteUser = function() {
             var user = TokenSvc.decode();
-            var userSubscriptions = user.Subscriptions[0].UserSubscriptions_Mig;
+            console.dir(user);
+            var userSubscriptions = user.Subscriptions[0].UserSubscriptions_Migration;
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,
                 UserId: user.id,
-                BusinessId: UserSubscriptions_Migration.BusinessId || UserSubscriptions_Migration.BusinessPubId,
-                SubscriptionId: UserSubscriptions_Migration.SubscriptionId || UserSubscriptions_Migration.SubscriptionPubId,
+                BusinessId: userSubscriptions.BusinessId || userSubscriptions.BusinessPubId,
+                SubscriptionId: userSubscriptions.SubscriptionId || userSubscriptions.SubscriptionPubId,
                 firstName: user.firstName,
                 lastName: user.lastName
             };
