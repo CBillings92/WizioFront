@@ -70,13 +70,13 @@ angular.module('AccountApp')
                                 });
                             } else {
                                 $scope.hasRegistered = true;
-                                // handler.open({
-                                //     name: 'Wizio Inc.,',
-                                //     description: 'Subscription:',
-                                //     zipCode: true,
-                                //     email: $scope.user.email,
-                                //     amount: 10000
-                                // });
+                                handler.open({
+                                    name: 'Wizio Inc.,',
+                                    description: 'Subscription:',
+                                    zipCode: true,
+                                    email: $scope.user.email,
+                                    amount: 10000
+                                });
 
                             }
 
