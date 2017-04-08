@@ -91,7 +91,14 @@
             </div>
         </div>
     </div>
+    <div class="row" ng-show="bulkUploadInitiated">
+        <span class="col-md-4"></span>
+        <span class="col-md-4">
+            <loading-spinner-dir id="bulk-upload-photo-loader" class="center-block" style="z-index:1000; color:#f79739; visibility:hidden"></loading-spinner-dir>
+        </span>
+    </div>
     <div class="row">
+        <span class="col-md-4"></span>
         <div class="col-md-12">
             <h3>Current Photos <small>Select a photo to rename it.</small></h3>
             <div ng-repeat="photo in apartment.sortedMedia.photos track by $index">
@@ -108,7 +115,7 @@
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
-                                <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
+                                <!-- <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button> -->
                             </span>
                             <span ng-show="choosePhotoForPinFlag" >
                                 <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'photos')" name="button">Choose Photo For Pin</button>
@@ -124,5 +131,7 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-fill--blue btn-lg" ng-click="bulkUploadPhotos()" name="button">Finish</button>
+    <span>
+        <button type="button" class="btn btn-fill--blue btn-lg" ng-click="bulkUploadPhotos()" name="button">Finish</button>
+    </span>
 </div>

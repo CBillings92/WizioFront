@@ -37,6 +37,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.photos = [];
         $scope.files = [];
         $scope.uploaded = false;
+        $scope.bulkUploadInitiated = false;
 
         $scope.closeModal = function() {
             $uibModalInstance.close();
@@ -58,10 +59,13 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.selectedSubscriptionApartmentPubId = null;
 
         function bulkUploadPhotos() {
+            $scope.bulkUploadInitiated = true;
+            LoadingSpinnerFct.show('bulk-upload-photo-loader');
             UploadToolFct.bulkUploadPhotos($scope.files, apartment, subscriptionApartment.pubid).then(function(response) {
                 alert('Finished!')
                 $uibModalInstance.close();
             }).catch(function(error) {
+                LoadingSpinnerFct.hide('bulk-upload-photo-loader');
                 if (error === 'No Files To Upload') {
                     alert('No new photos uploaded');
                     $uibModalInstance.close();

@@ -140,9 +140,6 @@ angular.module('AWSApp').factory('AWSFct', [
                         ContentType: 'JPG',
                         Body: file
                     }
-                    alert('in sending');
-                    console.dir(bucket.putObject);
-                    console.dir(params);
                     bucket.putObject(params, function(err, data) {
                         console.dir(err);
                         resolve(data);
