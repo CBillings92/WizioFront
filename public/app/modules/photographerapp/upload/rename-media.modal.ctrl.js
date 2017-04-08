@@ -21,7 +21,7 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
                 $scope.media.title = $scope.formData.newMediaName;
                 var returnObj = {
                     message: 'New Media',
-                    media: $scope.media
+                    Media: $scope.media
                 };
                  $uibModalInstance.close(returnObj);
                 return;

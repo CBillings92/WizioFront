@@ -7,7 +7,6 @@ angular.module('PhotographerApp')
             $scope.buttonClick = function(action){
                 return $uibModalInstance.close(action);
             };
-            console.dir(modalData);
             $scope.previewPhoto = previewPhoto;
 
             function previewPhoto() {

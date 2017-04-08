@@ -185,8 +185,6 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                     $scope.mediaTab = 'unitPhotos';
                 });
             } else {
-                console.dir(1);
-                console.dir(2);
                 var media = result;
                 // if (state === 'LandingPage' || state === 'Demo') {
                 //     media = result[0];

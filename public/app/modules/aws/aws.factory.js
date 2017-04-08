@@ -34,8 +34,6 @@ angular.module('AWSApp').factory('AWSFct', [
         */
         function copyFile(newFileName, oldFileName, fileFolderName) {
             fileFolderName = modifyKeyForEnvironment(fileFolderName);
-            console.dir(newFileName);
-            console.dir(oldFileName);
             // create a new S3 object from AWS library
             var bucket = createS3Object();
             // Create the oldFileEndPoint which defines the file to be copied
@@ -50,7 +48,6 @@ angular.module('AWSApp').factory('AWSFct', [
                 Key: newFileEndPoint
             };
             return $q(function(resolve, reject) {
-                console.dir(params);
                 bucket.copyObject(params, function(err, success) {
                     if (err) {
                         console.log(err, err.stack);

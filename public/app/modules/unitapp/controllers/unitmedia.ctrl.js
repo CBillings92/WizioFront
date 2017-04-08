@@ -22,7 +22,6 @@ angular.module('UnitApp')
             }
 
             $scope.vrPlayerStyle = state === 'LandingPage' ? "padding-bottom: 0; height: 100%" : "padding-bottom: 0; height: 100vh";
-            console.dir($scope.vrPlayerStyle);
 
             function togglePanel() {
                 panelOpened = !panelOpened;
@@ -40,7 +39,6 @@ angular.module('UnitApp')
             // $rootScope.$state = Externalapi
             $scope.trust = $sce;
             // $scope.photoUrl = 'public/assets/equirect-5376x2688-bf11b3a4-c73a-45f6-a080-493a79340ffc.jpg';
-            // console.dir("PL:");
             var apartmentpubid, apitoken;
 
             if(state === 'Demo'){
@@ -231,7 +229,6 @@ angular.module('UnitApp')
                 // };
             });
             // $scope.changePhotoBubl = function(photoIndex){
-            //     console.dir(photoIndex);
             //     $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
             // };
 

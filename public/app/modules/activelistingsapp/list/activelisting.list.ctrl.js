@@ -62,7 +62,6 @@ angular.module('AccountApp')
                         tourPasswordConfirmModalConfig.modalData = modalData;
                         ModalBuilderFct.buildModalWithController(tourPasswordConfirmModalConfig)
                         .then(function(response){
-                            console.dir($scope.activelistings);
                             $scope.activelistings[activeListingsIndex].isPublic = false;
                         })
                     });

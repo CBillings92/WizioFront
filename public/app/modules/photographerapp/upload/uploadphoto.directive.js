@@ -25,7 +25,6 @@ angular.module('Directives')
                     var fileChooser = document.getElementById('file-chooser');
                     var button = document.getElementById('upload-button');
                     var results = document.getElementById('results');
-                    console.dir(scope.pin);
                     button.addEventListener('click', function() {
 
                         if (document.getElementById("file-chooser").value == "") {
@@ -61,7 +60,6 @@ angular.module('Directives')
                                             // alert('finished');
                                             LoadingSpinnerFct.hide('upload-photo-loader');
                                             results.innerHTML = 'UPLOADED';
-                                            console.dir(scope);
                                             scope.pin = response.photo;
                                             scope.uploaded = true;
                                             scope.$emit('Upload-Finished', {photoTitle: scope.photoTitle, photo: response.photo});

@@ -141,7 +141,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         });
         $scope.inviteUser = function() {
             var user = TokenSvc.decode();
-            console.dir(user);
             var userSubscriptions = user.Subscriptions[0].UserSubscriptions_Migration;
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,

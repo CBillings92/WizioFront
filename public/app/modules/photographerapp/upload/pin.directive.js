@@ -16,7 +16,6 @@ angular.module('Directives')
                     pin = scope.pin;
 
                     // change the style for the pin as needed
-                    console.dir(elem);
                     //for removing pins placed already.
                     // elem.addEventListener('click', removePin)
                 }
