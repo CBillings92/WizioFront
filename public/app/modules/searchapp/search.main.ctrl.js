@@ -4,7 +4,6 @@ angular.module('SearchApp')
         '$sessionStorage',
         '$scope',
         function($stateParams, $sessionStorage, $scope) {
-            //   console.dir($scope.apartments);
             //   $scope.apartments = [
             //       {
             //           street: '175 Amory Street'

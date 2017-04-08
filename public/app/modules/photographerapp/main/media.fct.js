@@ -37,11 +37,36 @@ angular.module('PhotographerApp').factory('MediaFct', [
                 }
             })
         }
+        function saveMedia(media) {
+          return $q(function(resolve, reject){
+            $resource(WizioConfig.baseAPIURL + 'media')
+            .save(media, function(response){
+              resolve(response);
+            })
+          })
+        }
+        function saveBulkMedia(mediaArray) {
+          return $q(function(resolve, reject){
+              var promises = [];
+              for (var i = 0; i < mediaArray.length; i++) {
+                  promises.push(saveMedia(mediaArray[i]))
+              }
+              $q.all(promises)
+              .then(function(response){
+                 resolve(response);
+              });
+          });
+        }
         return {
             update: {
                 one: {
                     title: renameMedia
                 }
+            },
+            save: {
+              bulk: {
+                media: saveBulkMedia
+              }
             }
         }
     }

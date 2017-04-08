@@ -18,8 +18,6 @@ angular.module('AccountApp').factory('DashboardFct', [
                     token: TokenSvc.getToken()
                 };
                 $resource(api + 'unit').save(dataToBePassed, function(createdUnit) {
-                    console.dir(createdUnit);
-                    console.dir(createdUnit.message);
                     if (createdUnit.message) {
                         alert("Apartment already created BANANA! Search for this apartment in your account search section or modify it in your Modify Existing Tour section.");
                         LoadingSpinnerFct.hide('create-unit-floor-plan-spinner');

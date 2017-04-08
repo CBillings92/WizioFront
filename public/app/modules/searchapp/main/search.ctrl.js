@@ -26,7 +26,6 @@ angular.module('SearchApp')
                     data.SubscriptionId = TokenSvc.decode().Subscriptions[0].id
                 }
                 SearchFct.search(data, $scope.filters, function(response) {
-                    console.dir(response);
                     //        console.log("search done lets go");
                     $sessionStorage.apartmentSearch = response;
                     $scope.$emit('searchReturned', response);
