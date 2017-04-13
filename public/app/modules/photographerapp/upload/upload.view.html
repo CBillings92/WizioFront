@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col-md-12" style="padding-top:25px; text-align:center;">
-            <div ng-repeat="unit in units | filter:searchText track by $index" ng-click="chooseUnit($index)" style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
+            <div ng-repeat="unit in units | filter:searchText" ng-click="chooseUnit(unit)" style="width:100%;border:2px solid black; border-radius:2px; padding:5px; cursor:pointer; margin:5px;">
                 <p>
                     Unit Num:
                     <strong>{{unit.Apartment.unitNum}}</strong>, at
