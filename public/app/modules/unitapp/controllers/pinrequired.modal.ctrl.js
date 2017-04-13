@@ -15,8 +15,6 @@ angular.module("UnitApp")
                     activelistingid: modalData.activelistingid,
                     tourpin: $scope.virtualtourpin,
                 };
-                console.dir('hi');
-                console.dir($scope.virtualtourpin);
                 apiResource.query(query, function(response){
                     if(response[0].message){
                         alert('Pin incorrect, please try again');

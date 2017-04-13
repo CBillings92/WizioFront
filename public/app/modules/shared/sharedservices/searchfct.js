@@ -34,7 +34,6 @@ angular.module('SharedServiceApp')
                 var apt;
                 for (var i = 0; i < response.length; i++) {
                     apt = response[i];
-                    console.dir(apt);
                     var newApartment = ApartmentModel.build(apt);
                     formattedApartmentArray.push(newApartment);
                     if(apt.Descriptions && apt.Descriptions.length !== 0){
@@ -62,7 +61,6 @@ angular.module('SharedServiceApp')
                             topLevelType = apartmentInstance.apartmentData.topLevelType;
                         }
                         //create a new search object
-                        console.dir(TokenSvc.isLoggedIn);
                         if(TokenSvc.isLoggedIn()){
                             user = TokenSvc.decode();
                         }

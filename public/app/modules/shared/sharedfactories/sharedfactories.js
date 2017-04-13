@@ -5,7 +5,6 @@ angular.module('SharedFactoryApp')
         function(ModalSvc, $q) {
             function buildModalWithController(size, templateUrl, controller, modalData) {
                 return new $q(function(resolve, reject){
-                    console.dir(modalData);
                     var modalObj = {
                         backdrop: true,
                         keyboard: true,

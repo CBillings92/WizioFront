@@ -50,7 +50,7 @@ angular.module('PhotographerApp')
 
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: key,
                         ContentType: file.type,
                         Body: file
@@ -85,8 +85,6 @@ angular.module('PhotographerApp')
             }
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
-                console.dir(response);
-                console.dir(response.message);
                 if(response.message){
                   alert("Apartment already created! Search for this apartment in your account's search bar, or search for it after selecting Modify Existing Tours on your account page");
                   LoadingSpinnerFct.hide("floorplanUpload");
