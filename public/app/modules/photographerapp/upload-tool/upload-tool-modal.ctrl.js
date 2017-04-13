@@ -172,7 +172,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadToolFct.renameMedia(media).then(function(response) {
                 if (response === 'exit') {
-                    alert('Cancelled');
                     return;
                 } else {
                     $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
