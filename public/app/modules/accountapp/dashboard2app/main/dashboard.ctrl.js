@@ -25,7 +25,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         // console.log(user);
 
         // get whether the user has access to invite others
-        $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions.subscription_manager;
+        $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;
 
         // get all active listings for this user
         $scope.activelistings = user.ActiveListings;
@@ -65,8 +65,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 }
                 var addPhotosModalConfig = {
                     size: 'lg',
-                    templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
-                    controller: 'UploadPageCtrl',
+                    templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
+                    controller: 'UploadPageNewCtrl',
                     modalData: {}
                 }
 
@@ -97,7 +97,26 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             })
         }
         $scope.modifyExistingTour = function() {
-            ModalBuilderFct.buildComplexModal('lg', 'public/app/modules/photographerapp/upload/upload.view.html', 'UploadPageCtrl', {});
+            var searchModifyModalConfig = {
+              size: 'lg',
+              templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
+              controller: 'UploadPageCtrl',
+              modalData: {}
+            };
+            var uploadTourPageModalConfig = {
+              size: 'lg',
+              templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
+              controller: 'UploadPageNewCtrl',
+              modalData: {}
+            };
+            createModal(searchModifyModalConfig)
+            .then(function(data){
+              uploadTourPageModalConfig.modalData = data;
+              createModal(uploadTourPageModalConfig)
+              .then(function(response){
+
+              })
+            })
         }
         $scope.$on('searchReturned', function(event, results) {
             LoadingSpinnerFct.hide('account-dashboard-search-loader')
@@ -122,7 +141,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         });
         $scope.inviteUser = function() {
             var user = TokenSvc.decode();
-            var userSubscriptions = user.Subscriptions[0].UserSubscriptions;
+            var userSubscriptions = user.Subscriptions[0].UserSubscriptions_Migration;
             var data = {
                 emailOfInvitee: $scope.emailOfInvitee,
                 UserId: user.id,

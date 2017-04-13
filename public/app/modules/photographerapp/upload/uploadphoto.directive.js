@@ -3,7 +3,8 @@ angular.module('Directives')
         '$resource',
         'WizioConfig',
         'LoadingSpinnerFct',
-        function($resource,WizioConfig, LoadingSpinnerFct){
+        'TokenSvc',
+        function($resource,WizioConfig, LoadingSpinnerFct, TokenSvc){
             return {
                 restrict: 'E',
                 templateUrl: 'public/app/modules/photographerapp/upload/uploadphoto.directive.view.html',
@@ -24,7 +25,6 @@ angular.module('Directives')
                     var fileChooser = document.getElementById('file-chooser');
                     var button = document.getElementById('upload-button');
                     var results = document.getElementById('results');
-                    console.dir(scope.pin);
                     button.addEventListener('click', function() {
 
                         if (document.getElementById("file-chooser").value == "") {
@@ -44,7 +44,7 @@ angular.module('Directives')
                             results.innerHTML = '';
 
                             var params = {
-                                Bucket: 'equirect-photos',
+                                Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                                 Key:  scope.pin.SubscriptionApartmentPubId + '/' + scope.photoTitle + '.JPG',
                                 ContentType: file.type,
                                 Body: file
@@ -53,14 +53,16 @@ angular.module('Directives')
                                 if(err){
                                     results.innerHTML = "ERROR";
                                 } else {
+                                    scope.pin.token = TokenSvc.getToken();
+                                    scope.pin.useremail = TokenSvc.decode().email;
                                     $resource(WizioConfig.baseAPIURL + 'media')
                                         .save(scope.pin, function(response){
                                             // alert('finished');
                                             LoadingSpinnerFct.hide('upload-photo-loader');
                                             results.innerHTML = 'UPLOADED';
-                                            console.dir(scope);
+                                            scope.pin = response.photo;
                                             scope.uploaded = true;
-                                            scope.$emit('Upload-Finished', {photoTitle: scope.photoTitle});
+                                            scope.$emit('Upload-Finished', {photoTitle: scope.photoTitle, photo: response.photo});
                                         });
 
                                     // scope.$emit('doneUploadingPhoto', 'OK')

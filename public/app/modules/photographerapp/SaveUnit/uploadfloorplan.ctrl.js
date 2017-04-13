@@ -50,7 +50,7 @@ angular.module('PhotographerApp')
 
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: key,
                         ContentType: file.type,
                         Body: file

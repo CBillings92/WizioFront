@@ -48,7 +48,7 @@ angular.module('MainApp')
                         return 'http://172.16.0.3:4000/api/';
                 }
             }()),
-
+            S3_EQUIRECTPHOTOS_BUCKET: env === 'prod' ? 'equirect-photos' : 'test-equirect-photos',
             frontEndURL: window.location.origin,
 
             // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
@@ -73,6 +73,11 @@ angular.module('MainApp')
                     CreateUnitModal: 'public/app/modules/photographerapp/CreateUnit/createunit.modal.view.html',
                     UploadFloorPlanDescision: 'public/app/modules/photographerapp/UploadFloorPlanDecision/uploadfloorplandecision.modal.html',
                     UploadFloorPlan: 'public/app/modules/photographerapp/UploadFloorPlan/uploadfloorplan.view.html',
+                }
+            },
+            TourPasswordApp: {
+                Views: {
+                    TourPasswordConfirmModal: 'public/app/modules/tourpasswordapp/tourpasswordconfirm.modal.html'
                 }
             },
             //AdminPanel App
