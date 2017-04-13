@@ -42,8 +42,8 @@ angular.module('UploadPageApp').controller('UploadPageCtrl', [
             Loads floor plan and  photos for the unit
             subScope is `this` from the element click in the HTML
         */
-        $scope.chooseUnit = function(selectedUnitIndex) {
-            $scope.selectedUnit = $scope.units[selectedUnitIndex];
+        $scope.chooseUnit = function(selectedUnit) {
+            $scope.selectedUnit = selectedUnit;
             $uibModalInstance.close($scope.selectedUnit);
         }
     }

@@ -171,10 +171,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function renameMedia(media, index, newMediaOrPhoto) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadToolFct.renameMedia(media).then(function(response) {
-                    $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                 if (response === 'exit') {
                     return;
                 } else {
+                    $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                     alert('Photo Renamed Successfully');
                 }
             });
