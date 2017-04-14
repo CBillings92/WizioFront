@@ -9,12 +9,13 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand-gray" ng-hide="onLandingPage" ng-click="goHome()">
+            <a class="navbar-brand-white" ng-show="getWhiteLogo" ng-click="goHome()">
                 <img id="navbarlogo"/>
             </a>
-            <a class="navbar-brand-white" ng-show="onLandingPage" ng-click="goHome()">
+            <a class="navbar-brand-gray" ng-hide="getWhiteLogo" ng-click="goHome()">
                 <img id="navbarlogo"/>
             </a>
+
         </div>
         <!--navbar header -->
 
@@ -36,6 +37,12 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ng-class="{active: false}" ng-click="goAbout()">
                     <a href="">About</a>
+                </li>
+                <li>
+                    <a href="/pricing">Pricing</a>
+                </li>
+                <li>
+                    <a href="http://blog.wizio.co">Blog</a>
                 </li>
                 <li ng-click="goToLogin()" ng-hide="isLoggedIn">
                     <a href="">Sign In</a>
