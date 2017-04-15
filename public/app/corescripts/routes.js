@@ -165,8 +165,8 @@ angular.module('MainApp')
                 .state('About', {
                     url: '/about',
                     views: {
-                        "footer": footer,
                         "navbar": navbar,
+                        "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
                             controller: 'AboutListCtrl'
