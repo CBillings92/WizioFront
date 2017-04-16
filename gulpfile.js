@@ -39,7 +39,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('dependencies', function(){
-   gulp.src(lib.ext('js').files)
+   gulp.src(lib.ext('js').match('!**/three.**js').files)
    .pipe(concat('lib.min.js'))
    .pipe(uglify())
    .pipe(gulp.dest('./public/build'));
