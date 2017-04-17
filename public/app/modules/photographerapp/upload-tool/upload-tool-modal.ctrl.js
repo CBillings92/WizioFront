@@ -253,8 +253,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         function removeNewMedia(index) {
-            console.dir($scope.apartment.newMedia);
-            console.dir(index);
             var previewElement;
             $scope.apartment.sortedMedia.newMedia.splice(index, 1);
             for(var i = 0; i < $scope.apartment.sortedMedia.newMedia.length; i++){
