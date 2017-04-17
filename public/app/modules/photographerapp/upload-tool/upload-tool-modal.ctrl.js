@@ -253,7 +253,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         function removeNewMedia(index) {
-            apartment.sortedMedia.newMedia.splice(index, 1);
+            console.dir($scope.apartment.newMedia);
+            console.dir(index);
+            var previewElement;
+            $scope.apartment.sortedMedia.newMedia.splice(index, 1);
+            for(var i = 0; i < $scope.apartment.sortedMedia.newMedia.length; i++){
+              previewElement = document.getElementById('imgPreview' + i);
+              previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, previewElement)
+            }
             return;
         }
         $scope.removeNewMedia = removeNewMedia;
@@ -266,14 +273,13 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var filename;
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 var i = 0;
-                while (i < this.files.length) {
+                while (0 < this.files.length) {
                     if($scope.apartment.sortedMedia.photos.length === 0) {
-                        filename = 'Photo ' + i;
+                        filename = 'Photo ' + i + 1;
                     } else {
                         filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
                     }
                     this.files[i].name = filename;
-                    $scope.files.push(this.files[i]);
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
@@ -285,12 +291,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,
                         useremail: TokenSvc.decode().email,
-                        token: TokenSvc.getToken()
+                        token: TokenSvc.getToken(),
+                        file: this.files[i]
                     })
-
                     $scope.$apply();
                     preview = document.getElementById(elementId + i);
-                    previewPhoto(this.files[i], preview);
+                    previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, preview);
                     i++;
                 }
                 // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
