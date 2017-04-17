@@ -6275,11 +6275,11 @@ a:focus {
   #navbar-search .form-group {
     width: 250px; } }
 
-.collapsing {
-  background-color: #ffffff; }
-
-.in {
-  background-color: #ffffff; }
+@media (max-width: 768px) {
+  .collapsing {
+    background-color: #ffffff; }
+  #navbar.in {
+    background-color: #ffffff; } }
 
 .styleguide {
   background-color: #ccc;
@@ -6475,7 +6475,7 @@ body {
     position: relative;
     width: 100%;
     /* Maintain Aspect Ratio */
-    padding-bottom: 79.11392%; }
+    padding-bottom: 43.51266%; }
     .about-hero-main {
       position: absolute;
       top: 0;
@@ -6528,7 +6528,7 @@ body {
         top: 80px; } }
     @media (min-width: 768px) {
       .about-hero-main .pin-and-outline {
-        bottom: 25%;
+        bottom: 45%;
         right: 18.49%;
         transform: scale(1.2) translate(50%, 0); } }
     @media (min-width: 992px) {
