@@ -15,7 +15,7 @@ $orange-transparancy-hover: 0.9;
 		width: 100%;
 
 		/* Maintain Aspect Ratio */
-		padding-bottom: percentage(750 / 1264);
+		padding-bottom: percentage(550 / 1264);
 
 		&-main {
 			position: absolute;
@@ -89,7 +89,7 @@ $orange-transparancy-hover: 0.9;
 			}
 
 			@media (min-width: $screen-sm-min) {
-				bottom: 32%;
+				bottom: 45%;
 				right: 18.49%;
 				transform: scale(1.2) translate(50%, 0);
 			}
