@@ -38,12 +38,12 @@ angular.module('AWSApp').factory('AWSFct', [
             var bucket = createS3Object();
             // Create the oldFileEndPoint which defines the file to be copied
             // var oldFileEndPoint = WizioConfig.S3_EQUIRECTPHOTOS_BUCKET + '/' + fileFolderName + '/' + oldFileName + '.JPG';
-            var oldFileEndPoint = 'equirect-photos' + '/' + fileFolderName + '/' + oldFileName + '.JPG';
+            var oldFileEndPoint = WizioConfig.S3_EQUIRECTPHOTOS_BUCKET + '/' + fileFolderName + '/' + oldFileName + '.JPG';
             // Create the newFileEndPoint which defines the file's end state
             var newFileEndPoint = fileFolderName + '/' + newFileName + '.JPG';
             var params = {
                 // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                Bucket: 'equirect-photos',
+                Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                 CopySource: oldFileEndPoint,
                 Key: newFileEndPoint
             };
@@ -66,7 +66,7 @@ angular.module('AWSApp').factory('AWSFct', [
             var bucket = createS3Object();
             folderName = modifyKeyForEnvironment(folderName);
             var params = {
-                Bucket: 'equirect-photos',
+                Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                 // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                 Key: folderName + '/' + fileName + '.JPG'
             };
@@ -107,7 +107,7 @@ angular.module('AWSApp').factory('AWSFct', [
                     //parameters to be sent to S3 - key is the path in the S3 bucket
                     var params = {
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: 'png',
                         Body: file
@@ -132,7 +132,7 @@ angular.module('AWSApp').factory('AWSFct', [
 
                     var params = {
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: 'JPG',
                         Body: file
@@ -159,7 +159,7 @@ angular.module('AWSApp').factory('AWSFct', [
                     // var bucket = bucket ? bucket : 'equirect-photos';
 
                     var params = {
-                        Bucket: 'equirect-photos',
+                        Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
                         ContentType: file.type,
