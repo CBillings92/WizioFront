@@ -113,8 +113,6 @@ angular.module('PhotographerApp')
             function autoNameNewPhoto(listOfNewPhotos, listOfCurrentAndNewPhotos) {
                 var photoNumsTaken = [];
                 var newPhotoName = 'Photo';
-                console.dir(listOfNewPhotos);
-                console.dir(listOfCurrentAndNewPhotos);
                 for(var i = 0; i < listOfCurrentAndNewPhotos.length; i++) {
                     if(listOfCurrentAndNewPhotos[i].title.substr(0,5) === 'Photo') {
                         photoNumsTaken.push(Number(listOfCurrentAndNewPhotos[i].title.substr(6,7)));

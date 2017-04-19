@@ -270,7 +270,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var preview;
                 var filename;
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
-                console.dir(this.files.length);
                 for(var i = 0; i < this.files.length; i++){
                     filename = 'Photo ' + (Number(i) + 1);
 
