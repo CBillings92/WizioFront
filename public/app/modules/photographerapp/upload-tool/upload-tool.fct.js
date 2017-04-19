@@ -113,6 +113,8 @@ angular.module('PhotographerApp')
             function autoNameNewPhoto(listOfNewPhotos, listOfCurrentAndNewPhotos) {
                 var photoNumsTaken = [];
                 var newPhotoName = 'Photo';
+                console.dir(listOfNewPhotos);
+                console.dir(listOfCurrentAndNewPhotos);
                 for(var i = 0; i < listOfCurrentAndNewPhotos.length; i++) {
                     if(listOfCurrentAndNewPhotos[i].title.substr(0,5) === 'Photo') {
                         photoNumsTaken.push(Number(listOfCurrentAndNewPhotos[i].title.substr(6,7)));
@@ -147,7 +149,7 @@ angular.module('PhotographerApp')
 
                         for (var i = 0; i < filesArray.length; i++) {
                             key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
-                            s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
+                            s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i].file, key));
                             continue;
                         }
                         $q.all(s3Promises)
