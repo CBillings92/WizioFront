@@ -147,7 +147,7 @@ angular.module('PhotographerApp')
 
                         for (var i = 0; i < filesArray.length; i++) {
                             key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
-                            s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i], key));
+                            s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i].file, key));
                             continue;
                         }
                         $q.all(s3Promises)
