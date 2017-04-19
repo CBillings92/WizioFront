@@ -61,7 +61,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function bulkUploadPhotos() {
             $scope.bulkUploadInitiated = true;
             LoadingSpinnerFct.show('bulk-upload-photo-loader');
-            UploadToolFct.bulkUploadPhotos($scope.files, apartment, subscriptionApartment.pubid).then(function(response) {
+            UploadToolFct.bulkUploadPhotos($scope.apartment.sortedMedia.newMedia, apartment, subscriptionApartment.pubid).then(function(response) {
                 alert('Finished!')
                 $uibModalInstance.close();
             }).catch(function(error) {
@@ -171,10 +171,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function renameMedia(media, index, newMediaOrPhoto) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
             UploadToolFct.renameMedia(media).then(function(response) {
-                    $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                 if (response === 'exit') {
                     return;
                 } else {
+                    $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
                     alert('Photo Renamed Successfully');
                 }
             });
@@ -253,7 +253,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
 
         function removeNewMedia(index) {
+            var previewElement;
             apartment.sortedMedia.newMedia.splice(index, 1);
+            apartment.sortedMedia.newMedia.forEach(function(item, i){
+                previewElement = document.getElementById('imgPreview' + i);
+                previewPhoto(item.file, previewElement)
+            })
             return;
         }
         $scope.removeNewMedia = removeNewMedia;
@@ -265,15 +270,9 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var preview;
                 var filename;
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
-                var i = 0;
-                while (i < this.files.length) {
-                    if($scope.apartment.sortedMedia.photos.length === 0) {
-                        filename = 'Photo ' + i;
-                    } else {
-                        filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
-                    }
-                    this.files[i].name = filename;
-                    $scope.files.push(this.files[i]);
+                for(var i = 0; i < this.files.length; i++){
+                    filename = 'Photo ' + (Number(i) + 1);
+
                     $scope.apartment.sortedMedia.newMedia.push({
                         x: null,
                         y: null,
@@ -285,13 +284,16 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,
                         useremail: TokenSvc.decode().email,
-                        token: TokenSvc.getToken()
+                        token: TokenSvc.getToken(),
+                        file: this.files[i]
                     })
+                    filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
+                    $scope.apartment.sortedMedia.newMedia[i].title = filename;
+                    $scope.apartment.sortedMedia.newMedia[i].file.name = filename;
 
                     $scope.$apply();
                     preview = document.getElementById(elementId + i);
-                    previewPhoto(this.files[i], preview);
-                    i++;
+                    previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, preview);
                 }
                 // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
             }

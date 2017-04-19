@@ -12,7 +12,7 @@ angular.module('NavbarApp')
         'WizioConfig',
         function($rootScope, $location, $scope, $state, $uibModal, ApartmentModel, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
-            $scope.onLandingPage = $state.current.name === 'LandingPage' ? true : false;
+            $scope.showWhiteLogoFlag = $state.current.name === 'LandingPage' || $state.current.name === 'About' ? true : false;
 
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
@@ -42,7 +42,7 @@ angular.module('NavbarApp')
                 return (route === $location.path());
             };
 
-            if($state.current.name === 'LandingPage'){
+            if($state.current.name === 'LandingPage' || $state.current.name === 'About'){
                 $scope.landingPageStyle = {position: "absolute"};
             } else {
                 $scope.landingPageStyle = {};

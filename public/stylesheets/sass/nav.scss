@@ -1,11 +1,13 @@
 // *** Mobile styles ***
 .navbar {
-    background-color: $white;
+    // background-color: $white;
     margin-bottom: 0;
-    // position: absolute;
+    position: absolute;
     z-index: 600;
     width: 100%;
     border: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
 
     .navbar-collapse {
         padding:0;
@@ -89,7 +91,7 @@
 // This class is responsible for changing background
 // color of navigation based on page user is on
 .transparent_nav {
-    background-color: $white;
+    // background-color: $white;
     z-index: 1600;
     .navbar-nav > li > a {
         color: $gray;
@@ -145,8 +147,8 @@
         }
     }
     .navbar {
-        padding-bottom: 10px;
-        padding-top: 10px;
+        // padding-bottom: 10px;
+        // padding-top: 10px;
         .navbar-brand {
             .white_logo {
                 content: url('/public/viewtemplates/images/brand_assets/wizio_logo_white.png');
@@ -241,5 +243,16 @@
         .form-group {
             width: 250px;
         }
+    }
+}
+
+@media (max-width: $screen-sm-min) {
+
+.collapsing {
+    background-color: $white;
+}
+
+#navbar.in {
+        background-color: $white;
     }
 }
