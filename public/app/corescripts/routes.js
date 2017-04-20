@@ -93,9 +93,9 @@ angular.module('MainApp')
                     }
                 })
                 .state('Pricing', {
-                    // abstract: true,
                     url: '/pricing',
                     views: {
+                        "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/subscriptionapp/main/pricing.main.view.html',
