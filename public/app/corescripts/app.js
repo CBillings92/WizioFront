@@ -23,6 +23,7 @@
     angular.module('AWSApp', []);
     angular.module('AgentProfileApp', []);
     angular.module('TourPasswordApp', []);
+    angular.module('FlyOutMenuApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -46,6 +47,7 @@
             'AWSApp',
             'AgentProfileApp',
             'UnitApp',
+            'FlyOutMenuApp',
             'Models',
             'ui.router',
             'ngStorage',
