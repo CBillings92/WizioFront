@@ -1,8 +1,9 @@
-<div class="" id="flyout-menu_container" style="z-index:2500">
+<div class="" id="flyout-menu_container" style="z-index:2500" ng-hide="hideControls">
     <div
         class="flyout-menu_circle-item_container"
         ng-repeat="action in actions track by $index"
         ng-class="{'flyout-menu_open': menuIsOpen, 'flyout-menu_close': !menuIsOpen}"
+        ng-hide="action.hide"
     >
             <div ng-click="action.action()" class="flyout-menu_circle-item"></div>
         <span class="flyout-menu_circle-item_context">{{action.name}}</span>

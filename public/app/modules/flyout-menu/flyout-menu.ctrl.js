@@ -3,6 +3,7 @@ angular.module('FlyOutMenuApp')
         '$scope',
         function($scope){
             $scope.menuIsOpen = false;
+            var hideFloorPlanButton = false;
             function viewFloorPlan() {
                 $scope.buttonAction('toggleFloorplan');
                 $scope.menuIsOpen = !$scope.menuIsOpen
@@ -17,21 +18,26 @@ angular.module('FlyOutMenuApp')
                 $scope.accelerometerToggle();
             }
             $scope.openCloseMenu = function() {
-                console.dir($scope.menuIsOpen);
                 $scope.menuIsOpen = !$scope.menuIsOpen
+                $scope.actions[0].hide =  $scope.hideFloorPlanButton;
             }
             $scope.actions = [
                 {
                     'name': 'Floor Plan',
-                    'action': viewFloorPlan
+                    'action': viewFloorPlan,
+                    'hide': hideFloorPlanButton
+
                 },
                 {
                     'name': 'Photo List',
-                    'action': viewPhotoList
+                    'action': viewPhotoList,
+                    'hide': false
                 },
                 {
                     'name': 'Enable Accelerometer',
-                    'action': enableAccelerometer
+                    'action': enableAccelerometer,
+                    'hide': false
+
                 }
             ]
         }

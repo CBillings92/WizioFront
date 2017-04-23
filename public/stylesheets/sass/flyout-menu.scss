@@ -12,18 +12,9 @@
     height: 50px;
     background: white;
 }
-#flyout-menu_circle-origin {
-    // background: orange;
-    // width:250px;
-    -webkit-animation: fadein 0.75s forwards;
-    /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 0.75s forwards;
-    /* Firefox < 16 */
-    -ms-animation: fadein 0.75s forwards;
-    /* Internet Explorer */
-    -o-animation: fadein 0.75s forwards;
-    /* Opera < 12.1 */
-    animation: fadein 0.75s forwards;
+#flyout-menu_circle-origin:hover {
+    background: $orange;
+    -webkit-transition: background 0.75s ease;
 }
 
 #flyout-menu_circle-origin_symbol {
