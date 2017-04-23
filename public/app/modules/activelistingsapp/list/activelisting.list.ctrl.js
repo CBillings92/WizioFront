@@ -33,12 +33,19 @@ angular.module('AccountApp')
             })
         }
 
-        $scope.deleteActiveListing = function(activeListing){
-            console.dir('in here');
-            ActiveListingFct.deleteActiveListing(activeListing)
+        $scope.deleteActiveListing = function(activeListing, index){
+            ModalBuilderFct.buildSimpleModal('Cancel', 'Delete', "Are You Sure You'd Like To Delete This Listing?", 'This listing will be removed from your Active Listings list. It can be re-added to this list by navigating to "Search", searching the address and selecting "Activate".')
             .then(function(response){
-
-            });
+                if(response === 'ok'){
+                    ActiveListingFct.deleteActiveListing(activeListing)
+                    .then(function(response){
+                        // temporarily remove the listing from the UI - upon next login the listing will be gone
+                        $scope.activelistings.splice(index, 1);
+                    });
+                } else if(response === 'cancel'){
+                    return;
+                }
+            })
         }
 
         // Generate a password for a given tour.
