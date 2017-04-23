@@ -12,6 +12,25 @@
     height: 50px;
     background: white;
 }
+#flyout-menu_circle-origin {
+    // background: orange;
+    // width:250px;
+    -webkit-animation: fadein 0.75s forwards;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 0.75s forwards;
+    /* Firefox < 16 */
+    -ms-animation: fadein 0.75s forwards;
+    /* Internet Explorer */
+    -o-animation: fadein 0.75s forwards;
+    /* Opera < 12.1 */
+    animation: fadein 0.75s forwards;
+}
+
+#flyout-menu_circle-origin_symbol {
+    left: 13px;
+    top: 11px;
+    position: absolute;
+}
 
 .flyout-menu_circle-item_container {
     margin-bottom: 10px;
@@ -27,14 +46,133 @@
     background: white;
 }
 
+.flyout-menu_circle-item:hover {
+    // background: orange;
+    // width:250px;
+    -webkit-animation: fadein 0.75s forwards;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 0.75s forwards;
+    /* Firefox < 16 */
+    -ms-animation: fadein 0.75s forwards;
+    /* Internet Explorer */
+    -o-animation: fadein 0.75s forwards;
+    /* Opera < 12.1 */
+    animation: fadein 0.75s forwards;
+}
+@keyframes fadein {
+    0% {
+        display: none;
+    }
+
+    1% {
+        display: block;
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+        background: $orange;
+    }
+}
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    0% {
+        display: none;
+    }
+
+    1% {
+        display: block;
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+        background: $orange;
+    }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    0% {
+        display: none;
+    }
+
+    1% {
+        display: block;
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+        background: $orange;
+    }
+}
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    0% {
+        display: none;
+    }
+
+    1% {
+        display: block;
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+        background: $orange;
+    }
+}
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    0% {
+        display: none;
+    }
+
+    1% {
+        display: block;
+        width: 50px;
+    }
+
+    100% {
+        width: 250px;
+        background: $orange;
+    }
+}
+
 .flyout-menu_circle-item_context {
-    position:absolute;
+    position: absolute;
     top: 50%;
-    margin-top: -14px;
+    margin-top: -13px;
     left: 60px;
     width: 150px;
     color: white;
     border-radius: 3px;
     text-align: center;
     background: rgba(0, 0, 0, 0.5);
+}
+
+.flyout-menu_circle-item_context:hover {
+    background: orange;
+}
+
+.flyout-menu_open {
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.flyout-menu_close {
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
