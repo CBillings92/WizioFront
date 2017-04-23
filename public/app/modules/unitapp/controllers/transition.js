@@ -21,6 +21,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var maxFloorPlanHeight = $(window).height() * 0.75;
         $scope.toggle = false;
         $scope.hideControls = false;
+        // $scope.hideFloorPlanButton = true;
         floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
         // Set the margin bottom on the body to be 0 in the VR view - there is no footer
@@ -191,6 +192,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
                 // }
                 if(result[0].Floor_Plan !== null){
                     $scope.floorplan = 'https://cdn.wizio.co/' + AWSFct.utilities.modifyKeyForEnvironment(result[0].SubscriptionApartmentPubId) + '/floorplan.png';
+                    $scope.hideFloorPlanButton = false;
                 } else {
                     $scope.floorplan = false;
                     $scope.hideFloorPlanButton = true;
