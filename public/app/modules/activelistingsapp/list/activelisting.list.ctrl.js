@@ -4,7 +4,8 @@ angular.module('AccountApp')
         '$resource',
         'WizioConfig',
         'ModalBuilderFct',
-        function($scope, $resource, WizioConfig, ModalBuilderFct) {
+        'ActiveListingFct',
+        function($scope, $resource, WizioConfig, ModalBuilderFct, ActiveListingFct) {
         new Clipboard('.clipboard');
         $scope.windowLocationOrigin = window.location.origin;
         $scope.openInNewPage = function(pubid){
@@ -30,6 +31,14 @@ angular.module('AccountApp')
             .catch(function(err){
                 console.dir(err);
             })
+        }
+
+        $scope.deleteActiveListing = function(activeListing){
+            console.dir('in here');
+            ActiveListingFct.deleteActiveListing(activeListing)
+            .then(function(response){
+
+            });
         }
 
         // Generate a password for a given tour.
