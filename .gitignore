@@ -1,5 +1,8 @@
 node_modules/
-public/build/*
+
+# Build files
+public/build/
+
 npm-debug.log
 bower_components/
 .elasticbeanstalk/

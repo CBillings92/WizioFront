@@ -31,7 +31,7 @@ gulp.task('scripts', function() {
         //   .pipe(stripDebug())
         .pipe(concat('scripts.js'))
         .pipe(uglify({
-            file: 'scripts.js',
+            file: 'scripts.min.js',
             outSourceMap: true
         })).on('error', gutil.log)
         .pipe(gulp.dest('./public/build'));
