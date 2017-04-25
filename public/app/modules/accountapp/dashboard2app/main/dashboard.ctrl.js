@@ -14,7 +14,10 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
-
+        DashboardFct.getActiveListings()
+        .then(function(response){
+            alert('done');
+        });
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
 

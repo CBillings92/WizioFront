@@ -93,6 +93,16 @@ angular.module('AccountApp').factory('DashboardFct', [
                 });
             })
         }
+
+        function getActiveListings() {
+            return $q(function(resolve, reject){
+                var userid = TokenSvc.decode().id;
+                $resource(WizioConfig.baseAPIURL + 'activelisting/user/:userid',{userid: '@userid'})
+                .query({userid: userid}, function(response){
+                    resolve(response);
+                });
+            })
+        }
         return {
             tour: {
                 create: {
@@ -102,6 +112,9 @@ angular.module('AccountApp').factory('DashboardFct', [
             },
             workflow: {
                 createTourAndFloorPlan: createTourAndFloorPlanWorkflow
+            },
+            get: {
+                activelistings: getActiveListings
             }
         };
     }
