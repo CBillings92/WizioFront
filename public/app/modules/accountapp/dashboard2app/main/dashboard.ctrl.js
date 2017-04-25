@@ -8,15 +8,19 @@ angular.module('AccountApp').controller('DashboardCtrl', [
     'ModalBuilderFct',
     'AWSFct',
     'DashboardFct',
-    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct) {
+    'StorageApp',
+    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp) {
         // set flags
         $scope.currentview = 'share';
         $scope.emailToInvite = null;
         $scope.apartments = null;
         $scope.loading = false;
-        DashboardFct.getActiveListings()
-        .then(function(response){
-            alert('done');
+
+        // get active listings for logged in user
+        DashboardFct.get.activelistings()
+        .then(function(activeListingsArr){
+            StorageApp.store('ActiveListings', activeListingsArr);
+            $scope.activelistings = activeListingsArr;
         });
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
@@ -29,9 +33,6 @@ angular.module('AccountApp').controller('DashboardCtrl', [
 
         // get whether the user has access to invite others
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;
-
-        // get all active listings for this user
-        $scope.activelistings = user.ActiveListings;
 
         // create tour functionailty - button click
         $scope.createTour = function() {
