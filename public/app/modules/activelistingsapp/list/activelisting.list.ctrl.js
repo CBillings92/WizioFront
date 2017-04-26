@@ -23,7 +23,7 @@ angular.module('AccountApp')
             .then(function(response){
                 if(response === 'ok'){
                     $resource(WizioConfig.baseAPIURL +  'activelisting/ispublic')
-                    .save({pubid: activeListing.PubId,'isPublic': true}, function(response){
+                    .save({pubid: activeListing.pubid,'isPublic': true}, function(response){
                         $scope.activelistings[activeListingsIndex].isPublic = response.isPublic;
                     });
                 }
