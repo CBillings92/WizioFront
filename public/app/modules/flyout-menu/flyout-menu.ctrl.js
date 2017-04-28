@@ -34,7 +34,7 @@ angular.module('FlyOutMenuApp')
                     'hide': false
                 },
                 {
-                    'name': 'Enable Accelerometer',
+                    'name': '360 Control',
                     'action': enableAccelerometer,
                     'hide': false
 
