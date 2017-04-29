@@ -8393,7 +8393,8 @@ body {
 
 .agent-profile-container {
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  cursor: pointer; }
 
 #flyout-menu_container {
   position: absolute;
@@ -8415,11 +8416,14 @@ body {
 #flyout-menu_circle-origin_symbol {
   left: 13px;
   top: 11px;
-  position: absolute; }
+  position: absolute;
+  cursor: pointer; }
 
 .flyout-menu_circle-item_container {
   margin-bottom: 10px;
-  position: relative; }
+  width: 225px;
+  position: relative;
+  cursor: pointer; }
 
 .flyout-menu_circle-item {
   border: 3px solid black;
@@ -8429,16 +8433,16 @@ body {
   height: 50px;
   background: white; }
 
-.flyout-menu_circle-item:hover {
-  -webkit-animation: fadein 0.75s forwards;
+.flyout-menu_circle-item_container:hover > .flyout-menu_circle-item {
+  -webkit-animation: fadein 0.5s forwards;
   /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadein 0.75s forwards;
+  -moz-animation: fadein 0.5s forwards;
   /* Firefox < 16 */
-  -ms-animation: fadein 0.75s forwards;
+  -ms-animation: fadein 0.5s forwards;
   /* Internet Explorer */
-  -o-animation: fadein 0.75s forwards;
+  -o-animation: fadein 0.5s forwards;
   /* Opera < 12.1 */
-  animation: fadein 0.75s forwards; }
+  animation: fadein 0.5s forwards; }
 
 @keyframes fadein {
   0% {
@@ -8497,6 +8501,7 @@ body {
 .flyout-menu_circle-item_context {
   position: absolute;
   top: 50%;
+  font-size: 1.2em;
   margin-top: -13px;
   left: 60px;
   width: 150px;
@@ -8505,25 +8510,26 @@ body {
   text-align: center;
   background: rgba(0, 0, 0, 0.5); }
 
-.flyout-menu_circle-item_context:hover {
-  background: orange; }
+.flyout-menu_circle-item_container:hover > .flyout-menu_circle-item_context {
+  background: transparent;
+  -webkit-transition: background 0.75s ease; }
 
 .flyout-menu_open {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease; }
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }
 
 .flyout-menu_close {
   -webkit-opacity: 0;
   -moz-opacity: 0;
   opacity: 0;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  -o-transition: all 1s ease;
-  transition: all 1s ease; }
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease; }

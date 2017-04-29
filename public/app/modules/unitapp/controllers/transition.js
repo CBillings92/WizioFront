@@ -21,6 +21,10 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var maxFloorPlanHeight = $(window).height() * 0.75;
         $scope.toggle = false;
         $scope.hideControls = false;
+
+        $scope.goToWizioSite = function(){
+            window.open('https://www.wizio.co/');
+        }
         // $scope.hideFloorPlanButton = true;
         floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
 
