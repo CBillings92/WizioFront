@@ -26,7 +26,7 @@ angular.module('AccountApp')
                 AuthFct.signin(userData)
                     .then(function(result) {
                         if(result === 'failed'){
-                          return $uibModalInstance.close('ok');
+                          return;
                         } else {
                           $state.go('Account.Dashboard');
                           return $uibModalInstance.close('ok');
