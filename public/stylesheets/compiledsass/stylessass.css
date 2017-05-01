@@ -7165,6 +7165,7 @@ body {
   color: white; }
 
 .acct-modal-btn {
+  color: white;
   border: 0;
   padding: 4px 10px;
   border-radius: 20px;
@@ -7173,7 +7174,8 @@ body {
   .acct-modal-btn__orange {
     background: #f79739; }
     .acct-modal-btn__orange:active, .acct-modal-btn__orange:focus, .acct-modal-btn__orange:hover {
-      background: #f68a20; }
+      background: #f68a20;
+      color: white; }
 
 .modal-content {
   border: 0; }
