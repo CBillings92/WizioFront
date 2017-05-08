@@ -20,6 +20,11 @@ angular.module('AccountApp').controller('DashboardCtrl', [
 
         // get the user from session storage
         var user = TokenSvc.decode();
+        var subsid = user.Subscriptions[0].id;
+        if(subsid === 2 || subsid === 6 || subsid === 8 || subsid === 3 || subsid === 10) {
+            TokenSvc.deleteToken();
+            window.location.replace('https://www.wizio.co');
+        }
 
         $scope.phoneNumber = user.phoneNumber;
         // console.log(user);
@@ -33,8 +38,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         // create tour functionailty - button click
         $scope.createTour = function() {
             createModalWorkFlow().then(function(response) {}).catch(function(err) {
-            })
-        }
+            });
+        };
 
         /*
             FIRST - CREATE MODAL TO CAPTURE APARTMENT ADDRESS AND UNIT number
@@ -56,19 +61,19 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     templateUrl: WizioConfig.PhotographerApp.Views.UploadFloorPlanDescision,
                     controller: 'UploadFloorPlanDecisionCtrl',
                     modalData: null
-                }
+                };
                 var uploadFloorPlanModalConfig = {
                     size: 'md',
                     templateUrl: WizioConfig.PhotographerApp.Views.UploadFloorPlan,
                     controller: 'UploadFloorPlanCtrl',
                     modalData: null
-                }
+                };
                 var addPhotosModalConfig = {
                     size: 'lg',
                     templateUrl: 'public/app/modules/photographerapp/upload-tool/upload-tool-modal.html',
                     controller: 'UploadPageNewCtrl',
                     modalData: {}
-                }
+                };
 
                 // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
                 createModal(createUnitModalConfig).then(function(state) {
@@ -83,18 +88,18 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                         return createModal(uploadFloorPlanModalConfig);
                     } else {
                         // CREATE ONLY THE UNIT - WITH NO FLOOR PLAN
-                        return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false)
+                        return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false);
                     }
                 })
                 .then(function(response){
                     addPhotosModalConfig.modalData = response;
-                    return createModal(addPhotosModalConfig)
+                    return createModal(addPhotosModalConfig);
                 })
                 .catch(function(err) {
-                    alert('in catch')
+                    alert('in catch');
                     return reject(err);
-                })
-            })
+                });
+            });
         }
         $scope.modifyExistingTour = function() {
             var searchModifyModalConfig = {
@@ -115,11 +120,11 @@ angular.module('AccountApp').controller('DashboardCtrl', [
               createModal(uploadTourPageModalConfig)
               .then(function(response){
 
-              })
-            })
-        }
+              });
+          });
+      };
         $scope.$on('searchReturned', function(event, results) {
-            LoadingSpinnerFct.hide('account-dashboard-search-loader')
+            LoadingSpinnerFct.hide('account-dashboard-search-loader');
             var apartments = [];
             for (var i = 0; i < results.length; i++) {
                 apartments.push(results[i].Apartment);
@@ -134,7 +139,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     concatAddr: results.apartment.concatAddr,
                     unitNum: results.apartment.unitNum
                 }
-            })
+            });
         });
         $scope.$on('searchInitiated', function(event, name) {
             $scope.loading = true;
@@ -152,8 +157,8 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             };
             $resource(WizioConfig.baseAPIURL + 'subscription/invite').save(data).$promise.then(function(response) {
                 alert('User Invited');
-            })
-        }
+            });
+        };
 
         var apiurl = WizioConfig.baseAPIURL;
 
@@ -172,13 +177,13 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     $resource(apiurl + 'user/update-user-profile-photo').save({
                         awsProfilePhotoUrl: "https://cdn.wizio.co/" + key,
                         id: user.id
-                    }, function(response) {})
+                    }, function(response) {});
                 });
 
             } else {
                 alert('please select a valid file');
             }
-        }
+        };
 
         $scope.savePhoneNumber = function() {
             var phoneNumberInput = {};
@@ -190,10 +195,10 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     // $scope.phoneNumber = phoneNumberInput.value;
                     alert("Your phone number has been updated to: " + phoneNumberInput.value);
                     // user = TokenSvc.decode();
-                })
+                });
             }
 
-        }
+        };
 
     }
 ]);
