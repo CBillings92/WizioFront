@@ -21,7 +21,7 @@ angular.module('AccountApp').controller('DashboardCtrl', [
         // get the user from session storage
         var user = TokenSvc.decode();
         var subsid = user.Subscriptions[0].id;
-        if(subsid === 2 || subsid === 6 || subsid === 8 || subsid === 3 || subsid === 10) {
+        if(subsid === 2 || subsid === 6 || subsid === 8 || subsid === 10) {
             TokenSvc.deleteToken();
             window.location.replace('https://www.wizio.co');
         }
