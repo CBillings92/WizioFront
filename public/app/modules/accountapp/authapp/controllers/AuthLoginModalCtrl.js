@@ -6,7 +6,9 @@ angular.module('AccountApp')
         '$q',
         'AuthFct',
         'WizioConfig',
-        function($scope, $state,$uibModalInstance, $q, AuthFct, WizioConfig) {
+        '$rootScope',
+        'ModalBuilderFct',
+        function($scope, $state,$uibModalInstance, $q, AuthFct, WizioConfig, $rootScope, ModalBuilderFct) {
             $scope.changePassword = false;
             $scope.closeModal = function() {
                 $uibModalInstance.close();
@@ -17,6 +19,18 @@ angular.module('AccountApp')
                 // $state.go('SendResetEmail');
                 // return $uibModalInstance.close('ok');
             };
+
+
+            $rootScope.$on('unauthorized', function() {
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Login Failed",
+                    'Please check your username and password.'
+                ).then(function(result) {
+                    return;
+                });
+            });
 
             $scope.requestLogin = function() {
                 var userData = {
