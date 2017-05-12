@@ -1,7 +1,7 @@
 node_modules/
 
 # Build files
-# public/build/
+public/build/
 
 npm-debug.log
 bower_components/
