@@ -139,6 +139,19 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 main: {
                     view: 'pubilc/app/modules/style-guide-app/main/style-guide.html'
                 }
+            },
+            landingPage: {
+                main: {
+                    view: 'public/app/modules/landing-page-app/main/landing-page.html',
+                    controller: 'LandingPageCtrl',
+                }
+            },
+            login: {
+                main: {},
+                modals: {
+                    view: 'public/app/modules/accountapp/authapp/viewtemplates/login.modal.html',
+                    controller: 'LoginModalCtrl'
+                }
             }
         },
 

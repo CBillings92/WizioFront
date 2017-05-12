@@ -36,8 +36,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
-                            controller: 'LandingPageCtrl'
+                            templateUrl: PAGECONFIG.landingPage.main.view,
+                            controller:  PAGECONFIG.landingPage.main.controller,
                         },
                         "vr-player": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
