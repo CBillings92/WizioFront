@@ -1,6 +1,7 @@
 (function() {
     //CREATE ALL TOP LEVEL APPS (create, not start)
     angular.module('AboutUsApp', []);
+    angular.module('ApiGuideApp', []);
     angular.module('AdminPanelApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -28,6 +29,7 @@
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
             'AdminPanelApp',
+            'ApiGuideApp',
             'AccountApp',
             'ApplicationApp',
             'AuthApp',

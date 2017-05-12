@@ -168,8 +168,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
-                            controller: 'AboutListCtrl'
+                            templateUrl: WizioConfig.pages.about.view,
+                            controller:  WizioConfig.pages.about.controller
                         }
                     },
                     data: falseRequiredLogin
@@ -280,8 +280,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/apiguide.view.html',
-                            controller: 'ApiGuideCtrl'
+                            templateUrl: WizioConfig.pages.apiguide.main.view,
+                            controller:  WizioConfig.pages.apiguide.main.controller
                         }
                     },
                     data: falseRequiredLogin
