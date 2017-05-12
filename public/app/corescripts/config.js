@@ -134,6 +134,11 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: 'public/app/modules/api-guide-app/main/api-request-modal.html',
                     controller: 'ApiGuideCtrl'
                 }
+            },
+            styleguide: {
+                main: {
+                    view: 'pubilc/app/modules/style-guide-app/main/style-guide.html'
+                }
             }
         },
 

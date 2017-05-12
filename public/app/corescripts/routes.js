@@ -28,6 +28,7 @@ angular.module('MainApp')
             var falseRequiredLogin = {
                 requireLogin: false
             };
+            var PAGECONFIG = WizioConfig.pages;
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -168,8 +169,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.pages.about.view,
-                            controller:  WizioConfig.pages.about.controller
+                            templateUrl: PAGECONFIG.about.view,
+                            controller:  PAGECONFIG.about.controller
                         }
                     },
                     data: falseRequiredLogin
@@ -268,8 +269,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/styleguide.html',
-                            //The blog controller for the styleguide is temporary
+                            templateUrl: PAGECONFIG.styleguide.main.view,
                         }
                     },
                     data: falseRequiredLogin
@@ -280,8 +280,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.pages.apiguide.main.view,
-                            controller:  WizioConfig.pages.apiguide.main.controller
+                            templateUrl: PAGECONFIG.apiguide.main.view,
+                            controller:  PAGECONFIG.apiguide.main.controller
                         }
                     },
                     data: falseRequiredLogin
