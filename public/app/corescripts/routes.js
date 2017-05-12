@@ -666,11 +666,10 @@ angular.module('MainApp')
                                 TokenSvc.deleteToken();
                                 $rootScope.$emit("unauthorized");
 
-                                // alert('Authentication Failed');
 
                             }
                             return response;
-                            //return $q.reject(response);
+
                         }
 
                     };
