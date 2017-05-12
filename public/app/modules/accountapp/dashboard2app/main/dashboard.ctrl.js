@@ -191,9 +191,16 @@ angular.module('AccountApp').controller('DashboardCtrl', [
             if (phoneNumberInput.value) {
                 $resource(apiurl + 'user/update-user-phone-number' )
                 .save({phoneNumber: phoneNumberInput.value, id: user.id }, function(response){
-                    // $scope.phoneNumber = phoneNumberInput.value;
-                    alert("Your phone number has been updated to: " + phoneNumberInput.value);
-                    // user = TokenSvc.decode();
+
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        '"Your phone number has been updated to: " + phoneNumberInput.value'
+                    ).then(function(result) {
+                        return;
+                    });
+
                 })
             }
 

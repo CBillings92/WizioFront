@@ -11,6 +11,16 @@ angular.module('AccountApp')
 
                 if ($scope.user.password != $scope.user.passwordConfirm) {
                     alert("Passwords do not match!");
+
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Error",
+                        'Your passwords do not match!'
+                    ).then(function(result) {
+                        return;
+                    });
+
                     return;
                 }
 
