@@ -4,7 +4,9 @@ angular.module('AccountApp').factory('DashboardFct', [
     '$q',
     'TokenSvc',
     'AWSFct',
-    function(WizioConfig, $resource, $q, TokenSvc, AWSFct) {
+    'ModalBuilderFct',
+    'LoadingSpinnerFct',
+    function(WizioConfig, $resource, $q, TokenSvc, AWSFct, ModalBuilderFct, LoadingSpinnerFct) {
         var api = WizioConfig.baseAPIURL;
 
         // CREATE THE UNIT
@@ -19,7 +21,15 @@ angular.module('AccountApp').factory('DashboardFct', [
                 };
                 $resource(api + 'unit').save(dataToBePassed, function(createdUnit) {
                     if (createdUnit.message) {
-                        alert("Apartment already created BANANA! Search for this apartment in your account search section or modify it in your Modify Existing Tour section.");
+                        ModalBuilderFct.buildSimpleModal(
+                            "",
+                            "OK",
+                            "Error",
+                            'Apartment already created! Search for this apartment in your account search section or modify it in your Modify Existing Tour section.'
+                        ).then(function(result) {
+                            return;
+                        });
+
                         LoadingSpinnerFct.hide('create-unit-floor-plan-spinner');
                         return reject(createdUnit);
                     } else {
@@ -42,7 +52,14 @@ angular.module('AccountApp').factory('DashboardFct', [
             return $q(function(resolve, reject) {
                 var key = subscriptionApartmentPubId + '/floorplan.png';
                 AWSFct.s3.equirectPhotos.uploadFloorPlanFile(floorPlanFile, key).then(function(response) {
-                    alert('finished upload');
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        'Finished Upload!'
+                    ).then(function(result) {
+                        return;
+                    });
                     resolve('success');
                 })
             });
@@ -88,7 +105,14 @@ angular.module('AccountApp').factory('DashboardFct', [
                     resolve(createdUnit);
                 })
                 .catch(function(error) {
-                    alert('error');
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "ERROR",
+                        'Please try again.'
+                    ).then(function(result) {
+                        return;
+                    });
                     return reject(error);
                 });
             })

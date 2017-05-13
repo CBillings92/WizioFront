@@ -3,14 +3,14 @@ angular.module('AccountApp')
         '$scope',
         '$state',
         'SubscriptionFct',
-        function($scope, $state, SubscriptionFct) {
+        'ModalBuilderFct',
+        function($scope, $state, SubscriptionFct, ModalBuilderFct) {
             //test
             $scope.signupInvite = $state.current.name === "Signup.Invite" ? true : false;
 
             $scope.submit = function() {
 
                 if ($scope.user.password != $scope.user.passwordConfirm) {
-                    alert("Passwords do not match!");
 
                     ModalBuilderFct.buildSimpleModal(
                         "",
