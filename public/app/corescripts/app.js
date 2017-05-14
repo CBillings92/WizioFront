@@ -3,6 +3,7 @@
     angular.module('AboutUsApp', []);
     angular.module('ApiGuideApp', []);
     angular.module('AdminPanelApp', []);
+    angular.module('CreateAccountApp', []);
     angular.module('LoginApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -34,6 +35,7 @@
             'AccountApp',
             'ApplicationApp',
             'AuthApp',
+            'CreateAccountApp',
             'LoginApp',
             'AboutUsApp',
             'Directives',

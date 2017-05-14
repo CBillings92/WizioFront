@@ -1,0 +1,129 @@
+<div class="subscription-wrapper">
+    <div class="container" ng-hide="invitationSignup">
+        <div class="page-header row">
+            <h4> Choose A Subscription Plan</h4>
+        </div>
+        <div class="" style="font-size: 1.2em; margin-bottom:20px;">
+        </div>
+        <div class="subscription-middle row">
+            <div class="container">
+                <div class="row subscription-middle">
+                    <div class="col-lg-6 subscription-tile " ng-click="chooseSubscription(1)">
+                        <!-- A subscription tile (one of those subscription banners) -->
+                        <div class="subscription-banner-container btn-outline--blue" id="4" ng-click="changeSelected('4')">
+                            <div class="subscription-banner-header" ng-class="selectedplan">
+                                <div class="subscription-banner-header__main" style="text-align: center;">
+                                    <h3>
+                                        Agent
+                                    </h3>
+                                </div>
+                                <div class="subscription-banner-header__sub">
+                                    <h5>
+                                        All in one tool for creating virtual tours
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 subscription-tile" ng-click="chooseSubscription(2)">
+                        <!-- A subscription tile (one of those subscription banners) -->
+                        <div class="subscription-banner-container btn-outline--blue" id="5" ng-click="changeSelected('5')">
+                            <div class="subscription-banner-header" ng-class="selectedplan">
+                                <div class="subscription-banner-header__main" style="text-align: center;">
+                                    <h3>
+                                         Office
+                                    </h3>
+                                </div>
+                                <div class="subscription-banner-header__sub">
+                                    <h5>
+                                        Enhanced for collaboration
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-header row">
+            <h4>Enter Your Account Information</h4>
+        </div>
+        <div class="row">
+            <div class="container">
+                <form class="form" ng-submit="submit()" id="account-create-form">
+                    <div class="form-group">
+                        <label for="" class="control-label">First Name</label>
+                        <input type="text" ng-model="user.firstName" name="firstName" class="form-control" style="border: 1px solid black;" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Last Name</label>
+                        <input type="text" ng-model="user.lastName" name="lastName" class="form-control" style="border: 1px solid black;" value="" required>
+                    </div>
+                    <div class="form-group" ng-hide="signupInvite">
+                        <label for="" class="control-label">Email</label>
+                      <input type="text" ng-model="user.email" name="email" class="form-control" style="border: 1px solid black;" value="" ng-required="!signupInvite">
+                    </div>
+                    <div class="form-group" ng-hide="signupInvite">
+                        <label for="" class="control-label">Brokerage</label>
+                        <input type="text" ng-model="user.brokerage" name="Brokerage" class="form-control" style="border: 1px solid black;" value="" ng-required="!signupInvite">
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Password</label>
+                        <input type="password" ng-model="user.password" name="Password" class="form-control" style="border: 1px solid black;" value="" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="control-label">Confirm Password</label>
+                        <input type="password" ng-model="user.passwordConfirm" name="ConfirmPassword" class="form-control" style="border: 1px solid black;" value="" required>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group container" ng-show="getPlan()">
+                <!-- Put a check here  -->
+                <label for="" class="control-label">Number of Users</label>
+                <input type="number" ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" required>
+            </div>
+        </div>
+    </div>
+    <div class="container submit-step">
+        <p>
+            <input type="checkbox" ng-model="checked"></input>
+            I agree to the
+            <a href="/privacy" target="_blank">Privacy Policy</a>, <a href="/terms" target="_blank">
+                Terms of Use
+            </a>, and
+            <a href="/use" target="_blank">
+                Acceptable Use Policy
+            </a>.
+        </p>
+        <button form="account-create-form" type="submit" class="btn btn-lg btn-outline--orange" ng-disabled="!checked" style="margin-bottom:25px; height:60px; font-size:2em;">Submit and Go To Your Dashboard</button>
+
+
+        <!-- <button type="button" name="button" class="btn btn-outline--orange btn-lg">Pay here!</button> -->
+        <!--
+
+         <form action="/your-server-side-code" method="POST">
+         <script
+           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+           data-key="pk_test_mngZell36UYuy8GfSSox4CZ9"
+           data-amount="2000"
+           data-name="Wizio Inc"
+           data-description="2 widgets"
+           data-image="https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1471624942912-Screen%20Shot%202015-11-04%20at%201.47.20%20PM.png"
+           data-locale="auto">
+         </script>
+         </form>
+
+
+         <form action="http://172.16.0.3:4000/api/stripe/pay" method="POST">
+             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_mngZell36UYuy8GfSSox4CZ9" data-amount="999" data-name="Wizio Inc" data-description="Our monthly package" data-panel-label="Subscribe" data-image="https://s3.amazonaws.com/stripe-uploads/acct_16XvxPDqEKTsTxvomerchant-icon-1443378425435-Owl_White_Background.png"
+                 data-locale="auto">
+             </script>
+         </form> -->
+
+
+    </div>
+</div>
