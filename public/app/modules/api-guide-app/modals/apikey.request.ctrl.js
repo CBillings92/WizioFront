@@ -7,7 +7,7 @@ angular.module('ApiGuideApp')
         '$uibModalInstance',
         'ApiRequestFct',
         'WizioConfig',
-        function FeedbackModalCtrl($scope, $uibModalInstance, ApiRequestFct, WizioConfig) {
+        function ($scope, $uibModalInstance, ApiRequestFct, WizioConfig) {
 
             // Submit an API Request
             $scope.submit = function(){

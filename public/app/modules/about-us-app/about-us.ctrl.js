@@ -36,4 +36,4 @@ angular.module('AboutUsApp')
                 email: "john@wizio.co",
             }];
         }
-    ])
+    ]);
