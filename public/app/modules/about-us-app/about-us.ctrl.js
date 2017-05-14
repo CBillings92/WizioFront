@@ -1,8 +1,12 @@
-angular.module("AboutUsApp")
-    .controller("AboutListCtrl", [
-        "$scope",
-        function($scope) {
-            $scope.members = [{
+/*
+    Controller for the About Us page (www.wizio.co/about)
+*/
+angular.module('AboutUsApp')
+    .controller('AboutUsCtrl', [
+        '$scope',
+        function ($scope) {
+            $scope.members =
+            [{
                 name: "Cameron Billings",
                 title: "CTO",
                 picture: "cameronbillings.png",
@@ -31,7 +35,5 @@ angular.module("AboutUsApp")
                 linkedin: "johnjpuma",
                 email: "john@wizio.co",
             }];
-
         }
-
-    ]);
+    ])

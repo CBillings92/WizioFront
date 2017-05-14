@@ -9,7 +9,6 @@ angular.module('AccountApp')
         '$resource',
         function($scope, $state, SubscriptionFct, $window, WizioConfig, TokenSvc, $resource) {
             $scope.invitationSignup = $state.current.name === 'Signup.Invite' ? true : false;
-
             $scope.getPlan = function() {
                     console.log($scope.chosenSubscription);
                     return $scope.chosenSubscription == '2';

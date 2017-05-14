@@ -1,39 +1,48 @@
-
 <div class="subscription-wrapper">
 
-<div class="container" ng-hide="invitationSignup">
-    <div class="page-header row">
-        <h4> Choose A Subscription Plan</h4>
-    </div>
-    <div class="" style="font-size: 1.2em; margin-bottom:20px;">
-    </div>
-    <div class="subscription-middle row">
-        <subscription-list-dir chosen-subscription='chosenSubscription'></subscription-list-dir>
-    </div>
-</div>
-<div class="container">
-    <div class="page-header row">
-        <h4>Enter Your Account Information</h4>
-    </div>
-    <div class="row">
-        <account-creation-form-dir user='user'></account-creation-form-dir>
-        <div class="form-group container" ng-show="getPlan()">
-            <!-- Put a check here  -->
-            <label for="" class="control-label">Number of Users</label>
-            <input type="number"  ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" required>
+    <div class="container" ng-hide="invitationSignup">
+        <div class="page-header row">
+            <h4> Choose A Subscription Plan</h4>
+        </div>
+        <div class="" style="font-size: 1.2em; margin-bottom:20px;">
+        </div>
+        <div class="subscription-middle row">
+            <subscription-list-dir chosen-subscription='chosenSubscription'></subscription-list-dir>
         </div>
     </div>
-</div>
+    <div class="container">
+        <div class="page-header row">
+            <h4>Enter Your Account Information</h4>
+        </div>
+        <div class="row">
+            <account-creation-form-dir user='user'></account-creation-form-dir>
+            <div class="form-group container" ng-show="getPlan()">
+                <!-- Put a check here  -->
+                <label for="" class="control-label">Number of Users</label>
+                <input type="number" ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" required>
+            </div>
+        </div>
+    </div>
 
 
 
-<div class="container submit-step">
-        <p> <input type="checkbox" ng-model="checked"></input> I agree to the <a href="/privacy" target="_blank">Privacy Policy</a>, <a href="/terms" target="_blank">Terms of Use</a>, and <a href="/use" target="_blank">Acceptable Use Policy</a>. </p>
-         <button form="account-create-form" type="submit" class="btn btn-lg btn-outline--orange" ng-disabled="!checked" style="margin-bottom:25px; height:60px; font-size:2em;">Submit and Go To Your Dashboard</button>
+    <div class="container submit-step">
+        <p>
+            <input type="checkbox" ng-model="checked"></input>
+            I agree to the
+            <a href="/privacy" target="_blank">Privacy Policy</a>, <a href="/terms" target="_blank">
+                Terms of Use
+            </a>,
+            and
+            <a href="/use" target="_blank">
+                Acceptable Use Policy
+            </a>.
+        </p>
+        <button form="account-create-form" type="submit" class="btn btn-lg btn-outline--orange" ng-disabled="!checked" style="margin-bottom:25px; height:60px; font-size:2em;">Submit and Go To Your Dashboard</button>
 
 
-         <!-- <button type="button" name="button" class="btn btn-outline--orange btn-lg">Pay here!</button> -->
-<!--
+        <!-- <button type="button" name="button" class="btn btn-outline--orange btn-lg">Pay here!</button> -->
+        <!--
 
          <form action="/your-server-side-code" method="POST">
          <script
@@ -55,5 +64,5 @@
          </form> -->
 
 
-</div>
+    </div>
 </div>

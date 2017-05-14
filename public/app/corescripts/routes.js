@@ -28,6 +28,7 @@ angular.module('MainApp')
             var falseRequiredLogin = {
                 requireLogin: false
             };
+            var PAGECONFIG = WizioConfig.pages;
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -35,8 +36,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
-                            controller: 'LandingPageCtrl'
+                            templateUrl: PAGECONFIG.landingPage.main.view,
+                            controller:  PAGECONFIG.landingPage.main.controller,
                         },
                         "vr-player": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
@@ -168,8 +169,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
-                            controller: 'AboutListCtrl'
+                            templateUrl: PAGECONFIG.about.view,
+                            controller:  PAGECONFIG.about.controller
                         }
                     },
                     data: falseRequiredLogin
@@ -268,8 +269,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/styleguide.html',
-                            //The blog controller for the styleguide is temporary
+                            templateUrl: PAGECONFIG.styleguide.main.view,
                         }
                     },
                     data: falseRequiredLogin
@@ -280,8 +280,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/apiguide.view.html',
-                            controller: 'ApiGuideCtrl'
+                            templateUrl: PAGECONFIG.apiguide.main.view,
+                            controller:  PAGECONFIG.apiguide.main.controller
                         }
                     },
                     data: falseRequiredLogin
