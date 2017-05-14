@@ -95,7 +95,14 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                     return createModal(addPhotosModalConfig)
                 })
                 .catch(function(err) {
-                    alert('in catch')
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Error",
+                        'There has been an error, please try again.'
+                    ).then(function(result) {
+                        return;
+                    });
                     return reject(err);
                 })
             })
@@ -155,7 +162,14 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 lastName: user.lastName
             };
             $resource(WizioConfig.baseAPIURL + 'subscription/invite').save(data).$promise.then(function(response) {
-                alert('User Invited');
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Success",
+                    'User has been invited!'
+                ).then(function(result) {
+                    return;
+                });
             })
         }
 
@@ -180,20 +194,34 @@ angular.module('AccountApp').controller('DashboardCtrl', [
                 });
 
             } else {
-                alert('please select a valid file');
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Error",
+                    'Please select a valid file.'
+                ).then(function(result) {
+                    return;
+                });
             }
         }
 
         $scope.savePhoneNumber = function() {
             var phoneNumberInput = {};
-            phoneNumberInput.value = document.getElementById('phone-input');
+            phoneNumberInput = document.getElementById('phone-input').value;
 
-            if (phoneNumberInput.value) {
+            if (phoneNumberInput) {
                 $resource(apiurl + 'user/update-user-phone-number' )
                 .save({phoneNumber: phoneNumberInput.value, id: user.id }, function(response){
-                    // $scope.phoneNumber = phoneNumberInput.value;
-                    alert("Your phone number has been updated to: " + phoneNumberInput.value);
-                    // user = TokenSvc.decode();
+
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        "Your phone number has been updated to: " + phoneNumberInput
+                    ).then(function(result) {
+                        return;
+                    });
+
                 })
             }
 

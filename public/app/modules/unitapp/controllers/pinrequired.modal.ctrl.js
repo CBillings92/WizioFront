@@ -17,7 +17,14 @@ angular.module("UnitApp")
                 };
                 apiResource.query(query, function(response){
                     if(response[0].message){
-                        alert('Pin incorrect, please try again');
+                        ModalBuilderFct.buildSimpleModal(
+                            "",
+                            "OK",
+                            "Error",
+                            'Please try placing the pin again.'
+                        ).then(function(result) {
+                            return;
+                        });
                     } else if (response.length > 0) {
                         $uibModalInstance.close(response);
                     }

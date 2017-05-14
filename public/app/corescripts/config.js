@@ -149,7 +149,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             login: {
                 main: {},
                 modals: {
-                    view: 'public/app/modules/accountapp/authapp/viewtemplates/login.modal.html',
+                    view: 'public/app/modules/login-app/modals/login-modal.html',
                     controller: 'LoginModalCtrl'
                 }
             }

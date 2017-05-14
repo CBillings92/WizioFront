@@ -1,32 +1,36 @@
-angular.module('AccountApp')
-    .controller('AccountCreationFormCtrl', [
-        '$scope',
-        '$state',
-        'SubscriptionFct',
-        function($scope, $state, SubscriptionFct) {
-            //test
-            $scope.signupInvite = $state.current.name === "Signup.Invite" ? true : false;
+angular.module('AccountApp').controller('AccountCreationFormCtrl', [
+    '$scope',
+    '$state',
+    'SubscriptionFct',
+    'ModalBuilderFct',
+    function($scope, $state, SubscriptionFct, ModalBuilderFct) {
+        //test
+        $scope.signupInvite = $state.current.name === "Signup.Invite" ? true : false;
 
-            $scope.submit = function() {
+        $scope.submit = function() {
+            var subscription;
 
-                if ($scope.user.password != $scope.user.passwordConfirm) {
-                    alert("Passwords do not match!");
+            if ($scope.user.password != $scope.user.passwordConfirm) {
+
+                ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'Your passwords do not match!').then(function(result) {
                     return;
-                }
+                });
 
-                var user = $scope.user;
-                if($scope.signupInvite){
-                    user.invitePubId = $state.params.invitePubId;
-                } else {
-                    var subscription = $scope.chosenSubscription;
-                }
+                return;
+            }
+
+            var user = $scope.user;
+            if ($scope.signupInvite) {
+                user.invitePubId = $state.params.invitePubId;
+            } else {
+                subscription = $scope.chosenSubscription;
+            }
             //    user.accountType = 'local';
 
-                SubscriptionFct.post.saveNewUser(user, subscription)
-                    .then(function(response) {
-                      $state.go('Account.Dashboard');
-                    });
-            };
+            SubscriptionFct.post.saveNewUser(user, subscription).then(function(response) {
+                $state.go('Account.Dashboard');
+            });
+        };
 
-        }
-    ]);
+    }
+]);

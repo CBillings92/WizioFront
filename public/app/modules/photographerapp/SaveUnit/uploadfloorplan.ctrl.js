@@ -5,7 +5,16 @@
     the units pubid
 */
 angular.module('PhotographerApp')
-    .controller('UploadFloorPlanCtrl', ['$scope', '$resource', 'WizioConfig', '$q', 'LoadingSpinnerFct', 'SmartSearchSvc', '$uibModalInstance', 'TokenSvc', function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance, TokenSvc) {
+    .controller('UploadFloorPlanCtrl', [
+        '$scope',
+        '$resource',
+        'WizioConfig',
+        '$q',
+        'LoadingSpinnerFct',
+        'SmartSearchSvc',
+        '$uibModalInstance',
+        'TokenSvc',
+        function($scope, $resource, WizioConfig,$q,LoadingSpinnerFct, SmartSearchSvc, $uibModalInstance, TokenSvc) {
         // shorthanding the wizioconfig api url for convenience
         var apiurl = WizioConfig.baseAPIURL;
         $scope.noFloorPlanChkBox = false;
@@ -86,7 +95,16 @@ angular.module('PhotographerApp')
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel, user: TokenSvc.decode(), noFloorPlan: noFloorPlan}, function(response){
                 if(response.message){
-                  alert("Apartment already created! Search for this apartment in your account's search bar, or search for it after selecting Modify Existing Tours on your account page");
+
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Error",
+                        'Apartment already created! Search for this apartment in your account\'s search bar, or search for it after selecting Modify Existing Tours on your account page.'
+                    ).then(function(result) {
+                        return;
+                    });
+
                   LoadingSpinnerFct.hide("floorplanUpload");
                   return;
                 } else {
@@ -94,7 +112,16 @@ angular.module('PhotographerApp')
                   if($scope.noFloorPlanChkBox){
                     LoadingSpinnerFct.hide('floorplanUpload');
                     $scope.formSubmitted = false;
-                    alert('Unit created without a floorplan. Please click ok to continue.');
+
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        'Unit created without a floorplan. Please click ok to continue.'
+                    ).then(function(result) {
+                        return;
+                    });
+
                     $uibModalInstance.close('finished');
                     return;
                   } else {
@@ -102,11 +129,29 @@ angular.module('PhotographerApp')
                     .then(function(response){
                       LoadingSpinnerFct.hide('floorplanUpload');
                       $scope.formSubmitted = false;
-                      alert('finished');
+
+                      ModalBuilderFct.buildSimpleModal(
+                          "",
+                          "OK",
+                          "Success",
+                          'Finished.'
+                      ).then(function(result) {
+                          return;
+                      });
+
                       $uibModalInstance.close('finished');
                     })
                     .catch(function (err) {
-                      alert(err);
+
+                        ModalBuilderFct.buildSimpleModal(
+                            "",
+                            "OK",
+                            "Error",
+                            'Please screenshot this and bother cam@wizio.co' + err
+                        ).then(function(result) {
+                            return;
+                        });
+
                       $scope.formSubmitted = false;
                     });
                   }

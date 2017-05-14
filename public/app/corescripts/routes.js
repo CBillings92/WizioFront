@@ -664,10 +664,12 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                alert('Authentication Failed');
+                                $rootScope.$emit("unauthorized");
+
+
                             }
                             return response;
-                            //return $q.reject(response);
+
                         }
 
                     };
