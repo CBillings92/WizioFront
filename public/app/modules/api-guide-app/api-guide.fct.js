@@ -5,16 +5,25 @@ angular.module('ApiGuideApp')
     .factory('ApiGuideFct', [
         '$resource',
         '$q',
-        function ($resource, $q) {
+        'ModalBuilderFct',
+        function ($resource, $q, ModalBuilderFct) {
             function requestAPIKey(apirequest) {
-                $resource(WizioConfig.baseAPIURL + 'vr/requestmoreinfo')
+                return $q(function(resolve, reject){
+                    $resource(WizioConfig.baseAPIURL + 'vr/requestmoreinfo')
                     .save({apirequest: apirequest}, function(response){
-                        alert("Thanks for contacting us! We'll get back to you as soon as we can.");
-                        return resolve('success');
+                        ModalBuilderFct.buildSimpleModal(
+                            "",
+                            "OK",
+                            "Success",
+                            "Thanks for contacting us! We'll get back to you as soon as we can."
+                        ).then(function(result) {
+                            return resolve(result);
+                        });
                     });
+                });
             }
             return {
                 requestAPIKey: requestAPIKey
-            }
+            };
         }
-    ])
+    ]);

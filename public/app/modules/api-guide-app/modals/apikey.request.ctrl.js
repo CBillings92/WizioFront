@@ -13,7 +13,6 @@ angular.module('ApiGuideApp')
             $scope.submit = function(){
                 ApiRequestFct.requestAPIKey($scope.apirequest)
                 .then(function(response){
-                    alert("Thanks for contacting us! We'll get back to you as soon as we can.");
                     $uibModalInstance.close();
                 })
             };
