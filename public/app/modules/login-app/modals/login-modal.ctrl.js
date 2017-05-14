@@ -1,3 +1,6 @@
+/*
+    Login modal controller.
+*/
 angular.module('LoginApp')
     .controller('LoginModalCtrl', [
         '$scope',

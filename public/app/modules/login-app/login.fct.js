@@ -1,3 +1,7 @@
+/*
+    Login modal factory. Handles API requests and launching
+    unauthorized modal
+*/
 angular.module('LoginApp')
     .factory('LoginFct', [
         '$resource',
