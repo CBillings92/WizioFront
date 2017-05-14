@@ -1,10 +1,12 @@
 angular.module('LoginApp')
     .factory('LoginFct', [
         '$resource',
+        '$rootScope',
         '$q',
         'WizioConfig',
         'ModalBuilderFct',
-        function ($resource, $q, WizioConfig, ModalBuilderFct) {
+        'TokenSvc',
+        function ($resource, $rootScope, $q, WizioConfig, ModalBuilderFct, TokenSvc) {
 
             var api = {
                 loginEndPoint : $resource(WizioConfig.baseAPIURL + 'user/authenticate')
@@ -31,6 +33,7 @@ angular.module('LoginApp')
             function requestLogin(userData) {
                 return $q(function(resolve, reject) {
                     api.loginEndPoint.save(userData, function(result){
+                        console.dir(result);
                         if (result === 'ERR') {
                             resolve('failed');
                         } else {

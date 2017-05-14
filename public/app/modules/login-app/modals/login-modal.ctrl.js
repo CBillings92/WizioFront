@@ -1,12 +1,17 @@
-angulor.module('LoginApp')
+angular.module('LoginApp')
     .controller('LoginModalCtrl', [
         '$scope',
         '$uibModalInstance',
         '$rootScope',
-        function ($scope, $uibModalInstance, $rootScope) {
+        '$state',
+        'LoginFct',
+        function ($scope, $uibModalInstance, $rootScope, $state, LoginFct) {
             var loginData = {};
             // Display change password form on modal - default is false
             $scope.changePasswordFlag = false;
+            $scope.forgotPassword = function () {
+                $scope.changePasswordFlag = !$scope.changePasswordFlag;
+            }
 
             // Close modal with 'x' on top right of modal - a directive
             $scope.closeModal = function () {
@@ -25,7 +30,7 @@ angulor.module('LoginApp')
                 loginData.email = $scope.email;
                 loginData.password = $scope.password;
                 LoginFct.requestLogin(loginData)
-                .then(function(response){
+                .then(function(result){
                     if (result === 'failed') {
                         return;
                     } else {
