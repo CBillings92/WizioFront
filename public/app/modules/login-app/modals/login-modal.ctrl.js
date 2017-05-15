@@ -34,12 +34,9 @@ angular.module('LoginApp')
                 loginData.password = $scope.password;
                 LoginFct.requestLogin(loginData)
                 .then(function(result){
-                    if (result === 'failed') {
-                        return;
-                    } else {
-                        $state.go('Account.Dashboard');
-                        return $uibModalInstance.close('ok');
-                    }
+                    $state.go('Account.Dashboard');
+                    return $uibModalInstance.close('ok');
+
                 })
                 .catch(function (error) {
                     $scope.password = '';
