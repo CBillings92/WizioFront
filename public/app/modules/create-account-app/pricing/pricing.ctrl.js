@@ -4,7 +4,7 @@ angular.module('CreateAccountApp')
         'CreateAccountFct',
         function($scope, CreateAccountFct) {
             // test
-            SubscriptionFct.get.subscriptions().then(function(response) {
+            CreateAccountFct.get.subscriptions().then(function(response) {
                 $scope.subscriptions = response;
             });
             $scope.chooseSubscription = function(subscription) {

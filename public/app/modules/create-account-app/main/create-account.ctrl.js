@@ -8,37 +8,32 @@ angular.module('CreateAccountApp')
         'TokenSvc',
         '$resource',
         function($scope, $state, CreateAccountFct, $window, WizioConfig, TokenSvc, $resource) {
-            //test
-            $scope.signupInvite = $state.current.name === "Signup.Invite" ? true : false;
+            //
+            $scope.signupInviteFlag = $state.current.name === "Signup.Invite" ? true : false;
 
             $scope.submit = function() {
                 var subscription;
-
-                if ($scope.user.password != $scope.user.passwordConfirm) {
-
+                var user = $scope.user;
+                if (user.password != user.passwordConfirm) {
                     ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'Your passwords do not match!').then(function(result) {
                         return;
                     });
-
                     return;
                 }
 
-                var user = $scope.user;
-                if ($scope.signupInvite) {
+                // Check if the user was invited or if it's a new registration
+                if ($scope.signupInviteFlag) {
                     user.invitePubId = $state.params.invitePubId;
                 } else {
                     subscription = $scope.chosenSubscription;
                 }
-                //    user.accountType = 'local';
 
-                SubscriptionFct.post.saveNewUser(user, subscription).then(function(response) {
+                CreateAccountFct.post.saveNewUser(user, subscription).then(function(response) {
                     $state.go('Account.Dashboard');
                 });
             };
-            $scope.invitationSignup = $state.current.name === 'Signup.Invite' ? true : false;
             $scope.getPlan = function() {
-                    console.log($scope.chosenSubscription);
-                    return $scope.chosenSubscription == '2';
+                return $scope.chosenSubscription = '2';
             }
 
 
