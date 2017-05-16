@@ -338,75 +338,10 @@ angular.module('MainApp')
                     url: '/dashboard',
                     views: {
                         "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'dashboard.view.html',
-                            controller: 'DashboardCtrl',
+                            templateUrl: PAGECONFIG.dashboard.main.view,
+                            controller:  PAGECONFIG.dashboard.main.controller,
                         }
                     }
-                })
-                .state('Account.Dashboard.Main', {
-                    abstract: true,
-                    views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        }
-                    }
-                })
-                .state('Account.Dashboard.Broker', {
-                    views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        midHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
-                            controller: 'DashboardLLUnitListCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
-                })
-                .state('Account.Dashboard.PropertyManager', {
-                    views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        midHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
-                            controller: "DashboardLLUnitListCtrl",
-                        }
-
-                    },
-                    data: trueRequiredLogin
-                })
-                .state('Account.Dashboard.Tenant', {
-                    views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        favorites: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
-                            controller: "DashboardFavoriteCtrl"
-                        },
-                        application: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
-                            controller: "DashboardApplicationCtrl"
-                        },
-                    },
-                    data: trueRequiredLogin
                 })
                 .state('Account.Pay', {
                     url: '/pay',
@@ -416,16 +351,6 @@ angular.module('MainApp')
                             controller: 'PaymentCtrl'
                         }
                     },
-                })
-                .state('Account.Dashboard.Application', {
-                    url: '/application',
-                    views: {
-                        "midHorizontal": {
-                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'ApplicationDetails.html',
-                            controller: 'ApplicationDetailCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
                 })
                 .state('Account.Profile', {
                     url: '/profile',
@@ -452,18 +377,6 @@ angular.module('MainApp')
                         "ProfileMain": {
                             templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
                             controller: 'ExtProfileFormCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
-                })
-                .state('sellerDashboard', {
-                    url: '/brokerInfo',
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
-                            controller: 'brokerAddInfoCtrl'
                         }
                     },
                     data: trueRequiredLogin

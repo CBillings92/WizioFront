@@ -4,6 +4,7 @@
     angular.module('ApiGuideApp', []);
     angular.module('AdminPanelApp', []);
     angular.module('CreateAccountApp', []);
+    angular.module('DashboardApp', []);
     angular.module('LoginApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -36,6 +37,7 @@
             'ApplicationApp',
             'AuthApp',
             'CreateAccountApp',
+            'DashboardApp',
             'LoginApp',
             'AboutUsApp',
             'Directives',
@@ -64,6 +66,7 @@
             'angularMoment',
             'angulartics',
             'angulartics.google.analytics',
+            'angular-sortable-view'
         ])
         .config(["$sceDelegateProvider", function($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
