@@ -1,4 +1,4 @@
-angular.module('AccountApp').factory('DashboardFct', [
+angular.module('DashboardApp').factory('DashboardFct', [
     'WizioConfig',
     '$resource',
     '$q',

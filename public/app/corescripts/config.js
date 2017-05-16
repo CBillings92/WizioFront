@@ -162,6 +162,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: 'public/app/modules/create-account-app/pricing/pricing.html',
                     controller: 'PricingCtrl'
                 }
+            },
+            dashboard: {
+                main: {
+                    view: 'public/app/modules/dashboard-app/main/dashboard.html',
+                    controller: 'DashboardCtrl'
+                }
             }
         },
 
