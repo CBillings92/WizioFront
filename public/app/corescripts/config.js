@@ -152,6 +152,16 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: 'public/app/modules/login-app/modals/login-modal.html',
                     controller: 'LoginModalCtrl'
                 }
+            },
+            createAccount: {
+                main: {
+                    view: 'public/app/modules/create-account-app/main/create-account.html',
+                    controller: 'CreateAccountCtrl'
+                },
+                pricing: {
+                    view: 'public/app/modules/create-account-app/pricing/pricing.html',
+                    controller: 'PricingCtrl'
+                }
             }
         },
 

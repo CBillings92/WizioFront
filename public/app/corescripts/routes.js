@@ -99,8 +99,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/subscriptionapp/main/pricing.main.view.html',
-                            controller: ''
+                            templateUrl: PAGECONFIG.createAccount.pricing.view,
+                            controller: PAGECONFIG.createAccount.pricing.controller
                         }
                     }
                 })
@@ -110,8 +110,8 @@ angular.module('MainApp')
                     views: {
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/subscriptionapp/main/subscription.main.view.html',
-                            controller: 'SubscriptionMainCtrl'
+                            templateUrl: PAGECONFIG.createAccount.main.view,
+                            controller: PAGECONFIG.createAccount.main.controller
                         }
                     }
                 })

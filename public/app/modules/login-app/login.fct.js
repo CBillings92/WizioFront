@@ -38,12 +38,12 @@ angular.module('LoginApp')
                 return $q(function(resolve, reject) {
                     api.loginEndPoint.save(userData, function(result){
                         console.dir(result);
-                        if (result === 'ERR') {
-                            resolve('failed');
-                        } else {
+                        if (result.token) {
                             $rootScope.isLoggedin = true;
                             $rootScope.userType = TokenSvc.decode().userType;
                             resolve('success');
+                        } else {
+                            reject();
                         }
                     });
                 });
