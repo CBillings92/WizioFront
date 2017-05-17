@@ -58,6 +58,7 @@
             'angularMoment',
             'angulartics',
             'angulartics.google.analytics',
+            'angular-sortable-view'
         ])
         .config(["$sceDelegateProvider", function($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([

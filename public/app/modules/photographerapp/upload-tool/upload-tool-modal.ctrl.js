@@ -252,6 +252,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             }
         }
 
+        $scope.orderCheck = function(){
+
+        }
+
         function removeNewMedia(index) {
             var previewElement;
             apartment.sortedMedia.newMedia.splice(index, 1);
@@ -287,14 +291,22 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         token: TokenSvc.getToken(),
                         file: this.files[i]
                     })
-                    filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
-                    $scope.apartment.sortedMedia.newMedia[i].title = filename;
-                    $scope.apartment.sortedMedia.newMedia[i].file.name = filename;
+                    // filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
+                    // $scope.apartment.sortedMedia.newMedia[i].title = filename;
+                    // $scope.apartment.sortedMedia.newMedia[i].file.name = filename;
 
                     $scope.$apply();
                     preview = document.getElementById(elementId + i);
                     previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, preview);
+                    // $scope.$apply();
                 }
+                $scope.apartment.sortedMedia.newMedia = UploadToolFct.autoNameNewPhotos($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
+                $scope.$apply();
+                // for(var i = 0; i < $scope.apartment.sortedMedia.newMedia; i++) {
+                //     preview = document.getElementById('imgPreview' + i);
+                //     console.dir($scope.apartment.sortedMedia.newMedia[i]);
+                //     previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, preview);
+                // }
                 // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
