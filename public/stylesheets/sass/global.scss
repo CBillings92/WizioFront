@@ -21,15 +21,15 @@ $blue-gray: #8E9BB2;
 }
 @mixin button-hover-state($extraSelectors: '') {
     #{$extraSelectors},
-    &.active,
-    &.active.focus,
-    &.active:focus,
-    &.focus,
+    // &.active,
+    // &.active.focus,
+    // &.active:focus,
+    // &.focus,
     &.hover,
-    &:active,
-    &:active.focus,
-    &:active:focus,
-    &:focus,
+    // &:active,
+    // &:active.focus,
+    // &:active:focus,
+    // &:focus,
     &:hover {
         @content;
     }

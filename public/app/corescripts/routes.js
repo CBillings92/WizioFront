@@ -28,6 +28,7 @@ angular.module('MainApp')
             var falseRequiredLogin = {
                 requireLogin: false
             };
+            var PAGECONFIG = WizioConfig.pages;
             $stateProvider
                 .state('LandingPage', {
                     url: '/',
@@ -35,8 +36,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.landingPageAppViewsURL + 'landingpage.view.html',
-                            controller: 'LandingPageCtrl'
+                            templateUrl: PAGECONFIG.landingPage.main.view,
+                            controller:  PAGECONFIG.landingPage.main.controller,
                         },
                         "vr-player": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html'
@@ -98,8 +99,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/subscriptionapp/main/pricing.main.view.html',
-                            controller: ''
+                            templateUrl: PAGECONFIG.createAccount.pricing.view,
+                            controller: PAGECONFIG.createAccount.pricing.controller
                         }
                     }
                 })
@@ -109,8 +110,8 @@ angular.module('MainApp')
                     views: {
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/subscriptionapp/main/subscription.main.view.html',
-                            controller: 'SubscriptionMainCtrl'
+                            templateUrl: PAGECONFIG.createAccount.main.view,
+                            controller: PAGECONFIG.createAccount.main.controller
                         }
                     }
                 })
@@ -168,8 +169,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/aboutus.html',
-                            controller: 'AboutListCtrl'
+                            templateUrl: PAGECONFIG.about.view,
+                            controller:  PAGECONFIG.about.controller
                         }
                     },
                     data: falseRequiredLogin
@@ -268,8 +269,7 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/styleguide.html',
-                            //The blog controller for the styleguide is temporary
+                            templateUrl: PAGECONFIG.styleguide.main.view,
                         }
                     },
                     data: falseRequiredLogin
@@ -280,8 +280,8 @@ angular.module('MainApp')
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: 'public/app/modules/aboutusapp/viewtemplates/apiguide.view.html',
-                            controller: 'ApiGuideCtrl'
+                            templateUrl: PAGECONFIG.apiguide.main.view,
+                            controller:  PAGECONFIG.apiguide.main.controller
                         }
                     },
                     data: falseRequiredLogin
@@ -338,75 +338,42 @@ angular.module('MainApp')
                     url: '/dashboard',
                     views: {
                         "AccountMain": {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'dashboard.view.html',
-                            controller: 'DashboardCtrl',
+                            templateUrl: PAGECONFIG.dashboard.main.view,
+                            controller:  PAGECONFIG.dashboard.main.controller,
                         }
                     }
                 })
-                .state('Account.Dashboard.Main', {
-                    abstract: true,
+                .state('Account.Dashboard.Invite', {
                     views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.invite.view,
+                            controller: PAGECONFIG.dashboard.invite.controller
                         }
                     }
                 })
-                .state('Account.Dashboard.Broker', {
+                .state('Account.Dashboard.Search', {
                     views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        midHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
-                            controller: 'DashboardLLUnitListCtrl'
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.search.view,
+                            controller: PAGECONFIG.dashboard.search.controller
                         }
-                    },
-                    data: trueRequiredLogin
+                    }
                 })
-                .state('Account.Dashboard.PropertyManager', {
+                .state('Account.Dashboard.ShareTour', {
                     views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        midHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardLLUnitList.html',
-                            controller: "DashboardLLUnitListCtrl",
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.shareTour.view,
+                            controller: PAGECONFIG.dashboard.shareTour.controller
                         }
-
-                    },
-                    data: trueRequiredLogin
+                    }
                 })
-                .state('Account.Dashboard.Tenant', {
+                .state('Account.Dashboard.AgentInfo', {
                     views: {
-                        topHorizontal: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardUserInfo.html',
-                            controller: 'DashboardUserInfoCtrl'
-                        },
-                        controlPanel: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardControls.html',
-                            controller: 'DashboardControlsCtrl',
-                        },
-                        favorites: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardFavorites.html',
-                            controller: "DashboardFavoriteCtrl"
-                        },
-                        application: {
-                            templateUrl: WizioConfig.AccountDashboardViewsURL + 'DashboardApplications.html',
-                            controller: "DashboardApplicationCtrl"
-                        },
-                    },
-                    data: trueRequiredLogin
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.agentInfo.view,
+                            controller: PAGECONFIG.dashboard.agentInfo.controller
+                        }
+                    }
                 })
                 .state('Account.Pay', {
                     url: '/pay',
@@ -416,16 +383,6 @@ angular.module('MainApp')
                             controller: 'PaymentCtrl'
                         }
                     },
-                })
-                .state('Account.Dashboard.Application', {
-                    url: '/application',
-                    views: {
-                        "midHorizontal": {
-                            templateUrl: WizioConfig.ApplicationFormViewsURL + 'ApplicationDetails.html',
-                            controller: 'ApplicationDetailCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
                 })
                 .state('Account.Profile', {
                     url: '/profile',
@@ -452,18 +409,6 @@ angular.module('MainApp')
                         "ProfileMain": {
                             templateUrl: WizioConfig.extProfileViewsURL + 'extprofileform.html',
                             controller: 'ExtProfileFormCtrl'
-                        }
-                    },
-                    data: trueRequiredLogin
-                })
-                .state('sellerDashboard', {
-                    url: '/brokerInfo',
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: 'public/viewtemplates/public/brokerAddInfo.html',
-                            controller: 'brokerAddInfoCtrl'
                         }
                     },
                     data: trueRequiredLogin
@@ -664,10 +609,12 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                alert('Authentication Failed');
+                                $rootScope.$emit("unauthorized");
+
+
                             }
                             return response;
-                            //return $q.reject(response);
+
                         }
 
                     };

@@ -54,7 +54,7 @@ angular.module('AgentProfileApp')
         $scope.animation_var = "animation-end";
     else
         $scope.animation_var = "animation-start";
-    }
+    };
 
 
 
@@ -85,4 +85,4 @@ angular.module('AgentProfileApp')
 
 
 
-}])
+}]);

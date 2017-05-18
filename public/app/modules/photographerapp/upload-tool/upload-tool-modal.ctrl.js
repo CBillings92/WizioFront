@@ -49,6 +49,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             var sortedMedia = UploadToolFct.sortMedia(media);
             apartment.sortedMedia = sortedMedia;
             $scope.apartment = apartment;
+            console.dir($scope.apartment)
             return;
         }).catch(function(error) {
             console.dir(error);
@@ -62,12 +63,26 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             $scope.bulkUploadInitiated = true;
             LoadingSpinnerFct.show('bulk-upload-photo-loader');
             UploadToolFct.bulkUploadPhotos($scope.apartment.sortedMedia.newMedia, apartment, subscriptionApartment.pubid).then(function(response) {
-                alert('Finished!')
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Success",
+                    'Upload Complete!'
+                ).then(function(result) {
+                    return;
+                });
                 $uibModalInstance.close();
             }).catch(function(error) {
                 LoadingSpinnerFct.hide('bulk-upload-photo-loader');
                 if (error === 'No Files To Upload') {
-                    alert('No new photos uploaded');
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Error",
+                        'No new photos uploaded.'
+                    ).then(function(result) {
+                        return;
+                    });
                     $uibModalInstance.close();
                     return;
                 }
@@ -121,7 +136,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             if(pinToMove.id) {
                 // send the new pin data to the API to be saved
                 UploadToolFct.saveOnePhotoToWizioAPI(pinToMove, function(response){
-                    alert('Saved');
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        'Pin moved.'
+                    ).then(function(result) {
+                        return;
+                    });
                 })
 
             } else {
@@ -175,7 +197,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     return;
                 } else {
                     $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
-                    alert('Photo Renamed Successfully');
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Success",
+                        'Photo renamed successfully.'
+                    ).then(function(result) {
+                        return;
+                    });
                 }
             });
         }
@@ -203,7 +232,15 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 pin.isUnit = 1;
                 dropPinFlag = false;
             } else {
-                alert('Choose a photo below to associate with this pin!');
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Success",
+                    'Choose a Photo below to associate with this pin.'
+                ).then(function(result) {
+                    return;
+                });
+
                 $scope.choosePhotoForPinFlag = true;
                 $scope.temporaryPins.push({
                     x: x,
@@ -219,7 +256,14 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             apartment.x = $scope.temporaryPins[0].x
             apartment.y = $scope.temporaryPins[0].y
             apartment.isUnit = true;
-            alert('Photo assigned to pin!');
+            ModalBuilderFct.buildSimpleModal(
+                "",
+                "OK",
+                "Success",
+                'Photo assigned to pin!'
+            ).then(function(result) {
+                return;
+            });
             $scope.choosePhotoForPinFlag = false;
             dropPinFlag = false;
         }

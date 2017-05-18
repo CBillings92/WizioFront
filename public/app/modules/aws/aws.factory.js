@@ -25,7 +25,7 @@ angular.module('AWSApp').factory('AWSFct', [
             if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
                 key = 'test_' + key;
             }
-            return key
+            return key;
         }
 
         /* copyFile - SUMMARY
@@ -136,13 +136,13 @@ angular.module('AWSApp').factory('AWSFct', [
                         Key: properKey,
                         ContentType: 'JPG',
                         Body: file
-                    }
+                    };
                     bucket.putObject(params, function(err, data) {
                         console.dir(err);
                         resolve(data);
-                    })
+                    });
                 }
-            })
+            });
         }
 
         function uploadProfileFile(file, key, bucket) {

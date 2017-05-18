@@ -6,21 +6,21 @@ angular.module('FlyOutMenuApp')
             var hideFloorPlanButton = false;
             function viewFloorPlan() {
                 $scope.buttonAction('toggleFloorplan');
-                $scope.menuIsOpen = !$scope.menuIsOpen
+                $scope.menuIsOpen = !$scope.menuIsOpen;
             }
             function viewPhotoList() {
                 $scope.buttonAction('togglePhotos');
                 // $scope.selectPhoto = !$scope.selectPhoto;
-                $scope.menuIsOpen = !$scope.menuIsOpen
+                $scope.menuIsOpen = !$scope.menuIsOpen;
 
             }
             function enableAccelerometer() {
                 $scope.accelerometerToggle();
             }
             $scope.openCloseMenu = function() {
-                $scope.menuIsOpen = !$scope.menuIsOpen
+                $scope.menuIsOpen = !$scope.menuIsOpen;
                 $scope.actions[0].hide =  $scope.hideFloorPlanButton;
-            }
+            };
             $scope.actions = [
                 {
                     'name': 'Floor Plan',
@@ -34,11 +34,11 @@ angular.module('FlyOutMenuApp')
                     'hide': false
                 },
                 {
-                    'name': 'Enable Accelerometer',
+                    'name': '360 Control',
                     'action': enableAccelerometer,
                     'hide': false
 
                 }
-            ]
+            ];
         }
-    ])
+    ]);
