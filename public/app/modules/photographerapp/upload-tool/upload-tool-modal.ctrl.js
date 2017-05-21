@@ -282,6 +282,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             }
         }
 
+        /**
+         * Delete a new photo from the array of photos then run the previewPhoto
+         * function to preview photos in the new locations.
+         * @param  {[type]} index [description]
+         * @return {[type]}       [description]
+         */
         function removeNewMedia(index) {
             var previewElement;
             apartment.sortedMedia.photos.splice(index, 1);
