@@ -3,56 +3,29 @@
         <div class="col-md-3">
             <user-info-dir></user-info-dir>
             <div class="col-md-12 btn-div">
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'share'" ng-hide="currentview == 'share'">Share Tour</button>
-                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'share'" ng-show="currentview == 'share'">Share Tour</button>
-                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="createTour()">Create Tour</button>
-                <button ng-click="modifyExistingTour()" type="button" class="btn btn-fill--blue btn-lg btn-block">Modify Tour</button>
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'search'" ng-hide="currentview == 'search'">Search</button>
-                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'search'" ng-show="currentview == 'search'">Search</button>
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'invite'" ng-hide="currentview == 'invite'">Invite</button>
-                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'invite'" ng-show="currentview == 'invite'">Invite</button>
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="currentview = 'profile'" ng-hide="currentview == 'profile'">Agent Info</button>
-                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="currentview = 'profile'" ng-show="currentview == 'profile'">Agent Info</button>
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('ShareTour')">
+                    Share Tour
+                </button>
+                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="createTour()">
+                    Create Tour
+                </button>
+                <button ng-click="modifyExistingTour()" type="button" class="btn btn-fill--blue btn-lg btn-block">
+                    Modify Tour
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" type="button" ng-click="changeState('Search')">
+                    Search
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('Invite')">
+                    Invite
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('AgentInfo')">
+                    Agent Info
+                </button>
             </div>
         </div>
         <div class="col-md-9">
-            <div ng-show="currentview == 'search'" class="user-info" ng-model="accountInfo" style="margin-bottom:50px">
-                <h2 class="user-info__name">Search Apartments:</h2>
-                <search-dirv></search-dirv>
-                <h2 class="user-info__name">Search Results:</h2>
-                <loading-spinner-dir id="account-dashboard-search-loader" style="position: absolute; z-index:1000; top:60px; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
-                <search-results-list-dir apartments='apartments' ng-hide="loading"></search-results-list-dir>
-                <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
-            </div>
+            <div ui-view="dashboard-main">
 
-            <div ng-show="currentview == 'share'" style="margin-top:40px;margin-bottom:50px">
-                <h2 class="user-info__name">Your Activated Apartments:</h2>
-                <active-listing-list-dir activelistings='activelistings'></active-listing-list-dir>
-            </div>
-
-            <div ng-show="currentview == 'invite'" style="margin-bottom:50px">
-                <div class="user-info " ng-model="accountInfo" style="" ng-show="inviteAccess">
-                    <h2 class="user-info__name">Invite:</h2>
-                    <div class="col-md-8">
-                        <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
-                        <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()">Invite</button>
-                    </div>
-                </div>
-            </div>
-
-            <div ng-show="currentview == 'profile'" style="margin-bottom:50px">
-                <h2 class="user-info__name"> Update Agent Info: </h2>
-                <p> Upload Photo -- for best results, please use a square photo </p>
-                <input type="file" id="file-chooser" class="form-control" style="border: 1px solid black;" placeholder="" value="">
-                <br>
-                <button class="btn btn-outline--blue" ng-click="saveProfilePhoto()">Upload Photo </button>
-                <p> Phone Number <p>
-                <input type="text" id="phone-input" class="form-control" style="border: 1px solid black;" ng-attr-placeholder="{{phoneNumber}}" value="">
-                <br>
-                <button class="btn btn-outline--blue" ng-click="savePhoneNumber()">Save Phone Number</button>
             </div>
 
         </div>

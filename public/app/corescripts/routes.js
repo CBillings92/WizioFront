@@ -343,6 +343,38 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Account.Dashboard.Invite', {
+                    views: {
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.invite.view,
+                            controller: PAGECONFIG.dashboard.invite.controller
+                        }
+                    }
+                })
+                .state('Account.Dashboard.Search', {
+                    views: {
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.search.view,
+                            controller: PAGECONFIG.dashboard.search.controller
+                        }
+                    }
+                })
+                .state('Account.Dashboard.ShareTour', {
+                    views: {
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.shareTour.view,
+                            controller: PAGECONFIG.dashboard.shareTour.controller
+                        }
+                    }
+                })
+                .state('Account.Dashboard.AgentInfo', {
+                    views: {
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.agentInfo.view,
+                            controller: PAGECONFIG.dashboard.agentInfo.controller
+                        }
+                    }
+                })
                 .state('Account.Pay', {
                     url: '/pay',
                     views: {

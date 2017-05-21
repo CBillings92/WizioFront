@@ -11,7 +11,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
     //LOCAL URL
     //baseAPIURL: 'http://TESTENV-haje6dk4hy.elasticbeanstalk.com/api/',
     var env = checkEnvironment();
-
+    var MODULESPATH = 'public/app/modules/';
     function checkEnvironment() {
         switch (window.location.origin) {
             case "http://172.16.0.2:3000":
@@ -50,6 +50,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         S3_EQUIRECTPHOTOS_BUCKET: env === 'prod'
             ? 'equirect-photos'
             : 'test-equirect-photos',
+        CLOUDFRONT_DISTRO: env === 'prod' ? 'https://cdn.wizio.co/' : 'https://d1mze0h82dkhhe.cloudfront.net/',
         frontEndURL: window.location.origin,
 
         // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
@@ -75,63 +76,63 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         modulesURL: 'public/app/modules',
         PhotographerApp: {
             Views: {
-                CreateUnitModal: 'public/app/modules/photographerapp/CreateUnit/createunit.modal.view.html',
-                UploadFloorPlanDescision: 'public/app/modules/photographerapp/UploadFloorPlanDecision/uploadfloorplandecision.modal.html',
-                UploadFloorPlan: 'public/app/modules/photographerapp/UploadFloorPlan/uploadfloorplan.view.html'
+                CreateUnitModal: MODULESPATH + 'photographerapp/CreateUnit/createunit.modal.view.html',
+                UploadFloorPlanDescision: MODULESPATH + 'photographerapp/UploadFloorPlanDecision/uploadfloorplandecision.modal.html',
+                UploadFloorPlan: MODULESPATH + 'photographerapp/UploadFloorPlan/uploadfloorplan.view.html'
             }
         },
         TourPasswordApp: {
             Views: {
-                TourPasswordConfirmModal: 'public/app/modules/tourpasswordapp/tourpasswordconfirm.modal.html'
+                TourPasswordConfirmModal: MODULESPATH + 'tourpasswordapp/tourpasswordconfirm.modal.html'
             }
         },
         //AdminPanel App
-        AdminPanelAppMainViewsURL: 'public/app/modules/adminpanelapp/main/',
-        AdminPanelAppViewsURL: 'public/app/modules/adminpanelapp/viewtemplates/',
+        AdminPanelAppMainViewsURL: MODULESPATH + 'adminpanelapp/main/',
+        AdminPanelAppViewsURL: MODULESPATH + 'adminpanelapp/viewtemplates/',
         //AuthApp
-        AuthViewsURL: 'public/app/modules/authapp/viewtemplates/',
+        AuthViewsURL: MODULESPATH + 'authapp/viewtemplates/',
         //Application App
-        ApplicationViewsURL: 'public/app/modules/applicationapp/main/',
-        ApplicationFormViewsURL: 'public/app/modules/applicationapp/applicationformapp/viewtemplates/',
+        ApplicationViewsURL: MODULESPATH + 'applicationapp/main/',
+        ApplicationFormViewsURL: MODULESPATH + 'applicationapp/applicationformapp/viewtemplates/',
 
-        BuyerDashboardViewsURL: 'public/app/modules/accountapp/dashboard/viewtemplates/',
+        BuyerDashboardViewsURL: MODULESPATH + 'accountapp/dashboard/viewtemplates/',
         //Footer Views
-        FooterViewsURL: 'public/app/modules/footerapp/viewtemplates/',
+        FooterViewsURL: MODULESPATH + 'footerapp/viewtemplates/',
         //Landing Page App
-        landingPageAppViewsURL: 'public/app/modules/landingpageapp/viewtemplates/',
+        landingPageAppViewsURL: MODULESPATH + 'landingpageapp/viewtemplates/',
         //Info app
-        infoAppViews: 'public/app/modules/infoapp/',
+        infoAppViews: MODULESPATH + 'infoapp/',
         //LeaseApp
-        leaseMainViewsURL: 'public/app/modules/leaseapp/main/',
-        leaseViewsURL: 'public/app/modules/leaseapp/viewtemplates/',
+        leaseMainViewsURL: MODULESPATH + 'leaseapp/main/',
+        leaseViewsURL: MODULESPATH + 'leaseapp/viewtemplates/',
         //Navbar Views
-        NavbarViewsURL: 'public/app/modules/navbarapp/viewtemplates/',
+        NavbarViewsURL: MODULESPATH + 'navbarapp/viewtemplates/',
         //Account App
-        AccountViewsURL: 'public/app/modules/accountapp/main/',
-        AccountDashboardViewsURL: 'public/app/modules/accountapp/dashboard2app/main/',
-        AccountAuthViewsURL: 'public/app/modules/accountapp/authapp/viewtemplates/',
-        UnitMainViewsURL: 'public/app/modules/unitapp/main/',
+        AccountViewsURL: MODULESPATH + 'accountapp/main/',
+        AccountDashboardViewsURL: MODULESPATH + 'accountapp/dashboard2app/main/',
+        AccountAuthViewsURL: MODULESPATH + 'accountapp/authapp/viewtemplates/',
+        UnitMainViewsURL: MODULESPATH + 'unitapp/main/',
         //Unit App
-        UnitViewsURL: 'public/app/modules/unitapp/viewtemplates/',
-        extProfileMainViewsURL: 'public/app/modules/accountapp/extendedprofileapp/main/',
-        extProfileViewsURL: 'public/app/modules/accountapp/extendedprofileapp/viewtemplates/',
+        UnitViewsURL: MODULESPATH + 'unitapp/viewtemplates/',
+        extProfileMainViewsURL: MODULESPATH + 'accountapp/extendedprofileapp/main/',
+        extProfileViewsURL: MODULESPATH + 'accountapp/extendedprofileapp/viewtemplates/',
         uploadViews: {
             modals: {
-                renameMedia: "public/app/modules/photographerapp/upload/rename-media.modal.view.html"
+                renameMedia: MODULESPATH + "photographerapp/upload/rename-media.modal.view.html"
             }
         },
         pages: {
             about: {
-                view: 'public/app/modules/about-us-app/about-us.html',
+                view: MODULESPATH + 'about-us-app/about-us.html',
                 controller: 'AboutUsCtrl'
             },
             apiguide: {
                 main: {
-                    view: 'public/app/modules/api-guide-app/main/api-guide.html',
+                    view: MODULESPATH + 'api-guide-app/main/api-guide.html',
                     controller: 'ApiGuideCtrl'
                 },
                 modals: {
-                    view: 'public/app/modules/api-guide-app/main/api-request-modal.html',
+                    view: MODULESPATH + 'api-guide-app/main/api-request-modal.html',
                     controller: 'ApiGuideCtrl'
                 }
             },
@@ -142,32 +143,49 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             },
             landingPage: {
                 main: {
-                    view: 'public/app/modules/landing-page-app/main/landing-page.html',
+                    view: MODULESPATH + 'landing-page-app/main/landing-page.html',
                     controller: 'LandingPageCtrl',
                 }
             },
             login: {
                 main: {},
                 modals: {
-                    view: 'public/app/modules/login-app/modals/login-modal.html',
+                    view: MODULESPATH + 'login-app/modals/login-modal.html',
                     controller: 'LoginModalCtrl'
                 }
             },
             createAccount: {
                 main: {
-                    view: 'public/app/modules/create-account-app/main/create-account.html',
+                    view: MODULESPATH + 'create-account-app/main/create-account.html',
                     controller: 'CreateAccountCtrl'
                 },
                 pricing: {
-                    view: 'public/app/modules/create-account-app/pricing/pricing.html',
+                    view: MODULESPATH + 'create-account-app/pricing/pricing.html',
                     controller: 'PricingCtrl'
                 }
             },
             dashboard: {
                 main: {
-                    view: 'public/app/modules/dashboard-app/main/dashboard.html',
+                    view: MODULESPATH + 'dashboard-app/main/dashboard.html',
                     controller: 'DashboardCtrl'
-                }
+                },
+                invite: {
+                    view: MODULESPATH + 'dashboard-app/invite/invite.html',
+                    controller: 'InviteCtrl'
+                },
+                search: {
+                    view: MODULESPATH + 'dashboard-app/search/search.html',
+                    controller: 'DashboardSearchCtrl'
+                },
+                shareTour: {
+                    view: MODULESPATH + 'dashboard-app/share-tour/share-tour.html',
+                    controller: ''
+                },
+                agentInfo: {
+                    view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',
+                    controller: 'AgentInfoCtrl'
+                },
+
             }
         },
 

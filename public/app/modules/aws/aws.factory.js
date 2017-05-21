@@ -5,11 +5,12 @@ angular.module('AWSApp').factory('AWSFct', [
     '$q',
     'WizioConfig',
     function($q, WizioConfig) {
-        AWS.config.update({accessKeyId: 'AKIAIPGWV5OFR73P3VLQ', secretAccessKey: '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'});
+        // AWS.config.update({accessKeyId: 'AKIAIPGWV5OFR73P3VLQ', secretAccessKey: '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'});
+        AWS.config.update({accessKeyId: 'AKIAJKN2QU5DJSYHC7LA', secretAccessKey: '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'});
 
         function createS3Object(endpoint, region) {
             var S3Object = new AWS.S3({
-                endpoint: endpoint || 'https://cdn.wizio.co',
+                endpoint: endpoint || WizioConfig.CLOUDFRONT_DISTRO,
                 s3BucketEndpoint: true,
                 region: region || 'us-east-1'
             });
@@ -129,7 +130,6 @@ angular.module('AWSApp').factory('AWSFct', [
 
                 if (file) {
                     var bucket = createS3Object();
-
                     var params = {
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
@@ -165,7 +165,6 @@ angular.module('AWSApp').factory('AWSFct', [
                         ContentType: file.type,
                         Body: file
                     };
-
                     //save the floorplan to S3
                     bucket.putObject(params, function(err, data) {
                         resolve(data);
