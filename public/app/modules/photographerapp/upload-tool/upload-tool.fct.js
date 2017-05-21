@@ -125,7 +125,6 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             // Remove all unavailable numbers from availNums array
             for (var i = 0; i < unavailNums.length; i++) {
                 for (var j = 0; j < availNums.length; j++) {
-                    // console.dir('unavailNgum = ' + unavailNums[i] + ' , availNum = ' + availNums[j]);
                     if(unavailNums[i] === availNums[j]){
                         availNums.splice(j,1);
                         break;
@@ -151,7 +150,6 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
         function bulkUploadPhotos(apartment) {
             return $q(function(resolve, reject) {
                 var subscriptionApartmentPubId = apartment.SubscriptionApartment.pubid;
-                console.dir(apartment);
                 var photos = apartment.sortedMedia.photos;
                 var email = TokenSvc.decode().email;
                 var key;
@@ -178,7 +176,6 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                     $q.all(s3Promises).then(function(response){
                         for (var i = 0; i < photos.length; i++) {
                             photos[i].userEmail = TokenSvc.decode().email;
-                            console.dir(photos[i]);
                             wizioAPIPromises.push(savePhotoToWizioAPI(photos[i]));
                         }
                         $q.all(wizioAPIPromises).then(function(response){

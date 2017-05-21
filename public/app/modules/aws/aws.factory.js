@@ -23,8 +23,6 @@ angular.module('AWSApp').factory('AWSFct', [
         append 'test_' to the data so it's easily findable and deleteable.
       */
         function modifyKeyForEnvironment(key) {
-            console.dir(key);
-            console.dir(WizioConfig);
             if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
                 key = 'test_' + key;
             }
@@ -139,9 +137,6 @@ angular.module('AWSApp').factory('AWSFct', [
                         ContentType: 'JPG',
                         Body: file
                     };
-                    console.dir('_____________');
-                    console.dir(params);
-                    console.dir('_____________');
                     bucket.putObject(params, function(err, data) {
                         console.dir(err);
                         resolve(data);

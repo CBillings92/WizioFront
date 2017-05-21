@@ -36,7 +36,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         var user = TokenSvc.decode();
 
         $scope.phoneNumber = user.phoneNumber;
-        // console.log(user);
 
         // get whether the user has access to invite others
         $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;

@@ -12,7 +12,6 @@ angular.module('AgentProfileApp')
 
     if ($state.current.name == "Demo") {
         $resource(WizioConfig.baseAPIURL + '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d').query(function(response){
-            // console.log("do you get here?");
             $scope.profileUploaded = true;
             $scope.agent = {
                 firstName: "Devon",
@@ -32,12 +31,10 @@ angular.module('AgentProfileApp')
                 $scope.agent = response[response.length - 1];
                 $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
 
-                // console.log($scope.profileUploaded);
             });
 
     }
 
-    // console.log($scope.profileUploaded);
 
 
 

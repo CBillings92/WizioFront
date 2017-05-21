@@ -50,7 +50,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             apartment.sortedMedia = sortedMedia;
             $scope.apartment = apartment;
             apartment.SubscriptionApartment = $scope.subscriptionApartment
-            console.dir($scope.apartment)
             return;
         }).catch(function(error) {
             console.dir(error);

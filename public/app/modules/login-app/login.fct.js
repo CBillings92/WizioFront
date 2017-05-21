@@ -37,7 +37,6 @@ angular.module('LoginApp')
             function requestLogin(userData) {
                 return $q(function(resolve, reject) {
                     api.loginEndPoint.save(userData, function(result){
-                        console.dir(result);
                         if (result.token) {
                             $rootScope.isLoggedin = true;
                             $rootScope.userType = TokenSvc.decode().userType;
