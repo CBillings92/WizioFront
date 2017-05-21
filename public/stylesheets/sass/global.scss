@@ -21,15 +21,15 @@ $blue-gray: #8E9BB2;
 }
 @mixin button-hover-state($extraSelectors: '') {
     #{$extraSelectors},
-    // &.active,
-    // &.active.focus,
-    // &.active:focus,
-    // &.focus,
+    &.active,
+    &.active.focus,
+    &.active:focus,
+    &.focus,
     &.hover,
-    // &:active,
-    // &:active.focus,
-    // &:active:focus,
-    // &:focus,
+    &:active,
+    &:active.focus,
+    &:active:focus,
+    &:focus,
     &:hover {
         @content;
     }
@@ -307,4 +307,10 @@ a:focus {
 
 .modal-dialog {
     transform: none !important;
+}
+
+.panel-new-photo {
+    background-color: $orange !important;
+    border-color: $light-orange !important;
+    color: $white !important;
 }

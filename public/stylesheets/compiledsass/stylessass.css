@@ -5922,7 +5922,7 @@ a:focus {
 /* buttons */
 .btn {
   cursor: pointer; }
-  .btn, .btn.hover, .btn:hover {
+  .btn, .btn.active, .btn.active.focus, .btn.active:focus, .btn.focus, .btn.hover, .btn:active, .btn:active.focus, .btn:active:focus, .btn:focus, .btn:hover {
     outline: none;
     outline-offset: 0;
     box-shadow: none; }
@@ -5947,18 +5947,18 @@ a:focus {
   color: #ffffff;
   border: none;
   transition: background-color 0.15s ease-in-out; }
-  .btn-fill, .btn-fill--blue, .btn--cta, .btn-fill--orange, .btn-fill.hover, .hover.btn-fill--blue, .hover.btn--cta, .hover.btn-fill--orange, .btn-fill:hover, .btn-fill--blue:hover, .btn--cta:hover, .btn-fill--orange:hover {
+  .btn-fill, .btn-fill--blue, .btn--cta, .btn-fill--orange, .btn-fill.active, .active.btn-fill--blue, .active.btn--cta, .active.btn-fill--orange, .btn-fill.active.focus, .active.focus.btn-fill--blue, .active.focus.btn--cta, .active.focus.btn-fill--orange, .btn-fill.active:focus, .active.btn-fill--blue:focus, .active.btn--cta:focus, .active.btn-fill--orange:focus, .btn-fill.focus, .focus.btn-fill--blue, .focus.btn--cta, .focus.btn-fill--orange, .btn-fill.hover, .hover.btn-fill--blue, .hover.btn--cta, .hover.btn-fill--orange, .btn-fill:active, .btn-fill--blue:active, .btn--cta:active, .btn-fill--orange:active, .btn-fill:active.focus, .btn-fill--blue:active.focus, .btn--cta:active.focus, .btn-fill--orange:active.focus, .btn-fill:active:focus, .btn-fill--blue:active:focus, .btn--cta:active:focus, .btn-fill--orange:active:focus, .btn-fill:focus, .btn-fill--blue:focus, .btn--cta:focus, .btn-fill--orange:focus, .btn-fill:hover, .btn-fill--blue:hover, .btn--cta:hover, .btn-fill--orange:hover {
     color: #ffffff; }
 
 .btn-fill--blue, .btn--cta {
   background-color: #7A9DD1; }
-  .btn-fill--blue, .btn--cta, .btn-fill--blue.hover, .hover.btn--cta, .btn-fill--blue:hover, .btn--cta:hover {
+  .btn-fill--blue, .btn--cta, .btn-fill--blue.active, .active.btn--cta, .btn-fill--blue.active.focus, .active.focus.btn--cta, .btn-fill--blue.active:focus, .active.btn--cta:focus, .btn-fill--blue.focus, .focus.btn--cta, .btn-fill--blue.hover, .hover.btn--cta, .btn-fill--blue:active, .btn--cta:active, .btn-fill--blue:active.focus, .btn--cta:active.focus, .btn-fill--blue:active:focus, .btn--cta:active:focus, .btn-fill--blue:focus, .btn--cta:focus, .btn-fill--blue:hover, .btn--cta:hover {
     color: #ffffff;
     background-color: #678fca; }
 
 .btn-fill--orange {
   background-color: #f79739; }
-  .btn-fill--orange, .btn-fill--orange.hover, .btn-fill--orange:hover {
+  .btn-fill--orange, .btn-fill--orange.active, .btn-fill--orange.active.focus, .btn-fill--orange.active:focus, .btn-fill--orange.focus, .btn-fill--orange.hover, .btn-fill--orange:active, .btn-fill--orange:active.focus, .btn-fill--orange:active:focus, .btn-fill--orange:focus, .btn-fill--orange:hover {
     color: #ffffff;
     background-color: #f68a20; }
 
@@ -5971,11 +5971,11 @@ a:focus {
   border: 2px solid #ffffff;
   color: #ffffff;
   transition: all 0.15s ease-in-out; }
-  .btn-outline, .btn-outline--blue, .btn-outline--orange, .btn-outline--white, .btn-outline.hover, .hover.btn-outline--blue, .hover.btn-outline--orange, .hover.btn-outline--white, .btn-outline:hover, .btn-outline--blue:hover, .btn-outline--orange:hover, .btn-outline--white:hover {
+  .btn-outline, .btn-outline--blue, .btn-outline--orange, .btn-outline--white, .btn-outline.active, .active.btn-outline--blue, .active.btn-outline--orange, .active.btn-outline--white, .btn-outline.active.focus, .active.focus.btn-outline--blue, .active.focus.btn-outline--orange, .active.focus.btn-outline--white, .btn-outline.active:focus, .active.btn-outline--blue:focus, .active.btn-outline--orange:focus, .active.btn-outline--white:focus, .btn-outline.focus, .focus.btn-outline--blue, .focus.btn-outline--orange, .focus.btn-outline--white, .btn-outline.hover, .hover.btn-outline--blue, .hover.btn-outline--orange, .hover.btn-outline--white, .btn-outline:active, .btn-outline--blue:active, .btn-outline--orange:active, .btn-outline--white:active, .btn-outline:active.focus, .btn-outline--blue:active.focus, .btn-outline--orange:active.focus, .btn-outline--white:active.focus, .btn-outline:active:focus, .btn-outline--blue:active:focus, .btn-outline--orange:active:focus, .btn-outline--white:active:focus, .btn-outline:focus, .btn-outline--blue:focus, .btn-outline--orange:focus, .btn-outline--white:focus, .btn-outline:hover, .btn-outline--blue:hover, .btn-outline--orange:hover, .btn-outline--white:hover {
     outline: none;
     outline-offset: 0;
     box-shadow: none; }
-  .btn-outline, .btn-outline--blue, .btn-outline--orange, .btn-outline--white, .btn-outline.hover, .hover.btn-outline--blue, .hover.btn-outline--orange, .hover.btn-outline--white, .btn-outline:hover, .btn-outline--blue:hover, .btn-outline--orange:hover, .btn-outline--white:hover {
+  .btn-outline, .btn-outline--blue, .btn-outline--orange, .btn-outline--white, .btn-outline.active, .active.btn-outline--blue, .active.btn-outline--orange, .active.btn-outline--white, .btn-outline.active.focus, .active.focus.btn-outline--blue, .active.focus.btn-outline--orange, .active.focus.btn-outline--white, .btn-outline.active:focus, .active.btn-outline--blue:focus, .active.btn-outline--orange:focus, .active.btn-outline--white:focus, .btn-outline.focus, .focus.btn-outline--blue, .focus.btn-outline--orange, .focus.btn-outline--white, .btn-outline.hover, .hover.btn-outline--blue, .hover.btn-outline--orange, .hover.btn-outline--white, .btn-outline:active, .btn-outline--blue:active, .btn-outline--orange:active, .btn-outline--white:active, .btn-outline:active.focus, .btn-outline--blue:active.focus, .btn-outline--orange:active.focus, .btn-outline--white:active.focus, .btn-outline:active:focus, .btn-outline--blue:active:focus, .btn-outline--orange:active:focus, .btn-outline--white:active:focus, .btn-outline:focus, .btn-outline--blue:focus, .btn-outline--orange:focus, .btn-outline--white:focus, .btn-outline:hover, .btn-outline--blue:hover, .btn-outline--orange:hover, .btn-outline--white:hover {
     color: #f79739;
     border-color: #f79739; }
 
@@ -5983,7 +5983,7 @@ a:focus {
   color: #7A9DD1;
   border-color: #7A9DD1;
   background-color: transparent; }
-  .btn-outline--blue, .btn-outline--blue.hover, .btn-outline--blue:hover {
+  .btn-outline--blue, .btn-outline--blue.active, .btn-outline--blue.active.focus, .btn-outline--blue.active:focus, .btn-outline--blue.focus, .btn-outline--blue.hover, .btn-outline--blue:active, .btn-outline--blue:active.focus, .btn-outline--blue:active:focus, .btn-outline--blue:focus, .btn-outline--blue:hover {
     color: #ffffff;
     border-color: #7A9DD1;
     background-color: #7A9DD1; }
@@ -5992,7 +5992,7 @@ a:focus {
   color: #f79739;
   border-color: #f79739;
   background-color: transparent; }
-  .btn-outline--orange, .btn-outline--orange.hover, .btn-outline--orange:hover {
+  .btn-outline--orange, .btn-outline--orange.active, .btn-outline--orange.active.focus, .btn-outline--orange.active:focus, .btn-outline--orange.focus, .btn-outline--orange.hover, .btn-outline--orange:active, .btn-outline--orange:active.focus, .btn-outline--orange:active:focus, .btn-outline--orange:focus, .btn-outline--orange:hover {
     color: #ffffff;
     border-color: #f79739;
     background-color: #f79739; }
@@ -6001,7 +6001,7 @@ a:focus {
   color: #ffffff;
   border-color: #ffffff;
   background-color: transparent; }
-  .btn-outline--white, .btn-outline--white.hover, .btn-outline--white:hover {
+  .btn-outline--white, .btn-outline--white.active, .btn-outline--white.active.focus, .btn-outline--white.active:focus, .btn-outline--white.focus, .btn-outline--white.hover, .btn-outline--white:active, .btn-outline--white:active.focus, .btn-outline--white:active:focus, .btn-outline--white:focus, .btn-outline--white:hover {
     color: #f79739;
     border-color: #ffffff;
     background-color: #ffffff; }
@@ -6028,6 +6028,11 @@ a:focus {
 
 .modal-dialog {
   transform: none !important; }
+
+.panel-new-photo {
+  background-color: #f79739 !important;
+  border-color: #F7AA63 !important;
+  color: #ffffff !important; }
 
 .w-icon {
   background-size: contain;
@@ -6711,7 +6716,7 @@ body {
         border-width: 1px 1px 1px 0; }
         .unit-details__action-btn:last-of-type {
           width: 100%; }
-        .unit-details__action-btn, .unit-details__action-btn.hover, .unit-details__action-btn:hover {
+        .unit-details__action-btn, .unit-details__action-btn.active, .unit-details__action-btn.active.focus, .unit-details__action-btn.active:focus, .unit-details__action-btn.focus, .unit-details__action-btn.hover, .unit-details__action-btn:active, .unit-details__action-btn:active.focus, .unit-details__action-btn:active:focus, .unit-details__action-btn:focus, .unit-details__action-btn:hover {
           border-color: #706f72; } }
   @media (max-width: 767px) {
     .unit-details .unit-details-action-btn-wrapper {
@@ -6971,7 +6976,7 @@ body {
       @media (min-width: 768px) {
         .unit-details-media-container-tabs li .unit-details-media-container-tab {
           font-size: 1.8rem; } }
-      .unit-details-media-container-tabs li .unit-details-media-container-tab.selected, .unit-details-media-container-tabs li .unit-details-media-container-tab.hover, .unit-details-media-container-tabs li .unit-details-media-container-tab:hover {
+      .unit-details-media-container-tabs li .unit-details-media-container-tab.selected, .unit-details-media-container-tabs li .unit-details-media-container-tab.active, .unit-details-media-container-tabs li .unit-details-media-container-tab.active.focus, .unit-details-media-container-tabs li .unit-details-media-container-tab.active:focus, .unit-details-media-container-tabs li .unit-details-media-container-tab.focus, .unit-details-media-container-tabs li .unit-details-media-container-tab.hover, .unit-details-media-container-tabs li .unit-details-media-container-tab:active, .unit-details-media-container-tabs li .unit-details-media-container-tab:active.focus, .unit-details-media-container-tabs li .unit-details-media-container-tab:active:focus, .unit-details-media-container-tabs li .unit-details-media-container-tab:focus, .unit-details-media-container-tabs li .unit-details-media-container-tab:hover {
         color: #7A9DD1;
         border-bottom: 3px solid #7A9DD1; }
     .unit-details-media-container-tabs li:last-of-type {

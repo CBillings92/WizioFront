@@ -94,8 +94,6 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
         // Media object
         function savePhotoToWizioAPI(mediaObject) {
             return $q(function(resolve, reject) {
-                // set the useremail on the object to create a new token
-                mediaObject.useremail = TokenSvc.decode().email;
                 // send the object to the API
                 API.media.save(mediaObject, function(response) {
                     return resolve(response);
@@ -108,14 +106,14 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             those from the array of 1-100, then loop over the new photos and assign them
             names based on this array of all available numbers
         */
-        function autoNameNewPhotos(newPhotos, currentPhotos) {
+        function autoNameNewPhotos(photos) {
             var unavailNums = [];
             var availNums = [];
             var getNumRegex = /\d+/;
             var currPhoto;
             // Get all photos with the name of Photo ## and store the ## as unavailable
-            for (var i = 0; i < currentPhotos.length; i++) {
-                currPhoto= currentPhotos[i];
+            for (var i = 0; i < photos.length; i++) {
+                currPhoto = photos[i];
                 if (currPhoto.title.substr(0, 5) === 'Photo') {
                     unavailNums.push(Number(currPhoto.title.match(getNumRegex)));
                 }
@@ -127,7 +125,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             // Remove all unavailable numbers from availNums array
             for (var i = 0; i < unavailNums.length; i++) {
                 for (var j = 0; j < availNums.length; j++) {
-                    console.dir('unavailNum = ' + unavailNums[i] + ' , availNum = ' + availNums[j]);
+                    // console.dir('unavailNgum = ' + unavailNums[i] + ' , availNum = ' + availNums[j]);
                     if(unavailNums[i] === availNums[j]){
                         availNums.splice(j,1);
                         break;
@@ -135,56 +133,64 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 };
             };
             // Loop over new photos and assign name based on availNums array
-            for (var i = 0; i < newPhotos.length; i++) {
-                newPhotos[i].title = 'Photo ' + availNums[i];
-                newPhotos[i].file.name = 'Photo ' + availNums[i];
+            for (var i = 0; i < photos.length; i++) {
+                if (photos[i].isNew) {
+                    photos[i].title = 'Photo ' + availNums[i];
+                    photos[i].file.name = 'Photo ' + availNums[i];
+                }
             }
-            return newPhotos;
+            return photos;
         }
+
         /**
-         * Handles the bulk upload of new photos to a Tour
-         * @param  {array} filesArray                   Contains all of the files from the file input
-         * @param  {object} apartment                  the apartment object associated with the tour
-         * @param  {string} subscriptionApartmentPubId The SubscriptionApartmentPubId
-         * @return {promise}                           Returns a promise object
+         * Bulk upload photos and update non-new photos. Send new photos
+         * to S3 and save/update data in the database.
+         * @param  {Object} apartment Contains photo data/photo files and apartment data
+         * @return {[type]}           [description]
          */
-        function bulkUploadPhotos(filesArray, apartment, subscriptionApartmentPubId) {
+        function bulkUploadPhotos(apartment) {
             return $q(function(resolve, reject) {
+                var subscriptionApartmentPubId = apartment.SubscriptionApartment.pubid;
+                console.dir(apartment);
+                var photos = apartment.sortedMedia.photos;
+                var email = TokenSvc.decode().email;
                 var key;
                 var s3Promises = [];
                 var wizioAPIPromises = [];
-                var wizioAPIUpdatePromises = [];
-                var newMedia = apartment.sortedMedia.newMedia;
-                if (filesArray.length !== 0) {
 
-                    for (var i = 0; i < filesArray.length; i++) {
-                        key = subscriptionApartmentPubId + '/' + apartment.sortedMedia.newMedia[i].title + '.JPG';
-                        s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(filesArray[i].file, key));
-                        continue;
+                /*
+                    Find new photos and pass them to uploadTourPhoto which
+                    returns a promise. Push that promise to an array.
+                 */
+                for (var i = 0; i < photos.length; i++) {
+                    if(photos[i].isNew) {
+                        key = subscriptionApartmentPubId + '/' + photos[i].title + '.JPG';
+                        s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photos[i].file, key));
                     }
-                    $q.all(s3Promises).then(function(response) {
-                        for (var i = 0; i < newMedia.length; i++) {
-                            newMedia[i].useremail = TokenSvc.decode().email;
-                            wizioAPIPromises.push(savePhotoToWizioAPI(newMedia[i]))
+                }
+                // return;
+                /*
+                    If there are new photos to upload, wait for the s3
+                    promises array to finish, then call the Wizio save/update
+                    promises. Otherwise just call the wizio update promises
+                 */
+                if (s3Promises.length > 0) {
+                    $q.all(s3Promises).then(function(response){
+                        for (var i = 0; i < photos.length; i++) {
+                            photos[i].userEmail = TokenSvc.decode().email;
+                            console.dir(photos[i]);
+                            wizioAPIPromises.push(savePhotoToWizioAPI(photos[i]));
                         }
-                        for (var i = 0; i < apartment.sortedMedia.photos.length; i++) {
-                            apartment.sortedMedia.photos[i].useremail = TokenSvc.decode().email;
-                            wizioAPIPromises.push(savePhotoToWizioAPI(apartment.sortedMedia.photos[i]));
-                        }
-                        $q.all(wizioAPIPromises).then(function(response) {
+                        $q.all(wizioAPIPromises).then(function(response){
                             return resolve('Finished');
                         })
                     })
                 } else {
-                    for (var i = 0; i < newMedia.length; i++) {
-                        newMedia[i].useremail = TokenSvc.decode().email;
-                        wizioAPIPromises.push(savePhotoToWizioAPI(newMedia[i]))
+                    for (var i = 0; i < photos.length; i++) {
+                        photos[i].userEmail = TokenSvc.decode().email;
+                        wizioAPIPromises.push(savePhotoToWizioAPI(photos[i]));
                     }
-                    for (var i = 0; i < apartment.sortedMedia.photos.length; i++) {
-                        apartment.sortedMedia.photos[i].useremail = TokenSvc.decode().email;
-                        wizioAPIPromises.push(savePhotoToWizioAPI(apartment.sortedMedia.photos[i]));
-                    }
-                    $q.all(wizioAPIPromises).then(function(response) {
+                    $q.all(wizioAPIPromises).then(function(response){
                         return resolve('Finished');
                     })
                 }
