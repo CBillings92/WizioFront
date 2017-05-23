@@ -28,7 +28,15 @@ angular.module('Directives')
                     button.addEventListener('click', function() {
 
                         if (document.getElementById("file-chooser").value == "") {
-                            alert("Please select a photo before uploading it.");
+                            ModalBuilderFct.buildSimpleModal(
+                                "",
+                                "OK",
+                                "Error",
+                                'Please select a photo before uploading it.'
+                            ).then(function(result) {
+                                return;
+                            });
+
                             return;
                         };
 
@@ -57,7 +65,7 @@ angular.module('Directives')
                                     scope.pin.useremail = TokenSvc.decode().email;
                                     $resource(WizioConfig.baseAPIURL + 'media')
                                         .save(scope.pin, function(response){
-                                            // alert('finished');
+
                                             LoadingSpinnerFct.hide('upload-photo-loader');
                                             results.innerHTML = 'UPLOADED';
                                             scope.pin = response.photo;
@@ -70,7 +78,6 @@ angular.module('Directives')
                                 results.innerHTML = err ? 'ERROR!' : 'UPLOADED.';
                             });
                         } else {
-                            alert("Please upload a photo before continuing");
                             results.innerHTML = 'Nothing to upload.';
                             return;
                         }
