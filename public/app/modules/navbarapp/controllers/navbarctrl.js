@@ -151,7 +151,7 @@ angular.module('NavbarApp')
 
             };
             $scope.goAccountDashboard = function() {
-                $state.go('Account.Dashboard.ShareTour');
+                $state.go('Account.Dashboard');
                 return;
                 // $state.go('Account.Dashboard.Main');
             };
