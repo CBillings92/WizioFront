@@ -274,7 +274,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.orderChange = function(item, partFrom, partTo, indexFrom, indexTo) {
             $scope.$apply();
             var previewElement;
-            for(var i = indexTo; i < $scope.apartment.sortedMedia.photos.length; i++) {
+            for(var i = 0; i < $scope.apartment.sortedMedia.photos.length; i++) {
                 if ($scope.apartment.sortedMedia.photos[i].isNew) {
                     previewElement = document.getElementById('imgPreview' + i);
                     previewPhoto($scope.apartment.sortedMedia.photos[i].file, previewElement);
