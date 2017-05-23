@@ -343,6 +343,14 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Account.Dashboard.ShareTour', {
+                    views: {
+                        "dashboard-main": {
+                            templateUrl: PAGECONFIG.dashboard.shareTour.view,
+                            controller: PAGECONFIG.dashboard.shareTour.controller
+                        }
+                    }
+                })
                 .state('Account.Dashboard.Invite', {
                     views: {
                         "dashboard-main": {
@@ -356,14 +364,6 @@ angular.module('MainApp')
                         "dashboard-main": {
                             templateUrl: PAGECONFIG.dashboard.search.view,
                             controller: PAGECONFIG.dashboard.search.controller
-                        }
-                    }
-                })
-                .state('Account.Dashboard.ShareTour', {
-                    views: {
-                        "dashboard-main": {
-                            templateUrl: PAGECONFIG.dashboard.shareTour.view,
-                            controller: PAGECONFIG.dashboard.shareTour.controller
                         }
                     }
                 })
