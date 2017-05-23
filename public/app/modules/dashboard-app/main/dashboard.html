@@ -1,0 +1,33 @@
+<div class="container account-wrapper">
+    <div class="row">
+        <div class="col-md-3">
+            <user-info-dir></user-info-dir>
+            <div class="col-md-12 btn-div">
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('ShareTour')">
+                    Share Tour
+                </button>
+                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="createTour()">
+                    Create Tour
+                </button>
+                <button ng-click="modifyExistingTour()" type="button" class="btn btn-fill--blue btn-lg btn-block">
+                    Modify Tour
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" type="button" ng-click="changeState('Search')">
+                    Search
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('Invite')">
+                    Invite
+                </button>
+                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('AgentInfo')">
+                    Agent Info
+                </button>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div ui-view="dashboard-main">
+
+            </div>
+
+        </div>
+    </div>
+</div>

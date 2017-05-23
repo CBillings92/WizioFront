@@ -1,6 +1,5 @@
 $white: #ffffff;
 $black: #000000;
-
 $orange: #f79739;
 $light-orange: #F7AA63;
 $gray: #706f72;
@@ -10,306 +9,308 @@ $blue-gray: #8E9BB2;
 /**
   Mixins
 **/
-
 @mixin vertical-center-transform() {
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
-
 @mixin center-transform() {
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
-
 @mixin button-hover-state($extraSelectors: '') {
-  &.active,
-  &.active.focus,
-  &.active:focus,
-  &:active,
-  &:active.focus,
-  &:active:focus,
-  &.focus,
-  &:focus,
-  &.hover,
-  &:hover,
-  #{$extraSelectors} {
-    @content;
-  }
+    #{$extraSelectors},
+    &.active,
+    &.active.focus,
+    &.active:focus,
+    &.focus,
+    &.hover,
+    &:active,
+    &:active.focus,
+    &:active:focus,
+    &:focus,
+    &:hover {
+        @content;
+    }
 }
-
 /**
   Styles
 **/
-
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  font-family: "Roboto";
-  -webkit-font-smoothing:antialiased;
-  margin: 0 auto;
+    font-family: "Roboto";
+    -webkit-font-smoothing: antialiased;
+    margin: 0 auto;
 }
 
-
-h1, h2 {
-}
+h1,
+h2 {}
 
 h3 {
-  font-family: "Roboto";
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.3;
+    font-family: "Roboto";
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.3;
 }
 
 h4 {
-  font-family: "Roboto";
-  font-size: 24px;
-  font-weight: 400;
+    font-family: "Roboto";
+    font-size: 24px;
+    font-weight: 400;
 }
 
 h5 {
-  font-family: "Roboto";
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.2;
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 p {
-  font-family: "Roboto";
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.1;
+    font-family: "Roboto";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.1;
 }
-
 @media (max-width: 767px) {
-  h1, h2 {
-    font-size: 40px;
-  }
-  h3 {
-    font-size: 20px;
-  }
-  h4 {
-    font-size: 18px;
-  }
-  h5 {
-    font-size: 20px;
-  }
+    h1,
+    h2 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  h1, h2 {
-    font-size: 45px;
-  }
-  h3 {
-    font-size: 27px;
-  }
+    h1,
+    h2 {
+        font-size: 45px;
+    }
+
+    h3 {
+        font-size: 27px;
+    }
 }
 @media (min-width: 992px) {
-  h1, h2 {
-    font-size: 50px;
-  }
-  h3 {
-    font-size: 24px;
-  }
-  h5 {
-    font-size: 22px;
-  }
-}
+    h1,
+    h2 {
+        font-size: 50px;
+    }
 
+    h3 {
+        font-size: 24px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+}
 /* override bootstrap */
 a:focus {
-  outline: none;
-}
-.navbar {
-  margin-bottom: 0px;
-  border-radius: 0;
+    outline: none;
 }
 
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
 
 .form-control:focus {
-  border-color: transparent;
-  outline: 0;
-  box-shadow: none;
-}
-.form-control {
-  border: none;
-
-  & :focus {
-    border-color: none;
+    border-color: transparent;
     outline: 0;
     box-shadow: none;
-  }
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
-  background-color: $blue;
+.form-control {
+    border: none;
+
+    &:focus {
+        border-color: none;
+        outline: 0;
+        box-shadow: none;
+    }
 }
+
+.dropdown-menu > li > a:focus,
+.dropdown-menu > li > a:hover {
+    background-color: $blue;
+}
+
 .dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-  background-color: $blue;
-  background-repeat: repeat-x;
+.dropdown-menu > .active > a:focus,
+.dropdown-menu > .active > a:hover {
+    background-color: $blue;
+    background-repeat: repeat-x;
 }
 
 .main_container {
-  padding-top: 80px;
+    padding-top: 80px;
 }
-
-
 /* buttons */
-
 .btn {
-  cursor: pointer;
-
-  @include button-hover-state {
-    outline: none;
-    outline-offset: 0;
-    box-shadow: none;
-  }
+    cursor: pointer;
+    @include button-hover-state {
+        outline: none;
+        outline-offset: 0;
+        box-shadow: none;
+    }
 }
 
 .btn-xs {
- padding: 3px 10px;
+    padding: 3px 10px;
 }
+
 .btn-sm {
- padding: 5px 15px;
+    padding: 5px 15px;
 }
+
 .btn-lg {
-  padding: 6px 30px;
+    padding: 6px 30px;
 }
+
 .btn-md {
-  padding: 6px 26px;
+    padding: 6px 26px;
 }
+
 .btn-block {
-  padding-left: 0;
-  padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .btn-fill {
-  color: $white;
-  border: none;
-  transition: background-color 0.15s ease-in-out;
-
-
-  @include button-hover-state {
     color: $white;
-  }
+    border: none;
+    transition: background-color 0.15s ease-in-out;
+    @include button-hover-state {
+        color: $white;
+    }
 }
 
 .btn-fill--blue {
-  @extend .btn-fill;
-  background-color: $blue;
-
-  @include button-hover-state {
-    color: $white;
-    background-color: darken($blue, 5%);
-  }
+    @extend .btn-fill;
+    background-color: $blue;
+    @include button-hover-state {
+        color: $white;
+        background-color: darken($blue, 5%);
+    }
 }
 
 .btn-fill--orange {
-  @extend .btn-fill;
-  background-color: $orange;;
-
-  @include button-hover-state {
-    color: $white;
-    background-color: darken($orange, 5%);
-  }
+    @extend .btn-fill;
+    background-color: $orange;
+    @include button-hover-state {
+        color: $white;
+        background-color: darken($orange, 5%);
+    }
 }
 
 .btn--cta {
-  @extend .btn-fill--blue;
-
-  font-weight: 500;
-  line-height: 1.7;
-  text-transform: uppercase;
-
+    @extend .btn-fill--blue;
+    font-weight: 500;
+    line-height: 1.7;
+    text-transform: uppercase;
 }
 
 .btn-outline {
-  @include button-hover-state {
-    outline: none;
-    outline-offset: 0;
-    box-shadow: none;
-  }
-
-  border: 2px solid $white;
-  color: $white;
-  transition: all 0.15s ease-in-out;
-
-  @include button-hover-state {
-    color: $orange;
-    border-color: $orange;
-  }
+    @include button-hover-state {
+        outline: none;
+        outline-offset: 0;
+        box-shadow: none;
+    }
+    border: 2px solid $white;
+    color: $white;
+    transition: all 0.15s ease-in-out;
+    @include button-hover-state {
+        color: $orange;
+        border-color: $orange;
+    }
 }
 
 .btn-outline--blue {
-  @extend .btn-outline;
-  color: $blue;
-  border-color: $blue;
-  background-color: transparent;
-
-  @include button-hover-state {
-    color: $white;
+    @extend .btn-outline;
+    color: $blue;
     border-color: $blue;
-    background-color: $blue;
-  }
+    background-color: transparent;
+    @include button-hover-state {
+        color: $white;
+        border-color: $blue;
+        background-color: $blue;
+    }
 }
 
 .btn-outline--orange {
-  @extend .btn-outline;
-  color: $orange;
-  border-color: $orange;
-  background-color: transparent;
-
-  @include button-hover-state {
-    color: $white;
+    @extend .btn-outline;
+    color: $orange;
     border-color: $orange;
-    background-color: $orange;
-  }
+    background-color: transparent;
+    @include button-hover-state {
+        color: $white;
+        border-color: $orange;
+        background-color: $orange;
+    }
 }
 
 .btn-outline--white {
-  @extend .btn-outline;
-  color: $white;
-  border-color: $white;
-  background-color: transparent;
-
-  @include button-hover-state {
-    color: $orange;
+    @extend .btn-outline;
+    color: $white;
     border-color: $white;
-    background-color: $white;
-  }
+    background-color: transparent;
+    @include button-hover-state {
+        color: $orange;
+        border-color: $white;
+        background-color: $white;
+    }
 }
 
 .btn-orange {
-  border: none;
-  background-color: $orange;
-  font-size: 16px;
-  color: $white;
-  border-radius: 30px;
-
-  &:hover,
-  &:focus,
-  &:active,
-  &:active:hover {
+    border: none;
+    background-color: $orange;
+    font-size: 16px;
     color: $white;
-    background-color: darken($orange, 5%);
-  }
+    border-radius: 30px;
+
+    &:active,
+    &:active:hover,
+    &:focus,
+    &:hover {
+        color: $white;
+        background-color: darken($orange, 5%);
+    }
 }
 
 .modal-backdrop {
-  z-index: 700;
+    z-index: 700;
 }
 
 .modal {
-  z-index: 800;
-  margin-top: 80px;
+    z-index: 800;
+    margin-top: 80px;
 }
 
 .main_container {
-  padding-top: 80px;
+    padding-top: 80px;
+}
+
+.modal-dialog {
+    transform: none !important;
+}
+
+.panel-new-photo {
+    background-color: $orange !important;
+    border-color: $light-orange !important;
+    color: $white !important;
 }

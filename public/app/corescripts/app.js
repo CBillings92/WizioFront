@@ -1,7 +1,11 @@
 (function() {
     //CREATE ALL TOP LEVEL APPS (create, not start)
     angular.module('AboutUsApp', []);
+    angular.module('ApiGuideApp', []);
     angular.module('AdminPanelApp', []);
+    angular.module('CreateAccountApp', []);
+    angular.module('DashboardApp', []);
+    angular.module('LoginApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
@@ -28,9 +32,13 @@
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
             'AdminPanelApp',
+            'ApiGuideApp',
             'AccountApp',
             'ApplicationApp',
             'AuthApp',
+            'CreateAccountApp',
+            'DashboardApp',
+            'LoginApp',
             'AboutUsApp',
             'Directives',
             'FooterApp',
@@ -58,6 +66,7 @@
             'angularMoment',
             'angulartics',
             'angulartics.google.analytics',
+            'angular-sortable-view'
         ])
         .config(["$sceDelegateProvider", function($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([

@@ -58,4 +58,29 @@ angular.module('SharedFactoryApp')
                 buildModalWithController: buildModalWithControllerObj
             };
         }
-    ]);
+    ])
+    .factory('StorageApp', [
+        '$rootScope',
+        '$localStorage',
+        'jwtHelper',
+        function($rootScope, $localStorage, jwtHelper){
+            function storeInLocalStorage(dataName, data){
+                $localStorage[dataName] = data;
+            };
+
+            function getInLocalStorage(dataName) {
+                return $localStorage[dataName];
+            }
+
+            return {
+                store:storeInLocalStorage,
+                get: getInLocalStorage,
+                delete: {
+
+                },
+                update: {
+
+                }
+            }
+        }
+    ])

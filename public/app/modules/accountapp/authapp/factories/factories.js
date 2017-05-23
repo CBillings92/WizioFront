@@ -4,10 +4,8 @@ angular.module('AuthApp')
         '$localStorage',
         '$rootScope',
         '$q',
-        'AuthRegistrationResource',
-        'AuthLoginResource',
         'TokenSvc',
-        function($state, $localStorage, $rootScope, $q, AuthRegistrationResource, AuthLoginResource, TokenSvc) {
+        function($state, $localStorage, $rootScope, $q, TokenSvc) {
             //check if a user is logged in
             var isLoggedin = function() {
                 var tokenExp = true;
@@ -18,32 +16,6 @@ angular.module('AuthApp')
                     return true;
                 }
             };
-            /*  SIGNIN()
-                signin - used to sign users into our site.
-                expects {username: username, password: password}
-                uses $q and $promise to handle async with promises
-            */
-            function signin(data) {
-                return $q(function(resolve, reject) {
-                    var postRequest = AuthLoginResource.save(data);
-                    postRequest.$promise
-                        .then(function(result) {
-                            if(result.status === "ERR"){
-                                $rootScope.error = "Failed to sign in!";
-                                resolve('failed');
-                            } else {
-                              $rootScope.isLoggedin = true;
-
-                              $rootScope.userType = TokenSvc.decode().userType;
-                              resolve('success');
-                            }
-                        })
-                        .catch(function(result) {
-                            $rootScope.error = "Failed to sign in!";
-                            reject('failed');
-                        });
-                });
-            }
 
             function resetEmailResponseHandler(response, email) {
                 if (response.status === "ERR") {
@@ -71,14 +43,6 @@ angular.module('AuthApp')
                 }
             }
 
-            function confirmPasswords(passwordOne, passwordTwo) {
-                if (passwordOne === passwordTwo) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
             function setUserType(user, isTenant) {
                 user.accountType = 'local';
                 if (isTenant) {
@@ -98,23 +62,8 @@ angular.module('AuthApp')
                 return user;
             }
 
-            function signup(data) {
-                return $q(function(resolve, reject) {
-                    var registrationRequest = AuthRegistrationResource.save(null, data);
-                    registrationRequest.$promise
-                        .then(function(result) {
-                            resolve(result);
-                        })
-                        .catch(function(result) {
-                            reject(result);
-                        });
-                });
-            }
 
             return {
-                signup: signup,
-                signin: signin,
-                confirmPasswords: confirmPasswords,
                 setUserType: setUserType,
                 logout: function() {
                     $localStorage.token = null;
