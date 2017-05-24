@@ -105,18 +105,20 @@
                         <div class="panel-body">
                             <img src="{{cdnEndPoint + formatKeyForEnv(subscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
                         </div>
-                        <div class="panel-footer">
-                            <span ng-hide="choosePhotoForPinFlag">
+                        <div class="panel-footer" style="position: relative;">
+                            <div ng-hide="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
                                 <!-- <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button> -->
-                            </span>
-                            <span ng-show="choosePhotoForPinFlag">
+                            </div>
+                            <div ng-show="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'photos')" name="button">Choose Photo For Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
-
-                            </span>
+                            </div>
+                            <div class="" style="position: absolute; right: 15px;  bottom: 0px; ">
+                                <button sv-handle type="button" class="btn btn-outline--blue" style="border-radius: 0;" name="button">Click &amp; Drag</button>
+                            </div>
                         </div>
                     </div>
                 </div>
