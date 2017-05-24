@@ -61,36 +61,6 @@
             <label class="control-label"><strong>**New!**  </strong>You may select and upload more than 1 photo at a time</label>
         </div>
     </div>
-    <!-- <div class="row" ng-show="apartment.sortedMedia.newMedia.length > 0" id="new-photos-row">
-        <div class="col-md-12">
-            <h3>New Photos <small>Select a photo to rename it.</small></h3>
-        </div>
-        <div class="col-md-12" sv-root>
-            <div ng-repeat="photo in apartment.sortedMedia.newMedia track by $index" sv-part='apartment.sortedMedia.newMedia'>
-                <div class="panel panel-default" sv-element sv-on-stop="reorderNames()">
-                    <div class="panel-heading panel-new-photo">
-                        <h3 class="panel-title">{{photo.title + "   (New)"}}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <img id="{{'imgPreview' + $index}}" width="90%" alt="">
-                    </div>
-                    <div class="panel-footer">
-                        <span ng-hide="choosePhotoForPinFlag">
-                                <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'newMedia')" name="button">Rename</button>
-                                <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
-                                <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
-                                <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
-                            </span>
-                        <span ng-show="choosePhotoForPinFlag">
-                                <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'newMedia')" name="button">Choose Photo For Pin</button>
-                                <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
-
-                            </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="row" ng-show="bulkUploadInitiated">
         <span class="col-md-4"></span>
         <span class="col-md-4">
@@ -106,44 +76,49 @@
                 <div class="panel panel-default">
                     <div class="" ng-if="photo.isNew">
                         <div class="panel-heading panel-new-photo">
-                            <h3 class="panel-title">{{photo.title + "   (New)"}}</h3>
+                            <h3 class="panel-title">{{photo.title + " (New)"}} <span ng-if="$first">Order: First Photo</span><span ng-if="$last">Order: Last Photo</span></h3>
                         </div>
                         <div class="panel-body">
                             <img id="{{'imgPreview' + $index}}" draggable='false' width="90%" alt="">
                         </div>
-                        <div class="panel-footer" ng-if="photo.isNew">
-                            <span ng-hide="choosePhotoForPinFlag">
+                        <div class="panel-footer" ng-if="photo.isNew" style="position: relative;">
+                            <div ng-hide="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'newMedia')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
                                 <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
-                            </span>
-                            <span ng-show="choosePhotoForPinFlag">
+                            </div>
+                            <div ng-show="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'newMedia')" name="button">Choose Photo For Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
+                            </div>
+                            <div class="" style="position: absolute; right: 15px;  bottom: 0px; ">
+                                <button sv-handle type="button" class="btn btn-outline--blue" style="border-radius: 0;" name="button">Click &amp; Drag</button>
+                            </div>
 
-                            </span>
                         </div>
                     </div>
                     <div ng-if="!photo.isNew">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{photo.title}}</h3>
+                            <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span ng-if="$first">Order: First Photo</span><span ng-if="$last">Order: Last Photo</span></h3>
                         </div>
                         <div class="panel-body">
                             <img src="{{cdnEndPoint + formatKeyForEnv(subscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
                         </div>
-                        <div class="panel-footer">
-                            <span ng-hide="choosePhotoForPinFlag">
+                        <div class="panel-footer" style="position: relative;">
+                            <div ng-hide="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
                                 <!-- <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button> -->
-                            </span>
-                            <span ng-show="choosePhotoForPinFlag">
+                            </div>
+                            <div ng-show="choosePhotoForPinFlag">
                                 <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'photos')" name="button">Choose Photo For Pin</button>
                                 <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
-
-                            </span>
+                            </div>
+                            <div class="" style="position: absolute; right: 15px;  bottom: 0px; ">
+                                <button sv-handle type="button" class="btn btn-outline--blue" style="border-radius: 0;" name="button">Click &amp; Drag</button>
+                            </div>
                         </div>
                     </div>
                 </div>
