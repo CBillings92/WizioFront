@@ -8,7 +8,8 @@ angular.module('LoginApp')
         '$rootScope',
         '$state',
         'LoginFct',
-        function ($scope, $uibModalInstance, $rootScope, $state, LoginFct) {
+        'ModalBuilderFct',
+        function ($scope, $uibModalInstance, $rootScope, $state, LoginFct, ModalBuilderFct) {
             var loginData = {};
             // Display change password form on modal - default is false
             $scope.changePasswordFlag = false;
@@ -23,10 +24,14 @@ angular.module('LoginApp')
 
             // Upon a bad login/authentication request - based on HTTP status returned - in routes file
             $rootScope.$on('unauthorized', function () {
-                LoginFct.displayModal('unauthorized')
-                .then(function (response) {
+                ModalBuilderFct.buildSimpleModal(
+                    "",
+                    "OK",
+                    "Error",
+                    'Please try entering your username and password again'
+                ).then(function(result) {
                     return;
-                })
+                });
             });
 
             $scope.requestLogin = function () {
