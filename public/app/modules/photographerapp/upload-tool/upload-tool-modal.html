@@ -76,7 +76,7 @@
                 <div class="panel panel-default">
                     <div class="" ng-if="photo.isNew">
                         <div class="panel-heading panel-new-photo">
-                            <h3 class="panel-title">{{photo.title + "   (New)"}}</h3>
+                            <h3 class="panel-title">{{photo.title + " (New)"}} <span ng-if="$first">Order: First Photo</span><span ng-if="$last">Order: Last Photo</span></h3>
                         </div>
                         <div class="panel-body">
                             <img id="{{'imgPreview' + $index}}" draggable='false' width="90%" alt="">
@@ -100,7 +100,7 @@
                     </div>
                     <div ng-if="!photo.isNew">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{photo.title}}</h3>
+                            <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span ng-if="$first">Order: First Photo</span><span ng-if="$last">Order: Last Photo</span></h3>
                         </div>
                         <div class="panel-body">
                             <img src="{{cdnEndPoint + formatKeyForEnv(subscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
