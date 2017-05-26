@@ -1,5 +1,5 @@
-<div class="" sv-root sv-part="activelistings">
-    <div class="" ng-repeat="activelisting in activelistings" style="border: 1px solid black; padding:15px; margin:8px; border-radius:5px;" sv-element>
+<div class="">
+    <div class="" ng-repeat="activelisting in activelistings" style="border: 1px solid black; padding:15px; margin:8px; border-radius:5px;">
         <div class="row">
             <div class="col-md-6">
                 <div><strong>{{activelisting.Apartment.concatAddr}}</strong></div>
@@ -31,9 +31,9 @@
                             <i ng-show="!activelisting.isPublic" class="fa fa-lock fa-2x" aria-hidden="true"></i>
                             <i class="fa fa-2x fa-unlock-alt" ng-show="activelisting.isPublic" aria-hidden="true"></i>
                         </div>
-                        <div class="" style="position:absolute;right: 10px; bottom:3px;">
+                        <!-- <div class="" style="position:absolute;right: 10px; bottom:3px;">
                             <i class="fa fa-trash-o fa-2x" ng-click="deleteActiveListing(activelisting, $index)" aria-hidden="true"></i>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- <button class="btn btn-md btn-outline--orange clipboard">Deactivate</button> -->
