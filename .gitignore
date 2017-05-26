@@ -2,7 +2,7 @@ node_modules/
 
 # Build files
 public/build/
-
+pubilc/stylesheets/compiledsass/
 npm-debug.log
 bower_components/
 .elasticbeanstalk/
