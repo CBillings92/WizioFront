@@ -2,23 +2,23 @@
     <div class="row">
         <div class="col-md-3">
             <user-info-dir></user-info-dir>
-            <div class="col-md-12 btn-div">
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('ShareTour')">
+            <div class="col-md-12">
+                <button  ng-click="changeState('ShareTour')" ng-class="state.includes('ShareTour') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-fill--blue">
                     Share Tour
                 </button>
-                <button class="btn btn-fill--blue btn-lg btn-block" ng-click="createTour()">
+                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="createTour()">
                     Create Tour
                 </button>
-                <button ng-click="modifyExistingTour()" type="button" class="btn btn-fill--blue btn-lg btn-block">
+                <button ng-click="modifyExistingTour()" type="button" class="btn btn-outline--blue btn-lg btn-block" >
                     Modify Tour
                 </button>
-                <button class="btn btn-lg btn-block btn-fill--blue" type="button" ng-click="changeState('Search')">
+                <button ng-class="state.includes('Search') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue " type="button" ng-click="changeState('Search')" >
                     Search
                 </button>
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('Invite')">
+                <button ng-class="state.includes('Invite') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('Invite')">
                     Invite
                 </button>
-                <button class="btn btn-lg btn-block btn-fill--blue" ng-click="changeState('AgentInfo')">
+                <button ng-class="state.includes('AgentInfo') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('AgentInfo')" >
                     Agent Info
                 </button>
             </div>
