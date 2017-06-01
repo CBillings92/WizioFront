@@ -36,6 +36,8 @@ angular.module('CreateAccountApp')
                     subscription = $scope.chosenSubscription;
                 }
 
+                
+
                 CreateAccountFct.post.saveNewUser(user, subscription).then(function(response) {
                     $state.go('Account.Dashboard');
                 });
