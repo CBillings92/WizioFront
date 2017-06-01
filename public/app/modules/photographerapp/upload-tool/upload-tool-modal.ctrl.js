@@ -39,7 +39,10 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.uploaded = false;
         $scope.bulkUploadInitiated = false;
         $scope.cdnEndPoint = WizioConfig.CLOUDFRONT_DISTRO;
+<<<<<<< HEAD
         $scope.uploadPhotoBtnText = 'Finish and Upload';
+=======
+>>>>>>> dev
 
         $scope.closeModal = function() {
             $uibModalInstance.close();
