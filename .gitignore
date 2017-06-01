@@ -2,9 +2,10 @@ node_modules/
 
 # Build files
 public/build/
-
+pubilc/stylesheets/compiledsass/
 npm-debug.log
 bower_components/
+# .ebextensions/
 .elasticbeanstalk/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

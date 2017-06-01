@@ -34,7 +34,14 @@ angular.module('PhotographerApp')
                         $uibModalInstance.close(response);
                     });
                 } else {
-                    alert("You haven't chosen a floor plan photo yet!");
+                    ModalBuilderFct.buildSimpleModal(
+                        "",
+                        "OK",
+                        "Error",
+                        'You must choose a floor plan first!'
+                    ).then(function(result) {
+                        return;
+                    });
                     return;
                 }
             }

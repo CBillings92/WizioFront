@@ -14,7 +14,6 @@ angular.module('SearchApp')
             //   ]
             $scope.apartments = $stateParams.apartments;
             $sessionStorage.apartmentSearch = $stateParams.apartments;
-            // console.log($scope.apartments);
 
         }
     ]);

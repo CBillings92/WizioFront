@@ -8,9 +8,10 @@ angular.module('NavbarApp')
         'ApartmentModel',
         'AuthFct',
         'SmartSearchSvc',
+        'ModalBuilderFct',
         'ModalSvc',
         'WizioConfig',
-        function($rootScope, $location, $scope, $state, $uibModal, ApartmentModel, AuthFct, SmartSearchSvc, ModalSvc, WizioConfig) {
+        function($rootScope, $location, $scope, $state, $uibModal, ApartmentModel, AuthFct, SmartSearchSvc, ModalBuilderFct, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
             $scope.showWhiteLogoFlag = $state.current.name === 'LandingPage' || $state.current.name === 'About' || $state.current.name === 'Pricing' ? true : false;
 
@@ -49,12 +50,18 @@ angular.module('NavbarApp')
             }
 
             $scope.goToLogin = function() {
-                var authViews = WizioConfig.AccountAuthViewsURL;
-                var modalDefaultsLogin = modalDefaults(authViews + 'Login.html', 'AuthLoginModalCtrl');
+                var view = WizioConfig.pages.login.modals.view;
+                var controller = WizioConfig.pages.login.modals.controller;
 
-                ModalSvc.showModal(modalDefaultsLogin, {}).then(function(result) {
+                ModalBuilderFct.buildComplexModal(
+                    "md",
+                    view,
+                    controller,
+                    {}
+                )
+                .then(function (response) {
                     return;
-                });
+                })
             };
             $scope.search = function(){
                 //massage data into proper form for building a new apartment instance

@@ -38,17 +38,19 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.files = [];
         $scope.uploaded = false;
         $scope.bulkUploadInitiated = false;
+        $scope.cdnEndPoint = WizioConfig.CLOUDFRONT_DISTRO;
+        $scope.uploadPhotoBtnText = 'Finish and Upload';
 
         $scope.closeModal = function() {
             $uibModalInstance.close();
         }
 
         // Laod the data for the CreateTourModal
-        UploadToolFct.workflow.init(apartment, subscriptionApartment.pubid)
-        .then(function(media) {
+        UploadToolFct.workflow.init(apartment, subscriptionApartment.pubid).then(function(media) {
             var sortedMedia = UploadToolFct.sortMedia(media);
             apartment.sortedMedia = sortedMedia;
             $scope.apartment = apartment;
+            apartment.SubscriptionApartment = $scope.subscriptionApartment
             return;
         }).catch(function(error) {
             console.dir(error);
@@ -60,20 +62,36 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 
         function bulkUploadPhotos() {
             $scope.bulkUploadInitiated = true;
+            $scope.uploadPhotoBtnText = 'Uploading...';
+            var photos = $scope.apartment.sortedMedia.photos;
             LoadingSpinnerFct.show('bulk-upload-photo-loader');
-            UploadToolFct.bulkUploadPhotos($scope.apartment.sortedMedia.newMedia, apartment, subscriptionApartment.pubid).then(function(response) {
-                alert('Finished!')
+            for (var i = 0; i < $scope.apartment.sortedMedia.photos.length; i++) {
+                $scope.apartment.sortedMedia.photos[i].order = i;
+            }
+            UploadToolFct.bulkUploadPhotos($scope.apartment).then(function(response) {
+                ModalBuilderFct.buildSimpleModal("", "OK", "Success", 'Upload Complete!').then(function(result) {
+                    return;
+                });
                 $uibModalInstance.close();
             }).catch(function(error) {
                 LoadingSpinnerFct.hide('bulk-upload-photo-loader');
                 if (error === 'No Files To Upload') {
-                    alert('No new photos uploaded');
+                    ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'No new photos uploaded.').then(function(result) {
+                        return;
+                    });
                     $uibModalInstance.close();
                     return;
                 }
             });
         }
         $scope.bulkUploadPhotos = bulkUploadPhotos;
+
+        function assignPhotoOrder(photos) {
+            for (var i = 0; i < photos.length; i++) {
+                photos[i].order = i;
+            }
+            return photos;
+        }
 
         /*  SUMMARY - makePinAction(mouseEvent, subScope, clickOnFloorplan)
             mouseEvent provides us with the necessary coordinates for placing and
@@ -91,7 +109,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 createPin(mouseEvent);
             } else if (clickOnFloorplan === true && movePinFlag === true) {
                 movePin(mouseEvent, index, newMediaOrPhoto);
-            }  else {
+            } else {
                 choosePinActionModal(index, newMediaOrPhoto);
             }
         }
@@ -117,11 +135,12 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             pinToMove.x = newPinPosition.x;
             pinToMove.y = newPinPosition.y;
 
-
-            if(pinToMove.id) {
+            if (pinToMove.id) {
                 // send the new pin data to the API to be saved
-                UploadToolFct.saveOnePhotoToWizioAPI(pinToMove, function(response){
-                    alert('Saved');
+                UploadToolFct.saveOnePhotoToWizioAPI(pinToMove, function(response) {
+                    ModalBuilderFct.buildSimpleModal("", "OK", "Success", 'Pin moved.').then(function(result) {
+                        return;
+                    });
                 })
 
             } else {
@@ -139,7 +158,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             });
 
         }
-// Trent and Devon Smell like beef and cheese Luv Kyle lol Dix
+        // Trent and Devon Smell like beef and cheese Luv Kyle lol Dix
         // When a pin is clicked provide the user a modal with possible options
         // for the already placed pins
         function choosePinActionModal(selectedPinIndex, newMediaOrPhoto) {
@@ -175,13 +194,15 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     return;
                 } else {
                     $scope.apartment.sortedMedia[newMediaOrPhoto][index] = response.Media;
-                    alert('Photo Renamed Successfully');
+                    ModalBuilderFct.buildSimpleModal("", "OK", "Success", 'Photo renamed successfully.').then(function(result) {
+                        return;
+                    });
                 }
             });
         }
         $scope.renameMedia = renameMedia;
 
-        $scope.cancelPinSelection = function () {
+        $scope.cancelPinSelection = function() {
             $scope.choosePhotoForPinFlag = false;
             dropPinFlag = false;
         }
@@ -203,23 +224,25 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 pin.isUnit = 1;
                 dropPinFlag = false;
             } else {
-                alert('Choose a photo below to associate with this pin!');
-                $scope.choosePhotoForPinFlag = true;
-                $scope.temporaryPins.push({
-                    x: x,
-                    y: y
+                ModalBuilderFct.buildSimpleModal("", "OK", "Success", 'Choose a Photo below to associate with this pin.').then(function(result) {
+                    return;
                 });
+
+                $scope.choosePhotoForPinFlag = true;
+                $scope.temporaryPins.push({x: x, y: y});
             }
             return;
         }
 
-        $scope.choosePhotoForPin = function (photo, index, typeOfPhoto) {
+        $scope.choosePhotoForPin = function(photo, index, typeOfPhoto) {
             var apartment = $scope.apartment.sortedMedia[typeOfPhoto][index];
             var temporaryPin = $scope.temporaryPins[0];
             apartment.x = $scope.temporaryPins[0].x
             apartment.y = $scope.temporaryPins[0].y
             apartment.isUnit = true;
-            alert('Photo assigned to pin!');
+            ModalBuilderFct.buildSimpleModal("", "OK", "Success", 'Photo assigned to pin!').then(function(result) {
+                return;
+            });
             $scope.choosePhotoForPinFlag = false;
             dropPinFlag = false;
         }
@@ -232,18 +255,16 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
-            return $q(function(resolve, reject) {
-                var file = photo;
-                var reader = new FileReader();
+            var file = photo;
+            var reader = new FileReader();
 
-                reader.addEventListener("load", function() {
-                    htmltag.src = reader.result;
-                }, false);
+            reader.addEventListener("load", function() {
+                htmltag.src = reader.result;
+            }, false);
 
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            })
+            if (file) {
+                reader.readAsDataURL(file);
+            }
         }
 
         function uploadPhotos() {
@@ -252,50 +273,68 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             }
         }
 
+        $scope.orderChange = function(item, partFrom, partTo, indexFrom, indexTo) {
+            $scope.$apply();
+            var previewElement;
+            for(var i = 0; i < $scope.apartment.sortedMedia.photos.length; i++) {
+                if ($scope.apartment.sortedMedia.photos[i].isNew) {
+                    previewElement = document.getElementById('imgPreview' + i);
+                    previewPhoto($scope.apartment.sortedMedia.photos[i].file, previewElement);
+                }
+            }
+        }
+
+        /**
+         * Delete a new photo from the array of photos then run the previewPhoto
+         * function to preview photos in the new locations.
+         * @param  {[type]} index [description]
+         * @return {[type]}       [description]
+         */
         function removeNewMedia(index) {
             var previewElement;
-            apartment.sortedMedia.newMedia.splice(index, 1);
-            apartment.sortedMedia.newMedia.forEach(function(item, i){
-                previewElement = document.getElementById('imgPreview' + i);
-                previewPhoto(item.file, previewElement)
+            apartment.sortedMedia.photos.splice(index, 1);
+            apartment.sortedMedia.photos.forEach(function(item, i) {
+                if(item.isNew) {
+                    previewElement = document.getElementById('imgPreview' + i);
+                    previewPhoto(item.file, previewElement)
+                }
             })
             return;
         }
         $scope.removeNewMedia = removeNewMedia;
         $scope.addPhotosForUpload = function addAmenity() {
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
-                $scope.files=[];
+                $scope.files = [];
                 $scope.apartment.sortedMedia.newMedia = [];
                 var elementId = 'imgPreview';
-                var preview;
+                var previewElement;
                 var filename;
                 // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
-                for(var i = 0; i < this.files.length; i++){
-                    filename = 'Photo ' + (Number(i) + 1);
-
-                    $scope.apartment.sortedMedia.newMedia.push({
+                for (var i = 0; i < this.files.length; i++) {
+                    var photo = {
                         x: null,
                         y: null,
                         apartmentpubid: apartment.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
-                        title: filename,
+                        title: 'To Be Named',
                         awsurl: 'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/',
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,
                         useremail: TokenSvc.decode().email,
                         token: TokenSvc.getToken(),
-                        file: this.files[i]
-                    })
-                    filename = UploadToolFct.autoNameNewPhoto($scope.apartment.sortedMedia.newMedia, $scope.apartment.sortedMedia.photos);
-                    $scope.apartment.sortedMedia.newMedia[i].title = filename;
-                    $scope.apartment.sortedMedia.newMedia[i].file.name = filename;
-
+                        file: this.files[i],
+                        isNew: true
+                    };
+                    $scope.apartment.sortedMedia.photos.unshift(photo);
                     $scope.$apply();
-                    preview = document.getElementById(elementId + i);
-                    previewPhoto($scope.apartment.sortedMedia.newMedia[i].file, preview);
                 }
-                // LoadingSpinnerFct.hide('upload-tool-photo-preview-spinner');
+                for (var i = 0; i < this.files.length; i++) {
+                    previewElement = document.getElementById('imgPreview' + i);
+                    previewPhoto($scope.apartment.sortedMedia.photos[i].file, previewElement);
+                }
+                $scope.apartment.sortedMedia.photos = UploadToolFct.autoNameNewPhotos($scope.apartment.sortedMedia.photos);
+                $scope.$apply();
             }
             $('#uploadMultiplePhotosInputButton').trigger('click');
 
