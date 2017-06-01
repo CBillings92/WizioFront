@@ -63,8 +63,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         function bulkUploadPhotos() {
             $scope.bulkUploadInitiated = true;
             $scope.uploadPhotoBtnText = 'Uploading...';
-            alert('done');
-            return;
             var photos = $scope.apartment.sortedMedia.photos;
             LoadingSpinnerFct.show('bulk-upload-photo-loader');
             for (var i = 0; i < $scope.apartment.sortedMedia.photos.length; i++) {
