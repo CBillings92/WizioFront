@@ -1,24 +1,4 @@
-<div style="position:absolute; top:0; left:0; width:100%; height:100%" ng-hide="viewFloorPlan">
-    <div class="container-fluid" style="height:100%">
-        <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
-            <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
-                <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="height:100%; width:100%; text-align:center; display:inline-block; position:absolute; z-index: 700;" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
-    <div style="height:100%; vertical-align:middle; display:inline-block">
-        <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
-        <div style="position:relative; display:inline-block">
-            <img src="{{floorplan}}" id="floorplan" style="" alt="" />
-            <span ng-repeat="photo in media.vrphoto track by $index">
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
-            </span>
-        </div>
-    </div>
-</div>
+<loading-spinner-dir id="vrPlayerLoader" style="position: absolute; z-index:1000; top:50%; left:50%; color:#f79739; visibility: hidden;"></loading-spinner-dir>
 <div id="vr-player-container">
-    <transition-vr-player-dirv></transition-vr-player-dirv>
+    <tour-app-dir showcontrols="true" showpoweredby="true" showcontactinfo="true"></tour-app-dir>
 </div>

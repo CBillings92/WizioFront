@@ -74,8 +74,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: 'public/app/modules/tour-app/tour.html',
-                            controller: 'TourCtrl'
+                            templateUrl: 'public/app/modules/unitapp/viewtemplates/transition_vrplayercontainer.view.html',
+                            controller: 'TransitionUnitMediaCtrl'
 
                         }
                     }

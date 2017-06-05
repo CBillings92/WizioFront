@@ -13,7 +13,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state) {
         $state.go('Account.Dashboard.ShareTour');
         $scope.state = 'Account.Dashboard.ShareTour';
-        
+
         // set flags
         // $scope.currentview = 'share';
         $scope.emailToInvite = null;
