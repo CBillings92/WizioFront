@@ -2,24 +2,10 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     '$scope',
     'VrPlayerFct',
     function($scope, VrPlayerFct) {
-        alert('please');
-        var viewer = new Marzipano.Viewer(document.querySelector('#pano'), {});
-        // Create Source, Geometry and View
-        var source = Marzipano.ImageUrlSource.fromString("../public/internallibraries/testphoto.jpg");
-        var geometry = new Marzipano.EquirectGeometry([
-            {
-                width: 4000
-            }
-        ]);
-        console.dir(Marzipano);
-        var limiter = Marzipano.RectilinearView.limit.traditional(1920, 180 * Math.PI / 180);
-        var view = new Marzipano.RectilinearView(null, limiter);
+        // var viewer = new Marzipano.Viewer(document.querySelector('#pano'), {});
+        // VrPlayerFct.initPlayer(viewer);
 
-        // Create and display Scene
-        var scene = viewer.createScene({source: source, geometry: geometry, view: view, pinFirstLevel: true});
-
-        scene.switchTo();
-
+        // setTimeout(function(){VrPlayerFct.switchScene(viewer, 'https://cdn.wizio.co/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG', {})}, 5000);
         /**
          * Calculate the maximum floorplan image height
          * @type {int}

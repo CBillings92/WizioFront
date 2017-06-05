@@ -198,7 +198,11 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: MODULESPATH + 'vr-player-app/interface/interface.html',
                     controller: 'InterfaceCtrl'
                 }
-             }
+            },
+            tour: {
+                view: MODULESPATH + 'tour-app/tour.html',
+                controller: 'TourCtrl'
+            }
         },
 
         // STRIPE TEST KEY

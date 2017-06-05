@@ -77,7 +77,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 if (apartment.Floor_Plan) {
                     var key = subscriptionApartmentPubId + '/floorplan.png';
                     var modifiedKey = AWSFct.utilities.modifyKeyForEnvironment(key);
-                    apartment.Floor_Plan = "https://cdn.wizio.co/" + modifiedKey;
+                    apartment.Floor_Plan = WizioConfig.CLOUDFRONT_DISTRO + modifiedKey;
                 }
 
                 // Query for the photos of the unit
