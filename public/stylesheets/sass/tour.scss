@@ -1,0 +1,53 @@
+.tour-container {
+
+}
+
+.tour-floorplan-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    display: inline-block;
+}
+
+.tour-photos-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.tour-photos-button {
+    cursor: pointer;
+    text-align: center;
+
+}
+
+.tour-controls-container {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+}
+
+.tour-agentprofile-container {
+
+}
+
+.tour-vrplayer-container {
+
+}
+
+.tour-poweredby-container {
+
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
