@@ -15,6 +15,7 @@ angular.module('TourApp').controller('TourCtrl', [
             $scope.showcontactinfo = true;
             $scope.showpoweredby = true;
             document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
+            document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
         }
 
         $scope.$on('MediaLoad', function(ev, data) {
