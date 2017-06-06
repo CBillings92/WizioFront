@@ -14,8 +14,8 @@ angular.module('TourApp').controller('TourCtrl', [
             $scope.showcontrols = true;
             $scope.showcontactinfo = true;
             $scope.showpoweredby = true;
+            document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
         }
-        document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
 
         $scope.$on('MediaLoad', function(ev, data) {
             $scope.media = data;
