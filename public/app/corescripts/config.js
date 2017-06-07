@@ -42,7 +42,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 case 'dev':
                     return 'http://172.16.0.3:4000/api/';
                 case 'test':
-                    return 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/';
+                    return 'https://alpha-api.wizio.co/api/';
                 case 'prod':
                     return 'https://api.wizio.co/api/';
                 default:
