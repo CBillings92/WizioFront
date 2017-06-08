@@ -10,6 +10,7 @@
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
     angular.module('AuthApp', []);
+    angular.module('VrPlayerApp', []);
     angular.module('FooterApp', []);
     angular.module('InfoApp', []);
     angular.module('LandingPageApp', []);
@@ -27,6 +28,7 @@
     angular.module('AWSApp', []);
     angular.module('AgentProfileApp', []);
     angular.module('TourPasswordApp', []);
+    angular.module('TourApp', []);
     angular.module('FlyOutMenuApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -39,7 +41,9 @@
             'CreateAccountApp',
             'DashboardApp',
             'LoginApp',
+            'VrPlayerApp',
             'AboutUsApp',
+            'TourApp',
             'Directives',
             'FooterApp',
             'InfoApp',

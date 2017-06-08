@@ -18,6 +18,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 return 'dev';
             case "http://alphafront.rc9igeipqw.us-east-1.elasticbeanstalk.com":
                 return 'test';
+            case "https://alpha.wizio.co":
+                return 'test';
             case "http://beta.wizio.co":
                 return 'prod';
             case "http://wizio.co":
@@ -40,7 +42,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 case 'dev':
                     return 'http://172.16.0.3:4000/api/';
                 case 'test':
-                    return 'http://alphaserver.iv9c3ngbv7.us-east-1.elasticbeanstalk.com/api/';
+                    return 'https://alpha-api.wizio.co/api/';
                 case 'prod':
                     return 'https://api.wizio.co/api/';
                 default:
@@ -186,6 +188,22 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     controller: 'AgentInfoCtrl'
                 },
 
+            }
+        },
+        directives: {
+            vrplayer: {
+                main: {
+                    view: MODULESPATH + 'vr-player-app/main/vr-player.html',
+                    controller: 'VrPlayerCtrl'
+                },
+                interface: {
+                    view: MODULESPATH + 'vr-player-app/interface/interface.html',
+                    controller: 'InterfaceCtrl'
+                }
+            },
+            tour: {
+                view: MODULESPATH + 'tour-app/tour.html',
+                controller: 'TourCtrl'
             }
         },
 

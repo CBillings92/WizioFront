@@ -39,6 +39,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.uploaded = false;
         $scope.bulkUploadInitiated = false;
         $scope.cdnEndPoint = WizioConfig.CLOUDFRONT_DISTRO;
+        $scope.uploadPhotoBtnText = 'Finish and Upload';
 
         $scope.closeModal = function() {
             $uibModalInstance.close();
@@ -61,6 +62,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
 
         function bulkUploadPhotos() {
             $scope.bulkUploadInitiated = true;
+            $scope.uploadPhotoBtnText = 'Uploading...';
             var photos = $scope.apartment.sortedMedia.photos;
             LoadingSpinnerFct.show('bulk-upload-photo-loader');
             for (var i = 0; i < $scope.apartment.sortedMedia.photos.length; i++) {

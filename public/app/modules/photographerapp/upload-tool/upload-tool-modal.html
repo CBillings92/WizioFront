@@ -61,12 +61,6 @@
             <label class="control-label"><strong>**New!**  </strong>You may select and upload more than 1 photo at a time</label>
         </div>
     </div>
-    <div class="row" ng-show="bulkUploadInitiated">
-        <span class="col-md-4"></span>
-        <span class="col-md-4">
-            <loading-spinner-dir id="bulk-upload-photo-loader" class="center-block" style="z-index:1000; color:#f79739; visibility:hidden"></loading-spinner-dir>
-        </span>
-    </div>
     <div class="row" id="currentPhotosContainer">
         <div class="col-md-12">
             <h3>Photos <small>New photos are marked in green.</small></h3>
@@ -126,8 +120,10 @@
         </div>
 
     </div>
-    <div class="modal-footer">
-        <span>
+</div>
+<div class="modal-footer">
+    <span>
+        <loading-spinner-dir id="bulk-upload-photo-loader" class="center-block" style="z-index:1000; color:#f79739; visibility:hidden"></loading-spinner-dir>
         <button type="button" class="btn btn-fill--blue btn-lg" ng-click="bulkUploadPhotos()" name="button">Finish</button>
     </span>
-    </div>
+</div>
