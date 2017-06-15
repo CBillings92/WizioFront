@@ -18,6 +18,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 return 'dev';
             case "http://alphafront.rc9igeipqw.us-east-1.elasticbeanstalk.com":
                 return 'test';
+            case "https://alpha.wizio.co":
+                return 'test';
             case "http://beta.wizio.co":
                 return 'prod';
             case "http://wizio.co":
