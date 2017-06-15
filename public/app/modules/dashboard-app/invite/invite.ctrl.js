@@ -4,9 +4,11 @@ angular.module('DashboardApp')
         'InviteFct',
         '$state',
         function ($scope, InviteFct, $state) {
-            InviteFct.inviteUser($scope.emailOfInvitee)
-            .then(function(response){
+            $scope.inviteUser = function () {
+                InviteFct.inviteUser($scope.emailOfInvitee)
+                .then(function(response){
 
-            });
+                });
+            }
         }
     ])

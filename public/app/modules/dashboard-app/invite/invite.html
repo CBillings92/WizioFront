@@ -1,6 +1,9 @@
 <div style="margin-bottom:50px">
     <div class="user-info " ng-model="accountInfo" style="" ng-show="inviteAccess">
-        <h2 class="user-info__name">Invite:</h2>
+        <div class="col-md-8" style="padding:10px">
+            <h2 class="user-info__name">Invite Member:</h2>
+            <p style="padding-top:5px;">Enter an email address of who you would like to add to your subscription. They'll receive an email with a signup link!</p>
+        </div>
         <div class="col-md-8">
             <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
             <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
