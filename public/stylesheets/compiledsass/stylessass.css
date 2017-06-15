@@ -6497,7 +6497,7 @@ body {
 .about-hero-main {
   background: url("/public/viewtemplates/images/aboutimages/hero-image.jpg");
   color: #ffffff;
-  padding: 100px 0 50px 0; }
+  padding: 100px 0 50px; }
   .about-hero-main__heading {
     max-width: 80%;
     word-break: keep-all;
@@ -6507,8 +6507,7 @@ body {
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
   @media (min-width: 768px) {
     .about-hero-main {
-      padding: 0;
-      padding-top: 90px; }
+      padding: 90px 0 0; }
       .about-hero-main__heading {
         max-width: none;
         margin-bottom: 30px; }
@@ -6562,7 +6561,7 @@ body {
     color: #ffffff; }
     @media (min-width: 768px) {
       .about-principles h2 {
-        margin: 10px 0 40px 0;
+        margin: 10px 0 40px;
         font-size: 40px; } }
     @media (max-width: 767px) {
       .about-principles h2 {
@@ -6619,7 +6618,7 @@ body {
   @media (min-width: 768px) {
     .about-learn-more__link {
       text-align: center; } }
-  .about-learn-more__link:visited, .about-learn-more__link:hover, .about-learn-more__link:active, .about-learn-more__link:focus {
+  .about-learn-more__link:active, .about-learn-more__link:focus, .about-learn-more__link:hover, .about-learn-more__link:visited {
     color: #ffffff;
     text-decoration: none; }
   .about-learn-more__link:hover {
@@ -6637,7 +6636,8 @@ body {
 .about-team-members {
   color: #706f72;
   margin-bottom: 50px; }
-  .about-team-members h3, .about-team-members .title {
+  .about-team-members .title,
+  .about-team-members h3 {
     font-weight: 300;
     margin-bottom: 5px; }
   .about-team-members h3 {
@@ -6664,7 +6664,7 @@ body {
         color: #ffffff;
         margin-bottom: 8px;
         font-weight: 700; }
-        .about-team-members-more-overlay .outline-btn:hover, .about-team-members-more-overlay .outline-btn:active, .about-team-members-more-overlay .outline-btn:focus {
+        .about-team-members-more-overlay .outline-btn:active, .about-team-members-more-overlay .outline-btn:focus, .about-team-members-more-overlay .outline-btn:hover {
           background: #ffffff;
           color: #f79739; }
       .about-team-members-more-overlay-content {

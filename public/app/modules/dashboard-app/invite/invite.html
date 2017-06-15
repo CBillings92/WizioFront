@@ -8,8 +8,11 @@
             <input type="text" name="" class="form-control" ng-model="emailOfInvitee" style="border: 1px solid black;" placeholder="Email" value="">
             <!-- <h3 class="user-info__email">{{accountInfo.PropertyManager[0].businessName || accountInfo.Brokerages[0].businessName}}</h3> -->
         </div>
-        <div class="col-md-4">
-            <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()">Invite</button>
+        <div class="col-md-1">
+            <loading-spinner-dir id="dashboard-invite-user-spinner" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-fill--blue btn-md form-control" ng-click="inviteUser()" ng-disabled="SubmitButtonConfig.disabled">{{SubmitButtonConfig.text}}</button>
         </div>
     </div>
 </div>
