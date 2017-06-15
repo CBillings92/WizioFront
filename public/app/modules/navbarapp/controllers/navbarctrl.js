@@ -88,7 +88,9 @@ angular.module('NavbarApp')
             $scope.goAbout = function() {
                 $state.go('About');
             };
-
+            $scope.navigate = function(state) {
+                $state.go(state);
+            };
             $scope.goBlog = function(val) {};
 
             $scope.signup = function signup() {
