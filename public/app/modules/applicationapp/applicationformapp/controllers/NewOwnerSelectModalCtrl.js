@@ -25,7 +25,6 @@ angular.module('ApplicationApp')
                         item: 'user',
                         action: 'remove'
                     }, currentUser, function(data, status) {
-                        alert("Removed from application");
                         $uibModalInstance.close();
                     });
                 } else {

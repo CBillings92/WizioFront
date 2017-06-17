@@ -154,8 +154,6 @@ angular.module('AWSApp').factory('AWSFct', [
                     var bucket = createS3Object();
                     //parameters to be sent to S3 - key is the path in the S3 bucket
 
-                    // alert("touch me");
-
                     // var bucket = bucket ? bucket : 'equirect-photos';
 
                     var params = {
