@@ -1,5 +1,5 @@
 <div class="subscription-wrapper">
-    <div class="container" ng-hide="invitationSignup">
+    <div class="container" ng-hide="signupInviteFlag">
         <div class="page-header row">
             <h4> Choose A Subscription Plan</h4>
         </div>
@@ -79,16 +79,16 @@
                         <label for="" class="control-label">Confirm Password</label>
                         <input type="password" ng-model="user.passwordConfirm" name="ConfirmPassword" class="form-control" style="border: 1px solid black;" value="" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" ng-hide="signupInviteFlag">
                         <label for="" class="control-label">Signup Code</label>
-                        <input type="password" ng-model="user.code" name="Code" class="form-control" style="border: 1px solid black;" value="" required>
+                        <input type="password" ng-model="user.code" class="form-control" style="border: 1px solid black;" value="" ng-required="!signupInviteFlag">
                     </div>
                 </form>
             </div>
-            <div class="form-group container" ng-show="getPlan()">
+            <div class="form-group container" ng-hide="signupInviteFlag">
                 <!-- Put a check here  -->
                 <label for="" class="control-label">Number of Users</label>
-                <input type="number" ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" required>
+                <input type="number" ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" ng-required="!signupInviteFlag">
             </div>
         </div>
     </div>

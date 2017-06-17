@@ -52,7 +52,7 @@ angular.module('UnitApp')
             //display maps and markers
             // displayMaps();
             $scope.launchVRModal = function(unit){
-                alert('work');
+
                 ModalBuilderFct.buildModalWithController('lg', WizioConfig.UnitViewsURL + 'unitmedia.mdl.view.html', 'UnitMediaModalCtrl', unit)
                     .then(function(result){
                         return;

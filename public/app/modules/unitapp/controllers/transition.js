@@ -16,6 +16,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         var apartmentpubid;
         var apitoken;
         var state = $state.current.name;
+        $scope.state = state;
         var heightContainerElem = document.getElementById('height-container');
         var floorplanImgElem = document.getElementById('floorplan');
         var maxFloorPlanHeight = $(window).height() * 0.75;

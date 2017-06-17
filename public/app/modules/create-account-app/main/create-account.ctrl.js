@@ -21,13 +21,15 @@ angular.module('CreateAccountApp')
                     });
                     return;
                 }
-
-                if (user.code != "931422") {
-                    ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'You do not have the correct signup code!').then(function(result) {
+                if($scope.signupInviteFlag === false) {
+                    if (user.code != "931422") {
+                        ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'You do not have the correct signup code!').then(function(result) {
+                            return;
+                        });
                         return;
-                    });
-                    return;
+                    }
                 }
+
 
                 // Check if the user was invited or if it's a new registration
                 if ($scope.signupInviteFlag) {
@@ -36,7 +38,7 @@ angular.module('CreateAccountApp')
                     subscription = $scope.chosenSubscription;
                 }
 
-                
+
 
                 CreateAccountFct.post.saveNewUser(user, subscription).then(function(response) {
                     $state.go('Account.Dashboard');

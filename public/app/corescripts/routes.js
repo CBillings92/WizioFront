@@ -286,26 +286,14 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
-                .state('SendResetEmail', {
-                    url: '/sendresetpassemail',
-                    views: {
-                        "navbar": navbar,
-                        "footer": footer,
-                        "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + 'sendResetEmail.html',
-                            controller: 'AuthResetPassCtrl'
-                        }
-                    },
-                    data: falseRequiredLogin
-                })
                 .state('UpdatePassword', {
                     url: '/resetpassword/:token',
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: WizioConfig.AccountAuthViewsURL + 'resetPassword.html',
-                            controller: 'AuthResetPassCtrl'
+                            templateUrl: 'public/app/modules/change-password-app/change-password-form/change-password.form.view.html',
+                            controller: 'ChangePasswordFormCtrl'
                         }
                     },
                     data: falseRequiredLogin
