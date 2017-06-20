@@ -7,6 +7,7 @@ angular.module('AgentProfileApp')
     '$state',
     function($scope, $resource, WizioConfig, $stateParams, $state) {
 
+        $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
 
