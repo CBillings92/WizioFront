@@ -7,6 +7,7 @@ angular.module('AgentProfileApp')
     '$state',
     function($scope, $resource, WizioConfig, $stateParams, $state) {
 
+        $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
 
@@ -28,8 +29,16 @@ angular.module('AgentProfileApp')
                 activelistingid: $stateParams.activelistingid
             },
             function(response) {
-                $scope.agent = response[response.length - 1];
-                $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
+                if($stateParams.activelistingid === 'e2653af3-8912-4136-995d-1db64830d3ce' || $stateParams.activelistingid === 'dca9eef0-5bdd-4d57-8db7-f0f0e96196fa' || $stateParams.activelistingid === 'f017234c-6f13-4f8c-839f-e94244927815') {
+                    $scope.profileUploaded = true;
+                    $scope.agent.awsProfilePhotoUrl = 'https://cdn.wizio.co/cb7a5550-9105-4c1f-9002-744d8c0069c6/SailBoston2017_logo.jpg';
+                    $scope.agent.firstName = 'Sail Boston';
+                    $scope.agent.email = 'http://www.sailboston.com/'
+                } else {
+
+                    $scope.agent = response[response.length - 1];
+                    $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
+                }
 
             });
 

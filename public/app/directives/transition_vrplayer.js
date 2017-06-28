@@ -68,7 +68,6 @@ angular.module('Directives')
                         newImage();
                     });
                     scope.$on('accelerometer-toggle', function(event,accelToggle){
-                      console.dir(accelToggle);
                         if(accelToggle.flag){
                           controls = new DeviceOrientationController(camera);
                           controls.connect();
