@@ -14,8 +14,6 @@ angular.module('Directives')
                     var webglSupport = (function() {
                         try {
                             var canvas = document.createElement('canvas');
-                            console.dir(canvas.getContext('webgl'));
-                            console.dir(window.WebGLRenderingContext);
                             return !!(window.WebGLRenderingContext && (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
                         } catch (e) {
                             return false;
@@ -70,7 +68,6 @@ angular.module('Directives')
                         newImage();
                     });
                     scope.$on('accelerometer-toggle', function(event,accelToggle){
-                      console.dir(accelToggle);
                         if(accelToggle.flag){
                           controls = new DeviceOrientationController(camera);
                           controls.connect();
