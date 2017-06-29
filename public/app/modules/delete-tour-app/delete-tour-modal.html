@@ -3,7 +3,7 @@
     <h3 class="modal-title">Deactivate or Delete Tour?</h3>
 </div>
 <div class="modal-body">
-    <div class="row">
+    <div class="row" ng-hide='true'>
         <div class="col-md-3">
             <div class="">
                 <button class='btn btn-lg btn-fill--orange' style="height:125px; width:100%; padding: 0" ng-click="modalAction('deactivate')">Deactivate</button>
@@ -16,7 +16,7 @@
     <br>
     <br>
     <br>
-    <div class="row">
+    <div class="row" style="margin-top:-40px">
         <div class="col-md-3">
             <div class="">
                 <button class='btn btn-lg btn-fill--orange' style="height:125px; width:100%; padding: 0;" ng-click="modalAction('delete')">Delete</button>
