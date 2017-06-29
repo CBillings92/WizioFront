@@ -34,7 +34,6 @@ angular.module('AccountApp')
         }
 
         $scope.deleteActiveListing = function(activeListing, index){
-            console.dir(activeListing);
             var modalConfig = {
                 size: 'md',
                 templateUrl: WizioConfig.modals.deleteTourApp.view,
@@ -43,7 +42,6 @@ angular.module('AccountApp')
             }
             ModalBuilderFct.buildModalWithController(modalConfig)
             .then(function(response){
-                console.dir(response);
                 if (response === 'delete') {
                     ModalBuilderFct.buildModalWithController({
                         size: 'md',
