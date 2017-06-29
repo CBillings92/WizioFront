@@ -22,7 +22,7 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         if($scope.state === 'LandingPage') {
-            activelistingid = 'b19e3352-d9fd-11e6-85e0-0a8adbb20c4d';
+            activelistingid = 'ddef35a3-0afb-4e8c-97b5-60e057004034';
             initForLandingOrDemoPage();
         } else if ($scope.state === 'Demo') {
             activelistingid = 'ddef35a3-0afb-4e8c-97b5-60e057004034';
@@ -87,7 +87,7 @@ angular.module('TourApp').controller('TourCtrl', [
                 $scope.photoIndex = photoIndex;
                 // Get the photourl and set it on scope
                 if (state === 'LandingPage') {
-                    photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
+                    photoUrl = 'https://cdn.wizio.co/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG';
                 } else {
                     photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
                 }
