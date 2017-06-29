@@ -5,10 +5,8 @@ angular.module('InfoApp')
         'WizioConfig',
         'lodash',
         function($scope, $resource, WizioConfig, lodash){
-            // alert('works');
             $resource(WizioConfig.baseAPIURL + 'info')
             .get(function(response){
-                // alert('in response');
                 var neighborhoods = {};
                 lodash.forEach(response.byNeighborhood, function(val, key){
                     neighborhoods.amount = val.length;
