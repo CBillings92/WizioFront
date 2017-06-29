@@ -34,18 +34,59 @@ angular.module('AccountApp')
         }
 
         $scope.deleteActiveListing = function(activeListing, index){
-            ModalBuilderFct.buildSimpleModal('Cancel', 'Delete', "Are You Sure You'd Like To Delete This Listing?", 'This listing will be removed from your Active Listings list. It can be re-added to this list by navigating to "Search", searching the address and selecting "Activate".')
+            console.dir(activeListing);
+            var modalConfig = {
+                size: 'md',
+                templateUrl: WizioConfig.modals.deleteTourApp.view,
+                controller: WizioConfig.modals.deleteTourApp.controller,
+                modalData: {}
+            }
+            ModalBuilderFct.buildModalWithController(modalConfig)
             .then(function(response){
-                if(response === 'ok'){
-                    ActiveListingFct.deleteActiveListing(activeListing)
+                console.dir(response);
+                if (response === 'delete') {
+                    ModalBuilderFct.buildModalWithController({
+                        size: 'md',
+                        templateUrl: WizioConfig.modals.deleteTourConfirm.view,
+                        controller: WizioConfig.modals.deleteTourConfirm.controller,
+                        modalData: {activeListing: activeListing}
+                    })
                     .then(function(response){
-                        // temporarily remove the listing from the UI - upon next login the listing will be gone
-                        $scope.activelistings.splice(index, 1);
-                    });
-                } else if(response === 'cancel'){
-                    return;
+                        $scope.$emit('ActiveListingsUpdated', {});
+                        return
+                    })
+                } else if (response === 'deactivate') {
+                    ModalBuilderFct.buildModalWithController({
+                        size: 'md',
+                        templateUrl: WizioConfig.modals.deactivateTourConfirm.view,
+                        controller: WizioConfig.modals.deactivateTourConfirm.controller,
+                        modalData: {activeListing: activeListing}
+                    })
+                    .then(function(response){
+                        $scope.$emit('ActiveListingsUpdated', {});
+                        return;
+                    })
+                } else {
+                    return
                 }
             })
+            // ModalBuilderFct.buildSimpleModal(
+            //     'Cancel',
+            //     'Delete',
+            //     "Delete ",
+            //     'This listing will be removed from your Active Listings list. It can be re-added to this list by navigating to "Search", searching the address and selecting "Activate".'
+            // )
+            // .then(function(response){
+            //     if(response === 'ok'){
+            //         ActiveListingFct.deleteActiveListing(activeListing)
+            //         .then(function(response){
+            //             // temporarily remove the listing from the UI - upon next login the listing will be gone
+            //             $scope.activelistings.splice(index, 1);
+            //         });
+            //     } else if(response === 'cancel'){
+            //         return;
+            //     }
+            // })
         }
 
         // Generate a password for a given tour.
