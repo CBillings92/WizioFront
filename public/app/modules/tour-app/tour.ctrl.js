@@ -57,7 +57,8 @@ angular.module('TourApp').controller('TourCtrl', [
                 } else {
                     photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
                 }
-                VrPlayerFct.initPlayer(false, photoUrl, {});
+                console.dir(wizio);
+                wizio.init('pano', photoUrl);
 
             } else {
                 $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
@@ -84,7 +85,8 @@ angular.module('TourApp').controller('TourCtrl', [
             LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
-            VrPlayerFct.initPlayer(false, photoUrl, {});
+            wizio.addImage(photoUrl);
+            // VrPlayerFct.initPlayer(false, photoUrl, {});
             $scope.selectPhoto = false;
             $scope.viewFloorPlan = false;
             LoadingSpinnerFct.hide('vrPlayerLoader');

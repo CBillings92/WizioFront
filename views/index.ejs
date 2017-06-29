@@ -4,7 +4,7 @@
 <head>
     <title>Wizio</title>
     <!-- mobile friendly browsing! -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
     <style>@-ms-viewport { width: device-width; }</style>
     <!-- set base of the website url to be / without the angular # -->
     <base href="/">
@@ -21,6 +21,7 @@
     <script type="text/javascript" src="../public/build/lib.min.js"></script>
     <!-- Wizio App -->
     <script type="text/javascript" src="../public/build/scripts.js"></script>
+    <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
     <!--GOOGLE API STUFF-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> -->
@@ -74,10 +75,8 @@
     <div ui-view="navbar"></div>
     <div ui-view="maincontent" class=""></div>
     <div ui-view="footer"></div>
-    <script type="text/javascript" src='../public/internallibraries/detector.js'>
-    </script>
+    <!-- <script type="text/javascript" src='../public/internallibraries/detector.js'></script> -->
     <!-- Start of Google Analytics Code -->
-    <script type="text/javascript" src="../public/internallibraries/marzipano.js"></script>
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
