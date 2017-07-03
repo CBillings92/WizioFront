@@ -131,6 +131,7 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
+                            controller: 'TransitionUnitMediaCtrl'
                             // controller: 'LandingPageCtrl'
                             // controller: 'UnitMediaCtrl'
                         }
