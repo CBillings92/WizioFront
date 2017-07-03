@@ -190,6 +190,36 @@ angular.module('MainApp').constant('WizioConfig', (function() {
 
             }
         },
+        directives: {
+            vrplayer: {
+                main: {
+                    view: MODULESPATH + 'vr-player-app/main/vr-player.html',
+                    controller: 'VrPlayerCtrl'
+                },
+                interface: {
+                    view: MODULESPATH + 'vr-player-app/interface/interface.html',
+                    controller: 'InterfaceCtrl'
+                }
+            },
+            tour: {
+                view: MODULESPATH + 'tour-app/tour.html',
+                controller: 'TourCtrl'
+            }
+        },
+        modals: {
+            deleteTourApp: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
+                controller: 'DeleteTourModalCtrl'
+            },
+            deleteTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-confirm.html',
+                controller: 'DeleteTourConfirmCtrl'
+            },
+            deactivateTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
+                controller: 'DeactivateTourConfirmCtrl'
+            }
+        },
 
         // STRIPE TEST KEY
         stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",

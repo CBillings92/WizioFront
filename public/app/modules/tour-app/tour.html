@@ -1,0 +1,35 @@
+<div class="tour-container" ng-style="{height: (state === 'Tour' || state === 'Demo') ? '100vh' : '100%'}">
+    <div class="tour-photos-container" ng-show="selectPhoto">
+        <div class="container-fluid">
+            <div class="row" id="photo-button-container">
+                <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
+                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 tour-photos-button vr-control-button">{{photo.title}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tour-floorplan-container" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
+        <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+        <div style="position:relative; display:inline-block">
+            <img src="{{floorplan}}" id="floorplan" style="" alt="" />
+            <span ng-repeat="photo in media.vrphoto track by $index">
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
+                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+            </span>
+        </div>
+    </div>
+    <div class="tour-controls-container" ng-show="showcontrols">
+        <fly-out-menu-dir select-photo='selectPhoto'></fly-out-menu-dir>
+    </div>
+    <div class="tour-agentprofile-container" ng-show="showcontactinfo">
+        <agent-profile-dir></agent-profile-dir>
+    </div>
+    <div class="tour-poweredby-container" ng-show="showpoweredby">
+        <div class="vr-powered-by-container" ng-hide="hideControls" style="z-index:600; padding:5px; border-radius:3px;position: absolute; cursor:pointer; bottom:0; right: 0px; background-color: rgba(0, 0, 0, 0.3)" ng-click="goToWizioSite()">
+                <span style="color:white; right:0px; font-size:1.5em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
+        </div>
+    </div>
+    <div class="tour-vrplayer-container" style="position: relative; height: 100%">
+        <vr-player-dir></vr-player-dir>
+    </div>
+</div>

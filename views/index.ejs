@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="MainApp" ng-strict-di>
+
 <head>
     <title>Wizio</title>
     <!-- mobile friendly browsing! -->
@@ -21,13 +22,12 @@
     <!-- Styles -->
     <link href="../public/build/stylessass.css" rel="stylesheet">
 
-    <!-- Dependencies -->
-    <script type="text/javascript" src="../bower_components/threejs/build/three.min.js"></script>
-    <script type="text/javascript" src="../bower_components/threejs/examples/js/renderers/CanvasRenderer.js"></script>
-    <script type="text/javascript" src="../bower_components/threejs/examples/js/renderers/Projector.js"></script>
+    <!-- <script type="text/javascript" src="../public/internallibraries/EventShim.js"></script> -->
+    <!-- <script type="text/javascript" src="../public/internallibraries/RequestAnimationFrame.js"></script> -->
     <script type="text/javascript" src="../public/build/lib.min.js"></script>
     <!-- Wizio App -->
     <script type="text/javascript" src="../public/build/scripts.js"></script>
+    <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
     <!--GOOGLE API STUFF-->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.22key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> -->
@@ -63,14 +63,15 @@
     <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
     <meta name="theme-color" content="#fa9a29">
     <script type="text/javascript">
-    function onLoadEndSpinner(){
-        document.getElementById('siteLoader').style.visibility = "hidden";
-    }
+        function onLoadEndSpinner() {
+            document.getElementById('siteLoader').style.visibility = "hidden";
+        }
     </script>
 </head>
 <!-- End of Google Analytics Code -->
 
 <!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
+
 <body onLoad="onLoadEndSpinner()">
     <script type="text/javascript">
     $(document).on('click',function(){
@@ -81,24 +82,17 @@
     <div ui-view="navbar"></div>
     <div ui-view="maincontent" class=""></div>
     <div ui-view="footer"></div>
-    <script type="text/javascript" src='../public/internallibraries/orbitcontrols.js'></script>
-    <script type="text/javascript" src='../public/internallibraries/deviceorientationcontrols.js'></script>
-    <script type="text/javascript" src='../public/internallibraries/detector.js'> </script>
-    <script type="text/javascript" src='../public/internallibraries/photosphere.js'> </script>
+    <!-- <script type="text/javascript" src='../public/internallibraries/detector.js'></script> -->
     <!-- Start of Google Analytics Code -->
     <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-69688409-1', 'none');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-69688409-1', 'auto');
+ga('send', 'pageview');
+
     </script>
 </body>
 

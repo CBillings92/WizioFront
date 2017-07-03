@@ -32,6 +32,14 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             StorageApp.store('ActiveListings', activeListingsArr);
             $scope.activelistings = activeListingsArr;
         });
+
+        $scope.$on('ActiveListingsUpdated', function(ev, data){
+            DashboardFct.get.activelistings()
+            .then(function(activeListingsArr){
+                StorageApp.store('ActiveListings', activeListingsArr);
+                $scope.activelistings = activeListingsArr;
+            });
+        })
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
 
