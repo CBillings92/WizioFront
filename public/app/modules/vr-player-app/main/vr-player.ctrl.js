@@ -11,7 +11,12 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
          * @type {int}
          */
         var maxFloorPlanHeight = VrPlayerFct.calculate.maxFloorPlanHeight();
-
+        // console.dir($scope.tourDefaults);
+        // $scope.$on('MediaLoaded', function (ev, data) {
+        //     console.dir(data.photoUrl);
+        //     wizio.init('pano', data.photoUrl);
+        // })
+        // wizio.init('pano', $scope.tourDefaults.photoUrl);
         /**
          * Used for navigating on Powered by Wizio Button
          * @return {null}
