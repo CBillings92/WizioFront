@@ -59,16 +59,16 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         LandingPage: {
             activeListingId: function() {
                 var activeListingId = env === 'test'
-                    ? 'a55f59b2-d99d-11e6-903a-12e04a9cd045'
-                    : 'b19e3352-d9fd-11e6-85e0-0a8adbb20c4d'
+                    ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                    : 'ddef35a3-0afb-4e8c-97b5-60e057004034'
                 return activeListingId;
             }
         },
 
         DemoPage: {
             activeListingId: function() {
-                var activeListingId = env === 'test'
-                    ? ''
+                var activeListingId = env === 'test' || env === 'dev'
+                    ? '44a39e2a-e754-43af-b9c9-6cf1ec565456'
                     : 'ddef35a3-0afb-4e8c-97b5-60e057004034';
                 return activeListingId;
             }
@@ -188,6 +188,42 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     controller: 'AgentInfoCtrl'
                 },
 
+            },
+            tourApp: {
+                main: {
+                    view: MODULESPATH + 'tour-app/tour.html',
+                    controller: 'TourCtrl'
+                }
+            }
+        },
+        directives: {
+            vrplayer: {
+                main: {
+                    view: MODULESPATH + 'vr-player-app/main/vr-player.html',
+                    controller: 'VrPlayerCtrl'
+                },
+                interface: {
+                    view: MODULESPATH + 'vr-player-app/interface/interface.html',
+                    controller: 'InterfaceCtrl'
+                }
+            },
+            tour: {
+                view: MODULESPATH + 'tour-app/tour.html',
+                controller: 'TourCtrl'
+            }
+        },
+        modals: {
+            deleteTourApp: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
+                controller: 'DeleteTourModalCtrl'
+            },
+            deleteTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-confirm.html',
+                controller: 'DeleteTourConfirmCtrl'
+            },
+            deactivateTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
+                controller: 'DeactivateTourConfirmCtrl'
             }
         },
 

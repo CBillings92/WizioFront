@@ -74,8 +74,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
-
+                            templateUrl: PAGECONFIG.tourApp.main.view,
+                            controller: PAGECONFIG.tourApp.main.controller
                         }
                     }
                 })
@@ -130,6 +130,7 @@ angular.module('MainApp')
                     views: {
                         "maincontent": {
                             templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
+                            controller: 'TransitionUnitMediaCtrl'
                             // controller: 'LandingPageCtrl'
                             // controller: 'UnitMediaCtrl'
                         }
@@ -569,7 +570,6 @@ angular.module('MainApp')
                         request: function(config) {
                             requestCount++;
                             config.headers = config.headers || {};
-                            // console.dir(requestCount);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;

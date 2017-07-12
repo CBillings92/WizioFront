@@ -5,11 +5,13 @@
     angular.module('AdminPanelApp', []);
     angular.module('CreateAccountApp', []);
     angular.module('DashboardApp', []);
+    angular.module('DeleteTourApp', []);
     angular.module('LoginApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
     angular.module('AuthApp', []);
+    angular.module('VrPlayerApp', []);
     angular.module('FooterApp', []);
     angular.module('InfoApp', []);
     angular.module('LandingPageApp', []);
@@ -27,6 +29,7 @@
     angular.module('AWSApp', []);
     angular.module('AgentProfileApp', []);
     angular.module('TourPasswordApp', []);
+    angular.module('TourApp', []);
     angular.module('FlyOutMenuApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -38,8 +41,11 @@
             'AuthApp',
             'CreateAccountApp',
             'DashboardApp',
+            'DeleteTourApp',
             'LoginApp',
+            'VrPlayerApp',
             'AboutUsApp',
+            'TourApp',
             'Directives',
             'FooterApp',
             'InfoApp',
@@ -113,7 +119,6 @@
                 } else if (tokenIsExp) {
                     TokenSvc.deleteToken();
                 } else {
-                    console.dir(1);
                     $rootScope.userType = TokenSvc.decode().userType;
                     $rootScope.isLoggedIn = true;
                 }

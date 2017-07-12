@@ -1,4 +1,5 @@
-angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
+angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
+    '$scope',
     '$rootScope',
     '$state',
     '$resource',
@@ -9,60 +10,32 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
     'LoadingSpinnerFct',
     'ModalBuilderFct',
     'AWSFct',
-    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc, LoadingSpinnerFct, ModalBuilderFct, AWSFct) {
+    'VrPlayerFct',
+    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc, LoadingSpinnerFct, ModalBuilderFct, AWSFct, VrPlayerFct) {
         LoadingSpinnerFct.show('vrPlayerLoader');
-        var bodyTag = document.getElementsByTagName("BODY")[0];
+
         // var panelContainer;
         var apartmentpubid;
         var apitoken;
         var state = $state.current.name;
-        $scope.state = state;
-        var heightContainerElem = document.getElementById('height-container');
-        var floorplanImgElem = document.getElementById('floorplan');
-        var maxFloorPlanHeight = $(window).height() * 0.75;
-        $scope.toggle = false;
-        $scope.hideControls = false;
 
-        $scope.goToWizioSite = function(){
-            window.open('https://www.wizio.co/');
-        }
-        // $scope.hideFloorPlanButton = true;
-        floorplanImgElem.style['max-height'] = maxFloorPlanHeight + 'px';
-
-        // Set the margin bottom on the body to be 0 in the VR view - there is no footer
-        heightContainerElem.style['padding-bottom'] = '0';
-
-        heightContainerElem.style.height = $(window).height() + 'px';
-
-        if (state === 'NewExternalApi' || state === 'Demo' || state === 'Tour') {
-            $scope.hideControls=false;
-            bodyTag.style["margin-bottom"] = "0";
-            $(window).resize(function() {
-                heightContainerElem.style['padding-bottom'] = '0';
-                heightContainerElem.style.height = $(window).height() + 'px';
-                floorplanImgElem.style['max-height'] = $(window).height()*0.75 + 'px';
-            });
-        } else {
-            $scope.hideControls = true;
-            heightContainerElem.style.height = "100%";
-        }
-        $scope.accelerometerToggle = function(){
-          $scope.toggle = !$scope.toggle;
-          $scope.$broadcast('accelerometer-toggle', {flag: $scope.toggle});
+        $scope.accelerometerToggle = function() {
+            $scope.toggle = !$scope.toggle;
+            $scope.$broadcast('accelerometer-toggle', {flag: $scope.toggle});
         }
         // For photo and floorplan selection
         $scope.selectPhoto = false;
         $scope.viewFloorPlan = false;
 
-        $scope.buttonAction = function(toggle){
-            if(toggle === 'toggleFloorplan'){
+        $scope.buttonAction = function(toggle) {
+            if (toggle === 'toggleFloorplan') {
                 $scope.viewFloorPlan = !$scope.viewFloorPlan
-                if($scope.selectPhoto && $scope.viewFloorPlan) {
+                if ($scope.selectPhoto && $scope.viewFloorPlan) {
                     $scope.selectPhoto = !$scope.selectPhoto;
                 }
             } else {
                 $scope.selectPhoto = !$scope.selectPhoto
-                if($scope.viewFloorPlan && $scope.selectPhoto) {
+                if ($scope.viewFloorPlan && $scope.selectPhoto) {
                     $scope.viewFloorPlan = !$scope.viewFloorPlan;
                 }
 
@@ -76,190 +49,40 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', ['$scope',
         $scope.trust = $sce;
         var apiResource;
         var query;
-        // If the state is the Demo page or Landing page, get the apitoken and
-        // apartmentpubid from the config file, else get it from the state params
-        switch (state) {
-            case 'LandingPage':
-                // apitoken = WizioConfig.static_vr.apikey;
-                // apartmentpubid = WizioConfig.static_vr.landingpage.apartmentpubid;
-                activelistingid = WizioConfig.LandingPage.activeListingId();
-                $scope.style = "margin: 0 auto;";
-                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
-                    activelistingid: '@activelistingid'
-                });
-                query = {
-                    activelistingid: activelistingid
-                };
-                break;
-            case 'Demo':
-                activelistingid = WizioConfig.DemoPage.activeListingId();
-                $scope.style = "margin: 0 auto;";
-                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
-                    activelistingid: '@activelistingid'
-                });
-                query = {
-                    activelistingid: activelistingid
-                };
-                break;
-            default:
-                activelistingid = $state.params.apitoken || $state.params.activelistingid;
-                apartmentpubid = $state.params.apartmentpubid;
-                apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {
-                    activelistingid: '@activelistingid'
-                });
-                query = {
-                    activelistingid: activelistingid
-                };
+        $scope.style= "margin: 0 auto";
+
+        if (state === 'LandingPage') {
+            activelistingid = WizioConfig.LandingPage.activeListingId();
+        } else if (state === 'Demo') {
+            activelistingid = WizioConfig.DemoPage.activeListingId();
+        } else {
+            activelistingid = $state.params.apitoken || $state.params.activelistingid;
+            apartmentpubid = $state.params.apartmentpubid;
         }
 
+        apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'});
+        query = {
+            activelistingid: activelistingid
+        };
+
         apiResource.query(query, function(result) {
-            if(result[0].pinRequired){
+            if (result[0].pinRequired) {
                 result.activelistingid = activelistingid;
-                ModalBuilderFct.buildComplexModal(
-                    'md',
-                    'public/app/modules/unitapp/viewtemplates/pinrequired.modal.html',
-                    'PinRequiredModalCtrl',
-                    result
-                )
-                .then(function(result){
-                    var media = result;
-                    // if (state === 'LandingPage' || state === 'Demo') {
-                    //     media = result[0];
-                    // }
-                    if(result[0].Floor_Plan !== null){
-                        $scope.floorplan = WizioConfig.CLOUDFRONT_DISTRO + AWSFct.utilities.modifyKeyForEnvironment(result[0].SubscriptionApartmentPubId) + '/floorplan.png';
-                    } else {
-                        $scope.floorplan = false;
-                        $scope.hideFloorPlanButton = true;
-                    }
-                    $scope.media = lodash.groupBy(media, 'type');
-                    var photoIndex;
-
-                    if (state === 'LandingPage') {
-                        //hardcoded
-                        photoIndex = 6;
-                    } else if (state === 'Demo') {
-                        photoIndex = 0;
-                    } else if (state === 'DemoOneBackBay') {
-                        photoIndex = 9;
-                    } else {
-                        photoIndex = 0;
-                    }
-
-                    // broadcasts a change photo event to our VR player directive
-                    $scope.$broadcast('CHANGE', {});
-                    var photoUrl = "";
-                    // If the photo is stored in AWS
-                    if ($scope.media.vrphoto[0].awsurl) {
-                        // Set the photo index to the selected photo index
-                        $scope.photoIndex = photoIndex;
-                        var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId);
-                        // Get the photourl and set it on scope
-                        if(state === 'LandingPage'){
-                            photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
-                        } else {
-                            photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
-                        }
-                        $scope.photoUrl = photoUrl;
-                        // Broadcast to our VR player directive to load the new image
-                        $scope.$broadcast('IMGLOAD', {
-                            media: media
-                        });
-
-                        // Allow the user to change photos
-                        $scope.changePhoto = function(photoIndex) {
-                            var photoUrl = "";
-                            if(state === 'LandingPage'){
-                                photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + 'jpg';
-                            } else {
-                                photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
-                            }
-                            LoadingSpinnerFct.show('vrPlayerLoader');
-                            $scope.photoIndex = photoIndex;
-                            $scope.photoUrl =photoUrl;
-                            $scope.$broadcast('CHANGE', {});
-                        };
-                    } else {
-                        $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                        $scope.changePhoto = function(photoIndex) {
-                            $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                        };
-                        $scope.trust = $sce;
-                    }
-
-                    $scope.trust = $sce;
-                    $scope.mediaTab = 'unitPhotos';
+                ModalBuilderFct.buildComplexModal('md', 'public/app/modules/unitapp/viewtemplates/pinrequired.modal.html', 'PinRequiredModalCtrl', result).then(function(result) {
+                    LoadingSpinnerFct.hide('vrPlayerLoader');
+                    initialize(result)
                 });
             } else {
-                var media = result;
-                // if (state === 'LandingPage' || state === 'Demo') {
-                //     media = result[0];
-                // }
-                if(result[0].Floor_Plan !== null){
-                    $scope.floorplan = WizioConfig.CLOUDFRONT_DISTRO + AWSFct.utilities.modifyKeyForEnvironment(result[0].SubscriptionApartmentPubId) + '/floorplan.png';
-                    $scope.hideFloorPlanButton = false;
-                } else {
-                    $scope.floorplan = false;
-                    $scope.hideFloorPlanButton = true;
-                }
-                $scope.media = lodash.groupBy(media, 'type');
-                var photoIndex;
-
-                if (state === 'LandingPage') {
-                    //hardcoded
-                    photoIndex = 6;
-                } else if (state === 'Demo') {
-                    photoIndex = 0;
-                } else if (state === 'DemoOneBackBay') {
-                    photoIndex = 9;
-                } else {
-                    photoIndex = 0;
-                }
-
-                // broadcasts a change photo event to our VR player directive
-                $scope.$broadcast('CHANGE', {});
-                var photoUrl = "";
-                // If the photo is stored in AWS
-                if ($scope.media.vrphoto[0].awsurl) {
-                    // Set the photo index to the selected photo index
-                    $scope.photoIndex = photoIndex;
-                    var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[photoIndex].SubscriptionApartmentPubId);
-                    // Get the photourl and set it on scope
-                    if(state === 'LandingPage'){
-                        photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
-                    } else {
-                        photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
-                    }
-                    $scope.photoUrl = photoUrl;
-                    // Broadcast to our VR player directive to load the new image
-                    $scope.$broadcast('IMGLOAD', {
-                        media: media
-                    });
-
-                    // Allow the user to change photos
-                    $scope.changePhoto = function(photoIndex) {
-                        var photoUrl = "";
-                        if(state === 'LandingPage'){
-                            photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + 'jpg';
-                        } else {
-                            photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG' ;
-                        }
-                        LoadingSpinnerFct.show('vrPlayerLoader');
-                        $scope.photoIndex = photoIndex;
-                        $scope.photoUrl =photoUrl;
-                        $scope.$broadcast('CHANGE', {});
-                    };
-                } else {
-                    $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                    $scope.changePhoto = function(photoIndex) {
-                        $scope.photoUrl = $scope.media.vrphoto[photoIndex].link;
-                    };
-                    $scope.trust = $sce;
-                }
-
-                $scope.trust = $sce;
-                $scope.mediaTab = 'unitPhotos';
+                LoadingSpinnerFct.hide('vrPlayerLoader');
+                initialize(result);
             };
         });
+
+        function initialize(result) {
+            var media = result;
+            $scope.media = lodash.groupBy(media, 'type');
+            $scope.$broadcast('MediaLoad', $scope.media);
+
+        }
     }
 ]);

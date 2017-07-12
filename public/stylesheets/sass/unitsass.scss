@@ -525,7 +525,7 @@
 .agent-profile-container {
 	display: flex;
     position: absolute;
-    width:100%;
+	right: 0;
 	z-index: 600;
 	justify-content: flex-end;
 }
