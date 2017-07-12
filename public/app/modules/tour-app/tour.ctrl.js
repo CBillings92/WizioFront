@@ -50,7 +50,7 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         $scope.buttonAction = menuButtonAction;
-        // $scope.accelerometerToggle = accelerometerToggle;
+        $scope.accelerometerToggle = accelerometerToggle;
 
         initializeTour();
 
@@ -88,11 +88,9 @@ angular.module('TourApp').controller('TourCtrl', [
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
             wizio.changeImage(photoUrl);
-            // VrPlayerFct.initPlayer(false, photoUrl, {});
             $scope.selectPhoto = false;
             $scope.viewFloorPlan = false;
             LoadingSpinnerFct.hide('vrPlayerLoader');
-            // $scope.$broadcast('CHANGE', {});
         };
 
     }

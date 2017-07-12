@@ -10,7 +10,6 @@ angular.module('TourApp')
 
             function getContent(currentState) {
                 return $q(function (resolve, reject) {
-                    // LoadingSpinnerFct.show('vrPlayerLoader');
                     var activeListingId;
                     var apartmentPubId;
                     var currentState = $state.current.name;
@@ -69,7 +68,6 @@ angular.module('TourApp')
                 }
 
                 if (state === 'LandingPage') {
-                    //hardcoded
                     photoIndex = 3;
                 } else if (state === 'Demo') {
                     photoIndex = 0;
@@ -79,11 +77,7 @@ angular.module('TourApp')
                     photoIndex = 0;
                 }
 
-                if (state === 'LandingPage') {
-                    photoUrl = 'https://cdn.wizio.co/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG';
-                } else {
-                    photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG';
-                }
+                photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG';
 
                 return {
                     Floor_Plan: floorplan,
