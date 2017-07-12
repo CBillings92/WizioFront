@@ -119,7 +119,6 @@
                 } else if (tokenIsExp) {
                     TokenSvc.deleteToken();
                 } else {
-                    console.dir(1);
                     $rootScope.userType = TokenSvc.decode().userType;
                     $rootScope.isLoggedIn = true;
                 }

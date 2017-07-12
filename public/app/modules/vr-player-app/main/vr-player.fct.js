@@ -13,7 +13,6 @@ angular.module('VrPlayerApp')
                         width: 4000
                     }
                 ]);
-                console.dir(Marzipano);
                 var limiter = Marzipano.RectilinearView.limit.traditional(1920, 180 * Math.PI / 180);
                 var view = new Marzipano.RectilinearView(null, limiter);
 

@@ -570,7 +570,6 @@ angular.module('MainApp')
                         request: function(config) {
                             requestCount++;
                             config.headers = config.headers || {};
-                            // console.dir(requestCount);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;

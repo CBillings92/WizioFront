@@ -42,8 +42,6 @@ angular.module('TourApp').controller('TourCtrl', [
                     $scope.selectPhoto = !$scope.selectPhoto;
                 }
             } else {
-                console.dir('in here');
-                console.dir($scope.selectPhoto);
                 $scope.selectPhoto = !$scope.selectPhoto;
                 if ($scope.viewFloorPlan && $scope.selectPhoto) {
                     $scope.viewFloorPlan = !$scope.viewFloorPlan

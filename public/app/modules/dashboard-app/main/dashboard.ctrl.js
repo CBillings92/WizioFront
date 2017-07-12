@@ -62,7 +62,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
             $state.go('Account.Dashboard.' + state);
             $scope.state = 'Account.Dashboard.' + state;
-            console.log($scope.state);
         }
 
         /*
