@@ -22,7 +22,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         // get the user from session storage
         var user = TokenSvc.decode();
         var subsid = user.Subscriptions[0].id;
-        if(subsid === 2 || subsid === 6 || subsid === 8 || subsid === 10 || subsid === 17) {
+        if(subsid === 6 || subsid === 10 || subsid === 17) {
             TokenSvc.deleteToken();
             window.location.replace('https://www.wizio.co');
         }
@@ -32,6 +32,14 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             StorageApp.store('ActiveListings', activeListingsArr);
             $scope.activelistings = activeListingsArr;
         });
+
+        $scope.$on('ActiveListingsUpdated', function(ev, data){
+            DashboardFct.get.activelistings()
+            .then(function(activeListingsArr){
+                StorageApp.store('ActiveListings', activeListingsArr);
+                $scope.activelistings = activeListingsArr;
+            });
+        })
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
 

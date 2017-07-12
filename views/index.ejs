@@ -4,8 +4,14 @@
 <head>
     <title>Wizio</title>
     <!-- mobile friendly browsing! -->
-    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
-    <style>@-ms-viewport { width: device-width; }</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://s3.amazonaws.com/wizio-facebook-share/wizio-facebook-share.jpg" />
+
+    <meta property="og:description" content="Virtual Reality Content Creation and Hosting" />
+
+    <meta property="og:url"content="https://www.wizio.co/" />
+
+    <meta property="og:title" content="Virtual Reality Content Creation and Hosting" />
     <!-- set base of the website url to be / without the angular # -->
     <base href="/">
 
@@ -71,6 +77,11 @@
 <!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
 
 <body onLoad="onLoadEndSpinner()">
+    <script type="text/javascript">
+    $(document).on('click',function(){
+        $('.collapse').collapse('hide');
+    })
+    </script>
     <loading-spinner-dir id="siteLoader" style="position: absolute; z-index:1000; top:50%; left:50%; color:black;"></loading-spinner-dir>
     <div ui-view="navbar"></div>
     <div ui-view="maincontent" class=""></div>
@@ -78,18 +89,14 @@
     <!-- <script type="text/javascript" src='../public/internallibraries/detector.js'></script> -->
     <!-- Start of Google Analytics Code -->
     <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-69688409-1', 'none');
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-69688409-1', 'auto');
+ga('send', 'pageview');
+
     </script>
 </body>
 

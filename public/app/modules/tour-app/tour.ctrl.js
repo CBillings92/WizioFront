@@ -1,21 +1,55 @@
 angular.module('TourApp').controller('TourCtrl', [
     '$scope',
     '$state',
+    '$resource',
+    'lodash',
     'WizioConfig',
     'AWSFct',
     'VrPlayerFct',
     'LoadingSpinnerFct',
     '$sce',
-    function($scope, $state, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce) {
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce) {
         $scope.viewFloorPlan;
         $scope.selectPhoto;
         $scope.state = $state.current.name;
+        var activelistingid;
         if ($scope.state === 'Tour') {
             $scope.showcontrols = true;
             $scope.showcontactinfo = true;
             $scope.showpoweredby = true;
             document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
             document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
+        }
+
+        if($scope.state === 'LandingPage') {
+            activelistingid = 'ddef35a3-0afb-4e8c-97b5-60e057004034';
+            initForLandingOrDemoPage();
+        } else if ($scope.state === 'Demo') {
+            activelistingid = 'ddef35a3-0afb-4e8c-97b5-60e057004034';
+            initForLandingOrDemoPage();
+        }
+
+        function initForLandingOrDemoPage() {
+            var apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'});
+            query = {
+                activelistingid: activelistingid
+            };
+
+            apiResource.query(query, function(result) {
+                console.dir(result);
+                if (result[0].pinRequired) {
+                    result.activelistingid = activelistingid;
+                    ModalBuilderFct.buildComplexModal('md', 'public/app/modules/unitapp/viewtemplates/pinrequired.modal.html', 'PinRequiredModalCtrl', result).then(function(result) {
+                        LoadingSpinnerFct.hide('vrPlayerLoader');
+                        $scope.media = lodash.groupBy(result, 'type');
+                        initialize()
+                    });
+                } else {
+                    LoadingSpinnerFct.hide('vrPlayerLoader');
+                    $scope.media = lodash.groupBy(result, 'type');
+                    initialize();
+                };
+            });
         }
 
         $scope.$on('MediaLoad', function(ev, data) {
@@ -37,7 +71,7 @@ angular.module('TourApp').controller('TourCtrl', [
 
             if (state === 'LandingPage') {
                 //hardcoded
-                photoIndex = 2;
+                photoIndex = 3;
             } else if (state === 'Demo') {
                 photoIndex = 0;
             } else if (state === 'DemoOneBackBay') {
@@ -53,7 +87,7 @@ angular.module('TourApp').controller('TourCtrl', [
                 $scope.photoIndex = photoIndex;
                 // Get the photourl and set it on scope
                 if (state === 'LandingPage') {
-                    photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.jpg';
+                    photoUrl = 'https://cdn.wizio.co/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG';
                 } else {
                     photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
                 }

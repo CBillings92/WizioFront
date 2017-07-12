@@ -3,8 +3,9 @@ angular.module('DashboardApp')
         'WizioConfig',
         '$resource',
         '$q',
+        'TokenSvc',
         'ModalBuilderFct',
-        function (WizioConfig, $resource, $q, ModalBuilderFct) {
+        function (WizioConfig, $resource, $q, TokenSvc, ModalBuilderFct) {
             function inviteUser (emailOfInvitee) {
                 return $q(function(resolve, reject){
                     var user = TokenSvc.decode();

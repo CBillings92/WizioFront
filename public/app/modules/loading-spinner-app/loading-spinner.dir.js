@@ -3,7 +3,9 @@ angular.module('AccountApp')
       return {
         templateUrl: 'public/app/modules/loading-spinner-app/loading-spinner.view.html',
         controller: 'LoadingSpinnerCtrl',
-        scope: {},
+        scope: {
+            size: '@'
+        },
         restrict: 'EA'
       }
     })

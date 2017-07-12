@@ -5,6 +5,7 @@
     angular.module('AdminPanelApp', []);
     angular.module('CreateAccountApp', []);
     angular.module('DashboardApp', []);
+    angular.module('DeleteTourApp', []);
     angular.module('LoginApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -40,6 +41,7 @@
             'AuthApp',
             'CreateAccountApp',
             'DashboardApp',
+            'DeleteTourApp',
             'LoginApp',
             'VrPlayerApp',
             'AboutUsApp',
