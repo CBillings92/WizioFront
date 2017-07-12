@@ -68,7 +68,7 @@ angular.module('TourApp')
                 }
 
                 if (state === 'LandingPage') {
-                    photoIndex = 3;
+                    photoIndex = 2;
                 } else if (state === 'Demo') {
                     photoIndex = 0;
                 } else if (state === 'DemoOneBackBay') {
