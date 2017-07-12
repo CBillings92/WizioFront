@@ -37,7 +37,7 @@ angular.module('TourApp').controller('TourCtrl', [
 
         function menuButtonAction(action) {
             if (action === 'toggleFloorplan') {
-                $Scope.viewFloorPlan = !$scope.viewFloorPlan;
+                $scope.viewFloorPlan = !$scope.viewFloorPlan;
                 if ($scope.selectPhoto && $scope.viewFloorPlan) {
                     $scope.selectPhoto = !$scope.selectPhoto;
                 }
