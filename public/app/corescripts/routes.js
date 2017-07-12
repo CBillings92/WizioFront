@@ -74,9 +74,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: 'public/app/modules/unitapp/viewtemplates/transition_vrplayercontainer.view.html',
-                            controller: 'TransitionUnitMediaCtrl'
-
+                            templateUrl: PAGECONFIG.tourApp.main.view,
+                            controller: PAGECONFIG.tourApp.main.controller
                         }
                     }
                 })
@@ -571,7 +570,6 @@ angular.module('MainApp')
                         request: function(config) {
                             requestCount++;
                             config.headers = config.headers || {};
-                            // console.dir(requestCount);
                             if (config.headers.searchCheck) {
                                 delete config.headers.searchCheck;
                                 return config;
