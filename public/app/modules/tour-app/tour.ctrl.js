@@ -69,8 +69,8 @@ angular.module('TourApp').controller('TourCtrl', [
                 wizio.init('pano', tourDefaults.photoUrl);
                 $scope.tourDefaults = tourDefaults;
 
-                if (tourDefaults.floorPlan) {
-                    $scope.floorplan = tourDefaults.floorPlan;
+                if (tourDefaults.Floor_Plan) {
+                    $scope.floorplan = tourDefaults.Floor_Plan;
                     $scope.hideFloorPlanButton = false;
                 }
             })
