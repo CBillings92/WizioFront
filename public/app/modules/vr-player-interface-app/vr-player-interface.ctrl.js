@@ -1,4 +1,5 @@
-angular.module('TourApp').controller('TourCtrl', [
+angular.module('NewTourApp')
+.controller('VrPlayerInterfaceCtrl', [
     '$scope',
     '$state',
     '$resource',
@@ -8,9 +9,24 @@ angular.module('TourApp').controller('TourCtrl', [
     'VrPlayerFct',
     'LoadingSpinnerFct',
     '$sce',
-    'TourFct',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce, TourFct) {
+    'VrPlayerInterfaceFct',
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce, VrPlayerInterfaceFct) {
         $scope.state = $state.current.name;
+        $scope.showInterface = true;
+        $scope.$on('InterfaceDataReceived', function(event, data){
+            $scope.data = data;
+            $scope.media = data.media;
+            $scope.showInterface = data.showInterface;
+        });
+
+        $scope.$on('ToggleFloorPlan', function(event, data) {
+            menuButtonAction('toggleFloorplan');
+        });
+
+        $scope.$on('TogglePhotoList', function(event, data) {
+            menuButtonAction('togglePhotoList');
+
+        })
 
         // For photo and floorplan selection
         $scope.selectPhoto = false;
@@ -51,31 +67,6 @@ angular.module('TourApp').controller('TourCtrl', [
 
         $scope.buttonAction = menuButtonAction;
         $scope.accelerometerToggle = accelerometerToggle;
-
-        initializeTour();
-
-        /**
-         * Get Tour data, then sort the tour photos by photo type
-         * @type {[type]}
-         */
-        function initializeTour() {
-            TourFct.getContent()
-            .then(function (media) {
-                $scope.floorplan = false;
-                $scope.hideFloorPlanButton = true;
-                var orderedMedia = lodash.groupBy(media, 'type');
-                $scope.media = orderedMedia;
-                var tourDefaults = TourFct.setTourDefaults(orderedMedia);
-                // wizio.init('pano', tourDefaults.photoUrl);
-                $scope.tourDefaults = tourDefaults;
-
-                if (tourDefaults.Floor_Plan) {
-                    $scope.floorplan = tourDefaults.Floor_Plan;
-                    $scope.hideFloorPlanButton = false;
-                }
-            })
-        }
-
 
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {

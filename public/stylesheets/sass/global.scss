@@ -315,3 +315,11 @@ a:focus {
     border-color: $light-orange !important;
     color: $white !important;
 }
+
+.pointer-events_none {
+    pointer-events: none;
+}
+
+.pointer-events_all {
+    pointer-events: all;
+}

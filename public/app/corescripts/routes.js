@@ -74,8 +74,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: PAGECONFIG.tourApp.main.view,
-                            controller: PAGECONFIG.tourApp.main.controller
+                            templateUrl: PAGECONFIG.newTourApp.main.view,
+                            controller: PAGECONFIG.newTourApp.main.controller
                         }
                     }
                 })
@@ -129,10 +129,8 @@ angular.module('MainApp')
                     url: '/demo',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
-                            controller: 'TransitionUnitMediaCtrl'
-                            // controller: 'LandingPageCtrl'
-                            // controller: 'UnitMediaCtrl'
+                            templateUrl: PAGECONFIG.newTourApp.main.view,
+                            controller: PAGECONFIG.newTourApp.main.controller
                         }
                     }
                 })

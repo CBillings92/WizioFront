@@ -1,0 +1,35 @@
+<div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
+    <div class="tour-photos-container" ng-show="selectPhoto">
+        <div class="container-fluid">
+            <div class="row" id="photo-button-container">
+                <div class="col-md-4  pointer-events_all" ng-repeat="photo in media.vrphoto track by $index">
+                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 tour-photos-button vr-control-button">{{photo.title}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tour-floorplan-container pointer-events_all" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
+        <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+        <div style="position:relative; display:inline-block">
+            <img src="{{data.floorPlan}}" id="floorplan" style="" alt="" />
+            <span ng-repeat="photo in media.vrphoto track by $index">
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
+                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+            </span>
+        </div>
+    </div>
+    <div class="tour-control-container">
+        <fly-out-menu-dir select-photo='selectPhoto'></fly-out-menu-dir>
+    </div>
+    <div class="tour-agentprofile-container pointer-events_all" ng-show="showcontactinfo">
+        <agent-profile-dir></agent-profile-dir>
+    </div>
+
+    <loading-spinner-dir id="vrPlayerLoader" size="fa-5x" style="color:#f79739; visibility: hidden; position: absolute; z-index: 1000; top: 50%; right: 50%"></loading-spinner-dir>
+
+    <!-- Photo Selection  -->
+    <!-- Floorplan -->
+    <!-- Menu -->
+    <!-- Contact Info -->
+    <!-- Powered By -->
+</div>

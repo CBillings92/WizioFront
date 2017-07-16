@@ -5,11 +5,11 @@ angular.module('FlyOutMenuApp')
             $scope.menuIsOpen = false;
             var hideFloorPlanButton = false;
             function viewFloorPlan() {
-                $scope.buttonAction('toggleFloorplan');
+                $scope.$emit('ToggleFloorPlan', {});
                 $scope.menuIsOpen = !$scope.menuIsOpen;
             }
             function viewPhotoList() {
-                $scope.buttonAction('togglePhotos');
+                $scope.$emit('TogglePhotoList');
                 // $scope.selectPhoto = !$scope.selectPhoto;
                 $scope.menuIsOpen = !$scope.menuIsOpen;
 
