@@ -23,7 +23,7 @@ angular.module('FlyOutMenuApp')
                 if($scope.floorPlan){
                     $scope.actions[0].show = true;
                 } else {
-                    $scope.actions[0].show = false
+                    $scope.actions[0].show = false;
                 }
             };
             $scope.actions = [

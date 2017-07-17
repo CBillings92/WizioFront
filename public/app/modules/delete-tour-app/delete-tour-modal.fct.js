@@ -15,8 +15,8 @@ angular.module('DeleteTourApp')
                         function(response){
                             return resolve(response);
                         }
-                    )
-                })
+                    );
+                });
             }
 
             function deactivateTour (activeListingPubId) {
@@ -30,13 +30,13 @@ angular.module('DeleteTourApp')
                         function(response){
                             return resolve(response);
                         }
-                    )
-                })
+                    );
+                });
             }
 
             return {
                 deleteTour: deleteTour,
                 deactivateTour: deactivateTour
-            }
+            };
         }
-    ])
+    ]);
