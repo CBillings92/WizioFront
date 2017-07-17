@@ -5835,7 +5835,7 @@ body {
   font-family: "Roboto";
   -webkit-font-smoothing: antialiased;
   margin: 0 auto;
-  padding-bottom: 250px; }
+  height: 100%; }
 
 h3 {
   font-family: "Roboto";
@@ -5859,6 +5859,14 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.1; }
+
+#site-container {
+  min-height: 100%;
+  position: relative; }
+
+#main-content {
+  padding-bottom: 250px;
+  height: 100%; }
 
 @media (max-width: 767px) {
   h1,
@@ -6463,8 +6471,8 @@ div[class^='color__box'], div[class*=' color__box'] {
 @media (max-width: 767px) {
   /* Set the fixed height of the footer here
        for mobile screens */
-  body {
-    margin-bottom: 550px; }
+  #main-content {
+    padding-bottom: 550px; }
   .footer {
     height: 550px; }
     .footer h2 {

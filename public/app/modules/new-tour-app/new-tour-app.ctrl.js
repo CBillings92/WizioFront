@@ -1,10 +1,18 @@
 angular.module('NewTourApp').controller('NewTourCtrl', [
     '$scope',
+    '$state',
     'WizioConfig',
     'NewTourFct',
     'lodash',
-    function($scope, WizioConfig, NewTourFct, lodash) {
+    function($scope, $state, WizioConfig, NewTourFct, lodash) {
         $scope.showInterface = true;
+        if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
+            console.dir(document.getElementById('site-container'));
+            document.getElementById('site-container').style.height = "100%";
+            document.getElementById('site-container').setAttribute("style", "height:100%")
+            document.getElementById('main-content').style["padding-bottom"] = 0;
+            document.getElementById('main-content').style["margin-bottom"] = 0;
+        }
         NewTourFct.getContent().then(function(media) {
             var interfaceData = {
                 floorPlan: false,

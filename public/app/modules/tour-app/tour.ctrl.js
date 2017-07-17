@@ -21,8 +21,11 @@ angular.module('TourApp').controller('TourCtrl', [
             $scope.showcontrols = true;
             $scope.showcontactinfo = true;
             $scope.showpoweredby = true;
-            document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
-            document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
+            console.dir(document.getElementById('site-container'));
+            document.getElementById('site-container').style.height = "100%";
+            document.geteElementById('site-container').setAttribute("style", "height:100%")
+            document.getElementById('main-content').style["padding-bottom"] = 0;
+            document.getElementById('main-content').style["margin-bottom"] = 0;
         }
 
         /**
