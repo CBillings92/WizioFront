@@ -1,7 +1,7 @@
 <div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
     <div class="tour-photos-container" ng-show="selectPhoto">
         <div class="container-fluid">
-            <div class="row  pointer-events_all" id="photo-button-container" style="padding:25px;background: rgba(0,0,0,0.35); border: 1px solid black; border-radius:2px; height:400px; overflow:scroll; margin-top: 100px; margin-left: 50px; margin-right:50px; overflow-x: hidden;">
+            <div class="row  pointer-events_all" id="photo-button-container">
                 <div class="col-md-4  pointer-events_all" ng-repeat="photo in media.vrphoto track by $index">
                     <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 tour-photos-button vr-control-button">{{photo.title}}</button>
                 </div>
