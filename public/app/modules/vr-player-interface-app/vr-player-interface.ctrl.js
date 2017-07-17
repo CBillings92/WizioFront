@@ -17,6 +17,7 @@ angular.module('NewTourApp')
             $scope.data = data;
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
+            $scope.floorPlan = data.floorPlan;
         });
 
         $scope.$on('ToggleFloorPlan', function(event, data) {

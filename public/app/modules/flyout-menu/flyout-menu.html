@@ -3,6 +3,7 @@
         class="flyout-menu_circle-item_container"
         ng-repeat="action in actions track by $index"
         ng-class="{'flyout-menu_open': menuIsOpen, 'flyout-menu_close': !menuIsOpen}"
+        ng-if = 'action.show'
     >
         <div ng-click="action.action()" class="flyout-menu_circle-item"></div>
         <span class="flyout-menu_circle-item_context" ng-click="action.action()">{{action.name}}</span>

@@ -41,6 +41,7 @@ angular.module('NewTourApp')
                     }
 
                     apiResource.query(query, function (results) {
+
                         if (results[0].pinRequired) {
                             requestPassword()
                             .then(function (response) {
@@ -64,7 +65,6 @@ angular.module('NewTourApp')
              * @param {[type]} SubscriptionApartmentPubId CHAR(36) - Public ID for SubscriptionApartment
              */
             function setTourDefaults(media) {
-                console.dir(media);
                 var photoIndex;
                 var floorplan = false;
                 var state = $state.current.name;

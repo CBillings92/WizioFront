@@ -19,24 +19,29 @@ angular.module('FlyOutMenuApp')
             }
             $scope.openCloseMenu = function() {
                 $scope.menuIsOpen = !$scope.menuIsOpen;
-                $scope.actions[0].hide =  $scope.hideFloorPlanButton;
+                // set floorplan button visibility
+                if($scope.floorPlan){
+                    $scope.actions[0].show = true;
+                } else {
+                    $scope.actions[0].show = false
+                }
             };
             $scope.actions = [
                 {
                     'name': 'Floor Plan',
                     'action': viewFloorPlan,
-                    'hide': hideFloorPlanButton
+                    'show': hideFloorPlanButton
 
                 },
                 {
                     'name': 'Photo List',
                     'action': viewPhotoList,
-                    'hide': false
+                    'show': true
                 },
                 {
                     'name': '360 Control',
                     'action': enableAccelerometer,
-                    'hide': false
+                    'show': true
 
                 }
             ];
