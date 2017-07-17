@@ -5,11 +5,10 @@ angular.module('TourApp').controller('TourCtrl', [
     'lodash',
     'WizioConfig',
     'AWSFct',
-    'VrPlayerFct',
     'LoadingSpinnerFct',
     '$sce',
     'TourFct',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce, TourFct) {
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, TourFct) {
         $scope.state = $state.current.name;
 
         // For photo and floorplan selection

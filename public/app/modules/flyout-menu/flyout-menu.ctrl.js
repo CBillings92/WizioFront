@@ -10,7 +10,6 @@ angular.module('FlyOutMenuApp')
             }
             function viewPhotoList() {
                 $scope.$emit('TogglePhotoList');
-                // $scope.selectPhoto = !$scope.selectPhoto;
                 $scope.menuIsOpen = !$scope.menuIsOpen;
 
             }

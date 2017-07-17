@@ -7,7 +7,6 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
     function($scope, $state, WizioConfig, NewTourFct, lodash) {
         $scope.showInterface = true;
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
-            console.dir(document.getElementById('site-container'));
             document.getElementById('site-container').style.height = "100%";
             document.getElementById('site-container').setAttribute("style", "height:100%")
             document.getElementById('main-content').style["padding-bottom"] = 0;

@@ -1,7 +1,6 @@
 angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     '$scope',
-    'VrPlayerFct',
-    function($scope, VrPlayerFct) {
+    function($scope) {
 
         $scope.$on('TourDataReceived', function(event, data){
             wizio.init('pano', data.firstPhotoUrl);

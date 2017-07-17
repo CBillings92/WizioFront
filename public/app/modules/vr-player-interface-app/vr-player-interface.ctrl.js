@@ -6,11 +6,10 @@ angular.module('NewTourApp')
     'lodash',
     'WizioConfig',
     'AWSFct',
-    'VrPlayerFct',
     'LoadingSpinnerFct',
     '$sce',
     'VrPlayerInterfaceFct',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce, VrPlayerInterfaceFct) {
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, VrPlayerInterfaceFct) {
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
