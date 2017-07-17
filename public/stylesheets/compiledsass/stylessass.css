@@ -7020,10 +7020,24 @@ div[class^='color__box'], div[class*=' color__box'] {
   display: inline-block;
   vertical-align: middle; }
 
-@media (max-width: 768px) {
-  #photo-button-container {
-    height: 85%;
-    overflow: scroll; } }
+#photo-button-container {
+  padding-top: 25px;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-bottom: 60px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid black;
+  border-radius: 2px;
+  max-height: 400px;
+  overflow: scroll;
+  margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  overflow-x: hidden; }
+  @media (max-width: 768px) {
+    #photo-button-container {
+      height: 85%;
+      overflow: scroll; } }
 
 .vr-control-container {
   position: absolute;
