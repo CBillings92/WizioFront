@@ -59,7 +59,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         LandingPage: {
             activeListingId: function() {
                 var activeListingId = env === 'test'
-                    ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                    ? '44a39e2a-e754-43af-b9c9-6cf1ec565456'
                     : 'ddef35a3-0afb-4e8c-97b5-60e057004034'
                 return activeListingId;
             }
