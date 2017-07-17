@@ -44,6 +44,15 @@
 
 }
 
+
+#pano:hover {
+    cursor: grab;
+}
+
+#pano:active {
+    cursor: grabbing;
+}
+
 canvas {
     position: absolute;
     top: 0;
