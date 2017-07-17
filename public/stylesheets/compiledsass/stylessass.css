@@ -5835,7 +5835,7 @@ body {
   font-family: "Roboto";
   -webkit-font-smoothing: antialiased;
   margin: 0 auto;
-  padding-bottom: 250px; }
+  height: 100%; }
 
 h3 {
   font-family: "Roboto";
@@ -5859,6 +5859,14 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.1; }
+
+#site-container {
+  min-height: 100%;
+  position: relative; }
+
+#main-content {
+  padding-bottom: 250px;
+  height: 100%; }
 
 @media (max-width: 767px) {
   h1,
@@ -6034,6 +6042,12 @@ a:focus {
   background-color: #f79739 !important;
   border-color: #F7AA63 !important;
   color: #ffffff !important; }
+
+.pointer-events_none {
+  pointer-events: none; }
+
+.pointer-events_all {
+  pointer-events: all; }
 
 .w-icon {
   background-size: contain;
@@ -6457,8 +6471,8 @@ div[class^='color__box'], div[class*=' color__box'] {
 @media (max-width: 767px) {
   /* Set the fixed height of the footer here
        for mobile screens */
-  body {
-    margin-bottom: 550px; }
+  #main-content {
+    padding-bottom: 550px; }
   .footer {
     height: 550px; }
     .footer h2 {
@@ -8403,6 +8417,8 @@ body {
     margin-right: 0; } }
 
 .agent-profile-container {
+  height: 0;
+  width: 0;
   position: absolute;
   right: 0;
   cursor: pointer; }
@@ -8529,6 +8545,7 @@ body {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
+  pointer-events: all;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
@@ -8536,6 +8553,7 @@ body {
   transition: all 0.5s ease; }
 
 .flyout-menu_close {
+  pointer-events: none;
   -webkit-opacity: 0;
   -moz-opacity: 0;
   opacity: 0;

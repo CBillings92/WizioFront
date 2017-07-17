@@ -46,7 +46,8 @@ body {
     font-family: "Roboto";
     -webkit-font-smoothing: antialiased;
     margin: 0 auto;
-    padding-bottom: 250px;
+    height:100%;
+    //padding-bottom: 250px;
 }
 
 h1,
@@ -78,6 +79,15 @@ p {
     font-weight: 400;
     line-height: 1.1;
 }
+
+#site-container {
+    min-height:100%;
+    position: relative
+}
+#main-content {
+    padding-bottom: 250px;
+    height:100%;
+}
 @media (max-width: 767px) {
     h1,
     h2 {
@@ -95,6 +105,9 @@ p {
     h5 {
         font-size: 20px;
     }
+    // #main-content {
+    //     padding-bottom: 550px;
+    // }
 }
 @media (min-width: 768px) and (max-width: 991px) {
     h1,
@@ -105,6 +118,9 @@ p {
     h3 {
         font-size: 27px;
     }
+    // #main-content {
+    //     padding-bottom: 550px;
+    // }
 }
 @media (min-width: 992px) {
     h1,
@@ -314,4 +330,12 @@ a:focus {
     background-color: $orange !important;
     border-color: $light-orange !important;
     color: $white !important;
+}
+
+.pointer-events_none {
+    pointer-events: none;
+}
+
+.pointer-events_all {
+    pointer-events: all;
 }

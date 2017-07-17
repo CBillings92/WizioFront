@@ -10,8 +10,7 @@ angular.module('UnitApp').controller('TransitionUnitMediaCtrl', [
     'LoadingSpinnerFct',
     'ModalBuilderFct',
     'AWSFct',
-    'VrPlayerFct',
-    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc, LoadingSpinnerFct, ModalBuilderFct, AWSFct, VrPlayerFct) {
+    function($scope, $rootScope, $state, $resource, WizioConfig, $sce, lodash, ModalSvc, LoadingSpinnerFct, ModalBuilderFct, AWSFct) {
         LoadingSpinnerFct.show('vrPlayerLoader');
 
         // var panelContainer;
