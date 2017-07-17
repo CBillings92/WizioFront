@@ -20,6 +20,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 return 'test';
             case "https://alpha.wizio.co":
                 return 'test';
+            case "http://alpha.wizio.co":
+                return 'test';
             case "http://beta.wizio.co":
                 return 'prod';
             case "http://wizio.co":
