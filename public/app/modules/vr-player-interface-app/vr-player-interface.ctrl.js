@@ -84,5 +84,11 @@ angular.module('NewTourApp')
             LoadingSpinnerFct.hide('vrPlayerLoader');
         };
 
+        $scope.thumbnailURL = function(photoIndex) {
+            // console.log('hello hi');
+            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
+            return WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
+        }
+
     }
 ])

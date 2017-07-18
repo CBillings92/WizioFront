@@ -1,13 +1,23 @@
 <div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
     <div class="tour-photos-container" ng-show="selectPhoto">
-        <div class="container-fluid">
-            <div class="row  pointer-events_all" id="photo-button-container">
-                <div class="col-md-4  pointer-events_all" ng-repeat="photo in media.vrphoto track by $index">
-                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 tour-photos-button vr-control-button">{{photo.title}}</button>
+        <div class="container-fluid" style="z-index:100;">
+            <div class="pointer-events_all" id="scrollthis" style="background-color:grey; position: absolute; border: solid; bottom: 0; right: 0;  left: 0;overflow-x:scroll; display:flex; " >
+                <div class="" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)" style="margin:0;cursor:pointer;width: 20%; height:100%; float: left; padding-left:15px; padding-right:15px;"  >
+                        {{photo.title}}
+                        <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  height="90" width="160" />
                 </div>
             </div>
         </div>
     </div>
+    <!-- <div class="row  pointer-events_all" id="photo-button-container" style="padding:25px;background: rgba(0,0,0,0.35); border: 1px solid black; border-radius:2px; height:400px; overflow:scroll; margin-top: 100px; margin-left: 50px; margin-right:50px; overflow-x: hidden;">
+            <div class="photo-tab col-sm-3 col-md-2  pointer-events_all" ng-repeat="photo in media.vrphoto track by $index">
+                <div ng-click="changePhoto($index)" >
+                <img ng-src="{{thumbnailURL($index)}}" height="110" width="200" style="border:2px solid black">
+                <br>
+                <span class="photo-label">{{photo.title}}</span>
+                </div>
+            </div>
+    </div> -->
     <div class="tour-floorplan-container pointer-events_all" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
         <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
         <div style="position:relative; display:inline-block">
