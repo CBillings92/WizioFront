@@ -334,7 +334,7 @@ angular.module('MainApp')
                     views: {
                         "dashboard-main": {
                             templateUrl: PAGECONFIG.dashboard.shareTour.view,
-                            controller: PAGECONFIG.dashboard.shareTour.controller
+                            // controller: PAGECONFIG.dashboard.shareTour.controller
                         }
                     }
                 })

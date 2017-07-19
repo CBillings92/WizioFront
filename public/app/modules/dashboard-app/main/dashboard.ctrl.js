@@ -10,10 +10,16 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'DashboardFct',
     'StorageApp',
     '$state',
-    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state) {
+    'lodash',
+    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
         $state.go('Account.Dashboard.ShareTour');
         $scope.state = 'Account.Dashboard.ShareTour';
 
+        $scope.viewActiveTours = 1;
+        $scope.changeTourListView = function () {
+           $scope.viewActiveTours = !$scope.viewActiveTours;
+           return;
+        }
         // set flags
         // $scope.currentview = 'share';
         $scope.emailToInvite = null;
@@ -28,18 +34,24 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         }
         // get active listings for logged in user
         DashboardFct.get.activelistings()
-        .then(function(activeListingsArr){
-            StorageApp.store('ActiveListings', activeListingsArr);
-            $scope.activelistings = activeListingsArr;
+        .then(function(tours){
+            return parseTours(tours);
         });
 
         $scope.$on('ActiveListingsUpdated', function(ev, data){
             DashboardFct.get.activelistings()
-            .then(function(activeListingsArr){
-                StorageApp.store('ActiveListings', activeListingsArr);
-                $scope.activelistings = activeListingsArr;
+            .then(function(tours){
+                return parseTours(tours);
             });
         })
+
+        function parseTours(tours) {
+            StorageApp.store('ActiveListings', tours);
+            $scope.orderedTours = lodash.groupBy(tours, 'isDeleted')
+            $scope.inactiveListings = $scope.orderedTours.true;
+            $scope.activeListings = $scope.orderedTours.false;
+            return;
+        }
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
 

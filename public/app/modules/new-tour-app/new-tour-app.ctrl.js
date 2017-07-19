@@ -13,6 +13,7 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
         NewTourFct.getContent().then(function(media) {
+            console.dir(media);
             var interfaceData = {
                 floorPlan: false,
                 hideFloorPlanButton: true,
