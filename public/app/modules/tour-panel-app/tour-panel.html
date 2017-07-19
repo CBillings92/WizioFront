@@ -1,0 +1,47 @@
+<div class="tour-panel-container" style="border:2px solid black; border-radius:3px;padding:15px; margin:10px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div><strong>{{activelisting.Apartment.concatAddr}}</strong></div>
+            <div><strong>Unit Number: {{activelisting.Apartment.unitNum}}</strong></div>
+        </div>
+        <div class="col-md-6 search-right">
+            <div class="form-group" ng-if="!activelisting.isDeleted">
+                <div class="row">
+                    <div class="col-md-12 col-md-pull-1" style="margin-bottom:5px; margin-right:15px;">
+                        <div class="col-md-6">
+                            <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.pubid}}" class="btn btn-md btn-outline--orange clipboard form-control">Copy Link</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="openInNewPage(activelisting.pubid)">Open Tour</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-md-pull-1" style="margin-right:15px;">
+                        <div class="col-md-6" ng-show="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">Password Protect</button>
+                        </div>
+                        <div class="col-md-6" ng-hide="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="makeActiveListingPublic(activelisting, $index)">Make Public</button>
+                        </div>
+                        <div class="col-md-6" ng-hide="activelisting.isPublic">
+                            <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">New Password</button>
+                        </div>
+                    </div>
+                    <div class="" style="position: absolute; right: 14px; top:3px;">
+                        <i ng-show="!activelisting.isPublic" class="fa fa-lock fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-2x fa-unlock-alt" ng-show="activelisting.isPublic" aria-hidden="true"></i>
+                    </div>
+                    <div class="" style="position:absolute;right: 10px; bottom:3px; cursor: pointer">
+                        <i class="fa fa-trash-o fa-2x" ng-click="deleteActiveListing(activelisting, $index)" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-if="activelisting.isDeleted">
+                <div class="col-md-12 col-md-pull-1" style="margin-bottom:5px; margin-right:15px;">
+                    <div class="col-md-push-6 col-md-6" style="margin-top:5px;">
+                        <button class="btn btn-md btn-outline--orange form-control" ng-click="reactivateTour(activelisting)">Reactivate Tour</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

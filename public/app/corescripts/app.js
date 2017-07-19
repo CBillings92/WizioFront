@@ -32,6 +32,8 @@
     angular.module('AgentProfileApp', []);
     angular.module('TourPasswordApp', []);
     angular.module('TourApp', []);
+    angular.module('ShareTourApp', []);
+    angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -62,6 +64,8 @@
             'PhotographerApp',
             'SearchApp',
             'TourPasswordApp',
+            'TourPanelApp',
+            'ShareTourApp',
             'AWSApp',
             'AgentProfileApp',
             'UnitApp',

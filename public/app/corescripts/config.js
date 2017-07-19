@@ -183,7 +183,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 },
                 shareTour: {
                     view: MODULESPATH + 'dashboard-app/share-tour/share-tour.html',
-                    controller: ''
                 },
                 agentInfo: {
                     view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',
@@ -226,6 +225,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             vrPlayerInterface: {
                 view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',
                 controller: 'VrPlayerInterfaceCtrl'
+            },
+            tourPanel: {
+                view: MODULESPATH + 'tour-panel-app/tour-panel.html',
+                controller: 'TourPanelCtrl'
             }
         },
         modals: {
