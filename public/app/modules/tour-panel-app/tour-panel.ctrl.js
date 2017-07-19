@@ -76,23 +76,6 @@ angular.module('TourPanelApp')
                         return
                     }
                 })
-                // ModalBuilderFct.buildSimpleModal(
-                //     'Cancel',
-                //     'Delete',
-                //     "Delete ",
-                //     'This listing will be removed from your Active Listings list. It can be re-added to this list by navigating to "Search", searching the address and selecting "Activate".'
-                // )
-                // .then(function(response){
-                //     if(response === 'ok'){
-                //         ActiveListingFct.deleteActiveListing(activeListing)
-                //         .then(function(response){
-                //             // temporarily remove the listing from the UI - upon next login the listing will be gone
-                //             $scope.activelistings.splice(index, 1);
-                //         });
-                //     } else if(response === 'cancel'){
-                //         return;
-                //     }
-                // })
             }
 
             // Generate a password for a given tour.

@@ -32,6 +32,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             TokenSvc.deleteToken();
             window.location.replace('https://www.wizio.co');
         }
+        // FIXME: Move ShareTour/ActiveListings/InactiveListings code into own app
         // get active listings for logged in user
         DashboardFct.get.activelistings()
         .then(function(tours){

@@ -181,7 +181,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 },
                 shareTour: {
                     view: MODULESPATH + 'dashboard-app/share-tour/share-tour.html',
-                    controller: 'ShareTourCtrl'
                 },
                 agentInfo: {
                     view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',

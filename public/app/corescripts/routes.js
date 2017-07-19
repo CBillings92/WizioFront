@@ -66,7 +66,6 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
                             controller: 'UploadPageCtrl'
-                                // controller: 'UnitMediaCtrl'
                         }
                     }
                 })
@@ -105,7 +104,6 @@ angular.module('MainApp')
                     }
                 })
                 .state('Signup', {
-                    // abstract: true,
                     url: '/signup',
                     views: {
                         "footer": footer,
@@ -175,14 +173,12 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Photographer', {
-                    // abstract: true,
                     url: '/photographer',
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/photographerapp/main/photographer-main.view.html',
-                            // controller: 'LandingPageCtrl'
                         }
 
                     }
@@ -192,7 +188,6 @@ angular.module('MainApp')
                     url: '/track',
                     views: {
                         'test': {
-                            // templateUrl: '',
                             templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
                             controller: 'PhotographerTrackCtrl',
                         }
@@ -334,7 +329,6 @@ angular.module('MainApp')
                     views: {
                         "dashboard-main": {
                             templateUrl: PAGECONFIG.dashboard.shareTour.view,
-                            // controller: PAGECONFIG.dashboard.shareTour.controller
                         }
                     }
                 })
