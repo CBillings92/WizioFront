@@ -2,6 +2,19 @@
 
 }
 
+.tour-photos-navbar {
+    width: 100%;
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+
+    .tour-nav-buttons {
+        margin-left: auto;
+    }
+}
+
 .outline-photo-orange {
     border-color: orange;
     border-radius: 3px;

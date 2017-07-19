@@ -1,10 +1,21 @@
 <div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
-    <div class="tour-photos-container" ng-show="selectPhoto">
+
+    <div class="tour-photos-navbar">
+        <span style="color:white; right:0px; font-size:1.5em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
+        <div class="tour-nav-buttons">
+            <button class="btn"> Floorplan </button>
+            <button class="btn"> Contact Agent </button>
+
+        </div>
+    </div>
+
+
+    <div class="tour-photos-container">
         <div class="container-fluid" style="z-index:100;">
-            <div class="pointer-events_all" id="scrollthis" style="background-color:grey; position: absolute; border: solid; bottom: 0; right: 0;  left: 0;overflow-x:scroll; display:flex; " >
-                <div class="" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)" style="margin:0;cursor:pointer;width: 20%; height:100%; float: left; padding-left:15px; padding-right:15px;"  >
-                        {{photo.title}}
+            <div class="pointer-events_all" id="scrollthis" style="background-color:grey; position: absolute; padding-top:15px; bottom: 0; right: 0;  left: 0;overflow-x:scroll; display:flex; text-align: center; " >
+                <div class="" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)" style="margin:0;cursor:pointer;width: 20%; height:100%; float: left; padding-left:15px; padding-right:15px; "  >
                         <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  height="90" width="160" />
+                        <span style="color:white;">{{photo.title}}</span>
                 </div>
             </div>
         </div>
