@@ -51,6 +51,47 @@ angular.module('NewTourApp')
             return;
         }
 
+        //FIXME don't use JQuery..
+            var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+                width =  $("#scrollthis").width();
+                el = $("#scrollthis");
+                currentPosition = el.scrollLeft();
+                moveWidth = width * 0.5 * direction;
+                // el.scrollLeft(currentPosition + moveWidth);
+                el.animate({
+                    scrollLeft: currentPosition + moveWidth
+                }, 500, function () {
+                    $scope.sliderCanGoForward = $scope.canSliderForward();
+                    $scope.sliderCanGoBackward = $scope.canSliderBackward();
+                });
+            };
+
+            $scope.sliderCanGoForward = true;
+            $scope.sliderCanGoBackward = false;
+
+            $scope.canSliderBackward = function() {
+                return $("#scrollthis").scrollLeft() > 0;
+            };
+
+            $scope.canSliderForward = function() {
+                el = $("#scrollthis");
+                width =  el.outerWidth();
+                currentPosition = el.scrollLeft();
+                viewportWidth = el.width();
+                return currentPosition + viewportWidth < width;
+            };
+
+            $scope.moveSliderBackward = function() {
+
+                moveSlider(-1);
+            };
+
+            $scope.moveSliderForward = function() {
+
+                moveSlider(1);
+            };
+
+
         function menuButtonAction(action) {
             if (action === 'toggleFloorplan') {
                 $scope.viewFloorPlan = !$scope.viewFloorPlan;
