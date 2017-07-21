@@ -5,7 +5,7 @@
             <span style="color:white; right:0px; font-size:1em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
         </div>
         <div class="tour-nav-buttons">
-            <button class="btn btn-md btn-fill--orange"> Floorplan </button>
+            <button class="btn btn-md btn-fill--orange" ng-click="viewFloorPlanThing()"> Floorplan </button>
             <button class="btn btn-md btn-fill--orange"> Contact Agent </button>
 
         </div>
@@ -13,11 +13,11 @@
 
 
 
-    <div class="tour-photos-container container-fluid" style="background-color:gray;z-index:100;position: absolute; padding-top:35px; top:85%; height:15%; display: flex">
+    <div class="tour-photos-container container-fluid" >
             <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
             </div>
-            <div class="pointer-events_all" id="scrollthis" style="margin-left:auto; margin-right:auto;width:90%;background-color:grey; overflow-x:scroll; display:flex; text-align: center; " >
+            <div class="tour-photo-list-wrapper pointer-events_all" id="scrollthis" style="" >
                 <div class="label-and-photo-wrapper" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)"  >
                         <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  height="90" width="160" />
                         <span style="color:white;">{{photo.title}}</span>
@@ -54,9 +54,9 @@
             </span>
         </div>
     </div>
-    <div class="tour-control-container">
+    <!-- <div class="tour-control-container">
         <fly-out-menu-dir select-photo='selectPhoto'></fly-out-menu-dir>
-    </div>
+    </div> -->
     <div class="tour-agentprofile-container pointer-events_all" ng-show="showcontactinfo">
         <agent-profile-dir></agent-profile-dir>
     </div>
