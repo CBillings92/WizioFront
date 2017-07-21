@@ -1,18 +1,20 @@
 <div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
 
-    <div class="tour-photos-navbar">
-        <span style="color:white; right:0px; font-size:1.5em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
+    <div class="tour-photos-navbar pointer-events_all">
+        <div style="display:flex; align-items:center; padding-top:5px;padding-left:10px;">
+            <span style="color:white; right:0px; font-size:1em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
+        </div>
         <div class="tour-nav-buttons">
-            <button class="btn"> Floorplan </button>
-            <button class="btn"> Contact Agent </button>
+            <button class="btn btn-md btn-fill--orange"> Floorplan </button>
+            <button class="btn btn-md btn-fill--orange"> Contact Agent </button>
 
         </div>
     </div>
 
 
 
-    <div class="tour-photos-container container-fluid" style="background-color:gray;z-index:100;position: absolute; padding-top:15px; top:85vh; height:15%; display: flex">
-            <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;" >
+    <div class="tour-photos-container container-fluid" style="background-color:gray;z-index:100;position: absolute; padding-top:35px; top:85%; height:15%; display: flex">
+            <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
             </div>
             <div class="pointer-events_all" id="scrollthis" style="margin-left:auto; margin-right:auto;width:90%;background-color:grey; overflow-x:scroll; display:flex; text-align: center; " >
@@ -21,7 +23,7 @@
                         <span style="color:white;">{{photo.title}}</span>
                 </div>
             </div>
-            <div class="arrow-move pointer-events_all" style="align-items: center;display:flex;" >
+            <div class="arrow-move pointer-events_all" style="align-items: center;display:flex; cursor:pointer;" >
                 <i class="fa fa-chevron-right fa-4x" aria-hidden="true" ng-click="moveSliderForward()" ></i>
             </div>
         <!-- <div class="tour-photos-move-scroll pointer-events_all" style="background-color:red; position: absolute; padding-top:15px; bottom: 0; right: 0;  left: 0; display: flex;">
