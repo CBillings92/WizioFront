@@ -32,13 +32,9 @@ height: auto;
 }
 
 .tour-floorplan-container {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .tour-photo-list-wrapper {
@@ -67,7 +63,6 @@ height: auto;
     @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
         min-width: 15%;
     }
-
 
 }
 
