@@ -131,7 +131,7 @@ angular.module('NewTourApp')
 
 
         var hideFloorPlanButton = false;
-        $scope.viewFloorPlanThing() = function() {
+        $scope.viewFloorPlanThing = function() {
             $scope.$emit('ToggleFloorPlan', {});
         }
         function enableAccelerometer() {
