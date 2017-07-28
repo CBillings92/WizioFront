@@ -68,6 +68,10 @@ height: auto;
     }
 
     @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
+        min-width: 20%;
+    }
+
+    @media (min-width: $screen-md-min)  {
         min-width: 15%;
     }
 
