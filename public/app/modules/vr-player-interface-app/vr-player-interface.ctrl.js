@@ -50,6 +50,45 @@ angular.module('NewTourApp')
             return;
         }
 
+        //FIXME don't use JQuery..
+        var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+            width =  $("#scrollthis").width();
+            el = $("#scrollthis");
+            currentPosition = el.scrollLeft();
+            moveWidth = width * 0.5 * direction;
+            // el.scrollLeft(currentPosition + moveWidth);
+            el.animate({
+                scrollLeft: currentPosition + moveWidth
+            }, 500, function () {
+                $scope.sliderCanGoForward = $scope.canSliderForward();
+                $scope.sliderCanGoBackward = $scope.canSliderBackward();
+            });
+        };
+
+        $scope.sliderCanGoForward = true;
+        $scope.sliderCanGoBackward = false;
+
+        $scope.canSliderBackward = function() {
+            return $("#scrollthis").scrollLeft() > 0;
+        };
+
+        $scope.canSliderForward = function() {
+            el = $("#scrollthis");
+            width =  el.outerWidth();
+            currentPosition = el.scrollLeft();
+            viewportWidth = el.width();
+            return currentPosition + viewportWidth < width;
+        };
+
+        $scope.moveSliderBackward = function() {
+            moveSlider(-1);
+        };
+
+        $scope.moveSliderForward = function() {
+            moveSlider(1);
+        };
+
+
         function menuButtonAction(action) {
             if (action === 'toggleFloorplan') {
                 $scope.viewFloorPlan = !$scope.viewFloorPlan;
@@ -81,6 +120,30 @@ angular.module('NewTourApp')
             $scope.selectPhoto = false;
             $scope.viewFloorPlan = false;
             LoadingSpinnerFct.hide('vrPlayerLoader');
+        };
+
+        $scope.thumbnailURL = function(photoIndex) {
+            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
+            return WizioConfig.CLOUDFRONT_DISTRO + "/180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
+        }
+
+
+
+        var hideFloorPlanButton = false;
+        $scope.viewFloorPlanFunc = function() {
+            $scope.$emit('ToggleFloorPlan', {});
+        }
+        function enableAccelerometer() {
+            $scope.accelerometerToggle();
+        }
+        $scope.openCloseMenu = function() {
+            $scope.menuIsOpen = !$scope.menuIsOpen;
+            // set floorplan button visibility
+            if($scope.floorPlan){
+                $scope.actions[0].show = true;
+            } else {
+                $scope.actions[0].show = false;
+            }
         };
 
     }

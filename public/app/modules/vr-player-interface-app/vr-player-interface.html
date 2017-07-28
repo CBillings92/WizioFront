@@ -1,13 +1,36 @@
 <div class="" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events:none;" ng-if="showInterface">
-    <div class="tour-photos-container" ng-show="selectPhoto">
-        <div class="container-fluid">
-            <div class="row  pointer-events_all" id="photo-button-container">
-                <div class="col-md-4  pointer-events_all" ng-repeat="photo in media.vrphoto track by $index">
-                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 tour-photos-button vr-control-button">{{photo.title}}</button>
-                </div>
+
+    <div class="tour-photos-navbar pointer-events_all">
+        <div style="display:flex; align-items:center; padding-top:5px;padding-left:10px;">
+            <span style="color:white; right:0px; font-size:1em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
+        </div>
+        <div class="tour-nav-buttons">
+            <button style="float:left;margin-right:10px;" class="btn btn-md btn-fill--orange" ng-click="viewFloorPlanFunc()">{{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}</button>
+            <div style="float:left;">
+                <agent-profile-dir></agent-profile-dir>
             </div>
         </div>
     </div>
+
+
+
+    <div class="tour-photos-container " >
+            <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
+                <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
+            </div>
+            <div class="tour-photo-list-wrapper pointer-events_all" id="scrollthis" style="" >
+                <div class="label-and-photo-wrapper" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)"  >
+                        <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  height="90" width="160" />
+                        <div class="tour-photo-labels">
+                            <span>{{photo.title}}</span>
+                        </div>
+                </div>
+            </div>
+            <div class="arrow-move pointer-events_all" style="align-items: center;display:flex; cursor:pointer;" >
+                <i class="fa fa-chevron-right fa-4x" aria-hidden="true" ng-click="moveSliderForward()" ></i>
+            </div>
+    </div>
+
     <div class="tour-floorplan-container pointer-events_all" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
         <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
         <div style="position:relative; display:inline-block">
@@ -17,12 +40,6 @@
                     <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
             </span>
         </div>
-    </div>
-    <div class="tour-control-container">
-        <fly-out-menu-dir select-photo='selectPhoto'></fly-out-menu-dir>
-    </div>
-    <div class="tour-agentprofile-container pointer-events_all" ng-show="showcontactinfo">
-        <agent-profile-dir></agent-profile-dir>
     </div>
 
     <loading-spinner-dir id="vrPlayerLoader" size="fa-5x" style="color:#f79739; visibility: hidden; position: absolute; z-index: 1000; top: 50%; right: 50%"></loading-spinner-dir>

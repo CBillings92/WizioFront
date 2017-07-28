@@ -5,7 +5,8 @@ angular.module('AgentProfileApp')
     'WizioConfig',
     '$stateParams',
     '$state',
-    function($scope, $resource, WizioConfig, $stateParams, $state) {
+    'ModalBuilderFct',
+    function($scope, $resource, WizioConfig, $stateParams, $state, ModalBuilderFct) {
 
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
@@ -17,8 +18,8 @@ angular.module('AgentProfileApp')
                 firstName: "Devon",
                 lastName: "Grodkiewicz",
                 email: "devon@wizio.co",
-                awsProfilePhotoUrl: "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png"
-
+                awsProfilePhotoUrl: "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png",
+                state: $state.current.name
             };
 
         });
@@ -30,56 +31,25 @@ angular.module('AgentProfileApp')
             function(response) {
                 $scope.agent = response[response.length - 1];
                 $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
+                $scope.agent.state = $state.current.name;
 
             });
 
     }
 
 
+    $scope.launchAgentProfileModal = function() {
 
 
+        ModalBuilderFct.buildComplexModal(
+            'md',
+            '/public/app/modules/agent-profile-app/modal/agent-profile-modal.view.html',
+            'AgentProfileModalCtrl',
+            $scope.agent).then(function(response) {
 
+            });
 
-
-    // var out = false;
-    $scope.animation_var = "animation-start";
-
-
-    $scope.toggleFlyout = function() {
-
-    if ($scope.animation_var === "animation-start")
-        $scope.animation_var = "animation-end";
-    else
-        $scope.animation_var = "animation-start";
     };
-
-
-
-
-    // $.fn.flyout = function(options) {
-    //    var el = this;
-    //    var edge = options.edge || 30;
-    //    el.css({
-    //        position : "absolute",
-    //        top : "30px",
-    //        right : -1 * (el.width() - edge)
-    //    });
-    //    el.click(function () {
-    //        if (out) {
-    //            $(this).animate({right : -1 * (el.width() - edge) });
-    //        } else {
-    //        $(this).animate({right : "0px"});
-    //     }
-    //     out = !out;
-    //
-    //    });
-    //    el.mouseleave(function () {
-    //        $(this).animate({right : -1 * (el.width() - edge) });
-    //
-    //    });
-    // }
-    //    $("#flyout").flyout({"edge" : "30"});
-
 
 
 }]);
