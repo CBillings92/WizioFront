@@ -9,8 +9,9 @@ angular.module('AWSApp').factory('AWSFct', [
         AWS.config.update({accessKeyId: 'AKIAJKN2QU5DJSYHC7LA', secretAccessKey: '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'});
 
         function createS3Object(endpoint, region) {
+
             var S3Object = new AWS.S3({
-                endpoint: endpoint || WizioConfig.CLOUDFRONT_DISTRO,
+                endpoint: endpoint || WizioConfig.S3_UPLOAD_URL,
                 s3BucketEndpoint: true,
                 region: region || 'us-east-1'
             });
