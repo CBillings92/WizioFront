@@ -48,9 +48,9 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
         function parseTours(tours) {
             StorageApp.store('ActiveListings', tours);
-            $scope.orderedTours = lodash.groupBy(tours, 'isDeleted')
-            $scope.inactiveListings = $scope.orderedTours.true;
-            $scope.activeListings = $scope.orderedTours.false;
+            $scope.orderedTours = lodash.groupBy(tours, 'isActive')
+            $scope.inactiveListings = $scope.orderedTours[false];
+            $scope.activeListings = $scope.orderedTours[true];
             return;
         }
         // short hand the factory function for ease of use
