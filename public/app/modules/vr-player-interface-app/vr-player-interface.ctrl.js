@@ -125,7 +125,7 @@ angular.module('NewTourApp')
 
         $scope.thumbnailURL = function(photoIndex) {
             var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-            return WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
+            return WizioConfig.CLOUDFRONT_DISTRO + "/180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
         }
 
 

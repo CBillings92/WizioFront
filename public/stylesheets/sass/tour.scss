@@ -45,7 +45,14 @@ height: auto;
     overflow-x:scroll;
     display:flex;
     text-align: center;
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;  // Firefox
 }
+
+.tour-photo-list-wrapper::-webkit-scrollbar {
+    display: none;  // Safari and Chrome
+}
+
 
 .label-and-photo-wrapper {
     margin:0;
@@ -71,12 +78,18 @@ height: auto;
 
     background-color: $gray;
     z-index:100;
-    padding-top:35px;
-    top:85%;
-    height:15%;
+    top:82%;
+    height:18%;
     display: flex;
+    align-items: center;
+      justify-content: center;
 
-    min-width: 100%;
+    width: 100%;
+
+    .tour-photo-labels {
+        color:white;
+        text-overflow: ellipsis;
+    }
 
 }
 

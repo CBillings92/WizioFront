@@ -37,7 +37,7 @@ angular.module('AuthApp')
                         'Passwor Reset Email Sent',
                         'An email has been sent to ' + email + ' with instructions on how to reset your password'
                     ).then(function(result) {
-                        //FIXME - should we reroute user to landing page?
+                        //FIXME - should we reroute user to landing page? 
                         return $state.go('LandingPage');
                     });
                 }
