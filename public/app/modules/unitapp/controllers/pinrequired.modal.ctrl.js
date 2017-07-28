@@ -5,7 +5,8 @@ angular.module("UnitApp")
         '$resource',
         'WizioConfig',
         'modalData',
-        function ($scope, $uibModalInstance, $resource, WizioConfig, modalData) {
+        'ModalBuilderFct',
+        function ($scope, $uibModalInstance, $resource, WizioConfig, modalData, ModalBuilderFct) {
             $scope.submit = function(){
                 var apiResource = $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid/:tourpin', {
                     activelistingid: '@activelistingid',

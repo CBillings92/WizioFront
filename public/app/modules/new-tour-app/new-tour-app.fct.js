@@ -6,13 +6,15 @@ angular.module('NewTourApp')
         '$resource',
         '$q',
         '$state',
+        'ModalBuilderFct',
         function(
             WizioConfig,
             LoadingSpinnerFct,
             AWSFct,
             $resource,
             $q,
-            $state
+            $state,
+            ModalBuilderFct
         ) {
 
             function getContent(currentState) {
@@ -43,13 +45,10 @@ angular.module('NewTourApp')
                     apiResource.query(query, function (results) {
 
                         if (results[0].pinRequired) {
-                            requestPassword()
-                            .then(function (response) {
-                                return requestTourPasswordModal(response);
-                            })
+                            requestTourPasswordModal({activelistingid: activeListingId})
                             .then(function (response) {
                                 LoadingSpinnerFct.hide('vrPlayerLoader');
-                                return resolve(results);
+                                return resolve(response);
                             })
                         } else {
                             LoadingSpinnerFct.hide('vrPlayerLoader');
@@ -91,6 +90,20 @@ angular.module('NewTourApp')
                     photoIndex: photoIndex,
                     photoUrl: photoUrl
                 }
+            }
+
+            function requestTourPasswordModal(data) {
+                return $q(function (resolve, reject) {
+                    ModalBuilderFct.buildComplexModal(
+                        'md',
+                        'public/app/modules/unitapp/viewtemplates/pinrequired.modal.html',
+                        'PinRequiredModalCtrl',
+                        data
+                    )
+                    .then(function (response) {
+                        return resolve(response);
+                    })
+                })
             }
 
             function buildSubscriptionApartmentPubId(media) {

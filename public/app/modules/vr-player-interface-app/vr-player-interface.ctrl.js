@@ -8,8 +8,7 @@ angular.module('NewTourApp')
     'AWSFct',
     'LoadingSpinnerFct',
     '$sce',
-    'VrPlayerInterfaceFct',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, VrPlayerInterfaceFct) {
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce) {
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){

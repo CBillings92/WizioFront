@@ -166,7 +166,6 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                         s3Promises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photos[i].file, key));
                     }
                 }
-                // return;
                 /*
                     If there are new photos to upload, wait for the s3
                     promises array to finish, then call the Wizio save/update
