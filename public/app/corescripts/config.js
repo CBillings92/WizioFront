@@ -55,7 +55,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             ? 'equirect-photos'
             : 'test-equirect-photos',
         CLOUDFRONT_DISTRO: env === 'prod' ? 'https://cdn.wizio.co/' : 'https://d1mze0h82dkhhe.cloudfront.net/',
-        S3_UPLOAD_URL: env === 'prod' ? 'http://equirect-photos.s3.amazonaws.com' : 'http://test-equirect-photos.s3.amazonaws.com',
+        CLOUDFRONT_DISTRO_UPLOAD_URL: env === 'prod' ? 'https://d9cm2bybwkl75.cloudfront.net' : 'https://d3hemhuxs42asx.cloudfront.net',
         frontEndURL: window.location.origin,
 
         // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
