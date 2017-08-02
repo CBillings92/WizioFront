@@ -11,7 +11,7 @@ angular.module('AWSApp').factory('AWSFct', [
         function createS3Object(endpoint, region) {
 
             var S3Object = new AWS.S3({
-                endpoint: endpoint || WizioConfig.S3_UPLOAD_URL,
+                endpoint: endpoint || WizioConfig.CLOUDFRONT_DISTRO_UPLOAD_URL,
                 s3BucketEndpoint: true,
                 region: region || 'us-east-1'
             });
