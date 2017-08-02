@@ -10,6 +10,8 @@ angular.module('NewTourApp')
     '$sce',
     function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce) {
         $scope.isCollapsed = false;
+        $scope.isRotating = false;
+
 
         $scope.state = $state.current.name;
         $scope.showInterface = true;
@@ -136,6 +138,7 @@ angular.module('NewTourApp')
             $scope.$emit('ToggleFloorPlan', {});
         }
         function enableAccelerometer() {
+            $scope.isRotating = !$scope.isRotating;
             $scope.accelerometerToggle();
         }
         $scope.openCloseMenu = function() {
@@ -154,7 +157,7 @@ angular.module('NewTourApp')
          * @return {undefined} [undefined]
          */
         function accelerometerToggle() {
-            $scope.toggle = !$scope.toggle;
+            $scope.isRotating = !$scope.isRotating;
             wizio.toggleAccelerometer();
             return;
         }

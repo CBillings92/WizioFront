@@ -16,8 +16,8 @@
 
 
     <div class="tour-photos-container" >
-            <div class="accelerometer-tour-toggle pointer-events_all">
-                <i ng-click="accelerometerToggle()" class="fa fa-2x fa-play" aria-hidden="true"></i> <i ng-click="accelerometerToggle()" class="fa fa-2x fa-pause" aria-hidden="true"></i>
+            <div ng-click="accelerometerToggle()"  class="accelerometer-tour-toggle pointer-events_all">
+                <i class="fa fa-2x fa-play" ng-class="isRotating ? '' : 'selected'" aria-hidden="true"></i> <i ng-class="isRotating ? 'selected' : ''" class="fa fa-2x fa-pause" aria-hidden="true"></i>
             </div>
             <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
