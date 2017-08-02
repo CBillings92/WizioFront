@@ -19,7 +19,6 @@
 }
 
 .unit-details-media-tab-content-picker__img {
-    max-width: 100%;
 display:block;
 height: auto;
 margin-left: auto;
@@ -40,9 +39,8 @@ margin-right: auto;
 }
 
 .tour-photo-list-wrapper {
-    margin-left:auto;
-    margin-right:auto;
-    width:90%;
+
+    height: 100%;
     background-color:$gray;
     overflow-x:scroll;
     display:flex;
@@ -55,33 +53,31 @@ margin-right: auto;
     display: none;  // Safari and Chrome
 }
 
+.accelerometer-tour-toggle {
+    position:absolute;
+    top:-20%;
+    left:80%;
+    background-color: $gray;
+    cursor: pointer;
+    z-index: 300;
+    padding: 10px 5px 5px 5px;
+    border-radius: 10px 10px 0px 0px;
+}
+
 
 .label-and-photo-wrapper {
     margin:0;
     cursor:pointer;
-    min-width: 10%;
     height:100%;
     float: left;
     padding-left:10px;
     padding-right:10px;
-    display:block;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
-    @media (max-width: $screen-sm-min) {
-        min-width: 33%;
-    }
-
-    @media (min-width: $screen-sm-min) and (max-width: $screen-md-min) {
-        min-width: 20%;
-    }
-
-    @media (min-width: $screen-md-min) and (max-width: $screen-lg-min)  {
-        min-width: 15%;
-    }
-
-    @media (min-width: $screen-lg-min)  {
-        width: 20%;
-    }
-
+    //use media queries for different screen sizes
 
 }
 
