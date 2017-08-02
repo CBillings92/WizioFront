@@ -9,6 +9,8 @@ angular.module('NewTourApp')
     'LoadingSpinnerFct',
     '$sce',
     function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce) {
+        $scope.isCollapsed = false;
+
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
@@ -145,6 +147,17 @@ angular.module('NewTourApp')
                 $scope.actions[0].show = false;
             }
         };
+
+
+        /**
+         * Toggles the accelerometer on the VR player library
+         * @return {undefined} [undefined]
+         */
+        function accelerometerToggle() {
+            $scope.toggle = !$scope.toggle;
+            wizio.toggleAccelerometer();
+            return;
+        }
 
     }
 ])
