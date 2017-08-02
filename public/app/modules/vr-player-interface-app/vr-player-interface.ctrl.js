@@ -12,6 +12,7 @@ angular.module('NewTourApp')
         $scope.isCollapsed = false;
         $scope.isRotating = false;
 
+
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
