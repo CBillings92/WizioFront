@@ -53,23 +53,6 @@ margin-right: auto;
     display: none;  // Safari and Chrome
 }
 
-.accelerometer-tour-toggle {
-    position:absolute;
-    top:-20%;
-    left:80%;
-    background-color: $gray;
-    cursor: pointer;
-    z-index: 300;
-    padding: 10px 5px 5px 5px;
-    border-radius: 10px 10px 0px 0px;
-
-    .selected {
-        color: $orange;
-    }
-
-}
-
-
 .label-and-photo-wrapper {
     margin:0;
     cursor:pointer;

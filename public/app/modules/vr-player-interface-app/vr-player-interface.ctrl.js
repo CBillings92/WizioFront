@@ -127,7 +127,7 @@ angular.module('NewTourApp')
 
         $scope.thumbnailURL = function(photoIndex) {
             var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-            return WizioConfig.CLOUDFRONT_DISTRO + "/180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
+            return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
         }
 
 
@@ -155,11 +155,21 @@ angular.module('NewTourApp')
          * Toggles the accelerometer on the VR player library
          * @return {undefined} [undefined]
          */
-        function accelerometerToggle() {
+        $scope.accelerometerToggle = function() {
             $scope.isRotating = !$scope.isRotating;
+            $scope.toggle = !$scope.toggle;
+            $scope.$broadcast('accelerometer-toggle', {flag: $scope.toggle});
             wizio.toggleAccelerometer();
             return;
         }
+
+        var gyroPresent = false;
+        window.addEventListener("devicemotion", function(event){
+            if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+                gyroPresent = true;
+                $scope.toggle = true;
+                $scope.accelerometerToggle();
+        });
 
     }
 ])
