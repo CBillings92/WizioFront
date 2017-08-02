@@ -152,25 +152,6 @@ angular.module('NewTourApp')
         };
 
 
-        /**
-         * Toggles the accelerometer on the VR player library
-         * @return {undefined} [undefined]
-         */
-        $scope.accelerometerToggle = function() {
-            $scope.isRotating = !$scope.isRotating;
-            $scope.toggle = !$scope.toggle;
-            $scope.$broadcast('accelerometer-toggle', {flag: $scope.toggle});
-            wizio.toggleAccelerometer();
-            return;
-        }
-
-        var gyroPresent = false;
-        window.addEventListener("devicemotion", function(event){
-            if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
-                gyroPresent = true;
-                $scope.toggle = true;
-                $scope.accelerometerToggle();
-        });
 
     }
 ])
