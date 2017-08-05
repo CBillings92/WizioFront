@@ -13,6 +13,5 @@ angular.module('LandingPageApp')
             $scope.goToPricing = function (){
                 $state.go('Pricing');
             };
-            // console.dir('OMG HI THIS IS A TEST CODE CHANGE');
         }
     ])

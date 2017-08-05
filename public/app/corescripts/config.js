@@ -20,6 +20,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 return 'test';
             case "https://alpha.wizio.co":
                 return 'test';
+            case "http://alpha.wizio.co":
+                return 'test';
             case "http://beta.wizio.co":
                 return 'prod';
             case "http://wizio.co":
@@ -50,16 +52,17 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             }
         }()),
         S3_EQUIRECTPHOTOS_BUCKET: env === 'prod'
-            ? 'equirect-photos'
+            ? 'wizio-client-tour-photos'
             : 'test-equirect-photos',
         CLOUDFRONT_DISTRO: env === 'prod' ? 'https://cdn.wizio.co/' : 'https://d1mze0h82dkhhe.cloudfront.net/',
+        CLOUDFRONT_DISTRO_UPLOAD_URL: env === 'prod' ? 'https://d9cm2bybwkl75.cloudfront.net' : 'https://d3hemhuxs42asx.cloudfront.net',
         frontEndURL: window.location.origin,
 
         // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
         LandingPage: {
             activeListingId: function() {
-                var activeListingId = env === 'test'
-                    ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                var activeListingId = env === 'test' || env === 'dev'
+                    ? '44a39e2a-e754-43af-b9c9-6cf1ec565456'
                     : 'ddef35a3-0afb-4e8c-97b5-60e057004034'
                 return activeListingId;
             }
@@ -181,7 +184,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 },
                 shareTour: {
                     view: MODULESPATH + 'dashboard-app/share-tour/share-tour.html',
-                    controller: ''
                 },
                 agentInfo: {
                     view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',
@@ -193,6 +195,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 main: {
                     view: MODULESPATH + 'tour-app/tour.html',
                     controller: 'TourCtrl'
+                }
+            },
+            newTourApp: {
+                main: {
+                    view: MODULESPATH + 'new-tour-app/new-tour-app.html',
+                    controller: 'NewTourCtrl'
                 }
             }
         },
@@ -210,6 +218,18 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             tour: {
                 view: MODULESPATH + 'tour-app/tour.html',
                 controller: 'TourCtrl'
+            },
+            newTour: {
+                view: MODULESPATH + 'new-tour-app/new-tour-app.html',
+                controller: 'NewTourCtrl'
+            },
+            vrPlayerInterface: {
+                view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',
+                controller: 'VrPlayerInterfaceCtrl'
+            },
+            tourPanel: {
+                view: MODULESPATH + 'tour-panel-app/tour-panel.html',
+                controller: 'TourPanelCtrl'
             }
         },
         modals: {

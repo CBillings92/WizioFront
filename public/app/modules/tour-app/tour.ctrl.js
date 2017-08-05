@@ -5,11 +5,11 @@ angular.module('TourApp').controller('TourCtrl', [
     'lodash',
     'WizioConfig',
     'AWSFct',
-    'VrPlayerFct',
+
     'LoadingSpinnerFct',
     '$sce',
     'TourFct',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, VrPlayerFct, LoadingSpinnerFct, $sce, TourFct) {
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, TourFct) {
         $scope.state = $state.current.name;
 
         // For photo and floorplan selection
@@ -21,8 +21,10 @@ angular.module('TourApp').controller('TourCtrl', [
             $scope.showcontrols = true;
             $scope.showcontactinfo = true;
             $scope.showpoweredby = true;
-            document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
-            document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
+            document.getElementById('site-container').style.height = "100%";
+            document.geteElementById('site-container').setAttribute("style", "height:100%")
+            document.getElementById('main-content').style["padding-bottom"] = 0;
+            document.getElementById('main-content').style["margin-bottom"] = 0;
         }
 
         /**
@@ -66,7 +68,6 @@ angular.module('TourApp').controller('TourCtrl', [
                 var orderedMedia = lodash.groupBy(media, 'type');
                 $scope.media = orderedMedia;
                 var tourDefaults = TourFct.setTourDefaults(orderedMedia);
-                wizio.init('pano', tourDefaults.photoUrl);
                 $scope.tourDefaults = tourDefaults;
 
                 if (tourDefaults.Floor_Plan) {

@@ -5,12 +5,11 @@ angular.module('FlyOutMenuApp')
             $scope.menuIsOpen = false;
             var hideFloorPlanButton = false;
             function viewFloorPlan() {
-                $scope.buttonAction('toggleFloorplan');
+                $scope.$emit('ToggleFloorPlan', {});
                 $scope.menuIsOpen = !$scope.menuIsOpen;
             }
             function viewPhotoList() {
-                $scope.buttonAction('togglePhotos');
-                // $scope.selectPhoto = !$scope.selectPhoto;
+                $scope.$emit('TogglePhotoList');
                 $scope.menuIsOpen = !$scope.menuIsOpen;
 
             }
@@ -19,24 +18,29 @@ angular.module('FlyOutMenuApp')
             }
             $scope.openCloseMenu = function() {
                 $scope.menuIsOpen = !$scope.menuIsOpen;
-                $scope.actions[0].hide =  $scope.hideFloorPlanButton;
+                // set floorplan button visibility
+                if($scope.floorPlan){
+                    $scope.actions[0].show = true;
+                } else {
+                    $scope.actions[0].show = false;
+                }
             };
             $scope.actions = [
                 {
                     'name': 'Floor Plan',
                     'action': viewFloorPlan,
-                    'hide': hideFloorPlanButton
+                    'show': hideFloorPlanButton
 
                 },
                 {
                     'name': 'Photo List',
                     'action': viewPhotoList,
-                    'hide': false
+                    'show': true
                 },
                 {
                     'name': '360 Control',
                     'action': enableAccelerometer,
-                    'hide': false
+                    'show': true
 
                 }
             ];

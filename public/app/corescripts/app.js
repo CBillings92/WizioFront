@@ -7,6 +7,8 @@
     angular.module('DashboardApp', []);
     angular.module('DeleteTourApp', []);
     angular.module('LoginApp', []);
+    angular.module('NewTourApp', []);
+    angular.module('VrPlayerInterfaceApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
     angular.module('ApplicationApp', []);
@@ -30,6 +32,8 @@
     angular.module('AgentProfileApp', []);
     angular.module('TourPasswordApp', []);
     angular.module('TourApp', []);
+    angular.module('ShareTourApp', []);
+    angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -38,6 +42,8 @@
             'ApiGuideApp',
             'AccountApp',
             'ApplicationApp',
+            'NewTourApp',
+            'VrPlayerInterfaceApp',
             'AuthApp',
             'CreateAccountApp',
             'DashboardApp',
@@ -58,6 +64,8 @@
             'PhotographerApp',
             'SearchApp',
             'TourPasswordApp',
+            'TourPanelApp',
+            'ShareTourApp',
             'AWSApp',
             'AgentProfileApp',
             'UnitApp',

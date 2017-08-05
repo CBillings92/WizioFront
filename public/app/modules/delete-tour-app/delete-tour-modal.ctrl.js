@@ -15,16 +15,15 @@ angular.module('DeleteTourApp')
                 if(action === 'delete') {
                     $uibModalInstance.close('delete');
                 } else if (action === 'deactivate') {
-                    $uibModalInstance.close('deactivate')
+                    $uibModalInstance.close('deactivate');
                 } else {
                     $uibModalInstance.close('cancel');
                 }
-            }
-
+            };
             function deleteTour () {
 
             }
 
 
         }
-    ])
+    ]);

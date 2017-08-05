@@ -136,6 +136,8 @@ h2 {
     transition: all 0.15s ease-in-out;
     color: $gray;
 
+    padding: 35px;
+
     &:hover {
         background-color: $orange;
         color: $white;

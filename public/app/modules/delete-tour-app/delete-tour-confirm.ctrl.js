@@ -7,18 +7,19 @@ angular.module('DeleteTourApp')
         function($scope, $uibModalInstance, DeleteTourModalFct, modalData) {
             $scope.closeModal = function () {
                 $uibModalInstance.close();
-            }
+            };
 
             $scope.modalAction = function (action) {
                 if(action === 'delete') {
                     DeleteTourModalFct.deleteTour(modalData.activeListing.pubid)
                     .then(function(results){
                         $uibModalInstance.close();
-                    })
+                    });
                 } else {
                     $uibModalInstance.close();
                 }
-            }
+            };
 
         }
-    ])
+    ]);
+

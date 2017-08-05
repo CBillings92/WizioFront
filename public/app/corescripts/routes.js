@@ -66,7 +66,6 @@ angular.module('MainApp')
                         "maincontent": {
                             templateUrl: 'public/app/modules/photographerapp/upload/upload.view.html',
                             controller: 'UploadPageCtrl'
-                                // controller: 'UnitMediaCtrl'
                         }
                     }
                 })
@@ -74,8 +73,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: PAGECONFIG.tourApp.main.view,
-                            controller: PAGECONFIG.tourApp.main.controller
+                            templateUrl: PAGECONFIG.newTourApp.main.view,
+                            controller: PAGECONFIG.newTourApp.main.controller
                         }
                     }
                 })
@@ -105,7 +104,6 @@ angular.module('MainApp')
                     }
                 })
                 .state('Signup', {
-                    // abstract: true,
                     url: '/signup',
                     views: {
                         "footer": footer,
@@ -129,10 +127,8 @@ angular.module('MainApp')
                     url: '/demo',
                     views: {
                         "maincontent": {
-                            templateUrl: WizioConfig.UnitViewsURL + 'transition_vrplayercontainer.view.html',
-                            controller: 'TransitionUnitMediaCtrl'
-                            // controller: 'LandingPageCtrl'
-                            // controller: 'UnitMediaCtrl'
+                            templateUrl: PAGECONFIG.newTourApp.main.view,
+                            controller: PAGECONFIG.newTourApp.main.controller
                         }
                     }
                 })
@@ -177,14 +173,12 @@ angular.module('MainApp')
                     data: falseRequiredLogin
                 })
                 .state('Photographer', {
-                    // abstract: true,
                     url: '/photographer',
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
                             templateUrl: 'public/app/modules/photographerapp/main/photographer-main.view.html',
-                            // controller: 'LandingPageCtrl'
                         }
 
                     }
@@ -194,7 +188,6 @@ angular.module('MainApp')
                     url: '/track',
                     views: {
                         'test': {
-                            // templateUrl: '',
                             templateUrl: 'public/app/modules/photographerapp/tracker/photographer-track.view.html',
                             controller: 'PhotographerTrackCtrl',
                         }
@@ -336,7 +329,6 @@ angular.module('MainApp')
                     views: {
                         "dashboard-main": {
                             templateUrl: PAGECONFIG.dashboard.shareTour.view,
-                            controller: PAGECONFIG.dashboard.shareTour.controller
                         }
                     }
                 })

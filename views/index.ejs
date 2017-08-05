@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="MainApp" ng-strict-di>
-
+<html ng-app="MainApp" ng-strict-di style="height: 100%">
 <head>
     <title>Wizio</title>
     <!-- mobile friendly browsing! -->
@@ -73,16 +72,20 @@
 
 <!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
 
-<body onLoad="onLoadEndSpinner()">
+
+<body onLoad="onLoadEndSpinner()" style="min-height:100%">
     <script type="text/javascript">
     $(document).on('click',function(){
         $('.collapse').collapse('hide');
     })
     </script>
     <loading-spinner-dir id="siteLoader" size='fa-5x' style="position: absolute; z-index:1000; top:50%; left:50%; color:black;"></loading-spinner-dir>
-    <div ui-view="navbar"></div>
-    <div ui-view="maincontent" class=""></div>
-    <div ui-view="footer"></div>
+
+    <div class="" id="site-container">
+        <div ui-view="navbar"></div>
+        <div ui-view="maincontent" id="main-content" class=""></div>
+        <div ui-view="footer"></div>
+    </div>
     <!-- <script type="text/javascript" src='../public/internallibraries/detector.js'></script> -->
     <!-- Start of Google Analytics Code -->
     <script>

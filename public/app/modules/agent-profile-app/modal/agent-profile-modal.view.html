@@ -1,0 +1,17 @@
+<div>
+    <close-modal-dirv>
+    </close-modal-dirv>
+    <div style="display:flex; justify-content:center; align-items: center; flex-direction:column; padding-top:15px; padding-bottom:15px">
+        <div ng-show="profileUploaded" class="" id="Agent-Profile__Photo"><img style="width:200px;height:200px;" ng-src="{{agent.awsProfilePhotoUrl}}" /></div>
+        <div ng-hide="profileUploaded" class="" id="Agent-Profile__Photo"><img style="width:200px;height:200px;" ng-src="{{blank}}" /></div>
+        <div class="">
+            <div class="" id="Agent-Profile__Name">{{agent.firstName}} {{agent.lastName}}</div>
+        </div>
+        <div class="">
+            <div class="" id="Agent-Profile__Email"><a href="{{agent.email}}">{{agent.email}}</div>
+        </div>
+        <div class="">
+            <div class="" id="Agent-Profile__PhoneNumber"><a href="tel:{{agent.phoneNumber}}">{{agent.phoneNumber}}</div>
+        </div>
+    </div>
+</div>
