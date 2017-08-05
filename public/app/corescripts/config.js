@@ -52,10 +52,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             }
         }()),
         S3_EQUIRECTPHOTOS_BUCKET: env === 'prod'
-            ? 'equirect-photos'
+            ? 'wizio-client-tour-photos'
             : 'test-equirect-photos',
         CLOUDFRONT_DISTRO: env === 'prod' ? 'https://cdn.wizio.co/' : 'https://d1mze0h82dkhhe.cloudfront.net/',
-        CLOUDFRONT_DISTRO_UPLOAD_URL: env === 'prod' ? 'https://d3l9srn5s5l97h.cloudfront.net' : 'https://d3hemhuxs42asx.cloudfront.net',
+        CLOUDFRONT_DISTRO_UPLOAD_URL: env === 'prod' ? 'https://d9cm2bybwkl75.cloudfront.net' : 'https://d3hemhuxs42asx.cloudfront.net',
         frontEndURL: window.location.origin,
 
         // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
