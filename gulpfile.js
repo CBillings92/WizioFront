@@ -61,11 +61,25 @@ gulp.task('styles', ['sass'], function(cb) {
 
 gulp.task('jsresources', function() {
     var jsFiles = ['src/js/*'];
-    gulp.src(plugins.mainBowerFiles().concat(jsFiles))
-        .pipe(plugins.filter('*.js'))
-        .pipe(plugins.concat('main.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(dest + 'js'));
+    gulp.task('uglify', function(){
+        return gulp.src('bower.json')
+            .pipe(mainBowerFiles(), {base: './bower_components'})
+            .pipe(uglify())
+            .pipe(gulp.dest('libs'));
+    });
+});
+
+gulp.task('files', function() {
+    var files = mainBowerFiles();
+
+    console.dir(files);
+
+        return gulp.src(files)
+            .pipe(concat('test.js'))
+            // .pipe(uglify({
+            //     file: 'test.min.js'
+            // })).on('error', gutil.log)
+            .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', [

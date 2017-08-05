@@ -110,6 +110,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             var unavailNums = [];
             var availNums = [];
             var getNumRegex = /\d+/;
+            var getRicohNameRegex = /^[R][0-9]{3,8}.JPG$/
             var currPhoto;
             // Get all photos with the name of Photo ## and store the ## as unavailable
             for (var i = 0; i < photos.length; i++) {
@@ -133,7 +134,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             };
             // Loop over new photos and assign name based on availNums array
             for (var i = 0; i < photos.length; i++) {
-                if (photos[i].isNew) {
+                if (photos[i].isNew && photos[i].file.name.match(getRicohNameRegex)) {
                     photos[i].title = 'Photo ' + availNums[i];
                     photos[i].file.name = 'Photo ' + availNums[i];
                 }

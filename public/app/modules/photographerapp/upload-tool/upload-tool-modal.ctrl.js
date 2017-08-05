@@ -317,7 +317,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         apartmentpubid: apartment.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
-                        title: this.file.name,
+                        title: this.files[i].name,
                         awsurl: 'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/',
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,

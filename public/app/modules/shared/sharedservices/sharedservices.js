@@ -223,17 +223,3 @@ angular.module('SharedServiceApp')
 
         }
     ])
-    .service('TimeFormatterSvc', [
-        'moment',
-        function(moment){
-            function formatTimeFlex(timeToFormat, formatString){
-                var formattedDate = moment(timeToFormat).format(formatString);
-
-                return formattedDate;
-            }
-
-            return {
-                formatTimeFlex: formatTimeFlex
-            };
-        }
-    ]);
