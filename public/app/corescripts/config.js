@@ -246,22 +246,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 controller: 'DeactivateTourConfirmCtrl'
             }
         },
-        directives: {
-            vrplayer: {
-                main: {
-                    view: MODULESPATH + 'vr-player-app/main/vr-player.html',
-                    controller: 'VrPlayerCtrl'
-                },
-                interface: {
-                    view: MODULESPATH + 'vr-player-app/interface/interface.html',
-                    controller: 'InterfaceCtrl'
-                }
-            },
-            tour: {
-                view: MODULESPATH + 'tour-app/tour.html',
-                controller: 'TourCtrl'
-            }
-        },
         modals: {
             deleteTourApp: {
                 view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
