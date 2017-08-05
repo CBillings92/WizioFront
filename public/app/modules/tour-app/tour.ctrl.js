@@ -5,7 +5,6 @@ angular.module('TourApp').controller('TourCtrl', [
     'lodash',
     'WizioConfig',
     'AWSFct',
-
     'LoadingSpinnerFct',
     '$sce',
     'TourFct',
@@ -77,12 +76,10 @@ angular.module('TourApp').controller('TourCtrl', [
             })
         }
 
-
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
             var state = $state.current.name;
             var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-
             var photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
 
             LoadingSpinnerFct.show('vrPlayerLoader');
