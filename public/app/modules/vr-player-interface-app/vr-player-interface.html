@@ -6,7 +6,7 @@
             <span style="color:white; right:0px; font-size:1em;">Powered By <a href="https://www.wizio.co/" target="_blank"><img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a></span>
         </div>
         <div class="tour-nav-buttons">
-            <button ng-show="floorPlan" style="float:left;margin-right:10px;" class="btn btn-md btn-fill--orange" ng-click="viewFloorPlanFunc()">{{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}</button>
+            <span ng-show="floorPlan" style="float:left;margin-right:10px;" ng-click="viewFloorPlanFunc()">{{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}</span>
             <div style="float:left;">
                 <agent-profile-dir></agent-profile-dir>
             </div>
