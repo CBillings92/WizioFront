@@ -59,29 +59,6 @@ gulp.task('styles', ['sass'], function(cb) {
         .pipe(gulp.dest('./public/build/'));
 });
 
-gulp.task('jsresources', function() {
-    var jsFiles = ['src/js/*'];
-    gulp.task('uglify', function(){
-        return gulp.src('bower.json')
-            .pipe(mainBowerFiles(), {base: './bower_components'})
-            .pipe(uglify())
-            .pipe(gulp.dest('libs'));
-    });
-});
-
-gulp.task('files', function() {
-    var files = mainBowerFiles();
-
-    console.dir(files);
-
-        return gulp.src(files)
-            .pipe(concat('test.js'))
-            // .pipe(uglify({
-            //     file: 'test.min.js'
-            // })).on('error', gutil.log)
-            .pipe(gulp.dest('./'));
-});
-
 gulp.task('default', [
         'jshint',
         'scripts',
