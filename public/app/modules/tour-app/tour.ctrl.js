@@ -5,6 +5,7 @@ angular.module('TourApp').controller('TourCtrl', [
     'lodash',
     'WizioConfig',
     'AWSFct',
+
     'LoadingSpinnerFct',
     '$sce',
     'TourFct',
@@ -67,7 +68,6 @@ angular.module('TourApp').controller('TourCtrl', [
                 var orderedMedia = lodash.groupBy(media, 'type');
                 $scope.media = orderedMedia;
                 var tourDefaults = TourFct.setTourDefaults(orderedMedia);
-                // wizio.init('pano', tourDefaults.photoUrl);
                 $scope.tourDefaults = tourDefaults;
 
                 if (tourDefaults.Floor_Plan) {

@@ -82,13 +82,10 @@ margin-right: auto;
     flex-direction: column;
 
     //use media queries for different screen sizes
-
-
 }
 
 .tour-photos-container {
     position: absolute;
-
     background-color: $gray;
     z-index:100;
     top:82%;
@@ -103,7 +100,6 @@ margin-right: auto;
         color:white;
         text-overflow: ellipsis;
     }
-
 }
 
 .tour-photos-button {
@@ -129,7 +125,6 @@ margin-right: auto;
 .tour-poweredby-container {
 
 }
-
 
 #pano:hover {
     cursor: grab;
