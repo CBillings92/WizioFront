@@ -197,9 +197,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
         }
 
         function deletePhoto(photo) {
-          console.dir('hello');
           return $q(function( resolve, reject ){
-            console.dir(photo);
             var data = {
                 MediaObject: {
                   'id':photo.id
@@ -209,7 +207,10 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 }
               };
             API.media.delete(data, function(response){
-              return resolve(response);
+              if (response === 'OK') {
+
+                return resolve(response);
+              }
             })
           })
         }
