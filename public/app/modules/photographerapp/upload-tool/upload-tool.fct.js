@@ -16,6 +16,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 })
             },
             media: $resource(WizioConfig.baseAPIURL + 'media'),
+            subscriptionAptMedia: $resource(WizioConfig.baseAPIURL + 'subscriptionaptmedia'),
             apartment: {
                 chooseParams: $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
                     param1: '@id',
@@ -195,6 +196,24 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             })
         }
 
+        function deletePhoto(photo) {
+          console.dir('hello');
+          return $q(function( resolve, reject ){
+            console.dir(photo);
+            var data = {
+                MediaObject: {
+                  'id':photo.id
+                },
+                UpdatedData: {
+                  IsDeleted: 1
+                }
+              };
+            API.media.delete(data, function(response){
+              return resolve(response);
+            })
+          })
+        }
+
         return {
             workflow: {
                 init: initializeUploadTool
@@ -204,7 +223,8 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             initializeChooseUnitModal: initializeChooseUnitModal,
             autoNameNewPhotos: autoNameNewPhotos,
             renameMedia: renameMedia,
-            saveOnePhotoToWizioAPI: savePhotoToWizioAPI
+            saveOnePhotoToWizioAPI: savePhotoToWizioAPI,
+            deletePhoto: deletePhoto
         }
     }
 ])

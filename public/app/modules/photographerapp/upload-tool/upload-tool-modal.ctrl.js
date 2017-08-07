@@ -343,6 +343,17 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             dropPinFlag = true;
             newOrCurrentPhotoForPinDrop = newOrCurrentPhoto;
             photoForPinDropIndex = index;
+            return;
+        }
+
+
+
+        $scope.deletePhoto = function (photo, index, photosArr) {
+          photo.IsDeleted = 1;
+          UploadToolFct.deletePhoto(photo)
+          .then(function(response){
+            return;
+          })
         }
 
     }
