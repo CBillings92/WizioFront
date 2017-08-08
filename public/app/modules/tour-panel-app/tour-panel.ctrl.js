@@ -14,6 +14,7 @@ angular.module('TourPanelApp')
               window.open($scope.windowLocationOrigin + '/tour/' + pubid, '_blank');
             }
             $scope.currentState = $state.current.name;
+
             $scope.makeActiveListingPublic = function(activeListing, activelistingindex) {
                 ModalBuilderFct.buildSimpleModal(
                     'Cancel',
