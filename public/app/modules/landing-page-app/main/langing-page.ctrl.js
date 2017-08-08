@@ -5,7 +5,8 @@ angular.module('LandingPageApp')
     .controller('LandingPageCtrl', [
         '$scope',
         '$state',
-        function ($scope, $state) {
+        'ngDrift',
+        function ($scope, $state, ngDrift) {
             $scope.goToDashboard = function () {
                 $state.go('Account.Dashboard');
             };
