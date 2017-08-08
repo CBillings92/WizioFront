@@ -79,7 +79,8 @@
             'angular-jwt',
             'angulartics',
             'angulartics.google.analytics',
-            'angular-sortable-view'
+            'angular-sortable-view',
+            ['ng-drift']
         ])
         .config(["$sceDelegateProvider", function($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
@@ -94,6 +95,10 @@
                 'https://www.youtube.com/watch?v=*&feature=youtu.be',
                 'http://www.youtube.com/embed/**'
             ]);
+        }])
+        .config(['ngDriftProvider',
+		function(ngDriftProvider){
+            ngDriftProvider.setKey('xxagivsgiw52');
         }])
         //ON APP START AND DURING APP RUN
         .run([
