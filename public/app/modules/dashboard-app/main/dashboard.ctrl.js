@@ -16,12 +16,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();
         $scope.state = 'Account.Dashboard.ShareTour';
-        console.dir(TokenSvc.decode());
-        console.dir(TokenSvc.decode().email)
-        console.dir(TokenSvc.decode().Subscriptions[0].id)
         if ((user.email === 'yuyang@wizio.co' || user.email === 'cameron@wizio.co' || user.email === 'john@wizio.co' || user.email === 'trent@wizio.co') && TokenSvc.decode().Subscriptions[0].id === 3 ) {
           $scope.wizioAdmin = true;
-          console.dir($scope.wizioAdmin);
         }
 
         $scope.viewActiveTours = 1;

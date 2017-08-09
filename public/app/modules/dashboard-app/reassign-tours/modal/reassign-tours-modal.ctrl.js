@@ -15,7 +15,6 @@ angular.module('DashboardApp')
       .get(function(response){
         if (response.status === 'success') {
           $scope.subscriptions = response.payload;
-          console.dir($scope.subscriptions)
         } else {
           alert('Could not load subscriptions at this time. Please try again later')
         }
@@ -25,6 +24,5 @@ angular.module('DashboardApp')
         $uibModalInstance.close(subscription);
       }
 
-      console.dir(modalData);
     }
   ])
