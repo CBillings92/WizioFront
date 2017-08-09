@@ -4,9 +4,11 @@
 </div>
 <div class="modal-body">
   <p>Once you make this assignment it cannot be revoked.</p>
+  <br>
   <div class="">
-    {{modalData.tour}} -- {{modalData.subscription}}
+    {{modalData.tour.Apartment.concatAddr + ' ' + modalData.Apartment.unitNum}} -- {{modalData.subscription.Businesses[0].name}}
   </div>
+  <br>
   <p>Are you sure you'd like to make the following assignment?</p>
 </div>
 <div class="modal-footer">

@@ -6,10 +6,9 @@ angular.module('DashboardApp')
     'modalData',
     'WizioConfig',
     function($scope, $uibModalInstance, $resource, modalData, WizioConfig) {
-      alert('hi');
       // Close modal with 'x' on top right of modal - a directive
       $scope.closeModal = function () {
-          $uibModalInstance.close();
+          $uibModalInstance.dismiss();
       };
 
       $resource(WizioConfig.baseAPIURL + 'subscription')
