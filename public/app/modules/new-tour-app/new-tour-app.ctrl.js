@@ -4,8 +4,13 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
     'WizioConfig',
     'NewTourFct',
     'lodash',
-    function($scope, $state, WizioConfig, NewTourFct, lodash) {
+    'ngDrift',
+    function($scope, $state, WizioConfig, NewTourFct, lodash, ngDrift) {
         $scope.showInterface = true;
+        ngDrift.on('ready', function() {
+          alert('drift ready');
+        })
+        alert('getting called when I should not be');
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
             document.getElementById('site-container').style.height = "100%";
             document.getElementById('site-container').setAttribute("style", "height:100%")

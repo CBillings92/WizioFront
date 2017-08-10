@@ -48,7 +48,7 @@ gulp.task('dependjanda', function(){
 
 
 gulp.task('dependencies', function(){
-    gulp.src(lib.ext('js').match(['!**/three.**js', '!angular**/**', '!jquery/**']).files)
+    gulp.src(lib.ext('js').match(['!**/three.**js']).files)
    .pipe(concat('lib.min.js'))
    .pipe(uglify())
    .pipe(gulp.dest('./public/build'));
