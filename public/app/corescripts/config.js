@@ -189,6 +189,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',
                     controller: 'AgentInfoCtrl'
                 },
+                reassignTours: {
+                  view: MODULESPATH + 'dashboard-app/reassign-tours/reassign-tours.html',
+                  controller: 'ReassignToursCtrl'
+                }
 
             },
             tourApp: {
@@ -244,20 +248,17 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             deactivateTourConfirm: {
                 view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
                 controller: 'DeactivateTourConfirmCtrl'
-            }
-        },
-        modals: {
-            deleteTourApp: {
-                view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
-                controller: 'DeleteTourModalCtrl'
             },
-            deleteTourConfirm: {
-                view: MODULESPATH + 'delete-tour-app/delete-tour-confirm.html',
-                controller: 'DeleteTourConfirmCtrl'
-            },
-            deactivateTourConfirm: {
-                view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
-                controller: 'DeactivateTourConfirmCtrl'
+            reassignTours: {
+              main: {
+                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tours-modal.html',
+                controller: 'ReassignToursModalCtrl'
+              },
+              areYouSure: {
+                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tour-confirm-modal.html',
+                controller: 'ReassignTourConfirmModalCtrl'
+
+              }
             }
         },
 

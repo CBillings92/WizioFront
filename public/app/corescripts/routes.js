@@ -356,6 +356,14 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('Account.Dashboard.ReassignTours', {
+                  views: {
+                    "dashboard-main": {
+                      templateUrl: PAGECONFIG.dashboard.reassignTours.view,
+                      controller: PAGECONFIG.dashboard.reassignTours.controller
+                    }
+                  }
+                })
                 .state('Account.Pay', {
                     url: '/pay',
                     views: {

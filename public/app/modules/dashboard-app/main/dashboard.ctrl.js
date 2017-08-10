@@ -13,7 +13,12 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'lodash',
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
         $state.go('Account.Dashboard.ShareTour');
+        $scope.wizioAdmin = false;
+        var user = TokenSvc.decode();
         $scope.state = 'Account.Dashboard.ShareTour';
+        if ((user.email === 'yuyang@wizio.co' || user.email === 'cameron@wizio.co' || user.email === 'john@wizio.co' || user.email === 'trent@wizio.co') && TokenSvc.decode().Subscriptions[0].id === 3 ) {
+          $scope.wizioAdmin = true;
+        }
 
         $scope.viewActiveTours = 1;
         $scope.changeTourListView = function () {
@@ -49,10 +54,15 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         function parseTours(tours) {
             StorageApp.store('ActiveListings', tours);
             $scope.orderedTours = lodash.groupBy(tours, 'isActive')
+            $scope.$broadcast('ActiveListingsLoaded', $scope.orderedTours);
             $scope.inactiveListings = $scope.orderedTours[false];
             $scope.activeListings = $scope.orderedTours[true];
             return;
         }
+
+        $scope.$on('ActiveListingRequest', function(ev, data){
+          $scope.$broadcast('ActiveListingsPayload', $scope.orderedTours);
+        })
         // short hand the factory function for ease of use
         var createModal = ModalBuilderFct.buildModalWithController;
 

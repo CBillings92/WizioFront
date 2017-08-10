@@ -2,17 +2,18 @@ angular.module('TourPanelApp')
     .controller('TourPanelCtrl', [
         '$scope',
         '$resource',
+        '$state',
         'WizioConfig',
         'ModalBuilderFct',
         'TourPanelFct',
-        function($scope, $resource, WizioConfig, ModalBuilderFct, TourPanelFct) {
+        function($scope, $resource, $state, WizioConfig, ModalBuilderFct, TourPanelFct) {
             $scope.activelisting = $scope.tour;
             new Clipboard('.clipboard');
             $scope.windowLocationOrigin = window.location.origin;
             $scope.openInNewPage = function(pubid){
               window.open($scope.windowLocationOrigin + '/tour/' + pubid, '_blank');
             }
-
+            $scope.currentState = $state.current.name;
             $scope.makeActiveListingPublic = function(activeListing, activelistingindex) {
                 ModalBuilderFct.buildSimpleModal(
                     'Cancel',
@@ -115,4 +116,36 @@ angular.module('TourPanelApp')
                 })
                 return;
             }
+
+            $scope.reassignTour = function(tour) {
+              var subscription;
+              var chooseSubscriptionConfig = {
+                controller: WizioConfig.modals.reassignTours.main.controller,
+                templateUrl: WizioConfig.modals.reassignTours.main.view,
+                size: 'md',
+                modalData: tour
+              }
+              var areYouSureModalConfig = {
+                controller: WizioConfig.modals.reassignTours.areYouSure.controller,
+                templateUrl: WizioConfig.modals.reassignTours.areYouSure.view,
+                size: 'md',
+                modalData: {}
+              }
+
+              ModalBuilderFct.buildModalWithController(chooseSubscriptionConfig)
+              .then(function(subscription){
+                areYouSureModalConfig.modalData.tour = tour;
+                areYouSureModalConfig.modalData.subscription = subscription
+                console.dir(areYouSureModalConfig);
+                return ModalBuilderFct.buildModalWithController(areYouSureModalConfig);
+              })
+              .then(function(decision){
+                if (decision.action === 'continue') {
+                  TourPanelFct.reassignTour(decision.tour, decision.subscription)
+                  .then(function(completion){
+
+                  })
+                }
+              })
+            };
     }])

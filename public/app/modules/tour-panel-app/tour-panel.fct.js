@@ -21,8 +21,23 @@ angular.module('TourPanelApp')
                     })
                 })
             }
+
+            function reassignTour(tour, subscription) {
+              return $q(function(resolve, reject){
+                $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/reassign')
+                .save({tour: tour, subscription: subscription}, function(response){
+                  if(response.status === 'success'){
+                    return resolve(response);
+                  } else {
+                    console.error(response.message);
+                    return reject(response);
+                  }
+                })
+              })
+            }
             return {
                 deleteActiveListing: deleteActiveListing,
-                reactivateTour: reactivateTour
+                reactivateTour: reactivateTour,
+                reassignTour: reassignTour
             }
     }])
