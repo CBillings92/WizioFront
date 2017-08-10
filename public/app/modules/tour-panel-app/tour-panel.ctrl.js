@@ -136,7 +136,6 @@ angular.module('TourPanelApp')
               .then(function(subscription){
                 areYouSureModalConfig.modalData.tour = tour;
                 areYouSureModalConfig.modalData.subscription = subscription
-                console.dir(areYouSureModalConfig);
                 return ModalBuilderFct.buildModalWithController(areYouSureModalConfig);
               })
               .then(function(decision){
