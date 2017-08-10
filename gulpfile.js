@@ -59,15 +59,6 @@ gulp.task('styles', ['sass'], function(cb) {
         .pipe(gulp.dest('./public/build/'));
 });
 
-gulp.task('jsresources', function() {
-    var jsFiles = ['src/js/*'];
-    gulp.src(plugins.mainBowerFiles().concat(jsFiles))
-        .pipe(plugins.filter('*.js'))
-        .pipe(plugins.concat('main.js'))
-        .pipe(plugins.uglify())
-        .pipe(gulp.dest(dest + 'js'));
-});
-
 gulp.task('default', [
         'jshint',
         'scripts',

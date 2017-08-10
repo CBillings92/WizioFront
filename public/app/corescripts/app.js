@@ -77,7 +77,6 @@
             'ngLodash',
             'ui.bootstrap',
             'angular-jwt',
-            'angularMoment',
             'angulartics',
             'angulartics.google.analytics',
             'angular-sortable-view'

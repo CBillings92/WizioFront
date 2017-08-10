@@ -44,7 +44,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 case 'dev':
                     return 'http://172.16.0.3:4000/api/';
                 case 'test':
-                    return 'https://alpha-api.wizio.co/api/';
+                    return 'http://alpha-api.wizio.co/api/';
                 case 'prod':
                     return 'https://api.wizio.co/api/';
                 default:
@@ -230,6 +230,20 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             tourPanel: {
                 view: MODULESPATH + 'tour-panel-app/tour-panel.html',
                 controller: 'TourPanelCtrl'
+            }
+        },
+        modals: {
+            deleteTourApp: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
+                controller: 'DeleteTourModalCtrl'
+            },
+            deleteTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/delete-tour-confirm.html',
+                controller: 'DeleteTourConfirmCtrl'
+            },
+            deactivateTourConfirm: {
+                view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
+                controller: 'DeactivateTourConfirmCtrl'
             }
         },
         modals: {

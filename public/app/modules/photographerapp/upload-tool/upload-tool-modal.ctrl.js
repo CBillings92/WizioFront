@@ -317,7 +317,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                         apartmentpubid: apartment.pubid,
                         isUnit: 0,
                         type: 'vrphoto',
-                        title: 'To Be Named',
+                        title: this.files[i].name,
                         awsurl: 'https://cdn.wizio.co/' + subscriptionApartment.pubid + '/',
                         ApartmentId: modalData.id,
                         SubscriptionApartmentPubId: subscriptionApartment.pubid,
@@ -343,6 +343,17 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             dropPinFlag = true;
             newOrCurrentPhotoForPinDrop = newOrCurrentPhoto;
             photoForPinDropIndex = index;
+            return;
+        }
+
+
+
+        $scope.deletePhoto = function (photo, index, photosArr) {
+          photo.IsDeleted = 1;
+          UploadToolFct.deletePhoto(photo)
+          .then(function(response){
+            return;
+          })
         }
 
     }

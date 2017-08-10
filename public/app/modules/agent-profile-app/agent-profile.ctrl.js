@@ -8,6 +8,7 @@ angular.module('AgentProfileApp')
     'ModalBuilderFct',
     function($scope, $resource, WizioConfig, $stateParams, $state, ModalBuilderFct) {
 
+        $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
 
