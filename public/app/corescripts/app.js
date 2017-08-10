@@ -80,7 +80,7 @@
             'angulartics',
             'angulartics.google.analytics',
             'angular-sortable-view',
-            ['ng-drift']
+            'ng-drift'
         ])
         .config(["$sceDelegateProvider", 'ngDriftProvider', function($sceDelegateProvider, ngDriftProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
