@@ -255,8 +255,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 controller: 'ReassignToursModalCtrl'
               },
               areYouSure: {
-                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/are-you-sure-modal.html',
-                controller: 'AreYouSureModalCtrl'
+                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tour-confirm-modal.html',
+                controller: 'ReassignTourConfirmModalCtrl'
 
               }
             }

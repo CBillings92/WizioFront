@@ -1,5 +1,5 @@
 angular.module('DashboardApp')
-  .controller('AreYouSureModalCtrl', [
+  .controller('ReassignTourConfirmModalCtrl', [
     '$scope',
     '$uibModalInstance',
     'modalData',
