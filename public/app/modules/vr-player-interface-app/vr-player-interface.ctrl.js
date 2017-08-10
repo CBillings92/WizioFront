@@ -150,8 +150,5 @@ angular.module('NewTourApp')
                 $scope.actions[0].show = false;
             }
         };
-
-
-
     }
 ])
