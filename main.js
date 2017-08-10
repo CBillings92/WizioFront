@@ -22,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.all('/*', function(req, res, next) {
     res.render('index', {
         title: 'Express'
