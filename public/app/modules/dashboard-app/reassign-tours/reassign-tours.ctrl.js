@@ -5,7 +5,6 @@ angular.module('DashboardApp')
     function($scope, ReassignToursFct) {
       $scope.activeListings = [];
       $scope.$on('ActiveListingsPayload', function(ev, data) {
-        console.dir(data);
         $scope.activeListings = data[true];
       })
       $scope.$emit('ActiveListingRequest', {});
