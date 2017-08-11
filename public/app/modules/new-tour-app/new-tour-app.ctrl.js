@@ -4,7 +4,8 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
     'WizioConfig',
     'NewTourFct',
     'lodash',
-    function($scope, $state, WizioConfig, NewTourFct, lodash) {
+    'ngDrift',
+    function($scope, $state, WizioConfig, NewTourFct, lodash, ngDrift) {
         $scope.showInterface = true;
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
             document.getElementById('site-container').style.height = "100%";

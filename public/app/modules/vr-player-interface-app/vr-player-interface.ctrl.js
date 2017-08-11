@@ -8,10 +8,10 @@ angular.module('NewTourApp')
     'AWSFct',
     'LoadingSpinnerFct',
     '$sce',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce) {
+    'ngDrift',
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
-
 
         $scope.state = $state.current.name;
         $scope.showInterface = true;

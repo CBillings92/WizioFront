@@ -23,6 +23,5 @@ angular.module('DashboardApp')
       $scope.assignTour = function(subscription){
         $uibModalInstance.close(subscription);
       }
-
     }
   ])

@@ -1,7 +1,7 @@
 angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     '$scope',
-    function($scope) {
-
+    'ngDrift',
+    function($scope, ngDrift) {
         $scope.$on('TourDataReceived', function(event, data){
             wizio.init('pano', data.firstPhotoUrl);
         })

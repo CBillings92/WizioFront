@@ -4,7 +4,9 @@
 angular.module('AboutUsApp')
     .controller('AboutUsCtrl', [
         '$scope',
-        function ($scope) {
+        'ngDrift',
+        function ($scope, ngDrift) {
+          ngDrift.show();
             $scope.members =
             [{
                 name: "Cameron Billings",
