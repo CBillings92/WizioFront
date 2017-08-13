@@ -66,6 +66,7 @@ angular.module('NewTourApp')
             function setTourDefaults(media) {
                 var photoIndex;
                 var floorplan = false;
+                var progressivePhotoUrls;
                 var state = $state.current.name;
                 var SubscriptionApartmentPubId = buildSubscriptionApartmentPubId(media)
 
@@ -80,15 +81,20 @@ angular.module('NewTourApp')
                 } else if (state === 'DemoOneBackBay') {
                     photoIndex = 9;
                 } else {
-                    photoIndex = 0;
+                    photoIndex = 1;
                 }
 
                 photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG';
-
+                progressivePhotoUrls = [
+                  WizioConfig.CLOUDFRONT_DISTRO + '800x400/' + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG',
+                  WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG'
+                ]
+                console.dir(progressivePhotoUrls);
                 return {
                     Floor_Plan: floorplan,
                     photoIndex: photoIndex,
-                    photoUrl: photoUrl
+                    photoUrl: photoUrl,
+                    progressivePhotoUrls: progressivePhotoUrls
                 }
             }
 

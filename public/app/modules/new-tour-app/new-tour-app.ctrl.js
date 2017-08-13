@@ -39,6 +39,7 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
 
             vrPlayerData.firstPhotoIndex = tourDefaults.photoIndex;
             vrPlayerData.firstPhotoUrl = tourDefaults.photoUrl;
+            vrPlayerData.progressivePhotoUrls = tourDefaults.progressivePhotoUrls;
 
             if (tourDefaults.Floor_Plan) {
                 interfaceData.floorPlan = tourDefaults.Floor_Plan;
