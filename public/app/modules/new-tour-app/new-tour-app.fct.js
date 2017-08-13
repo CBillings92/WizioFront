@@ -89,7 +89,6 @@ angular.module('NewTourApp')
                   WizioConfig.CLOUDFRONT_DISTRO + '800x400/' + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG',
                   WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG'
                 ]
-                console.dir(progressivePhotoUrls);
                 return {
                     Floor_Plan: floorplan,
                     photoIndex: photoIndex,
