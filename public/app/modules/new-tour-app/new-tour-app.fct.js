@@ -19,7 +19,6 @@ angular.module('NewTourApp')
 
             function getContent(currentState) {
                 return $q(function (resolve, reject) {
-                  console.dir(document.getElementById('vrPlayerLoader'));
                     var activeListingId;
                     var apartmentPubId;
                     var currentState = $state.current.name;

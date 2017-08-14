@@ -125,7 +125,6 @@ angular.module('NewTourApp')
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
             wizio.changeImage(progURLs, function(response){
-              console.dir(response);
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;
               LoadingSpinnerFct.hide('vrPlayerLoader');
