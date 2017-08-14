@@ -85,10 +85,11 @@ angular.module('TourApp').controller('TourCtrl', [
             LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
-            wizio.changeImage(photoUrl);
-            $scope.selectPhoto = false;
-            $scope.viewFloorPlan = false;
-            LoadingSpinnerFct.hide('vrPlayerLoader');
+            wizio.changeImage(photoUrl, function(response){
+              $scope.selectPhoto = false;
+              $scope.viewFloorPlan = false;
+              LoadingSpinnerFct.hide('vrPlayerLoader');
+            });
         };
 
     }
