@@ -81,7 +81,7 @@ angular.module('NewTourApp')
                 } else if (state === 'DemoOneBackBay') {
                     photoIndex = 9;
                 } else {
-                    photoIndex = 1;
+                    photoIndex = 0;
                 }
 
                 photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG';
