@@ -41,7 +41,6 @@ angular.module('NewTourApp')
                     var query = {
                         activelistingid: activeListingId
                     }
-
                     apiResource.query(query, function (results) {
 
                         if (results[0].pinRequired) {

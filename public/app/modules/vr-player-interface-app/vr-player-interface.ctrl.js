@@ -124,10 +124,11 @@ angular.module('NewTourApp')
             LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
-            wizio.changeImage(progURLs);
-            $scope.selectPhoto = false;
-            $scope.viewFloorPlan = false;
-            LoadingSpinnerFct.hide('vrPlayerLoader');
+            wizio.changeImage(progURLs, function(response){
+              $scope.selectPhoto = false;
+              $scope.viewFloorPlan = false;
+              LoadingSpinnerFct.hide('vrPlayerLoader');
+            });
         };
 
         $scope.thumbnailURL = function(photoIndex) {

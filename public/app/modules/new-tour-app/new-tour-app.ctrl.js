@@ -5,7 +5,8 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
     'NewTourFct',
     'lodash',
     'ngDrift',
-    function($scope, $state, WizioConfig, NewTourFct, lodash, ngDrift) {
+    'LoadingSpinnerFct',
+    function($scope, $state, WizioConfig, NewTourFct, lodash, ngDrift, LoadingSpinnerFct) {
         $scope.showInterface = true;
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
             document.getElementById('site-container').style.height = "100%";
@@ -14,6 +15,8 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
         NewTourFct.getContent().then(function(media) {
+          LoadingSpinnerFct.show('vrPlayerLoader');
+
             var interfaceData = {
                 floorPlan: false,
                 hideFloorPlanButton: true,
