@@ -3,7 +3,7 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     'ngDrift',
     function($scope, ngDrift) {
         $scope.$on('TourDataReceived', function(event, data){
-            wizio.init('pano', data.firstPhotoUrl);
+            wizio.init('pano', data.progressivePhotoUrls);
         })
         /**
          * Used for navigating on Powered by Wizio Button

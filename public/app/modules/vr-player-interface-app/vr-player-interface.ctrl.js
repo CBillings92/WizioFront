@@ -116,11 +116,15 @@ angular.module('NewTourApp')
             var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
 
             var photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
+            var progURLs = [
+              WizioConfig.CLOUDFRONT_DISTRO + "800x400/" + SubscriptionApartmentPubId + '/' + $scope.media.vrphoto[photoIndex].title + '.JPG',
+              WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG',
+            ]
 
             LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
-            wizio.changeImage(photoUrl);
+            wizio.changeImage(progURLs);
             $scope.selectPhoto = false;
             $scope.viewFloorPlan = false;
             LoadingSpinnerFct.hide('vrPlayerLoader');
