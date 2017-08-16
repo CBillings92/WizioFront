@@ -1,4 +1,4 @@
-angular.module('NewTourApp')
+angular.module('TourApp')
 .controller('VrPlayerInterfaceCtrl', [
     '$scope',
     '$state',

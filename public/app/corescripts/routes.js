@@ -73,8 +73,8 @@ angular.module('MainApp')
                     url: '/tour/:activelistingid',
                     views: {
                         "maincontent": {
-                            templateUrl: PAGECONFIG.newTourApp.main.view,
-                            controller: PAGECONFIG.newTourApp.main.controller
+                            templateUrl: PAGECONFIG.tourApp.main.view,
+                            controller: PAGECONFIG.tourApp.main.controller
                         }
                     }
                 })
@@ -127,8 +127,8 @@ angular.module('MainApp')
                     url: '/demo',
                     views: {
                         "maincontent": {
-                            templateUrl: PAGECONFIG.newTourApp.main.view,
-                            controller: PAGECONFIG.newTourApp.main.controller
+                            templateUrl: PAGECONFIG.tourApp.main.view,
+                            controller: PAGECONFIG.tourApp.main.controller
                         }
                     }
                 })

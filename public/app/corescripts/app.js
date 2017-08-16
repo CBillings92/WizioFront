@@ -7,7 +7,7 @@
     angular.module('DashboardApp', []);
     angular.module('DeleteTourApp', []);
     angular.module('LoginApp', []);
-    angular.module('NewTourApp', []);
+    angular.module('TourApp', []);
     angular.module('VrPlayerInterfaceApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -42,7 +42,7 @@
             'ApiGuideApp',
             'AccountApp',
             'ApplicationApp',
-            'NewTourApp',
+            'TourApp',
             'VrPlayerInterfaceApp',
             'AuthApp',
             'CreateAccountApp',

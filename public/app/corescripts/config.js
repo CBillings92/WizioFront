@@ -197,7 +197,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             },
             tourApp: {
                 main: {
-                    view: MODULESPATH + 'tour-app/tour.html',
+                    view: MODULESPATH + 'tour-app/tour-app.html',
                     controller: 'TourCtrl'
                 }
             },
