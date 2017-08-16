@@ -197,14 +197,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             },
             tourApp: {
                 main: {
-                    view: MODULESPATH + 'tour-app/tour.html',
+                    view: MODULESPATH + 'tour-app/tour-app.html',
                     controller: 'TourCtrl'
-                }
-            },
-            newTourApp: {
-                main: {
-                    view: MODULESPATH + 'new-tour-app/new-tour-app.html',
-                    controller: 'NewTourCtrl'
                 }
             }
         },
@@ -222,10 +216,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             tour: {
                 view: MODULESPATH + 'tour-app/tour.html',
                 controller: 'TourCtrl'
-            },
-            newTour: {
-                view: MODULESPATH + 'new-tour-app/new-tour-app.html',
-                controller: 'NewTourCtrl'
             },
             vrPlayerInterface: {
                 view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',

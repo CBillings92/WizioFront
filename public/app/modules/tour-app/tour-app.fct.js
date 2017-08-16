@@ -1,12 +1,21 @@
 angular.module('TourApp')
     .factory('TourFct', [
+        'WizioConfig',
+        'LoadingSpinnerFct',
+        'AWSFct',
         '$resource',
         '$q',
         '$state',
-        'AWSFct',
-        'LoadingSpinnerFct',
-        'WizioConfig',
-        function ($resource, $q, $state, AWSFct, LoadingSpinnerFct, WizioConfig) {
+        'ModalBuilderFct',
+        function(
+            WizioConfig,
+            LoadingSpinnerFct,
+            AWSFct,
+            $resource,
+            $q,
+            $state,
+            ModalBuilderFct
+        ) {
 
             function getContent(currentState) {
                 return $q(function (resolve, reject) {
@@ -32,16 +41,13 @@ angular.module('TourApp')
                     var query = {
                         activelistingid: activeListingId
                     }
-
                     apiResource.query(query, function (results) {
+
                         if (results[0].pinRequired) {
-                            requestPassword()
-                            .then(function (response) {
-                                return requestTourPasswordModal(response);
-                            })
+                            requestTourPasswordModal({activelistingid: activeListingId})
                             .then(function (response) {
                                 LoadingSpinnerFct.hide('vrPlayerLoader');
-                                return resolve(results);
+                                return resolve(response);
                             })
                         } else {
                             LoadingSpinnerFct.hide('vrPlayerLoader');
@@ -50,7 +56,6 @@ angular.module('TourApp')
                     })
                 })
             }
-
             /**
              * Build the initial photo URL, set the inital photo index,
              * Build the floorplan URL if necessary
@@ -60,6 +65,7 @@ angular.module('TourApp')
             function setTourDefaults(media) {
                 var photoIndex;
                 var floorplan = false;
+                var progressivePhotoUrls;
                 var state = $state.current.name;
                 var SubscriptionApartmentPubId = buildSubscriptionApartmentPubId(media)
 
@@ -78,11 +84,15 @@ angular.module('TourApp')
                 }
 
                 photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG';
-
+                progressivePhotoUrls = [
+                  WizioConfig.CLOUDFRONT_DISTRO + '800x400/' + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG',
+                  WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" +media.vrphoto[photoIndex].title + '.JPG'
+                ]
                 return {
                     Floor_Plan: floorplan,
                     photoIndex: photoIndex,
-                    photoUrl: photoUrl
+                    photoUrl: photoUrl,
+                    progressivePhotoUrls: progressivePhotoUrls
                 }
             }
 
@@ -108,10 +118,9 @@ angular.module('TourApp')
                 var floorplan = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + '/floorplan.png';
                 return floorplan;
             }
+        return {
+            setTourDefaults: setTourDefaults,
+            getContent: getContent
 
-            return {
-                getContent: getContent,
-                setTourDefaults: setTourDefaults
-            }
         }
-    ])
+    }])
