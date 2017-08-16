@@ -13,6 +13,7 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
             document.getElementById('main-content').style["padding-bottom"] = 0;
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
+
         NewTourFct.getContent().then(function(media) {
             var interfaceData = {
                 floorPlan: false,
@@ -52,5 +53,7 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
         function sortMedia(media) {
             return lodash.groupBy(media, 'type');
         }
+
+
     }
 ])
