@@ -15,6 +15,7 @@ angular.module('TourApp').controller('TourCtrl', [
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
         TourFct.getContent().then(function(media) {
+
           LoadingSpinnerFct.show('vrPlayerLoader');
 
             var interfaceData = {
@@ -55,5 +56,7 @@ angular.module('TourApp').controller('TourCtrl', [
         function sortMedia(media) {
             return lodash.groupBy(media, 'type');
         }
+
+
     }
 ])
