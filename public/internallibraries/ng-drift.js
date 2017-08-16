@@ -163,6 +163,13 @@ angular.module('ng-drift')
 				if (!window.location.href.includes('/tour/')) {
 					drift.load(this.drift_key);
 				}
+
+				if (window.location.href.includes('demo') && document.documentElement.clientWidth < 965) {
+					setTimeout(function() {
+						document.getElementById('drift-widget').style.marginBottom = 	document.getElementsByClassName('tour-photos-container')[0].offsetHeight + "px";
+					}, 3000);
+				}
+
 			}
 
 			this.$get = function(){
