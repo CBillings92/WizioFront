@@ -1,8 +1,8 @@
 angular.module('TourApp')
     .directive('tourDir', ['WizioConfig', function(WizioConfig) {
       return {
-        templateUrl: WizioConfig.directives.newTour.view,
-        controller: WizioConfig.directives.newTour.controller,
+        templateUrl: WizioConfig.directives.tour.view,
+        controller: WizioConfig.directives.tour.controller,
         scope: {
             showInterface: '=?'
         },

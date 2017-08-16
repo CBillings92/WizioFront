@@ -214,7 +214,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 }
             },
             tour: {
-                view: MODULESPATH + 'tour-app/tour.html',
+                view: MODULESPATH + 'tour-app/tour-app.html',
                 controller: 'TourCtrl'
             },
             vrPlayerInterface: {
