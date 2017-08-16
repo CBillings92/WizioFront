@@ -217,10 +217,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 view: MODULESPATH + 'tour-app/tour.html',
                 controller: 'TourCtrl'
             },
-            newTour: {
-                view: MODULESPATH + 'new-tour-app/new-tour-app.html',
-                controller: 'NewTourCtrl'
-            },
             vrPlayerInterface: {
                 view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',
                 controller: 'VrPlayerInterfaceCtrl'
