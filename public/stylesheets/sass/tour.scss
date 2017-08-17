@@ -11,8 +11,9 @@
     background-color: $gray;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
-    padding-bottom: 10px;
+    // align-items: flex-start;
+    padding-top: 5px;
+    padding-bottom: 5px;
 
     .tour-nav-buttons {
         margin-left: auto;
@@ -94,7 +95,20 @@ margin-right: auto;
     align-items: center;
     justify-content: center;
 
-    width: 100%;
+    right: 0;
+    margin: 0 auto;
+    left: 0;
+
+    @media (min-width: $screen-md-min) {
+        width: 80%;
+
+    }
+
+
+    @media (max-width: $screen-md-min) {
+        width: 100%;
+
+    }
 
     .tour-photo-labels {
         color:white;
