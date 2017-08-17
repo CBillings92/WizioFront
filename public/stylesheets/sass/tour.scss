@@ -14,16 +14,29 @@
     padding-top: 5px;
     padding-bottom: 5px;
 
+    .tour-navbar-logo {
+        display:flex;
+        align-items:center;
+        flex-direction:column;
+        padding-left:10px;
+        color:white;
+        right:0px;
+        font-size:1em;
+    }
+
     .tour-nav-buttons {
         margin-left: auto;
         padding-top: 5px;
         padding-bottom: 5px;
         padding-right: 5px;
         display: flex;
-        justify-content: center;
         align-items: center;
         color: white;
         cursor: pointer;
+
+        div {
+            padding-left: 5px;
+        }
     }
 }
 

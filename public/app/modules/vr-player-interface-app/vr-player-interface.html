@@ -2,17 +2,17 @@
 
 
     <div class="tour-photos-navbar pointer-events_all">
-        <div style="display:flex; align-items:center; flex-direction:column;padding-left:10px;">
+        <div class="tour-navbar-logo">
             <div>
-                <span style="color:white; right:0px; font-size:1em;">Powered By <a href="https://www.wizio.co/" target="_blank"></span>
+                <span>Powered By <a href="https://www.wizio.co/" target="_blank"></span>
             </div>
             <div>
                     <img style="width:90px;" src="public/viewtemplates/images/brand_assets/wizio_logo_white.png" /></a>
             </div>
         </div>
         <div class="tour-nav-buttons">
-            <div >
-                <span ng-show="floorPlan" style="margin-right:10px;" ng-click="viewFloorPlanFunc()">{{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}</span>
+            <div>
+                <span ng-show="floorPlan" ng-click="viewFloorPlanFunc()">{{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}</span>
             </div>
             <div>
                 <agent-profile-dir></agent-profile-dir>
