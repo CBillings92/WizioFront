@@ -177,11 +177,12 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             };
             createModal(searchModifyModalConfig)
             .then(function(data){
-              uploadTourPageModalConfig.modalData = data;
-              createModal(uploadTourPageModalConfig)
-              .then(function(response){
-
-              })
+              $state.go('TourManagement', {'data': data, 'action': 'ModifyTour'});
+              // uploadTourPageModalConfig.modalData = data;
+              // createModal(uploadTourPageModalConfig)
+              // .then(function(response){
+              //
+              // })
             })
         }
 

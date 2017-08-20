@@ -200,6 +200,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: MODULESPATH + 'tour-app/tour-app.html',
                     controller: 'TourCtrl'
                 }
+            },
+            TourMgmtApp: {
+              main: {
+                view: MODULESPATH + 'tour-mgmt-app/main/tour-mgmt-main.html',
+                controller: 'TourMgmtMainCtrl'
+              }
             }
         },
         directives: {

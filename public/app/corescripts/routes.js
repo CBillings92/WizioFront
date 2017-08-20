@@ -69,6 +69,18 @@ angular.module('MainApp')
                         }
                     }
                 })
+                .state('TourManagement', {
+                  params: {'data': null, 'action': null},
+                  url: '/tour/management',
+                  views: {
+                    'navbar': navbar,
+                    'footer': footer,
+                    'maincontent': {
+                      templateUrl: PAGECONFIG.TourMgmtApp.main.view,
+                      controller: PAGECONFIG.TourMgmtApp.main.controller
+                    }
+                  }
+                })
                 .state('Tour', {
                     url: '/tour/:activelistingid',
                     views: {
