@@ -202,6 +202,8 @@ angular.module('TourApp')
 
 
     $scope.launchAgentProfileModal = function() {
+        $scope.viewFloorPlan = false;
+
 
         ModalBuilderFct.buildComplexModal(
             'md',
