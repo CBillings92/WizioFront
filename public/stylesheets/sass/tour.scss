@@ -7,6 +7,23 @@
 }
 
 
+.tour-navbar-logo {
+    display:flex;
+    align-items:flex-start;
+    flex-direction:column;
+    padding-left:10px;
+
+    span {
+    }
+
+    .logo-header {
+        color:white;
+
+        right:0px;
+        font-size:1em;
+    }
+}
+
 
 .unit-details-media-tab-content-picker__img {
 display:block;

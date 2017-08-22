@@ -145,7 +145,7 @@ angular.module('TourApp')
         }
 
 
-        $scope.acceltoggle =  function() {
+        $scope.accelToggle =  function() {
             enableAccelerometer();
         }
 
