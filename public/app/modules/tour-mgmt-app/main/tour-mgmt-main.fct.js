@@ -209,6 +209,12 @@ angular.module('TourMgmtApp')
         return data.TourMedia.photos;
       }
 
+      /**
+       * Previews a single photo by setting blob or URL to htmltag src
+       * @param  {Object}     photo   [standard photo object]
+       * @param  {DOMElement} htmltag [DOMElement object of the elemnt you want to preview photo in]
+       * @return {undefined}         []
+       */
       function previewPhoto(photo, htmltag) {
         if (photo) {
           var reader = new FileReader();
@@ -223,6 +229,19 @@ angular.module('TourMgmtApp')
 
       }
 
+      function saveChanges(data) {
+
+      }
+
+      /**
+       * Iterates over array of photos and calls the previewPhoto function
+       * with each individual photo and elem. If the elem isn't provided or is
+       * false, default is to assign previews to the list of tour images.
+       * IF you want to preview one photo, send one photo in an array
+       * @param  {Array} TourMediaPhotos [array of photos to be previewed. Even one photo should be in array]
+       * @param  {HTMLElement} elem            [HTMLElement to preview photo in - optional]
+       * @return {undefined}                 []
+       */
       function previewNewPhotos(TourMediaPhotos, elem) {
         for (var i = 0; i < TourMediaPhotos.length; i++) {
           if (TourMediaPhotos[i].isNew) {
@@ -233,6 +252,11 @@ angular.module('TourMgmtApp')
         return;
       }
 
+      /**
+       * Build wrapper standard photo object around floor plan file.
+       * @param  {File} file [file comes from file input. An actual file.]
+       * @return {Object}      [standard photo object]
+       */
       function buildFloorPlanObj(file) {
         var photo = {
           apartmentpubid: data.SubscriptionApartment.pubid,
@@ -248,7 +272,11 @@ angular.module('TourMgmtApp')
         return photo;
       }
 
-      // Used to calculate the pin X and Y based on the mouse click
+      /**
+       * Used to calculate pin X and Y coords on pin drop or movement
+       * @param  {Object} mouseEvent [mouse event from JS mouse click event]
+       * @return {Object}            [object of pin coords]
+       */
       function calculatePinXandY(mouseEvent) {
         // hardcoded values account for the size of the rectangle pin image
         // so that the bottom of the pin is where the user clicks (not the

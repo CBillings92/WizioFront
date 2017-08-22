@@ -52,10 +52,10 @@
         <button class="{{photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
           Rename
         </button>
-        <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+        <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Move Pin
         </button>
-        <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+        <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Delete Pin
         </button>
         <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='!photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
