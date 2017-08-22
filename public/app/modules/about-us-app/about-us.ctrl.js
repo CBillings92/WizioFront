@@ -24,18 +24,32 @@ angular.module('AboutUsApp')
                 email: "devon@wizio.co",
             }, {
                 name: "Trent Duffy",
-                title: "Co-Founder and Web Developer",
+                title: "Co-Founder and Head of Product",
                 picture: "trentduffy.png",
                 twitter: "trentolol",
                 linkedin: "trentduffy",
                 email: "trent@wizio.co",
             }, {
                 name: "John Puma",
-                title: "Business Development",
+                title: "COO",
                 picture: "johnjpuma.jpg",
                 twitter: "JohnJPuma",
                 linkedin: "johnjpuma",
                 email: "john@wizio.co",
+            }, {
+                name: "Emily O'Brien",
+                title: "Director of Product Design",
+                picture: "emily.jpg",
+                twitter: "",
+                linkedin: "emilymobrien4",
+                email: "emily@wizio.co",
+            }, {
+                name: "Yuyang He",
+                title: "Video Production Co-op",
+                picture: "yuyang.JPG",
+                twitter: "",
+                linkedin: "yuyang-he-ab6087a6",
+                email: "yuyang@wizio.co",
             }];
         }
     ]);
