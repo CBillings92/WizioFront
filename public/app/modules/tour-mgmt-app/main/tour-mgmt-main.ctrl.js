@@ -36,7 +36,11 @@ angular.module('TourMgmtApp')
        * @type {String}
        */
       $scope.currentPinAction = 'dropPinChoosePhoto'
-
+      /**
+       * Flag for modifying UI when Save Changes is initiated
+       * @type {Boolean}
+       */
+      $scope.saveChangesInitiated = false;
       /* Kick off loading spinner for initialization */
       LoadingSpinnerFct.show('TourManagementMainLoad');
 
@@ -219,6 +223,7 @@ angular.module('TourMgmtApp')
        * @return {undefined} []
        */
       $scope.saveChanges = function() {
+        $scope.saveChangesInitiated = true;
         TourMgmtFct.saveChanges()
         .then(function(response){
 

@@ -229,8 +229,68 @@ angular.module('TourMgmtApp')
 
       }
 
+      /**
+       * persist changes made to tour. Upload any new photos to S3 and send all
+       * photos to Wizio backend to run an update or create to update all photos.
+       * @param  {Object} data [Tour app data object]
+       * @return {promise}      [promise]
+       */
       function saveChanges(data) {
+        return $q(function(resolve, reject){
+          /* Shorthand variables */
+          var photosArr = data.TourMedia.photos;
+          var floorplan = data.TourMedia.floorplan;
+          var subscriptionAptPubId = data.TourMedia.SubscriptionApartment.pubid;
+          var s3PhotoKey = null;
+          /* Array containers for promises */
+          var s3UploadPromises = [];
+          var wizioAPIPromises = [];
 
+          /**
+           * Loop over all photos. If photo is new add to s3UploadAPromArray.
+           * Add all photos to wizioAPI Array. Do a find/create or update in
+           * backend to capture all changes.
+           */
+          for (var i = 0; i < photosArr.length; i++) {
+            if (photosArr[i].isNew) {
+              s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG'
+              s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photoArr[i].file, key))
+            }
+            wizioAPIPromises.push(savePhotoToWizioAPI(photosArr[i]))
+          }
+
+          /**
+           * If there is a floorplan that is new, add floorplan to upload arrays
+           * @param  {Object} floorplan [standard photo object]
+           */
+          if (floorplan && floorplan.isNew) {
+            var s3FloorplanKey = subscriptionAptPubId + '/' + 'floorplan.png';
+            s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(floorplan, s3FloorplanKey));
+            wizioAPIPromises.push(savePhotoToWizioAPI(floorplan));
+          }
+
+          /**
+           * Use $q.all to run all promises in the array asynchronously.
+           * If there are new photos, once upload to S3 is finished save photos
+           * to Wizio API
+           * @param  {Array} s3UploadPromises [array of promises utilizing AWSFct]
+           * @param  {Array} wizioAPIPromises [array of promises utilizing wizioAPI]
+           */
+          if (s3UploadPromises.length > 0) {
+            $q.all(s3UploadPromises)
+            .then(function(response){
+              return $q.all(wizioAPIPromises)
+            })
+            .then(function(response){
+              return resolve('Finished');
+            })
+          } else {
+            $q.all(wizioAPIPromises)
+            .then(function(response){
+              return resolve('Finished');
+            })
+          }
+        })
       }
 
       /**
