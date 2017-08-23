@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
 
-            <div style="display:flex; align-items: center;">
+            <div class="nav-logo">
                 <a class="navbar-brand-white" ng-show="showWhiteLogoFlag" ng-click="goHome()">
                     <img id="navbarlogo"/>
                 </a>
@@ -46,9 +46,6 @@
                 </li>
                 <li>
                     <a href="http://blog.wizio.co">Blog</a>
-                </li>
-                <li style="cursor: pointer;">
-                    <a ng-click="navigate('LandingPage')">Home</a>
                 </li>
                 <li ng-click="goToLogin()" ng-hide="isLoggedIn">
                     <a href="">Sign In</a>
