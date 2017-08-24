@@ -32,7 +32,7 @@ angular.module('TourApp')
         $scope.$on('TogglePhotoList', function(event, data) {
             menuButtonAction('togglePhotoList');
 
-        })
+        });
 
         window.addEventListener("devicemotion", function(event){
             if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
@@ -145,10 +145,6 @@ angular.module('TourApp')
             return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
         }
 
-
-
-
-
         var hideFloorPlanButton = false;
         $scope.viewFloorPlanFunc = function() {
             $scope.$emit('ToggleFloorPlan', {});
@@ -163,8 +159,6 @@ angular.module('TourApp')
                 $scope.actions[0].show = false;
             }
         };
-
-
 
         $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
@@ -182,7 +176,7 @@ angular.module('TourApp')
             };
 
         });
-    } else  {
+    } else {
         $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'}).query(
             {
                 activelistingid: $stateParams.activelistingid
@@ -200,15 +194,14 @@ angular.module('TourApp')
     $scope.launchAgentProfileModal = function() {
         $scope.viewFloorPlan = false;
 
-
         ModalBuilderFct.buildComplexModal(
             'md',
             '/public/app/modules/vr-player-interface-app/modal/agent-profile-modal.view.html',
             'AgentProfileModalCtrl',
-            $scope.agent).then(function(response) {
+            $scope.agent)
+            .then(function(response) {
 
             });
-
-    };
+        };
     }
 ])
