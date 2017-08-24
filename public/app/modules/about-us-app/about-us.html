@@ -61,7 +61,7 @@
                     <img src="/public/viewtemplates/images/aboutimages/{{ member.picture }}" class="img-responsive" />
                     <div class="about-team-members-more-overlay">
                         <div class="about-team-members-more-overlay-content">
-                            <a class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}" target="_blank">
+                            <a ng-if="member.twitter" class="team-social-link" href="https://www.twitter.com/{{ member.twitter }}" target="_blank">
                                  <ng-include src="'public/assets/icons/twitter.svg'"></ng-include>
                             </a>
                             <a class="team-social-link" href="mailto:{{ member.email }}" target="_self">
