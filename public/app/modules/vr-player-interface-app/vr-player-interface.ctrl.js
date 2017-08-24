@@ -56,8 +56,9 @@ angular.module('TourApp')
          * Toggles the accelerometer on the VR player library
          * @return {undefined} [undefined]
          */
-        function accelerometerToggle() {
+        $scope.accelerometerToggle = function() {
             $scope.toggle = !$scope.toggle;
+            $scope.isRotating = !$scope.isRotating;
             wizio.toggleAccelerometer();
             return;
         }
@@ -116,7 +117,7 @@ angular.module('TourApp')
         }
 
         $scope.buttonAction = menuButtonAction;
-        $scope.accelerometerToggle = accelerometerToggle;
+
 
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
@@ -145,19 +146,14 @@ angular.module('TourApp')
         }
 
 
-        $scope.accelToggle =  function() {
-            enableAccelerometer();
-        }
+
 
 
         var hideFloorPlanButton = false;
         $scope.viewFloorPlanFunc = function() {
             $scope.$emit('ToggleFloorPlan', {});
         }
-        function enableAccelerometer() {
-            $scope.isRotating = !$scope.isRotating;
-            $scope.accelerometerToggle();
-        }
+
         $scope.openCloseMenu = function() {
             $scope.menuIsOpen = !$scope.menuIsOpen;
             // set floorplan button visibility
