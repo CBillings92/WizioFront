@@ -9,9 +9,12 @@ angular.module('TourApp')
     'LoadingSpinnerFct',
     '$sce',
     'ngDrift',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift) {
+    'ModalBuilderFct',
+    '$stateParams',
+    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
+        $scope.hasAccelerometer = false;
 
         $scope.state = $state.current.name;
         $scope.showInterface = true;
@@ -29,7 +32,12 @@ angular.module('TourApp')
         $scope.$on('TogglePhotoList', function(event, data) {
             menuButtonAction('togglePhotoList');
 
-        })
+        });
+
+        window.addEventListener("devicemotion", function(event){
+            if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+                $scope.hasAccelerometer = true;
+        });
 
         // For photo and floorplan selection
         $scope.selectPhoto = false;
@@ -48,8 +56,9 @@ angular.module('TourApp')
          * Toggles the accelerometer on the VR player library
          * @return {undefined} [undefined]
          */
-        function accelerometerToggle() {
+        $scope.accelerometerToggle = function() {
             $scope.toggle = !$scope.toggle;
+            $scope.isRotating = !$scope.isRotating;
             wizio.toggleAccelerometer();
             return;
         }
@@ -108,7 +117,7 @@ angular.module('TourApp')
         }
 
         $scope.buttonAction = menuButtonAction;
-        $scope.accelerometerToggle = accelerometerToggle;
+
 
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
@@ -136,16 +145,11 @@ angular.module('TourApp')
             return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
         }
 
-
-
         var hideFloorPlanButton = false;
         $scope.viewFloorPlanFunc = function() {
             $scope.$emit('ToggleFloorPlan', {});
         }
-        function enableAccelerometer() {
-            $scope.isRotating = !$scope.isRotating;
-            $scope.accelerometerToggle();
-        }
+
         $scope.openCloseMenu = function() {
             $scope.menuIsOpen = !$scope.menuIsOpen;
             // set floorplan button visibility
@@ -154,6 +158,50 @@ angular.module('TourApp')
             } else {
                 $scope.actions[0].show = false;
             }
+        };
+
+        $scope.agent = {};
+        $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
+        $scope.profileUploaded = false;
+
+    if ($state.current.name == "Demo") {
+        $resource(WizioConfig.baseAPIURL + '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d').query(function(response){
+            $scope.profileUploaded = true;
+            $scope.agent = {
+                firstName: "Devon",
+                lastName: "Grodkiewicz",
+                email: "devon@wizio.co",
+                awsProfilePhotoUrl: "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png",
+                state: $state.current.name
+            };
+
+        });
+    } else {
+        $resource(WizioConfig.baseAPIURL + 'activelisting/:activelistingid', {activelistingid: '@activelistingid'}).query(
+            {
+                activelistingid: $stateParams.activelistingid
+            },
+            function(response) {
+                $scope.agent = response[response.length - 1];
+                $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
+                $scope.agent.state = $state.current.name;
+
+            });
+
+    }
+
+
+    $scope.launchAgentProfileModal = function() {
+        $scope.viewFloorPlan = false;
+
+        ModalBuilderFct.buildComplexModal(
+            'md',
+            '/public/app/modules/vr-player-interface-app/modal/agent-profile-modal.view.html',
+            'AgentProfileModalCtrl',
+            $scope.agent)
+            .then(function(response) {
+
+            });
         };
     }
 ])
