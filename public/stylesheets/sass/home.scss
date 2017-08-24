@@ -1,8 +1,13 @@
 .home-hero {
   position: relative;
-  background-color: $gray;
-  overflow: visible;
+  background-image: url("../viewtemplates/images/home/homepage-hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-color: $dk-gray;
+  background-blend-mode: multiply;
+
 }
+
 .home-hero__video {
   margin: 0 auto;
   text-align: center;
@@ -25,18 +30,19 @@
   }
 }
 
+
 .home-hero__text {
   position: absolute;
+  text-align: center;
   top: 50%;
   z-index: 100;
   // have to account for the search bar height too
   transform: translateY(calc(-50% - 40px));
   color: $white;
-  text-shadow: 0 0 10px rgba(0,0,0,.4);
 }
 
 .home-hero__heading {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .home-hero__subheading {
@@ -97,13 +103,23 @@
       border-style: solid;
     }
 }
-.home-blurbs {
-  margin-top: 32px;
+
+
+
+.home-graybanner{
+  background-color: $light-gray;
+  height: 350px;
 }
-.home-blurb__header {
-  padding-bottom: 5px;
-  margin-bottom: 10px;
+
+.home-blurb {
+  margin-top: 50px;
 }
+
+.vr-image{
+  margin-top: 30px;
+}
+
+
 .home-sign-up {
   margin-top: 20px;
 }
@@ -204,9 +220,7 @@
     background-size: 1200px;
     background-position: right -80px top;
   }
-  .home-blurbs {
-    margin-top: 30px;
-  }
+
   .home-blurb__header {
     font-size: 25px;
   }
@@ -248,20 +262,8 @@
   }
 }
 @media (min-width: 1170px) {
-  .home-blurbs {
-    margin-top: 30px;
-
-    div:nth-child(1) {
-      padding-right: 30px;
-    }
-    div:nth-child(2) {
-      padding-right: 65px;
-      padding-left: 65px;
-    }
-    div:nth-child(3) {
-      padding-left: 30px;
-    }
-  }
+ 
+  
   .home-landlord {
     // margin-top: -106px;
     // padding-top: 240px;

@@ -6,6 +6,8 @@ $gray: #706f72;
 $red: #BA5125;
 $blue: #7A9DD1;
 $blue-gray: #8E9BB2;
+$light-gray: #F3F3F3;
+$dk-gray: #939393;
 /**
   Mixins
 **/
@@ -79,6 +81,38 @@ p {
     font-weight: 400;
     line-height: 1.1;
 }
+
+// ------------- UPDATED STYLES 8.24.17 --------------- //
+
+.header-text{
+    font-family: "Roboto";
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.subhead-text{
+    font-family: "Roboto";
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.section-head{
+    font-family: "Roboto";
+    font-size: 24px;
+    font-weight: 400;
+    color: $orange;
+    line-height: 1.4;
+}
+
+.large-body{
+    font-family: "Roboto";
+    font-size: 18px;
+    font-weight: 300;
+    color: $dk-gray;
+}
+
+// ---------------------------- //
 
 #site-container {
     min-height:100%;
