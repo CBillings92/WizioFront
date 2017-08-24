@@ -89,8 +89,17 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
       createModal(createUnitModalConfig)
         .then(function(createUnitAPIResponse) {
+          var data = createUnitAPIResponse.payload;
+          console.dir(createUnitAPIResponse);
+          var dataForTourManagement = {
+            Apartment: data.Apartment.Instance,
+            SubscriptionApartment: {
+                pubid: data.SubscriptionApartment.Instance.pubid,
+                id: data.SubscriptionApartment.Instance.id
+            }
+          }
           return $state.go('TourManagement', {
-            'data': createUnitAPIResponse.payload,
+            'data': dataForTourManagement,
             'action': 'CreateTour'
           });
           // Assign modal data
@@ -151,10 +160,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
         createModal(createUnitModalConfig)
           .then(function(createUnitAPIResponse) {
-            return $state.go('TourManagement', {
-              'data': createUnitAPIResponse.payload,
-              'action': 'CreateTour'
-            });
+            console.dir(createUnitAPIResponse);
+
             // Assign modal data
             // uploadFloorPlanDecisionModalConfig.modalData = state;
             // CREATE A FLOOR PLAN? MODAL

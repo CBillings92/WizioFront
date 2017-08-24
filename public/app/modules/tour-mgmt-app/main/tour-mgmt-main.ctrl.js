@@ -54,7 +54,9 @@ angular.module('TourMgmtApp')
         /* Assign formatted data to scope */
         $scope.data = response.payload;
         /* Set first photo in array as the default selected photo */
-        $scope.selectPhotoForModification($scope.data.TourMedia.photos[0]);
+        if ($scope.data.TourMedia.photos.length > 0) {
+          $scope.selectPhotoForModification($scope.data.TourMedia.photos[0]);
+        }
         /* Hide loading spinner */
         LoadingSpinnerFct.hide('TourManagementMainLoad');
 
@@ -155,6 +157,7 @@ angular.module('TourMgmtApp')
           TourMgmtFct.newPhotos.preview([$scope.data.TourMedia.floorplan], elem);
           $scope.changesMade = true;
           $scope.$apply();
+          $scope.data.TourMedia.floorplan.isNew = 1;
         }
         // manually trigger hidden file input
         $('#uploadFloorPlanInputButton').trigger('click');
@@ -172,6 +175,9 @@ angular.module('TourMgmtApp')
       $scope.onOrderChange = function(item, partFrom, partTo, indexFrom, indexTo) {
           $scope.$apply();
           TourMgmtFct.newPhotos.preview($scope.data.TourMedia.photos, false)
+          for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+              $scope.data.TourMedia.photos[i].order = i;
+          }
           $scope.changesMade = true;
       }
 
@@ -224,10 +230,45 @@ angular.module('TourMgmtApp')
        */
       $scope.saveChanges = function() {
         $scope.saveChangesInitiated = true;
-        TourMgmtFct.saveChanges()
+        TourMgmtFct.saveChanges($scope.data)
         .then(function(response){
-
+          alert('finished');
+          TourMgmtFct.rerouteAfterSave();
         })
+      }
+
+      /**
+       * Delete photo
+       * @param  {[type]} photo     [description]
+       * @param  {[type]} index     [description]
+       * @param  {[type]} photosArr [description]
+       * @return {[type]}           [description]
+       */
+      $scope.deletePhoto = function () {
+        if ($scope.photoForModification.isNew) {
+          for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+            if ($scope.data.TourMedia.photos[i].isSelected) {
+              $scope.data.TourMedia.photos.splice(i, 1);
+              $scope.selectPhotoForModification($scope.data.TourMedia.photos[i]);
+            } else {
+              return;
+            }
+          }
+          return;
+        } else {
+          TourMgmtFct.photo.delete($scope.photoForModification)
+          .then(function(response){
+            for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+              console.dir('photo');
+              console.dir($scope.data.TourMedia.photos[i]);
+              if ($scope.data.TourMedia.photos[i].isSelected) {
+                $scope.data.TourMedia.photos.splice(i, 1);
+                $scope.selectPhotoForModification($scope.data.TourMedia.photos[i]);
+              }
+            }
+            return;
+          })
+        }
       }
       // used for formatting the subscriptionapartment pubid for the environment
       $scope.formatKeyForEnv = function(pubid) {

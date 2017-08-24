@@ -16,8 +16,25 @@ angular.module('TourMgmtApp')
             SubscriptionPubId: '@SubscriptionPubId',
             SubscriptionApartmentPubId: '@SubscriptionApartmentPubId'
           })
+        },
+        media: $resource(WizioConfig.baseAPIURL + 'media'),
+        subscriptionAptMedia: $resource(WizioConfig.baseAPIURL + 'subscriptionaptmedia'),
+        apartment: {
+          chooseParams: $resource(WizioConfig.baseAPIURL + 'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6', {
+            param1: '@id',
+            param2: '@pubid',
+            param3: '@concatAddr',
+            param4: '@unitNum',
+            param5: '@Floor_Plan',
+            param6: '@subscriptionPubId'
+          }),
+          updateFloorPlan: $resource(WizioConfig.baseAPIURL + 'apartment/update/floorplan', {
+            SubscriptionPubId: '@SubscriptionApartmentPubId',
+            ApartmentId: '@ApartmentId'
+          })
         }
       }
+
 
       /** initTourMgmtMainApp() description
        * initialize the tour management application.
@@ -49,7 +66,7 @@ angular.module('TourMgmtApp')
 
           /* If the apartment has a floorplan associated with it */
           if (data.Apartment.Floor_Plan) {
-            data.Apartment.Floor_Plan = buildFloorPlanUrl(data.Apartment, data.SubscriptionApartment.pubid)
+            data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
           }
           console.dir(data);
           if (data.formatted) {
@@ -152,31 +169,36 @@ angular.module('TourMgmtApp')
       function formatData(data) {
         var formattedData = {};
         if (data.Apartment && data.SubscriptionApartment.pubid) {
-          if (data.newTour) {
+          console.dir($stateParams.action);
+          if ($stateParams.action === 'CreateTour') {
             formattedData = {
               Apartment: data.Apartment,
               SubscriptionApartment: data.SubscriptionApartment,
-              TourMedia: {photos: []},
+              TourMedia: {
+                photos: [],
+                floorplan: null
+              },
               formatted: 1,
               newTour: 1
             }
-          } else if (data.TourMedia) {
+          } else if ($stateParams.action === 'ModifyTour' && data.TourMedia) {
+            formattedData = {
+              Apartment: data.Apartment,
+              SubscriptionApartment: {
+                pubid: data.SubscriptionApartment.pubid,
+                id: data.SubscriptionApartment.id
+              },
+              TourMedia: {
+                photos: data.TourMedia,
+                floorplan: {
+                  isNew: data.Apartment.Floor_Plan ? 0 : 1
+                }
+              },
+              formatted: 1,
+              newTour: 0
+            }
+          }
 
-          }
-          var formattedData = {
-            Apartment: data.Apartment,
-            SubscriptionApartment: {
-              pubid: data.SubscriptionApartment.pubid,
-              id: data.SubscriptionApartment.id
-            },
-            TourMedia: {
-              pins: [],
-              photos: data.TourMedia,
-              floorplan: data.Apartment.Floor_Plan ? data.Apartment.Floor_Plan : null
-            },
-            formatted: 1,
-            newTour: data.newTour
-          }
           for (var i = 0; i < formattedData.TourMedia.photos.length; i++) {
             formattedData.TourMedia.photos[i].isNew = 0;
           }
@@ -251,59 +273,81 @@ angular.module('TourMgmtApp')
        * @return {promise}      [promise]
        */
       function saveChanges(data) {
-        return $q(function(resolve, reject){
+        return $q(function(resolve, reject) {
           /* Shorthand variables */
           var photosArr = data.TourMedia.photos;
           var floorplan = data.TourMedia.floorplan;
-          var subscriptionAptPubId = data.TourMedia.SubscriptionApartment.pubid;
-          var s3PhotoKey = null;
-          /* Array containers for promises */
-          var s3UploadPromises = [];
-          var wizioAPIPromises = [];
+          var subscriptionAptPubId = data.SubscriptionApartment.pubid;
 
-          /**
-           * Loop over all photos. If photo is new add to s3UploadAPromArray.
-           * Add all photos to wizioAPI Array. Do a find/create or update in
-           * backend to capture all changes.
-           */
+
+          for (var i = 0; i < photosArr.length; i++) {
+            photosArr[i].order = i;
+          }
+          bulkUploadPhotosToS3(photosArr, subscriptionAptPubId, floorplan)
+          .then(function(response){
+            return bulkSavePhotosToWizioAPI(photosArr)
+          })
+          .then(function(response){
+            return updateFloorPlanData(data.Apartment.id, subscriptionAptPubId)
+          })
+          .then(function(response){
+            return resolve('finished');
+          })
+        })
+      }
+
+      function bulkUploadPhotosToS3(photosArr, subscriptionAptPubId, floorplan) {
+        return $q(function(resolve, reject) {
+          var s3PhotoKey = null;
+          var s3UploadPromises = [];
           for (var i = 0; i < photosArr.length; i++) {
             if (photosArr[i].isNew) {
               s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG'
-              s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photoArr[i].file, key))
+              s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photosArr[i].file, s3PhotoKey))
             }
-            wizioAPIPromises.push(savePhotoToWizioAPI(photosArr[i]))
           }
-
-          /**
-           * If there is a floorplan that is new, add floorplan to upload arrays
-           * @param  {Object} floorplan [standard photo object]
-           */
           if (floorplan && floorplan.isNew) {
-            var s3FloorplanKey = subscriptionAptPubId + '/' + 'floorplan.png';
-            s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(floorplan, s3FloorplanKey));
-            wizioAPIPromises.push(savePhotoToWizioAPI(floorplan));
+            s3UploadPromises.push(floorplan);
           }
-
-          /**
-           * Use $q.all to run all promises in the array asynchronously.
-           * If there are new photos, once upload to S3 is finished save photos
-           * to Wizio API
-           * @param  {Array} s3UploadPromises [array of promises utilizing AWSFct]
-           * @param  {Array} wizioAPIPromises [array of promises utilizing wizioAPI]
-           */
           if (s3UploadPromises.length > 0) {
             $q.all(s3UploadPromises)
             .then(function(response){
-              return $q.all(wizioAPIPromises)
+              return resolve()
             })
+          } else {
+            return resolve()
+          }
+        })
+      }
+
+      function bulkSavePhotosToWizioAPI(photosArr) {
+        return $q(function(resolve, reject) {
+          var promisesArr = []
+          for (var i = 0; i < photosArr.length; i++) {
+            promisesArr.push(savePhotoToWizioAPI(photosArr[i]))
+          }
+          if (photosArr.length > 0) {
+            $q.all(promisesArr)
             .then(function(response){
+              return resolve()
+            })
+          } else {
+            return resolve();
+          }
+        })
+      }
+
+      function updateFloorPlanData(floorplan, subscriptionAptPubId) {
+        return $q(function(resolve, reject) {
+          if (floorplan && floorplan.isNew) {
+            API.apartment.updateFloorPlan.save({
+              SubscriptionApartmentPubId: subscriptionAptPubId,
+              ApartmentId: apartmentId
+            }, function(response) {
               return resolve('Finished');
             })
           } else {
-            $q.all(wizioAPIPromises)
-            .then(function(response){
-              return resolve('Finished');
-            })
+            return resolve();
           }
         })
       }
@@ -371,20 +415,51 @@ angular.module('TourMgmtApp')
        * @return {promise}       [returns API request response]
        */
       function savePhotoToWizioAPI(photo) {
-          return $q(function(resolve, reject) {
-              // send the object to the API
-              API.media.save(photo, function(response) {
-                  return resolve(response);
-              })
+        return $q(function(resolve, reject) {
+          // send the object to the API
+          API.media.save(photo, function(response) {
+            return resolve(response);
           })
+        })
       }
+
+      /**
+       * Old logic FIXME update
+       * @param  {Object} photo [standard photo object]
+       * @return {[type]}       [description]
+       */
+      function deletePhoto(photo) {
+        return $q(function(resolve, reject) {
+          var data = {
+            MediaObject: {
+              'id': photo.id
+            },
+            UpdatedData: {
+              IsDeleted: 1
+            }
+          };
+          API.media.delete(data, function(response) {
+            console.dir(response);
+            return resolve(response);
+          })
+        })
+      }
+
+      function rerouteAfterSave() {
+        $sessionStorage.TourMgmtApp.data = null;
+        $sessionStorage.TourMgmtApp.action = null;
+        $state.go('Account.Dashboard');
+        return;
+      }
+
 
       return {
         init: {
           mainApp: initTourMgmtMainApp
         },
         photo: {
-          rename: renamePhoto
+          rename: renamePhoto,
+          delete: deletePhoto
         },
         newPhotos: {
           add: buildNewPhotosArr,
@@ -393,7 +468,8 @@ angular.module('TourMgmtApp')
         floorplan: {
           buildFloorPlanObj: buildFloorPlanObj
         },
-        calculatePinXandY: calculatePinXandY
+        calculatePinXandY: calculatePinXandY,
+        saveChanges: saveChanges
       }
     }
   ])

@@ -8,7 +8,7 @@
       <button type="button" class="btn btn-lg btn--cta" name="button">Reassign Tour</button>
       <button type="button" class="btn btn-lg btn--cta" ng-if='!data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
       <button type="button" class="btn btn-lg btn--cta" ng-if='data.TourMedia.floorplan' ng-click="changeFloorPlan()" name="button">Change Floor Plan</button>
-      <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="" name="button">Save Changes</button>
+      <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
   </div>
@@ -49,7 +49,7 @@
         <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt="">
       </div>
       <div class="" id="photoForModification_Actions">
-        <button class="{{!data.TourMedia.floorplan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
+        <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
           Rename
         </button>
         <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
@@ -58,18 +58,18 @@
         <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Delete Pin
         </button>
-        <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='data.TourMedia.floorplan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+        <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='data.Apartment.Floor_Plan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Drop Pin
         </button>
-        <button class="{{!data.TourMedia.floorplan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" style="text-align:center; border-radius:0;">
-          Delete
+        <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="deletePhoto()" style="text-align:center; border-radius:0;">
+          Delete Photo
         </button>
       </div>
       <div class="" id='photoForModification_FloorPlan' style="margin-top:15px;">
         <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
             <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
             <div style="position:relative; display:inline-block;" id="floorplanOverlay">
-                <img src="{{data.TourMedia.floorplan}}" ng-show="data.TourMedia.floorplan" style="margin:0 auto; padding-top:20px; max-height: 700px;" ng-click="makePinAction($event)" id="floorplanImage" alt="" />
+                <img src="{{data.Apartment.Floor_Plan}}" ng-show="data.Apartment.Floor_Plan" style="margin:0 auto; padding-top:20px; max-height: 700px;" ng-click="makePinAction($event)" id="floorplanImage" alt="" />
                 <h4 ng-hide="data.TourMedia.floorplan">
                             No floor plan available. Please upload photos using the Add Photo button below.
                         </h4>
