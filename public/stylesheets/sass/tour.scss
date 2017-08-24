@@ -6,39 +6,24 @@
     color: #F8983A;
 }
 
-.tour-photos-navbar {
-    width: 100%;
-    background-color: $gray;
-    display: flex;
-    flex-direction: row;
-    padding-top: 5px;
-    padding-bottom: 5px;
 
-    .tour-navbar-logo {
-        display:flex;
-        align-items:center;
-        flex-direction:column;
-        padding-left:10px;
+.tour-navbar-logo {
+    display:flex;
+    align-items:flex-start;
+    flex-direction:column;
+    padding-left:10px;
+
+    .logo-header {
         color:white;
         right:0px;
         font-size:1em;
-    }
+        display:flex;
+        align-items:center;
+        flex-direction:column;
 
-    .tour-nav-buttons {
-        margin-left: auto;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-right: 5px;
-        display: flex;
-        align-items: center;
-        color: white;
-        cursor: pointer;
-
-        div {
-            padding-left: 5px;
-        }
     }
 }
+
 
 .unit-details-media-tab-content-picker__img {
 display:block;
@@ -71,6 +56,30 @@ margin-right: auto;
 
 .tour-photo-list-wrapper::-webkit-scrollbar {
     display: none;  // Safari and Chrome
+}
+
+.tour-navbar {
+    position: relative;
+    background-color: $gray;
+
+    .tour-nav-buttons {
+        .navbar-right a {
+            color: white ;
+            cursor: pointer;
+        }
+        .navbar-right a:hover {
+            color: $orange ;
+
+        }
+    }
+
+}
+
+.tour-navbar .in a  {
+    color: $gray !important;
+}
+.tour-navbar .collapsing a  {
+    color: $gray !important;
 }
 
 .label-and-photo-wrapper {
