@@ -49,7 +49,7 @@
         <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt="">
       </div>
       <div class="" id="photoForModification_Actions">
-        <button class="{{photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
+        <button class="{{!data.TourMedia.floorplan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
           Rename
         </button>
         <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
@@ -58,10 +58,10 @@
         <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Delete Pin
         </button>
-        <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='!photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+        <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='data.TourMedia.floorplan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
           Drop Pin
         </button>
-        <button class="{{photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" style="text-align:center; border-radius:0;">
+        <button class="{{!data.TourMedia.floorplan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" style="text-align:center; border-radius:0;">
           Delete
         </button>
       </div>

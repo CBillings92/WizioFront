@@ -135,7 +135,7 @@ angular.module('AWSApp').factory('AWSFct', [
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Key: properKey,
-                        ContentType: 'JPG',
+                        ContentType: file.name  === 'floorplan' ? 'png' : 'JPG',
                         Body: file
                     };
                     bucket.putObject(params, function(err, data) {

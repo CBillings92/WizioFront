@@ -51,8 +51,8 @@ angular.module('TourMgmtApp')
           if (data.Apartment.Floor_Plan) {
             data.Apartment.Floor_Plan = buildFloorPlanUrl(data.Apartment, data.SubscriptionApartment.pubid)
           }
-
-          if (data.dataStatus === 'Formatted') {
+          console.dir(data);
+          if (data.formatted) {
             /* On page refresh purge any non uploaded data */
             data.TourMedia = purgeDataOnPageRefresh(data);
             return resolve({
@@ -71,7 +71,7 @@ angular.module('TourMgmtApp')
               if (response.status === 'success') {
                 data.TourMedia = response.payload;
                 var formattedData = formatData(data);
-                if (formattedData.dataStatus === 'Formatted') {
+                if (formattedData.formatted) {
                   $sessionStorage.TourMgmtApp.data = formattedData;
                   return resolve({
                     status: 'success',
@@ -117,7 +117,9 @@ angular.module('TourMgmtApp')
        * @return {[type]} [description]
        */
       function getInitializationData() {
+        console.dir($stateParams.data);
         if ($stateParams.data) {
+          console.dir($stateParams.data);
           $stateParams.data.newTour = $stateParams.action === 'ModifyTour' ? 0 : 1;
           $sessionStorage.TourMgmtApp = {
             data: $stateParams.data,
@@ -148,27 +150,40 @@ angular.module('TourMgmtApp')
        * @return {Object}      [Object of data either unformatted or formatted]
        */
       function formatData(data) {
-        if (data.Apartment && data.SubscriptionApartment.pubid && data.TourMedia) {
+        var formattedData = {};
+        if (data.Apartment && data.SubscriptionApartment.pubid) {
+          if (data.newTour) {
+            formattedData = {
+              Apartment: data.Apartment,
+              SubscriptionApartment: data.SubscriptionApartment,
+              TourMedia: {photos: []},
+              formatted: 1,
+              newTour: 1
+            }
+          } else if (data.TourMedia) {
+
+          }
           var formattedData = {
             Apartment: data.Apartment,
             SubscriptionApartment: {
-              pubid: data.pubid,
-              id: data.id
+              pubid: data.SubscriptionApartment.pubid,
+              id: data.SubscriptionApartment.id
             },
             TourMedia: {
               pins: [],
               photos: data.TourMedia,
               floorplan: data.Apartment.Floor_Plan ? data.Apartment.Floor_Plan : null
             },
-            dataStatus: 'Formatted',
+            formatted: 1,
             newTour: data.newTour
           }
           for (var i = 0; i < formattedData.TourMedia.photos.length; i++) {
             formattedData.TourMedia.photos[i].isNew = 0;
           }
+
           return formattedData;
         } else {
-          data.dataStatus = 'Unformatted'
+          data.formatted = 0
           return data;
         }
       }
@@ -348,6 +363,20 @@ angular.module('TourMgmtApp')
           x: x,
           y: y
         };
+      }
+
+      /**
+       * Save photo to WizioDB. Could be floorplan or tour photo
+       * @param  {Object} photo [standard photo object]
+       * @return {promise}       [returns API request response]
+       */
+      function savePhotoToWizioAPI(photo) {
+          return $q(function(resolve, reject) {
+              // send the object to the API
+              API.media.save(photo, function(response) {
+                  return resolve(response);
+              })
+          })
       }
 
       return {
