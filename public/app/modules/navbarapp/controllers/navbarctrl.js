@@ -13,7 +13,7 @@ angular.module('NavbarApp')
         'WizioConfig',
         function($rootScope, $location, $scope, $state, $uibModal, ApartmentModel, AuthFct, SmartSearchSvc, ModalBuilderFct, ModalSvc, WizioConfig) {
             $scope.isCollapsed = false;
-            $scope.showWhiteLogoFlag = $state.current.name === 'LandingPage' || $state.current.name === 'About' || $state.current.name === 'Pricing' ? true : false;
+            $scope.showWhiteLogoFlag = $state.current.name === 'LandingPage' || $state.current.name === 'About' || $state.current.name === 'Product' ? true : false;
 
             var modalOptions = function(closeButtonText, actionButtonText, headerText, bodyText) {
                 return {
