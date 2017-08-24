@@ -163,10 +163,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 main: {
                     view: MODULESPATH + 'create-account-app/main/create-account.html',
                     controller: 'CreateAccountCtrl'
-                },
-                pricing: {
-                    view: MODULESPATH + 'create-account-app/pricing/pricing.html',
-                    controller: 'PricingCtrl'
+                }
+            },
+            productInfo: {
+                main: {
+                    view: MODULESPATH + 'product-info-app/main/product.html',
+                    controller: 'ProductInfoCtrl'
                 }
             },
             dashboard: {

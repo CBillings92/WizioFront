@@ -35,6 +35,8 @@
     angular.module('ShareTourApp', []);
     angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
+    angular.module('ProductInfoApp', []);
+
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -70,6 +72,7 @@
             'AgentProfileApp',
             'UnitApp',
             'FlyOutMenuApp',
+            'ProductInfoApp',
             'Models',
             'ui.router',
             'ngStorage',
