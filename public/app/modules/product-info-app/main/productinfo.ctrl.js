@@ -4,7 +4,7 @@ angular.module('ProductInfoApp')
         'ModalBuilderFct',
         function($scope, ModalBuilderFct) {
 
-            $scope.gohere = function(val) {
+            $scope.launchTypeform = function(val) {
 
                 var url = null;
 

@@ -30,3 +30,10 @@
     margin-top: 20px;
 
 }
+#vr-player-container {
+
+    @media screen and (max-width: $screen-sm-min) {
+        display: none;
+    }
+
+}
