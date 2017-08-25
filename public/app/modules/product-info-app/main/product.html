@@ -8,11 +8,20 @@
     </div>
 
     <!-- <div ng-show="onMobile"> -->
-    <div>
-        <a href="/demo"><button class="btn btn-outline--blue" > View our demo! </button></a>
+    <!-- <div>
+        <a href="/demo"><button class="btn btn-outline--blue"> View our demo! </button></a>
+    </div> -->
+
+    <!-- <div ng-show="!onMobile"> -->
+
+    <div id="vr-player-container">
+        <div style="height:500px;">
+            <tour-dir show-interface="true"></tour-dir>
+        </div>
     </div>
 
-    <div ng-show="!onMobile">
+    <div style="display:flex;align-items:center; justify-content:center; padding-top:25px;">
+        <a href="/demo"><button class="btn btn-outline--blue"> View our demo fullscreen!</button></a>
     </div>
 
 </div>
@@ -23,8 +32,8 @@
     </div>
     <div class="" style="font-size: 1.2em; margin-bottom:20px;">
     </div>
-    <div class="row subscription-middle">
-        <div class="col-sm-6 subscription-tile " ng-click="chooseSubscription(1)">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 subscription-tile " ng-click="gohere('standard')">
             <!-- A subscription tile (one of those subscription banners) -->
             <div class="subscription-banner-container btn-outline--blue" id="4">
                 <div class="subscription-banner-header"  >
@@ -42,17 +51,16 @@
                         <span style="font-size:150%"> $150 per Space </span> <br>
                     </div>
                     <div class="subscription-banner__features">
-                        <div style="margin-bottom:10px;"><strong>Included in Basic:</strong></div>
+                        <div style="margin-bottom:10px;"><strong>Included in Standard:</strong></div>
                             <p> 1080p Images </p>
                             <p> Dedicated Support </p>
                             <p>&nbsp;</p>
-                            <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 subscription-tile" ng-click="chooseSubscription(2)">
+        <div class="col-md-6 col-sm-12 subscription-tile" ng-click="gohere('pro')">
             <!-- A subscription tile (one of those subscription banners) -->
             <div class="subscription-banner-container btn-outline--blue" id="5" >
                 <div class="subscription-banner-header" >
@@ -63,7 +71,7 @@
                     </div>
                     <div class="subscription-banner-header__sub">
                         <h5>
-                            Enhanced for viewablity
+                            Enhanced for viewability
                         </h5>
                     </div>
                     <div style="margin-bottom:10px;">
