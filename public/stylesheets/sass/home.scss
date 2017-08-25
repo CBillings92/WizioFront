@@ -8,28 +8,6 @@
 
 }
 
-.home-hero__video {
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  position: relative;
-
-  video {
-    background-image: url("../viewtemplates/images/home/sequence.png");
-    position: absolute;
-    top: -9999px;
-    bottom: -9999px;
-    left: -9999px;
-    right: -9999px;
-    margin: auto;
-    width: 100% !important;
-    min-width: 1260px !important;
-    height: auto;
-  }
-}
-
 
 .home-hero__text {
   position: absolute;
@@ -76,35 +54,12 @@
   }
 }
 
-.home-tenants {
-  color: white;
+
+.home-banner{
+  margin-bottom: 40px;
   position: relative;
-  z-index: 30;
+  height: 450px;
 }
-
-.home-tenants__header {
-  position: relative;
-  margin-top: 55px;
-
-  button {
-    font-size: 40px;
-  }
-
-    &:after {
-      content: '';
-      color: $white;
-      width: calc(100% - 30px);
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      bottom: -25px;
-      border-width: 0 0 3px;
-      border-style: solid;
-    }
-}
-
-
 
 .home-graybanner{
   background-color: $light-gray;
@@ -112,11 +67,20 @@
 }
 
 .home-blurb {
-  margin-top: 50px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  height: 30%;
+  margin-top: 7%;
+
 }
 
-.vr-image{
+#vr-image{
   margin-top: 30px;
+}
+
+#drift-image{
+  top: -30px;
 }
 
 
