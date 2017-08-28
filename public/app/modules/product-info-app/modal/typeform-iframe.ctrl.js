@@ -6,10 +6,8 @@ angular.module('ProductInfoApp')
         '$sce',
         function($scope, $uibModalInstance, modalData, $sce) {
 
-
-            console.log(modalData);
+            //angular isn't happy showing the iframe unless you "trust" the url
             $scope.url = $sce.trustAsResourceUrl(modalData);
-            console.log($scope.url);
 
             $scope.ok = function() {
                 $uibModalInstance.close('success');
