@@ -1,71 +1,88 @@
-
 <div class="subscription-wrapper">
 <div class="subscription-top">
 </div>
 
-<div class="container" ng-hide="invitationSignup">
+<div class="container">
     <div class="page-header row">
-        <h4> Our Subscriptions</h4>
+        <h4> Demo</h4>
+    </div>
+
+    <!-- <div ng-show="onMobile"> -->
+    <!-- <div>
+        <a href="/demo"><button class="btn btn-outline--blue"> View our demo! </button></a>
+    </div> -->
+
+    <!-- <div ng-show="!onMobile"> -->
+
+    <div id="vr-player-container">
+        <div style="height:500px;">
+            <tour-dir show-interface="true"></tour-dir>
+        </div>
+    </div>
+
+    <div style="display:flex;align-items:center; justify-content:center; padding-top:25px;">
+        <a href="/demo"><button class="btn btn-outline--blue" style="width:100%"> View our demo fullscreen!</button></a>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="page-header row">
+        <h4> Our Tours -- Select one to book!</h4>
     </div>
     <div class="" style="font-size: 1.2em; margin-bottom:20px;">
     </div>
-    <div class="row subscription-middle">
-        <div class="col-sm-6 subscription-tile " ng-click="chooseSubscription(1)">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 subscription-tile " ng-click="launchTypeform('standard')">
             <!-- A subscription tile (one of those subscription banners) -->
             <div class="subscription-banner-container btn-outline--blue" id="4">
                 <div class="subscription-banner-header"  >
                     <div class="subscription-banner-header__main" style="text-align: center;">
                         <h3>
-                            Agent
+                            Standard
                         </h3>
                     </div>
                     <div class="subscription-banner-header__sub">
                         <h5>
-                            All in one tool for creating virtual tours
+                            A no-frills VR Tour
                         </h5>
                     </div>
                     <div style="margin-bottom:10px;">
-                        <span style="font-size:150%"> $20 / mo billed annually </span> <br>
-                        <i> or $25 billed monthly </i> <br>
-                        <strong> Required Camera and Training $350 </strong>
+                        <span style="font-size:150%"> $150 per Space </span> <br>
                     </div>
                     <div class="subscription-banner__features">
-                        <div style="margin-bottom:10px;"><strong>Included in Agent:</strong></div>
-                            <p> Software and cloud storage for creating and sharing your own database of virtual tours </p>
+                        <div style="margin-bottom:10px;"><strong>Included in Standard:</strong></div>
+                            <p> 1080p Images </p>
                             <p> Dedicated Support </p>
                             <p>&nbsp;</p>
-                            <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-sm-6 subscription-tile" ng-click="chooseSubscription(2)">
+        <div class="col-md-6 col-sm-12 subscription-tile" ng-click="launchTypeform('pro')">
             <!-- A subscription tile (one of those subscription banners) -->
             <div class="subscription-banner-container btn-outline--blue" id="5" >
                 <div class="subscription-banner-header" >
                     <div class="subscription-banner-header__main" style="text-align: center;">
                         <h3>
-                             Office
+                             Pro
                         </h3>
                     </div>
                     <div class="subscription-banner-header__sub">
                         <h5>
-                            Enhanced for collaboration
+                            Enhanced for viewability
                         </h5>
                     </div>
                     <div style="margin-bottom:10px;">
-                        <span style="font-size:150%"> $125 / mo billed annually </span> <br>
-                        <i> or $150 billed monthly </i> <br>
-                        <strong> Required Camera and Training $350 </strong>
+                        <span style="font-size:150%"> $250 per space </span> <br>
                     </div>
                     <div class="subscription-banner__features">
                         <div class="subscription-banner__features">
-                            <div style="margin-bottom:10px;"><strong>Included in Office:</strong></div>
-                                <p> Software and cloud storage for creating and sharing your own database of virtual tours </p>
-                                <p> Access to tours other users in your office have created</p>
-                                <p> Up to 5 users (additonal users are $5 /mo /additional)</p>
-                                <p> Dedicated Support </p>
+                            <div style="margin-bottom:10px;"><strong>Included in Pro:</strong></div>
+                                <p> 4K Images </p>
+                                <p> Dedicated Support</p>
+                                <p>&nbsp;</p>
                                 <!-- <img src="public\viewtemplates\images\favicons\favicon.ico" style="position:absolute; bottom:15px;"/> -->
                     </div>
                 </div>
@@ -76,20 +93,9 @@
 </div>
 </div>
 
-<div class="container submit-step">
-         <a href="/signup"><button class="btn btn-lg btn-outline--orange" style="margin-bottom:25px; height:60px; font-size:2em;">Continue to signup</button></a>
-</div>
 
-<!-- <div class="container">
-    <div class="page-header row">
-        <h4>Enter Your Account Information</h4>
-    </div>
-    <div class="row">
-        <account-creation-form-dir user='user'></account-creation-form-dir>
-    </div> </div>  -->
-
-<div class="pricing-quote">
-    <h5> &ldquo;Wizio has helped to improve my business and client relations... very helpful for out of area clients especially.&rdquo;</h5> 
+<div class="pricing-quote" style="margin-top:25px;">
+    <h5> &ldquo;Wizio has helped to improve my business and client relations... very helpful for out of area clients especially.&rdquo;</h5>
     - Eric LaBatte from Preview Properties
      <img src="/public/viewtemplates/images/pricing/headshot.jpg" class="headshot"/>
 </div>
@@ -101,9 +107,6 @@
         <h4>Frequently Asked Questions</h4>
     </div>
     <div class="">
-        <strong> What does a finished tour look like? </strong><br>
-        <p> Check out our <a href="/demo" target="_blank">demo</a>.</p><br>
-
         <strong> Can virtual tours be watermarked? </strong><br>
         <p>Yes! We have a watermarking feature available for putting your brokerage name or other text as a watermark on the tour. </strong> </p> <br>
 

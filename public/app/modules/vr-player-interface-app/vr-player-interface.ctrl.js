@@ -16,6 +16,7 @@ angular.module('TourApp')
         $scope.isRotating = false;
         $scope.hasAccelerometer = false;
 
+
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
@@ -51,6 +52,14 @@ angular.module('TourApp')
             document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
             document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
         }
+
+        $scope.onProductPage = false;
+
+        if ($state.current.name === 'Product') {
+            $scope.onProductPage = true;
+        }
+
+
 
         /**
          * Toggles the accelerometer on the VR player library
@@ -164,7 +173,7 @@ angular.module('TourApp')
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
 
-    if ($state.current.name == "Demo") {
+    if ($state.current.name == "Demo" || $state.current.name == "Product" ) {
         $resource(WizioConfig.baseAPIURL + '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d').query(function(response){
             $scope.profileUploaded = true;
             $scope.agent = {

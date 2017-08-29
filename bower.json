@@ -1,6 +1,6 @@
 {
   "name": "wiziofront",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "homepage": "https://github.com/CBillings92/wiziofront",
   "description": "4/7/2016",
   "main": "views/index.ejs",
