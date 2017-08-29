@@ -7,7 +7,7 @@
     angular.module('DashboardApp', []);
     angular.module('DeleteTourApp', []);
     angular.module('LoginApp', []);
-    angular.module('NewTourApp', []);
+    angular.module('TourApp', []);
     angular.module('VrPlayerInterfaceApp', []);
     angular.module('AccountApp', []);
     angular.module('AmazonS3UploadApp', []);
@@ -42,7 +42,7 @@
             'ApiGuideApp',
             'AccountApp',
             'ApplicationApp',
-            'NewTourApp',
+            'TourApp',
             'VrPlayerInterfaceApp',
             'AuthApp',
             'CreateAccountApp',
@@ -79,9 +79,10 @@
             'angular-jwt',
             'angulartics',
             'angulartics.google.analytics',
-            'angular-sortable-view'
+            'angular-sortable-view',
+            'ng-drift'
         ])
-        .config(["$sceDelegateProvider", function($sceDelegateProvider) {
+        .config(["$sceDelegateProvider", 'ngDriftProvider', function($sceDelegateProvider, ngDriftProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
                 'self',
@@ -94,6 +95,8 @@
                 'https://www.youtube.com/watch?v=*&feature=youtu.be',
                 'http://www.youtube.com/embed/**'
             ]);
+            ngDriftProvider.setKey('xxagivsgiw52');
+
         }])
         //ON APP START AND DURING APP RUN
         .run([

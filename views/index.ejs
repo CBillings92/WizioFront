@@ -23,7 +23,9 @@
 
     <!-- <script type="text/javascript" src="../public/internallibraries/EventShim.js"></script> -->
     <!-- <script type="text/javascript" src="../public/internallibraries/RequestAnimationFrame.js"></script> -->
+    <!-- <script type="text/javascript" src="../public/build/lib2.min.js"></script> -->
     <script type="text/javascript" src="../public/build/lib.min.js"></script>
+    <script type="text/javascript" src="../public/internallibraries/ng-drift.js"></script>
     <!-- Wizio App -->
     <script type="text/javascript" src="../public/build/scripts.js"></script>
     <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
@@ -38,8 +40,6 @@
     <script type="text/javascript">
         Stripe.setPublishableKey('pk_test_mngZell36UYuy8GfSSox4CZ9');
     </script>
-
-    <meta ng-if="window.location.hostname === alpha.wizio.co" name="robots" content="noindex">
 
     <link rel="apple-touch-icon" sizes="57x57" href="public/viewtemplates/images/favicons/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="public/viewtemplates/images/favicons/apple-touch-icon-60x60.png">
@@ -67,6 +67,30 @@
             document.getElementById('siteLoader').style.visibility = "hidden";
         }
     </script>
+    <script>
+     if (window.location.hostname === 'alpha.wizio.co') {
+         $('head').append('<meta name="robots" content="noindex"/>');
+     };
+    </script>
+    <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+         fbq('init', '284584225294986');
+        fbq('track', 'PageView');
+        </script>
+        <noscript>
+         <img height="1" width="1"
+        src="https://www.facebook.com/tr?id=284584225294986&ev=PageView
+        &noscript=1"/>
+        </noscript>
+<!-- End Facebook Pixel Code -->
 </head>
 <!-- End of Google Analytics Code -->
 
@@ -97,6 +121,7 @@ ga('create', 'UA-69688409-1', 'auto');
 ga('send', 'pageview');
 
     </script>
+
 </body>
 
 

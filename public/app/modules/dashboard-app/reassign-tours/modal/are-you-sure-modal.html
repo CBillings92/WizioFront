@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <close-modal-dirv></close-modal-dirv>
+  <h3 class="modal-title">Are you sure?</h3>
+</div>
+<div class="modal-body">
+  <p>Once you make this assignment it cannot be revoked.</p>
+  <div class="">
+    {{modalData.tour}} -- {{modalData.subscription}}
+  </div>
+  <p>Are you sure you'd like to make the following assignment?</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-fill--blue" ng-click="buttonAction('cancel')" name="button">Cancel</button>
+  <button type="button" class="btn btn-fill--orange" ng-click="buttonAction('continue')" name="button">Make Assignment</button>
+</div>

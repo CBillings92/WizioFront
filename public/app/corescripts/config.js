@@ -189,18 +189,16 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: MODULESPATH + 'dashboard-app/agent-info/agent-info.html',
                     controller: 'AgentInfoCtrl'
                 },
+                reassignTours: {
+                  view: MODULESPATH + 'dashboard-app/reassign-tours/reassign-tours.html',
+                  controller: 'ReassignToursCtrl'
+                }
 
             },
             tourApp: {
                 main: {
-                    view: MODULESPATH + 'tour-app/tour.html',
+                    view: MODULESPATH + 'tour-app/tour-app.html',
                     controller: 'TourCtrl'
-                }
-            },
-            newTourApp: {
-                main: {
-                    view: MODULESPATH + 'new-tour-app/new-tour-app.html',
-                    controller: 'NewTourCtrl'
                 }
             }
         },
@@ -216,12 +214,8 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 }
             },
             tour: {
-                view: MODULESPATH + 'tour-app/tour.html',
+                view: MODULESPATH + 'tour-app/tour-app.html',
                 controller: 'TourCtrl'
-            },
-            newTour: {
-                view: MODULESPATH + 'new-tour-app/new-tour-app.html',
-                controller: 'NewTourCtrl'
             },
             vrPlayerInterface: {
                 view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',
@@ -244,6 +238,16 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             deactivateTourConfirm: {
                 view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
                 controller: 'DeactivateTourConfirmCtrl'
+            },
+            reassignTours: {
+              main: {
+                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tours-modal.html',
+                controller: 'ReassignToursModalCtrl'
+              },
+              areYouSure: {
+                view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tour-confirm-modal.html',
+                controller: 'ReassignTourConfirmModalCtrl'
+              }
             }
         },
         modals: {

@@ -1,10 +1,12 @@
-angular.module('NewTourApp').controller('NewTourCtrl', [
+angular.module('TourApp').controller('TourCtrl', [
     '$scope',
     '$state',
     'WizioConfig',
-    'NewTourFct',
+    'TourFct',
     'lodash',
-    function($scope, $state, WizioConfig, NewTourFct, lodash) {
+    'ngDrift',
+    'LoadingSpinnerFct',
+    function($scope, $state, WizioConfig, TourFct, lodash, ngDrift, LoadingSpinnerFct) {
         $scope.showInterface = true;
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
             document.getElementById('site-container').style.height = "100%";
@@ -12,7 +14,10 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
             document.getElementById('main-content').style["padding-bottom"] = 0;
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
-        NewTourFct.getContent().then(function(media) {
+        TourFct.getContent().then(function(media) {
+
+          LoadingSpinnerFct.show('vrPlayerLoader');
+
             var interfaceData = {
                 floorPlan: false,
                 hideFloorPlanButton: true,
@@ -34,10 +39,11 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
 
             interfaceData.media = sortedMedia;
 
-            var tourDefaults = NewTourFct.setTourDefaults(sortedMedia);
+            var tourDefaults = TourFct.setTourDefaults(sortedMedia);
 
             vrPlayerData.firstPhotoIndex = tourDefaults.photoIndex;
             vrPlayerData.firstPhotoUrl = tourDefaults.photoUrl;
+            vrPlayerData.progressivePhotoUrls = tourDefaults.progressivePhotoUrls;
 
             if (tourDefaults.Floor_Plan) {
                 interfaceData.floorPlan = tourDefaults.Floor_Plan;
@@ -50,5 +56,7 @@ angular.module('NewTourApp').controller('NewTourCtrl', [
         function sortMedia(media) {
             return lodash.groupBy(media, 'type');
         }
+
+
     }
 ])
