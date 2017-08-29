@@ -66,6 +66,12 @@
   height: 350px;
 }
 
+.demo-banner{
+  height: 325px;
+  background-color: $dk-gray;
+}
+
+
 .home-blurb {
   position: relative;
   top: 0;
@@ -73,6 +79,14 @@
   height: 30%;
   margin-top: 7%;
 
+}
+
+.demo-banner.section-head{
+  color: #fff;
+}
+
+.demo-banner.large-body{
+  color: #fff;
 }
 
 #home-vr-img{
@@ -202,6 +216,7 @@
   background-color: $light-gray;
   height: 75vh;
 }
+
 
 .home-blurb {
   position: relative;
