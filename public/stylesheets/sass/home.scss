@@ -91,7 +91,7 @@
 
 #home-vr-img{
   margin-top: 30px;
-  width: 250px;
+  // width: 250px;
 }
 
 #home-drift-img{
@@ -133,7 +133,7 @@
 
 
 @media (max-width: 1024px) {
- 
+
 
 
 .home-banner{
@@ -158,7 +158,7 @@
 
 #home-vr-img{
   margin-top: 20px;
-  width:150px;
+  // width:150px;
 }
 
 #home-drift-img{
@@ -206,7 +206,7 @@
 .home-banner{
   margin-bottom: 40px;
   position: relative;
-  height: 75vh;
+  height: 80vh;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -229,7 +229,7 @@
 
 #home-vr-img{
   margin-top: 10px;
-  width:150px;
+  // width:150px;
 }
 
 #home-drift-img{
@@ -238,12 +238,11 @@
 
 #home-drift-container{
   top: 10px;
-  display: flex;
-  justify-content: center;
 }
 
 #home-ondemand-img{
-  width: 350px;
+  width: 100%;
+
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
@@ -275,7 +274,7 @@
 
   .home-hero__heading {
     margin-top: 45px;
-  
+
   .home-sign-up {
     margin-bottom: 30px;
   }
@@ -289,7 +288,7 @@
       border-width: 0 0 2px;
     }
   }
-  
+
 }
 
 }
@@ -361,8 +360,8 @@
   }
 }
 @media (min-width: 1170px) {
- 
-  
+
+
   .home-landlord {
     // margin-top: -106px;
     // padding-top: 240px;
