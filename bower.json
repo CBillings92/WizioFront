@@ -42,9 +42,8 @@
     "angular-mocks": "~1.5.5"
   },
   "resolutions": {
-    "angular": "1.6.4",
+    "angular": "~1.5.3",
     "moment": "^2.14.1",
     "bootstrap": "^3.3.6"
-
   }
 }

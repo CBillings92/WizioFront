@@ -143,7 +143,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             },
             styleguide: {
                 main: {
-                    view: 'pubilc/app/modules/style-guide-app/main/style-guide.html'
+                    view: 'public/app/modules/style-guide-app/main/styleguide.html'
                 }
             },
             landingPage: {
