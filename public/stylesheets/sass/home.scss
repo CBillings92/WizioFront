@@ -59,6 +59,15 @@
   margin-bottom: 40px;
   position: relative;
   height: 450px;
+
+  h2 {
+      font-size: 30px;
+  }
+
+  h3 {
+      font-size: 20px;
+
+  }
 }
 
 .home-graybanner{
@@ -210,6 +219,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+
 }
 
 .home-graybanner{
