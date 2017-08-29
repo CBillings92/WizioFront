@@ -230,6 +230,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             tourPanel: {
                 view: MODULESPATH + 'tour-panel-app/tour-panel.html',
                 controller: 'TourPanelCtrl'
+            },
+            ThumbnailApp: {
+              view: MODULESPATH + 'thumbnail-app/thumbnail.html',
+              controller: 'ThumbnailCtrl'
             }
         },
         modals: {

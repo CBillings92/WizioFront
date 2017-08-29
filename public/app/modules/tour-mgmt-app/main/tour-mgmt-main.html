@@ -6,8 +6,8 @@
     </div>
     <div class="col-md-12" style="margin-top:10px;">
       <button type="button" class="btn btn-lg btn--cta" name="button">Reassign Tour</button>
-      <button type="button" class="btn btn-lg btn--cta" ng-if='!data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
-      <button type="button" class="btn btn-lg btn--cta" ng-if='data.TourMedia.floorplan' ng-click="changeFloorPlan()" name="button">Change Floor Plan</button>
+      <button type="button" class="btn btn-lg btn--cta" ng-if='!data.Apartment.Floor_Plan || !data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
+      <button type="button" class="btn btn-lg btn--cta" ng-if='data.TourMedia.floorplan || data.Apartment.Floor_Plan' ng-click="changeFloorPlan()" name="button">Change Floor Plan</button>
       <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
@@ -70,7 +70,7 @@
             <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
             <div style="position:relative; display:inline-block;" id="floorplanOverlay">
                 <img src="{{data.Apartment.Floor_Plan}}" ng-show="data.Apartment.Floor_Plan" style="margin:0 auto; padding-top:20px; max-height: 700px;" ng-click="makePinAction($event)" id="floorplanImage" alt="" />
-                <h4 ng-hide="data.TourMedia.floorplan">
+                <h4 ng-hide="data.Apartment.Floor_Plan">
                             No floor plan available. Please upload photos using the Add Photo button below.
                         </h4>
                 <br>
@@ -127,6 +127,7 @@
                               <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
+                              <thumbnail-dir thumbnail-obj='photo.thumbnailObj'></thumbnail-dir>
                               <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>

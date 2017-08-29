@@ -21,6 +21,7 @@
     angular.module('NavbarApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
+    angular.module('ThumbnailApp', []);
     angular.module('UnitApp', []);
     angular.module('FooterApp', []);
     angular.module('Models', []);
@@ -64,6 +65,7 @@
             'SharedServiceApp',
             'PhotographerApp',
             'SearchApp',
+            'ThumbnailApp',
             'TourPasswordApp',
             'TourPanelApp',
             'TourMgmtApp',

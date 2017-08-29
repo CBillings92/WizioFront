@@ -48,7 +48,7 @@ angular.module('TourMgmtApp')
        * Initialize tour management app
        * @type {Boolean}
        */
-      TourMgmtFct.init.mainApp()
+      TourMgmtFct.init.mainApp($stateParams)
       .then(function(response){
         $scope.appInitialized = true;
         /* Assign formatted data to scope */
@@ -59,7 +59,6 @@ angular.module('TourMgmtApp')
         }
         /* Hide loading spinner */
         LoadingSpinnerFct.hide('TourManagementMainLoad');
-
       })
       .catch(function(err){
         console.dir(err);

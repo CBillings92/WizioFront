@@ -2,13 +2,14 @@ angular.module('TourMgmtApp')
   .factory('TourMgmtFct', [
     '$q',
     '$resource',
+    '$state',
     '$stateParams',
     '$sessionStorage',
     'AWSFct',
     'TokenSvc',
     'WizioConfig',
     'ModalBuilderFct',
-    function($q, $resource, $stateParams, $sessionStorage, AWSFct, TokenSvc, WizioConfig, ModalBuilderFct) {
+    function($q, $resource, $state, $stateParams, $sessionStorage, AWSFct, TokenSvc, WizioConfig, ModalBuilderFct) {
 
       var API = {
         subscriptionApartment: {
@@ -35,84 +36,137 @@ angular.module('TourMgmtApp')
         }
       }
 
-
-      /** initTourMgmtMainApp() description
-       * initialize the tour management application.
-       * -First- get data from either
-       *  $stateParams or sessionStorage. if neither of these have data kick user
-       *  back to Dashboard.
-       * -Second- build floor plan URL if the tour has a floor plans
-       * -Third- check if the data is already formatted (from session), if it is
-       *  don't request data from the API again
-       * -Fourth- If data is not formatted, request data from API
-       * -Fifth- IF data is properly returned from API, format data
-       * -Sixth- Once data is formatted, save to sessionStorage
-       * @return {promise} [Object of formatted data for TourMgmtApp]
+      /**
+       * Initializes the TourMgmt App.
+       * 1) Check if base data for application is in either stateParams or sessionStorage
+       * 2) If the data exists, get the data
+       * 3) Check the integrity of the data
+       * 4) If the data is formatted, it's from sessionStorage and we don't need to make an API calls
+       * 5) if the data is formatted, purge the data that hasn't been saved from the app
+       * 6) If data is not formatted, make API call for TourMediaArray
+       * 7) Add TourMediaArray to data object.
+       * 8) Finish data object config and save it to sessionStorage.
+       * @param  {[type]} stateParams [description]
+       * @return {[type]}             [description]
        */
-      function initTourMgmtMainApp() {
-        return $q(function(resolve, reject) {
-
-          /* Get data used to initialize TourManagementApp */
-          var data = getInitializationData();
-
-          /* If there is no data in sessionStorage or state params, rerout to dashboard */
-          if (data === false) {
-            reject({
+      function init(stateParams) {
+        return $q(function (resolve, reject) {
+          // Check to make sure we have base data for app initialization
+          if (!stateParams.data || !$sessionStorage.TourMgmtApp.data) {
+            return reject({
               status: 'err',
-              message: 'Cannot access data. Please try again later.',
-              payload: null
-            })
-          }
-
-          /* If the apartment has a floorplan associated with it */
-          if (data.Apartment.Floor_Plan) {
-            data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
-          }
-          console.dir(data);
-          if (data.formatted) {
-            /* On page refresh purge any non uploaded data */
-            data.TourMedia = purgeDataOnPageRefresh(data);
-            return resolve({
-              status: 'success',
-              message: 'Data retrieved from session',
-              payload: $sessionStorage.TourMgmtApp.data
+              message: 'Could not get base tour data for app.',
+              payload: {}
             });
-          } else {
+          }
 
-            /* Get photos associated with the tour */
-            API.subscriptionApartment.media.get({
-              SubscriptionPubId: TokenSvc.decode().Subscriptions[0].pubid,
-              SubscriptionApartmentPubId: data.SubscriptionApartment.pubid
-            }, function(response) {
-              /* If response was successful, format data and return promise */
-              if (response.status === 'success') {
-                data.TourMedia = response.payload;
-                var formattedData = formatData(data);
-                if (formattedData.formatted) {
-                  $sessionStorage.TourMgmtApp.data = formattedData;
-                  return resolve({
-                    status: 'success',
-                    message: 'success',
-                    payload: formattedData
-                  })
-                } else {
-                  return reject({
-                    status: 'err',
-                    message: 'Could not format data at this time. Data may be missing',
-                    payload: null
-                  })
-                }
-              } else {
-                return reject({
-                  status: 'err',
-                  message: 'Could not retrieve data at this time. Please try again later.',
-                  payload: null
-                });
+          // If we have initalization data, get it
+          var data = getBaseDataForState(stateParams);
+
+          // Check if all data needed from app exists in data
+          if (!dataExistsForApp(data)) {
+            return reject({
+              status: 'err',
+              message: 'Data is missing from base data',
+              payload: {}
+            });
+          }
+
+          // If the data is already formatted (from session storage)
+          // purge any data that wasn't saved (this is from page refresh)
+          if (data.formatted) {
+            purgeDataOnPageRefresh(data)
+            return resolve({status: 'success', message: 'Formatted data retrieved from Session. Unsaved data purged on page refresh.', payload: data})
+          } else {
+            // Save base data to local storage
+            $sessionStorage.TourMgmtApp.data = data
+            fetchTourMediaDataFromApi(data.SubscriptionApartment)
+            .then(function(TourMediaArr){
+              data.TourMedia = {
+                photos: TourMediaArr
+              };
+              if (data.Apartment.Floor_Plan) {
+                data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
               }
+              data.formatted = 1;
+              data.newTour = data.stateAction === 'ModifyTour' ? 0 : 1;
+              $sessionStorage.TourMgmtApp.data = data;
+              alert('boom baby');
+              return resolve({status: 'success', message: 'Tour Management App Initialized.', payload: data})
+            })
+            .catch(function(err){
+              return reject({status: 'err', message: 'Could not retrieve data at this time.', payload: {}})
             })
           }
 
         })
+      }
+
+      /**
+       * Check to make sure data object contains all data that the app needs
+       * @param  {object} data object with at least Apartment and SubscriptionApartment
+       * @return {[type]}      [description]
+       */
+      function dataExistsForApp(data) {
+        if (data.Apartment && data.SubscriptionApartment) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      function saveDataToSessionStorage(data) {
+        $sessionStorage.TourMgmtApp.data = data
+        fetchTourMediaDataFromApi(data)
+        .then(function(TourMediaArr){
+          data = formatDataForApp(data, TourMediaArr)
+          data.TourMedia = {
+            photos: TourMediaArr
+          };
+          if (data.Apartment.Floor_Plan) {
+          }
+        })
+        .catch(function(err){
+
+        })
+      }
+
+      /**
+       * Get Tour Photo data from API for SubscriptionApartment
+       * @param  {Array} SubscriptionApartment array of standard photo objects
+       * @return {object}                       object of data or response object
+       */
+      function fetchTourMediaDataFromApi(SubscriptionApartment) {
+        return $q(function(resolve, reject){
+          API.subscriptionApartment.media.get({
+            SubscriptionPubId: TokenSvc.decode().Subscriptions[0].pubid,
+            SubscriptionApartmentPubId: SubscriptionApartment.pubid
+          }, function(apiResponse) {
+            if (apiResponse.status === 'success') {
+              return resolve(apiResponse.payload)
+            } else {
+              return reject({status: 'err', message: 'Could not retrieve data at this time', payload: {}});
+            }
+          })
+        })
+      }
+
+      /**
+       * Return formatted data for application from either SessionStorage or
+       * stateParams. stateParams takes precedence because it's safer.
+       * @param  {object} stateParams stateParams that comes from state transition.
+       * @return {object}             data from stateParams or sessionStorage
+       */
+      function getBaseDataForState(stateParams) {
+        var data;
+        if (stateParams.data) {
+          data = stateParams.data;
+          data.formatted = false;
+          data.stateAction = stateParams.action;
+        } else {
+          data = $sessionStorage.TourMgmtApp.data
+        }
+        return data
       }
 
       /** buildFloorPlanUrl() descripition
@@ -127,29 +181,6 @@ angular.module('TourMgmtApp')
         return floorPlanUrl;
       }
 
-      /** getInitializationData() description
-       * Check if $stateParams came with data. If it didn't page was navigated to
-       * directly or was reloaded. Check $sessionStorage for data. If sessionStorage
-       * doesn't have data, return false to kick user back to dashboard
-       * @return {[type]} [description]
-       */
-      function getInitializationData() {
-        console.dir($stateParams.data);
-        if ($stateParams.data) {
-          console.dir($stateParams.data);
-          $stateParams.data.newTour = $stateParams.action === 'ModifyTour' ? 0 : 1;
-          $sessionStorage.TourMgmtApp = {
-            data: $stateParams.data,
-            action: $stateParams.action
-          };
-          return data = $stateParams.data;
-        } else if ($sessionStorage.TourMgmtApp.data && $sessionStorage.TourMgmtApp.action === 'ModifyTour') {
-          return data = $sessionStorage.TourMgmtApp.data;
-        } else {
-          return false;
-        }
-      }
-
       function purgeDataOnPageRefresh(data) {
         for (var i = data.TourMedia.photos.length - 1; i >= 0; i--) {
           if (data.TourMedia.photos[i].isNew) {
@@ -159,55 +190,6 @@ angular.module('TourMgmtApp')
         data.TourMedia.floorplan = null;
         data.TourMedia.pins = [];
         return data.TourMedia;
-      }
-
-      /** formatData() description
-       * Foramt data for TourMgmtApp.
-       * @param  {Object} data [unformatted object of data for TourMgmtApp]
-       * @return {Object}      [Object of data either unformatted or formatted]
-       */
-      function formatData(data) {
-        var formattedData = {};
-        if (data.Apartment && data.SubscriptionApartment.pubid) {
-          console.dir($stateParams.action);
-          if ($stateParams.action === 'CreateTour') {
-            formattedData = {
-              Apartment: data.Apartment,
-              SubscriptionApartment: data.SubscriptionApartment,
-              TourMedia: {
-                photos: [],
-                floorplan: null
-              },
-              formatted: 1,
-              newTour: 1
-            }
-          } else if ($stateParams.action === 'ModifyTour' && data.TourMedia) {
-            formattedData = {
-              Apartment: data.Apartment,
-              SubscriptionApartment: {
-                pubid: data.SubscriptionApartment.pubid,
-                id: data.SubscriptionApartment.id
-              },
-              TourMedia: {
-                photos: data.TourMedia,
-                floorplan: {
-                  isNew: data.Apartment.Floor_Plan ? 0 : 1
-                }
-              },
-              formatted: 1,
-              newTour: 0
-            }
-          }
-
-          for (var i = 0; i < formattedData.TourMedia.photos.length; i++) {
-            formattedData.TourMedia.photos[i].isNew = 0;
-          }
-
-          return formattedData;
-        } else {
-          data.formatted = 0
-          return data;
-        }
       }
 
 
@@ -320,6 +302,12 @@ angular.module('TourMgmtApp')
         })
       }
 
+      /**
+       * Bulk save photos to the wizio api. Iterate over list of photos and add promises to
+       * an array of saving individual photos
+       * @param  {array} photosArr array of standard photo objects
+       * @return {promises}           returs a promise
+       */
       function bulkSavePhotosToWizioAPI(photosArr) {
         return $q(function(resolve, reject) {
           var promisesArr = []
@@ -447,7 +435,6 @@ angular.module('TourMgmtApp')
 
       function rerouteAfterSave() {
         $sessionStorage.TourMgmtApp.data = null;
-        $sessionStorage.TourMgmtApp.action = null;
         $state.go('Account.Dashboard');
         return;
       }
@@ -455,7 +442,7 @@ angular.module('TourMgmtApp')
 
       return {
         init: {
-          mainApp: initTourMgmtMainApp
+          mainApp: init
         },
         photo: {
           rename: renamePhoto,

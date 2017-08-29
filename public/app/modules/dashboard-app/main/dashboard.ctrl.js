@@ -90,7 +90,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       createModal(createUnitModalConfig)
         .then(function(createUnitAPIResponse) {
           var data = createUnitAPIResponse.payload;
-          console.dir(createUnitAPIResponse);
           var dataForTourManagement = {
             Apartment: data.Apartment.Instance,
             SubscriptionApartment: {
@@ -209,7 +208,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       };
       createModal(searchModifyModalConfig)
         .then(function(data) {
-          console.dir(data);
           var dataForTourManagement = {
             Apartment: data.Apartment,
             SubscriptionApartment: {
