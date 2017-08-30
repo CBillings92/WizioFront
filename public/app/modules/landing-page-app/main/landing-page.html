@@ -1,28 +1,12 @@
 <!-- VR Player Container for Landing Page -->
 <div class="home-hero">
-    <!-- Photo Selection Button Overlay  -->
-    <div ng-hide="viewFloorPlan">
-        <div class="container-fluid" style="height:100%">
-            <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
-                <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
-                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VR Player Container -->
-    <!-- <div class="home-hero__video" id="vr-player-container">
-        <tour-dir show-interface="false"></tour-dir>
-         <tour-app-dir showcontrols="false" showpoweredby="false" showcontactinfo="false"></tour-app-dir>
-        <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv>
-    </div> -->
+    
 
 
     <!-- VR Player Overlay Text for Landing Page Marketing -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row " >
-            <div class="home-hero__text col-xs-12 col-lg-8 col-lg-offset-1 center-block center-text" style="pointer-events: none;">
+            <div class="home-hero__text col-xs-offset-1 col-xs-10 col-md-12" style="pointer-events: none;">
                 <div class="home-hero__heading header-text" style="pointer-events: none;">Virtual Reality for Everyday Business</div>
                 <div class="home-hero__subheading subhead-text" style="pointer-events: none;">All-in-one On Demand virtual reality services for travel and real estate.</div>
                 <a href="/product"><button class="btn btn-md btn-fill--orange" style="pointer-events: all;margin-top:15px;"> Learn more </button></a>
@@ -41,20 +25,24 @@
             <div class="large-body">Immerse your clients with next generation viewing experiences that feel as real as being there.</div>
         </div>
 
-        <div class="col-sm-12 col-md-3 col-md-offset-3" id="home-vr-img">
+        <div class="col-sm-12 col-md-3 col-md-offset-2" id="home-vr-img">
             <img src="../../../../viewtemplates/images/home/VR-player.png"></img>
         </div>
     </div>
 
     <div class="row home-banner">
 
-        <div class=" col-sm-12 col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-2">
+        <div class=" .hidden-sm .hidden-xs col-md-4 col-md-offset-1 col-lg-4 col-lg-offset-2">
             <img src="../../../../viewtemplates/images/home/photo-collage.png" id="home-ondemand-img"></img>
         </div>
 
-        <div class= "home-blurb col-sm-10 col-md-4 col-md-offset-2 col-lg-3 col-lg-offset-2">
+        <div class= "home-blurb col-xs-10 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2">
             <div class="section-head "> High Resolution Photography </div>
             <div class="large-body">Wizio uses the highest quality 360 degree cameras in the industry to capture photos.</div>
+        </div>
+
+        <div class=" .visible-xs-sm col-xs-10">
+            <img src="../../../../viewtemplates/images/home/photo-collage.png" id="home-ondemand-img"></img>
         </div>
 
     </div>

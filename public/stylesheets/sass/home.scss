@@ -185,11 +185,11 @@
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
 .header-text{
-    font-size: 38px;
+    font-size: 35px;
 }
 
 .subhead-text{
-    font-size: 19px;
+    font-size: 18px;
 
 }
 
@@ -208,6 +208,8 @@
 
 }
 
+// -------------  Tablet  --------------- //
+
 @media (max-width: 768px) {
 
 
@@ -224,7 +226,7 @@
 
 .home-graybanner{
   background-color: $light-gray;
-  height: 75vh;
+  height: 65vh;
 }
 
 
@@ -232,14 +234,13 @@
   position: relative;
   top: 0;
   bottom: 0;
-  height: 30%;
+  height: 27%;
   margin-top: 7%;
 
 }
 
 #home-vr-img{
-  margin-top: 10px;
-  // width:150px;
+  margin-top: 0px;
 }
 
 #home-drift-img{
@@ -258,11 +259,11 @@
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
 .header-text{
-    font-size: 38px;
+    font-size: 28px;
 }
 
 .subhead-text{
-    font-size: 19px;
+    font-size: 16px;
 
 }
 
@@ -303,9 +304,7 @@
 
 }
 @media (min-width: 768px) {
-  .home-hero {
-    height: 600px;
-  }
+
   .home-pin {
     position: absolute;
     width: 100%;
