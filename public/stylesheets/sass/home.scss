@@ -204,11 +204,9 @@
 }
 
 
-// ---------------------------- //
+// ------------- Tablet --------------- //
 
 }
-
-// -------------  Tablet  --------------- //
 
 @media (max-width: 768px) {
 
@@ -217,9 +215,9 @@
 .home-banner{
   margin-bottom: 40px;
   position: relative;
-  height: 80vh;
+  height: 75vh;
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   justify-content: center;
 
 }
@@ -229,18 +227,25 @@
   height: 65vh;
 }
 
+.home-photo-banner{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+}
+
 
 .home-blurb {
   position: relative;
   top: 0;
   bottom: 0;
-  height: 27%;
+  height: 25%;
   margin-top: 7%;
 
 }
 
 #home-vr-img{
-  margin-top: 0px;
+  margin-top: 10px;
+  width:150px;
 }
 
 #home-drift-img{
@@ -252,18 +257,18 @@
 }
 
 #home-ondemand-img{
-  width: 100%;
+  width: 300px;
 
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
 .header-text{
-    font-size: 28px;
+    font-size: 38px;
 }
 
 .subhead-text{
-    font-size: 16px;
+    font-size: 19px;
 
 }
 
@@ -304,7 +309,9 @@
 
 }
 @media (min-width: 768px) {
-
+  .home-hero {
+    height: 600px;
+  }
   .home-pin {
     position: absolute;
     width: 100%;
