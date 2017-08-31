@@ -112,11 +112,19 @@
             'AuthFct',
             'TokenSvc',
             'LoadingSpinnerFct',
-            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct) {
-                LoadingSpinnerFct.show('siteLoader');
+            '$transitions',
+            '$location',
+            '$anchorScroll',
+            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct, $transitions, $location, $anchorScroll) {
+
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;
+
+                $transitions.onSuccess({}, function() {
+                  $anchorScroll();
+
+                });
 
                 var token = TokenSvc.getToken();
                 var tokenIsExp = null;

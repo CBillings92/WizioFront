@@ -62,11 +62,6 @@
     <meta name="msapplication-TileImage" content="public/viewtemplates/images/favicons/mstile-144x144.png">
     <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
     <meta name="theme-color" content="#fa9a29">
-    <script type="text/javascript">
-        function onLoadEndSpinner() {
-            document.getElementById('siteLoader').style.visibility = "hidden";
-        }
-    </script>
     <script>
      if (window.location.hostname === 'alpha.wizio.co') {
          $('head').append('<meta name="robots" content="noindex"/>');
@@ -102,7 +97,6 @@
         $('.collapse').collapse('hide');
     })
     </script>
-    <loading-spinner-dir id="siteLoader" size='fa-5x' style="position: absolute; z-index:1000; top:50%; left:50%; color:black;"></loading-spinner-dir>
 
     <div class="" id="site-container">
         <div ui-view="navbar"></div>
