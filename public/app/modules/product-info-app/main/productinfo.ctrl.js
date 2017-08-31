@@ -20,7 +20,7 @@ angular.module('ProductInfoApp')
                 }
 
                 ModalBuilderFct.buildComplexModal(
-                    "xl",
+                    "lg",
                     '/public/app/modules/product-info-app/modal/typeform-iframe.view.html',
                     "ProductInfoModalCtrl",
                     url
