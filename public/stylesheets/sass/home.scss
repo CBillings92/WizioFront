@@ -90,14 +90,6 @@
 
 }
 
-.demo-banner.section-head{
-  color: #fff;
-}
-
-.demo-banner.large-body{
-  color: #fff;
-}
-
 #home-vr-img{
   margin-top: 30px;
   // width: 250px;
@@ -113,6 +105,18 @@
 
 #home-ondemand-img{
   width: 500px;
+}
+
+.home-callout-banner .section-head{
+  color: $dk-gray;
+}
+
+.home-callout-banner .large-body{
+  margin-bottom: 20px;
+}
+
+.home-callout-banner{
+  margin-bottom: 40px;
 }
 
 
@@ -139,6 +143,8 @@
 .home-pin-container {
   overflow: hidden;
 }
+
+
 
 
 @media (max-width: 1024px) {
@@ -180,6 +186,7 @@
 
 #home-ondemand-img{
   width: 350px;
+  margin-top: none;
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
@@ -215,7 +222,7 @@
 .home-banner{
   margin-bottom: 40px;
   position: relative;
-  height: 75vh;
+  height: 60vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -224,7 +231,7 @@
 
 .home-graybanner{
   background-color: $light-gray;
-  height: 65vh;
+  height: 60vh;
 }
 
 .home-photo-banner{
@@ -243,37 +250,40 @@
 
 }
 
+
 #home-vr-img{
-  margin-top: 10px;
-  width:150px;
+  margin-top: 15px;
+  width:180px;
 }
 
 #home-drift-img{
   width: 310px;
+  
 }
 
 #home-drift-container{
-  top: 10px;
+  top: 0px;
 }
 
 #home-ondemand-img{
   width: 300px;
+  margin-top: 20px;
 
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
 .header-text{
-    font-size: 38px;
+    font-size: 26px;
 }
 
 .subhead-text{
-    font-size: 19px;
+    font-size: 16px;
 
 }
 
 .section-head{
-    font-size: 22px;
+    font-size: 20px;
     text-align: center;
 
 }
@@ -308,6 +318,115 @@
 }
 
 }
+
+// ------------- Phone --------------- //
+
+
+
+@media (max-width: 426px) {
+
+
+
+.home-banner{
+  margin-bottom: 40px;
+  position: relative;
+  height: 50vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.home-graybanner{
+  background-color: $light-gray;
+  height: 50vh;
+}
+
+.home-photo-banner{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: center;
+}
+
+
+.home-blurb {
+  margin-top: none;
+
+}
+
+
+#home-vr-img{
+  margin-top: 20px;
+  width:150px;
+}
+
+#home-drift-img{
+  width: 210px;
+  
+}
+
+#home-drift-container{
+  top: 0px;
+}
+
+#home-ondemand-img{
+  width: 200px;
+  margin-top: 40px;
+
+}
+
+// ------------- UPDATED STYLES 8.24.17 --------------- //
+
+.header-text{
+    font-size: 26px;
+}
+
+.subhead-text{
+    font-size: 16px;
+
+}
+
+.section-head{
+    font-size: 18px;
+    text-align: center;
+    line-height: 1.4;
+    padding-bottom: 10px;
+
+}
+
+.large-body{
+    font-size: 14px;
+    text-align: center;
+
+
+}
+
+  .home-hero {
+    height: 75vh;
+  }
+
+  .home-hero__heading {
+    margin-top: 45px;
+
+  .home-sign-up {
+    margin-bottom: 30px;
+  }
+  .home-tenants__header {
+    margin-top: 40px;
+    font-size: 29px;
+    line-height: 1.2;
+
+    &:after {
+      bottom: -22px;
+      border-width: 0 0 2px;
+    }
+  }
+
+}
+
+}
+
+
 @media (min-width: 768px) {
   .home-hero {
     height: 600px;
