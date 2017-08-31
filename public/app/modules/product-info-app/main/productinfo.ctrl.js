@@ -2,7 +2,12 @@ angular.module('ProductInfoApp')
     .controller('ProductInfoCtrl', [
         '$scope',
         'ModalBuilderFct',
-        function($scope, ModalBuilderFct) {
+        '$state',
+        function($scope, ModalBuilderFct, $state) {
+
+            $scope.goToDemo = function() {
+                $state.go('Demo');
+            }
 
             $scope.launchTypeform = function(val) {
 

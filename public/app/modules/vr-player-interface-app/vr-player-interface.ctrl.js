@@ -51,6 +51,8 @@ angular.module('TourApp')
             $scope.showpoweredby = true;
             document.getElementsByTagName('body')[0].style["padding-bottom"] = 0;
             document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
+            document.getElementById('main-content').style["height"] = "100%";
+
         }
 
         $scope.onProductPage = false;

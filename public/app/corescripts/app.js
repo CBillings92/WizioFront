@@ -120,7 +120,7 @@
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;
-
+                
                 $transitions.onSuccess({}, function() {
                   $anchorScroll();
 
