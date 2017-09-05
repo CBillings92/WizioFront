@@ -16,8 +16,11 @@ angular.module('DashboardApp')
                         BusinessId: userSubscriptions.BusinessId || userSubscriptions.BusinessPubId,
                         SubscriptionId: userSubscriptions.SubscriptionId || userSubscriptions.SubscriptionPubId,
                         firstName: user.firstName,
-                        lastName: user.lastName
+                        lastName: user.lastName,
+                        inviteType: 1
                     };
+                    console.dir(data);
+                    return;
                     $resource(WizioConfig.baseAPIURL + 'subscription/invite')
                     .save(data)
                     .$promise

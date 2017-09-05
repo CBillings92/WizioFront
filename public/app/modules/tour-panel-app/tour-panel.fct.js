@@ -22,17 +22,30 @@ angular.module('TourPanelApp')
                 })
             }
 
-            function reassignTour(tour, subscription) {
+            function reassignTour(tour, assigneeData) {
               return $q(function(resolve, reject){
-                $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/reassign')
-                .save({tour: tour, subscription: subscription}, function(response){
-                  if(response.status === 'success'){
-                    return resolve(response);
-                  } else {
-                    console.error(response.message);
-                    return reject(response);
-                  }
-                })
+                // Setting the model of the object so the database knows if its an ActiveListing or a SubscriptionApartment
+                if (assigneeData.newAccountHolder) {
+                  $resource(WizioConfig.baseAPIURL + 'tourpreassignment')
+                  .save({tour: tour, clientEmail: assigneeData.clientEmail}, function(response){
+                    if(response.status === 'success'){
+                      return resolve(response);
+                    } else {
+                      console.error(response.message);
+                      return reject(response);
+                    }
+                  })
+                } else {
+                  $resource(WizioConfig.baseAPIURL + 'subscriptionapartment/reassign')
+                  .save({tour: tour, assigneeSubscription: assigneeData}, function(response){
+                    if(response.status === 'success'){
+                      return resolve(response);
+                    } else {
+                      console.error(response.message);
+                      return reject(response);
+                    }
+                  })
+                }
               })
             }
             return {
