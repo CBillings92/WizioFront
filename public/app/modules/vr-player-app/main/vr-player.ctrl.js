@@ -17,5 +17,24 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
             return;
         }
 
+        var rotateTimeout;
+        var isRotating = true;
+
+        $scope.autoToggleRotate = function() {
+            clearTimeout(rotateTimeout);
+
+            if (isRotating) {
+                wizio.toggleAutoRotate();
+                isRotating = false;
+            }
+
+            rotateTimeout = setTimeout(function(){
+                 wizio.toggleAutoRotate();
+                 isRotating = true;
+                 //currently, we continue rotating after 10 seconds of no touches on the screen
+             }, 10000);
+
+        }
+
     }
 ])
