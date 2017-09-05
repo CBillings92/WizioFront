@@ -35,6 +35,8 @@
     angular.module('ShareTourApp', []);
     angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
+    angular.module('ProductInfoApp', []);
+
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -70,6 +72,7 @@
             'AgentProfileApp',
             'UnitApp',
             'FlyOutMenuApp',
+            'ProductInfoApp',
             'Models',
             'ui.router',
             'ngStorage',
@@ -109,11 +112,19 @@
             'AuthFct',
             'TokenSvc',
             'LoadingSpinnerFct',
-            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct) {
-                LoadingSpinnerFct.show('siteLoader');
+            '$transitions',
+            '$location',
+            '$anchorScroll',
+            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct, $transitions, $location, $anchorScroll) {
+
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;
+                
+                $transitions.onSuccess({}, function() {
+                  $anchorScroll();
+
+                });
 
                 var token = TokenSvc.getToken();
                 var tokenIsExp = null;

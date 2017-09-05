@@ -31,7 +31,7 @@ angular.module('TourApp')
 
                     if (currentState === 'LandingPage') {
                         activeListingId = WizioConfig.LandingPage.activeListingId();
-                    } else if (currentState === 'Demo') {
+                    } else if (currentState === 'Demo' || currentState === 'Product') {
                         activeListingId = WizioConfig.DemoPage.activeListingId();
                     } else {
                         activeListingId = $state.params.apitoken || $state.params.activelistingid;

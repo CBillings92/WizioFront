@@ -143,7 +143,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             },
             styleguide: {
                 main: {
-                    view: 'pubilc/app/modules/style-guide-app/main/style-guide.html'
+                    view: 'public/app/modules/style-guide-app/main/styleguide.html'
                 }
             },
             landingPage: {
@@ -163,10 +163,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                 main: {
                     view: MODULESPATH + 'create-account-app/main/create-account.html',
                     controller: 'CreateAccountCtrl'
-                },
-                pricing: {
-                    view: MODULESPATH + 'create-account-app/pricing/pricing.html',
-                    controller: 'PricingCtrl'
+                }
+            },
+            productInfo: {
+                main: {
+                    view: MODULESPATH + 'product-info-app/main/product.html',
+                    controller: 'ProductInfoCtrl'
                 }
             },
             dashboard: {

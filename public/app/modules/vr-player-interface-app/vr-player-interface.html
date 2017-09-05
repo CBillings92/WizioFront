@@ -17,7 +17,7 @@
         </div>
           <div id="navbar" class="navbar-collapse collapse tour-nav-buttons">
             <ul class="nav navbar-nav navbar-right">
-              <li ng-show="floorPlan">
+              <li ng-show="floorPlan && !onProductPage">
                   <a ng-click="viewFloorPlanFunc()">
                      {{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}
                   </a>
@@ -36,7 +36,7 @@
         </div>
         <!--/.container-fluid -->
       </nav>
-    <div class="tour-photos-container">
+    <div class="tour-photos-container" ng-hide="viewFloorPlan">
             <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
             </div>
