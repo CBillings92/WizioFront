@@ -170,7 +170,6 @@ angular.module('TourApp')
                 $scope.actions[0].show = false;
             }
         };
-
         $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
@@ -198,7 +197,6 @@ angular.module('TourApp')
                 $scope.agent.state = $state.current.name;
 
             });
-
     }
 
 
