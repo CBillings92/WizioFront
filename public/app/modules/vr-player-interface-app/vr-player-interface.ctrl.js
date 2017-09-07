@@ -173,7 +173,7 @@ angular.module('TourApp')
         $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
-        $scope.isMLSListingAccount = true;
+        $scope.isMLSListingAccount = false;
 
 
     if ($state.current.name == "Demo" || $state.current.name == "Product" ) {
@@ -198,7 +198,7 @@ angular.module('TourApp')
                 $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
                 $scope.agent.state = $state.current.name;
                 if ($scope.agent.email == 'alex@redtreeboston.com' || $scope.agent.email == 'bill.patterson@craftrealestateboston.com') {
-                    $scope.isMLSListingAccount = false;
+                    $scope.isMLSListingAccount = true;
                 }
 
 
