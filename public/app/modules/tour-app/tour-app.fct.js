@@ -126,8 +126,14 @@ angular.module('TourApp')
         entryNavPoints: [{
             name: 'navpoint1',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Living%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Living%20Room.JPG'],
-            x: -34.174059151117135, y: -57.40047926997227, z: -50.29311145878253,
+            x: -34.174059151117135, y: -51.40047926997227, z: -70.29311145878253,
           },
+          {
+              name: 'navpoint1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Living%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Living%20Room.JPG'],
+              x: -34.174059151117135, y: -57.40047926997227, z: -74.29311145878253,
+          },
+
           // {
           //   name: 'navpoint2',
           //   targetImageURLs: [],
