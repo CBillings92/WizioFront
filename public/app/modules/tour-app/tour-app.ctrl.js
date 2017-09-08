@@ -14,6 +14,7 @@ angular.module('TourApp').controller('TourCtrl', [
             document.getElementById('main-content').style["padding-bottom"] = 0;
             document.getElementById('main-content').style["margin-bottom"] = 0;
         }
+
         TourFct.getContent().then(function(media) {
 
           LoadingSpinnerFct.show('vrPlayerLoader');
@@ -31,19 +32,24 @@ angular.module('TourApp').controller('TourCtrl', [
                 firstPhotoUrl: false,
                 firstPhotoIndex: false
             }
+            if ($state.current.name === 'Demo') {
+              addHardCodedNavPointsToMedia(media);
+            }
 
             var sortedMedia = sortMedia(media);
 
+
             vrPlayerData.media = media;
             vrPlayerData.sortedMedia = sortedMedia;
-
+            vrPlayerData.firstImage = {};
             interfaceData.media = sortedMedia;
 
             var tourDefaults = TourFct.setTourDefaults(sortedMedia);
 
-            vrPlayerData.firstPhotoIndex = tourDefaults.photoIndex;
-            vrPlayerData.firstPhotoUrl = tourDefaults.photoUrl;
-            vrPlayerData.progressivePhotoUrls = tourDefaults.progressivePhotoUrls;
+            vrPlayerData.firstImage.firstPhotoIndex = tourDefaults.photoIndex;
+            vrPlayerData.firstImage.firstPhotoUrl = tourDefaults.photoUrl;
+            vrPlayerData.firstImage.imageUrls = tourDefaults.imageUrls;
+            vrPlayerData.firstImage.navpoints = tourDefaults.navpoints;
 
             if (tourDefaults.Floor_Plan) {
                 interfaceData.floorPlan = tourDefaults.Floor_Plan;
@@ -55,6 +61,13 @@ angular.module('TourApp').controller('TourCtrl', [
 
         function sortMedia(media) {
             return lodash.groupBy(media, 'type');
+        }
+
+        function addHardCodedNavPointsToMedia(media) {
+          // for (var i = 0; i < media.length; i++) {
+          //   media[i].navpoints = []
+          // }
+          media[0].navpoints = TourFct.demoNavPointData.entryNavPoints
         }
 
 

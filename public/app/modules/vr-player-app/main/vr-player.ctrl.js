@@ -4,7 +4,7 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     'LoadingSpinnerFct',
     function($scope, ngDrift, LoadingSpinnerFct) {
         $scope.$on('TourDataReceived', function(event, data){
-            wizio.init('pano', data.progressivePhotoUrls, function(response){
+            wizio.init('pano', data.firstImage, {}, function(response){
               LoadingSpinnerFct.show('vrPlayerLoader');
             });
         })

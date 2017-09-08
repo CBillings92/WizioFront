@@ -133,18 +133,27 @@ angular.module('TourApp')
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
             var state = $state.current.name;
-            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-
+            if (!state === 'Demo') {
+              var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
+            } else {
+              var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
+            }
             var photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
             var progURLs = [
               WizioConfig.CLOUDFRONT_DISTRO + "800x400/" + SubscriptionApartmentPubId + '/' + $scope.media.vrphoto[photoIndex].title + '.JPG',
               WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG',
             ]
 
+            var photoObj = {
+              imageUrls: progURLs,
+              navpoints: $scope.media.vrphoto[photoIndex].navpoints
+            }
+
             LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.photoIndex = photoIndex;
             $scope.photoUrl = photoUrl;
-            wizio.changeImage(progURLs, function(response){
+            wizio.changeImage(photoObj, function(response){
+              // wizio.toggleCoordCollection();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;
               LoadingSpinnerFct.hide('vrPlayerLoader');
@@ -152,7 +161,11 @@ angular.module('TourApp')
         };
 
         $scope.thumbnailURL = function(photoIndex) {
+          if (!$state.current.name === 'Demo') {
             var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
+          } else {
+            var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
+          }
             return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
         }
 
