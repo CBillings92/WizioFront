@@ -17,7 +17,7 @@ angular.module('TourApp').controller('TourCtrl', [
 
         TourFct.getContent().then(function(media) {
 
-          LoadingSpinnerFct.show('vrPlayerLoader');
+          // LoadingSpinnerFct.show('vrPlayerLoader');
 
             var interfaceData = {
                 floorPlan: false,
@@ -32,31 +32,26 @@ angular.module('TourApp').controller('TourCtrl', [
                 firstPhotoUrl: false,
                 firstPhotoIndex: false
             }
-            if ($state.current.name === 'Demo') {
-              addHardCodedNavPointsToMedia(media);
-            }
 
             var sortedMedia = sortMedia(media);
-
+            sortedMedia  = addHardCodedNavPointsToMedia(sortedMedia);
 
             vrPlayerData.media = media;
             vrPlayerData.sortedMedia = sortedMedia;
-            vrPlayerData.firstImage = {};
+            // vrPlayerData.firstImage = sortedMedia.vrphoto[0];
             interfaceData.media = sortedMedia;
-
-            var tourDefaults = TourFct.setTourDefaults(sortedMedia);
-
-            vrPlayerData.firstImage.firstPhotoIndex = tourDefaults.photoIndex;
-            vrPlayerData.firstImage.firstPhotoUrl = tourDefaults.photoUrl;
-            vrPlayerData.firstImage.imageUrls = tourDefaults.imageUrls;
-            vrPlayerData.firstImage.navpoints = tourDefaults.navpoints;
-
-            if (tourDefaults.Floor_Plan) {
-                interfaceData.floorPlan = tourDefaults.Floor_Plan;
+            var preppedMedia = TourFct.prepMedia(sortedMedia);
+            console.dir(preppedMedia);
+            // firstPhoto.media = sortedMedia.vrphoto[0];
+            interfaceData.media = preppedMedia;
+            if (preppedMedia.vrphoto[0].floorplan) {
+                interfaceData.floorPlan = preppedMedia.vrphoto[0].floorplan;
                 interfaceData.hideFloorPlanButton = false;
             }
+            console.dir(interfaceData);
+
             $scope.$broadcast('InterfaceDataReceived', interfaceData);
-            $scope.$broadcast('TourDataReceived', vrPlayerData);
+            $scope.$broadcast('TourDataReceived', preppedMedia.vrphoto[0]);
         })
 
         function sortMedia(media) {
@@ -64,10 +59,17 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         function addHardCodedNavPointsToMedia(media) {
-          // for (var i = 0; i < media.length; i++) {
-          //   media[i].navpoints = []
-          // }
-          media[0].navpoints = TourFct.demoNavPointData.entryNavPoints
+          if ($state.current.name === 'Demo') {
+            for (var i = 0; i < media.vrphoto.length; i++) {
+              // console.dir(interfaceData.media);
+              media.vrphoto[i].navpoints = TourFct.demoNavPointData[media.vrphoto[i].title]
+            }
+          } else {
+            for (var i = 0; i < media.vrphoto.length; i++) {
+              media.vrphoto[i].navpoints = [];
+            }
+          }
+          return media;
         }
 
 

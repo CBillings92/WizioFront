@@ -24,6 +24,7 @@ angular.module('TourApp')
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
             $scope.floorPlan = data.floorPlan;
+            document.getElementById('pano').addEventListener('click', onTourClick, false);
         });
 
         $scope.$on('ToggleFloorPlan', function(event, data) {
@@ -40,6 +41,22 @@ angular.module('TourApp')
                 $scope.hasAccelerometer = true;
         });
 
+
+        function onTourClick(mouseEvent) {
+          console.dir('tourclick');
+          wizio.onClickTriggered(mouseEvent, function(response){
+            var chosenImage;
+            for (var i = 0; i < $scope.media.vrphoto.length; i++) {
+              if ($scope.media.vrphoto[i].title === response.object.name) {
+                chosenImage = $scope.media.vrphoto[i]
+                break;
+              }
+            }
+            wizio.changeImage(chosenImage, function(response){
+              return response;
+            })
+          })
+        }
         // For photo and floorplan selection
         $scope.selectPhoto = false;
         $scope.viewFloorPlan = false;
@@ -132,27 +149,9 @@ angular.module('TourApp')
 
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
-            var state = $state.current.name;
-            if (!state === 'Demo') {
-              var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-            } else {
-              var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
-            }
-            var photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
-            var progURLs = [
-              WizioConfig.CLOUDFRONT_DISTRO + "800x400/" + SubscriptionApartmentPubId + '/' + $scope.media.vrphoto[photoIndex].title + '.JPG',
-              WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG',
-            ]
-
-            var photoObj = {
-              imageUrls: progURLs,
-              navpoints: $scope.media.vrphoto[photoIndex].navpoints
-            }
-
-            LoadingSpinnerFct.show('vrPlayerLoader');
-            $scope.photoIndex = photoIndex;
-            $scope.photoUrl = photoUrl;
-            wizio.changeImage(photoObj, function(response){
+            // LoadingSpinnerFct.show('vrPlayerLoader');
+            console.dir($scope.media.vrphoto[photoIndex]);
+            wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               // wizio.toggleCoordCollection();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;

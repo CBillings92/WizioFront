@@ -22,6 +22,7 @@
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
     angular.module('UnitApp', []);
+    angular.module('TestApp', []);
     angular.module('FooterApp', []);
     angular.module('Models', []);
     angular.module('Directives', []);
@@ -61,6 +62,7 @@
             'UploadPageApp',
             'LeaseApp',
             'NavbarApp',
+            'TestApp',
             'SharedFactoryApp',
             'SharedServiceApp',
             'PhotographerApp',
@@ -120,7 +122,7 @@
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;
-                
+
                 $transitions.onSuccess({}, function() {
                   $anchorScroll();
 

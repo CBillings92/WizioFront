@@ -46,6 +46,16 @@ angular.module('MainApp')
                     },
                     data: falseRequiredLogin
                 })
+                .state('TestThreeJS', {
+                  url: '/test/threejs',
+                  views: {
+                    "maincontent": {
+                      templateUrl: PAGECONFIG.TestApp.ThreeJSTest.view,
+                      controller: PAGECONFIG.TestApp.ThreeJSTest.controller
+                    }
+
+                  }
+                })
                 .state('InfoDashboard', {
                     url: '/info/dashboard',
                     views: {
