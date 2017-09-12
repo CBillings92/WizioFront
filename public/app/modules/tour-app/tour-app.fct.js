@@ -27,8 +27,8 @@ angular.module('TourApp')
 
         //x:-93.98956625899233; y:-22.01652570489952; z:25.42540093321215
         {
-          name: 'Kitchen (A)',
-          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG'],
+          name: 'Kitchen (B)',
+          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG'],
           x:-93.98956625899233,y:-22.01652570489952, z:22.42540093321215,
         },
         {
@@ -49,8 +49,8 @@ angular.module('TourApp')
           x: 70.73214969400897, y: -50.58012637193444, z: 49.13347276821803
         },
         {
-          name: 'Kitchen (B)',
-          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG'],
+          name: 'Kitchen (A)',
+          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG'],
           x: -99.2179596968163, y: -11.050914799434647, z: -1.8019759987844262
         },
         {
@@ -235,6 +235,11 @@ angular.module('TourApp')
           name: 'Bedroom 2',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG'],
           x: -78.82549634667457, y: -11.731741833357543, z: 60.12343431200192
+        },
+        {
+          name: 'Entry',
+          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG'],
+          x: 56.6227276161577, y: -15.456187366737055, z: 80.86209322355927
         },
       ],
       'Kitchen (A)': [
