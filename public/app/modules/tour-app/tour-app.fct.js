@@ -29,44 +29,42 @@ angular.module('TourApp')
         {
           name: 'Kitchen (B)',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG'],
-          x:-93.98956625899233,y:-22.01652570489952, z:22.42540093321215,
+          x: -79.48534191009881, y: -7.996181508575717, z: -1.231394385815475,
         },
         {
           name: 'Bedroom 2',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG'],
-          x: -85.73378545352107, y: -18.994111449978092, z: 47.530807771383174
+          x: -68.46727270164223, y: -16.224253439270964, z: 37.809471436886966
         },
         {
           name: 'Roof Deck Entrance',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck%20Entrance.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck%20Entrance.JPG'],
-          x:94.64300310567502,
-          y:12.205923147973039,
-          z:29.447807895643194
+          x: 75.54889871917383, y: 10.87510409006834, z: 23.66884423714624
         },
         {
           name: 'Front Door',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Front%20Door.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Front%20Door.JPG'],
-          x: 70.73214969400897, y: -50.58012637193444, z: 49.13347276821803
+          x: 56.18197439688711, y: -40.35876827036579, z: 40.0366500722304
         },
         {
           name: 'Kitchen (A)',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG'],
-          x: -99.2179596968163, y: -11.050914799434647, z: -1.8019759987844262
+          x: -76.43654262457481, y: -16.394112856986762, z: 16.62998325498207
         },
         {
           name: 'Dining Room',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Dining%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Dining%20Room.JPG'],
-          x: -97.54334948086938, y: -10.417950670388876, z: 18.593575131456536
+          x: -78.28087382741609, y: -7.45939489111009, z: 13.981534108014747
         },
         {
           name: 'Bedroom 3',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%203.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%203.JPG'],
-          x: -54.860918946048535, y: -45.01809049807804, z: 70.29417245198819
+          x: -45.006067271964, y: -37.04623242335778, z: 54.6268324808534
         },
         {
           name: 'Kitchen Bar',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG'],
-          x: -92.87588472915432, y: -36.144163429862374, z: -5.6426962275750725
+          x: -73.73635041617703, y: -30.193910160286244, z: -6.282225647723552
         },
         {
           name: 'Bedroom 1',
