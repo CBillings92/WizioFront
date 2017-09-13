@@ -61,6 +61,11 @@ margin-right: auto;
     position: relative;
     background-color: $gray;
 
+    @media (max-width: $screen-md-min) {
+        background-color: transparent;
+
+    }
+
     .tour-nav-buttons {
         .navbar-right a {
             color: white ;
