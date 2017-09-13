@@ -20,6 +20,7 @@ angular.module('TourApp')
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
+          LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.data = data;
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
@@ -43,7 +44,6 @@ angular.module('TourApp')
 
 
         function onTourClick(mouseEvent) {
-          console.dir('tourclick');
           wizio.onClickTriggered(mouseEvent, function(response){
             var chosenImage;
             for (var i = 0; i < $scope.media.vrphoto.length; i++) {
@@ -152,10 +152,10 @@ angular.module('TourApp')
             // LoadingSpinnerFct.show('vrPlayerLoader');
             console.dir($scope.media.vrphoto[photoIndex]);
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
-              // wizio.toggleCoordCollection();
+              wizio.toggleCoordCollection();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;
-              LoadingSpinnerFct.hide('vrPlayerLoader');
+              // LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
 

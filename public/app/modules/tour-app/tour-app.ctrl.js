@@ -16,9 +16,7 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         TourFct.getContent().then(function(media) {
-
-          // LoadingSpinnerFct.show('vrPlayerLoader');
-
+          LoadingSpinnerFct.show('vrPlayerLoader');
             var interfaceData = {
                 floorPlan: false,
                 hideFloorPlanButton: true,
@@ -41,14 +39,12 @@ angular.module('TourApp').controller('TourCtrl', [
             // vrPlayerData.firstImage = sortedMedia.vrphoto[0];
             interfaceData.media = sortedMedia;
             var preppedMedia = TourFct.prepMedia(sortedMedia);
-            console.dir(preppedMedia);
             // firstPhoto.media = sortedMedia.vrphoto[0];
             interfaceData.media = preppedMedia;
             if (preppedMedia.vrphoto[0].floorplan) {
                 interfaceData.floorPlan = preppedMedia.vrphoto[0].floorplan;
                 interfaceData.hideFloorPlanButton = false;
             }
-            console.dir(interfaceData);
 
             $scope.$broadcast('InterfaceDataReceived', interfaceData);
             $scope.$broadcast('TourDataReceived', preppedMedia.vrphoto[0]);

@@ -17,7 +17,7 @@ angular.module('TestApp')
       // mesh.rotation.x =
       scene.add( mesh );
       console.dir(Math.PI);
-      mesh.rotation.x = 120*(Math.PI/180)
+      mesh.rotation.x = 100*(Math.PI/180)
 
       camera.position.z = 5;
 
