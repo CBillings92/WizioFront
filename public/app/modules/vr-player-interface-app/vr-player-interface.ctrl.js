@@ -53,6 +53,7 @@ angular.module('TourApp')
             document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
             document.getElementById('main-content').style["height"] = "100%";
 
+
         }
 
         $scope.onProductPage = false;

@@ -115,6 +115,7 @@
   margin-bottom: 20px;
 }
 
+
 .home-callout-banner{
   margin-bottom: 40px;
 }
@@ -166,7 +167,7 @@
   position: relative;
   top: 0;
   bottom: 0;
-  height: 30%;
+  height: 21%;
   margin-top: 7%;
 
 }
@@ -248,9 +249,7 @@
 
 
 .home-blurb {
-  position: relative;
-  top: 0;
-  bottom: 0;
+
   height: 25%;
   margin-top: 7%;
 
@@ -264,7 +263,7 @@
 
 #home-drift-img{
   width: 300px;
-  
+
 }
 
 #home-drift-container{
@@ -334,18 +333,15 @@
 
 
 .home-banner{
-  margin-bottom: 40px;
-  position: relative;
-  height: 50vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+
+  height: 60vh;
+
 
 }
 
 .home-graybanner{
-  background-color: $light-gray;
-  height: 50vh;
+
+  height: 65vh;
 }
 
 .home-photo-banner{
@@ -357,18 +353,19 @@
 
 .home-blurb {
   margin-top: none;
+  height: 30%;
 
 }
 
 
 #home-vr-img{
-  margin-top: 20px;
+  margin-top: 55px;
   width:150px;
 }
 
 #home-drift-img{
   width: 210px;
-  
+
 }
 
 #home-drift-container{
