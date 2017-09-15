@@ -198,7 +198,10 @@ angular.module('TourApp')
                 $scope.agent = response[response.length - 1];
                 $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
                 $scope.agent.state = $state.current.name;
-                if ($scope.agent.email == 'alex@redtreeboston.com' || $scope.agent.email == 'bill.patterson@craftrealestateboston.com') {
+                if ($scope.agent.email === 'alex@redtreeboston.com'
+                    || $scope.agent.email === 'bill.patterson@craftrealestateboston.com'
+                    || $scope.agent.email === 'youngone@younghouses.com'
+                  ) {
                     $scope.isMLSListingAccount = true;
                 }
 
