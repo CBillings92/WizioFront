@@ -153,6 +153,8 @@ angular.module('TourApp')
             console.dir($scope.media.vrphoto[photoIndex]);
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               wizio.toggleCoordCollection();
+              wizio.disableOnMouseMove();
+              // wizio.addInvisibleSphere();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;
               // LoadingSpinnerFct.hide('vrPlayerLoader');

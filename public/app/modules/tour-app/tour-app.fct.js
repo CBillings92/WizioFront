@@ -217,27 +217,27 @@ angular.module('TourApp')
         {
           name: 'Kitchen Bar',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20Bar.JPG'],
-          x: -85.55792127897107, y: -51.51407933176304, z: 2.2544002988446428
+          x: -68.15749506623037, y: -41.652873822733675, z: 2.595960581822391
         },
         {
           name: 'Kitchen (A)',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(A).JPG'],
-          x: -98.41627096214006, y: -14.510473427054833, z: -9.286016340471523
+          x: -78.66364135491956, y: -12.22184320548033, z: -7.367123469464119
         },
         {
           name: 'Kitchen (B)',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Kitchen%20(B).JPG'],
-          x: -95.34199248414501, y: -13.878310939841334, z: 26.0754093386381
+          x: -75.94769677344792, y: -11.45760733958001, z: 21.91449809859979
         },
         {
           name: 'Dining Room',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Dining%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Dining%20Room.JPG'],
-          x: -99.08675149257269, y: -12.412162484393619, z: 1.2313554443599273
+          x: -79.14877173649712, y: -9.197903563110904, z: 4.93956007943796
         },
         {
           name: 'Bedroom 2',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%202.JPG'],
-          x: -78.82549634667457, y: -11.731741833357543, z: 60.12343431200192
+          x: -16.87499792027273, y: -19.731169400962965, z: 75.5939315686911
         },
         {
           name: 'Entry',
