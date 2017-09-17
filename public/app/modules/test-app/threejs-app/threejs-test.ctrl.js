@@ -19,7 +19,7 @@ angular.module('TestApp')
       console.dir(Math.PI);
       mesh.rotation.x = 100*(Math.PI/180)
 
-      camera.position.z = 5;
+      camera.position.z = 25;
 
       function animate() {
         requestAnimationFrame(animate);
