@@ -201,6 +201,7 @@ angular.module('TourApp')
                 if ($scope.agent.email === 'alex@redtreeboston.com'
                     || $scope.agent.email === 'bill.patterson@craftrealestateboston.com'
                     || $scope.agent.email === 'youngone@younghouses.com'
+                    || $scope.agent.email === 'brian@lmcrealtyboston.com'
                   ) {
                     $scope.isMLSListingAccount = true;
                 }
