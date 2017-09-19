@@ -2,12 +2,13 @@ $white: #ffffff;
 $black: #000000;
 $orange: #f79739;
 $light-orange: #F7AA63;
-$gray: #706f72;
 $red: #BA5125;
 $blue: #7A9DD1;
 $blue-gray: #8E9BB2;
 $light-gray: #F3F3F3;
-$dk-gray: #939393;
+$gray: #706f72;
+$med-gray: #7A7A7A;
+$dk-gray: #4A4A4A;
 /**
   Mixins
 **/
@@ -106,11 +107,23 @@ p {
     padding-bottom: 12px;
 }
 
+.product-section-head{
+    font-size: 30px;
+    color: $dk-gray;
+    font-weight: 400;
+}
+
 .large-body{
     font-family: "Roboto";
     font-size: 17px;
     font-weight: 300;
     color: $dk-gray;
+}
+
+.small-body{
+    font-family: "Roboto";
+    font-size: 15px;
+    font-weight: 400;
 }
 
 .large-body a{
