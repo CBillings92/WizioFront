@@ -45,6 +45,7 @@ angular.module('TourApp').controller('TourCtrl', [
                 interfaceData.floorPlan = preppedMedia.vrphoto[0].floorplan;
                 interfaceData.hideFloorPlanButton = false;
             }
+            $scope.photoIndex = 0;
 
             $scope.$broadcast('InterfaceDataReceived', interfaceData);
             $scope.$broadcast('TourDataReceived', preppedMedia.vrphoto[0]);

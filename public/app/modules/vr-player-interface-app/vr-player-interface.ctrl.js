@@ -46,13 +46,21 @@ angular.module('TourApp')
         function onTourClick(mouseEvent) {
           wizio.onClickTriggered(mouseEvent, function(response){
             var chosenImage;
+            var photoIndex;
+            var scrollTo;
             for (var i = 0; i < $scope.media.vrphoto.length; i++) {
               if ($scope.media.vrphoto[i].title === response.object.name) {
+                photoIndex = i;
                 chosenImage = $scope.media.vrphoto[i]
                 break;
               }
             }
             wizio.changeImage(chosenImage, function(response){
+              scrollTo = 200 * photoIndex + 1;
+              moveSlider(1, scrollTo);
+              console.dir($scope.photoIndex);
+              $scope.photoIndex = photoIndex;
+              $scope.$apply();
               return response;
             })
           })
@@ -92,14 +100,15 @@ angular.module('TourApp')
         }
 
         //FIXME don't use JQuery..
-        var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+        var moveSlider = function(direction, amount) {  // direction is 1 for forward / -1 for backward
             width =  $("#scrollthis").width();
             el = $("#scrollthis");
             currentPosition = el.scrollLeft();
             moveWidth = width * 0.5 * direction;
+            var moveTo = amount ? amount :  (currentPosition + moveWidth);
             // el.scrollLeft(currentPosition + moveWidth);
             el.animate({
-                scrollLeft: currentPosition + moveWidth
+                scrollLeft: moveTo
             }, 500, function () {
                 $scope.sliderCanGoForward = $scope.canSliderForward();
                 $scope.sliderCanGoBackward = $scope.canSliderBackward();
@@ -152,6 +161,8 @@ angular.module('TourApp')
             // LoadingSpinnerFct.show('vrPlayerLoader');
             // console.dir($scope.media.vrphoto[photoIndex]);
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
+              $scope.photoIndex = photoIndex;
+              $scope.$apply();
               // wizio.toggleCoordCollection();
               // wizio.disableOnMouseMove();
               // wizio.addInvisibleSphere();
