@@ -161,7 +161,7 @@ angular.module('TourApp')
         'Lobby (1)': [],
         'Roof Deck': [],
         'Gym': [],
-        'Yoga Studio': []      
+        'Yoga Studio': []
       }
       // {x: -34.174059151117135, y: -57.40047926997227, z: -74.29311145878253}
       var demoNavPointData = {
@@ -331,31 +331,31 @@ angular.module('TourApp')
         {
           name: 'Bedroom 1 Bathroom',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG'],
-          x: 0.19169354216278028, y: -39.330158622092924, z: -91.8884056859725
+          x:-0.1557031761603048, y:-30.965486528817916, z:-73.74047624423687
         },
       ],
       'Bedroom 1 Bathroom': [
         {
           name: 'Bedroom 1',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG'],
-          x: 73.50834370112983, y: -28.820307152537232, z: -11.933460784355878
+          x:72.26494480385664, y:-32.5753956730429, z:-9.787865048768284
         },
         {
           name: 'Bedroom 1 Shower',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Shower.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Shower.JPG'],
-          x: 4.279531818032266, y: -51.50969009239002, z: -60.95991573080533
+          x:4.855732108089368, y:-52.04390395286445, z:-60.49659738204781
         },
       ],
       'Roof Deck Entrance': [
         {
           name: 'Roof Deck',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck.JPG'],
-          x: -79.47425359524867, y: 5.535798590596353, z: -5.881667065699233
+          x:-79.49418642311474, y:5.3945502075537695, z:-5.6072197828780785
         },
         {
           name: 'Entry',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG'],
-          x: -1.8959450849408954, y: -56.84599939303976, z: -56.16902957428028
+          x:0.05398530019681987, y:-58.230545863678955, z:-54.76776861591455
         },
       ],
       'Roof Deck' :[],
@@ -457,19 +457,12 @@ angular.module('TourApp')
         {
           name: 'Bedroom 1',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG'],
-          x: 80.66833074742436, y: -48.729184909813746, z: -32.94312556104816
-        },
-        {
-          name: 'Roof Deck Entrance',
-          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck%20Entrance.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck%20Entrance.JPG'],
-          x: 98.65598654322956, y: 1.43010110590722, z: -15.121168249692527
+        x:63.22558339336651, y:-39.36794452676155, z:-28.950850103714522
         },
         {
           name: 'Entry',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG'],
-          x: 63.780272669552225,
-          y: -50.69078521877128,
-          z: 57.86909364562255
+        x:73.24615309040661, y:-28.930283773916578, z:-13.32986726969765
         }, ],
         'Bedroom 1': [{
             name: 'Entry',
@@ -479,17 +472,13 @@ angular.module('TourApp')
           {
             name: 'Bedroom 1 Bathroom',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG'],
-            x: 0.19169354216278028,
-            y: -39.330158622092924,
-            z: -91.8884056859725
+            x:0.9044295011480834, y:-33.44669890302853, z:-72.55738349459274
           },
         ],
         'Bedroom 1 Bathroom': [{
             name: 'Bedroom 1',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201.JPG'],
-            x: 92.64091966670057,
-            y: -34.223749796641386,
-            z: -14.389851404223583
+          x:79.14211675943608, y:-4.533115330487696, z:-9.87477422819117
           },
           {
             name: 'Bedroom 1 Shower',
@@ -500,33 +489,20 @@ angular.module('TourApp')
         'Roof Deck Entrance': [{
             name: 'Roof Deck',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Roof%20Deck.JPG'],
-            x: -99.32555800022469,
-            y: 7.431523450569111,
-            z: -7.297747091348125
+            x:-79.55640720004651, y:4.699337211455989, z:-4.941177126756023
           },
           {
             name: 'Entry',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG'],
-            x: -2.3755642780243362,
-            y: -72.00421677659435,
-            z: -69.1868370952269
+            x:-0.865996064342045, y:-57.85888469044413, z:-55.127273847740284
           },
         ],
         'Roof Deck': [],
         'Bedroom 1 Shower': [{
             name: 'Bedroom 1 Bathroom',
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%201%20Bathroom.JPG'],
-            x: 39.61346166965599,
-            y: -61.933780893264434,
-            z: 67.64490915798896
-          },
-          {
-            name: 'Entry',
-            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG', 'https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Entry.JPG'],
-            x: 92.32960573290812,
-            y: -35.5947480280705,
-            z: -13.126615358123813
-          },
+            x:34.91804456590426, y:-48.09891363620616, z:53.379445404781826
+          }
         ],
         'Front Door': [{
           name: 'Entry',
