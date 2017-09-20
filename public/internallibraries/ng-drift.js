@@ -160,7 +160,8 @@ angular.module('ng-drift')
 				  	);
 				}();
 				drift.SNIPPET_VERSION = this.snippet_version || '0.3.1';
-				if (!window.location.href.includes('/tour/')) {
+				console.log()
+				if (!window.location.href.includes('/tour/') && !window.location.href.includes('demo')) {
 					drift.load(this.drift_key);
 				}
 
