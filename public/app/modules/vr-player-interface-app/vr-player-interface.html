@@ -43,7 +43,7 @@
             </div>
             <div class="tour-photo-list-wrapper pointer-events_all" id="scrollthis" >
                 <div class="label-and-photo-wrapper" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)"  >
-                        <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  />
+                        <img ng-src="{{photo.thumbnailURL}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  />
                         <div class="tour-photo-labels">
                             <span>{{photo.title}}</span>
                         </div>

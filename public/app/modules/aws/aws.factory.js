@@ -24,9 +24,9 @@ angular.module('AWSApp').factory('AWSFct', [
         append 'test_' to the data so it's easily findable and deleteable.
       */
         function modifyKeyForEnvironment(key) {
-            if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
-                key = 'test_' + key;
-            }
+            // if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
+            //     key = 'test_' + key;
+            // }
             return key;
         }
 

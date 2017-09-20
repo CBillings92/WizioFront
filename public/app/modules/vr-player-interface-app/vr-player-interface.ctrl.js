@@ -26,7 +26,16 @@ angular.module('TourApp')
             $scope.showInterface = data.showInterface;
             $scope.floorPlan = data.floorPlan;
             document.getElementById('pano').addEventListener('click', onTourClick, false);
+            createThumbnailURLs();
         });
+
+        function createThumbnailURLs() {
+          var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
+          for (var i = 0; i < $scope.media.vrphoto.length; i++) {
+            $scope.media.vrphoto[i].thumbnailURL = WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[i].title + '.JPG';
+          }
+          return
+        }
 
         $scope.$on('ToggleFloorPlan', function(event, data) {
             menuButtonAction('toggleFloorplan');
@@ -171,16 +180,6 @@ angular.module('TourApp')
               // LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
-
-        $scope.thumbnailURL = function(photoIndex) {
-          console.dir($state.params);
-          if ($state.current.name === 'Demo' || $state.params.activelistingid === '2b13cd9e-e945-4ce7-83cc-ff6182eae5d8') {
-            var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
-          } else {
-            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-          }
-            return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
-        }
 
         var hideFloorPlanButton = false;
         $scope.viewFloorPlanFunc = function() {

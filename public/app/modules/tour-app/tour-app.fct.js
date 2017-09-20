@@ -161,7 +161,7 @@ angular.module('TourApp')
         'Lobby (1)': [],
         'Roof Deck': [],
         'Gym': [],
-        'Yoga Studio': []      
+        'Yoga Studio': []
       }
       // {x: -34.174059151117135, y: -57.40047926997227, z: -74.29311145878253}
       var demoNavPointData = {
@@ -558,7 +558,7 @@ angular.module('TourApp')
             activelistingid: activeListingId
           }
           apiResource.query(query, function(results) {
-
+            console.dir(results);
             if (results[0].pinRequired) {
               requestTourPasswordModal({
                   activelistingid: activeListingId
