@@ -100,6 +100,7 @@
     background-size: cover;
     height: 100%;
     max-width: 100%;
+    background-position: 100%;
 }
 
 #home-drift-img{
@@ -122,6 +123,15 @@
   margin-bottom: 20px;
 }
 
+.home-signup-banner {
+    display: block;
+    background-color: #706F72;
+    color: white;
+
+    .mc-field-group {
+        color: #706F72;
+    }
+}
 
 .home-callout-banner{
   margin-bottom: 40px;
@@ -150,6 +160,16 @@
 }
 .home-pin-container {
   overflow: hidden;
+}
+
+.home-signup-banner {
+    input {
+        margin-bottom: 5px;
+        -moz-border-radius:6px; /* Firefox */
+         -webkit-border-radius: 6px; /* Safari, Chrome */
+         -khtml-border-radius: 6px; /* KHTML */
+         border-radius: 6px; /* CSS3 */
+    }
 }
 
 
@@ -216,6 +236,15 @@
 .large-body{
     font-size: 16px;
 
+}
+
+.home-signup-banner {
+    background-color: #706F72;
+    height: 100%;
+}
+
+#home-signup-img {
+    height: 350px;
 }
 
 }
@@ -329,6 +358,11 @@
 
 }
 
+.home-signup-banner {
+    background-color: #706F72;
+}
+
+
 }
 
 // ------------- Phone --------------- //
@@ -336,6 +370,11 @@
 
 
 @media (max-width: 426px) {
+
+
+    .home-signup-banner {
+        background-color: #706F72;
+    }
 
 
 
@@ -346,10 +385,6 @@
 
 }
 
-.home-graybanner{
-
-  height: 65vh;
-}
 
 .home-photo-banner{
   display: flex;
