@@ -27,6 +27,7 @@ angular.module('TourApp')
             $scope.floorPlan = data.floorPlan;
             document.getElementById('pano').addEventListener('click', onTourClick, false);
             createThumbnailURLs();
+            $scope.photoIndex = 0;
         });
 
         function createThumbnailURLs() {
