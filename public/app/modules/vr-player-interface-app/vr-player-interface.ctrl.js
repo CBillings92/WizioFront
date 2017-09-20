@@ -67,7 +67,6 @@ angular.module('TourApp')
             wizio.changeImage(chosenImage, function(response){
               scrollTo = 200 * photoIndex + 1;
               moveSlider(1, scrollTo);
-              console.dir($scope.photoIndex);
               $scope.photoIndex = photoIndex;
               $scope.$apply();
               return response;
