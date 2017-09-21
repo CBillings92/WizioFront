@@ -6,6 +6,9 @@
 //    padding-bottom: 30px;
 }
 
+
+.container,
+.row,
 .container-fluid{
     padding-left:0px;
     padding-right:0px;
@@ -27,7 +30,7 @@
 }
 .product-hero-image{
     align-self: flex-end;
-    width: 75%;
+    height: 500px;
 }
 
 .info-logo-footer {
@@ -105,8 +108,10 @@
     font-weight: 300;
 }
 
-
-
+.subscription-tile {
+    top: -60px;
+    display: flex;
+}
 
 .info-text{
     top: -20px;
@@ -129,6 +134,85 @@
     margin-top: 5px;
 }
 
+// ------------- Small desktop --------------- //
+
+
+@media (max-width: 1024px) {
+
+
+.product-hero-image{
+    height: 440px;
+}
+
+.subscription-banner__price{
+    font-size: 47px;
+}
+
+
+
+}
+// ------------- Tablet --------------- //
+
+
+@media (max-width: 767px) {
+
+.product-hero-image{
+    height: 350px;
+    align-self: flex-end;
+
+}
+
+.subscription-tile{
+    padding-right: 0px;
+    padding-left: 0px;
+    top: -10px;
+}
+
+.info-text{
+    top: -5px;
+}
+
+.product-hero{
+    justify-content: flex-end;
+    height: 500px;
+}
+
+.product-hero-text-container{
+    display: block;
+    padding-top: 125px;
+    text-align: center;
+}
+
+
+
+
+}
+
+// ------------- mobile --------------- //
+
+
+@media (max-width: 425px) {
+
+.product-hero-image{
+    height: 300px;
+    align-self: flex-end;
+
+}
+
+.product-hero{
+    height: 75vh;
+}
+
+.product-hero-text-container{
+    padding-top: 100px;
+}
+
+.faq-container{
+    padding: 15px 0px;
+}
+
+
+}
 
 
 

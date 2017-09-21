@@ -430,12 +430,49 @@ a:focus {
 }
 
 
+
+
+// ------------- Small desktop --------------- //
+
+
+@media (max-width: 1024px) {
+
+
+.product-hero-image{
+    height: 375px;
+}
+
+.header-text{
+    font-size: 35px;
+}
+
+.subhead-text{
+    font-size: 16px;
+
+}
+
+.section-head{
+    font-size: 20px;
+    text-align: center;
+
+}
+
+.large-body{
+    font-size: 16px;
+    text-align: center;
+
+}
+
+
+}
 // ------------- Tablet --------------- //
 
 
 @media (max-width: 767px) {
 
-
+.product-hero-image{
+    height: 275px;
+}
 
 
 .header-text{
@@ -488,8 +525,14 @@ a:focus {
 .large-body{
     font-size: 14px;
 
-
 }
 
+.small-body{
+    font-size: 14px;
+}
+
+.product-section-head{
+    font-size: 20px;
+}
 
 }
