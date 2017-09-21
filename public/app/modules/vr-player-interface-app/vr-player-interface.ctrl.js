@@ -3,6 +3,7 @@ angular.module('TourApp')
     '$scope',
     '$state',
     '$resource',
+    'TokenSvc',
     'lodash',
     'WizioConfig',
     'AWSFct',
@@ -11,7 +12,7 @@ angular.module('TourApp')
     'ngDrift',
     'ModalBuilderFct',
     '$stateParams',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
+    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
         $scope.hasAccelerometer = false;
@@ -20,11 +21,23 @@ angular.module('TourApp')
         $scope.state = $state.current.name;
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
+          LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.data = data;
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
-            $scope.floorPlan = data.floorPlan;
+            $scope.floorplan = data.floorplan;
+            document.getElementById('pano').addEventListener('click', onTourClick, false);
+            createThumbnailURLs();
+            $scope.photoIndex = 0;
         });
+
+        function createThumbnailURLs() {
+          var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
+          for (var i = 0; i < $scope.media.vrphoto.length; i++) {
+            $scope.media.vrphoto[i].thumbnailURL = WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[i].title + '.JPG';
+          }
+          return
+        }
 
         $scope.$on('ToggleFloorPlan', function(event, data) {
             menuButtonAction('toggleFloorplan');
@@ -40,6 +53,31 @@ angular.module('TourApp')
                 $scope.hasAccelerometer = true;
         });
 
+
+        function onTourClick(mouseEvent) {
+          wizio.onClickTriggered(mouseEvent, function(response){
+            if (TokenSvc.decode().email === 'cameron@wizio.co') {
+              console.dir(response);
+            }
+            var chosenImage;
+            var photoIndex;
+            var scrollTo;
+            for (var i = 0; i < $scope.media.vrphoto.length; i++) {
+              if ($scope.media.vrphoto[i].title === response.object.name) {
+                photoIndex = i;
+                chosenImage = $scope.media.vrphoto[i]
+                break;
+              }
+            }
+            wizio.changeImage(chosenImage, function(response){
+              scrollTo = 200 * photoIndex + 1;
+              moveSlider(1, scrollTo);
+              $scope.photoIndex = photoIndex;
+              $scope.$apply();
+              return response;
+            })
+          })
+        }
         // For photo and floorplan selection
         $scope.selectPhoto = false;
         $scope.viewFloorPlan = false;
@@ -76,14 +114,15 @@ angular.module('TourApp')
         }
 
         //FIXME don't use JQuery..
-        var moveSlider = function(direction) {  // direction is 1 for forward / -1 for backward
+        var moveSlider = function(direction, amount) {  // direction is 1 for forward / -1 for backward
             width =  $("#scrollthis").width();
             el = $("#scrollthis");
             currentPosition = el.scrollLeft();
             moveWidth = width * 0.5 * direction;
+            var moveTo = amount ? amount :  (currentPosition + moveWidth);
             // el.scrollLeft(currentPosition + moveWidth);
             el.animate({
-                scrollLeft: currentPosition + moveWidth
+                scrollLeft: moveTo
             }, 500, function () {
                 $scope.sliderCanGoForward = $scope.canSliderForward();
                 $scope.sliderCanGoBackward = $scope.canSliderBackward();
@@ -133,29 +172,22 @@ angular.module('TourApp')
 
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
-            var state = $state.current.name;
-            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-
-            var photoUrl = WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
-            var progURLs = [
-              WizioConfig.CLOUDFRONT_DISTRO + "800x400/" + SubscriptionApartmentPubId + '/' + $scope.media.vrphoto[photoIndex].title + '.JPG',
-              WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG',
-            ]
-
-            LoadingSpinnerFct.show('vrPlayerLoader');
-            $scope.photoIndex = photoIndex;
-            $scope.photoUrl = photoUrl;
-            wizio.changeImage(progURLs, function(response){
+            // LoadingSpinnerFct.show('vrPlayerLoader');
+            // console.dir($scope.media.vrphoto[photoIndex]);
+            wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
+              $scope.photoIndex = photoIndex;
+              $scope.$apply();
+              var email = TokenSvc.decode().email;
+              if (email === 'cameron@wizio.co') {
+                wizio.toggleCoordCollection();
+                wizio.disableOnMouseMove();
+              }
+              // wizio.addInvisibleSphere();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;
-              LoadingSpinnerFct.hide('vrPlayerLoader');
+              // LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
-
-        $scope.thumbnailURL = function(photoIndex) {
-            var SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment($scope.media.vrphoto[0].SubscriptionApartmentPubId);
-            return WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media.vrphoto[photoIndex].title + '.JPG';
-        }
 
         var hideFloorPlanButton = false;
         $scope.viewFloorPlanFunc = function() {
@@ -165,7 +197,7 @@ angular.module('TourApp')
         $scope.openCloseMenu = function() {
             $scope.menuIsOpen = !$scope.menuIsOpen;
             // set floorplan button visibility
-            if($scope.floorPlan){
+            if($scope.floorplan){
                 $scope.actions[0].show = true;
             } else {
                 $scope.actions[0].show = false;
