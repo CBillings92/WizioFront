@@ -58,12 +58,10 @@ angular.module('TourApp').controller('TourCtrl', [
         function addHardCodedNavPointsToMedia(media) {
           if ($state.current.name === 'Demo') {
             for (var i = 0; i < media.vrphoto.length; i++) {
-              // console.dir(interfaceData.media);
               media.vrphoto[i].navpoints = TourFct.demoNavPointData[media.vrphoto[i].title]
             }
           } else if ($state.params.activelistingid === '2b13cd9e-e945-4ce7-83cc-ff6182eae5d8') {
             for (var i = 0; i < media.vrphoto.length; i++) {
-              // console.dir(interfaceData.media);
               media.vrphoto[i].navpoints = TourFct.demo2NavPointData[media.vrphoto[i].title]
             }
 

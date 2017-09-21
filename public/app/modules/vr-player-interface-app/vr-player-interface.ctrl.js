@@ -3,6 +3,7 @@ angular.module('TourApp')
     '$scope',
     '$state',
     '$resource',
+    'TokenSvc',
     'lodash',
     'WizioConfig',
     'AWSFct',
@@ -11,7 +12,7 @@ angular.module('TourApp')
     'ngDrift',
     'ModalBuilderFct',
     '$stateParams',
-    function($scope, $state, $resource, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
+    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
         $scope.hasAccelerometer = false;
@@ -55,6 +56,9 @@ angular.module('TourApp')
 
         function onTourClick(mouseEvent) {
           wizio.onClickTriggered(mouseEvent, function(response){
+            if (TokenSvc.decode().email === 'cameron@wizio.co') {
+              console.dir(response);
+            }
             var chosenImage;
             var photoIndex;
             var scrollTo;
@@ -172,8 +176,11 @@ angular.module('TourApp')
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               $scope.photoIndex = photoIndex;
               $scope.$apply();
-              wizio.toggleCoordCollection();
-              wizio.disableOnMouseMove();
+              var email = TokenSvc.decode().email;
+              if (email === 'cameron@wizio.co') {
+                wizio.toggleCoordCollection();
+                wizio.disableOnMouseMove();
+              }
               // wizio.addInvisibleSphere();
               $scope.selectPhoto = false;
               $scope.viewFloorPlan = false;

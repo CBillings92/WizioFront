@@ -298,7 +298,7 @@ angular.module('TourApp')
           x: -21.22833370791187, y: -20.14787087201096, z: -74.30595634898303
         },
         {
-          name: 'Bedoom 3',
+          name: 'Bedroom 3',
           targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%203.JPG','https://d1mze0h82dkhhe.cloudfront.net/e8955821-f7bc-4eef-b3d7-fe9419fb9a1d/Bedroom%203.JPG'],
           x: 43.28457003346052, y: -6.447204379657471, z: -66.83133130213041
         }
@@ -534,7 +534,6 @@ angular.module('TourApp')
             activelistingid: activeListingId
           }
           apiResource.query(query, function(results) {
-            console.dir(results);
             if (results[0].pinRequired) {
               requestTourPasswordModal({
                   activelistingid: activeListingId
