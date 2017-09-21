@@ -38,6 +38,10 @@ angular.module('TourApp').controller('TourCtrl', [
             vrPlayerData.sortedMedia = sortedMedia;
             // vrPlayerData.firstImage = sortedMedia.vrphoto[0];
             interfaceData.media = sortedMedia;
+            /*
+              Creates array of progressive image URLs and builds floorplan urls
+              for each image - Media is now prepped for the VRPlayer and Interface
+            */
             var preppedMedia = TourFct.prepMedia(sortedMedia);
             // firstPhoto.media = sortedMedia.vrphoto[0];
             interfaceData.media = preppedMedia;

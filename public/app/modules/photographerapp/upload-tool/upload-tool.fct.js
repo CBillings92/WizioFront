@@ -77,8 +77,7 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 // If there is a Floor Plan, create the URL for the floor plan
                 if (apartment.Floor_Plan) {
                     var key = subscriptionApartmentPubId + '/floorplan.png';
-                    var modifiedKey = AWSFct.utilities.modifyKeyForEnvironment(key);
-                    apartment.Floor_Plan = WizioConfig.CLOUDFRONT_DISTRO + modifiedKey;
+                    apartment.Floor_Plan = WizioConfig.CLOUDFRONT_DISTRO + key;
                 }
 
                 // Query for the photos of the unit

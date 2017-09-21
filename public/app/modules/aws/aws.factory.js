@@ -18,24 +18,11 @@ angular.module('AWSApp').factory('AWSFct', [
             return S3Object;
         }
 
-        /* modifyKeyForEnvironment - SUMMARY
-        Modify the key of the S3 object based on the current environment the
-        codebase is running in. If it's dev (local) or test (test AWS server)
-        append 'test_' to the data so it's easily findable and deleteable.
-      */
-        function modifyKeyForEnvironment(key) {
-            // if (WizioConfig.ENV === 'dev' || WizioConfig.ENV === 'test') {
-            //     key = 'test_' + key;
-            // }
-            return key;
-        }
-
         /* copyFile - SUMMARY
           Rename a file in an S3 bucket - happnes by copying the file with
           the new name and then deletes the old file
         */
         function copyFile(newFileName, oldFileName, fileFolderName) {
-            fileFolderName = modifyKeyForEnvironment(fileFolderName);
             // create a new S3 object from AWS library
             var bucket = createS3Object();
             // Create the oldFileEndPoint which defines the file to be copied
@@ -66,7 +53,6 @@ angular.module('AWSApp').factory('AWSFct', [
         */
         function deleteFile(fileName, folderName) {
             var bucket = createS3Object();
-            folderName = modifyKeyForEnvironment(folderName);
             var params = {
                 Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                 // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
@@ -102,7 +88,6 @@ angular.module('AWSApp').factory('AWSFct', [
 
         function uploadFloorPlanFile(file, key, bucket, region) {
             return new $q(function(resolve, reject) {
-                var properKey = modifyKeyForEnvironment(key);
                 //check if the file exists
                 if (file) {
                     var bucket = createS3Object();
@@ -110,7 +95,7 @@ angular.module('AWSApp').factory('AWSFct', [
                     var params = {
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                        Key: properKey,
+                        Key: key,
                         ContentType: 'png',
                         Body: file
                     };
@@ -127,14 +112,13 @@ angular.module('AWSApp').factory('AWSFct', [
 
         function uploadTourPhoto(file, key, bucket, region) {
             return $q(function(resolve, reject) {
-                var properKey = modifyKeyForEnvironment(key);
 
                 if (file) {
                     var bucket = createS3Object();
                     var params = {
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                        Key: properKey,
+                        Key: key,
                         ContentType: 'JPG',
                         Body: file
                     };
@@ -148,7 +132,6 @@ angular.module('AWSApp').factory('AWSFct', [
 
         function uploadProfileFile(file, key, bucket) {
             return new $q(function(resolve, reject) {
-                var properKey = modifyKeyForEnvironment(key);
 
                 //check if the file exists
                 if (file) {
@@ -160,7 +143,7 @@ angular.module('AWSApp').factory('AWSFct', [
                     var params = {
                         Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
                         // Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
-                        Key: properKey,
+                        Key: key,
                         ContentType: file.type,
                         Body: file
                     };
@@ -184,9 +167,6 @@ angular.module('AWSApp').factory('AWSFct', [
                 profilePhotos: {
                     uploadphoto: uploadProfileFile
                 }
-            },
-            utilities: {
-                modifyKeyForEnvironment: modifyKeyForEnvironment
             }
         };
     }

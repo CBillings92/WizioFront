@@ -560,7 +560,7 @@ angular.module('TourApp')
         var floorplan = false;
         var progressivePhotoUrls;
         var state = $state.current.name;
-        var SubscriptionApartmentPubId = buildSubscriptionApartmentPubId(media)
+        var SubscriptionApartmentPubId = media.vrphoto[0].SubscriptionApartmentPubId;
         var photoUrl;
         if (media.vrphoto[0].Floor_Plan !== null) {
           floorplan = buildFloorPlanUrl(SubscriptionApartmentPubId);
@@ -589,18 +589,6 @@ angular.module('TourApp')
               return resolve(response);
             })
         })
-      }
-
-      function buildSubscriptionApartmentPubId(media) {
-        var SubscriptionApartmentPubId
-        if ($state.current.name === 'Demo' || $state.params.activelistingid === '2b13cd9e-e945-4ce7-83cc-ff6182eae5d8' ) {
-          SubscriptionApartmentPubId = media.vrphoto[0].SubscriptionApartmentPubId;
-
-        } else {
-          SubscriptionApartmentPubId = AWSFct.utilities.modifyKeyForEnvironment(media.vrphoto[0].SubscriptionApartmentPubId);
-
-        }
-        return SubscriptionApartmentPubId;
       }
 
       function buildFloorPlanUrl(SubscriptionApartmentPubId) {

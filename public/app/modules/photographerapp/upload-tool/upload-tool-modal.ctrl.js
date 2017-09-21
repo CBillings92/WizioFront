@@ -247,11 +247,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             dropPinFlag = false;
         }
 
-        // used for formatting the subscriptionapartment pubid for the environment
-        $scope.formatKeyForEnv = function(pubid) {
-            return AWSFct.utilities.modifyKeyForEnvironment(pubid);
-        }
-
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
