@@ -202,12 +202,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
                     view: MODULESPATH + 'tour-app/tour-app.html',
                     controller: 'TourCtrl'
                 }
-            },
-            TestApp: {
-                ThreeJSTest: {
-                  view: MODULESPATH + 'test-app/threejs-app/threejs-test.html',
-                  controller: 'ThreeJSTestCtrl'
-                }
             }
         },
         directives: {
