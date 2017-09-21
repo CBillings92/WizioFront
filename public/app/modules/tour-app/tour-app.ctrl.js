@@ -46,7 +46,6 @@ angular.module('TourApp').controller('TourCtrl', [
             interfaceData.media = preppedMedia;
             interfaceData.hideFloorPlanButton = true;
             if (preppedMedia.vrphoto[0].floorplan) {
-              alert('why');
                 interfaceData.floorplan = true;
                 interfaceData.floorplan = preppedMedia.vrphoto[0].floorplan;
                 interfaceData.hideFloorPlanButton = false;
