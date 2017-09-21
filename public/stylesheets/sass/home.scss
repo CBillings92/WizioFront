@@ -91,9 +91,22 @@
 
 }
 
+.home-signup-banner-text {
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
 #home-vr-img{
   margin-top: 30px;
   // width: 250px;
+}
+
+#home-signup-img{
+    background-image: url('../../../../viewtemplates/images/home/WizioStock-004.jpg');
+    background-size: cover;
+    height: 100%;
+    max-width: 100%;
+    background-position: 100%;
 }
 
 #home-drift-img{
@@ -116,6 +129,15 @@
   margin-bottom: 20px;
 }
 
+.home-signup-banner {
+    display: block;
+    background-color: #706F72;
+    color: white;
+
+    .mc-field-group {
+        color: #706F72;
+    }
+}
 
 .home-callout-banner{
   margin-bottom: 40px;
@@ -144,6 +166,20 @@
 }
 .home-pin-container {
   overflow: hidden;
+}
+
+.home-signup-banner {
+    input {
+        margin-bottom: 5px;
+        -moz-border-radius:6px; /* Firefox */
+         -webkit-border-radius: 6px; /* Safari, Chrome */
+         -khtml-border-radius: 6px; /* KHTML */
+         border-radius: 6px; /* CSS3 */
+    }
+    select {
+        margin-bottom: 5px;
+    }
+
 }
 
 
@@ -190,6 +226,19 @@
   width: 350px;
   margin-top: none;
 }
+
+// ------------- UPDATED STYLES 8.24.17 --------------- //
+
+
+
+.home-signup-banner {
+    background-color: #706F72;
+    height: 100%;
+}
+
+#home-signup-img {
+    height: 300px;
+ }
 
 }
 
@@ -275,6 +324,9 @@
     }
   }
 
+.home-signup-banner {
+    background-color: #706F72;
+}
 
 
 }
@@ -287,6 +339,9 @@
 
 
 
+
+
+
 .home-banner{
 
   height: 60vh;
@@ -295,8 +350,10 @@
 
 .home-graybanner{
 
-  height: 65vh;
+ height: 65vh;
+
 }
+
 
 .home-photo-banner{
   display: flex;
@@ -311,6 +368,14 @@
 
 }
 
+.home-signup-banner {
+    background-color: #706F72;
+    height: 105vh;
+}
+
+// #home-signup-img {
+//     height: 250px;
+// }
 
 #home-vr-img{
   margin-top: 55px;
