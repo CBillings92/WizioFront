@@ -22,10 +22,12 @@ angular.module('TourApp')
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
           LoadingSpinnerFct.show('vrPlayerLoader');
+          console.dir('----');
+          console.dir(data);
             $scope.data = data;
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
-            $scope.floorPlan = data.floorPlan;
+            $scope.floorplan = data.floorplan;
             document.getElementById('pano').addEventListener('click', onTourClick, false);
             createThumbnailURLs();
             $scope.photoIndex = 0;
@@ -196,7 +198,7 @@ angular.module('TourApp')
         $scope.openCloseMenu = function() {
             $scope.menuIsOpen = !$scope.menuIsOpen;
             // set floorplan button visibility
-            if($scope.floorPlan){
+            if($scope.floorplan){
                 $scope.actions[0].show = true;
             } else {
                 $scope.actions[0].show = false;

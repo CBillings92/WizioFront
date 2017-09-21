@@ -562,6 +562,7 @@ angular.module('TourApp')
         var state = $state.current.name;
         var SubscriptionApartmentPubId = media.vrphoto[0].SubscriptionApartmentPubId;
         var photoUrl;
+        console.dir(media.vrphoto[0]);
         if (media.vrphoto[0].Floor_Plan !== null) {
           floorplan = buildFloorPlanUrl(SubscriptionApartmentPubId);
         }
