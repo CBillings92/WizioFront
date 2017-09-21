@@ -1,9 +1,11 @@
+
+
 .home-hero {
   position: relative;
   background-image: url("../viewtemplates/images/home/homepage-hero.jpg");
   background-size: cover;
   background-position: center;
-  background-color: $dk-gray;
+  background-color: $med-gray;
   background-blend-mode: multiply;
 
 }
@@ -16,7 +18,6 @@
   z-index: 100;
   // have to account for the search bar height too
   transform: translateY(calc(-50% - 40px));
-  color: $white;
 }
 
 .home-hero__heading {
@@ -88,6 +89,11 @@
   height: 30%;
   margin-top: 7%;
 
+}
+
+.home-signup-banner-text {
+    margin-left: 15px;
+    margin-top: 15px;
 }
 
 #home-vr-img{
@@ -223,24 +229,7 @@
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
-.header-text{
-    font-size: 35px;
-}
 
-.subhead-text{
-    font-size: 18px;
-
-}
-
-.section-head{
-    font-size: 22px;
-
-}
-
-.large-body{
-    font-size: 16px;
-
-}
 
 .home-signup-banner {
     background-color: #706F72;
@@ -249,13 +238,10 @@
 
 #home-signup-img {
     height: 300px;
+ }
+
+
 }
-
-}
-
-
-
-
 
 
 
@@ -316,28 +302,6 @@
 
 }
 
-// ------------- UPDATED STYLES 8.24.17 --------------- //
-
-.header-text{
-    font-size: 26px;
-}
-
-.subhead-text{
-    font-size: 16px;
-
-}
-
-.section-head{
-    font-size: 20px;
-    text-align: center;
-
-}
-
-.large-body{
-    font-size: 16px;
-    text-align: center;
-
-}
 
   .home-hero {
     height: 75vh;
@@ -345,6 +309,7 @@
 
   .home-hero__heading {
     margin-top: 45px;
+  }
 
   .home-sign-up {
     margin-bottom: 30px;
@@ -360,7 +325,7 @@
     }
   }
 
-}
+
 
 .home-signup-banner {
     background-color: #706F72;
@@ -435,31 +400,7 @@
 
 }
 
-// ------------- UPDATED STYLES 8.24.17 --------------- //
 
-.header-text{
-    font-size: 26px;
-}
-
-.subhead-text{
-    font-size: 16px;
-
-}
-
-.section-head{
-    font-size: 18px;
-    text-align: center;
-    line-height: 1.4;
-    padding-bottom: 10px;
-
-}
-
-.large-body{
-    font-size: 14px;
-    text-align: center;
-
-
-}
 
   .home-hero {
     height: 75vh;
@@ -467,7 +408,7 @@
 
   .home-hero__heading {
     margin-top: 45px;
-
+}
   .home-sign-up {
     margin-bottom: 30px;
   }
@@ -481,10 +422,11 @@
       border-width: 0 0 2px;
     }
   }
-
 }
 
-}
+
+
+
 
 
 @media (min-width: 768px) {
