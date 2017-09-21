@@ -22,8 +22,6 @@ angular.module('TourApp')
         $scope.showInterface = true;
         $scope.$on('InterfaceDataReceived', function(event, data){
           LoadingSpinnerFct.show('vrPlayerLoader');
-          console.dir('----');
-          console.dir(data);
             $scope.data = data;
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;

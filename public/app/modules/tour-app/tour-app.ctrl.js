@@ -36,7 +36,6 @@ angular.module('TourApp').controller('TourCtrl', [
 
             vrPlayerData.media = media;
             vrPlayerData.sortedMedia = sortedMedia;
-            // vrPlayerData.firstImage = sortedMedia.vrphoto[0];
             interfaceData.media = sortedMedia;
             /*
               Creates array of progressive image URLs and builds floorplan urls
@@ -46,7 +45,6 @@ angular.module('TourApp').controller('TourCtrl', [
             // firstPhoto.media = sortedMedia.vrphoto[0];
             interfaceData.media = preppedMedia;
             interfaceData.hideFloorPlanButton = true;
-            console.dir(preppedMedia);
             if (preppedMedia.vrphoto[0].floorplan) {
               alert('why');
                 interfaceData.floorplan = true;
@@ -54,7 +52,6 @@ angular.module('TourApp').controller('TourCtrl', [
                 interfaceData.hideFloorPlanButton = false;
             }
             $scope.photoIndex = 0;
-            console.dir(interfaceData)
             $scope.$broadcast('InterfaceDataReceived', interfaceData);
             $scope.$broadcast('TourDataReceived', preppedMedia.vrphoto[0]);
         })

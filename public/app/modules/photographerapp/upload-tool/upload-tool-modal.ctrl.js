@@ -304,7 +304,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var elementId = 'imgPreview';
                 var previewElement;
                 var filename;
-                // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 for (var i = 0; i < this.files.length; i++) {
                     var photo = {
                         x: null,

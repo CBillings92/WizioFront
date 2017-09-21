@@ -539,11 +539,9 @@ angular.module('TourApp')
                   activelistingid: activeListingId
                 })
                 .then(function(response) {
-                  // LoadingSpinnerFct.hide('vrPlayerLoader');
                   return resolve(response);
                 })
             } else {
-              // LoadingSpinnerFct.hide('vrPlayerLoader');
               return resolve(results);
             }
           })
