@@ -170,6 +170,10 @@
          -khtml-border-radius: 6px; /* KHTML */
          border-radius: 6px; /* CSS3 */
     }
+    select {
+        margin-bottom: 5px;
+    }
+
 }
 
 
@@ -244,7 +248,7 @@
 }
 
 #home-signup-img {
-    height: 350px;
+    height: 300px;
 }
 
 }
@@ -372,9 +376,7 @@
 @media (max-width: 426px) {
 
 
-    .home-signup-banner {
-        background-color: #706F72;
-    }
+
 
 
 
@@ -404,6 +406,14 @@
 
 }
 
+.home-signup-banner {
+    background-color: #706F72;
+    height: 105vh;
+}
+
+// #home-signup-img {
+//     height: 250px;
+// }
 
 #home-vr-img{
   margin-top: 55px;
