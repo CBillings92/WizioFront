@@ -26,8 +26,16 @@ $dk-gray: #4A4A4A;
     color: $med-gray;
 }
 
+.gray{
+    color: $gray;
+}
+
 .blue{
     color: $blue;
+}
+
+.italic{
+    font-style: italic;
 }
 
 
@@ -101,8 +109,8 @@ h5 {
 p {
     font-family: "Roboto";
     font-size: 16px;
-    font-weight: 400;
-    line-height: 1.1;
+    font-weight: 300;
+    line-height: 1.2;
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
