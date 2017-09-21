@@ -91,6 +91,7 @@ angular.module('TourApp')
             document.getElementsByTagName('body')[0].style["margin-bottom"] = 0;
             document.getElementById('main-content').style["height"] = "100%";
 
+
         }
 
         $scope.onProductPage = false;
@@ -202,10 +203,11 @@ angular.module('TourApp')
                 $scope.actions[0].show = false;
             }
         };
-
         $scope.agent = {};
         $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
         $scope.profileUploaded = false;
+        $scope.isMLSListingAccount = false;
+
 
     if ($state.current.name == "Demo" || $state.current.name == "Product" ) {
         $resource(WizioConfig.baseAPIURL + '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d').query(function(response){
@@ -228,10 +230,18 @@ angular.module('TourApp')
                 $scope.agent = response[response.length - 1];
                 $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
                 $scope.agent.state = $state.current.name;
+                if ($scope.agent.email === 'alex@redtreeboston.com'
+                    || $scope.agent.email === 'bill.patterson@craftrealestateboston.com'
+                    || $scope.agent.email === 'youngone@younghouses.com'
+                    || $scope.agent.email === 'brian@lmcrealtyboston.com'
+                  ) {
+                    $scope.isMLSListingAccount = true;
+                }
+
 
             });
-
     }
+
 
 
     $scope.launchAgentProfileModal = function() {
