@@ -16,6 +16,42 @@ angular.module('TourApp')
       $state,
       ModalBuilderFct
     ) {
+      var oliverTour1NavPointData = {
+        'Living Room': [
+          {
+            name: 'Kitchen',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/15d1881a-8e37-4139-adc7-895475c3e33f/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/15d1881a-8e37-4139-adc7-895475c3e33f/Kitchen.JPG'],
+            x:-1.956718303847157, y:-11.003825509139007, z:79.09135111023357
+          },
+          {
+            name: 'Bedroom',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/15d1881a-8e37-4139-adc7-895475c3e33f/Bedroom.JPG','https://d1mze0h82dkhhe.cloudfront.net/15d1881a-8e37-4139-adc7-895475c3e33f/Bedroom.JPG'],
+            x:-28.771719389273983, y:-44.05539357860129, z:60.10127484152777
+          }
+        ],
+        'Kitchen': [
+          {
+            name: 'Living Room',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG'],
+            x:10.100554885708416, y:-27.9621769489923, z:-74.11873755360743
+          }
+        ],
+        'Bedroom': [
+            {
+              name: 'Living Room',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG'],
+              x:-57.663832475042426, y:-16.74474852237985, z:-52.738920743493566
+            }
+
+        ],
+        'Bathroom': [
+          {
+            name: 'Living Room',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG','https://d1mze0h82dkhhe.cloudfront.net/15d1881a-8e37-4139-adc7-895475c3e33f/Living%20Room.JPG'],
+            x:-65.95214723343491, y:16.565422201566253, z:41.84428654270273
+          }
+        ]
+      }
       var demo2NavPointData = {
         'Kitchen': [
           {
