@@ -19,7 +19,6 @@ angular.module('DashboardApp')
                         lastName: user.lastName,
                         inviteType: 1
                     };
-                    console.dir(data);
                     return;
                     $resource(WizioConfig.baseAPIURL + 'subscription/invite')
                     .save(data)
