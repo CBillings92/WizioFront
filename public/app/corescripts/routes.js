@@ -92,14 +92,14 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('Pricing', {
-                    url: '/pricing',
+                .state('Product', {
+                    url: '/product',
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: PAGECONFIG.createAccount.pricing.view,
-                            controller: PAGECONFIG.createAccount.pricing.controller
+                            templateUrl: PAGECONFIG.productInfo.main.view,
+                            controller: PAGECONFIG.productInfo.main.controller
                         }
                     }
                 })

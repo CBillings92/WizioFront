@@ -17,7 +17,7 @@
         </div>
           <div id="navbar" class="navbar-collapse collapse tour-nav-buttons">
             <ul class="nav navbar-nav navbar-right">
-              <li ng-show="floorPlan">
+              <li ng-show="floorplan && !onProductPage">
                   <a ng-click="viewFloorPlanFunc()">
                      {{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}
                   </a>
@@ -27,7 +27,7 @@
                      360 Control
                   </a>
               </li>
-              <li><a ng-click="launchAgentProfileModal()">
+              <li><a ng-hide="isMLSListingAccount" ng-click="launchAgentProfileModal()">
                     Contact Info
               </a></li>
             </ul>
@@ -36,13 +36,13 @@
         </div>
         <!--/.container-fluid -->
       </nav>
-    <div class="tour-photos-container">
+    <div class="tour-photos-container" ng-hide="viewFloorPlan">
             <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left fa-4x" aria-hidden="true" ng-click="moveSliderBackward()"></i>
             </div>
             <div class="tour-photo-list-wrapper pointer-events_all" id="scrollthis" >
                 <div class="label-and-photo-wrapper" ng-repeat="photo in media.vrphoto track by $index" ng-click="changePhoto($index)"  >
-                        <img ng-src="{{thumbnailURL($index)}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  />
+                        <img ng-src="{{photo.thumbnailURL}}" class="unit-details-media-tab-content-picker__img" ng-class="photoIndex == $index ? 'outline-photo-orange' : ''"  />
                         <div class="tour-photo-labels">
                             <span>{{photo.title}}</span>
                         </div>
@@ -56,7 +56,7 @@
     <div class="tour-floorplan-container pointer-events_all" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
         <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
         <div style="position:relative; display:inline-block">
-            <img src="{{data.floorPlan}}" id="floorplan" style="" alt="" />
+            <img src="{{data.floorplan}}" id="floorplan" style="" alt="" />
             <span ng-repeat="photo in media.vrphoto track by $index">
                     <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
                     <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />

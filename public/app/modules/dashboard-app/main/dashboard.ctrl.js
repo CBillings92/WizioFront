@@ -18,7 +18,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();
         $scope.state = 'Account.Dashboard.ShareTour';
-        if ((user.email === 'yuyang@wizio.co' || user.email === 'cameron@wizio.co' || user.email === 'john@wizio.co' || user.email === 'trent@wizio.co' || user.accountType === 4) && TokenSvc.decode().Subscriptions[0].id === 3 ) {
+        if (TokenSvc.decode().Subscriptions[0].id === 3 ) {
           $scope.wizioAdmin = true;
         }
 

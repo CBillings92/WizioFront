@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="MainApp" ng-strict-di style="height: 100%">
 <head>
-    <title>Wizio</title>
+    <title>Wizio: On Demand Virtual Reality</title>
     <!-- mobile friendly browsing! -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="https://s3.amazonaws.com/wizio-facebook-share/wizio-facebook-share.jpg" />
+
+    <meta name="description" content="Wizio, a Boston startup, specializes in virtual reality property tours using 360 VR photography.">
+
+    <meta name="keywords" content="virtual reality, 360 photography, real estate, Boston">
+
 
     <meta property="og:description" content="Virtual Reality Content Creation and Hosting" />
 
@@ -62,11 +67,6 @@
     <meta name="msapplication-TileImage" content="public/viewtemplates/images/favicons/mstile-144x144.png">
     <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
     <meta name="theme-color" content="#fa9a29">
-    <script type="text/javascript">
-        function onLoadEndSpinner() {
-            document.getElementById('siteLoader').style.visibility = "hidden";
-        }
-    </script>
     <script>
      if (window.location.hostname === 'alpha.wizio.co') {
          $('head').append('<meta name="robots" content="noindex"/>');
@@ -90,19 +90,27 @@
         src="https://www.facebook.com/tr?id=284584225294986&ev=PageView
         &noscript=1"/>
         </noscript>
+        <!-- Begin SessionStack code -->
+<!-- <script type="text/javascript">
+!function(a,b){var c=window;c.SessionStack=a,c[a]=c[a]||function(){
+c[a].q=c[a].q||[],c[a].q.push(arguments)},c[a].t=b;var d=document.createElement("script");
+d.async=1,d.src="https://cdn.sessionstack.com/sessionstack.js";
+var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(d,e);
+}("sessionstack","5d9e91546ccc42199d2cffab411ec4b2");
+</script> -->
+<!-- End SessionStack Code -->
 <!-- End Facebook Pixel Code -->
 </head>
 <!-- End of Google Analytics Code -->
 
 <!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
 
-<body onLoad="onLoadEndSpinner()" style="min-height:100%">
+<body style="min-height:100%">
     <script type="text/javascript">
     $(document).on('click',function(){
         $('.collapse').collapse('hide');
     })
     </script>
-    <loading-spinner-dir id="siteLoader" size='fa-5x' style="position: absolute; z-index:1000; top:50%; left:50%; color:black;"></loading-spinner-dir>
 
     <div class="" id="site-container">
         <div ui-view="navbar"></div>

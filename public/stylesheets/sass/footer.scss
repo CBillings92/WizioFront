@@ -1,6 +1,4 @@
 .footer {
-    position: absolute;
-    bottom: 0;
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 250px;
@@ -63,11 +61,6 @@
 }
 
 @media (max-width: 767px) {
-    /* Set the fixed height of the footer here
-       for mobile screens */
-    #main-content {
-        padding-bottom: 550px;
-    }
     .footer {
         height: 550px;
 
