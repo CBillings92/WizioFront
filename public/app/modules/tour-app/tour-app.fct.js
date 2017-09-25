@@ -192,9 +192,9 @@ angular.module('TourApp')
             x:34.139137863947894, y:-14.584565862806524, z:70.70294870033122
           }
         ],
-        'Lounge': [],
         'Lounge 1': [],
-        'Lobby (1)': [],
+        'Lounge 2': [],
+        'Lobby': [],
         'Roof Deck': [],
         'Gym': [],
         'Yoga Studio': []
