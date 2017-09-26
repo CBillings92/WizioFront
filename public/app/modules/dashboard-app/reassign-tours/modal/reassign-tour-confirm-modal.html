@@ -6,7 +6,7 @@
   <p>Once you make this assignment it cannot be revoked.</p>
   <br>
   <div class="">
-    {{modalData.tour.Apartment.concatAddr + ' ' + modalData.Apartment.unitNum}} -- {{modalData.subscription.Businesses[0].name}}
+    {{modalData.tour.Apartment.concatAddr + ' ' + modalData.Apartment.unitNum}} -- {{modalData.assigneeData.newAccountHolder ? modalData.assigneeData.clientEmail :  modalData.assigneeData.subscription.Businesses[0].name}}
   </div>
   <br>
   <p>Are you sure you'd like to make the following assignment?</p>

@@ -15,17 +15,17 @@
         This will send them a signup email along with their tour information. This
         tour will be assigned to their account upon account creation.
     </p>
-    <button type="button" class='btn btn-lg' ng-click="viewCreateNewAcct = !viewCreateNewAcct" name="button">{{viewCreateNewAcct ? 'Back' : 'Create New User Account'}}</button>
   </div>
   <div class="" ng-show="viewCreateNewAcct">
     <div class="form">
       <div class="form-group">
-        <label class='control-label'>Client Email</label>
-        <input type="text" style='border:1px solid black;' ng-model='clientEmail' class="form-control" name="" value="">
+        <label class='control-label'>Client Email To Assign Tour To</label>
+        <input type="text" style='border:1px solid black;' ng-model='clientEmail' placeholder="email" class="form-control" name="" value="">
       </div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class='btn btn-lg btn-fill--orange' ng-click="assignTourToEmail()" ng-show='viewCreateNewAcct' name="button">Submit New User Account</button>
+  <button type="button" class='btn btn-lg' ng-click="viewCreateNewAcct = !viewCreateNewAcct" name="button">{{viewCreateNewAcct ? 'Back' : 'Assign Tour To New Client'}}</button>
+  <button type="button" class='btn btn-lg btn-fill--orange' ng-click="assignTourToEmail()" ng-show='viewCreateNewAcct' name="button">Assign Tour to Client Email</button>
 </div>

@@ -5,7 +5,7 @@
 <div class="modal-body">
   <p>Once you make this assignment it cannot be revoked.</p>
   <div class="">
-    {{modalData.tour}} -- {{modalData.subscription || modalData.clientEmail}}
+    {{modalData.tour}} -- {{modalData.newAccountHolder ? modalData.clientEmail : modalData.subscription }}
   </div>
   <p>Are you sure you'd like to make the following assignment?</p>
 </div>

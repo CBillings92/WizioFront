@@ -134,8 +134,6 @@ angular.module('TourPanelApp')
 
               ModalBuilderFct.buildModalWithController(chooseSubscriptionConfig)
               .then(function(assigneeData){
-                console.dir('funck');
-                console.dir(assigneeData);
                 areYouSureModalConfig.modalData.tour = tour;
                 areYouSureModalConfig.modalData.assigneeData= assigneeData
                 return ModalBuilderFct.buildModalWithController(areYouSureModalConfig);
