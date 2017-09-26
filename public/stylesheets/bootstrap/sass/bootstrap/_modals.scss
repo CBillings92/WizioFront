@@ -145,6 +145,10 @@
   .modal-sm { width: $modal-sm; }
 }
 
+@media (min-width: $screen-sm-min) {
+  .modal-lg { width: $modal-md; }
+}
+
 @media (min-width: $screen-md-min) {
   .modal-lg { width: $modal-lg; }
 }
