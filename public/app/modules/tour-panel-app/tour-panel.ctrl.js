@@ -133,14 +133,14 @@ angular.module('TourPanelApp')
               }
 
               ModalBuilderFct.buildModalWithController(chooseSubscriptionConfig)
-              .then(function(subscription){
+              .then(function(assigneeData){
                 areYouSureModalConfig.modalData.tour = tour;
-                areYouSureModalConfig.modalData.subscription = subscription
+                areYouSureModalConfig.modalData.assigneeData= assigneeData
                 return ModalBuilderFct.buildModalWithController(areYouSureModalConfig);
               })
               .then(function(decision){
                 if (decision.action === 'continue') {
-                  TourPanelFct.reassignTour(decision.tour, decision.subscription)
+                  TourPanelFct.reassignTour(decision.tour, decision.assigneeData)
                   .then(function(completion){
 
                   })

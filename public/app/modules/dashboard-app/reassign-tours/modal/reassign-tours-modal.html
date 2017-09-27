@@ -1,13 +1,31 @@
 <div class="modal-header">
   <close-modal-dirv></close-modal-dirv>
-  <h3 class='modal-title'>Select Subscription To Assign Tour To</h3>
+  <h3 class='modal-title'>{{viewCreateNewAcct ? 'Create Account To Assign Tour To' : 'Select Subscription To Assign Tour To'}}</h3>
 </div>
 <div class="modal-body">
-  <div class="" ng-repeat='subscription in subscriptions track by $index' ng-if='(subscription.id !== 3 || subscription.id !== 22) && subscription.Businesses.length !== 0'>
+  <div class="" ng-hide="viewCreateNewAcct" ng-repeat='subscription in subscriptions track by $index' ng-if='(subscription.id !== 3 || subscription.id !== 22) && subscription.Businesses.length !== 0'>
     <div class="" style="height:60px; border: 1px solid black; margin:5px; cursor: pointer" ng-click="assignTour(subscription)">
       {{subscription.id}} - {{subscription.Businesses[0].name}}
     </div>
   </div>
+  <div class="">
+    <h4>Don't see your user's subscription?</h4>
+    <p>
+        Use the following button to create a new user account for your client.
+        This will send them a signup email along with their tour information. This
+        tour will be assigned to their account upon account creation.
+    </p>
+  </div>
+  <div class="" ng-show="viewCreateNewAcct">
+    <div class="form">
+      <div class="form-group">
+        <label class='control-label'>Client Email To Assign Tour To</label>
+        <input type="text" style='border:1px solid black;' ng-model='clientEmail' placeholder="email" class="form-control" name="" value="">
+      </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
+  <button type="button" class='btn btn-lg' ng-click="viewCreateNewAcct = !viewCreateNewAcct" name="button">{{viewCreateNewAcct ? 'Back' : 'Assign Tour To New Client'}}</button>
+  <button type="button" class='btn btn-lg btn-fill--orange' ng-click="assignTourToEmail()" ng-show='viewCreateNewAcct' name="button">Assign Tour to Client Email</button>
 </div>
