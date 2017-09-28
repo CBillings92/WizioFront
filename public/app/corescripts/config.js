@@ -57,25 +57,24 @@ angular.module('MainApp').constant('WizioConfig', (function() {
     CLOUDFRONT_DISTRO: env === 'prod' ? 'https://cdn.wizio.co/' : 'https://d1mze0h82dkhhe.cloudfront.net/',
     CLOUDFRONT_DISTRO_UPLOAD_URL: env === 'prod' ? 'https://d9cm2bybwkl75.cloudfront.net' : 'https://d3hemhuxs42asx.cloudfront.net',
     frontEndURL: window.location.origin,
+        // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
+        LandingPage: {
+            activeListingId: function() {
+                var activeListingId = env === 'test' || env === 'dev'
+                    ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                    : 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                return activeListingId;
+            }
+        },
 
-    // FOR DISPLAYING DEMO AND LANDING PAGE TOURS
-    LandingPage: {
-      activeListingId: function() {
-        var activeListingId = env === 'test' || env === 'dev' ?
-          'ddef35a3-0afb-4e8c-97b5-60e057004034' :
-          'ddef35a3-0afb-4e8c-97b5-60e057004034'
-        return activeListingId;
-      }
-    },
-
-    DemoPage: {
-      activeListingId: function() {
-        var activeListingId = env === 'test' || env === 'dev' ?
-          'ddef35a3-0afb-4e8c-97b5-60e057004034' :
-          'ddef35a3-0afb-4e8c-97b5-60e057004034';
-        return activeListingId;
-      }
-    },
+        DemoPage: {
+            activeListingId: function() {
+                var activeListingId = env === 'test' || env === 'dev'
+                    ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                    : 'ddef35a3-0afb-4e8c-97b5-60e057004034';
+                return activeListingId;
+            }
+        },
 
     //angular app URLs - views
     modulesURL: 'public/app/modules',
