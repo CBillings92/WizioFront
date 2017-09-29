@@ -6,7 +6,8 @@ angular.module('ProductInfoApp')
         function($scope, ModalBuilderFct, $state) {
 
             $scope.goToDemo = function() {
-                $state.go('Demo');
+                window.open('/demo','_blank');
+
             }
 
             $scope.launchTypeform = function(val) {
