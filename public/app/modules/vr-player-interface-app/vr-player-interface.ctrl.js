@@ -233,6 +233,7 @@ angular.module('TourApp')
                     || $scope.agent.email === 'bill.patterson@craftrealestateboston.com'
                     || $scope.agent.email === 'youngone@younghouses.com'
                     || $scope.agent.email === 'brian@lmcrealtyboston.com'
+                    || $scope.agent.email === 'yuyang@wizio.co'
                   ) {
                     $scope.isMLSListingAccount = true;
                 }
