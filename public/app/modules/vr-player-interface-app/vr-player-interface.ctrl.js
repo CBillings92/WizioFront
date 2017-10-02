@@ -9,10 +9,9 @@ angular.module('TourApp')
     'AWSFct',
     'LoadingSpinnerFct',
     '$sce',
-    'ngDrift',
     'ModalBuilderFct',
     '$stateParams',
-    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
+    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ModalBuilderFct, $stateParams) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
         $scope.hasAccelerometer = false;

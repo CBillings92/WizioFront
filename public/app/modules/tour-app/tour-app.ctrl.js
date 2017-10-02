@@ -4,9 +4,8 @@ angular.module('TourApp').controller('TourCtrl', [
     'WizioConfig',
     'TourFct',
     'lodash',
-    'ngDrift',
     'LoadingSpinnerFct',
-    function($scope, $state, WizioConfig, TourFct, lodash, ngDrift, LoadingSpinnerFct) {
+    function($scope, $state, WizioConfig, TourFct, lodash, LoadingSpinnerFct) {
         $scope.showInterface = true;
         if ($state.current.name === 'Tour' || $state.current.name === 'Demo') {
             document.getElementById('site-container').style.height = "100%";

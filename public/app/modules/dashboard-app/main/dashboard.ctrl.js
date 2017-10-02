@@ -11,10 +11,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'StorageApp',
     '$state',
     'lodash',
-    'ngDrift',
-    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash, ngDrift) {
+    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
         $state.go('Account.Dashboard.ShareTour');
-        ngDrift.show();
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();
         $scope.state = 'Account.Dashboard.ShareTour';

@@ -82,10 +82,9 @@
             'angular-jwt',
             'angulartics',
             'angulartics.google.analytics',
-            'angular-sortable-view',
-            'ng-drift'
+            'angular-sortable-view'
         ])
-        .config(["$sceDelegateProvider", 'ngDriftProvider', function($sceDelegateProvider, ngDriftProvider) {
+        .config(["$sceDelegateProvider", function($sceDelegateProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
                 'self',
@@ -98,7 +97,7 @@
                 'https://www.youtube.com/watch?v=*&feature=youtu.be',
                 'http://www.youtube.com/embed/**'
             ]);
-            ngDriftProvider.setKey('xxagivsgiw52');
+            // ngDriftProvider.setKey('xxagivsgiw52');
 
         }])
         //ON APP START AND DURING APP RUN
