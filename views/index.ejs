@@ -25,7 +25,14 @@
 
     <!-- Styles -->
     <link href="../public/build/stylessass.css" rel="stylesheet">
-
+    <script type="text/javascript">
+    if (!String.prototype.includes) {
+      String.prototype.includes = function() {
+          'use strict';
+          return String.prototype.indexOf.apply(this, arguments) !== -1;
+      };
+    }
+    </script>
     <!-- <script type="text/javascript" src="../public/internallibraries/EventShim.js"></script> -->
     <!-- <script type="text/javascript" src="../public/internallibraries/RequestAnimationFrame.js"></script> -->
     <!-- <script type="text/javascript" src="../public/build/lib2.min.js"></script> -->
