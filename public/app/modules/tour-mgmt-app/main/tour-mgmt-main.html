@@ -1,7 +1,7 @@
 <div class="container" style="padding-top:50px;">
   <div class="row" style='padding-top:20px'>
     <div class="col-md-12">
-      <h2>{{data.newTour ? 'Create Tour' : 'Modify Tour'}}</h2>
+      <h2>{{data.newTour ? 'New Tour' : 'Modify Tour'}}</h2>
       <h3>{{data.Apartment.concatAddr}}</h3>
     </div>
     <div class="col-md-12" style="margin-top:10px;">
@@ -12,7 +12,7 @@
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
   </div>
-  <div class="row" style='margin-top:20px;'>
+  <!-- <div class="row" style='margin-top:20px;'>
     <div class="col-md-6" ng-if="data.newTour">
       <div class="row">
         <div class="col-md-8">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="col-md-6 {{addFlorrPlan ? 'col-md-push-1' : ''}}" ng-if="data.newTour || addFloorPlanFlag">
       <div class="row">
         <div class="col-md-12">
@@ -127,7 +127,7 @@
                               <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
-                              <thumbnail-dir thumbnail-obj='photo.thumbnailObj'></thumbnail-dir>
+                              <!-- <thumbnail-dir thumbnail-obj='photo.thumbnailObj'></thumbnail-dir> -->
                               <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>

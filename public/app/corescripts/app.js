@@ -37,6 +37,8 @@
     angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
     angular.module('TourMgmtApp', []);
+    angular.module('ProductInfoApp', []);
+
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
     angular.module('MainApp', [
@@ -74,6 +76,7 @@
             'AgentProfileApp',
             'UnitApp',
             'FlyOutMenuApp',
+            'ProductInfoApp',
             'Models',
             'ui.router',
             'ngStorage',
@@ -86,7 +89,7 @@
             'angular-sortable-view',
             'ng-drift'
         ])
-        .config(["$sceDelegateProvider", 'ngDriftProvider', function($sceDelegateProvider, ngDriftProvider) {
+        .config(["$sceDelegateProvider", "ngDriftProvider", function($sceDelegateProvider, ngDriftProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
                 'self',
@@ -100,6 +103,7 @@
                 'http://www.youtube.com/embed/**'
             ]);
             ngDriftProvider.setKey('xxagivsgiw52');
+            // ngDriftProvider.setKey('xxagivsgiw52');
 
         }])
         //ON APP START AND DURING APP RUN
@@ -113,11 +117,19 @@
             'AuthFct',
             'TokenSvc',
             'LoadingSpinnerFct',
-            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct) {
-                LoadingSpinnerFct.show('siteLoader');
+            '$transitions',
+            '$location',
+            '$anchorScroll',
+            function($rootScope, $state, $stateParams, $localStorage, $window, jwtHelper, AuthFct, TokenSvc, LoadingSpinnerFct, $transitions, $location, $anchorScroll) {
+
 
                 $rootScope.state = $state;
                 $rootScope.stateParams = $stateParams;
+
+                $transitions.onSuccess({}, function() {
+                  $anchorScroll();
+
+                });
 
                 var token = TokenSvc.getToken();
                 var tokenIsExp = null;

@@ -247,11 +247,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
             dropPinFlag = false;
         }
 
-        // used for formatting the subscriptionapartment pubid for the environment
-        $scope.formatKeyForEnv = function(pubid) {
-            return AWSFct.utilities.modifyKeyForEnvironment(pubid);
-        }
-
         $scope.previewPhoto = previewPhoto;
 
         function previewPhoto(photo, htmltag) {
@@ -310,7 +305,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 var elementId = 'imgPreview';
                 var previewElement;
                 var filename;
-                // LoadingSpinnerFct.show('upload-tool-photo-preview-spinner');
                 for (var i = 0; i < this.files.length; i++) {
                     var photo = {
                         x: null,

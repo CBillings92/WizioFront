@@ -44,10 +44,10 @@ angular.module('PhotographerApp')
         }
         // send apartment address and unit number to next modal
         function continueToTourMgmt(){
-          alert('Being called')
             $scope.formSubmitted = true;
             $resource(apiurl + 'unit')
             .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
+              LoadingSpinnerFct.hide('createUnitSpinner');
               $uibModalInstance.close(response);
             })
         }

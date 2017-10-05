@@ -1,26 +1,24 @@
 angular.module('DashboardApp').controller('DashboardCtrl', [
-  '$scope',
-  '$resource',
-  '$q',
-  'TokenSvc',
-  'LoadingSpinnerFct',
-  'WizioConfig',
-  'ModalBuilderFct',
-  'AWSFct',
-  'DashboardFct',
-  'StorageApp',
-  '$state',
-  'lodash',
-  'ngDrift',
-  function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash, ngDrift) {
-    $state.go('Account.Dashboard.ShareTour');
-    ngDrift.show();
-    $scope.wizioAdmin = false;
-    var user = TokenSvc.decode();
-    $scope.state = 'Account.Dashboard.ShareTour';
-    if ((user.email === 'yuyang@wizio.co' || user.email === 'cameron@wizio.co' || user.email === 'john@wizio.co' || user.email === 'trent@wizio.co') && TokenSvc.decode().Subscriptions[0].id === 3) {
-      $scope.wizioAdmin = true;
-    }
+    '$scope',
+    '$resource',
+    '$q',
+    'TokenSvc',
+    'LoadingSpinnerFct',
+    'WizioConfig',
+    'ModalBuilderFct',
+    'AWSFct',
+    'DashboardFct',
+    'StorageApp',
+    '$state',
+    'lodash',
+    function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
+        $state.go('Account.Dashboard.ShareTour');
+        $scope.wizioAdmin = false;
+        var user = TokenSvc.decode();
+        $scope.state = 'Account.Dashboard.ShareTour';
+        if (TokenSvc.decode().Subscriptions[0].id === 3 ) {
+          $scope.wizioAdmin = true;
+        }
 
     $scope.viewActiveTours = 1;
     $scope.changeTourListView = function() {
@@ -106,31 +104,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
           // CREATE A FLOOR PLAN? MODAL
           // return createModal(uploadFloorPlanDecisionModalConfig);
         })
-      // .then(function(state) {
-      //     if (state.upload_floor_plan_flag) {
-      //         // UPLOAD FLOOR PLAN MODAL - WILL CREATE UNIT TOO
-      //         uploadFloorPlanModalConfig.modalData = state;
-      //         return createModal(uploadFloorPlanModalConfig);
-      //     } else {
-      //         // CREATE ONLY THE UNIT - WITH NO FLOOR PLAN
-      //         return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false)
-      //     }
-      // })
-      // .then(function(response){
-      //     addPhotosModalConfig.modalData = response;
-      //     return createModal(addPhotosModalConfig)
-      // })
-      // .catch(function(err) {
-      //     ModalBuilderFct.buildSimpleModal(
-      //         "",
-      //         "OK",
-      //         "Error",
-      //         'There has been an error, please try again.'
-      //     ).then(function(result) {
-      //         return;
-      //     });
-      //     return reject(err);
-      // })
     }
 
     $scope.changeState = function(state) {

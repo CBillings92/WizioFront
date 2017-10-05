@@ -24,7 +24,8 @@
 </div>
 <div class="modal-footer">
     <!-- <button class="btn" id="upload-button" ng-click="functions.saveForm()" style="margin-top: 20px;">Save Floorplan</button> -->
-    <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-hide="formSubmitted" type="submit" form="upload-floorplan-form" style="margin-top: 20px;">Submit</button>
-    <loading-spinner-dir size="fa-4x" style="color:black; visibility: hidden;" id="floorplanUpload"></loading-spinner-dir>
-    <div id="results"></div>
+    <div class="">
+      <loading-spinner-dir size="fa-3x" style="color:orange; visibility: hidden; display: inline-block" id="createUnitSpinner"></loading-spinner-dir>
+      <button class="btn btn-fill--blue btn-lg" id="upload-button" ng-disabled='formSubmitted' type="submit" form="upload-floorplan-form" >{{formSubmitted ? 'Loading...' : 'Submit'}}</button>
+    </div>
 </div>

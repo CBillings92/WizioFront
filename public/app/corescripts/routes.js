@@ -75,8 +75,8 @@ angular.module('MainApp')
                     'navbar': navbar,
                     'footer': footer,
                     'maincontent': {
-                      templateUrl: PAGECONFIG.TourMgmtApp.main.view,
-                      controller: PAGECONFIG.TourMgmtApp.main.controller
+                      templateUrl: PAGECONFIG.dashboard.TourMgmtApp.main.view,
+                      controller: PAGECONFIG.dashboard.TourMgmtApp.main.controller
                     }
                   },
                   params: {'data': null, 'action': null},
@@ -104,14 +104,14 @@ angular.module('MainApp')
                         }
                     }
                 })
-                .state('Pricing', {
-                    url: '/pricing',
+                .state('Product', {
+                    url: '/product',
                     views: {
                         "navbar": navbar,
                         "footer": footer,
                         "maincontent": {
-                            templateUrl: PAGECONFIG.createAccount.pricing.view,
-                            controller: PAGECONFIG.createAccount.pricing.controller
+                            templateUrl: PAGECONFIG.productInfo.main.view,
+                            controller: PAGECONFIG.productInfo.main.controller
                         }
                     }
                 })

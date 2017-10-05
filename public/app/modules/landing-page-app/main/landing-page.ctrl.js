@@ -11,8 +11,8 @@ angular.module('LandingPageApp')
                 $state.go('Account.Dashboard');
             };
 
-            $scope.goToPricing = function (){
-                $state.go('Pricing');
+            $scope.goToProduct = function (){
+                $state.go('Product');
             };
         }
     ])

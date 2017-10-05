@@ -5,6 +5,27 @@
     text-align: center;
 //    padding-bottom: 30px;
 }
+
+
+.product-hero{
+    background-color: #EAEAEA;
+    display: flex;
+    justify-content: flex-end;
+    height: 575px;
+}
+
+.product-hero-text-container{
+    height:550px;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+}
+.product-hero-image{
+    align-self: flex-end;
+    height: 500px;
+}
+
 .info-logo-footer {
     img {
         width: 50px;
@@ -28,5 +49,163 @@
 .top-table {
     padding-top: 20px;
     margin-top: 20px;
+
+}
+#vr-player-container {
+    margin: 30px 0 30px 0;
+    padding-left: 30px;
+    padding-right:30px;
+
+    @media screen and (max-width: $screen-sm-min) {
+        display: none;
+    }
+
+}
+
+.faq-container{
+    padding: 30px 0px 0px;
+
+    .row {
+        background-color: $light-gray;
+    }
+}
+
+.btn{
+    margin: 10px 0px;
+}
+
+.row-space{
+    padding-top: 30px;
+}
+
+/*----------------- New Type Styles -------------*/
+.subscription-banner__header {
+    font-size: 20px;
+    font-weight: 500;
+    color: $dk-gray;
+    padding-bottom: 10px;
+
+}
+
+.subscription-banner__price{
+    font-size: 55px;
+    line-height: 1.0;
+    color: $med-gray;
+}
+
+.subscription-banner__subhead{
+    font-size: 20px;
+    color: #9E9D9D;
+    margin-bottom: 23px;
+
+}
+
+.small-body.info-text{
+    font-weight: 300;
+}
+
+.subscription-tile {
+    top: -60px;
+    display: flex;
+}
+
+.info-text{
+    top: -20px;
+}
+
+.pricing-quote .large-body{
+    color: #fff;
+}
+
+.faq-container .section-head{
+    margin-bottom: 10px;
+}
+
+.faq-container p{
+    font-weight: 300;
+    font-size: 16px;
+    color: $med-gray;
+    line-height: 1.4;
+    padding-bottom: 15px;
+    margin-top: 5px;
+}
+
+// ------------- Small desktop --------------- //
+
+
+@media (max-width: 1024px) {
+
+
+.product-hero-image{
+    height: 440px;
+}
+
+.subscription-banner__price{
+    font-size: 47px;
+}
+
+
+
+}
+// ------------- Tablet --------------- //
+
+
+@media (max-width: 767px) {
+
+.product-hero-image{
+    height: 350px;
+    align-self: flex-end;
+
+}
+
+.subscription-tile{
+    padding-right: 0px;
+    padding-left: 0px;
+    top: -10px;
+}
+
+.info-text{
+    top: -5px;
+}
+
+.product-hero{
+    justify-content: flex-end;
+    height: 500px;
+}
+
+.product-hero-text-container{
+    display: block;
+    padding-top: 125px;
+    text-align: center;
+}
+
+
+
+
+}
+
+// ------------- mobile --------------- //
+
+
+@media (max-width: 425px) {
+
+.product-hero-image{
+    height: 300px;
+    align-self: flex-end;
+
+}
+
+.product-hero{
+    height: 75vh;
+}
+
+.product-hero-text-container{
+    padding-top: 100px;
+}
+
+.faq-container{
+    padding: 15px 0px;
+}
+
 
 }

@@ -48,6 +48,7 @@ angular.module('TourMgmtApp')
        * Initialize tour management app
        * @type {Boolean}
        */
+
       TourMgmtFct.init.mainApp($stateParams)
       .then(function(response){
         $scope.appInitialized = true;
@@ -137,7 +138,7 @@ angular.module('TourMgmtApp')
 
       /* Abstracts away ugly code to build photo src strings */
       function buildPhotoSrc(photo) {
-        var photoSrc = WizioConfig.CLOUDFRONT_DISTRO + $scope.formatKeyForEnv($scope.data.SubscriptionApartment.pubid) + '/' + photo.title + '.JPG'
+        var photoSrc = WizioConfig.CLOUDFRONT_DISTRO + $scope.data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'
         return photoSrc;
       }
 
@@ -149,10 +150,10 @@ angular.module('TourMgmtApp')
        */
       $scope.addFloorPlan = function() {
         document.getElementById('uploadFloorPlanInputButton').onchange = function(){
-          $scope.data.TourMedia.floorplan = TourMgmtFct.floorplan.buildFloorPlanObj(this.files[0]);
+          $scope.data.TourMedia.floorplan = TourMgmtFct.floorplan.buildFloorPlanObj(this.files[0], $scope.data);
+          $scope.data.Apartment.Floor_Plan = $scope.data.TourMedia.floorplan.awsurl;
           $scope.$apply();
           var elem = document.getElementById('floorplanImage');
-          console.dir(elem);
           TourMgmtFct.newPhotos.preview([$scope.data.TourMedia.floorplan], elem);
           $scope.changesMade = true;
           $scope.$apply();
@@ -258,8 +259,6 @@ angular.module('TourMgmtApp')
           TourMgmtFct.photo.delete($scope.photoForModification)
           .then(function(response){
             for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
-              console.dir('photo');
-              console.dir($scope.data.TourMedia.photos[i]);
               if ($scope.data.TourMedia.photos[i].isSelected) {
                 $scope.data.TourMedia.photos.splice(i, 1);
                 $scope.selectPhotoForModification($scope.data.TourMedia.photos[i]);
@@ -269,9 +268,6 @@ angular.module('TourMgmtApp')
           })
         }
       }
-      // used for formatting the subscriptionapartment pubid for the environment
-      $scope.formatKeyForEnv = function(pubid) {
-          return AWSFct.utilities.modifyKeyForEnvironment(pubid);
-      }
+
     }
   ])

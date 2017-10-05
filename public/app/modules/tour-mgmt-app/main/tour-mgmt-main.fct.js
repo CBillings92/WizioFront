@@ -51,8 +51,13 @@ angular.module('TourMgmtApp')
        */
       function init(stateParams) {
         return $q(function (resolve, reject) {
+
+          if (!$sessionStorage.TourMgmtApp) {
+            $sessionStorage.TourMgmtApp = {};
+          }
+
           // Check to make sure we have base data for app initialization
-          if (!stateParams.data || !$sessionStorage.TourMgmtApp.data) {
+          if (!stateParams.data && !$sessionStorage.TourMgmtApp.data) {
             return reject({
               status: 'err',
               message: 'Could not get base tour data for app.',
@@ -85,6 +90,7 @@ angular.module('TourMgmtApp')
               data.TourMedia = {
                 photos: TourMediaArr
               };
+
               if (data.Apartment.Floor_Plan) {
                 data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
               }
@@ -176,8 +182,7 @@ angular.module('TourMgmtApp')
        */
       function buildFloorPlanUrl(subscriptionApartmentPubId) {
         var key = subscriptionApartmentPubId + '/floorplan.png';
-        var modifiedKey = AWSFct.utilities.modifyKeyForEnvironment(key);
-        var floorPlanUrl = WizioConfig.CLOUDFRONT_DISTRO + modifiedKey;
+        var floorPlanUrl = WizioConfig.CLOUDFRONT_DISTRO + key;
         return floorPlanUrl;
       }
 
@@ -364,13 +369,13 @@ angular.module('TourMgmtApp')
        * @param  {File} file [file comes from file input. An actual file.]
        * @return {Object}      [standard photo object]
        */
-      function buildFloorPlanObj(file) {
+      function buildFloorPlanObj(file, stateData) {
         var photo = {
-          apartmentpubid: data.SubscriptionApartment.pubid,
+          apartmentpubid: stateData.SubscriptionApartment.pubid,
           title: 'floorplan',
-          awsurl: 'https://cdn.wizio.co/' + data.SubscriptionApartment.pubid + '/floorplan.png',
-          ApartmentId: data.Apartment.id,
-          SubscriptionApartmentPubId: data.SubscriptionApartment.pubid,
+          awsurl: 'https://cdn.wizio.co/' + stateData.SubscriptionApartment.pubid + '/floorplan.png',
+          ApartmentId: stateData.Apartment.id,
+          SubscriptionApartmentPubId: stateData.SubscriptionApartment.pubid,
           useremail: TokenSvc.decode().email,
           file: file,
           isNew: true,
@@ -427,7 +432,6 @@ angular.module('TourMgmtApp')
             }
           };
           API.media.delete(data, function(response) {
-            console.dir(response);
             return resolve(response);
           })
         })

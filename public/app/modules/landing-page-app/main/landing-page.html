@@ -1,143 +1,112 @@
 <!-- VR Player Container for Landing Page -->
 <div class="home-hero">
-    <!-- Photo Selection Button Overlay  -->
-    <div class="photo-buttons-container__landingpage" ng-hide="viewFloorPlan">
-        <div class="container-fluid" style="height:100%">
-            <div class="row" id="photo-button-container" ng-show="selectPhoto === true;" ng-click="selectPhoto = false;" style="z-index:1100; cursor: pointer; horizontal-align: middle text-align: center;">
-                <div class="col-md-4" ng-repeat="photo in media.vrphoto track by $index">
-                    <button type="button" ng-click="changePhoto($index)" ng-class="photoIndex == $index ? 'btn-fill--orange' : 'btn-fill--blue'" class="btn btn-md col-md-12 vr-control-button" name="button">{{photo.title}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Floor Plan Overlay -->
-    <div class="floorplan-container__landingpage" ng-show="viewFloorPlan" ng-click="viewFloorPlan = !viewFloorPlan">
-        <!-- span used to push floorplan down to middle of page -->
-        <span class="floorplan-pushdown-span"></span>
-        <div style="position:relative; display:inline-block">
-            <img src="{{floorplan}}" id="floorplan" alt="" />
-            <span ng-repeat="photo in media.vrphoto track by $index">
-                <img
-                    src="public/viewtemplates/images/brand_assets/map_pin.png"
-                    class="unit-details-floorplan-pin"
-                    ng-hide="photoIndex === $index"
-                    ng-click="changePhoto($index)"
-                    ng-if="media.vrphoto[$index].isUnit"
-                    style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%"
-                    alt=""/>
-                <img
-                    src="public/viewtemplates/images/favicons/mstile-70x70.png"
-                    ng-show="photoIndex === $index"
-                    ng-click='changePhoto($index)'
-                    class="unit-details-floorplan-pin"
-                    ng-if="media.vrphoto[$index].isUnit"
-                    alt=""
-                    style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;"/>
 
-            </span>
-        </div>
-    </div>
-    <!-- VR Player Container -->
-    <div class="home-hero__video" id="vr-player-container">
-        <tour-dir show-interface="false"></tour-dir>
-        <!-- <tour-app-dir showcontrols="false" showpoweredby="false" showcontactinfo="false"></tour-app-dir> -->
-        <!-- <transition-vr-player-dirv style="height:100%;" ng-hide="mapViewSelected"></transition-vr-player-dirv> -->
-    </div>
+
     <!-- VR Player Overlay Text for Landing Page Marketing -->
-    <div class="container">
-        <div class="row">
-            <div class="home-hero__text col-xs-9 col-xs-offset-1 col-lg-6 col-lg-offset-1" style="pointer-events: none;">
-                <h2 class="home-hero__heading" style="pointer-events: none;">Tour Less, Close More.</h2>
-                <!-- <br>at your fingertips</h2> -->
-                <!-- <h4 class="home-hero__subheading">Watch virtual reality videos of awesome apartments until you find the right one for you!</h4> -->
-                <h4 class="home-hero__subheading" style="pointer-events: none;">Showing apartments has never been easier.</h4>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Call to Action Button Container - Start Creating VR Tours Today -->
-<div class="home-search" style="z-index:1000;">
-    <div class="home-search__background"></div>
-    <div class="container">
-        <div class="row">
-            <div class="home-search__bar col-xs-12 col-sm-10 col-sm-offset-1 col-lg-8 col-lg-offset-2" style="z-index:1200">
-                <div ng-hide="userIsLoggedIn" class="col-md-8 col-md-offset-2">
-                    <button type="button" class="btn btn-fill--blue btn-md form-control" ng-click="goToPricing()" name="button">
-                            Start Creating VR Tours.
-                        </button>
-                    <!-- <button type="button" class="btn btn-fill--blue btn-lg form-control" name="button">Start Creating VR Tours</button> -->
-                </div>
-                <div class="col-md-12">
-                    <button class="btn btn-fill--blue btn-md form-control btn-block" style="" ng-show="userIsLoggedIn" ng-click="goToDashboard()"> View Account </button>
-                    <!-- <button type="button" class="btn btn-md btn-fill--blue btn-block" style="" ng-hide="userIsLoggedIn" ng-click="goToLogin()" name="button">Login</button> -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- Home Pin (large orange pin) -->
-<div class="home-tenants">
-    <div class="home-pin" style="pointer-events:none;">
-        <div class="home-pin__orange">
-            <div class="home-pin__orange__left">
-            </div>
-            <div class="home-pin__orange__right">
-            </div>
-        </div>
-    </div>
-    <!-- Landing Page Marketing Blurbs and Material -->
-    <div class="container">
-        <div class="row">
-            <h2 class="home-tenants__header col-xs-12 col-xs-offset-0 col-lg-10 col-lg-offset-1 ">Wizio gives you everything you need.</h2>
-        </div>
-        <div class="row">
-            <div class="home-blurbs">
-                <div class="home-blurb col-xs-12 col-sm-4 col-sm-offset-0 col-lg-3 col-lg-offset-1 ">
-                    <h3 class="home-blurb__header">VR Tour Creation Tool:</h3>
-                    <h5 class="home-blurb__desc">Create and share a virtual reality tour in ten minutes or less.</h5>
-                </div>
-                <div class="home-blurb col-xs-12 col-sm-4">
-                    <h3 class="home-blurb__header">In Office Training:</h3>
-                    <h5 class="home-blurb__desc">A Wizio team member will provide your entire office with an in person training.</h5>
-                </div>
-                <div class="home-blurb col-xs-12 col-sm-4 col-lg-3">
-                    <h3 class="home-blurb__header">Camera/Tripod:</h3>
-                    <h5 class="home-blurb__desc">Need a camera and tripod? We'll help you get setup.</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row home-sign-up">
-            <div class="home-sign-up__button col-xs-8 col-sm-5 col-md-3 col-lg-offset-1">
-                <div ng-hide="userIsLoggedIn" class="col-md-12" style="width:100%">
-                    <button type="button" class="btn btn-fill--blue btn-md form-control" ng-click="goToPricing()" name="button">
-                            Start Creating VR Tours.
-                    </button>
-                </div>
+    <div class="container-fluid">
+        <div class="row " >
+            <div class="home-hero__text col-xs-12 col-sm-8 col-sm-offset-2 col-lg-offset-2 col-lg-8 col-lg-offset-2 " style="pointer-events: none;">
+                <div class="header-text white" style="pointer-events: none;">Virtual Reality for Everyday Business</div>
+                <div class="home-hero__subheading subhead-text white" style="pointer-events: none;">All-in-one On Demand virtual reality services for travel and real estate.</div>
+                <button class="btn btn-md btn-fill--orange" ng-click="goToProduct()" style="pointer-events: all;margin-top:15px;"> Learn more </button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="home-landlord">
-    <div class="container">
-        <div class="row">
-            <div class="home-blurb">
-                <h2 class="home-landlord__header col-xs-12 col-sm-7 col-sm-offset-4 col-lg-5 col-lg-offset-6" style="padding-top:35px;">Virtual Reality is Redefining Real Estate:</h2>
-                <h5 class="home-landlord__desc col-xs-12 col-sm-7 col-sm-offset-4 col-lg-4 col-lg-offset-6">
-                    <ol>
-                        <li>Sign up above!
-                        </li>
-                        <li>More quickly and accurately qualify leads.
-                        </li>
-                        <li>Close sight unseen deals easier than ever before.
-                        </li>
-                        <li>Tour less and close more!
-                        </li>
-                    </ol>
-                </h5>
-                <div class="home-landlord__button col-xs-4 col-sm-offset-4 col-lg-offset-6"></div>
+
+
+<!-- row 1 -->
+<div class="container-fluid">
+    <div class="row home-banner home-graybanner">
+        <div class= "home-blurb col-xs-10 col-sm-4 col-sm-offset-1 col-lg-4 col-lg-offset-1">
+            <div class="section-head orange">Virtual Reality Property Tours </div>
+            <div class="large-body med-gray">Immerse your audience and leads with Wizio’s next generation VR property tour experience. It’s almost as real as being there in-person, allowing your clients to explore your next listing in a 360 degree viewing experience.</div>
+        </div>
+
+        <div class="col-xs-6 col-sm-3 col-sm-offset-2" >
+            <img src="../../../../viewtemplates/images/home/VR-player.png" id="home-vr-img" alt="Virtual reality property tour on our mobile player"></img>
+        </div>
+    </div>
+
+    <div class="row home-banner home-photo-banner">
+
+        <div class="col-xs-9 col-sm-4 col-sm-offset-1 col-lg-4 col-lg-offset-1">
+            <img src="../../../../viewtemplates/images/home/photo-collage.png" id="home-ondemand-img" class="center-block" alt="High resloution photography for properties"></img>
+        </div>
+
+        <div class= "home-blurb col-xs-10 col-sm-4 col-sm-offset-2 ">
+            <div class="section-head orange"> High Resolution Photography </div>
+            <div class="large-body med-gray">Pair your virtual tour with 8k high resolution still photography, standard with every 8K virtual tour package, providing a complete photo and content package for your next listing.</div>
+        </div>
+
+    </div>
+
+    <div class="row home-banner home-graybanner">
+        <div class= "home-blurb col-xs-10 col-sm-4 col-sm-offset-1 col-lg-4 col-lg-offset-1" >
+            <div class="section-head orange"> On Demand </div>
+            <div class="large-body med-gray">Our services can be booked within 24 hours, on-demand. Tour requests are  simple with a single, online form. You can also call or <a href="mailto:contact@wizio.co" target="_top"> email </a> if you’d like to speak to a real person about our service and offerings.</div>
+        </div>
+
+        <div class="col-xs-9 col-sm-4 col-sm-offset-2" id="home-drift-container">
+            <img src="../../../../viewtemplates/images/home/drift.jpg" id="home-drift-img" class="center-block" alt="Wizio user talking with support staff through online chat"></img>
+        </div>
+    </div>
+
+    <div class="row home-callout-banner">
+
+    <div class= "col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 text-center ">
+        <div class="section-head text-center dk-gray"> Learn what Wizio can do for you </div>
+        <div class="large-body text-center dk-gray">Request a tour and our experts can help design a solution for you.</div>
+        <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Learn More</button>
+        </div>
+
+    </div>
+
+    <div class="row home-graybanner home-signup-banner" >
+
+        <div class="col-md-5 ">
+            <div class="home-signup-banner-text">
+            <div class="section-head ">Stay in touch as we expand outside Boston!</div>
+            <div class="large-body">Join our email list and stay up to date on special offers and future expansion.</div>
+            <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+            <form action="//wizio.us10.list-manage.com/subscribe/post?u=dd1716a846e7e35a09a1562a9&amp;id=11439eb31a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>            <div id="mc_embed_signup_scroll">
+            <div class="mc-field-group">
+            	<input type="text" value="first name" name="FNAME" class="" id="mce-FNAME" onfocus="if(this.value == 'first name') { this.value = ''; }">
+            </div>
+            <div class="mc-field-group">
+            	<input type="text" value="last name" name="LNAME" class="" id="mce-LNAME" onfocus="if(this.value == 'last name') { this.value = ''; }">
+            </div>
+            <div class="mc-field-group">
+            	<input type="email" value="email" name="EMAIL" class="required email" id="mce-EMAIL" onfocus="if(this.value == 'email') { this.value = ''; }">
+            </div>
+            <div class="mc-field-group">
+            	<select name="group[12353]" class="REQ_CSS" id="mce-group[12353]">
+            	<option value="">location</option>
+            	<option value="1">Boston</option>
+            <option value="2">New York City</option>
+            <option value="4">Philadelphia</option>
+            <option value="8">Los Angeles</option>
+            <option value="16">San Francisco</option>
+            <option value="32">Seattle</option>
+            <option value="64">Chicago</option>
+            <option value="128">Other</option>
+
+            	</select>
+            </div>
+            	<div id="mce-responses" class="clear">
+            		<div class="response" id="mce-error-response" style="display:none"></div>
+            		<div class="response" id="mce-success-response" style="display:none"></div>
+            	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_dd1716a846e7e35a09a1562a9_6eb9c7200e" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Sign up" name="subscribe" id="mc-embedded-subscribe" class="button btn-lg btn-fill--orange"></div>
+                </div>
+            </form>
             </div>
         </div>
+        </div>
+            <!--End mc_embed_signup-->
+        <div class="col-md-7" id="home-signup-img"></div>
     </div>
 </div>
