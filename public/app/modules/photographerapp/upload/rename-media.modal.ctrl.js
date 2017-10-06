@@ -32,10 +32,6 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
               $uibModalInstance.close(returnObj);
               return;
             }
-            // AWSFct.s3.equirectPhotos.renameFile(
-            //   $scope.formData.newMediaName,
-            //   $scope.media.title
-            // );
         }
 
     }

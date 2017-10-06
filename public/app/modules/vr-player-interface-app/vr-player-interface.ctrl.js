@@ -55,9 +55,6 @@ angular.module('TourApp')
 
         function onTourClick(mouseEvent) {
           wizio.onClickTriggered(mouseEvent, function(response){
-            if (TokenSvc.decode().email === 'cameron@wizio.co') {
-              console.dir(response);
-            }
             var chosenImage;
             var photoIndex;
             var scrollTo;
@@ -172,7 +169,6 @@ angular.module('TourApp')
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
             // LoadingSpinnerFct.show('vrPlayerLoader');
-            // console.dir($scope.media.vrphoto[photoIndex]);
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               $scope.photoIndex = photoIndex;
               $scope.$apply();

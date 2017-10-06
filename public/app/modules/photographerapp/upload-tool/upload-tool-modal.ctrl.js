@@ -298,7 +298,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         }
         $scope.removeNewMedia = removeNewMedia;
         $scope.addPhotosForUpload = function() {
-          console.dir('hellobubye');
             document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
                 $scope.files = [];
                 $scope.apartment.sortedMedia.newMedia = [];

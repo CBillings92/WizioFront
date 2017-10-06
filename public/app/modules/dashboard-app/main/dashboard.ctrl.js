@@ -12,6 +12,10 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     '$state',
     'lodash',
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
+
+      // short hand the factory function for ease of use
+      var createModal = ModalBuilderFct.buildModalWithController;
+      
         $state.go('Account.Dashboard.ShareTour');
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();
@@ -63,8 +67,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.$on('ActiveListingRequest', function(ev, data) {
       $scope.$broadcast('ActiveListingsPayload', $scope.orderedTours);
     })
-    // short hand the factory function for ease of use
-    var createModal = ModalBuilderFct.buildModalWithController;
 
     // get the user from session storage
     var user = TokenSvc.decode();
@@ -99,10 +101,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             'data': dataForTourManagement,
             'action': 'CreateTour'
           });
-          // Assign modal data
-          // uploadFloorPlanDecisionModalConfig.modalData = state;
-          // CREATE A FLOOR PLAN? MODAL
-          // return createModal(uploadFloorPlanDecisionModalConfig);
         })
     }
 
@@ -112,60 +110,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       $scope.state = 'Account.Dashboard.' + state;
     }
 
-    /*
-        FIRST - CREATE MODAL TO CAPTURE APARTMENT ADDRESS AND UNIT number
-        SECOND - CREATE MODAL TO ASK IF THEY'LL BE UPLOADING A FLOOR plan
-        THIRD - IF NO FLOOR PLAN, TERMINATE MODAL workflow
-        THIRD - IF FLOOR PLAN, CREATE MODAL TO GET FLOOR PLAN file
-        FOURTH - SAVE UNIT AND UPLOAD FLOOR PLAN IF APPLICABLE
-    */
-    function createModalWorkFlow() {
-      return $q(function(resolve, reject) {
-        // accept address modal
-        var createUnitModalConfig = {
-          size: 'md',
-          templateUrl: WizioConfig.PhotographerApp.Views.CreateUnitModal,
-          controller: 'CreateUnitModalCtrl',
-          modalData: {}
-        };
 
-        // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
-        createModal(createUnitModalConfig)
-          .then(function(createUnitAPIResponse) {
-            console.dir(createUnitAPIResponse);
-
-            // Assign modal data
-            // uploadFloorPlanDecisionModalConfig.modalData = state;
-            // CREATE A FLOOR PLAN? MODAL
-            // return createModal(uploadFloorPlanDecisionModalConfig);
-          })
-        // .then(function(state) {
-        //     if (state.upload_floor_plan_flag) {
-        //         // UPLOAD FLOOR PLAN MODAL - WILL CREATE UNIT TOO
-        //         uploadFloorPlanModalConfig.modalData = state;
-        //         return createModal(uploadFloorPlanModalConfig);
-        //     } else {
-        //         // CREATE ONLY THE UNIT - WITH NO FLOOR PLAN
-        //         return DashboardFct.tour.create.unit(state.address, state.floorPlanModel, false)
-        //     }
-        // })
-        // .then(function(response){
-        //     addPhotosModalConfig.modalData = response;
-        //     return createModal(addPhotosModalConfig)
-        // })
-        // .catch(function(err) {
-        //     ModalBuilderFct.buildSimpleModal(
-        //         "",
-        //         "OK",
-        //         "Error",
-        //         'There has been an error, please try again.'
-        //     ).then(function(result) {
-        //         return;
-        //     });
-        //     return reject(err);
-        // })
-      })
-    }
     $scope.modifyExistingTour = function() {
       var searchModifyModalConfig = {
         size: 'lg',
@@ -192,11 +137,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
             'data': dataForTourManagement,
             'action': 'ModifyTour'
           });
-          // uploadTourPageModalConfig.modalData = data;
-          // createModal(uploadTourPageModalConfig)
-          // .then(function(response){
-          //
-          // })
         })
     }
 
