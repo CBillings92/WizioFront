@@ -12,29 +12,11 @@
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
   </div>
-  <!-- <div class="row" style='margin-top:20px;'>
-    <div class="col-md-6" ng-if="data.newTour">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="form-group">
-            <label for="" class='control-label'>Add Address</label>
-            <input type="text" class='form-control' style="border: 1px solid black;" name="" value="">
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="" class='control-label'>Unit #/Model</label>
-            <input type="text" class='form-control' style='border: 1px solid black;' name="" value="">
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="col-md-6 {{addFlorrPlan ? 'col-md-push-1' : ''}}" ng-if="data.newTour || addFloorPlanFlag">
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
             <label for="" class='control-label'>Floor Plan Upload</label>
-            <!-- <input type="file" id='uploadFloorPlan' class='form-control' style='border: 1px solid black' name="" value=""> -->
           </div>
         </div>
       </div>
@@ -74,27 +56,6 @@
                             No floor plan available. Please upload photos using the Add Photo button below.
                         </h4>
                 <br>
-                <!-- <p ng-show="!apartment.Floor_Plan" class="text-warning">*No floor plan available because one was not uploaded at the time the apartment was created. Floor plan uploaded after unit creation is a feature coming soon!</p> -->
-                <!-- this loop is for displaying newly created pins -->
-                <!-- <span>
-                    <img
-                        src="public/viewtemplates/images/brand_assets/map_pin.png"
-                        ng-show="pin.isUnit"
-                        ng-repeat="pin in data.TourMedia.newMedia track by $index" id="pin_{{$index}}"
-                        class="unit-details-floorplan-pin"
-                        alt=""  ng-click="makePinAction($event, pin, false, $index, 'newMedia')"
-                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
-                    />
-                </span> -->
-                <!-- <span>
-                    <img
-                        src="public/viewtemplates/images/brand_assets/map_pin.png"
-                        ng-repeat="pin in temporaryPins track by $index" id="pin_{{$index}}"
-                        class="unit-details-floorplan-pin"
-                        alt=""
-                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%;"
-                    />
-                </span> -->
                 <span>
                     <img
                         src="public/viewtemplates/images/brand_assets/map_pin.png"
@@ -117,7 +78,6 @@
           <div class="col-md-12" style="margin-bottom:10px;">
             <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; opacity:0; z-index:-100" multiple>
             <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
-            <!-- <label class="control-label"><strong>**New!**  </strong>You may select and upload more than 1 photo at a time</label> -->
           </div>
           <div class="col-md-12" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
               <div ng-repeat="photo in data.TourMedia.photos track by $index" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
@@ -127,28 +87,11 @@
                               <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
-                              <!-- <thumbnail-dir thumbnail-obj='photo.thumbnailObj'></thumbnail-dir> -->
                               <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                             <span>Click and Drag</span>
                           </div>
-                          <!-- <div class="panel-footer" ng-if="photo.isNew" style="position: relative;">
-                              <div ng-hide="choosePhotoForPinFlag">
-                                  <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'newMedia')" name="button">Rename</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'newMedia')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'newMedia')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
-                                  <button type="button" style="left: 100px;" class="btn btn-outline--orange" ng-click="removeNewMedia($index)" name="button">Delete</button>
-                              </div>
-                              <div ng-show="choosePhotoForPinFlag">
-                                  <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'newMedia')" name="button">Choose Photo For Pin</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
-                              </div>
-                              <div class="" style="position: absolute; right: 15px;  bottom: 0px; ">
-                                  <button sv-handle type="button" class="btn btn-outline--blue" style="border-radius: 0;" name="button">Click &amp; Drag</button>
-                              </div>
-
-                          </div> -->
                       </div>
                       <div ng-if="!photo.isNew && !photo.IsDeleted">
                           <div class="panel-heading">
@@ -159,19 +102,6 @@
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                             <span>Click and Drag</span>
-                              <!-- <div ng-hide="choosePhotoForPinFlag">
-                                  <button type="button" class="btn btn-outline--orange" ng-click="renameMedia(photo, $index, 'photos')" name="button">Rename</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="deletePhoto(photo, $index)" name="button">Delete</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="createPinForPhoto(photo, $index, 'photos')" ng-show='apartment.Floor_Plan && !photo.isUnit' name="button">Drop Pin</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="makePinAction(null, photo, false, $index, 'photos')" ng-show='apartment.Floor_Plan && photo.isUnit' name="button">Modify Pin</button>
-                              </div>
-                              <div ng-show="choosePhotoForPinFlag">
-                                  <button type="button" class="btn btn-outline--blue" ng-click="choosePhotoForPin(photo, $index, 'photos')" name="button">Choose Photo For Pin</button>
-                                  <button type="button" class="btn btn-outline--orange" ng-click="cancelPinSelection()" name="button">Cancel Pin Selection</button>
-                              </div> -->
-                              <!-- <div class="" style="position: absolute; right: 15px;  bottom: 0px; ">
-                                  <button sv-handle type="button" class="btn btn-outline--blue" style="border-radius: 0;" name="button">Click &amp; Drag</button>
-                              </div> -->
                           </div>
                       </div>
                   </div>
