@@ -7,7 +7,8 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
     'AWSFct',
     'MediaFct',
     '$uibModalInstance',
-    function($scope, modalData, AWSFct, MediaFct, $uibModalInstance) {
+    'ModalBuilderFct',
+    function($scope, modalData, AWSFct, MediaFct, $uibModalInstance, ModalBuilderFct) {
         $scope.media = modalData.photoToBeRenamed;
         $scope.allPhotos = modalData.allPhotos;
         $scope.formData = {};
@@ -24,7 +25,6 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
          * @return {Boolean}           boolean
          */
         function checkNameCollisions(newName, allPhotos) {
-          var nameCollisionData;
           for (var i = 0; i < allPhotos.length; i++) {
             if (allPhotos[i].title === newName) {
               return true;
