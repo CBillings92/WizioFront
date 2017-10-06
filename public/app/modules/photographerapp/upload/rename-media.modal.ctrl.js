@@ -24,6 +24,7 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
          * @return {Boolean}           boolean
          */
         function checkNameCollisions(newName, allPhotos) {
+          var nameCollisionData;
           for (var i = 0; i < allPhotos.length; i++) {
             if (allPhotos[i].title === newName) {
               return true;
@@ -37,9 +38,10 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
           var nameCollision = checkNameCollisions($scope.formData.newMediaName, $scope.allPhotos);
 
           if (nameCollision) {
-            alert('This name is already being used by another photo. Please do not name multiple photo with the same name.')
-            $scope.formData.newMediaName = ''
-            return;
+            ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'There is already a photo with the name ' + $scope.formData.newMediaName +  '. Please give each photo a unique name.').then(function(result) {
+                $scope.formData.newMediaName = ''
+                return;
+            });
           } else {
             if (!$scope.media.id) {
               $scope.media.title = $scope.formData.newMediaName;

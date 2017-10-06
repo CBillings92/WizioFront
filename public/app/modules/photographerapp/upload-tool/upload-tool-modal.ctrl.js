@@ -60,6 +60,11 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         $scope.makePinAction = makePinAction;
         $scope.selectedSubscriptionApartmentPubId = null;
 
+        /**
+         * Bulk upload all new photos associated with the tour. Save these photos
+         * to AWS S3 and the Wizio API.
+         * @return {Object} [null]
+         */
         function bulkUploadPhotos() {
             $scope.bulkUploadInitiated = true;
             $scope.uploadPhotoBtnText = 'Uploading...';
@@ -82,7 +87,6 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     $uibModalInstance.close();
                     return;
                 } else if (error.message = 'Name collision') {
-                  console.dir(error.data);
                   ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'You cannot have multiple photos with the same name. Multiple photos named: ' + error.data.nameOfCollision).then(function(result) {
                       return;
                   });
