@@ -150,12 +150,10 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
           var titleToCheck;
           var indexOfTitleToCheck;
           var nameCollisionData = {};
-          console.dir(photos);
           for (var i = 0; i < photos.length; i++) {
-            photos[i].title = titleToCheck
+            titleToCheck = photos[i].title;
             for (var j = 0; j < photos.length; j++) {
               if (photos[j].title === titleToCheck && i !== j) {
-                console.dir(titleToCheck);
                 nameCollisionData.nameOfCollision = titleToCheck;
                 nameCollisionData.doNamesCollide = true
                 return nameCollisionData;
