@@ -16,6 +16,13 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
             $uibModalInstance.close('exit');
         };
 
+        /**
+         * Iterate over all photos and check their titles to see if there is any Naming
+         * collission with the new photo title
+         * @param  {String} newName   [new photo title]
+         * @param  {Array} allPhotos [array of all photos associated with tour]
+         * @return {Boolean}           boolean
+         */
         function checkNameCollisions(newName, allPhotos) {
           for (var i = 0; i < allPhotos.length; i++) {
             if (allPhotos[i].title === newName) {

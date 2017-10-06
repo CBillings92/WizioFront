@@ -146,6 +146,12 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             return photos;
         }
 
+        /**
+         * Iterate through each photo and check its title against all other photo
+         * titles for any naming collions.
+         * @param  {Array} photos [arroy of photo objects associated with the tour]
+         * @return {Object}        [object that contains nameOfCollision data and whether there are any collisions]
+         */
         function checkNameCollisions(photos) {
           var titleToCheck;
           var indexOfTitleToCheck;
