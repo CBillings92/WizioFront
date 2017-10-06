@@ -75,12 +75,17 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                 $uibModalInstance.close();
             }).catch(function(error) {
                 LoadingSpinnerFct.hide('bulk-upload-photo-loader');
-                if (error === 'No Files To Upload') {
+                if (error.message === 'No Files To Upload') {
                     ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'No new photos uploaded.').then(function(result) {
                         return;
                     });
                     $uibModalInstance.close();
                     return;
+                } else if (error.message = 'Name collision') {
+                  console.dir(error.data);
+                  ModalBuilderFct.buildSimpleModal("", "OK", "Error", 'You cannot have multiple photos with the same name. Multiple photos named: ' + error.data.nameOfCollision).then(function(result) {
+                      return;
+                  });
                 }
             });
         }
@@ -189,7 +194,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
         // Rename media
         function renameMedia(media, index, newMediaOrPhoto) {
             media.SubscriptionApartmentPubId = subscriptionApartment.pubid;
-            UploadToolFct.renameMedia(media).then(function(response) {
+            UploadToolFct.renameMedia(media, $scope.apartment.sortedMedia.photos).then(function(response) {
                 if (response === 'exit') {
                     return;
                 } else {
@@ -323,6 +328,7 @@ angular.module('UploadPageApp').controller('UploadPageNewCtrl', [
                     $scope.apartment.sortedMedia.photos.unshift(photo);
                     $scope.$apply();
                 }
+
                 for (var i = 0; i < this.files.length; i++) {
                     previewElement = document.getElementById('imgPreview' + i);
                     previewPhoto($scope.apartment.sortedMedia.photos[i].file, previewElement);

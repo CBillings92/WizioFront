@@ -31,9 +31,13 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
 
         // builds the modal and handles the logic for renaming media objects
         // returns a promise from the $q library
-        function renameMedia(mediaObj) {
+        function renameMedia(photoToBeRenamed, allPhotos) {
             return $q(function(resolve, reject) {
-                ModalBuilderFct.buildComplexModal('md', WizioConfig.uploadViews.modals.renameMedia, 'RenameMediaCtrl', mediaObj).then(function(response) {
+                var modalData = {
+                  photoToBeRenamed: photoToBeRenamed,
+                  allPhotos: allPhotos
+                }
+                ModalBuilderFct.buildComplexModal('md', WizioConfig.uploadViews.modals.renameMedia, 'RenameMediaCtrl', modalData).then(function(response) {
                     resolve(response);
                 });
             })
@@ -142,6 +146,27 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
             return photos;
         }
 
+        function checkNameCollisions(photos) {
+          var titleToCheck;
+          var indexOfTitleToCheck;
+          var nameCollisionData = {};
+          console.dir(photos);
+          for (var i = 0; i < photos.length; i++) {
+            photos[i].title = titleToCheck
+            for (var j = 0; j < photos.length; j++) {
+              if (photos[j].title === titleToCheck && i !== j) {
+                console.dir(titleToCheck);
+                nameCollisionData.nameOfCollision = titleToCheck;
+                nameCollisionData.doNamesCollide = true
+                return nameCollisionData;
+              }
+            }
+          }
+          nameCollisionData.nameOfCollision = '';
+          nameCollisionData.doNamesCollide = false;
+          return nameCollisionData;
+        }
+
         /**
          * Bulk upload photos and update non-new photos. Send new photos
          * to S3 and save/update data in the database.
@@ -156,7 +181,11 @@ angular.module('PhotographerApp').factory('UploadToolFct', [
                 var key;
                 var s3Promises = [];
                 var wizioAPIPromises = [];
+                var nameCollisionData = checkNameCollisions(photos);
 
+                if (nameCollisionData.doNamesCollide) {
+                  return reject({message: 'Naming collision', data: nameCollisionData})
+                }
                 /*
                     Find new photos and pass them to uploadTourPhoto which
                     returns a promise. Push that promise to an array.
