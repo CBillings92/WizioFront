@@ -85,7 +85,7 @@
             'angular-sortable-view',
             'ng-drift'
         ])
-        .config(["$sceDelegateProvider", 'ngDriftProvider', function($sceDelegateProvider, ngDriftProvider) {
+        .config(["$sceDelegateProvider", "ngDriftProvider", function($sceDelegateProvider, ngDriftProvider) {
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.
                 'self',
