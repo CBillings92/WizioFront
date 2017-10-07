@@ -55,9 +55,6 @@ angular.module('TourApp')
 
         function onTourClick(mouseEvent) {
           wizio.onClickTriggered(mouseEvent, function(response){
-            if (TokenSvc.decode().email === 'cameron@wizio.co') {
-              console.dir(response);
-            }
             var chosenImage;
             var photoIndex;
             var scrollTo;
