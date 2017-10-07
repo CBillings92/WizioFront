@@ -99,7 +99,6 @@
                 'http://www.youtube.com/embed/**'
             ]);
             ngDriftProvider.setKey('xxagivsgiw52');
-            // ngDriftProvider.setKey('xxagivsgiw52');
 
         }])
         //ON APP START AND DURING APP RUN
