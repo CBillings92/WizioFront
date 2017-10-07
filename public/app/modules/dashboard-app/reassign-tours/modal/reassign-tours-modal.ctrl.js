@@ -10,7 +10,7 @@ angular.module('DashboardApp')
       $scope.closeModal = function () {
           $uibModalInstance.dismiss();
       };
-
+      $scope.viewCreateNewAcct = false;
       $resource(WizioConfig.baseAPIURL + 'subscription')
       .get(function(response){
         if (response.status === 'success') {
@@ -21,7 +21,11 @@ angular.module('DashboardApp')
       })
 
       $scope.assignTour = function(subscription){
-        $uibModalInstance.close(subscription);
+        $uibModalInstance.close({subscription:subscription, newAccountHolder: false});
+      }
+
+      $scope.assignTourToEmail = function(){
+        $uibModalInstance.close({clientEmail:$scope.clientEmail, newAccountHolder: true});
       }
     }
   ])

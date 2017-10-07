@@ -11,7 +11,7 @@ angular.module('DashboardApp')
       $scope.modalData = modalData;
       $scope.buttonAction = function(action) {
         if (action === 'continue') {
-          $uibModalInstance.close({action: 'continue', tour: modalData.tour, subscription: modalData.subscription});
+          $uibModalInstance.close({action: 'continue', tour: modalData.tour, assigneeData: modalData.assigneeData});
         } else {
           $uibModalInstance.dismiss();
         }
