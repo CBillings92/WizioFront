@@ -9,10 +9,9 @@ angular.module('TourApp')
     'AWSFct',
     'LoadingSpinnerFct',
     '$sce',
-    'ngDrift',
     'ModalBuilderFct',
     '$stateParams',
-    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ngDrift, ModalBuilderFct, $stateParams) {
+    function($scope, $state, $resource, TokenSvc, lodash, WizioConfig, AWSFct, LoadingSpinnerFct, $sce, ModalBuilderFct, $stateParams) {
         $scope.isCollapsed = false;
         $scope.isRotating = false;
         $scope.hasAccelerometer = false;
@@ -56,9 +55,6 @@ angular.module('TourApp')
 
         function onTourClick(mouseEvent) {
           wizio.onClickTriggered(mouseEvent, function(response){
-            if (TokenSvc.decode().email === 'cameron@wizio.co') {
-              console.dir(response);
-            }
             var chosenImage;
             var photoIndex;
             var scrollTo;
