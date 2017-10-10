@@ -85,9 +85,7 @@
 .home-blurb {
   position: relative;
   top: 0;
-  bottom: 0;
-  height: 30%;
-  margin-top: 7%;
+  margin-top: 7%
 
 }
 
@@ -204,7 +202,6 @@
   position: relative;
   top: 0;
   bottom: 0;
-  height: 21%;
   margin-top: 7%;
 
 }
@@ -252,7 +249,6 @@
 
 
 .home-banner{
-  margin-bottom: 40px;
   position: relative;
   height: 65vh;
   display: flex;
@@ -274,16 +270,19 @@
 
 
 .home-blurb {
-
-  height: 25%;
+  margin-bottom: 20px;
   margin-top: 7%;
 
 }
 
 
 #home-vr-img{
-  margin-top: 15px;
-  width:200px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  width:170px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 #home-drift-img{
@@ -296,7 +295,7 @@
 }
 
 #home-ondemand-img{
-  width: 300px;
+  width: 270px;
   margin-top: 0px;
 
 }
@@ -364,7 +363,7 @@
 
 .home-blurb {
   margin-top: none;
-  height: 30%;
+
 
 }
 
@@ -424,103 +423,3 @@
 
 
 
-
-
-@media (min-width: 768px) {
-  .home-hero {
-    height: 600px;
-  }
-  .home-pin {
-    position: absolute;
-    width: 100%;
-    top: -331px;
-    background-image: url("../viewtemplates/images/home/pin.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .home-landlord {
-    padding-top: 180px;
-  }
-  .home-landlord__button {
-    margin-bottom: 190px;
-  }
-}
-@media (min-width: 768px) and (max-width: 990px) {
-  .home-pin {
-    top: -305px;
-    height: 857px;
-    background-size: 1200px;
-    background-position: right -80px top;
-  }
-
-  .home-blurb__header {
-    font-size: 25px;
-  }
-  .home-blurb__desc {
-    font-size: 18px;
-  }
-  .home-tenants__header {
-    margin-top: 34px;
-  }
-  .home-landlord {
-    margin-top: -30px;
-  }
-}
-@media (min-width: 991px) and (max-width: 1259px) {
-  .home-pin {
-    background-size: 1304px;
-    background-position: right -113px top;
-    top: -331px;
-  }
-  .home-pin__orange {
-    height: 603px;
-    margin-top: 331px;
-  }
-  .home-pin__orange__right,
-  .home-pin__orange__left {
-    background-color: $light-orange;
-    height: 100%;
-    width: calc(50% - 575px);
-    margin-top: -1px;
-  }
-  .home-pin__orange__right {
-    display: none;
-  }
-  .home-pin__orange__left {
-    float: left;
-  }
-  .home-blurb__desc {
-    font-size: 25px;
-  }
-}
-@media (min-width: 1170px) {
-
-
-  .home-landlord {
-    // margin-top: -106px;
-    // padding-top: 240px;
-  }
-  .home-pin {
-    top: -330px;
-    background-size: 1296px;
-    background-position: center;
-    height: 932px;
-  }
-  .home-pin__orange {
-    height: 602px;
-    margin-top: 330px;
-  }
-  .home-pin__orange__right,
-  .home-pin__orange__left {
-    background-color: $light-orange;
-    height: 100%;
-    width: calc(50% - 644px);
-    margin-top: -1px;
-  }
-  .home-pin__orange__right {
-    float: right;
-  }
-  .home-pin__orange__left {
-    float: left;
-  }
-}

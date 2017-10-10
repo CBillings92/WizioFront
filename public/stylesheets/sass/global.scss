@@ -177,54 +177,7 @@ p {
     flex: 1 0 auto;
 }
 
-@media (max-width: 767px) {
-    h1,
-    h2 {
-        font-size: 40px;
-    }
 
-    h3 {
-        font-size: 20px;
-    }
-
-    h4 {
-        font-size: 18px;
-    }
-
-    h5 {
-        font-size: 20px;
-    }
-    // #main-content {
-    //     padding-bottom: 550px;
-    // }
-}
-@media (min-width: 768px) and (max-width: 991px) {
-    h1,
-    h2 {
-        font-size: 45px;
-    }
-
-    h3 {
-        font-size: 27px;
-    }
-    // #main-content {
-    //     padding-bottom: 550px;
-    // }
-}
-@media (min-width: 992px) {
-    h1,
-    h2 {
-        font-size: 50px;
-    }
-
-    h3 {
-        font-size: 24px;
-    }
-
-    h5 {
-        font-size: 22px;
-    }
-}
 /* override bootstrap */
 a:focus {
     outline: none;
@@ -434,10 +387,27 @@ a:focus {
 
 
 
+@media (min-width: 992px) {
+    h1,
+    h2 {
+        font-size: 50px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h5 {
+        font-size: 22px;
+    }
+}
+
+
+
 // ------------- Small desktop --------------- //
 
 
-@media (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 991px) {
 
 
 .product-hero-image{
@@ -497,6 +467,26 @@ a:focus {
     text-align: center;
 
 }
+
+    h1,
+    h2 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+    // #main-content {
+    //     padding-bottom: 550px;
+    // }
 
 
 }
