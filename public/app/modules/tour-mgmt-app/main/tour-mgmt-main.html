@@ -1,0 +1,115 @@
+<div class="container" style="padding-top:50px;">
+  <div class="row" style='padding-top:20px'>
+    <div class="col-md-12">
+      <h2>{{data.newTour ? 'New Tour' : 'Modify Tour'}}</h2>
+      <h3>{{data.Apartment.concatAddr}}</h3>
+    </div>
+    <div class="col-md-12" style="margin-top:10px;">
+      <button type="button" class="btn btn-lg btn--cta" name="button">Reassign Tour</button>
+      <button type="button" class="btn btn-lg btn--cta" ng-if='!data.Apartment.Floor_Plan || !data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
+      <button type="button" class="btn btn-lg btn--cta" ng-if='data.TourMedia.floorplan || data.Apartment.Floor_Plan' ng-click="changeFloorPlan()" name="button">Change Floor Plan</button>
+      <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
+      <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
+    </div>
+  </div>
+    <div class="col-md-6 {{addFlorrPlan ? 'col-md-push-1' : ''}}" ng-if="data.newTour || addFloorPlanFlag">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="" class='control-label'>Floor Plan Upload</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8" id="photoForModification_Container">
+      <div class="" id='photoForModification_Title'>
+        <h3>{{photoForModification.title}}</h3>
+      </div>
+      <div class="" id="photoForModification_Photo">
+        <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt="">
+      </div>
+      <div class="" id="photoForModification_Actions">
+        <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
+          Rename
+        </button>
+        <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
+          Move Pin
+        </button>
+        <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
+          Delete Pin
+        </button>
+        <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='data.Apartment.Floor_Plan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+          Drop Pin
+        </button>
+        <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="deletePhoto()" style="text-align:center; border-radius:0;">
+          Delete Photo
+        </button>
+      </div>
+      <div class="" id='photoForModification_FloorPlan' style="margin-top:15px;">
+        <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
+            <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
+            <div style="position:relative; display:inline-block;" id="floorplanOverlay">
+                <img src="{{data.Apartment.Floor_Plan}}" ng-show="data.Apartment.Floor_Plan" style="margin:0 auto; padding-top:20px; max-height: 700px;" ng-click="makePinAction($event)" id="floorplanImage" alt="" />
+                <h4 ng-hide="data.Apartment.Floor_Plan">
+                            No floor plan available. Please upload photos using the Add Photo button below.
+                        </h4>
+                <br>
+                <span>
+                    <img
+                        src="public/viewtemplates/images/brand_assets/map_pin.png"
+                        ng-show="pin.x && pin.y"
+                        ng-repeat="pin in data.TourMedia.photos track by $index" id="pin_{{$index}}"
+                        class="unit-details-floorplan-pin"
+                        alt=""  ng-click="makePinAction($event, pin, false, $index, 'photos')"
+                        style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%; {{pin.isSelected ? 'background: rgba(0,0,0,.7)' : ''}};"
+                    />
+                </span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row" id="currentPhotosContainer">
+          <div class="col-md-12">
+              <h3>Photos <small>New photos are marked in green.</small></h3>
+          </div>
+          <div class="col-md-12" style="margin-bottom:10px;">
+            <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; opacity:0; z-index:-100" multiple>
+            <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
+          </div>
+          <div class="col-md-12" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+              <div ng-repeat="photo in data.TourMedia.photos track by $index" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
+                  <div class="panel panel-default">
+                      <div class="" ng-if="photo.isNew">
+                          <div class="panel-heading panel-new-photo">
+                              <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
+                          </div>
+                          <div class="panel-body">
+                              <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
+                          </div>
+                          <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                            <span>Click and Drag</span>
+                          </div>
+                      </div>
+                      <div ng-if="!photo.isNew && !photo.IsDeleted">
+                          <div class="panel-heading">
+                              <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
+                          </div>
+                          <div class="panel-body">
+                              <img src="{{cdnEndPoint + formatKeyForEnv(data.SubscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
+                          </div>
+                          <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                            <span>Click and Drag</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  <loading-spinner-dir id="TourManagementMainLoad" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir>
+</div>

@@ -169,7 +169,6 @@ angular.module('TourApp')
         // Allow the user to change photos
         $scope.changePhoto = function(photoIndex) {
             // LoadingSpinnerFct.show('vrPlayerLoader');
-            // console.dir($scope.media.vrphoto[photoIndex]);
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               $scope.photoIndex = photoIndex;
               $scope.$apply();

@@ -179,6 +179,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
           view: MODULESPATH + 'dashboard-app/invite/invite.html',
           controller: 'InviteCtrl'
         },
+        TourMgmtApp: {
+          main: {
+            view: MODULESPATH + 'tour-mgmt-app/main/tour-mgmt-main.html',
+            controller: 'TourMgmtMainCtrl'
+          }
+        },
         search: {
           view: MODULESPATH + 'dashboard-app/search/search.html',
           controller: 'DashboardSearchCtrl'
@@ -251,55 +257,6 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         }
       }
     },
-    directives: {
-      vrplayer: {
-        main: {
-          view: MODULESPATH + 'vr-player-app/main/vr-player.html',
-          controller: 'VrPlayerCtrl'
-        },
-        interface: {
-          view: MODULESPATH + 'vr-player-app/interface/interface.html',
-            controller: 'InterfaceCtrl'
-        }
-      },
-      tour: {
-        view: MODULESPATH + 'tour-app/tour-app.html',
-        controller: 'TourCtrl'
-      },
-      vrPlayerInterface: {
-        view: MODULESPATH + 'vr-player-interface-app/vr-player-interface.html',
-        controller: 'VrPlayerInterfaceCtrl'
-      },
-      tourPanel: {
-        view: MODULESPATH + 'tour-panel-app/tour-panel.html',
-        controller: 'TourPanelCtrl'
-      }
-    },
-    modals: {
-      deleteTourApp: {
-        view: MODULESPATH + 'delete-tour-app/delete-tour-modal.html',
-        controller: 'DeleteTourModalCtrl'
-      },
-      deleteTourConfirm: {
-        view: MODULESPATH + 'delete-tour-app/delete-tour-confirm.html',
-        controller: 'DeleteTourConfirmCtrl'
-      },
-      deactivateTourConfirm: {
-        view: MODULESPATH + 'delete-tour-app/deactivate-tour-confirm.html',
-        controller: 'DeactivateTourConfirmCtrl'
-      },
-      reassignTours: {
-        main: {
-          view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tours-modal.html',
-          controller: 'ReassignToursModalCtrl'
-        },
-        areYouSure: {
-          view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tour-confirm-modal.html',
-          controller: 'ReassignTourConfirmModalCtrl'
-        }
-      }
-    },
-
     // STRIPE TEST KEY
     stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",
   }

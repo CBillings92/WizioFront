@@ -31,7 +31,6 @@ angular.module('TourPanelApp')
                     if(response.status === 'success'){
                       return resolve(response);
                     } else {
-                      console.error(response.message);
                       return reject(response);
                     }
                   })
@@ -41,7 +40,6 @@ angular.module('TourPanelApp')
                     if(response.status === 'success'){
                       return resolve(response);
                     } else {
-                      console.error(response.message);
                       return reject(response);
                     }
                   })

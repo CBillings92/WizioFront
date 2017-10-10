@@ -21,6 +21,7 @@
     angular.module('NavbarApp', []);
     angular.module('SharedFactoryApp', []);
     angular.module('SharedServiceApp', []);
+    angular.module('ThumbnailApp', []);
     angular.module('UnitApp', []);
     angular.module('FooterApp', []);
     angular.module('Models', []);
@@ -35,6 +36,7 @@
     angular.module('ShareTourApp', []);
     angular.module('TourPanelApp', []);
     angular.module('FlyOutMenuApp', []);
+    angular.module('TourMgmtApp', []);
     angular.module('ProductInfoApp', []);
 
     //LOAD 'MainApp' ANGULAR module
@@ -65,8 +67,10 @@
             'SharedServiceApp',
             'PhotographerApp',
             'SearchApp',
+            'ThumbnailApp',
             'TourPasswordApp',
             'TourPanelApp',
+            'TourMgmtApp',
             'ShareTourApp',
             'AWSApp',
             'AgentProfileApp',

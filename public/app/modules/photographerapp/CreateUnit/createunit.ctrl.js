@@ -43,13 +43,17 @@ angular.module('PhotographerApp')
             $uibModalInstance.dismiss('exit');
         }
         // send apartment address and unit number to next modal
-        function continueToFloorPlanUpload(){
+        function continueToTourMgmt(){
             $scope.formSubmitted = true;
-            $uibModalInstance.close($scope.apartment);
+            $resource(apiurl + 'unit')
+            .save({apartmentAddress: $scope.apartment.address, floorPlanModel: $scope.apartment.floorPlanModel}, function(response){
+              LoadingSpinnerFct.hide('createUnitSpinner');
+              $uibModalInstance.close(response);
+            })
         }
 
         $scope.functions = {
-            saveForm: continueToFloorPlanUpload
+            saveForm: continueToTourMgmt
         };
         //get the google maps corrected data
         //save it to the database
