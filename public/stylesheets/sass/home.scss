@@ -7,6 +7,7 @@
   background-position: center;
   background-color: $med-gray;
   background-blend-mode: multiply;
+  height: 75vh;
 
 }
 
@@ -249,6 +250,7 @@
 
 
 .home-banner{
+  margin-bottom: 40px;
   position: relative;
   height: 65vh;
   display: flex;
@@ -337,14 +339,14 @@
 @media (max-width: 426px) {
 
 
-
-
-
-
 .home-banner{
 
-  height: 60vh;
+  height: 65vh;
 
+}
+
+.home-hero__text{
+  top: 65%;
 }
 
 .home-graybanner{
@@ -363,6 +365,7 @@
 
 .home-blurb {
   margin-top: none;
+  margin-bottom: 0px;
 
 
 }
@@ -377,8 +380,8 @@
 // }
 
 #home-vr-img{
-  margin-top: 55px;
   width:150px;
+  margin-top: 10px;
 }
 
 #home-drift-img{
@@ -399,7 +402,7 @@
 
 
   .home-hero {
-    height: 75vh;
+    height: 60vh;
   }
 
   .home-hero__heading {
