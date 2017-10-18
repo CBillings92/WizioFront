@@ -76,9 +76,16 @@ angular.module('TourMgmtApp')
       $scope.selectPhotoForModification = function(photo) {
         /* Check if there is already a photoForModification (there is none on app init) */
         if ($scope.photoForModification) {
+          console.dir($scope.data);
+          for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+            if ($scope.data.TourMedia.photos[i].isCurrentlySelected) {
+              $scope.data.TourMedia.photos[i].isCurrentlySelected = false;
+              break;
+            }
+          }
           $scope.photoForModification.isSelected = false;
         }
-
+        photo.isCurrentlySelected = true;
         /* If the photo is a new photo we preview the file blob */
         if(photo.isNew) {
           var elem = document.getElementById('photoForModification');

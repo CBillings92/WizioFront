@@ -97,7 +97,6 @@ angular.module('TourMgmtApp')
               data.formatted = 1;
               data.newTour = data.stateAction === 'ModifyTour' ? 0 : 1;
               $sessionStorage.TourMgmtApp.data = data;
-              alert('boom baby');
               return resolve({status: 'success', message: 'Tour Management App Initialized.', payload: data})
             })
             .catch(function(err){
