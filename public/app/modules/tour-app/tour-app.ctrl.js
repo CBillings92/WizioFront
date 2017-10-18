@@ -30,9 +30,12 @@ angular.module('TourApp').controller('TourCtrl', [
                 firstPhotoIndex: false
             }
 
+            /**
+             * create an object of photos. Object keys will be Undefined and vrphoto.
+             * vrphoto is an array of photo objectes with navpoint arrays on them.
+             */
             var sortedMedia = sortMedia(media);
             sortedMedia  = addHardCodedNavPointsToMedia(sortedMedia);
-
             vrPlayerData.media = media;
             vrPlayerData.sortedMedia = sortedMedia;
             interfaceData.media = sortedMedia;
