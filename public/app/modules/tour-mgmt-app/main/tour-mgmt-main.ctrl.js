@@ -269,5 +269,14 @@ angular.module('TourMgmtApp')
         }
       }
 
+      $scope.dropNavpoint = function () {
+        $scope.showVRPlayer = true;
+        console.dir($scope.photoForModification);
+        $scope.photoForModification.navpoints = [];
+        $scope.photoForModification.imageUrls = [$scope.photoForModification.src]
+        console.dir($scope.photoForModification);
+        $scope.$broadcast('TourDataReceived', $scope.photoForModification);
+      }
+
     }
   ])

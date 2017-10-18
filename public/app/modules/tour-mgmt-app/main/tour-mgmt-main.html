@@ -27,8 +27,9 @@
       <div class="" id='photoForModification_Title'>
         <h3>{{photoForModification.title}}</h3>
       </div>
-      <div class="" id="photoForModification_Photo">
-        <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt="">
+      <div class="" style='height:500px;width:500px;' id="photoForModification_Photo">
+        <vr-player-dir ng-show="showVRPlayer"></vr-player-dir>
+        <!-- <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt=""> -->
       </div>
       <div class="" id="photoForModification_Actions">
         <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
@@ -46,6 +47,9 @@
         <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="deletePhoto()" style="text-align:center; border-radius:0;">
           Delete Photo
         </button>
+      </div>
+      <div class="row">
+        <button type="button" class="btn btn-lg btn-outline--blue" name="button" ng-click='dropNavpoint()'>Drop Navpoint</button>
       </div>
       <div class="" id='photoForModification_FloorPlan' style="margin-top:15px;">
         <div style="text-align:center; margin:0 auto; display:inline-block; z-index: 700;" class="col-md-12" ng-click="viewFloorPlan = !viewFloorPlan">
