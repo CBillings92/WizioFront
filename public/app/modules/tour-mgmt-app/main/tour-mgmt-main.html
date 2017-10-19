@@ -2,8 +2,22 @@
   <div class="row" style='padding-top:20px'>
     <div class="col-md-12">
       <h2>Your Tour</h2>
-      <h3 style='margin-bottom:3px;'>{{data.Apartment.concatAddr}}</h3>
-      <h3 style='margin-top:0px;margin-bottom:5px;'>Unit: {{data.Apartment.unitNum}}</h3>
+      <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;" ng-hide="modifyAddressFlag" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
+      <h3 style='margin-top:0px;margin-bottom:5px;' ng-hide="modifyAddressFlag">Unit: {{data.Apartment.unitNum}}</h3>
+      <form class="form col-md-6" ng-show="modifyAddressFlag">
+        <div class="form-group">
+          <label class="control-label">Address</label>
+          <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.concatAddr}}">
+        </div>
+        <div class="form-group">
+          <label class="control-label">Unit Number</label>
+          <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.unitNum}}">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-lg btn-outline--blue col-md-5" ng-click="flipModifyAddressFlag()" name="button">Cancel</button>
+          <button type="button" class="btn btn-lg btn-outline--orange col-md-6 col-md-push-1" name="button">Save Address Changes</button>
+        </div>
+      </form>
     </div>
     <div class="col-md-12" style="margin-top:10px;">
       <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>

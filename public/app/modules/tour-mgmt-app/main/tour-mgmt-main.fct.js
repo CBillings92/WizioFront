@@ -38,7 +38,7 @@ angular.module('TourMgmtApp')
 
       /**
        * Initializes the TourMgmt App.
-       * 1) Check if base data for application is in either stateParams or sessionStorage
+       * 1) Check if base data for tour mgmt application is in either stateParams or sessionStorage
        * 2) If the data exists, get the data
        * 3) Check the integrity of the data
        * 4) If the data is formatted, it's from sessionStorage and we don't need to make an API calls

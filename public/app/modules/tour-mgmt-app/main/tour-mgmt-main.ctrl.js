@@ -41,14 +41,21 @@ angular.module('TourMgmtApp')
        * @type {Boolean}
        */
       $scope.saveChangesInitiated = false;
+
+      /**
+       * Flag for modifying UI. Tells UI whether address is being modified or not.
+       * @type {Boolean}
+       */
+      $scope.modifyAddressFlag = false;
       /* Kick off loading spinner for initialization */
       LoadingSpinnerFct.show('TourManagementMainLoad');
 
-      /**
-       * Initialize tour management app
-       * @type {Boolean}
+      /** Initialize
+       * Initialize tour management application. Pass in $stateParams. $stateParams
+       * needs to be passed in from the Controller instead of accessing it
+       * directly on the Factory due to the order in which files are loaded in
+       * Angular. $stateParams may not be passed properly to factory files.
        */
-
       TourMgmtFct.init.mainApp($stateParams)
       .then(function(response){
         $scope.appInitialized = true;
@@ -246,10 +253,7 @@ angular.module('TourMgmtApp')
 
       /**
        * Delete photo
-       * @param  {[type]} photo     [description]
-       * @param  {[type]} index     [description]
-       * @param  {[type]} photosArr [description]
-       * @return {[type]}           [description]
+       * @return {undefined}           [undefine]
        */
       $scope.deletePhoto = function () {
         if ($scope.photoForModification.isNew) {
@@ -274,6 +278,10 @@ angular.module('TourMgmtApp')
             return;
           })
         }
+      }
+
+      $scope.flipModifyAddressFlag = function(){
+        $scope.modifyAddressFlag = !$scope.modifyAddressFlag;
       }
 
     }
