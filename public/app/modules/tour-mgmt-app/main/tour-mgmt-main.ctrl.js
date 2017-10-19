@@ -83,7 +83,6 @@ angular.module('TourMgmtApp')
       $scope.selectPhotoForModification = function(photo) {
         /* Check if there is already a photoForModification (there is none on app init) */
         if ($scope.photoForModification) {
-          console.dir($scope.data);
           for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
             if ($scope.data.TourMedia.photos[i].isCurrentlySelected) {
               $scope.data.TourMedia.photos[i].isCurrentlySelected = false;
@@ -280,8 +279,13 @@ angular.module('TourMgmtApp')
         }
       }
 
+      /**
+       * Used for flipping modifyAddressFlag bit from UI
+       * @return {Boolean} [description]
+       */
       $scope.flipModifyAddressFlag = function(){
         $scope.modifyAddressFlag = !$scope.modifyAddressFlag;
+        return $scope.modifyAddressFlag
       }
 
     }

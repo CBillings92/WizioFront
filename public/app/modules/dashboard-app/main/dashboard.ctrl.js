@@ -15,7 +15,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
       // short hand the factory function for ease of use
       var createModal = ModalBuilderFct.buildModalWithController;
-      
+
         $state.go('Account.Dashboard.ShareTour');
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();
@@ -78,30 +78,34 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
     // create tour functionailty - button click
     $scope.createTour = function() {
+      return $state.go('TourManagement', {
+        'data': {},
+        'action': 'CreateTour'
+      })
       // accept address modal
-      var createUnitModalConfig = {
-        size: 'md',
-        templateUrl: WizioConfig.PhotographerApp.Views.CreateUnitModal,
-        controller: 'CreateUnitModalCtrl',
-        modalData: {}
-      };
+      // var createUnitModalConfig = {
+      //   size: 'md',
+      //   templateUrl: WizioConfig.PhotographerApp.Views.CreateUnitModal,
+      //   controller: 'CreateUnitModalCtrl',
+      //   modalData: {}
+      // };
 
       // GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
-      createModal(createUnitModalConfig)
-        .then(function(createUnitAPIResponse) {
-          var data = createUnitAPIResponse.payload;
-          var dataForTourManagement = {
-            Apartment: data.Apartment.Instance,
-            SubscriptionApartment: {
-                pubid: data.SubscriptionApartment.Instance.pubid,
-                id: data.SubscriptionApartment.Instance.id
-            }
-          }
-          return $state.go('TourManagement', {
-            'data': dataForTourManagement,
-            'action': 'CreateTour'
-          });
-        })
+      // createModal(createUnitModalConfig)
+      //   .then(function(createUnitAPIResponse) {
+      //     var data = createUnitAPIResponse.payload;
+      //     var dataForTourManagement = {
+      //       Apartment: data.Apartment.Instance,
+      //       SubscriptionApartment: {
+      //           pubid: data.SubscriptionApartment.Instance.pubid,
+      //           id: data.SubscriptionApartment.Instance.id
+      //       }
+      //     }
+      //     return $state.go('TourManagement', {
+      //       'data': dataForTourManagement,
+      //       'action': 'CreateTour'
+      //     });
+      //   })
     }
 
     $scope.changeState = function(state) {

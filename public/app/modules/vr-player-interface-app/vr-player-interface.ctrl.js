@@ -38,15 +38,6 @@ angular.module('TourApp')
           return
         }
 
-        $scope.$on('ToggleFloorPlan', function(event, data) {
-            menuButtonAction('toggleFloorplan');
-        });
-
-        $scope.$on('TogglePhotoList', function(event, data) {
-            menuButtonAction('togglePhotoList');
-
-        });
-
         window.addEventListener("devicemotion", function(event){
             if(event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
                 $scope.hasAccelerometer = true;
@@ -183,11 +174,6 @@ angular.module('TourApp')
               // LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
-
-        var hideFloorPlanButton = false;
-        $scope.viewFloorPlanFunc = function() {
-            $scope.$emit('ToggleFloorPlan', {});
-        }
 
         $scope.openCloseMenu = function() {
             $scope.menuIsOpen = !$scope.menuIsOpen;

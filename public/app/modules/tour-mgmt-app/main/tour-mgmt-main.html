@@ -2,22 +2,23 @@
   <div class="row" style='padding-top:20px'>
     <div class="col-md-12">
       <h2>Your Tour</h2>
-      <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;" ng-hide="modifyAddressFlag" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
-      <h3 style='margin-top:0px;margin-bottom:5px;' ng-hide="modifyAddressFlag">Unit: {{data.Apartment.unitNum}}</h3>
-      <form class="form col-md-6" ng-show="modifyAddressFlag">
-        <div class="form-group">
-          <label class="control-label">Address</label>
-          <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.concatAddr}}">
-        </div>
-        <div class="form-group">
-          <label class="control-label">Unit Number</label>
-          <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.unitNum}}">
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-lg btn-outline--blue col-md-5" ng-click="flipModifyAddressFlag()" name="button">Cancel</button>
-          <button type="button" class="btn btn-lg btn-outline--orange col-md-6 col-md-push-1" name="button">Save Address Changes</button>
-        </div>
-      </form>
+        <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag && !data.Apartment.concatAddr" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;cursor:pointer" ng-hide="modifyAddressFlag" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
+        <h3 style='margin-top:0px;margin-bottom:5px;' ng-hide="modifyAddressFlag && !data.Apartment.unitNum">Unit: {{data.Apartment.unitNum}}</h3>
+        <form class="form col-md-6" ng-show="modifyAddressFlag">
+          <div class="form-group">
+            <label class="control-label">Address</label>
+            <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.concatAddr}}">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Unit Number</label>
+            <input style="border: 1px solid black" type="text" class="form-control" name="" value="{{data.Apartment.unitNum}}">
+          </div>
+          <div class="form-group">
+            <button type="button" class="btn btn-lg btn-outline--blue col-md-5" ng-click="flipModifyAddressFlag()" name="button">Cancel</button>
+            <button type="button" class="btn btn-lg btn-outline--orange col-md-6 col-md-push-1" name="button">Save Address Changes</button>
+          </div>
+        </form>
+
     </div>
     <div class="col-md-12" style="margin-top:10px;">
       <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
@@ -63,17 +64,17 @@
             <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
             <div style="position:relative; display:inline-block;" id="floorplanOverlay">
                 <img src="{{data.Apartment.Floor_Plan}}" ng-show="data.Apartment.Floor_Plan" style="margin:0 auto; padding-top:20px; max-height: 700px;" ng-click="makePinAction($event)" id="floorplanImage" alt="" />
-                <br>
                 <span>
                     <img
                         src="public/viewtemplates/images/brand_assets/map_pin.png"
-                        ng-show="pin.x && pin.y"
+                        ng-if"pin.x && pin.y"
                         ng-repeat="pin in data.TourMedia.photos track by $index" id="pin_{{$index}}"
                         class="unit-details-floorplan-pin"
                         alt=""  ng-click="makePinAction($event, pin, false, $index, 'photos')"
                         style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%; {{pin.isSelected ? 'background: rgba(0,0,0,.7)' : ''}};"
                     />
                 </span>
+                
             </div>
         </div>
       </div>
