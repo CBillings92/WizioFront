@@ -86,7 +86,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
          modalData: {}
       };
 
-      GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
+      //GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
       createModal(createUnitModalConfig)
         .then(function(createUnitAPIResponse) {
           var data = createUnitAPIResponse.payload;
