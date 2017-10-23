@@ -295,6 +295,7 @@ angular.module('TourMgmtApp')
         $scope.photoForModification.imageUrls = [$scope.photoForModification.src]
         console.dir($scope.photoForModification);
         $scope.$broadcast('TourDataReceived', $scope.photoForModification);
+      }
 
     }
   ])
