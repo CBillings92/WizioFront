@@ -176,6 +176,7 @@ angular.module('TourMgmtApp')
         $('#uploadFloorPlanInputButton').trigger('click');
       }
 
+
       /**
        * On order change fired when angular sortable view is modified.
        * @param  {[type]} item      [description]
@@ -189,7 +190,7 @@ angular.module('TourMgmtApp')
           $scope.$apply();
           TourMgmtFct.newPhotos.preview($scope.data.TourMedia.photos, false)
           for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
-              $scope.data.TourMedia.photos[i].order = i;
+            $scope.data.TourMedia.photos[i].order = i;
           }
           $scope.changesMade = true;
       }

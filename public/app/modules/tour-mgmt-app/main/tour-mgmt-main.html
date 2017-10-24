@@ -96,7 +96,7 @@
                               <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
-                              <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
+                              <img id="{{'imgPreview' + $index}}"  draggable='false' width="100%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                             <span>Click and Drag</span>
@@ -107,7 +107,7 @@
                               <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
-                              <img src="{{cdnEndPoint + formatKeyForEnv(data.SubscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
+                              <img src="{{cdnEndPoint + data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                             <span>Click and Drag</span>
