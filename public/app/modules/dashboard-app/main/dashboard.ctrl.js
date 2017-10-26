@@ -15,7 +15,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
       // short hand the factory function for ease of use
       var createModal = ModalBuilderFct.buildModalWithController;
-
         $state.go('Account.Dashboard.ShareTour');
         $scope.wizioAdmin = false;
         var user = TokenSvc.decode();

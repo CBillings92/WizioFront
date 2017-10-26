@@ -70,9 +70,6 @@
     }
 }
 
-.btn{
-    margin: 10px 0px;
-}
 
 .row-space{
     padding-top: 30px;
@@ -98,6 +95,10 @@
     color: #9E9D9D;
     margin-bottom: 23px;
 
+}
+
+.subscription-banner-container .btn{
+    margin: 10px 0px;
 }
 
 .small-body.info-text{
@@ -187,10 +188,10 @@
 // ------------- mobile --------------- //
 
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
 
 .product-hero-image{
-    height: 300px;
+    height: 47vh;
     align-self: flex-end;
 
 }

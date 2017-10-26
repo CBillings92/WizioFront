@@ -257,6 +257,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
         }
       }
     },
+
     // STRIPE TEST KEY
     stripe_test_key: "pk_test_mngZell36UYuy8GfSSox4CZ9",
   }
