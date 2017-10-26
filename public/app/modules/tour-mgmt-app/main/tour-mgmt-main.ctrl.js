@@ -61,6 +61,7 @@ angular.module('TourMgmtApp')
         $scope.appInitialized = true;
         /* Assign formatted data to scope */
         $scope.data = response.payload;
+        console.dir($scope.data);
         /* Set first photo in array as the default selected photo */
         if ($scope.data.TourMedia.photos.length > 0) {
           $scope.selectPhotoForModification($scope.data.TourMedia.photos[0]);

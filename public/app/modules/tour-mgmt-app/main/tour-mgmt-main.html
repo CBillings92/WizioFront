@@ -2,7 +2,7 @@
   <div class="row" style='padding-top:20px'>
     <div class="col-md-12">
       <h2>Your Tour</h2>
-        <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag && !data.Apartment.concatAddr" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;cursor:pointer" ng-hide="modifyAddressFlag" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
+        <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag && !data.Apartment.concatAddr" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;cursor:pointer" ng-hide="modifyAddressFlag || true" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
         <h3 style='margin-top:0px;margin-bottom:5px;' ng-hide="modifyAddressFlag && !data.Apartment.unitNum">Unit: {{data.Apartment.unitNum}}</h3>
         <form class="form col-md-6" ng-show="modifyAddressFlag">
           <div class="form-group">
@@ -67,14 +67,14 @@
                 <span>
                     <img
                         src="public/viewtemplates/images/brand_assets/map_pin.png"
-                        ng-if"pin.x && pin.y"
+                        ng-if="pin.x && pin.y"
                         ng-repeat="pin in data.TourMedia.photos track by $index" id="pin_{{$index}}"
                         class="unit-details-floorplan-pin"
                         alt=""  ng-click="makePinAction($event, pin, false, $index, 'photos')"
                         style="cursor: pointer; top: {{pin.y}}%; left: {{pin.x}}%; {{pin.isSelected ? 'background: rgba(0,0,0,.7)' : ''}};"
                     />
                 </span>
-                
+
             </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
                               <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
                           </div>
                           <div class="panel-body">
-                              <img src="{{cdnEndPoint + formatKeyForEnv(data.SubscriptionApartment.pubid) + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
+                              <img src="{{cdnEndPoint + data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
                           </div>
                           <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                             <span>Click and Drag</span>
