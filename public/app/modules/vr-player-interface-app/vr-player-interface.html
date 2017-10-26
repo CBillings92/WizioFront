@@ -18,7 +18,7 @@
           <div id="navbar" class="navbar-collapse collapse tour-nav-buttons">
             <ul class="nav navbar-nav navbar-right">
               <li ng-show="floorplan && !onProductPage">
-                  <a ng-click="viewFloorPlanFunc()">
+                  <a ng-click="buttonAction('toggleFloorplan')">
                      {{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}
                   </a>
               </li>
@@ -58,8 +58,8 @@
         <div style="position:relative; display:inline-block">
             <img src="{{data.floorplan}}" id="floorplan" style="" alt="" />
             <span ng-repeat="photo in media.vrphoto track by $index">
-                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-hide="photoIndex === $index" ng-click="changePhoto($index)" ng-if="media.vrphoto[$index].isUnit" style="cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%" alt="" />
-                    <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="media.vrphoto[$index].isUnit" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" />
+                    <img src="public/viewtemplates/images/brand_assets/map_pin.png" class="unit-details-floorplan-pin" ng-click="changePhoto($index)" ng-if="photo.x && photo.y" style="cursor: pointer; top: {{photo.y}}%; left: {{photo.x}}%; {{$index === photoIndex ? 'background: rgba(0,0,0,.5)' : ''}}" alt="" />
+                    <!-- <img src="public/viewtemplates/images/favicons/mstile-70x70.png" ng-show="photoIndex === $index" ng-click='changePhoto($index)'  class="unit-details-floorplan-pin" ng-if="photo.x && photo.y" alt="" style="width: 45px; height: 45px; cursor: pointer; top: {{media.vrphoto[$index].y}}%; left: {{media.vrphoto[$index].x}}%;" /> -->
             </span>
         </div>
     </div>
