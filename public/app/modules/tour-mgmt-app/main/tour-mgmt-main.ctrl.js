@@ -8,7 +8,8 @@ angular.module('TourMgmtApp')
     'TourMgmtFct',
     'WizioConfig',
     'ModalBuilderFct',
-    function($scope, $state, $stateParams, AWSFct, LoadingSpinnerFct, TourMgmtFct, WizioConfig, ModalBuilderFct) {
+    'JSDOMHelperFct',
+    function($scope, $state, $stateParams, AWSFct, LoadingSpinnerFct, TourMgmtFct, WizioConfig, ModalBuilderFct, JSDOMHelperFct) {
       /**
        * tracks when any changes have been made to the tour. Used to display the
        * Save Changes button on the tour
@@ -47,6 +48,14 @@ angular.module('TourMgmtApp')
        * @type {Boolean}
        */
       $scope.modifyAddressFlag = false;
+
+      /**
+       * [appInitialized description]
+       * @type {Boolean}
+       */
+      $scope.ViewportHeight = JSDOMHelperFct.get.DOM.Viewport.Height()
+      $scope.ViewportWidth = JSDOMHelperFct.get.DOM.Viewport.Width()
+      console.dir($scope.ViewportHeight);
       /* Kick off loading spinner for initialization */
       LoadingSpinnerFct.show('TourManagementMainLoad');
 

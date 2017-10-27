@@ -1,4 +1,6 @@
+<!-- App Container  -->
 <div class="container" style="padding-top:50px;">
+  <!-- App Header Row Begin - Contains Tour Address, Unit Number and save button -->
   <div class="row" style='padding-top:20px'>
     <div class="col-md-12">
       <h2>Your Tour</h2>
@@ -18,14 +20,17 @@
             <button type="button" class="btn btn-lg btn-outline--orange col-md-6 col-md-push-1" name="button">Save Address Changes</button>
           </div>
         </form>
-
     </div>
+    <!-- save changes button and upload floor plan file input button, triggered via JS not on user click (why opacity is 0) -->
     <div class="col-md-12" style="margin-top:10px;">
       <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
   </div>
+  <!-- App header End -->
+  <!-- App Body Row Begin -->
   <div class="row">
+    <!-- Photo for modification container/Floor Plan begin -->
     <div class="col-md-8" id="photoForModification_Container">
       <div class="row">
         <div class="rol-md-12">
@@ -54,6 +59,8 @@
           </div>
         </div>
       </div>
+      <!-- Photo for modification container end -->
+      <!-- Floor Plan Row Begin -->
       <div class="row" id='photoForModification_FloorPlan' style="margin-top:15px;">
         <h3>Floor Plan</h3>
         <div class="row">
@@ -78,9 +85,12 @@
             </div>
         </div>
       </div>
+      <!-- Floor Plan Row End -->
     </div>
+    <!-- Photo for modification/Floor Plan container End -->
+    <!-- List of Photos Container Begin -->
     <div class="col-md-4">
-      <div class="row" id="currentPhotosContainer">
+      <div class="row" style="height:{{ViewportHeight}}" id="currentPhotosContainer">
           <div class="col-md-12">
               <h3>Photos <small>New photos are marked in orange.</small></h3>
           </div>
@@ -88,9 +98,10 @@
             <input type="file" id="uploadMultiplePhotosInputButton" style="position: absolute; opacity:0; z-index:-100" multiple>
             <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
           </div>
-          <div class="col-md-12" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+          <div class="col-md-12" style="height:400; overflow:y" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
               <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; {{photo.isCurrentlySelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
                   <div class="panel panel-default">
+                      <!-- If the photo is new... -->
                       <div class="" ng-if="photo.isNew">
                           <div class="panel-heading panel-new-photo">
                               <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
@@ -102,6 +113,7 @@
                             <span>Click and Drag</span>
                           </div>
                       </div>
+                      <!-- If the photo is not new and is not flagged to be deleted... -->
                       <div ng-if="!photo.isNew && !photo.IsDeleted">
                           <div class="panel-heading">
                               <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
@@ -119,6 +131,7 @@
 
       </div>
     </div>
+    <!-- List of Photos Container End -->
   </div>
   <loading-spinner-dir id="TourManagementMainLoad" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir>
 </div>
