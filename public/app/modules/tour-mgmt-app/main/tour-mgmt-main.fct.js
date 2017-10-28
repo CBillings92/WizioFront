@@ -265,7 +265,6 @@ angular.module('TourMgmtApp')
           var floorplan = data.TourMedia.floorplan;
           var subscriptionAptPubId = data.SubscriptionApartment.pubid;
 
-
           for (var i = 0; i < photosArr.length; i++) {
             photosArr[i].order = i;
           }
@@ -288,12 +287,17 @@ angular.module('TourMgmtApp')
           var s3UploadPromises = [];
           for (var i = 0; i < photosArr.length; i++) {
             if (photosArr[i].isNew) {
-              s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG'
+              s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG';
               s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photosArr[i].file, s3PhotoKey))
             }
           }
+          console.dir('1')
+          console.dir(floorplan);
           if (floorplan && floorplan.isNew) {
-            s3UploadPromises.push(floorplan);
+            s3PhotoKey = subscriptionAptPubId + '/' + 'floorplan.png';
+            console.dir(2)
+            console.dir(floorplan.file);
+            s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadFloorPlanFile(floorplan.file, s3PhotoKey));
           }
           if (s3UploadPromises.length > 0) {
             $q.all(s3UploadPromises)
