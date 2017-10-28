@@ -76,7 +76,7 @@ angular.module('TourMgmtApp')
               payload: {}
             });
           }
-
+          console.dir(data);
           // If the data is already formatted (from session storage)
           // purge any data that wasn't saved (this is from page refresh)
           if (data.formatted) {
@@ -90,7 +90,6 @@ angular.module('TourMgmtApp')
               data.TourMedia = {
                 photos: TourMediaArr
               };
-
               if (data.Apartment.Floor_Plan) {
                 data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
               }
@@ -273,7 +272,7 @@ angular.module('TourMgmtApp')
             return bulkSavePhotosToWizioAPI(photosArr)
           })
           .then(function(response){
-            return updateFloorPlanData(data.Apartment.id, subscriptionAptPubId)
+            return updateFloorPlanData(data.Apartment.id, subscriptionAptPubId, floorplan)
           })
           .then(function(response){
             return resolve('finished');
@@ -291,12 +290,9 @@ angular.module('TourMgmtApp')
               s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photosArr[i].file, s3PhotoKey))
             }
           }
-          console.dir('1')
-          console.dir(floorplan);
+
           if (floorplan && floorplan.isNew) {
             s3PhotoKey = subscriptionAptPubId + '/' + 'floorplan.png';
-            console.dir(2)
-            console.dir(floorplan.file);
             s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadFloorPlanFile(floorplan.file, s3PhotoKey));
           }
           if (s3UploadPromises.length > 0) {
@@ -333,8 +329,10 @@ angular.module('TourMgmtApp')
         })
       }
 
-      function updateFloorPlanData(floorplan, subscriptionAptPubId) {
+      function updateFloorPlanData(apartmentId, subscriptionAptPubId, floorplan) {
         return $q(function(resolve, reject) {
+          console.dir(API.apartment.updateFloorPlan);
+          console.dir(floorplan);
           if (floorplan && floorplan.isNew) {
             API.apartment.updateFloorPlan.save({
               SubscriptionApartmentPubId: subscriptionAptPubId,
