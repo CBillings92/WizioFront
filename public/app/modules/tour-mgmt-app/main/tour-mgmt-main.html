@@ -99,7 +99,7 @@
             <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
           </div>
           <div class="col-md-12" style="height:400; overflow:y" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
-              <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; {{photo.isCurrentlySelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
+              <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; border-radius:3px; {{photo.isSelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
                   <div class="panel panel-default">
                       <!-- If the photo is new... -->
                       <div class="" ng-if="photo.isNew">

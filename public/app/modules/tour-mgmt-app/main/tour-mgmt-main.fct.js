@@ -209,26 +209,26 @@ angular.module('TourMgmtApp')
         })
       }
 
-      function buildNewPhotosArr(filelist, data) {
+      function buildNewPhotosArr(newPhotoFileList, oldPhotoList, subscriptionApt, apartment) {
         var newMediaArr = [];
-        for (var i = 0; i < filelist.length; i++) {
+        for (var i = 0; i < newPhotoFileList.length; i++) {
           var photo = {
             x: null,
             y: null,
-            apartmentpubid: data.SubscriptionApartment.pubid,
+            apartmentpubid: subscriptionApt.pubid,
             isUnit: 0,
             type: 'vrphoto',
-            title: filelist[i].name,
-            awsurl: 'https://cdn.wizio.co/' + data.SubscriptionApartment.pubid + '/',
-            ApartmentId: data.Apartment.id,
-            SubscriptionApartmentPubId: data.SubscriptionApartment.pubid,
+            title: newPhotoFileList[i].name,
+            awsurl: 'https://cdn.wizio.co/' + subscriptionApt.pubid + '/',
+            ApartmentId: apartment.id,
+            SubscriptionApartmentPubId: subscriptionApt.pubid,
             useremail: TokenSvc.decode().email,
-            file: filelist[i],
+            file: newPhotoFileList[i],
             isNew: true
           }
-          data.TourMedia.photos.unshift(photo);
+          oldPhotoList.photos.unshift(photo);
         }
-        return data.TourMedia.photos;
+        return oldPhotoList.photos;
       }
 
       /**
