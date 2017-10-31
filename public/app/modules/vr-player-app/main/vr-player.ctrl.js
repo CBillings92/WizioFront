@@ -3,7 +3,6 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     'LoadingSpinnerFct',
     function($scope, LoadingSpinnerFct) {
         $scope.$on('TourDataReceived', function(event, data){
-          console.dir(data);
             wizio.init('pano', data, {}, function(response){
               LoadingSpinnerFct.hide('vrPlayerLoader');
             });

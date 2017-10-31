@@ -76,7 +76,6 @@ angular.module('TourMgmtApp')
               payload: {}
             });
           }
-          console.dir(data);
           // If the data is already formatted (from session storage)
           // purge any data that wasn't saved (this is from page refresh)
           if (data.formatted) {
@@ -331,8 +330,6 @@ angular.module('TourMgmtApp')
 
       function updateFloorPlanData(apartmentId, subscriptionAptPubId, floorplan) {
         return $q(function(resolve, reject) {
-          console.dir(API.apartment.updateFloorPlan);
-          console.dir(floorplan);
           if (floorplan && floorplan.isNew) {
             API.apartment.updateFloorPlan.save({
               SubscriptionApartmentPubId: subscriptionAptPubId,
