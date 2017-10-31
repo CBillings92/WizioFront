@@ -102,6 +102,9 @@ angular.module('TourMgmtApp')
           /* If photo is not new, display image via URL */
           photo.src = buildPhotoSrc(photo);
           $scope.photoForModification = photo;
+          console.dir('hello');
+          console.dir(photo.src);
+          $scope.$broadcast('VrPlayerApp', {action: 'init', data: {htmlElemId: 'pano', photoData: {imageUrls: [photo.src], navpoints: {'3rd Floor Bedroom.jpg': []}, title: '3rd Floor Bedroom.jpg'}}})
         }
 
         /* set isSelected flag on the photoForModification - used for Floorplan Pin */
