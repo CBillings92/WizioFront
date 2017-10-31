@@ -76,7 +76,6 @@ angular.module('TourMgmtApp')
               payload: {}
             });
           }
-
           // If the data is already formatted (from session storage)
           // purge any data that wasn't saved (this is from page refresh)
           if (data.formatted) {
@@ -90,7 +89,6 @@ angular.module('TourMgmtApp')
               data.TourMedia = {
                 photos: TourMediaArr
               };
-
               if (data.Apartment.Floor_Plan) {
                 data.Apartment.Floor_Plan = buildFloorPlanUrl(data.SubscriptionApartment.pubid)
               }
@@ -210,26 +208,26 @@ angular.module('TourMgmtApp')
         })
       }
 
-      function buildNewPhotosArr(filelist, data) {
+      function buildNewPhotosArr(newPhotoFileList, oldPhotoList, subscriptionApt, apartment) {
         var newMediaArr = [];
-        for (var i = 0; i < filelist.length; i++) {
+        for (var i = 0; i < newPhotoFileList.length; i++) {
           var photo = {
             x: null,
             y: null,
-            apartmentpubid: data.SubscriptionApartment.pubid,
+            apartmentpubid: subscriptionApt.pubid,
             isUnit: 0,
             type: 'vrphoto',
-            title: filelist[i].name,
-            awsurl: 'https://cdn.wizio.co/' + data.SubscriptionApartment.pubid + '/',
-            ApartmentId: data.Apartment.id,
-            SubscriptionApartmentPubId: data.SubscriptionApartment.pubid,
+            title: newPhotoFileList[i].name,
+            awsurl: 'https://cdn.wizio.co/' + subscriptionApt.pubid + '/',
+            ApartmentId: apartment.id,
+            SubscriptionApartmentPubId: subscriptionApt.pubid,
             useremail: TokenSvc.decode().email,
-            file: filelist[i],
+            file: newPhotoFileList[i],
             isNew: true
           }
-          data.TourMedia.photos.unshift(photo);
+          oldPhotoList.photos.unshift(photo);
         }
-        return data.TourMedia.photos;
+        return oldPhotoList.photos;
       }
 
       /**
@@ -265,7 +263,6 @@ angular.module('TourMgmtApp')
           var floorplan = data.TourMedia.floorplan;
           var subscriptionAptPubId = data.SubscriptionApartment.pubid;
 
-
           for (var i = 0; i < photosArr.length; i++) {
             photosArr[i].order = i;
           }
@@ -274,7 +271,7 @@ angular.module('TourMgmtApp')
             return bulkSavePhotosToWizioAPI(photosArr)
           })
           .then(function(response){
-            return updateFloorPlanData(data.Apartment.id, subscriptionAptPubId)
+            return updateFloorPlanData(data.Apartment.id, subscriptionAptPubId, floorplan)
           })
           .then(function(response){
             return resolve('finished');
@@ -288,12 +285,14 @@ angular.module('TourMgmtApp')
           var s3UploadPromises = [];
           for (var i = 0; i < photosArr.length; i++) {
             if (photosArr[i].isNew) {
-              s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG'
+              s3PhotoKey = subscriptionAptPubId + '/' + photosArr[i].title + '.JPG';
               s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadTourPhoto(photosArr[i].file, s3PhotoKey))
             }
           }
+
           if (floorplan && floorplan.isNew) {
-            s3UploadPromises.push(floorplan);
+            s3PhotoKey = subscriptionAptPubId + '/' + 'floorplan.png';
+            s3UploadPromises.push(AWSFct.s3.equirectPhotos.uploadFloorPlanFile(floorplan.file, s3PhotoKey));
           }
           if (s3UploadPromises.length > 0) {
             $q.all(s3UploadPromises)
@@ -329,7 +328,7 @@ angular.module('TourMgmtApp')
         })
       }
 
-      function updateFloorPlanData(floorplan, subscriptionAptPubId) {
+      function updateFloorPlanData(apartmentId, subscriptionAptPubId, floorplan) {
         return $q(function(resolve, reject) {
           if (floorplan && floorplan.isNew) {
             API.apartment.updateFloorPlan.save({

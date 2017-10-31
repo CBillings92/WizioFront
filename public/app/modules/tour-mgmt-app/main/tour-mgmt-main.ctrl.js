@@ -47,6 +47,7 @@ angular.module('TourMgmtApp')
        * @type {Boolean}
        */
       $scope.modifyAddressFlag = false;
+
       /* Kick off loading spinner for initialization */
       LoadingSpinnerFct.show('TourManagementMainLoad');
 
@@ -61,7 +62,6 @@ angular.module('TourMgmtApp')
         $scope.appInitialized = true;
         /* Assign formatted data to scope */
         $scope.data = response.payload;
-        console.dir($scope.data);
         /* Set first photo in array as the default selected photo */
         if ($scope.data.TourMedia.photos.length > 0) {
           $scope.selectPhotoForModification($scope.data.TourMedia.photos[0]);
@@ -82,17 +82,17 @@ angular.module('TourMgmtApp')
        * @return {null}       []
        */
       $scope.selectPhotoForModification = function(photo) {
+        var TourMedia = $scope.data.TourMedia;
         /* Check if there is already a photoForModification (there is none on app init) */
         if ($scope.photoForModification) {
-          for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
-            if ($scope.data.TourMedia.photos[i].isCurrentlySelected) {
-              $scope.data.TourMedia.photos[i].isCurrentlySelected = false;
+          for (var i = 0; i < TourMedia.photos.length; i++) {
+            if (TourMedia.photos[i].isSelected) {
+              TourMedia.photos[i].isSelected = false;
               break;
             }
           }
-          $scope.photoForModification.isSelected = false;
         }
-        photo.isCurrentlySelected = true;
+        photo.isSelected = true;
         /* If the photo is a new photo we preview the file blob */
         if(photo.isNew) {
           var elem = document.getElementById('photoForModification');
@@ -134,12 +134,14 @@ angular.module('TourMgmtApp')
        */
       $scope.addPhotosForUpload = function() {
         document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
-
-          $scope.data.TourMedia.photos = TourMgmtFct.newPhotos.add(this.files, $scope.data)
+          var TourMedia = $scope.data.TourMedia;
+          var Apartment = $scope.data.Apartment;
+          var SubscriptionApartment = $scope.data.SubscriptionApartment;
+          $scope.data.TourMedia.photos = TourMgmtFct.newPhotos.add(this.files, TourMedia, SubscriptionApartment, Apartment)
           // Need this because we're running angular inside javascript function.
           // Creates the HTML elements for the new photos in ng-repeat
           $scope.$apply();
-          TourMgmtFct.newPhotos.preview($scope.data.TourMedia.photos, false);
+          TourMgmtFct.newPhotos.preview(TourMedia.photos, false);
           $scope.changesMade = true;
           $scope.$apply();
         }

@@ -19,6 +19,13 @@ angular.module('TourApp')
 
         $scope.state = $state.current.name;
         $scope.showInterface = true;
+
+        /**
+         * On InterfaceDataReceived broadcast event, kick off the VrPlayerInterface application.
+         * @param  {object} event Event that fired to trigger this
+         * @param  {object} data  data for the tour player interface to initialize
+         * @return {[type]}       [description]
+         */
         $scope.$on('InterfaceDataReceived', function(event, data){
           LoadingSpinnerFct.show('vrPlayerLoader');
             $scope.data = data;
@@ -28,6 +35,7 @@ angular.module('TourApp')
             document.getElementById('pano').addEventListener('click', onTourClick, false);
             createThumbnailURLs();
             $scope.photoIndex = 0;
+            return;
         });
 
         function createThumbnailURLs() {
@@ -139,39 +147,33 @@ angular.module('TourApp')
             moveSlider(1);
         };
 
-
-        function menuButtonAction(action) {
-            if (action === 'toggleFloorplan') {
-                $scope.viewFloorPlan = !$scope.viewFloorPlan;
-                if ($scope.selectPhoto && $scope.viewFloorPlan) {
-                    $scope.selectPhoto = !$scope.selectPhoto;
-                }
-            } else {
-                $scope.selectPhoto = !$scope.selectPhoto;
-                if ($scope.viewFloorPlan && $scope.selectPhoto) {
-                    $scope.viewFloorPlan = !$scope.viewFloorPlan
-                }
-            }
+        $scope.toggleFloorPlan = function() {
+          $scope.viewFloorPlan = !$scope.viewFloorPlan;
         }
 
-        $scope.buttonAction = menuButtonAction;
-
-
-        // Allow the user to change photos
+        /**
+         * Chonge Photo Functionality. Pass photo information to vr player ond get a callback
+         * response. set viewFloorPlan to false to hide floorplan after selecting a new photo.
+         * Function gets called on either a selection of a pin on the floorplan or on the
+         * slider.
+         * @param  {[type]} photoIndex [description]
+         * @return {[type]}            [description]
+         */
         $scope.changePhoto = function(photoIndex) {
-            // LoadingSpinnerFct.show('vrPlayerLoader');
+            LoadingSpinnerFct.show('vrPlayerLoader');
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               $scope.photoIndex = photoIndex;
-              $scope.$apply();
+
+              /* For cameron to collect coordinates for hard coding navigation onto tours */
               var email = TokenSvc.decode().email;
               if (email === 'cameron@wizio.co') {
                 wizio.toggleCoordCollection();
                 wizio.disableOnMouseMove();
               }
-              // wizio.addInvisibleSphere();
-              $scope.selectPhoto = false;
+
               $scope.viewFloorPlan = false;
-              // LoadingSpinnerFct.hide('vrPlayerLoader');
+              $scope.$apply();
+              LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
 
