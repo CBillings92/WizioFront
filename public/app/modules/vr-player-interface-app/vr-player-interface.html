@@ -18,7 +18,7 @@
           <div id="navbar" class="navbar-collapse collapse tour-nav-buttons">
             <ul class="nav navbar-nav navbar-right">
               <li ng-show="floorplan && !onProductPage">
-                  <a ng-click="buttonAction('toggleFloorplan')">
+                  <a ng-click="toggleFloorPlan()">
                      {{viewFloorPlan ? 'Hide Floorplan' : "Show Floorplan" }}
                   </a>
               </li>
@@ -53,7 +53,7 @@
             </div>
     </div>
 
-    <div class="tour-floorplan-container pointer-events_all" ng-hide="selectPhoto || !viewFloorPlan" style="z-index:100;">
+    <div class="tour-floorplan-container pointer-events_all" ng-show="viewFloorPlan" style="z-index:100;">
         <span style="height:100%; display:inline-block; vertical-align:middle;"></span>
         <div style="position:relative; display:inline-block">
             <img src="{{data.floorplan}}" id="floorplan" style="" alt="" />
