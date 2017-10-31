@@ -150,9 +150,17 @@ angular.module('TourApp')
         $scope.toggleFloorPlan = function() {
           $scope.viewFloorPlan = !$scope.viewFloorPlan;
         }
-        // Allow the user to change photos
+
+        /**
+         * Chonge Photo Functionality. Pass photo information to vr player ond get a callback
+         * response. set viewFloorPlan to false to hide floorplan after selecting a new photo.
+         * Function gets called on either a selection of a pin on the floorplan or on the
+         * slider.
+         * @param  {[type]} photoIndex [description]
+         * @return {[type]}            [description]
+         */
         $scope.changePhoto = function(photoIndex) {
-            // LoadingSpinnerFct.show('vrPlayerLoader');
+            LoadingSpinnerFct.show('vrPlayerLoader');
             wizio.changeImage($scope.media.vrphoto[photoIndex], function(response){
               $scope.photoIndex = photoIndex;
 
@@ -165,7 +173,7 @@ angular.module('TourApp')
 
               $scope.viewFloorPlan = false;
               $scope.$apply();
-              // LoadingSpinnerFct.hide('vrPlayerLoader');
+              LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         };
 
