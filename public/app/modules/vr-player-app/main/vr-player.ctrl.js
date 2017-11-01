@@ -2,11 +2,35 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
     '$scope',
     'LoadingSpinnerFct',
     function($scope, LoadingSpinnerFct) {
+
+      $scope.$on('VrPlayerApp', function(event, data){
+        switch (data.action) {
+          case 'init':
+            init(data.data);
+            break;
+          case 'changePhoto':
+            changePhoto(data.data)
+          default:
+
+        }
+      })
         $scope.$on('TourDataReceived', function(event, data){
             wizio.init('pano', data, {}, function(response){
               LoadingSpinnerFct.hide('vrPlayerLoader');
             });
         })
+
+        function init(initData) {
+          wizio.init(initData.htmlElemId, initData.photoData, {}, function(response){
+            LoadingSpinnerFct.hide('vrPlayerLoader');
+          });
+        }
+
+        function changePhoto(photoData) {
+          wizio.changeImage(photoData, function(response){
+            return;
+          })
+        }
         /**
          * Used for navigating on Powered by Wizio Button
          * @return {null}
