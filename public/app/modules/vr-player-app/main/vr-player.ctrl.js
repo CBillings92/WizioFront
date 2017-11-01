@@ -21,7 +21,6 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
         })
 
         function init(initData) {
-          console.dir('in here ');
           wizio.init(initData.htmlElemId, initData.photoData, {}, function(response){
             LoadingSpinnerFct.hide('vrPlayerLoader');
           });
@@ -40,8 +39,6 @@ angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
             window.open('https://www.wizio.co');
             return;
         }
-
-        $scope.$on()
 
         var rotateTimeout;
         var isRotating = true;
