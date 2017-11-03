@@ -303,5 +303,10 @@ angular.module('TourMgmtApp')
         return $scope.modifyAddressFlag
       }
 
+      $scope.dropNavPoint = function() {
+        console.dir(wizio);
+        wizio.toggleCoordCollection();
+      }
+
     }
   ])
