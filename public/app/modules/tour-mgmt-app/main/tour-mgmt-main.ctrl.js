@@ -303,10 +303,11 @@ angular.module('TourMgmtApp')
         return $scope.modifyAddressFlag
       }
 
-      $scope.dropNavPoint = function() {
-        console.dir(wizio);
+      $scope.toggleNavpointCreation = function() {
         wizio.toggleCoordCollection();
       }
 
+      $scope.
+      drop
     }
   ])
