@@ -82,6 +82,7 @@ angular.module('TourMgmtApp')
        * @return {null}       []
        */
       $scope.selectPhotoForModification = function(photo) {
+        console.dir("NOT TWICE");
         var TourMedia = $scope.data.TourMedia;
         /* Check if there is already a photoForModification (there is none on app init) */
         if ($scope.photoForModification) {
@@ -113,7 +114,12 @@ angular.module('TourMgmtApp')
               title: photo.title
             }
           }
-          $scope.$broadcast('VrPlayerApp', {action: 'init', data: data})
+          console.dir('INHERE');
+          wizio.init(data.htmlElemId, data.photoData, {}, function(response){
+            console.dir('fuck');
+            LoadingSpinnerFct.hide('vrPlayerLoader');
+            wizio.toggleCoordCollection();
+          });
         }
 
         /* set isSelected flag on the photoForModification - used for Floorplan Pin */
@@ -304,10 +310,13 @@ angular.module('TourMgmtApp')
       }
 
       $scope.toggleNavpointCreation = function() {
-        wizio.toggleCoordCollection();
+        // wizio.toggleCoordCollection();
       }
 
-      $scope.
-      drop
+      $scope.collectCoordinates = function() {
+
+      }
+
+
     }
   ])
