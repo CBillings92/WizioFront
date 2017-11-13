@@ -310,11 +310,27 @@ angular.module('TourMgmtApp')
       }
 
       $scope.toggleNavpointCreation = function() {
-        // wizio.toggleCoordCollection();
+        wizio.toggleCoordCollection();
       }
 
       $scope.collectCoordinates = function() {
 
+      }
+
+      $scope.atlasClick = function(ev){
+        wizio.getCoords(ev, function(response){
+          console.dir(response);
+          var navpointObj = {
+            x: response.point.x,
+            y: response.point.y,
+            z: response.point.z,
+            name: ''
+          }
+          wizio.dropNavPoint(navpointObj, function(response){
+            console.dir('wee');
+          })
+          // wizio.dropNavPoint()
+        })
       }
 
 
