@@ -36,7 +36,7 @@
                     </div>
                 </form>
             </div>
-            <div class="form-group container" ng-hide="signupInviteFlag">
+            <div class="form-group container" ng-hide="signupInviteFlag || numUsersNotNeeded">
                 <!-- Put a check here  -->
                 <label for="" class="control-label">Number of Users</label>
                 <input type="number" ng-model="total_users" class="form-control" style="border: 1px solid black;" value="" ng-required="!signupInviteFlag">

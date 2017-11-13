@@ -10,6 +10,7 @@ angular.module('CreateAccountApp')
         'ModalBuilderFct',
         function($scope, $state, CreateAccountFct, $window, WizioConfig, TokenSvc, $resource, ModalBuilderFct) {
             //
+            $scope.numUsersNotNeeded = true;
             $scope.signupInviteFlag = $state.current.name === "Signup.Invite" ? true : false;
 
             $scope.submit = function() {
@@ -59,7 +60,7 @@ angular.module('CreateAccountApp')
                     stripetoken.userid = TokenSvc.decode().id;
                     stripetoken.user = TokenSvc.decode();
                     stripetoken.plan_id = $scope.chosenSubscription;
-                    stripetoken.total_users = $scope.total_users;
+                    stripetoken.total_users = 1;
                     $resource(WizioConfig.baseAPIURL + "user/subscribe")
                     .save(stripetoken, function(response) {
                         return response;
