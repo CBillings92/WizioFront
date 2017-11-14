@@ -23,7 +23,12 @@
     </div>
     <!-- save changes button and upload floor plan file input button, triggered via JS not on user click (why opacity is 0) -->
     <div class="col-md-12" style="margin-top:10px;">
-      <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-click="saveChanges()" name="button">Save Changes</button>
+      <div class="col-md-2">
+        <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-disabled="saveChangesInitiated" ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
+      </div>
+      <div class="col-md-2">
+        <loading-spinner-dir style="position:relative; left:20px;" id='savingChangesSpinner' size="fa-3x"></loading-spinner-dir>
+      </div>
       <input type="file" id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
     </div>
   </div>
@@ -38,8 +43,9 @@
             <h3>{{photoForModification.title}}</h3>
           </div>
           <div class="" style="position:relative; width:100%; height:600px" id="photoForModification_Photo">
-            <!-- <img src="{{photoForModification.src}}" id='photoForModification' style="width:100%; border:2px solid black;" alt=""> -->
-            <vr-player-dir></vr-player-dir>
+            <!-- <img src="{{photoForModification.src}}" ng-if="photoForModification.isNew" id='photoForModification' style="width:100%; border:2px solid black;" alt=""> -->
+            <!-- <vr-player-dir></vr-player-dir> -->
+            <div class="" ng-click="autoToggleRotate()" id="pano" style="position: relative; height: 100%; width: 100%;"></div>
           </div>
           <div class="" id="photoForModification_Actions">
             <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
