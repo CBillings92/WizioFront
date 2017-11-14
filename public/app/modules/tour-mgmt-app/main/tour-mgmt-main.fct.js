@@ -195,14 +195,19 @@ angular.module('TourMgmtApp')
       }
 
 
-      /** renamePhoto() description
-       * For renaming photos. Builds rename photo modal
-       * @param  {Object} photoObj [standard Photo object (media object)]
-       * @return {promise}          [object promise response]
+      /**
+       * [renamePhoto description]
+       * @param  {object} photoToBeRenamed [description]
+       * @param  {array} photoArray       [description]
+       * @return {promise}                  [description]
        */
-      function renamePhoto(photoObj) {
+      function renamePhoto(photoToBeRenamed, photoArray) {
         return $q(function(resolve, reject) {
-          ModalBuilderFct.buildComplexModal('md', WizioConfig.uploadViews.modals.renameMedia, 'RenameMediaCtrl', photoObj).then(function(response) {
+          var data = {
+            photoToBeRenamed: photoToBeRenamed,
+            photoArray: photoArray
+          }
+          ModalBuilderFct.buildComplexModal('md', WizioConfig.uploadViews.modals.renameMedia, 'RenameMediaCtrl', data).then(function(response) {
             resolve(response);
           });
         })
@@ -241,13 +246,31 @@ angular.module('TourMgmtApp')
           var reader = new FileReader();
           reader.addEventListener('load', function() {
             htmltag.src = reader.result
+            return
           })
+
           reader.readAsDataURL(photo);
           return;
         } else {
           return;
         }
 
+      }
+
+      /**
+       * [buildImageDataURL description]
+       * @param  {[type]}   jpgFile [description]
+       * @param  {Function} cb      [description]
+       * @return {[type]}           [description]
+       */
+      function buildImageDataURL(jpgFile) {
+        return $q(function(resolve, reject){
+          var reader = new FileReader();
+          reader.addEventListener('load', function() {
+            return resolve(reader.result);
+          })
+          reader.readAsDataURL(jpgFile);
+        })
       }
 
       /**
@@ -452,13 +475,15 @@ angular.module('TourMgmtApp')
         },
         newPhotos: {
           add: buildNewPhotosArr,
-          preview: previewNewPhotos
+          preview: previewNewPhotos,
+          buildImageDataURL: buildImageDataURL
         },
         floorplan: {
           buildFloorPlanObj: buildFloorPlanObj
         },
         calculatePinXandY: calculatePinXandY,
-        saveChanges: saveChanges
+        saveChanges: saveChanges,
+        rerouteAfterSave: rerouteAfterSave
       }
     }
   ])

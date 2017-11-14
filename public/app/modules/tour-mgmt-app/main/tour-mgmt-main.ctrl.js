@@ -3,12 +3,14 @@ angular.module('TourMgmtApp')
     '$scope',
     '$state',
     '$stateParams',
+    '$q',
     'AWSFct',
     'LoadingSpinnerFct',
     'TourMgmtFct',
     'WizioConfig',
     'ModalBuilderFct',
-    function($scope, $state, $stateParams, AWSFct, LoadingSpinnerFct, TourMgmtFct, WizioConfig, ModalBuilderFct) {
+    function($scope, $state, $stateParams, $q, AWSFct, LoadingSpinnerFct, TourMgmtFct, WizioConfig, ModalBuilderFct) {
+      LoadingSpinnerFct.hide('savingChangesSpinner');
       /**
        * tracks when any changes have been made to the tour. Used to display the
        * Save Changes button on the tour
@@ -83,48 +85,61 @@ angular.module('TourMgmtApp')
        */
       $scope.selectPhotoForModification = function(photo) {
         var TourMedia = $scope.data.TourMedia;
+        var atlasData;
+        var photoTitle = photo.title;
         /* Check if there is already a photoForModification (there is none on app init) */
-        if ($scope.photoForModification) {
-          for (var i = 0; i < TourMedia.photos.length; i++) {
-            if (TourMedia.photos[i].isSelected) {
-              TourMedia.photos[i].isSelected = false;
-              break;
-            }
-          }
-        }
+        deselectPhotoForModificiation(photo);
+
         photo.isSelected = true;
-        /* If the photo is a new photo we preview the file blob */
-        if(photo.isNew) {
-          var elem = document.getElementById('photoForModification');
-          TourMgmtFct.newPhotos.preview([photo], elem)
-          $scope.photoForModification = photo;
-        } else {
-          /* If photo is not new, display image via URL */
-          photo.src = buildPhotoSrc(photo);
-          $scope.photoForModification = photo;
-          var photoTitle = photo.title;
-          var data = {
+        bulidPhotoURL(photo)
+        .then(function(photoURL){
+          var atlasData = {
             htmlElemId: 'pano',
             photoData: {
-              imageUrls: [photo.src],
-              navpoints: {
-                photoTitle: []
-              },
+              imageUrls: [photoURL],
+              navpoints: {},
               title: photo.title
             }
           }
-          $scope.$broadcast('VrPlayerApp', {action: 'init', data: data})
-        }
+          atlasData.photoData.navpoints[photo.title] = [];
+          $scope.photoForModification = photo;
+          wizio.init('pano', atlasData.photoData, {}, function(response){
+            LoadingSpinnerFct.hide('vrPlayerLoader');
+            return;
+          });
+        })
+      }
 
-        /* set isSelected flag on the photoForModification - used for Floorplan Pin */
-        $scope.photoForModification.isSelected = true;
+      function bulidPhotoURL(photo) {
+        return $q(function(resolve, reject){
+          if (photo.file) {
+            TourMgmtFct.newPhotos.buildImageDataURL(photo.file)
+            .then(function(url){
+              return resolve(url)
+            })
+            .catch(function(err){
+              return reject(err)
+            })
+          } else {
+            var photoURL = buildPhotoSrc(photo);
+            return resolve(photoURL)
+          }
+
+        })
+      }
+
+      function deselectPhotoForModificiation(photo) {
+        var photos = $scope.data.TourMedia.photos
+          for (var i = 0; i < photos.length; i++) {
+              photos[i].isSelected = false;
+          }
         return;
       }
 
       // Rename media FIXME - Needs new logic. Currently works on old logic
       function renamePhoto() {
           $scope.photoForModification.SubscriptionApartmentPubId = $scope.data.SubscriptionApartment.pubid;
-          TourMgmtFct.photo.rename($scope.photoForModification).then(function(response) {
+          TourMgmtFct.photo.rename($scope.photoForModification, $scope.data.TourMedia.photos).then(function(response) {
               if (response === 'exit') {
                   return;
               } else {
@@ -157,9 +172,8 @@ angular.module('TourMgmtApp')
           $scope.changesMade = true;
           $scope.$apply();
         }
-        /* Trigger hidden file input (hidden behind nice looking button) */
+
         $('#uploadMultiplePhotosInputButton').trigger('click');
-        return
       }
 
       $scope.renamePhoto = renamePhoto;
@@ -257,11 +271,19 @@ angular.module('TourMgmtApp')
        * @return {undefined} []
        */
       $scope.saveChanges = function() {
+        LoadingSpinnerFct.show('savingChangesSpinner');
         $scope.saveChangesInitiated = true;
         TourMgmtFct.saveChanges($scope.data)
         .then(function(response){
-          alert('finished');
-          TourMgmtFct.rerouteAfterSave();
+          LoadingSpinnerFct.hide('savingChangesSpinner');
+          ModalBuilderFct.buildSimpleModal(
+              "",
+              "OK",
+              "Success",
+              'Your tour has been saved.'
+          ).then(function(result) {
+            TourMgmtFct.rerouteAfterSave();
+          });
         })
       }
 

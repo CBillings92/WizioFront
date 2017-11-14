@@ -10,7 +10,7 @@ angular.module('PhotographerApp').controller('RenameMediaCtrl', [
     'ModalBuilderFct',
     function($scope, modalData, AWSFct, MediaFct, $uibModalInstance, ModalBuilderFct) {
         $scope.media = modalData.photoToBeRenamed;
-        $scope.allPhotos = modalData.allPhotos;
+        $scope.allPhotos = modalData.photoArray;
         $scope.formData = {};
 
         $scope.closeModal = function() {
