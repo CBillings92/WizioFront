@@ -59,7 +59,9 @@ margin-right: auto;
 
 .tour-navbar {
     position: relative;
-    background-color: $gray;
+    background-color: $dk-gray;
+    opacity: .75;
+    padding: 4px 0px;
 
     @media (max-width: $screen-md-min) {
         background-color: transparent;
