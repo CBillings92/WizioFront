@@ -68,7 +68,12 @@ angular.module('TourApp').controller('TourCtrl', [
               media.vrphoto[i].navpoints = TourFct.demo2NavPointData[media.vrphoto[i].title]
             }
 
-          } else {
+          } else if ($state.params.activelistingid === 'ec9c1913-9bb9-4bd6-9bd5-4046ca93255a') {
+            for (var i = 0; i < media.vrphoto.length; i++) {
+              media.vrphoto[i].navpoints = TourFct.pierreHageTour1[media.vrphoto[i].title]
+            }
+          }
+           else {
             for (var i = 0; i < media.vrphoto.length; i++) {
               media.vrphoto[i].navpoints = [];
             }
