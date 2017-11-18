@@ -546,6 +546,244 @@ angular.module('TourApp')
           x:-78.61201634717985, y:7.667170605794345, z:-11.733800187040881
         }]
       }
+
+      var pierreHageTour1 = {
+        /*Done*/
+        /*Done*/
+        'Entry': [
+          {
+            name: 'Bathroom 1',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG'],
+            x:64.93461120223576, y:-28.81801525187898, z:36.595094333186125
+          },
+          {
+            name: 'Living Room 1',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'],
+            x:71.93293375004002, y:-23.910354681065847, z:-25.263097581709278
+          },
+          {
+            name: 'Kitchen',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+            x:58.680897220153604, y:-18.281144359388172, z:-51.09912865260296
+          }
+        ],
+        'Kitchen': [
+          {
+          name: 'Living Room 1',
+          targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'],
+            x:-37.83302423438883, y:-23.887932263485503, z:66.26118159297842
+          },
+          {
+            name: 'Entry',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG'],
+              x:-25.831044217062676, y:-31.586824255323183, z:68.66521387562847
+          },
+          {
+            name: 'Master Bedroom 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG'],
+              x:17.822633114788303, y:-13.395241350256228, z:76.7336813220103
+          },
+          {
+            name: 'Bathroom 1',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG'],
+              x:-24.165219117161953, y:-12.274400954965914, z:75.24467161053053
+          },
+          {
+            name: 'Living Room 3',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG'],
+              x:74.7275840498858, y:-9.480547609497696, z:-26.512417694071193
+          },
+          {
+            name: 'Living Room 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG'],
+              x:65.08666606040114, y:-28.07980357505235, z:36.895728558862146
+          },
+          {
+            name: 'Balcony',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG'],
+              x:12.838403270237679, y:-17.431289456270015, z:-76.8681686822389
+          }
+        ],
+        /*Done*/
+        'Living Room 1': [
+          {
+            name: 'Living Room 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG'],
+            x:38.87833294607096, y:-56.08100144220999, z:-41.64851090316998
+          },
+          {
+            name: 'Living Room 3',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG'],
+          x:55.87096597214198, y:-7.425169319007493, z:-56.57081803714386
+          },
+          {
+            name: 'Master Bedroom 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG'],
+              x:-8.511973929736294, y:-48.16198456196699, z:63.182156127540836
+          },
+          {
+            name: 'Bedroom 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG'],
+              x:-71.67595968428014, y:-35.02056436468944, z:-3.8784278659166045
+          },
+          {
+            name: 'Bathroom 1',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG'],
+              x:-56.104401094304336, y:-26.685910086458268, z:50.30056565099422
+          },
+          {
+            name: 'Entry',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG'],
+              x:-70.24562294666107, y:-27.278366609909103, z:26.392633094392867
+          },
+          {
+            name: 'Kitchen',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+            x:-41.41791801461254, y:-38.09950716935994, z:-56.77448660473013
+          }
+        ],
+        /*Done*/
+        'Living Room 2': [
+            {
+              name: 'Living Room 1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'],
+              x:-47.30962385332534, y:-42.15864123457259, z:48.684857598471716
+            },
+            {
+              name: 'Living Room 3',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG'],
+            x:57.683594810244514, y:-8.837693948187994, z:-54.52207969813883
+            },
+            {
+              name: 'Kitchen',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+              x:-77.98596994216746, y:-17.387784741101623, z:1.1409402677716256
+            },
+            {
+              name: 'Master Bedroom 2',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG'],
+                x:-39.41915481184804, y:-11.849668973449704, z:68.56231245651622
+            },
+            {
+              name: 'Bedroom 2',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG'],
+              x:-72.96260050577035, y:-16.246081766859852, z:28.041386184778244
+            },
+            {
+              name: 'Bathroom 1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG'],
+                x:-55.982097894322, y:-20.705174128487396, z:53.06985965826725
+            },
+        ],
+        /*done*/
+        'Living Room 3': [
+            {
+              name: 'Living Room 2',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG'],
+              x:71.1974961443066, y:-28.42681178115385, z:22.577970808289695
+            },
+            {
+              name: 'Kitchen',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+              x:48.015921457377935, y:-5.575952421273921, z:63.63564405426527
+            },
+        ],
+        /*done*/
+        'Master Bedroom 2': [
+            {
+              name: 'Living Room 1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'],
+              x:-45.43935121906715, y:-47.89024509756261, z:-44.999287155933516
+            },
+            {
+              name: 'Kitchen',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+              x:-63.94859693013029, y:-28.9774005658829, z:-38.15455667978502
+            },
+            {
+              name: 'Master Bedroom 1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%201.JPG'],
+                x:66.41447194155653, y:-33.98127953649429, z:-28.618410733528233
+            },
+            {
+              name: 'Master Bedroom Closet',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG'],
+                x:35.429269497895866, y:-50.71464700187471, z:50.5920760343842
+            },
+        ],
+        /*done*/
+        'Master Bedroom 1': [
+            {
+              name: 'Master Bedroom 2',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG'],
+                x:66.70382496380796, y:-29.941155214643164, z:32.21138705862328
+            },
+            {
+              name: 'Master Bedroom Closet',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG'],
+                x:74.82953551414558, y:-27.20684802998988, z:-6.450209278839476
+            },
+        ],
+        /*done*/
+        'Master Bedroom Closet': [
+            {
+              name: 'Master Bedroom 2',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%202.JPG'],
+                x:45.08146003553401, y:-61.0540788556294, z:-25.190063193059057
+            },
+            {
+              name: 'Bathroom 1',
+              targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%201.JPG'],
+                x:-67.63843864711573, y:-42.33371572449357, z:-4.123060534514599
+            },
+        ],
+        /*done*/
+        'Bathroom 1': [
+          {
+            name: 'Master Bedroom Closet',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Master%20Bedroom%20Closet.JPG'],
+              x:63.58063414181805, y:-47.695456069220995, z:8.3438832091549
+          },
+          {
+            name: 'Entry',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG'],
+              x:8.968842401322949, y:-38.93652896006292, z:-69.16762256806484
+          },
+        ],
+        'Bedroom 2': [
+          {
+            name: 'Bathroom 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bathroom%202.JPG'],
+            x:-43.35073040122827, y:-49.26804546856826, z:-45.55393715481792
+          },
+          {
+            name: 'Entry',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Entry.JPG'],
+              x:51.55403507199278, y:-24.147015870162246, z:56.127025082533024
+          },
+
+        ],
+        'Bathroom 2': [
+          {
+            name: 'Bedroom 2',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Bedroom%202.JPG'],
+            x:-47.7352731582462, y:-49.96265745768528, z:40.076535939554844
+          },
+        ],
+        'Balcony': [
+          {
+            name: 'Kitchen',
+            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+            x:-61.41552223264219, y:-36.81316326686976, z:-35.61847867219822
+          },
+        ],
+        'Lounge 1': [],
+        'Lounge 2': [],
+        'Gym 1': [],
+        'Gym 2': [],
+        'Gym 3': [],
+
+      }
       function getContent(currentState) {
         return $q(function(resolve, reject) {
           var activeListingId;
@@ -634,7 +872,8 @@ angular.module('TourApp')
         prepMedia: prepMedia,
         getContent: getContent,
         demoNavPointData: demoNavPointData,
-        demo2NavPointData: demo2NavPointData
+        demo2NavPointData: demo2NavPointData,
+        pierreHageTour1: pierreHageTour1
       }
     }
   ])
