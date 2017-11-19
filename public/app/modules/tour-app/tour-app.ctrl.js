@@ -59,7 +59,7 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         function addHardCodedNavPointsToMedia(media) {
-          if ($state.current.name === 'Demo') {
+          if ($state.current.name === 'Demo' || $state.current.name === 'Product') {
             for (var i = 0; i < media.vrphoto.length; i++) {
               media.vrphoto[i].navpoints = TourFct.demoNavPointData[media.vrphoto[i].title]
             }

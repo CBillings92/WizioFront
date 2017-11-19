@@ -62,7 +62,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             activeListingId: function() {
                 var activeListingId = env === 'test' || env === 'dev'
                     ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
-                    : 'ddef35a3-0afb-4e8c-97b5-60e057004034'
+                    : 'ec9c1913-9bb9-4bd6-9bd5-4046ca93255a'
                 return activeListingId;
             }
         },
@@ -71,7 +71,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
             activeListingId: function() {
                 var activeListingId = env === 'test' || env === 'dev'
                     ? 'ddef35a3-0afb-4e8c-97b5-60e057004034'
-                    : 'ddef35a3-0afb-4e8c-97b5-60e057004034';
+                    : 'ec9c1913-9bb9-4bd6-9bd5-4046ca93255a';
                 return activeListingId;
             }
         },
