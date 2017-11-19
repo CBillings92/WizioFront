@@ -59,7 +59,9 @@ margin-right: auto;
 
 .tour-navbar {
     position: relative;
-    background-color: $gray;
+    background-color: $dk-gray;
+    opacity: .75;
+    padding: 4px 0px;
 
     @media (max-width: $screen-md-min) {
         background-color: transparent;
@@ -128,6 +130,11 @@ margin-right: auto;
         color:white;
         text-overflow: ellipsis;
     }
+
+    .fa{
+      font-size: 35px;
+      padding: 0px 10px;
+    }
 }
 
 .tour-photos-button {
@@ -142,16 +149,10 @@ margin-right: auto;
     left: 50px;
 }
 
-.tour-agentprofile-container {
-
-}
-
-.tour-vrplayer-container {
-
-}
-
-.tour-poweredby-container {
-
+#Agent-Profile__Photo img{
+  width:200px;
+  height:200px;
+  margin-bottom: 5px;
 }
 
 #pano:hover {
