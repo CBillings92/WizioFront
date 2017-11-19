@@ -88,18 +88,30 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       //GET APARTMENT ADDRESS AND UNIT NUMBER MODAL
       createModal(createUnitModalConfig)
         .then(function(createUnitAPIResponse) {
-          var data = createUnitAPIResponse.payload;
-          var dataForTourManagement = {
-            Apartment: data.Apartment.Instance,
-            SubscriptionApartment: {
+          if (createUnitAPIResponse.success) {
+            var data = createUnitAPIResponse.payload;
+            var dataForTourManagement = {
+              Apartment: data.Apartment.Instance,
+              SubscriptionApartment: {
                 pubid: data.SubscriptionApartment.Instance.pubid,
                 id: data.SubscriptionApartment.Instance.id
+              }
             }
+            return $state.go('TourManagement', {
+              'data': dataForTourManagement,
+              'action': 'CreateTour'
+            });
+
+          } else {
+            ModalBuilderFct.buildSimpleModal(
+                "",
+                "OK",
+                "Tour Created Already!",
+                'This tour has already been created under your subscription. Please search for this tour and Activate it in your account dashboard.'
+            ).then(function(result) {
+                return;
+            });
           }
-          return $state.go('TourManagement', {
-            'data': dataForTourManagement,
-            'action': 'CreateTour'
-          });
         })
     }
 
