@@ -31,12 +31,8 @@ margin-right: auto;
 }
 
 .outline-photo-orange {
-    border-color: orange;
-    border-radius: 3px;
-    border-width: 5px;
-    border-style: solid;
-
-
+    outline: 5px solid orange;
+    outline-offset: -5px;
 }
 
 .tour-floorplan-container {
