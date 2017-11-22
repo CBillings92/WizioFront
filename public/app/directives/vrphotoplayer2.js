@@ -62,7 +62,7 @@ angular.module('Directives')
                         camera.position.x = 0.1;
                         camera.position.y = 0;
 
-                        controls = new THREE.OrbitControls(camera);
+                        // controls = new THREE.OrbitControls(camera);
                         controls.noPan = true;
                         controls.noZoom = true;
                         controls.autoRotate = true;

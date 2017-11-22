@@ -82,7 +82,6 @@ angular.module('TourMgmtApp')
        * @return {null}       []
        */
       $scope.selectPhotoForModification = function(photo) {
-        console.dir("NOT TWICE");
         var TourMedia = $scope.data.TourMedia;
         /* Check if there is already a photoForModification (there is none on app init) */
         if ($scope.photoForModification) {
@@ -114,9 +113,7 @@ angular.module('TourMgmtApp')
               title: photo.title
             }
           }
-          console.dir('INHERE');
           wizio.init(data.htmlElemId, data.photoData, {}, function(response){
-            console.dir('fuck');
             LoadingSpinnerFct.hide('vrPlayerLoader');
             wizio.toggleCoordCollection();
           });
@@ -319,7 +316,6 @@ angular.module('TourMgmtApp')
 
       $scope.atlasClick = function(ev){
         wizio.getCoords(ev, function(response){
-          console.dir(response);
           var navpointObj = {
             x: response.point.x,
             y: response.point.y,
@@ -327,7 +323,6 @@ angular.module('TourMgmtApp')
             name: ''
           }
           wizio.dropNavPoint(navpointObj, function(response){
-            console.dir('wee');
           })
           // wizio.dropNavPoint()
         })
