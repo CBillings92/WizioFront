@@ -160,7 +160,9 @@ angular.module('TourMgmtApp')
        * @return {[type]} [description]
        */
       $scope.addPhotosForUpload = function() {
-        document.getElementById('uploadMultiplePhotosInputButton').onchange = function() {
+        var elem = document.getElementById('uploadMultiplePhotosInputButton');
+        elem.disabled = false;
+        elem.onchange = function() {
           var TourMedia = $scope.data.TourMedia;
           var Apartment = $scope.data.Apartment;
           var SubscriptionApartment = $scope.data.SubscriptionApartment;
@@ -174,6 +176,7 @@ angular.module('TourMgmtApp')
         }
 
         $('#uploadMultiplePhotosInputButton').trigger('click');
+        elem.disabled = true;
       }
 
       $scope.renamePhoto = renamePhoto;
@@ -191,7 +194,9 @@ angular.module('TourMgmtApp')
        * @return {[type]} [description]
        */
       $scope.addFloorPlan = function() {
-        document.getElementById('uploadFloorPlanInputButton').onchange = function(){
+        var elem = document.getElementById('uploadFloorPlanInputButton');
+        elem.disabled = false;
+        elem.onchange = function(){
           $scope.data.TourMedia.floorplan = TourMgmtFct.floorplan.buildFloorPlanObj(this.files[0], $scope.data);
           $scope.data.Apartment.Floor_Plan = $scope.data.TourMedia.floorplan.awsurl;
           $scope.$apply();
@@ -203,6 +208,7 @@ angular.module('TourMgmtApp')
         }
         // manually trigger hidden file input
         $('#uploadFloorPlanInputButton').trigger('click');
+        elem.disabled = true;
       }
 
       /**
