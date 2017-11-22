@@ -35,6 +35,8 @@ margin-right: auto;
     border-radius: 3px;
     border-width: 5px;
     border-style: solid;
+
+
 }
 
 .tour-floorplan-container {
@@ -105,8 +107,7 @@ margin-right: auto;
 .tour-photos-container {
     position: absolute;
     z-index:100;
-    top:82%;
-    height:18%;
+    bottom:5px;
     display: flex;
     align-items: center;
     justify-content: center;
