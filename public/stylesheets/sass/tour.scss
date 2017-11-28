@@ -31,10 +31,8 @@ margin-right: auto;
 }
 
 .outline-photo-orange {
-    border-color: orange;
-    border-radius: 3px;
-    border-width: 5px;
-    border-style: solid;
+    outline: 5px solid orange;
+    outline-offset: -5px;
 }
 
 .tour-floorplan-container {
@@ -105,8 +103,7 @@ margin-right: auto;
 .tour-photos-container {
     position: absolute;
     z-index:100;
-    top:82%;
-    height:18%;
+    bottom:5px;
     display: flex;
     align-items: center;
     justify-content: center;
