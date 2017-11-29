@@ -41,9 +41,14 @@ angular.module('LoginApp')
                 .then(function(result){
                     $state.go('Account.Dashboard');
                     return $uibModalInstance.close('ok');
-
                 })
                 .catch(function (error) {
+                    ModalBuilderFct.buildSimpleModal(
+                      "",
+                      "OK",
+                      "Login Failed",
+                      "Incorrect email or password. Please try entering your email and password again."
+                    )
                     $scope.password = '';
                 });
             };
