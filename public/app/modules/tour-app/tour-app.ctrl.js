@@ -59,7 +59,7 @@ angular.module('TourApp').controller('TourCtrl', [
         }
 
         function addHardCodedNavPointsToMedia(media) {
-          if (($state.current.name === 'Demo' || $state.current.name === 'Product') && WizioConfig.ENV !== 'dev') {
+          if (($state.current.name === 'Demo' || $state.current.name === 'Product') && (WizioConfig.ENV !== 'dev' && WizioConfig.ENV !== 'test')) {
             for (var i = 0; i < media.vrphoto.length; i++) {
               media.vrphoto[i].navpoints = TourFct.pierreHageTour1[media.vrphoto[i].title]
             }
