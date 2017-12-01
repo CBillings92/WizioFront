@@ -3,15 +3,19 @@
     <button type="button" class="btn btn-lg btn-outline--orange" ng-click="activeToursToggle('showInactive')" name="button">Show Inactive Tours</button> -->
     <div class="row">
         <div class="col-xs-9">
-            <h2 class="user-info__name">{{viewActiveTours ? 'Activated Apartments:' : 'Inactive Tours'}}</h2>
+          <h2 class="user-info__name">Your Tours</h2>
+            <!-- <h2 class="user-info__name">{{viewActiveTours ? 'Your Tours:' : 'Inactive Tours'}}</h2> -->
         </div>
         <div class="col-xs-3">
-            <button type="button" style="margin-top:5px; float:right;" ng-click="changeTourListView()" class="btn btn-fill--orange" name="button">View {{viewActiveTours ? 'Inactive Tours' : 'Active Tours'}}</button>
+            <!-- <button type="button" style="margin-top:5px; float:right;" ng-click="changeTourListView()" class="btn btn-fill--orange" name="button">View {{viewActiveTours ? 'Inactive Tours' : 'Active Tours'}}</button> -->
         </div>
 
     </div>
     <div class="tour-list-container">
-        <div ng-if="viewActiveTours" class="" ng-repeat="tour in activeListings">
+      <div class="">
+        <input type="text" name="" value="" ng-model='test'>
+      </div>
+        <div ng-if="viewActiveTours" class="" ng-repeat="tour in activeListings | filter: test">
             <tour-panel-dir tour='tour'></tour-panel-dir>
         </div>
         <div ng-if="!viewActiveTours" class="" ng-repeat="tour in inactiveListings">

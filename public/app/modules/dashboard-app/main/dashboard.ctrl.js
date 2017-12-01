@@ -13,6 +13,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'lodash',
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
 
+
+
       // short hand the factory function for ease of use
       var createModal = ModalBuilderFct.buildModalWithController;
         $state.go('Account.Dashboard.ShareTour');
@@ -35,6 +37,11 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.loading = false;
     // get the user from session storage
     var user = TokenSvc.decode();
+    
+    $scope.createToursPermitted = false;
+    if (user.email.includes('@wizio.co')) {
+      $scope.createToursPermitted = true;
+    }
     var subsid = user.Subscriptions[0].id;
     if (subsid === 6 || subsid === 10 || subsid === 17) {
       TokenSvc.deleteToken();
