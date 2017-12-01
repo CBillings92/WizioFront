@@ -39,7 +39,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     var user = TokenSvc.decode();
 
     $scope.createToursPermitted = false;
-    if (user.email.includes('@wizio.co')) {
+    if (user.email.includes('@wizio.co') || user.email = 'Esolem@lreadvisors.com') {
       $scope.createToursPermitted = true;
     }
     var subsid = user.Subscriptions[0].id;
