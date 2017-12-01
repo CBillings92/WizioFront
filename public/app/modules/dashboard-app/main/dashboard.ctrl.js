@@ -37,7 +37,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.loading = false;
     // get the user from session storage
     var user = TokenSvc.decode();
-    
+
     $scope.createToursPermitted = false;
     if (user.email.includes('@wizio.co')) {
       $scope.createToursPermitted = true;
@@ -167,6 +167,23 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         }
       })
     });
+
+    $scope.supportModal = function(){
+      ModalBuilderFct.buildModalWithController(
+        {
+          size: 'md',
+          templateUrl: WizioConfig.modals.support.main.view,
+          controller: WizioConfig.modals.support.main.controller,
+          modalData: {}
+        }
+      )
+      .then(function(response){
+        return
+      })
+      .catch(function(err){
+        return
+      })
+    }
 
   }
 ]);

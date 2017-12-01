@@ -255,6 +255,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
           view: MODULESPATH + 'dashboard-app/reassign-tours/modal/reassign-tour-confirm-modal.html',
           controller: 'ReassignTourConfirmModalCtrl'
         }
+      },
+      support: {
+        main: {
+          view: MODULESPATH + 'dashboard-app/support/support.mdl.html',
+          controller: 'SupportCtrl'
+        }
       }
     },
 
