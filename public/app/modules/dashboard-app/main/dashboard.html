@@ -4,26 +4,33 @@
             <user-info-dir></user-info-dir>
             <div class="col-md-12">
                 <button  ng-click="changeState('ShareTour')" ng-class="state.includes('ShareTour') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-fill--blue">
-                    Share Tour
+                    Your Tours
                 </button>
-                <button class="btn btn-lg btn-block btn-outline--blue" ng-click="createTour()">
+                <button class="btn btn-lg btn-block btn-outline--blue" ng-show='createToursPermitted' ng-click="createTour()">
                     Create Tour
                 </button>
                 <button ng-click="modifyExistingTour()" type="button" class="btn btn-outline--blue btn-lg btn-block" >
                     Modify Tour
                 </button>
-                <button ng-class="state.includes('Search') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue " type="button" ng-click="changeState('Search')" >
+                <!-- Temporarily removing from dashboard -->
+                <!-- <button ng-class="state.includes('Search') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue " type="button" ng-click="changeState('Search')" >
                     Search
-                </button>
-                <button ng-class="state.includes('Invite') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('Invite')">
+                </button> -->
+                <!-- Temporarily removing from dashboard -->
+                <!-- <button ng-class="state.includes('Invite') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('Invite')">
                     Invite
-                </button>
-                <button ng-class="state.includes('AgentInfo') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('AgentInfo')" >
+                </button> -->
+                <!-- Temporarily removing from dashboard -->
+                <!-- <button ng-class="state.includes('AgentInfo') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('AgentInfo')" >
                     Agent Info
-                </button>
+                </button> -->
                 <button type="button" ng-if="wizioAdmin" ng-class="state.includes('ReassignTours') ? 'btn-fill--blue' : 'btn-outline--blue'" class="btn btn-lg btn-block btn-outline--blue" ng-click="changeState('ReassignTours')" name="button">
                   Reassign Tour
                 </button>
+                <button type="button" class="btn btn-lg btn-block btn-outline--blue" ng-click="supportModal()" name="button">
+                  Help
+                </button>
+
             </div>
         </div>
         <div class="col-md-9">
