@@ -852,7 +852,7 @@ angular.module('TourApp')
           {
             name: 'Living Room',
             targetImageURLs:washingtonDCTourData[this.name],
-            x:-75.24677733678249, y:-18.862962390454374, z:-19.115364200716574
+            x:76.93746159211462, y:-21.38286240779331, z:-1.690845224339131
           },
           {
             name: 'Bathroom 1',
