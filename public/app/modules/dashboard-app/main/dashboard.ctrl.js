@@ -13,7 +13,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'lodash',
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
 
-
+      $scope.modifyTourAllowed = true;
 
       // short hand the factory function for ease of use
       var createModal = ModalBuilderFct.buildModalWithController;
@@ -41,6 +41,9 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.createToursPermitted = true;
     if (user.email.includes('@wizio.co') || user.email === 'Esolem@lreadvisors.com') {
       $scope.createToursPermitted = true;
+    }
+    if (user.email === 'amcginty@nomadicrealestate.com') {
+      $scope.modifyTourAllowed = false;
     }
     var subsid = user.Subscriptions[0].id;
     if (subsid === 6 || subsid === 10 || subsid === 17) {

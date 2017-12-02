@@ -9,7 +9,7 @@
                 <button class="btn btn-lg btn-block btn-outline--blue" ng-show='createToursPermitted' ng-click="createTour()">
                     Create Tour
                 </button>
-                <button ng-click="modifyExistingTour()" type="button" class="btn btn-outline--blue btn-lg btn-block" >
+                <button ng-click="modifyExistingTour()" ng-if='modifyTourAllowed' type="button" class="btn btn-outline--blue btn-lg btn-block" >
                     Modify Tour
                 </button>
                 <!-- Temporarily removing from dashboard -->
