@@ -784,6 +784,164 @@ angular.module('TourApp')
         'Gym 3': [],
 
       }
+
+      var washingtonDCTourData = {
+        pubid: 'f11bea7a-1e53-417f-bf55-8de4ae660264',
+        'Living Room': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Living%20Room.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Living%20Room.JPG'
+        ],
+        'Kitchen': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Kitchen.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Kitchen.JPG'
+        ],
+        'Downstairs Hallway': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Downstairs%20Hallway.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Downstairs%20Hallway.JPG'
+        ],
+        'Upstairs Hallway': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Upstairs%20Hallway.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Upstairs%20Hallway.JPG'
+        ],
+        'Bathroom 1': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bathroom%201.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bathroom%201.JPG'
+        ],
+        'Bathroom 2': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bathroom%202.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bathroom%202.JPG'
+        ],
+        'Bathroom 3': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bathroom%203.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bathroom%203.JPG'
+        ],
+        'Bedroom 1': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bedroom%201.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bedroom%201.JPG'
+        ],
+        'Bedroom 2': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bedroom%202.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bedroom%202.JPG'
+        ],
+        'Bedroom 3': [
+          'https://cdn.wizio.co/800x400/'+this.pubid+'/Bedroom%203.JPG',
+          'https://cdn.wizio.co/'+this.pubid+'/Bedroom%203.JPG'
+        ],
+
+      }
+
+      var washingtonDCTour = {
+        'Living Room': [
+          {
+            name: 'Downstairs Hallway',
+            targetImageURLs:washingtonDCTourData[this.name],
+            x:76.34940410768908, y:-7.365072051089269, z:-22.28424357776132
+          },
+          {
+            name: 'Upstairs Hallway',
+            targetImageURLs:washingtonDCTourData[this.name],
+            x:21.58821060370848, y:29.347160911802842, z:-71.1116711167352
+          }
+        ],
+        'Downstairs Hallway': [
+          {
+            name: 'Kitchen',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:-75.24677733678249, y:-18.862962390454374, z:-19.115364200716574
+          },
+          {
+            name: 'Living Room',
+            targetImageURLs:washingtonDCTourData[this.name],
+            x:-75.24677733678249, y:-18.862962390454374, z:-19.115364200716574
+          },
+          {
+            name: 'Bathroom 1',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:45.91180202124604, y:-46.54015192876554, z:-45.948053351852955
+          }
+        ],
+        'Kitchen': [
+          {
+            name: 'Downstairs Hallway',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:-70.63974468312792, y:-25.854793638151428, z:-26.829392257350957
+          }
+        ],
+        'Upstairs Hallway': [
+          {
+            name: 'Living Room',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:14.433878136803814, y:-65.47841209529052, z:43.5466293666279
+          },
+          {
+            name: 'Bedroom 3',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:-77.04311042958523, y:-14.618318202955823, z:-15.305756821522653
+          },
+          {
+            name: 'Bedroom 1',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:10.415791003638475, y:-38.323141488709624, z:-69.285766495794
+
+          },
+          {
+            name: 'Bedroom 2',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:72.58013425927531, y:-33.02064817804915, z:-4.218058474766019
+          },
+          {
+            name: 'Bathroom 2',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:78.43989793659357, y:-5.905534214782643, z:13.964173733222289
+          }
+        ],
+        'Bedroom 3': [
+          {
+            name: 'Upstairs Hallway',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:-77.44179913821007, y:-15.869296947918086, z:-11.200050334932541
+          },
+          {
+            name: 'Bathroom 3',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:-66.48157432476506, y:-31.582009341309135, z:31.1200788829713
+          }
+        ],
+        'Bedroom 2': [
+          {
+            name: 'Upstairs Hallway',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:4.6190231134188, y:-29.193674048839274, z:-74.19252195068074
+          }
+        ],
+        'Bedroom 1': [{
+          name: 'Upstairs Hallway',
+          targetImageURLs: washingtonDCTourData[this.name],
+          x:-37.268254634212894, y:-32.02357443828241, z:63.031549930833535
+        }],
+        'Bathroom 3': [{
+          name: 'Bedroom 3',
+          targetImageURLs: washingtonDCTourData[this.name],
+          x:-75.23730201039183, y:-23.084101303639518, z:13.618266722565973
+        }],
+        'Bathroom 2': [{
+          name: 'Upstairs Hallway',
+          targetImageURLs: washingtonDCTourData[this.name],
+          x:74.74495796599511, y:-13.080070423573426, z:-25.15307963503159
+        }, {
+          name: 'Bedroom 2',
+          targetImageURLs: washingtonDCTourData[this.name],
+          x:70.59073660898059, y:-36.04463818287101, z:-10.148690170985775
+        }],
+        'Bathroom 1': [
+          {
+            name: 'Downstairs Hallway',
+            targetImageURLs: washingtonDCTourData[this.name],
+            x:7.257166072076741, y:-48.22802565502748, z:63.32825829852722
+          }
+        ],
+
+      }
       function getContent(currentState) {
         return $q(function(resolve, reject) {
           var activeListingId;
@@ -873,7 +1031,8 @@ angular.module('TourApp')
         getContent: getContent,
         demoNavPointData: demoNavPointData,
         demo2NavPointData: demo2NavPointData,
-        pierreHageTour1: pierreHageTour1
+        pierreHageTour1: pierreHageTour1,
+        washingtonDCTour: washingtonDCTour
       }
     }
   ])
