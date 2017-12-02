@@ -32,7 +32,6 @@ angular.module('TourApp')
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
             $scope.floorplan = data.floorplan;
-            alert('hello');
             document.getElementById('pano').addEventListener('click', onTourClick, false);
             createThumbnailURLs();
             $scope.photoIndex = 0;
