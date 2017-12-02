@@ -32,6 +32,7 @@ angular.module('TourApp')
             $scope.media = data.media;
             $scope.showInterface = data.showInterface;
             $scope.floorplan = data.floorplan;
+            alert('hello');
             document.getElementById('pano').addEventListener('click', onTourClick, false);
             createThumbnailURLs();
             $scope.photoIndex = 0;
@@ -57,20 +58,26 @@ angular.module('TourApp')
             var chosenImage;
             var photoIndex;
             var scrollTo;
-            for (var i = 0; i < $scope.media.vrphoto.length; i++) {
-              if ($scope.media.vrphoto[i].title === response.object.name) {
-                photoIndex = i;
-                chosenImage = $scope.media.vrphoto[i]
-                break;
-              }
+            if (TokenSvc.decode().email === 'cameron@wizio.co') {
+              console.dir(response.coordClick);
             }
-            wizio.changeImage(chosenImage, function(response){
-              scrollTo = 200 * photoIndex + 1;
-              moveSlider(1, scrollTo);
-              $scope.photoIndex = photoIndex;
-              $scope.$apply();
-              return response;
-            })
+            if (response.object.name) {
+              for (var i = 0; i < $scope.media.vrphoto.length; i++) {
+                if ($scope.media.vrphoto[i].title === response.object.name) {
+                  photoIndex = i;
+                  chosenImage = $scope.media.vrphoto[i]
+                  break;
+                }
+              }
+              wizio.changeImage(chosenImage, function(response){
+                scrollTo = 200 * photoIndex + 1;
+                moveSlider(1, scrollTo);
+                $scope.photoIndex = photoIndex;
+                $scope.$apply();
+                return response;
+              })
+            }
+            return;
           })
         }
         // For photo and floorplan selection
