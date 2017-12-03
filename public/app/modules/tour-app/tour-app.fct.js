@@ -776,7 +776,7 @@ angular.module('TourApp')
         //     targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
         //     x:-61.41552223264219, y:-36.81316326686976, z:-35.61847867219822
         //   },
-        ],
+        // ],
         'Lounge 1': [],
         'Lounge 2': [],
         'Gym 1': [],
