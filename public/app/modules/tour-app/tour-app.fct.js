@@ -598,11 +598,11 @@ angular.module('TourApp')
             targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%202.JPG'],
               x:65.08666606040114, y:-28.07980357505235, z:36.895728558862146
           },
-          {
-            name: 'Balcony',
-            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG'],
-              x:12.838403270237679, y:-17.431289456270015, z:-76.8681686822389
-          }
+          // {
+          //   name: 'Balcony',
+          //   targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Balcony.JPG'],
+          //     x:12.838403270237679, y:-17.431289456270015, z:-76.8681686822389
+          // }
         ],
         /*Done*/
         'Living Room 1': [
@@ -770,12 +770,12 @@ angular.module('TourApp')
             x:-47.7352731582462, y:-49.96265745768528, z:40.076535939554844
           },
         ],
-        'Balcony': [
-          {
-            name: 'Kitchen',
-            targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
-            x:-61.41552223264219, y:-36.81316326686976, z:-35.61847867219822
-          },
+        // 'Balcony': [
+        //   {
+        //     name: 'Kitchen',
+        //     targetImageURLs: ['https://d1mze0h82dkhhe.cloudfront.net/800x400/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG','https://d1mze0h82dkhhe.cloudfront.net/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG'],
+        //     x:-61.41552223264219, y:-36.81316326686976, z:-35.61847867219822
+        //   },
         ],
         'Lounge 1': [],
         'Lounge 2': [],
