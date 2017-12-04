@@ -149,3 +149,21 @@
 @media (min-width: $screen-md-min) {
   .modal-lg { width: $modal-lg; }
 }
+
+// ------- support modal ------- //
+.support-modal{
+  text-align: center;
+  border-bottom: none;
+  background-color: #f79739;
+  color: #fff;
+
+  .modal-title{
+    color: #fff;
+
+  }
+}
+
+.support-modal img{
+  width: 450px;
+  margin-bottom: 10px;
+}
