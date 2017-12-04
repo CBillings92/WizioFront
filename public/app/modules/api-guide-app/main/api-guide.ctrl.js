@@ -7,6 +7,7 @@ angular.module('ApiGuideApp')
         'ModalBuilderFct',
         'WizioConfig',
         function ($scope, ModalBuilderFct, WizioConfig) {
+
             $scope.triggerModal = function () {
                 // api-request configurations to build modal with
                 var apiGuideConfig = WizioConfig.pages.apiguide;
