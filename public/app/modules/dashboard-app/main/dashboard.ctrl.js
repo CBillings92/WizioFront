@@ -188,5 +188,10 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       })
     }
 
+    $scope.requestTours = function(){
+      /* Launch typeform */
+      window.open('https://wiziotour.youcanbook.me/', '_blank');
+    }
+
   }
 ]);
