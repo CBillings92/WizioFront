@@ -72,6 +72,10 @@ angular.module('TourApp').controller('TourCtrl', [
             for (var i = 0; i < media.vrphoto.length; i++) {
               media.vrphoto[i].navpoints = TourFct.pierreHageTour1[media.vrphoto[i].title]
             }
+          } else if ($state.params.activelistingid === '0dcfe71f-2caa-4592-a4b8-db4bb6e3cdf2'){
+            for (var i = 0; i < media.vrphoto.length; i++) {
+              media.vrphoto[i].navpoints = TourFct.washingtonDCTour[media.vrphoto[i].title]
+            }
           }
            else {
             for (var i = 0; i < media.vrphoto.length; i++) {

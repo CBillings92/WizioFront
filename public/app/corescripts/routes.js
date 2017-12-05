@@ -609,9 +609,6 @@ angular.module('MainApp')
                         responseError: function(response) {
                             if (response.status === 401 || response.status === 403) {
                                 TokenSvc.deleteToken();
-                                $rootScope.$emit("unauthorized");
-
-
                             }
                             return response;
 

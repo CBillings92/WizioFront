@@ -13,6 +13,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     'lodash',
     function($scope, $resource, $q, TokenSvc, LoadingSpinnerFct, WizioConfig, ModalBuilderFct, AWSFct, DashboardFct, StorageApp, $state, lodash) {
 
+      $scope.modifyTourAllowed = true;
+
       // short hand the factory function for ease of use
       var createModal = ModalBuilderFct.buildModalWithController;
         $state.go('Account.Dashboard.ShareTour');
@@ -35,6 +37,14 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.loading = false;
     // get the user from session storage
     var user = TokenSvc.decode();
+
+    $scope.createToursPermitted = true;
+    if (user.email.includes('@wizio.co') || user.email === 'Esolem@lreadvisors.com') {
+      $scope.createToursPermitted = true;
+    }
+    if (user.email === 'amcginty@nomadicrealestate.com') {
+      $scope.modifyTourAllowed = false;
+    }
     var subsid = user.Subscriptions[0].id;
     if (subsid === 6 || subsid === 10 || subsid === 17) {
       TokenSvc.deleteToken();
@@ -160,6 +170,23 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         }
       })
     });
+
+    $scope.supportModal = function(){
+      ModalBuilderFct.buildModalWithController(
+        {
+          size: 'md',
+          templateUrl: WizioConfig.modals.support.main.view,
+          controller: WizioConfig.modals.support.main.controller,
+          modalData: {}
+        }
+      )
+      .then(function(response){
+        return
+      })
+      .catch(function(err){
+        return
+      })
+    }
 
   }
 ]);
