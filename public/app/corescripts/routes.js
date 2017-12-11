@@ -414,6 +414,16 @@ angular.module('MainApp')
                     },
                     data: trueRequiredLogin
                 })
+                .state('TermsOfService', {
+                  url: '/termsofservice',
+                  views: {
+                    "navbar": navbar,
+                    "footer": footer,
+                    "maincontent": {
+                      templateUrl: PAGECONFIG.termsOfService.view
+                    }
+                  }
+                })
                 .state('Application', {
                     url: '/application',
                     views: {
@@ -518,7 +528,7 @@ angular.module('MainApp')
                 .state('Terms', {
                     url: '/terms',
                     onEnter: function() {
-                        window.open('https://drive.google.com/open?id=0B0d2YtuXJgS5OGxQaDdTQ2M2ZWM', '_self');
+                        window.open('https://docs.google.com/document/d/1mazUTtcp2nqhOGhJNoxYA9CmaZR1gtY6Jv8R961fuhM', '_self');
                     }
                 })
                 .state('AcceptableUse', {
