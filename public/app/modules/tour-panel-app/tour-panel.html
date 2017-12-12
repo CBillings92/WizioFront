@@ -26,6 +26,9 @@
                   <div class="col-md-6" ng-hide="activelisting.isPublic">
                     <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">New Password</button>
                   </div>
+                  <div class="col-md-6">
+                    <button data-clipboard-text="<iframe src={{activeListingURL}} height='500px'; width='500px;'></iframe>" class="btn btn-md btn-outline--orange clipboard form-control">Copy iFrame</button>
+                  </div>
                 </div>
                 <div class="" style="position: absolute; right: 14px; top:3px;">
                   <i ng-show="!activelisting.isPublic" class="fa fa-lock fa-2x" aria-hidden="true"></i>
