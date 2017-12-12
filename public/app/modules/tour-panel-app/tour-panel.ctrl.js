@@ -10,6 +10,7 @@ angular.module('TourPanelApp')
             $scope.activelisting = $scope.tour;
             new Clipboard('.clipboard');
             $scope.windowLocationOrigin = window.location.origin;
+            $scope.activeListingURL = window.location.origin + '/tour/' + $scope.activelisting.pubid
             $scope.openInNewPage = function(pubid){
               window.open($scope.windowLocationOrigin + '/tour/' + pubid, '_blank');
             }
