@@ -210,6 +210,9 @@ angular.module('MainApp').constant('WizioConfig', (function() {
       },
       termsOfService: {
         view: MODULESPATH + 'termsapp/termsofservice.html'
+      },
+      privacyPolicy: {
+        view: MODULESPATH + 'termsapp/privacy-policy.html'
       }
     },
     directives: {

@@ -424,6 +424,16 @@ angular.module('MainApp')
                     }
                   }
                 })
+                .state('PrivacyPolicy', {
+                  url: '/privacypolicy',
+                  views: {
+                    "navbar": navbar,
+                    "footer": footer,
+                    "maincontent": {
+                      templateUrl: PAGECONFIG.privacyPolicy.view
+                    }
+                  }
+                })
                 .state('Application', {
                     url: '/application',
                     views: {
