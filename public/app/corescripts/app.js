@@ -38,6 +38,7 @@
     angular.module('FlyOutMenuApp', []);
     angular.module('TourMgmtApp', []);
     angular.module('ProductInfoApp', []);
+    angular.module('EmptyStateApp', []);
 
     //LOAD 'MainApp' ANGULAR module
     //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -66,6 +67,7 @@
             'SharedFactoryApp',
             'SharedServiceApp',
             'PhotographerApp',
+            'EmptyStateApp',
             'SearchApp',
             'ThumbnailApp',
             'TourPasswordApp',

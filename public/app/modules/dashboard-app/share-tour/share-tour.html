@@ -16,10 +16,12 @@
     </div>
     <div class="tour-list-container">
         <div ng-if="viewActiveTours" class="" ng-repeat="tour in activeListings | filter: test">
-            <tour-panel-dir tour='tour'></tour-panel-dir>
+          <empty-state-dir ng-if="activeListings.length === 0"></empty-state-dir>
+          <tour-panel-dir tour='tour'></tour-panel-dir>
         </div>
         <div ng-if="!viewActiveTours" class="" ng-repeat="tour in inactiveListings">
-            <tour-panel-dir tour='tour'></tour-panel-dir>
+          <empty-state-dir ng-if="inactiveListings.length === 0"></empty-state-dir>
+          <tour-panel-dir tour='tour'></tour-panel-dir>
         </div>
     </div>
 </div>
