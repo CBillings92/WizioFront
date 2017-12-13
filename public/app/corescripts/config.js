@@ -234,6 +234,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
       tourPanel: {
         view: MODULESPATH + 'tour-panel-app/tour-panel.html',
         controller: 'TourPanelCtrl'
+      },
+      emptyState: {
+        view: MODULESPATH + 'empty-state-app/empty-state.dir.html',
+        controller: 'EmptyStateCtrl'
       }
     },
     modals: {
