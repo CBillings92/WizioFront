@@ -174,7 +174,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.supportModal = function(){
       ModalBuilderFct.buildModalWithController(
         {
-          size: 'md',
+          size: 'lg',
           templateUrl: WizioConfig.modals.support.main.view,
           controller: WizioConfig.modals.support.main.controller,
           modalData: {}

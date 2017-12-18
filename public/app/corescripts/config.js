@@ -207,6 +207,9 @@ angular.module('MainApp').constant('WizioConfig', (function() {
           view: MODULESPATH + 'tour-app/tour-app.html',
           controller: 'TourCtrl'
         }
+      },
+      termsOfService: {
+        view: MODULESPATH + 'termsapp/termsofservice.html'
       }
     },
     directives: {
