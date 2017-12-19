@@ -1,10 +1,66 @@
-<div class="modal-header">
+
+<div class="support-close">
   <close-modal-dirv></close-modal-dirv>
-  <h3 class="modal-title">Need Help?</h3>
 </div>
-<div class="modal-body">
-  Have questions or need help? Contact Wizio support at <a href="mailto: support@wizio.co">support@wizio.co</a>
+<div class="modal-body support-modal-body">
+  <div id="support-carousel" class="carousel slide" data-ride="carousel">
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+
+      <div class="item active">
+        <div class="support-modal">
+          <div>
+            <img src="../viewtemplates/images/support gifs/Wizio-1.gif" style="max-height:420px" alt="Dashboard help">
+            <div class="section-head"> Welcome to your Account Dashboard!</div>
+            <div class="large-body"> From this dashboard you can view, delete, password protect and share your Wizio tours </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="support-modal" style="">
+          <div>
+            <img src="../viewtemplates/images/support gifs/Wizio-2.gif" style="max-height:420px" alt="Edit a tour">
+            <div class="section-head">Edit a tour</div>
+            <div class="large-body">  To edit or rename a tour, click on the Modify tour button and then select the tour you'd like to change </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="support-modal" style="">
+          <div style="padding-top: 15%; margin:0 auto; display: block;">
+
+            <div class="section-head"><h2>Still stuck?</h2></div>
+            <div class="large-body"><h3>Reach out to us at <a href="mailto:support@wizio.co" target="_top"> support@wizio.co </h3> </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+
+  </div>
+
 </div>
-<div class="modal-footer">
-  <button type="button" class='btn btn-lg btn-fill--orange' ng-click="submitModal()" name="button">Close</button>
+<div class="modal-footer support-modal-footer">
+  <!-- Controls -->
+  <a class="left support-carousel-control" data-target="#support-carousel" role="button" data-slide="prev">
+    <i class="fa fa-angle-left fa-4x"></i>
+  </a>
+  <a class="right support-carousel-control" data-target="#support-carousel" role="button" data-slide="next">
+    <i class="fa fa-angle-right fa-4x"></i>
+  </a>
+
+  <!-- Indicators -->
+  <!-- <ol class="support-carousel-indicators">
+  <li data-target="#support-carousel" data-slide-to="0" class="active"></li>
+  <li data-target="#support-carousel" data-slide-to="1"></li>
+  <li data-target="##support-carousel" data-slide-to="2"></li>
+</ol> -->
+
 </div>

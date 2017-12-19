@@ -66,10 +66,17 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
 
     function parseTours(tours) {
       StorageApp.store('ActiveListings', tours);
-      $scope.orderedTours = lodash.groupBy(tours, 'isActive')
-      $scope.$broadcast('ActiveListingsLoaded', $scope.orderedTours);
-      $scope.inactiveListings = $scope.orderedTours[false];
-      $scope.activeListings = $scope.orderedTours[true];
+      if (tours.length !==0) {
+        var orderedTours = lodash.groupBy(tours, 'isActive');
+        $scope.inactiveListings = orderedTours[false];
+        $scope.activeListings = orderedTours[true];
+
+      }
+      else{
+        $scope.inactiveListings = [];
+        $scope.activeListings = [];
+      }
+
       return;
     }
 
@@ -174,7 +181,7 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     $scope.supportModal = function(){
       ModalBuilderFct.buildModalWithController(
         {
-          size: 'md',
+          size: 'lg',
           templateUrl: WizioConfig.modals.support.main.view,
           controller: WizioConfig.modals.support.main.controller,
           modalData: {}

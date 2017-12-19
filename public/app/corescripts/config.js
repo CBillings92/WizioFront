@@ -207,6 +207,12 @@ angular.module('MainApp').constant('WizioConfig', (function() {
           view: MODULESPATH + 'tour-app/tour-app.html',
           controller: 'TourCtrl'
         }
+      },
+      termsOfService: {
+        view: MODULESPATH + 'termsapp/termsofservice.html'
+      },
+      privacyPolicy: {
+        view: MODULESPATH + 'termsapp/privacy-policy.html'
       }
     },
     directives: {
@@ -231,6 +237,10 @@ angular.module('MainApp').constant('WizioConfig', (function() {
       tourPanel: {
         view: MODULESPATH + 'tour-panel-app/tour-panel.html',
         controller: 'TourPanelCtrl'
+      },
+      emptyState: {
+        view: MODULESPATH + 'empty-state-app/empty-state.dir.html',
+        controller: 'EmptyStateCtrl'
       }
     },
     modals: {
