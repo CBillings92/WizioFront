@@ -212,3 +212,12 @@ $orange: #f79739;
 	padding-top: 40px;
 	padding-bottom: 40px;
 }
+
+.empty-state{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $light-gray;
+	margin-top: 20px;
+	height: 50vh;
+}
