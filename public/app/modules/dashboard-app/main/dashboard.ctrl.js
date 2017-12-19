@@ -68,8 +68,8 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
       StorageApp.store('ActiveListings', tours);
       if (tours.length !==0) {
         var orderedTours = lodash.groupBy(tours, 'isActive');
-        $scope.inactiveListings = $scope.orderedTours[false];
-        $scope.activeListings = $scope.orderedTours[true];
+        $scope.inactiveListings = orderedTours[false];
+        $scope.activeListings = orderedTours[true];
 
       }
       else{
@@ -77,7 +77,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         $scope.activeListings = [];
       }
 
-      console.log ($scope.activeListings)
       return;
     }
 
