@@ -67,9 +67,9 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
     function parseTours(tours) {
       StorageApp.store('ActiveListings', tours);
       if (tours.length !==0) {
-        var orderedTours = lodash.groupBy(tours, 'isActive');
-        $scope.inactiveListings = orderedTours[false];
-        $scope.activeListings = orderedTours[true];
+        $scope.orderedTours = lodash.groupBy(tours, 'isActive');
+        $scope.inactiveListings = $scope.orderedTours[false];
+        $scope.activeListings = $scope.orderedTours[true];
 
       }
       else{
