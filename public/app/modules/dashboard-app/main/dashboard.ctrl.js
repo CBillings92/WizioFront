@@ -70,7 +70,6 @@ angular.module('DashboardApp').controller('DashboardCtrl', [
         $scope.orderedTours = lodash.groupBy(tours, 'isActive');
         $scope.inactiveListings = $scope.orderedTours[false];
         $scope.activeListings = $scope.orderedTours[true];
-
       }
       else{
         $scope.inactiveListings = [];
