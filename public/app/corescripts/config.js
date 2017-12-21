@@ -15,7 +15,7 @@ angular.module('MainApp').constant('WizioConfig', (function() {
 
   function checkEnvironment() {
     switch (window.location.origin) {
-      case "http://172.16.0.2:3000":
+      case "http://172.16.0.2:3000" || 'localhost:3000' || '127.0.0.1:3000':
         return 'dev';
       case "http://alphafront.rc9igeipqw.us-east-1.elasticbeanstalk.com":
         return 'test';
@@ -43,13 +43,13 @@ angular.module('MainApp').constant('WizioConfig', (function() {
     baseAPIURL: (function() {
       switch (env) {
         case 'dev':
-          return 'http://172.16.0.3:4000/api/';
+          return 'http://localhost:4000/api/';
         case 'test':
           return 'http://alpha-api.wizio.co/api/';
         case 'prod':
           return 'https://api.wizio.co/api/';
         default:
-          return 'http://172.16.0.3:4000/api/';
+          return 'http://localhost:4000/api/';
       }
     }()),
     S3_EQUIRECTPHOTOS_BUCKET: env === 'prod' ?
