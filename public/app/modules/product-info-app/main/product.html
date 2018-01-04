@@ -3,8 +3,8 @@
         <img src="../../../..//viewtemplates/images/pricing/product-hero.png" class="product-hero-image">
         <div class="product-hero-text-container">
         <div class="col-sm-12 col-md-6 col-md-offset-1" id="product-header-text">
-            <div class="header-text dk-gray"> Virtual Reality for Everyone </div>
-            <div class="subhead-text med-gray"> from single apartments to full hotels, we can do it all </div>
+            <div class="header-text dk-gray"> Virtual Reality for Real Estate </div>
+            <div class="subhead-text med-gray"> On-Demand VR now serving Boston & DC</div>
          </div>
         </div>
 
@@ -12,71 +12,32 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 subscription-tile text-center " ng-click="launchTypeform('standard')">
-            <!-- A subscription tile (one of those subscription banners) -->
-            <div class="subscription-banner-container col-sm-3">
-                <div class="subscription-banner-header">
-                    <div class="subscription-banner__header orange"> Includes </div>
-                    <div class="large-body med-gray">
-                        <p> VR Tour Creation</p>
-                        <p> 4K Images </p>
-                        <p> Image Processing </p>
-                        <p> MLS Support </p>
-                        <p> API Integration </p>
-                        <p> Dedicated Support </p>
-                    </div>
-                </div>
-            </div>
+      <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 subscription-tile subscription-banner__container" id="tile-1">
 
-            <div class="subscription-banner-container col-sm-9">
-                <div class="subscription-banner-header">
-                    <div class="subscription-banner__header"> One-time Fee</div>
-                    <div class="large-body"> Photography and tour creation </div>
-                    <div class="subscription-banner__price">$100</div>
-                    <div class="subscription-banner__subhead"> per tour </div>
+        <div class= "row">
+          <div class="col-sm-12 steps-title dk-gray"> The Wizio Tour Creation Process </div>
+          <div class="col-sm-4">
+            <img src="../../../..//viewtemplates/images/pricing/step1-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 1 </div>
+            <div class="large-body gray"> Create an account and schedule a photography session</div>
+          </div>
 
-                    <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Get Started</button>
-                </div>
+          <div class="col-sm-4">
+            <img src="../../../..//viewtemplates/images/pricing/step2-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 2 </div>
+            <div class="large-body gray"> Our professional photographers will create your tour</div>
+          </div>
 
-
-
-                <div class="subscription-banner-header col-sm-4">
-                    <div class="subscription-banner__header"> Licensing Fee</div>
-                    <div class="large-body"> Renews anually, first year waived </div>
-                    <div class="subscription-banner__price">$10</div>
-                    <div class="subscription-banner__subhead"> per tour </div>
-
-
-                <div class="subscription-banner-header">
-                    <div class="subscription-banner__header"> Add an Amenity</div>
-                    <div class="large-body"> Renews anually, first year waived </div>
-                    <div class="subscription-banner__price">$25</div>
-                    <div class="subscription-banner__subhead"> per shot</div>
-                </div>
-            </div>
+          <div class="col-sm-4">
+            <img src="../../../..//viewtemplates/images/pricing/step3-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 3 </div>
+            <div class="large-body gray"> Share, embed, or create a Wizio listing from your account page </div>
+          </div>
         </div>
-</div>
 
+      </div>
 
-    <div class="col-sm-12 text-center large-body info-text gray">
-   Booking now in Boston and DC, more cities coming soon!
     </div>
-    <div class="col-sm-12 text-center small-body info-text gray italic">
-    Looking to do more than one space? Contact our sales team for special offers
-    </div>
-
-
-
-
-<div class="row pricing-quote">
-    <div class="col-xs-12 text-center">
-        <p class="large-body"> &ldquo;Wizio has helped to improve my business and client relations... very helpful for out of area clients especially.&rdquo;</p>
-        <p class="small-body white italic">- Eric LaBatte from Preview Properties </p>
-         <img src="/public/viewtemplates/images/pricing/headshot.jpg" class="headshot"/>
-    </div>
-</div>
-
-
 
     <div class="row row-space product-section-head text-center"> Our Demo
         <div>
@@ -94,6 +55,70 @@
             <tour-dir show-interface="true"></tour-dir>
         </div>
     </div>
+
+    <div class="row pricing-section">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-center pricing-container " ng-click="launchTypeform('standard')">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner__container col-sm-3" id="tile-2">
+                <div class="subscription-banner-header">
+                    <div class="subscription-banner__header orange"> Included with each tour: </div>
+                    <div class="large-body med-gray features-list">
+                        <p> VR Tour Creation</p>
+                        <p> 4K Images </p>
+                        <p> Image Processing </p>
+                        <p> MLS Support </p>
+                        <p> API Integration </p>
+                        <p> iFrame embedding</p>
+                        <p> Dedicated Support </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscription-banner__container col-sm-9" id="tile-3">
+              <div class="col-sm-6 text-center">
+                <div class="subscription-banner-header">
+                    <div class="subscription-banner__header dk-gray"> Setup Fee</div>
+                    <div class="large-body med-gray"> Photography and Tour Creation </div>
+                    <div class="subscription-banner__price orange">$0</div>
+                    <div class="subscription-banner__subhead"> per tour <br><i> limited time only </i></div>
+
+                    <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Get Started</button>
+                </div>
+              </div>
+
+
+              <div class="col-sm-6">
+                <div class="subscription-banner-header text-center">
+                    <div class="subscription-banner__header dk-gray"> Licensing Fee</div>
+                    <div class="large-body med-gray"> annual fee </div>
+                    <div class="subscription-banner__otherprice gray">$25</div>
+                    <div class="subscription-banner__subhead"> per active tour </div>
+                </div>
+
+
+                    <hr>
+
+
+                <div class="subscription-banner-header">
+                    <div class="subscription-banner__header"> Add an Amenity</div>
+                    <div class="large-body med-gray"> Renews anually, first year waived </div>
+                    <div class="subscription-banner__otherprice gray">$25</div>
+                    <div class="subscription-banner__subhead"> per space</div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <div class="col-sm-12 text-center large-body info-text gray">
+   Booking now in Boston and DC, more cities coming soon!
+    </div>
+    <div class="col-sm-12 text-center small-body info-text gray italic">
+    Looking to do more than one space? Contact our sales team for special offers
+    </div>
+</div>
+
+
 
 
 
