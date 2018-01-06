@@ -128,6 +128,10 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
   padding: 25px 20px;
 }
 
+#tile-1 .large-body{
+  max-width: 250px;
+}
+
 .subscription-banner__container#tile-2{
   left: 35px;
   height: 350px;
@@ -138,6 +142,37 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
   height: 380px;
 }
 
+.vertical-divider{
+  border-left: 1px solid $light-gray;
+  height: 380px;
+  left: 100%;
+  position: absolute;
+  margin-top: -25px;
+}
+
+.horizontal-divider{
+  border-top: 1px solid #F3F3F3;
+  width: 100%;
+  top: 50%;
+  margin-left: -15px;
+  position: absolute;
+}
+
+#additional-pricing{
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+}
+
+.partner-logos{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  img{
+    width: 200px;
+  }
+}
 
 /*----------------- New Type Styles -------------*/
 .subscription-banner__header {
@@ -149,7 +184,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 
 .subscription-banner__price{
     font-size: 75px;
-    margin: 35px 0 0 15px;
+    margin: 45px 0 0 15px;
     line-height: 1.0;
     font-weight: 500;
 }
@@ -168,7 +203,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 }
 
 .subscription-banner__container .btn{
-    margin-top: 40px;
+    margin-top: 45px;
 }
 
 .subscription-banner__container hr{
