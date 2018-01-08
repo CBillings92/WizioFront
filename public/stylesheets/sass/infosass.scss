@@ -133,7 +133,7 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 }
 
 .subscription-banner__container#tile-2{
-  left: 35px;
+  left: 22px;
   height: 350px;
 }
 
@@ -167,10 +167,12 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 .partner-logos{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
+  z-index: 0;
 
   img{
-    width: 200px;
+    max-width: 200px;
   }
 }
 
@@ -252,6 +254,13 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 
 @media (max-width: 1024px) {
 
+#product-icon{
+  width: 150px;
+}
+
+.subscription-banner__container#tile-1{
+  height: 330px;
+}
 
 .product-hero-image{
     height: 440px;
@@ -261,7 +270,33 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
     font-size: 47px;
 }
 
+.partner-logos{
+  img{
+    max-width: 150px;
+  }
+}
 
+.subscription-banner__header {
+    font-size: 18px;
+}
+
+.subscription-banner__price{
+    font-size: 60px;
+}
+
+.subscription-banner__otherprice{
+    font-size: 40px;
+}
+
+.subscription-banner__subhead{
+    font-size: 16px;
+
+}
+
+.large-body.features-list p,
+.subscription-banner-header .large-body{
+  font-size: 15px;
+}
 
 }
 // ------------- Tablet --------------- //
@@ -273,6 +308,15 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
     height: 350px;
     align-self: flex-end;
 
+}
+
+.subscription-banner__container#tile-3{
+  left: 0px;
+
+}
+
+.subscription-banner__container#tile-1{
+  height: 100%;
 }
 
 .subscription-tile{
@@ -323,6 +367,52 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
 .faq-container{
     padding: 15px 0px;
 }
+
+.subscription-banner__container .btn{
+width: 100%;
+font-size: 15px;
+padding: 6px;
+
+}
+
+
+}
+
+// ------------- mobile medium --------------- //
+
+
+@media (max-width: 375px) {
+
+  .subscription-banner__container#tile-3{
+    height: 330px;
+
+  }
+
+  .vertical-divider{
+    height: 330px;
+  }
+
+  .subscription-banner__header {
+      font-size: 16px;
+  }
+
+  .subscription-banner__price{
+      font-size: 38px;
+  }
+
+  .subscription-banner__otherprice{
+      font-size: 25px;
+  }
+
+  .subscription-banner__subhead{
+      font-size: 15px;
+
+  }
+
+  .large-body.features-list p,
+  .subscription-banner-header .large-body{
+    font-size: 13px;
+  }
 
 
 }
