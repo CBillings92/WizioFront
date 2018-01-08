@@ -3,7 +3,7 @@
   "version": "1.4.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "nodemon ./bin/www",
     "test": "karma start karma.conf.js"
   },
   "dependencies": {
@@ -15,7 +15,6 @@
     "express": "^4.15.4",
     "gulp": "^3.9.1",
     "lodash": "^3.0.0",
-    "main-bower-files": "^2.9.0",
     "moment": "^2.14.1",
     "momentjs": "^1.1.14",
     "morgan": "^1.6.1",
