@@ -3,8 +3,8 @@
         <img src="../../../..//viewtemplates/images/pricing/product-hero.png" class="product-hero-image">
         <div class="product-hero-text-container">
         <div class="col-sm-12 col-md-6 col-md-offset-1" id="product-header-text">
-            <div class="header-text dk-gray"> Virtual Reality for Everyone </div>
-            <div class="subhead-text med-gray"> from single apartments to full hotels, we can do it all </div>
+            <div class="header-text dk-gray"> Virtual Reality for Real Estate </div>
+            <div class="subhead-text med-gray"> On-Demand VR now serving Boston & DC</div>
          </div>
         </div>
 
@@ -12,65 +12,32 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4 col-sm-offset-2 col-xs-12 col-xs-offset-0 subscription-tile text-center " ng-click="launchTypeform('standard')">
-            <!-- A subscription tile (one of those subscription banners) -->
-            <div class="subscription-banner-container" id="4">
-                <div class="subscription-banner-header">
-                    <div class="subscription-banner__header"> Standard </div>
-                    <div class="subscription-banner__price">$150</div>
-                    <div class="subscription-banner__subhead"> per tour </div>
-                    <div class="large-body med-gray">
-                        <p> VR Tour Creation</p>
-                        <p> 1080p Images </p>
-                        <p> MLS Support </p>
-                        <p> &nbsp; </p>
-                    </div>
+      <div class="col-sm-10 col-sm-offset-1 col-xs-12 subscription-tile subscription-banner__container" id="tile-1">
 
-                    <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Learn More</button>
-                </div>
-            </div>
+        <div class= "row ">
+          <div class="col-sm-12 steps-title dk-gray"> The Wizio Tour Creation Process </div>
+          <div class="col-sm-4 col-xs-12">
+            <img src="../../../..//viewtemplates/images/pricing/step1-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 1 </div>
+            <div class="large-body gray center-block"> Create an account and schedule a photography session</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12">
+            <img src="../../../..//viewtemplates/images/pricing/step2-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 2 </div>
+            <div class="large-body gray center-block"> Our professional photographers will create your tour</div>
+          </div>
+
+          <div class="col-sm-4 col-xs-12">
+            <img src="../../../..//viewtemplates/images/pricing/step3-icon.png" id= "product-icon">
+            <div class="subhead-text orange"> Step 3 </div>
+            <div class="large-body gray center-block"> Share, embed, or create a Wizio listing from your account page </div>
+          </div>
         </div>
 
-        <div class="col-sm-4 col-xs-12 subscription-tile" ng-click="launchTypeform('pro')">
-            <!-- A subscription tile (one of those subscription banners) -->
-            <div class="subscription-banner-container" id="5" >
-                <div class="subscription-banner-header">
-                    <div class="subscription-banner__header"> Pro </div>
-                    <div class="subscription-banner__price">$225</div>
-                    <div class="subscription-banner__subhead"> per tour </div>
-                    <div class="large-body med-gray">
-                        <p> VR Tour Creation</p>
-                        <p> 4k Images </p>
-                        <p> MLS Support</p>
-                        <p> High Res still imagery</p>
-                    </div>
+      </div>
 
-                    <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Learn More</button>
-                </div>
-        </div>
     </div>
-</div>
-
-
-    <div class="col-sm-12 text-center large-body info-text gray">
-   Booking now in the Boston area, more cities coming soon!
-    </div>
-    <div class="col-sm-12 text-center small-body info-text gray italic">
-    Looking to do more than one space? Contact our sales team for special offers
-    </div>
-
-
-
-
-<div class="row pricing-quote">
-    <div class="col-xs-12 text-center">
-        <p class="large-body"> &ldquo;Wizio has helped to improve my business and client relations... very helpful for out of area clients especially.&rdquo;</p>
-        <p class="small-body white italic">- Eric LaBatte from Preview Properties </p>
-         <img src="/public/viewtemplates/images/pricing/headshot.jpg" class="headshot"/>
-    </div>
-</div>
-
-
 
     <div class="row row-space product-section-head text-center"> Our Demo
         <div>
@@ -89,6 +56,85 @@
         </div>
     </div>
 
+    <div class="row pricing-section">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-center pricing-container " ng-click="launchTypeform('standard')">
+            <!-- A subscription tile (one of those subscription banners) -->
+            <div class="subscription-banner__container col-sm-3 hidden-xs" id="tile-2">
+                <div class="subscription-banner-header">
+                    <div class="subscription-banner__header orange"> Included with each tour: </div>
+                    <div class="large-body med-gray features-list">
+                        <p> VR Tour Creation</p>
+                        <p> 4K Images </p>
+                        <p> Image Processing </p>
+                        <p> MLS Support </p>
+                        <p> API Integration </p>
+                        <p> iFrame embedding</p>
+                        <p> Dedicated Support </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subscription-banner__container col-sm-9 col-xs-12" id="tile-3">
+              <div class="col-xs-6 text-center">
+
+                <div class="subscription-banner-header center-block">
+                  <div class= "vertical-divider"></div>
+                    <div class="subscription-banner__header dk-gray"> Setup Fee</div>
+                    <div class="large-body med-gray"> Photography and Tour Creation </div>
+                    <div class="subscription-banner__price orange">$0</div>
+                    <div class="subscription-banner__subhead"> per tour <br><i> limited time only </i></div>
+
+                    <button ng-click="goToProduct()" type="button" class=" btn btn-lg btn-fill--orange">Get Started</button>
+                </div>
+
+              </div>
+
+
+              <div class="col-xs-6" id="additional-pricing">
+                <div class="subscription-banner-header text-center">
+                    <div class="subscription-banner__header dk-gray"> Licensing Fee</div>
+                    <div class="large-body med-gray"> Annual Fee </div>
+                    <div class="subscription-banner__otherprice gray">$25</div>
+                    <div class="subscription-banner__subhead"> per active tour </div>
+                </div>
+
+
+                    <div class="horizontal-divider"></div>
+
+
+                <div class="subscription-banner-header">
+                    <div class="subscription-banner__header"> Add an Amenity</div>
+                    <div class="large-body med-gray"> One-time Fee </div>
+                    <div class="subscription-banner__otherprice gray">$25</div>
+                    <div class="subscription-banner__subhead"> per amenity</div>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+    <div class="col-sm-12 text-center large-body info-text gray">
+   Booking now in Boston and DC, more cities coming soon!
+    </div>
+    <div class="col-sm-12 text-center small-body info-text gray italic">
+    Looking to do more than one space? Contact our sales team for special offers
+    </div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 partner-logos">
+  <img src="../../../..//viewtemplates/images/partner-logos/boston_pads.png">
+  <img src="../../../..//viewtemplates/images/partner-logos/fairfield_realty.png">
+  <img src="../../../..//viewtemplates/images/partner-logos/preview_properties.png">
+  <img src="../../../..//viewtemplates/images/partner-logos/state_financial_services.png">
+
+</div>
+</div>
+
+
+
+
 
 
 <div class="faq-container">
@@ -105,7 +151,7 @@
 
         <div class="col-sm-6">
         <div class="subhead-text dk-gray"> What cities can I request tours in?  </div>
-        <p>We are currently only in Boston, but are in the process of expanding</p>
+        <p>We can now serve the Greater D.C. and Boston markets, and are in the process of expanding</p>
         </div>
         </div>
 
@@ -117,12 +163,12 @@
             <div class=" col-sm-12 section-head text-center orange"> Booking </div>
         <div class= "col-sm-6">
             <div class="subhead-text dk-gray"> How can I book a virtual tour? </div>
-            <p> Wizio makes it simple to book a tour online or off. Fill out our online form here or you can speak to a person about booking a tour by calling  617-297-7472 or emailing <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co </a>. You can book a tour in minutes by selecting one of the tours above and filling out the form. </p>
+            <p> We require users to create an account before booking tours. You can do so here, by calling 617-297-7472, or emailing <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co </a>. </p>
         </div>
 
         <div class= "col-sm-6">
             <div class="subhead-text dk-gray"> How far in advance do I have to book a virtual tour? </div>
-            <p> We require at least 24 hour notice before booking a tour. Tours can be booked as far into the future as you would like.You can schedule a virtual tour request with at least 24hr notice and as far in the future as you would like.</p>
+            <p> Book a virtual tour for tomorrow or 6 months from now. We work with your schedule to meet your needs.</p>
         </div>
         </div>
 
@@ -157,7 +203,7 @@
         <div class ="col-sm-10 col-sm-offset-1">
         <div class= "col-sm-6">
           <div class="subhead-text dk-gray"> When will I receive access to my virtual tour?</div>
-        <p> You will receive a unique URL to the virtual tour by end of day on which the filming occurred. The tour will also be added to your Wizio account. </p><br>
+        <p> The virtual tour will be delivered to your Wizio account within 24 hours after the photographer has visited the property. </p><br>
          </div>
 
         <div class= "col-sm-6">
@@ -174,25 +220,20 @@
         <div class="col-sm-12 section-head text-center orange">Payment and Pricing</div>
 
         <div class= "col-sm-6">
-         <div class="subhead-text dk-gray"> What are the differences between Standard and Pro tours? </div>
-        <p> The difference is in the quality of the photos. Standard uses either 1080p or 4k quality while pro tours are captured in 8k. </p><br>
-        </div>
-
-        <div class= "col-sm-6">
        <div class="subhead-text dk-gray">When will my credit card be charged? </div>
         <p> A hold is put on your credit card at the time of booking. You will be charged after the virtual tour is delivered to you.</p><br>
         </div>
-    </div>
 
-        <div class ="col-sm-10 col-sm-offset-1">
         <div class= "col-sm-6">
         <div class="subhead-text dk-gray"> What is your cancellation policy? </div>
         <p> If you cancel your virtual tour film session, you must do so 24 hours in advance. Inside of 24 hours you will be charged a $50 cancellation fee. You can reschedule by changing the booking in your confirmation email. </p><br>
          </div>
+    </div>
 
+        <div class ="col-sm-10 col-sm-offset-1">
         <div class= "col-sm-6">
         <div class="subhead-text dk-gray"> Who are your photographers? </div>
-        <p> We employ contracted photographers that are trained on using 360-degree equipment and the Wizio platform. </p>
+        <p> We employ contract photographers that are trained on using 360-degree equipment and the Wizio platform. Our contractors are fully covered by insurance.</p>
         </div>
         </div>
     </div>
@@ -209,7 +250,7 @@
 
     <div class= "col-sm-6">
         <div class="subhead-text dk-gray"> Do you offer any additional features?   </div>
-        <p> Yes! We have a host of “add-ons” that you can purchase with your virtual tours. Yes! We have a host of “add-ons” that you can purchase and/or come complementary with our virtual tour package, including: HD photos, direct messaging between potential clients on your virtual tour, floor plans, and more. </p><br>
+        <p> We are developing a suite of premium add-ons that customers can add to their virtual tour experience. Interested in learning more? Contact us at <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co </a></p><br>
     </div>
 </div>
 
