@@ -9,6 +9,5 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY . .
-RUN bower install --allow-root
 EXPOSE 8080
 CMD ["npm", "start"]
