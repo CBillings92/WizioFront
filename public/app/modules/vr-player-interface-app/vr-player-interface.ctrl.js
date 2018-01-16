@@ -236,6 +236,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         function(response) {
           $scope.agent = response[response.length - 1];
           /* Check if airbnb listing */
+          $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
+          $scope.agent.state = $state.current.name;
           if ($stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d") {
             $scope.agent = {
               firstName: "Gene",
@@ -245,8 +247,6 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
               phoneNumber: "603-903-2332"
             };
           }
-          $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
-          $scope.agent.state = $state.current.name;
           if (
             $scope.agent.email === "alex@redtreeboston.com" ||
             $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
