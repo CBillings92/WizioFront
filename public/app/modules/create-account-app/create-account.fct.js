@@ -57,7 +57,6 @@ angular.module("CreateAccountApp").factory("CreateAccountFct", [
       return $q(function(resolve, reject) {
         if ($state.current.name === "Signup.Invite") {
           $resource(resources.user.invitedUser).save(dataForAPI, function(response) {
-            console.dir(response);
             if (response.success === 1) {
               return resolve(response);
             } else {
