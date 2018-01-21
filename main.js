@@ -26,15 +26,15 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.get('/tour/*', function(req, res, next) {
     res.render('index', {
         title: 'Express',
-        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG',
+        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG',
     });
 });
-// app.get('/', function(req, res, next) {
-//     res.render('index', {
-//         title: 'Express',
-//         ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
-//     });
-// });
+app.get('/', function(req, res, next) {
+    res.render('index', {
+        title: 'Express',
+        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
+    });
+});
 
 // app.use('/', routes);
 // catch 404 and forward to error handler
