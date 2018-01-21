@@ -10,6 +10,10 @@ link.setAttribute("property", "og:image:url");
 link.content = "https://www.wizio.co/public/viewtemplates/images/home/homepage-hero.jpg";
 console.dir(link);
 document.getElementsByTagName("head")[0].appendChild(link);
+link = document.createElement("meta");
+link.setAttribute("property", "og:image");
+link.content = "https://www.wizio.co/public/viewtemplates/images/home/homepage-hero.jpg";
+document.getElementsByTagName("head")[0].appendChild(link);
 </script>
     <!-- <meta property="og:image" content="https://s3.amazonaws.com/wizio-facebook-share/wizio-facebook-share.jpg" /> -->
 
