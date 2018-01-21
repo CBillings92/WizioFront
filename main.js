@@ -23,9 +23,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.all('/*', function(req, res, next) {
+app.get('/tour/*', function(req, res, next) {
     res.render('index', {
-        title: 'Express'
+        title: 'Express',
+        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%203.JPG'
+    });
+});
+app.get('/*', function(req, res, next) {
+    res.render('index', {
+        title: 'Express',
+        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
     });
 });
 
