@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/tour/*', function (req, res, next ) {
   console.dir(req);
   res.render('index', {
-    ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG',
+    ogImageContent: 'https://cdn.wizio.co/1000x500/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG',
     ogUrl: 'http://alpha.wizio.co/tour/0994f2d2-0310-41e0-8036-329fb3e14856'
   })
 });
