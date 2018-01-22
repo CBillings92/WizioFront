@@ -6,7 +6,7 @@ var request = require("request");
 router.get("/tour/:tourid", function(req, res, next) {
   request("http://alpha-api.wizio.co/api/activelisting/" + req.params.tourid, function(err, apires, body) {
     var url =
-      "https://cdn.wizio.co/1000x500/" +
+      "https://d1mze0h82dkhhe.cloudfront.net/1000x500/" +
       JSON.parse(body)[0].SubscriptionAptMedia.pubid +
       "/" +
       encodeURIComponent(JSON.parse(body)[0].title) +
