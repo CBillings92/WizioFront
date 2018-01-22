@@ -13,7 +13,7 @@ router.get("/tour/:tourid", function(req, res, next) {
       ".JPG";
     res.render("index", {
       ogImageContent: url,
-      ogUrl: "http://alpha.wizio.co/tour/0994f2d2-0310-41e0-8036-329fb3e14856"
+      ogUrl: "http://alpha.wizio.co/tour/" + req.params.tourid
     });
   });
 });
