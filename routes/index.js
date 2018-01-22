@@ -4,11 +4,7 @@ var router = express.Router();
 var request = require("request");
 
 router.get("/tour/:tourid", function(req, res, next) {
-  console.dir("FUCK");
-  var url = "http://127.0.0.1:4000/api/activelisting/" + req.params.tourid;
-  console.dir(url);
-
-  request("http://172.18.0.2:4000/api/activelisting/" + req.params.tourid, function(err, apires, body) {
+  request("http://alpha-api.wizio.co/api/activelisting/" + req.params.tourid, function(err, apires, body) {
     var url =
       "https://cdn.wizio.co/" +
       JSON.parse(body)[0].SubscriptionAptMedia.pubid +
