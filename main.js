@@ -23,20 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
-app.get('/tour/*', function(req, res, next) {
-    res.render('index', {
-        title: 'Express',
-        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Kitchen.JPG',
-    });
-});
-app.get('/', function(req, res, next) {
-    res.render('index', {
-        title: 'Express',
-        ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
-    });
-});
 
-// app.use('/', routes);
+app.use('/', routes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

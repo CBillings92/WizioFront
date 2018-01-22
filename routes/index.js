@@ -2,13 +2,21 @@ var express = require('express');
 // var config = require('../config/config.js');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/tour/*', function (req, res, next ) {
+  console.dir(req);
+  res.render('index', {
+    ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
+  })
+}
+
+app.get('/', function(req, res, next) {
     res.render('index', {
         title: 'Express',
         ogImageContent: 'https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG'
     });
 });
+
+
 router.get('/test', function(req, res, next) {
     res.render('sdfa', {
         title: 'Express'
