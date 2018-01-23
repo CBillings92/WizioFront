@@ -15,7 +15,7 @@ router.get("/tour/:tourid", function(req, res, next) {
       ".JPG";
     res.render("index", {
       ogImageContent: url,
-      ogUrl: config.frontendURL + req.params.tourid
+      ogUrl: config.frontendURL + "/tour/" + req.params.tourid
     });
   });
 });
