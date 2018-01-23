@@ -2,11 +2,22 @@ var express = require("express");
 // var config = require('../config/config.js');
 var router = express.Router();
 var request = require("request");
+var config = require("../config");
 
 router.get("/tour/:tourid", function(req, res, next) {
-  request("http://alpha-api.wizio.co/api/activelisting/" + req.params.tourid, function(err, apires, body) {
+  request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
+    console.dir("-----------");
+    console.dir("-----------");
+    console.dir("-----------");
+    console.dir("-----------");
+    console.dir(body);
+    console.dir(err);
+    console.dir("-----------");
+    console.dir("-----------");
+    console.dir("-----------");
     var url =
-      "https://d1mze0h82dkhhe.cloudfront.net/1000x500/" +
+      config.s3bucketURL +
+      "/1000x500/" +
       JSON.parse(body)[0].SubscriptionApartmentPubId +
       "/" +
       encodeURIComponent(JSON.parse(body)[0].title) +
