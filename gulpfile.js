@@ -17,7 +17,7 @@ var lib = require("bower-files")();
 var gutil = require("gulp-util");
 var mainBowerFiles = require("main-bower-files");
 var resourceDest = "/public";
-var append = require("gulp-append");
+// var append = require("gulp-append");
 
 // JS hint task
 gulp.task("jshint", function() {
@@ -43,8 +43,8 @@ gulp.task("scripts", function() {
     .pipe(gulp.dest("./public/build"));
 });
 
-var npmDist = require("gulp-npm-dist");
-var rename = require("gulp-rename");
+// var npmDist = require("gulp-npm-dist");
+// var rename = require("gulp-rename");
 
 // Copy dependencies to ./public/libs/
 gulp.task("copy:libs", function() {

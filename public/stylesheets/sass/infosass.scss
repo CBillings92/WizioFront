@@ -416,3 +416,35 @@ padding: 6px;
 
 
 }
+
+
+
+/* ----------------- */
+
+.listing-hero{
+  height: 575px;
+}
+
+#vr-player-listing{
+  height: 600px;
+  width: 100%;
+}
+
+.amenity-name{
+  font-family: 'Roboto';
+  font-weight: 200;
+  font-size: 15px;
+  color: $dk-gray;
+}
+
+.listing-sub-section{
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 17px;
+  color: $dk-gray;
+}
+
+.contact-box{
+  background-color: $light-gray;
+  height: 300px;
+}
