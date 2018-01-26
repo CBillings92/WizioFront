@@ -80,7 +80,7 @@ gulp.task("dependencies", function() {
 
 gulp.task("sass", function() {
   return gulp
-    .src("./public/stylesheets/sass/stylessass.scss")
+    .src("./public/stylesheets/sass/import.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(gulp.dest("./public/stylesheets/compiledsass/"));
 });
