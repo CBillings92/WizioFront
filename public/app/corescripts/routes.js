@@ -112,6 +112,16 @@ angular.module("MainApp").config([
           }
         }
       })
+      .state("ListingTest", {
+        url: "/listing/test",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            controller: PAGECONFIG.listingPage.main.controller
+          }
+        }
+      })
       .state("Signup", {
         url: "/signup",
         views: {
