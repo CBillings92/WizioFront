@@ -87,7 +87,7 @@ gulp.task("sass", function() {
 // CSS concat, auto-prefix and minify
 gulp.task("styles", ["sass"], function(cb) {
   return gulp
-    .src(["./public/stylesheets/compiledsass/stylessass.css"])
+    .src(["./public/stylesheets/compiledsass/import.css"])
     .pipe(autoprefix("last 2 versions"))
     .pipe(minifyCSS())
     .pipe(gulp.dest("./public/build/"));
