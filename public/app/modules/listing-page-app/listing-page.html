@@ -1,0 +1,151 @@
+
+<div class= "container-fluid product-container">
+    <div class="row listing-hero">
+      <div id="vr-player-listing">
+         <div style="height:100%;" >
+             <tour-dir show-interface="true"></tour-dir>
+         </div>
+     </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+        <div class="label availability-label"> available: {{data.Listing.availability}} </div>
+        <div class="label neighborhood-label"> {{data.Listing.neighborhood}} </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 col-sm-offset-1 row-space">
+          <div class="row">
+
+            <div class="col-xs-12 amenity-list">
+              <div class=" col-xs-6 col-sm-4 amenity-item">
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/bedroom.png" id="amenity-icon">
+                <p class="large-body"> {{data.Listing.Bedrooms}}</p>
+              </div>
+              </div>
+
+              <div class="col-sm-4 col-xs-6 amenity-item">
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/bathroom.png" id="amenity-icon">
+                <p class="large-body"> {{data.Listing.Bathrooms}}</p>
+              </div>
+              </div>
+
+              <div ng-if='data.Listing.amenities.DishWasher' class=" col-xs-6 col-sm-4 amenity-item" >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/dishwasher.png" id="amenity-icon"></img>
+                 <p class="large-body"> Dish Washer</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.amenities.WasherDryer' class="col-xs-6 col-sm-4 amenity-item" >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/laundry.png" id="amenity-icon"></img>
+                 <p class="large-body">Laundry</p>
+               </div>
+              </div>
+
+
+              <div ng-if='data.Listing.amenities.PetFriendly' class="col-xs-6 col-sm-4 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/pet-friendly.png" id="amenity-icon"></img>
+                 <p class="large-body">Pet Friendly</p>
+               </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-10">
+              <p class="listing-sub-section"> Other Amenities </p>
+              <p class="small-body">{{data.Listing.amenitiesDescription}}</p>
+            </div>
+          </div>
+      </div>
+
+    <div class=" col-xs-8  col-xs-offset-2 col-sm-3 col-sm-offset-1 contact-box text-center">
+      <p class= "large-body"> Agent Name </p>
+      <p class="small-body"> Boston Real Estate </p>
+
+      <div>
+       <button ng-click="" type="button" class="btn btn-md btn-fill--orange"> Contact Agent </button>
+      </div>
+    </div>
+
+    </div>
+
+    <p class ="section-head orange col-sm-offset-1 row-space" id="listing-divider"> Listing Details </p>
+    <hr id="listing-divider">
+
+    <div class= "row">
+      <div ng-if="data.Listing.ListingDetails" class="col-xs-12 col-sm-5 col-sm-offset-1">
+      <p class="small-body">{{data.Listing.ListingDetails}}</p>
+      </div>
+
+      <div class="col-sm-3 col-sm-offset-2">
+        <p class="listing-sub-section">Lease Details</p>
+        <p class="small-body"><span class="medium">Rent:</span> {{data.Listing.rent}}/{{data.Listing.rentFrequency}}</p>
+        <p class="small-body"><span class="medium">Lease Length:</span> {{data.Listing.leaseType}}</p>
+        <p class="small-body"><span class="medium">Due at Signing:</span></p>
+
+        <div class="row">
+        <div ng-if="data.Listing.firstMonthRent.required" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> First Month </p>
+          <i class="fa fa-check fa-2x orange"></i>
+        </div>
+
+
+        <div ng-if="data.Listing.firstMonthRent.required == false" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> First Month </p>
+          <i class="fa fa-close fa-2x blue"></i>
+        </div>
+
+        <div ng-if="data.Listing.securityDeposit.required" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Security Deposit </p>
+          <i class="fa fa-check fa-2x orange"></i>
+        </div>
+
+        <div ng-if="data.Listing.securityDeposit.required == false" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Security Deposit </p>
+          <i class="fa fa-close fa-2x blue"></i>
+        </div>
+
+        <div ng-if="data.Listing.lastMonthRent.required" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Last Month </p>
+          <i class="fa fa-check fa-2x orange"></i>
+        </div>
+
+        <div ng-if="data.Listing.lastMonthRent.required == false" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Last Month </p>
+          <i class="fa fa-close fa-2x blue"></i>
+        </div>
+
+
+        <div ng-if="data.Listing.brokerFee.required" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Broker Fee </p>
+          <i class="fa fa-check fa-2x orange"></i>
+        </div>
+
+        <div ng-if="data.Listing.brokerFee.required == false" class="text-center col-xs-6 listing-fee">
+          <p class="small-body"> Broker Fee </p>
+          <i class="fa fa-close fa-2x blue"></i>
+        </div>
+      </div>
+
+      </div>
+
+    </div>
+
+<div class="row-space"></div>
+
+
+
+
+
+</div>

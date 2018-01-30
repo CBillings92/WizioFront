@@ -112,6 +112,36 @@ angular.module("MainApp").config([
           }
         }
       })
+      .state("ListingTest", {
+        url: "/listing/test",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            controller: PAGECONFIG.listingPage.main.controller
+          }
+        }
+      })
+      .state("ListingDemo1", {
+        url: "/listing/demo/1",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page-demo-one/listing-page.html",
+            controller: "ListingPageDemo1Ctrl"
+          }
+        }
+      })
+      .state("ListingDemo2", {
+        url: "/listing/demo/2",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page-demo-two/listing-page.html",
+            controller: "ListingPageDemo2Ctrl"
+          }
+        }
+      })
       .state("Signup", {
         url: "/signup",
         views: {

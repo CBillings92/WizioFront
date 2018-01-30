@@ -1,6 +1,6 @@
 {
   "name": "wiziofront",
-  "version": "1.4.10",
+  "version": "1.4.13",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
