@@ -17,7 +17,7 @@ var lib = require("bower-files")();
 var gutil = require("gulp-util");
 var mainBowerFiles = require("main-bower-files");
 var resourceDest = "/public";
-var append = require("gulp-append");
+// var append = require("gulp-append");
 
 // JS hint task
 gulp.task("jshint", function() {
@@ -43,8 +43,8 @@ gulp.task("scripts", function() {
     .pipe(gulp.dest("./public/build"));
 });
 
-var npmDist = require("gulp-npm-dist");
-var rename = require("gulp-rename");
+// var npmDist = require("gulp-npm-dist");
+// var rename = require("gulp-rename");
 
 // Copy dependencies to ./public/libs/
 gulp.task("copy:libs", function() {
@@ -80,14 +80,14 @@ gulp.task("dependencies", function() {
 
 gulp.task("sass", function() {
   return gulp
-    .src("./public/stylesheets/sass/stylessass.scss")
+    .src("./public/stylesheets/sass/import.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(gulp.dest("./public/stylesheets/compiledsass/"));
 });
 // CSS concat, auto-prefix and minify
 gulp.task("styles", ["sass"], function(cb) {
   return gulp
-    .src(["./public/stylesheets/compiledsass/stylessass.css"])
+    .src(["./public/stylesheets/compiledsass/import.css"])
     .pipe(autoprefix("last 2 versions"))
     .pipe(minifyCSS())
     .pipe(gulp.dest("./public/build/"));
