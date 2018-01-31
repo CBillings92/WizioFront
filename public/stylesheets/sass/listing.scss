@@ -1,29 +1,29 @@
-.listing-hero{
+.listing-hero {
   height: 575px;
 }
 
-#vr-player-listing{
+#vr-player-listing {
   height: 600px;
   width: 100%;
 }
 
-.amenity-name{
-  font-family: 'Roboto';
+.amenity-name {
+  font-family: "Roboto";
   font-weight: 200;
   font-size: 15px;
   color: #551a8b;
 }
 
-.listing-sub-section{
-  font-family: 'Roboto';
+.listing-sub-section {
+  font-family: "Roboto";
   font-weight: 500;
   font-size: 17px;
   color: $dk-gray;
 }
 
 .availability-label,
-.neighborhood-label{
-  font-family: 'Roboto';
+.neighborhood-label {
+  font-family: "Roboto";
   font-size: 15px;
   font-weight: 400;
   color: #fff;
@@ -32,44 +32,44 @@
   margin: 5px 10px;
 }
 
-.availability-label{
+.availability-label {
   background-color: $orange;
 }
 
-.neighborhood-label{
+.neighborhood-label {
   background-color: $blue;
 }
 
-.contact-box{
+.contact-box {
   background-color: $light-gray;
   padding: 10px 5px;
   height: 200px;
 }
 
-
-#amenity-icon{
+.amenity-icon {
   height: 50px;
 }
 
-.amenity-item{
+.amenity-item {
   padding-bottom: 15px;
 }
 
-.medium{
+.medium {
   font-weight: 500 !important;
+  color: #333;
 }
 
-.listing-fee{
+.listing-fee {
   padding-top: 15px;
 }
 
-#listing-divider{
+#listing-divider {
   padding-bottom: 0px;
   line-height: 1;
-  margin-bottom:0px;
+  margin-bottom: 0px;
 }
 
-hr#listing-divider{
+hr#listing-divider {
   margin-top: 6px;
   margin-bottom: 20px;
 }
