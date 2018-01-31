@@ -112,6 +112,16 @@ angular.module("MainApp").config([
           }
         }
       })
+      .state("ListingHillway", {
+        url: "/listing/a3885803-1100-450f-931d-fbb53b6ed410",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            controller: PAGECONFIG.listingPage.main.controller
+          }
+        }
+      })
       .state("ListingTest", {
         url: "/listing/test",
         views: {
