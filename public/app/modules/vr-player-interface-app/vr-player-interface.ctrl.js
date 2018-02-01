@@ -30,6 +30,12 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.state = $state.current.name;
     $scope.showInterface = true;
 
+    if ($state.current.name === "ListingDemo1") {
+      $scope.isListingPage = true;
+    } else {
+      $scope.isListingPage = false;
+    }
+
     /**
      * On InterfaceDataReceived broadcast event, kick off the VrPlayerInterface application.
      * @param  {object} event Event that fired to trigger this
