@@ -4,21 +4,21 @@ var router = express.Router();
 var request = require("request");
 var config = require("../config");
 
-router.get("/tour/:tourid", function(req, res, next) {
-  request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
-    var url =
-      config.s3bucketURL +
-      "/1000x500/" +
-      JSON.parse(body)[0].SubscriptionApartmentPubId +
-      "/" +
-      encodeURIComponent(JSON.parse(body)[0].title) +
-      ".JPG";
-    res.render("index", {
-      ogImageContent: url,
-      ogUrl: config.frontendURL + "/tour/" + req.params.tourid
-    });
-  });
-});
+// router.get("/tour/:tourid", function(req, res, next) {
+//   request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
+//     var url =
+//       config.s3bucketURL +
+//       "/1000x500/" +
+//       JSON.parse(body)[0].SubscriptionApartmentPubId +
+//       "/" +
+//       encodeURIComponent(JSON.parse(body)[0].title) +
+//       ".JPG";
+//     res.render("index", {
+//       ogImageContent: url,
+//       ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+//     });
+//   });
+// });
 
 router.get("/*", function(req, res, next) {
   res.render("index", {

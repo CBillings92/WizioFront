@@ -123,7 +123,7 @@ angular.module("MainApp").config([
         }
       })
       .state("ListingDemo1", {
-        url: "/listing/demo/1",
+        url: "/listing/a3885803-1100-450f-931d-fbb53b6ed410",
         views: {
           footer: footer,
           maincontent: {
