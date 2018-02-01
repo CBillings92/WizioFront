@@ -26,7 +26,7 @@ router.get('/listing/a3885803-1100-450f-931d-fbb53b6ed410', function(req, res, n
   res.render('index', {
     title: 'Express',
     ogImageContent: 'https://cdn.wizio.co/1000x500/a48065f3-6be0-41a5-a23c-b502ccee8c31/Kitchen.JPG',
-    ogDescription: descrip,
+    ogDescription: 'Fantastic 2 bed 1 bath available in Mission Hill.',
     ogUrl: 'http://alpha.wizio.co/listing/a3885803-1100-450f-931d-fbb53b6ed410',
     ogTitle: '2 Bed 1 Bath in Mission Hill'
   });
