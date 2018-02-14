@@ -132,6 +132,16 @@ angular.module("MainApp").config([
           }
         }
       })
+      .state("Listing", {
+        url: "/listing/:listingUUID",
+        views: {
+          footer: footer,
+          maincontent: {
+            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            controller: "ListingPageCtrl"
+          }
+        }
+      })
       .state("ListingDemo2", {
         url: "/listing/demo/2",
         views: {
@@ -522,18 +532,18 @@ angular.module("MainApp").config([
         },
         data: falseRequiredLogin
       })
-      .state("Listing", {
-        url: "/listing",
-        views: {
-          navbar: navbar,
-          footer: footer,
-          maincontent: {
-            templateUrl: WizioConfig.UnitMainViewsURL + "UnitMain.html",
-            controller: "UnitMainCtrl"
-          }
-        },
-        abstract: true
-      })
+      // .state("Listing", {
+      //   url: "/listing",
+      //   views: {
+      //     navbar: navbar,
+      //     footer: footer,
+      //     maincontent: {
+      //       templateUrl: WizioConfig.UnitMainViewsURL + "UnitMain.html",
+      //       controller: "UnitMainCtrl"
+      //     }
+      //   },
+      //   abstract: true
+      // })
       .state("Listing.Group", {
         url: "/:businessName/:id",
         views: {
