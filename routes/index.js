@@ -4,37 +4,37 @@ var router = express.Router();
 var request = require("request");
 var config = require("../config");
 
-// router.get("/tour/:tourid", function(req, res, next) {
-//   console.dir("FUCK");
-//   console.dir(config.backendAPIURL);
-//   console.dir(req.params);
-//   console.dir(request);
-//   request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
-//     var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
-//     console.dir("FUCK");
-//     console.dir(err);
-//     console.dir(apires);
-//     console.dir(body);
-//     if (body) {
-//       try {
-//         url =
-//           config.s3bucketURL +
-//           "/1000x500/" +
-//           JSON.parse(body)[0].SubscriptionApartmentPubId +
-//           "/" +
-//           encodeURIComponent(JSON.parse(body)[0].title) +
-//           ".JPG";
-//       } catch (e) {
-//         console.dir(e);
-//       } finally {
-//         res.render("index", {
-//           ogImageContent: url,
-//           ogUrl: config.frontendURL + "/tour/" + req.params.tourid
-//         });
-//       }
-//     }
-//   });
-// });
+router.get("/tour/:tourid", function(req, res, next) {
+  console.dir("FUCK");
+  console.dir(config.backendAPIURL);
+  console.dir(req.params);
+  console.dir(request);
+  request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
+    var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
+    console.dir("FUCK");
+    console.dir(err);
+    console.dir(apires);
+    console.dir(body);
+    if (body) {
+      try {
+        url =
+          config.s3bucketURL +
+          "/1000x500/" +
+          JSON.parse(body)[0].SubscriptionApartmentPubId +
+          "/" +
+          encodeURIComponent(JSON.parse(body)[0].title) +
+          ".JPG";
+      } catch (e) {
+        console.dir(e);
+      } finally {
+        res.render("index", {
+          ogImageContent: url,
+          ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+        });
+      }
+    }
+  });
+});
 
 router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(req, res, next) {
   res.render("index", {
