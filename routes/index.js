@@ -21,7 +21,7 @@ router.get("/tour/:tourid", function(req, res, next) {
           "/" +
           encodeURIComponent(body.media[0].title) +
           ".JPG";
-        description = body.Listing.Description;
+        description = body.Listing.Description || "Checkout this apartment in virtual reality!";
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         if (body.Apartment.neighborhood && body.Apartment.neighborhood !== "") {
           title = title + " in " + body.Apartment.neighborhood;
@@ -55,7 +55,7 @@ router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(req, res, n
   });
 });
 
-router.get("/tour/:tourid", function(req, res, next) {
+router.get("/listing/:tourid", function(req, res, next) {
   request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
     var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
     var description = "";
