@@ -2,15 +2,19 @@
 <div class= "container-fluid product-container">
     <div class="row listing-hero">
       <div id="vr-player-listing">
-         <div style="height:100%;" >
+         <div style="height:96%;" >
              <tour-dir show-interface="true"></tour-dir>
          </div>
      </div>
     </div>
-
+    <div class="" style="text-align: center;">
+      <a href="#listing-page">
+        <i class="fa fa-2x fa-chevron-down"></i>
+      </a>
+    </div>
     <hr>
 
-    <div class="row">
+    <div class="row" id='listing-page'>
       <div class="col-xs-12 col-sm-6 col-sm-offset-1">
         <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Availability}} </div>
         <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{data.Listing.Address.Neighborhood}}, Boston MA </div>
@@ -67,12 +71,22 @@
       </div>
 
     <div class=" col-xs-8  col-xs-offset-2 col-sm-3 col-sm-offset-1 contact-box text-center">
-      <p class= "large-body"> Joe Parrish </p>
-      <p class="small-body"> Hillway Realty </p>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="public/viewtemplates/joe.jpg" style="height:175px" alt="RealtorImg">
+        </div>
+        <div class="col-md-5 col-md-pull-1">
+          <p class= "large-body"> Joe Parrish </p>
+          <p class="small-body"> Hillway Realty </p>
+          <p class="small-body"><a href="mailto:joe@hillwayrealty.com">joe@hillwayrealty.com</a></p>
+          <p class="small-body"> 617-620-3472 </p>
+        </div>
 
-      <div>
-       <button ng-click="agentInfo()" type="button" class="btn btn-md btn-fill--orange"> Contact Agent </button>
       </div>
+
+      <!-- <div>
+       <button ng-click="agentInfo()" type="button" class="btn btn-md btn-fill--orange"> Contact Agent </button>
+      </div> -->
     </div>
 
     </div>
@@ -126,18 +140,19 @@
                 <p class="small-body"> Last Month </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
-
               <div ng-if="!data.Listing.LastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Last Month </p>
                 <i class="fa fa-close fa-2x blue"></i>
               </div>
 
-
+              <div ng-if="!data.Listing.LastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
+                <p class="small-body"> Last Month </p>
+                <i class="fa fa-close fa-2x blue"></i>
+              </div>
               <div ng-if="data.Listing.BrokerFeeRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Broker Fee </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
-
               <div ng-if="!data.Listing.BrokerFeeRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Broker Fee </p>
                 <i class="fa fa-close fa-2x blue"></i>

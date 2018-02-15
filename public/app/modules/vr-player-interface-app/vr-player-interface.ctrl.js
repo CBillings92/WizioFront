@@ -30,6 +30,12 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.state = $state.current.name;
     $scope.showInterface = true;
 
+    if ($state.current.name === "ListingDemo1") {
+      $scope.isListingPage = true;
+    } else {
+      $scope.isListingPage = false;
+    }
+
     /**
      * On InterfaceDataReceived broadcast event, kick off the VrPlayerInterface application.
      * @param  {object} event Event that fired to trigger this
@@ -212,7 +218,6 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
     $scope.profileUploaded = false;
     $scope.isMLSListingAccount = false;
-
     if ($state.current.name == "Demo" || $state.current.name == "Product") {
       $resource(WizioConfig.baseAPIURL + "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d").query(function(
         response
@@ -229,16 +234,18 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     } else {
       $resource(WizioConfig.baseAPIURL + "activelisting/:activelistingid", {
         activelistingid: "@activelistingid"
-      }).query(
+      }).get(
         {
-          activelistingid: $stateParams.activelistingid
+          activelistingid: $stateParams.activelistingid || $stateParams.listingUUID
         },
-        function(response) {
-          $scope.agent = response[response.length - 1];
+        function(apiresponse) {
+          var media = apiresponse.media;
+          var listing = apiresponse.Listing;
+          $scope.agent = media[media.length - 1];
           /* Check if airbnb listing */
           $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
           $scope.agent.state = $state.current.name;
-          if ($stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d") {
+          if ($stateParams.activelistingid || $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d") {
             $scope.agent = {
               firstName: "Gene",
               lastName: "Blinkov",

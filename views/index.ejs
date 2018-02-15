@@ -13,11 +13,18 @@
     <meta name="keywords" content="virtual reality, 360 photography, real estate, Boston">
 
 
-    <meta property="og:description" content="Virtual Reality Content Creation and Hosting" />
+    <meta property="og:description" content="<%= ogDescription %> "/>
 
     <meta property="og:url"content=<%= ogUrl %> />
 
-    <meta property="og:title" content="Virtual Reality Content Creation and Hosting" />
+    <meta property="og:title" content="<%= ogTitle %>" />
+
+    <!-- TWITTER SHARING META TAGS -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content=<%= ogUrl %> />
+    <meta name="twitter:title" content="<%= ogTitle %>"  />
+    <meta name="twitter:description" content="<%= ogDescription %>" />
+    <meta name="twitter:image" content=<%= ogImageContent %> />
     <!-- set base of the website url to be / without the angular # -->
     <base href="/">
 
