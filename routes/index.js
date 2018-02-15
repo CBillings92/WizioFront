@@ -6,17 +6,27 @@ var config = require("../config");
 
 // router.get("/tour/:tourid", function(req, res, next) {
 //   request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
-//     var url =
-//       config.s3bucketURL +
-//       "/1000x500/" +
-//       JSON.parse(body)[0].SubscriptionApartmentPubId +
-//       "/" +
-//       encodeURIComponent(JSON.parse(body)[0].title) +
-//       ".JPG";
-//     res.render("index", {
-//       ogImageContent: url,
-//       ogUrl: config.frontendURL + "/tour/" + req.params.tourid
-//     });
+//     var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
+//     var description = "360 Virtual Tour";
+//     if (body) {
+//       try {
+//         url =
+//           config.s3bucketURL +
+//           "/1000x500/" +
+//           JSON.parse(body).media[0].SubscriptionApartmentPubId +
+//           "/" +
+//           encodeURIComponent(JSON.parse(body).media[0].title) +
+//           ".JPG";
+//       } catch (e) {
+//         console.dir(e);
+//       } finally {
+//         res.render("index", {
+//           ogImageContent: url,
+//           ogDescription: description,
+//           ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+//         });
+//       }
+//     }
 //   });
 // });
 
@@ -30,6 +40,33 @@ router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(req, res, n
     ogTitle: "2 Bed 1 Bath in Mission Hill - $2700"
   });
 });
+// router.get("/listing/:tourid", function(req, res, next) {
+//   request(config.backendAPIURL + "activelisting/" + req.params.tourid, function(err, apires, body) {
+//     var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
+//     var description = "360 Virtual Tour";
+//     if (body) {
+//       try {
+//         url =
+//           config.s3bucketURL +
+//           "/1000x500/" +
+//           JSON.parse(body).media[0].SubscriptionApartmentPubId +
+//           "/" +
+//           encodeURIComponent(JSON.parse(body).media[0].title) +
+//           ".JPG";
+//
+//         description = JSON.parse(body).Listing.Description;
+//       } catch (e) {
+//         console.dir(e);
+//       } finally {
+//         res.render("index", {
+//           ogImageContent: url,
+//           ogDescription: description,
+//           ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+//         });
+//       }
+//     }
+//   });
+// });
 
 router.get("/*", function(req, res, next) {
   res.render("index", {
