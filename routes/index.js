@@ -99,7 +99,6 @@ router.get("/listing/:tourid", function(req, res, next) {
       } catch (e) {
         console.dir(e);
       } finally {
-        console.dir(title);
         res.render("index", {
           title: "Express",
           ogTitle: title,
