@@ -245,7 +245,10 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
           /* Check if airbnb listing */
           $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
           $scope.agent.state = $state.current.name;
-          if ($stateParams.activelistingid || $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d") {
+          if (
+            $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
+            $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
+          ) {
             $scope.agent = {
               firstName: "Gene",
               lastName: "Blinkov",
