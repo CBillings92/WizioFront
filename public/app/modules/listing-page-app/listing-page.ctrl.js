@@ -10,8 +10,6 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       $scope.address = data.Apartment;
       $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
       $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
-      $scope.data.Listing.LeaseStartDate.setDate($scope.data.Listing.LeaseStartDate.getDate() + 1);
-      $scope.data.Listing.LeaseEndDate.setDate($scope.data.Listing.LeaseEndDate.getDate() + 1);
     });
     // $scope.data = {
     //   Tour: {

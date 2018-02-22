@@ -11,6 +11,7 @@ router.get("/tour/:tourid", function(req, res, next) {
     var title = "360 Virtual Tour";
     var neighborhood = "";
     var locality = "";
+    var broughtToYouBy = "";
     if (body) {
       try {
         var body = JSON.parse(body);
@@ -22,12 +23,18 @@ router.get("/tour/:tourid", function(req, res, next) {
           "/" +
           encodeURIComponent(body.media[0].title) +
           ".JPG";
-        description = body.Listing.Description || "See virtual reality tour.";
-        if (body.Listing.Description.length >= 250 && body.Media[body.Media.length - 1].BusinessName) {
+        description = "See virtual reality tour";
+        if (body.Listing.Description && body.Listing.Description !== "") {
+          description = body.Listing.Description;
+        }
+        if (body.media[body.media.length - 1].BusinessName) {
+          broughtToYouBy = "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          var substringLen = 150;
+          if (broughtToYouBy.length > 30) {
+            substringLen = substringLen - (broughtToYouBy.length - 30);
+          }
           description =
-            body.Listing.Description.substring(0, 250) +
-            " - Brought to you by " +
-            body.Media[body.Media.length - 1].BusinessName;
+            description.substring(0, 150) + "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
         }
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
@@ -36,7 +43,7 @@ router.get("/tour/:tourid", function(req, res, next) {
           body.Listing.Baths === 0 &&
           !body.Listing.LeaseEndDate &&
           !body.Listing.LeaseStartDate &&
-          body.Listing.Rent === 0
+          body.Listing.Rent == 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -96,11 +103,18 @@ router.get("/listing/:tourid", function(req, res, next) {
           "/" +
           encodeURIComponent(body.media[0].title) +
           ".JPG";
-        if (body.Listing.Description.length >= 250 && body.Media[body.Media.length - 1].BusinessName) {
+        description = "See virtual reality tour";
+        if (body.Listing.Description && body.Listing.Description !== "") {
+          description = body.Listing.Description;
+        }
+        if (body.media[body.media.length - 1].BusinessName) {
+          broughtToYouBy = "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          var substringLen = 150;
+          if (broughtToYouBy.length > 30) {
+            substringLen = substringLen - (broughtToYouBy.length - 30);
+          }
           description =
-            body.Listing.Description.substring(0, 250) +
-            " - Brought to you by " +
-            body.Media[body.Media.length - 1].BusinessName;
+            description.substring(0, 150) + "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
         }
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         if (
@@ -108,7 +122,7 @@ router.get("/listing/:tourid", function(req, res, next) {
           body.Listing.Baths === 0 &&
           !body.Listing.LeaseEndDate &&
           !body.Listing.LeaseStartDate &&
-          body.Listing.Rent === 0
+          body.Listing.Rent == 0
         ) {
           title = "Real estate virtual tour";
         }
