@@ -1602,7 +1602,6 @@
         var apiResource = $resource(WizioConfig.baseAPIURL + "activelisting/:activelistingid", {
           activelistingid: "@activelistingid"
         });
-        console.dir($state.current.name);
         if (currentState === "LandingPage") {
           activeListingId = WizioConfig.LandingPage.activeListingId();
         } else if (currentState === "Demo" || currentState === "Product") {
@@ -1610,11 +1609,8 @@
         } else if (currentState === "ListingDemo1") {
           activeListingId = "a3885803-1100-450f-931d-fbb53b6ed410";
         } else if (currentState === "Listing") {
-          console.dir("BITCH");
           activeListingId = $state.params.listingUUID;
         } else {
-          console.dir("IN CATCH ALL");
-          console.dir(currentState);
           activeListingId = $state.params.apitoken || $state.params.activelistingid;
           apartmentpubid = $state.params.apartmentpubid;
         }
@@ -1622,9 +1618,7 @@
         var query = {
           activelistingid: activeListingId
         };
-        console.dir("FUCK ME WHY ");
         apiResource.get(query, function(results) {
-          console.dir(results);
           if (results.media[0].pinRequired) {
             requestTourPasswordModal({
               activelistingid: activeListingId
