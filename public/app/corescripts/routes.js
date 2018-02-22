@@ -152,6 +152,15 @@ angular.module("MainApp").config([
           }
         }
       })
+      .state("Property", {
+        url: "/property/:propertyUUID",
+        views: {
+          maincontent: {
+            templateUrl: PAGECONFIG.PropertyApp.main.view,
+            controller: PAGECONFIG.PropertyApp.main.controller
+          }
+        }
+      })
       .state("Signup", {
         url: "/signup",
         views: {

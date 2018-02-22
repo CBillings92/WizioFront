@@ -135,6 +135,12 @@ angular.module("MainApp").constant(
           view: MODULESPATH + "about-us-app/about-us.html",
           controller: "AboutUsCtrl"
         },
+        PropertyApp: {
+          main: {
+            view: MODULESPATH + "property-app/main/property.html",
+            controller: "PropertyAppCtrl"
+          }
+        },
         listingPage: {
           main: {
             view: MODULESPATH + "listing-page-app/listing-page.html",

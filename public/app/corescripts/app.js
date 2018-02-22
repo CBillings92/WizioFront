@@ -40,6 +40,7 @@
   angular.module("ProductInfoApp", []);
   angular.module("EmptyStateApp", []);
   angular.module("ListingPageApp", []);
+  angular.module("PropertyApp", []);
 
   //LOAD 'MainApp' ANGULAR module
   //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -82,6 +83,7 @@
       "FlyOutMenuApp",
       "ProductInfoApp",
       "ListingPageApp",
+      "PropertyApp",
       "Models",
       "ui.router",
       "ngStorage",

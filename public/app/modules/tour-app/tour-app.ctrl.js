@@ -14,7 +14,6 @@ angular.module("TourApp").controller("TourCtrl", [
       document.getElementById("main-content").style["margin-bottom"] = 0;
     }
     TourFct.getContent().then(function(apiResponse) {
-      console.dir("HELLO");
       $scope.$emit("ListingDataRetrieved", apiResponse);
       var media = apiResponse.media;
       LoadingSpinnerFct.show("vrPlayerLoader");
