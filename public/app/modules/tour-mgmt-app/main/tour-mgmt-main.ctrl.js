@@ -296,12 +296,24 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     $scope.saveChanges = function() {
       LoadingSpinnerFct.show("savingChangesSpinner");
       $scope.saveChangesInitiated = true;
-      TourMgmtFct.saveChanges($scope.data).then(function(response) {
-        LoadingSpinnerFct.hide("savingChangesSpinner");
-        ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your tour has been saved.").then(function(result) {
-          TourMgmtFct.rerouteAfterSave();
+      TourMgmtFct.saveChanges($scope.data)
+        .then(function(response) {
+          LoadingSpinnerFct.hide("savingChangesSpinner");
+          ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your tour has been saved.").then(function(result) {
+            TourMgmtFct.rerouteAfterSave();
+          });
+        })
+        .catch(function(err) {
+          LoadingSpinnerFct.hide("savingChangesSpinner");
+          ModalBuilderFct.buildSimpleModal(
+            "",
+            "OK",
+            "Error",
+            "There are no photos to upload. Tours require at least one photo to save."
+          ).then(function(result) {
+            return;
+          });
         });
-      });
     };
 
     $scope.ListingChange = function(itemChanged) {

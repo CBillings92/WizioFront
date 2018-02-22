@@ -299,7 +299,10 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
         var photosArr = data.TourMedia.photos;
         var floorplan = data.TourMedia.floorplan;
         var subscriptionAptPubId = data.SubscriptionApartment.pubid;
-
+        console.dir(photosArr.length);
+        if (photosArr.length === 0) {
+          return reject("No photo to upload.");
+        }
         for (var i = 0; i < photosArr.length; i++) {
           photosArr[i].order = i;
         }
