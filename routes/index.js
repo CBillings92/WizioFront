@@ -96,13 +96,19 @@ router.get("/listing/:tourid", function(req, res, next) {
           "/" +
           encodeURIComponent(body.media[0].title) +
           ".JPG";
-        description = body.Listing.Description || "See virtual reality tour.";
+        if (body.Listing.Description.length >= 250 && body.Media[body.Media.length - 1].BusinessName) {
+          description =
+            body.Listing.Description.substring(0, 250) +
+            " - Brought to you by " +
+            body.Media[body.Media.length - 1].BusinessName;
+        }
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         if (
           body.Listing.Beds === 0 &&
           body.Listing.Baths === 0 &&
           !body.Listing.LeaseEndDate &&
-          !body.Listing.LeaseStartDate
+          !body.Listing.LeaseStartDate &&
+          body.Listing.Rent === 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -111,6 +117,10 @@ router.get("/listing/:tourid", function(req, res, next) {
         }
         if (body.Apartment.locality && body.Apartment.locality !== "") {
           title = title + ", " + body.Apartment.locality;
+        }
+        /* check if we have rent/price data for title */
+        if (body.Listing.Rent !== 0) {
+          title = title + " - $" + body.Listing.Rent;
         }
       } catch (e) {
         console.dir(e);
