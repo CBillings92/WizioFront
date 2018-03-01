@@ -36,4 +36,9 @@ angular.module('AboutUsApp')
                 email: "emily@wizio.co",
             }];
         }
+
+        $scope.goToPhotoForm = function() {
+            window.open('https://wizio-vr.typeform.com/to/UImSgz','_blank');
+
+        }
     ]);
