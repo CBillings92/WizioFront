@@ -21,6 +21,9 @@
       </div>
 
       <div class="col-xs-12 col-sm-6 col-sm-offset-1 row-space">
+        <div class="row" ng-if="!data.Listing.IsActive">
+          <h3>This listing is no longer active.</h3>
+        </div>
           <div class="row">
 
             <div class="col-xs-12 amenity-list">
@@ -76,6 +79,16 @@
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.ParkingType'>Parking,</span>
                 <span ng-if='data.Listing.HasLounge'>Building Lounge,</span>
+                <span ng-if='data.Listing.HasFireplace'>Fireplace,</span>
+                <span ng-if='data.Listing.HasRefrigerator'>Refrigerator,</span>
+                <span ng-if='data.Listing.IsCatFriendly'>Cat Friendly,</span>
+                <span ng-if='data.Listing.IsDogFriendly'>Dog Friendly,</span>
+                <span ng-if='data.Listing.IsSmallAnimalFriendly'>Small Animal Friendly,</span>
+                <span ng-if='data.Listing.HasMonthlyPetFee'>Monthly Pet Fee,</span>
+                <span ng-if='data.Listing.HasGym'>Gym,</span>
+                <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
+                <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
+                <span ng-if='data.Listing.ParkingType === 1'>Car Parking,</span>
               </p>
             </div>
           </div>
@@ -128,6 +141,7 @@
             <p class="listing-sub-section">Lease Details</p>
             <hr>
             <p class="small-body"><span class="medium">Rent:</span> {{data.Listing.Rent}} per {{'month'}}</p>
+            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}} per {{'month'}}</p>
             <p class="small-body"><span class="medium">Lease Start:</span> {{data.Listing.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
             <p class="small-body"><span class="medium">Lease End:</span> {{data.Listing.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
             <p class="small-body"><span class="medium">Location:</span> Boston MA  </p>

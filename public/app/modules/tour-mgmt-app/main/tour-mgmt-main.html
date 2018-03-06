@@ -33,7 +33,7 @@
   </div>
   <!-- App header End -->
   <!-- App Body Row Begin -->
-  <div class="row">
+  <div class="row" ng-if="modifyTourAccess">
     <!-- Photo for modification container/Floor Plan begin -->
     <div class="col-md-8" id="photoForModification_Container">
       <div class="row">
@@ -67,7 +67,7 @@
       </div>
       <!-- Photo for modification container end -->
       <!-- Floor Plan Row Begin -->
-      <div class="row" id='photoForModification_FloorPlan' style="margin-top:15px;">
+      <div class="row" id='photoForModification_FloorPlan' ng-show='modifyTourAccess' style="margin-top:15px;">
         <h3>Floor Plan</h3>
         <div class="row">
           <button type="button" class="btn btn-lg btn--cta" ng-if='!data.Apartment.Floor_Plan && !data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
@@ -145,6 +145,11 @@
         <h3>General Unit Information:</h3>
       </div>
       <div class="row">
+        <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+        <label for="" class="form-check-label">Listing Is Active</label>
+      </div>
+      <br>
+      <div class="row">
         <div class="col-md-1">
           <label for="">Beds</label>
           <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" name="" value="">
@@ -180,7 +185,7 @@
           <label for="" class="form-check-label">Has Refrigerator</label>
         </div> -->
         <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasDishwasher")' ng-model="data.Listing.HasDishwasher" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <input class="form-check-input"  ng-change='ListingChange("HasDishWasher")' ng-model="data.Listing.HasDishWasher" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Dishwasher</label>
         </div>
         <div class="col-md-2">
@@ -223,7 +228,7 @@
         </div>
         <div class="col-md-2">
           <label for="">Pet Fee Amount</label>
-          <input type="text" ng-model='data.Listing.MonhlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="">
+          <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="">
         </div>
 
       </div>
@@ -333,7 +338,7 @@
       </div>
       <div class="row">
         <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("ParkingType")'  ng-model="data.Listing.ParkingType" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <input class="form-check-input" ng-change='ListingChange("ParkingType")'  ng-model="data.Listing.ParkingType" ng-true-value='1' ng-false-value='0' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Car Parking</label>
         </div>
         <!-- <div class="col-md-2">
