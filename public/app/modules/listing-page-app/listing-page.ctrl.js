@@ -4,6 +4,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.data = {
       Listing: {}
     };
+    $scope.data.Listing.IsActive = true;
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
       $scope.agent = data.media[data.media.length - 1];

@@ -8,7 +8,19 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
   "TourMgmtFct",
   "WizioConfig",
   "ModalBuilderFct",
-  function($scope, $state, $stateParams, $q, AWSFct, LoadingSpinnerFct, TourMgmtFct, WizioConfig, ModalBuilderFct) {
+  "TokenSvc",
+  function(
+    $scope,
+    $state,
+    $stateParams,
+    $q,
+    AWSFct,
+    LoadingSpinnerFct,
+    TourMgmtFct,
+    WizioConfig,
+    ModalBuilderFct,
+    TokenSvc
+  ) {
     LoadingSpinnerFct.hide("savingChangesSpinner");
     /**
      * tracks when any changes have been made to the tour. Used to display the
@@ -52,6 +64,11 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     /* Kick off loading spinner for initialization */
     LoadingSpinnerFct.show("TourManagementMainLoad");
 
+    if (TokenSvc.decode().email.includes("@wizio.co")) {
+      $scope.modifyTourAccess = true;
+    } else {
+      $scope.modifyTourAccess = false;
+    }
     /** Initialize
      * Initialize tour management application. Pass in $stateParams. $stateParams
      * needs to be passed in from the Controller instead of accessing it
@@ -67,13 +84,12 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
         if (!$scope.data.Listing) {
           $scope.data.Listing = {};
         }
+        console.dir($scope.data.Listing);
         if ($scope.data.Listing.LeaseStartDate) {
           $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
-          $scope.data.Listing.LeaseStartDate.setDate($scope.data.Listing.LeaseStartDate.getDate() + 1);
         }
         if ($scope.data.Listing.LeaseEndDate) {
           $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
-          $scope.data.Listing.LeaseEndDate.setDate($scope.data.Listing.LeaseEndDate.getDate() + 1);
         }
 
         /* Set first photo in array as the default selected photo */
