@@ -37,8 +37,5 @@ angular.module('AboutUsApp')
             }];
         }
 
-        $scope.goToPhotoForm = function() {
-            window.open('https://wizio-vr.typeform.com/to/UImSgz','_blank');
-
-        }
+  
     ]);

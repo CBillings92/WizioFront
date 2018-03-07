@@ -138,3 +138,59 @@ padding-bottom: 70px;
         }
     }
 }
+//----phone-----//
+@media (max-width: 426px) {
+
+  .about-header{
+    height: 60vh;
+    margin-top: 20px;
+  }
+.about-header img{
+  margin-top: 10px;
+}
+
+.about-header__text{
+    font-size: 21px;
+    line-height: 1.2;
+}
+
+.about-mission{
+height: 50vh;
+padding-bottom: 30px;
+
+}
+
+.about-stats{
+  width: 90vw;
+  height: 300px;
+  padding: 0 5px;
+  margin-top: -30px;
+
+}
+
+.about-stats-header{
+  font-size: 18px;
+}
+
+.about-space{
+  padding-top: 20px;
+}
+
+.about-stats-callout{
+  font-size: 22px;
+  padding-top: 10px;
+  margin: 0 0 0 0;
+
+}
+
+.about-body{
+  font-size: 16px;
+}
+
+.about-contact-box{
+  padding: 30px;
+  height: 210px;
+  margin: 10px 0px;
+
+}
+}
