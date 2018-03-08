@@ -28,13 +28,9 @@ router.get("/tour/:tourid", function(req, res, next) {
           description = body.Listing.Description;
         }
         if (body.media[body.media.length - 1].BusinessName) {
-          broughtToYouBy = "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          broughtToYouBy = "Lisiting By - " + body.media[body.media.length - 1].BusinessName;
           var substringLen = 150;
-          if (broughtToYouBy.length > 30) {
-            substringLen = substringLen - (broughtToYouBy.length - 30);
-          }
-          description =
-            description.substring(0, 150) + "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          description = broughtToYouBy + " " + description;
         }
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
@@ -108,13 +104,9 @@ router.get("/listing/:tourid", function(req, res, next) {
           description = body.Listing.Description;
         }
         if (body.media[body.media.length - 1].BusinessName) {
-          broughtToYouBy = "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          broughtToYouBy = "Lisiting By - " + body.media[body.media.length - 1].BusinessName;
           var substringLen = 150;
-          if (broughtToYouBy.length > 30) {
-            substringLen = substringLen - (broughtToYouBy.length - 30);
-          }
-          description =
-            description.substring(0, 150) + "... - Brought to you by " + body.media[body.media.length - 1].BusinessName;
+          description = broughtToYouBy + " " + description;
         }
         title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
         if (
