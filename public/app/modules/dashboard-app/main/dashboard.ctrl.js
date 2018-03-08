@@ -50,7 +50,7 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     // get the user from session storage
     var user = TokenSvc.decode();
 
-    $scope.createToursPermitted = true;
+    $scope.createToursPermitted = false;
     if (user.email.includes("@wizio.co") || user.email === "Esolem@lreadvisors.com") {
       $scope.createToursPermitted = true;
     }
