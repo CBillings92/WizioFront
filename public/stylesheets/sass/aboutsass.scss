@@ -1,6 +1,6 @@
 .about-header{
   background-color: #fff;
-  height: 575px;
+  height: 500px;
   display: flex;
   align-items: center;
 }
@@ -138,12 +138,69 @@ padding-bottom: 70px;
         }
     }
 }
+
+// -------------  --------------- //
+
+
+@media (max-width: 767px) {
+
+
+.about-header__text{
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.about-mission{
+height: 40vh;
+padding-bottom: 40px;
+
+}
+
+.about-stats{
+  width: 90vw;
+  height: 300px;
+  padding: 0 5px;
+  margin-top: -40px;
+
+}
+
+.about-stats-header{
+  font-size: 24px;
+}
+
+.about-space{
+  padding-top: 20px;
+}
+
+.about-stats-callout{
+  font-size: 27px;
+  padding-top: 10px;
+  margin: 0 0 0 0;
+
+}
+
+.about-body{
+  font-size: 18px;
+}
+
+.about-contact-box{
+  padding: 30px;
+  height: 210px;
+  margin: 10px 0px;
+
+}
+
+}
+
+
+
+
 //----phone-----//
 @media (max-width: 426px) {
 
   .about-header{
     height: 60vh;
-    margin-top: 20px;
+    margin-top: 30px;
   }
 .about-header img{
   margin-top: 10px;
@@ -152,6 +209,7 @@ padding-bottom: 70px;
 .about-header__text{
     font-size: 21px;
     line-height: 1.2;
+    text-align: center;
 }
 
 .about-mission{
