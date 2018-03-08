@@ -9,7 +9,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
       $scope.agent = data.media[data.media.length - 1];
-      if ($scope.agent.BusinessName === "BostonPads") {
+      if ($scope.agent.BusinessName === "Boston Pads") {
         $scope.isBostonPadsUnit = true;
       }
       $scope.address = data.Apartment;
