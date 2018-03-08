@@ -1,6 +1,7 @@
 angular.module("ListingPageApp").controller("ListingPageCtrl", [
   "$scope",
   function($scope) {
+    $scope.isBostonPadsUnit = false;
     $scope.data = {
       Listing: {}
     };
@@ -8,6 +9,9 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
       $scope.agent = data.media[data.media.length - 1];
+      if ($scope.agent.BusinessName === "BostonPads") {
+        $scope.isBostonPadsUnit = true;
+      }
       $scope.address = data.Apartment;
       $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
       $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
