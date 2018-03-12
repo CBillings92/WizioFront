@@ -7,7 +7,7 @@
     <p>
         Phone Number
     </p>
-    <input type="text" id="phone-input" class="form-control" style="border: 1px solid black;" ng-attr-placeholder="{{phoneNumber}}" value="">
+    <input type="text" id="phone-input" ng-model='phoneNumber' class="form-control" style="border: 1px solid black;" ng-attr-placeholder="{{phoneNumber}}" value="">
     <br>
     <button class="btn btn-outline--blue" ng-click="savePhoneNumber()">Save Phone Number</button>
 </div>
