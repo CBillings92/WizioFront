@@ -19,14 +19,17 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
           var key = "profile-photos/" + user.firstName + "_" + user.lastName + "_" + user.id + ".png";
           // file, key, bucket, region
           AWSFct.s3.profilePhotos.uploadphoto(file, key, false).then(function(response) {
-            key = AWSFct.utilities.modifyKeyForEnvironment(key);
             $resource(WizioConfig.baseAPIURL + "user/update-user-profile-photo").save(
               {
                 awsProfilePhotoUrl: "https://cdn.wizio.co/" + key,
                 id: user.id
               },
               function(response) {
-                return resolve();
+                ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your profile photo has been updated: ").then(
+                  function(result) {
+                    return resolve();
+                  }
+                );
               }
             );
           });
