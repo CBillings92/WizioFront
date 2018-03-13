@@ -114,7 +114,7 @@
           <p class="small-body"><a href="{{agent.email}}">{{agent.email}}</a></p>
           <p class="small-body" ng-if='agent.phoneNumber'>(Agent) {{agent.phoneNumber}} </p>
           <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads || agent.BusinessName === 'NextGen Realty''">(Office) <a href = 'tel:617-208-2121'>617-208-2121</a></p>
-          <p class="small-body" ng-if="agent.BusinessName !== 'Boston Pads' || || agent.BusinessName !== 'NextGen Realty'"> {{agent.BusinessName}} </p>
+          <p class="small-body" ng-if="agent.BusinessName !== 'Boston Pads' || agent.BusinessName !== 'NextGen Realty'"> {{agent.BusinessName}} </p>
           <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads' || agent.BusinessName === 'NextGen Realty'"><a href="https://bostonpads.com/">{{agent.BusinessName}}</a></p>
         </div>
 
