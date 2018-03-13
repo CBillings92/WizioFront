@@ -88,7 +88,6 @@
                 <span ng-if='data.Listing.HasGym'>Gym,</span>
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
-                <span ng-if='data.Listing.ParkingType === 1'>Car Parking,</span>
               </p>
             </div>
           </div>
@@ -110,13 +109,13 @@
         <div class="col-md-6" ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'>
           <img src="public/viewtemplates/portrait_placeholder.png" style="height:175px" alt="RealtorImg">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
           <p class= "large-body"> {{agent.firstName + ' ' + agent.lastName}} </p>
           <p class="small-body"><a href="{{agent.email}}">{{agent.email}}</a></p>
           <p class="small-body" ng-if='agent.phoneNumber'>(Agent) {{agent.phoneNumber}} </p>
-          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads'">(Office) <a href = 'tel:617-208-2121'>617-208-2121</a></p>
-          <p class="small-body" ng-if="agent.BusinessName !== 'Boston Pads'"> {{agent.BusinessName}} </p>
-          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads'"><a href="https://bostonpads.com/">{{agent.BusinessName}}</a></p>
+          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads || agent.BusinessName === 'NextGen Realty''">(Office) <a href = 'tel:617-208-2121'>617-208-2121</a></p>
+          <p class="small-body" ng-if="agent.BusinessName !== 'Boston Pads' || agent.BusinessName !== 'NextGen Realty'"> {{agent.BusinessName}} </p>
+          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads' || agent.BusinessName === 'NextGen Realty'"><a href="https://bostonpads.com/">{{agent.BusinessName}}</a></p>
         </div>
 
       </div>
