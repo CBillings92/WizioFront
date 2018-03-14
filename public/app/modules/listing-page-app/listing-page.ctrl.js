@@ -27,8 +27,12 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         controller: WizioConfig.modals.RequestShowingApp.RequestShowingForm.controller,
         modalData: { agent: $scope.agent, listing: { activeListingPubId: $state.params.listingUUID } }
       })
-        .then(function(response) {})
-        .catch(function(err) {});
+        .then(function(response) {
+          return;
+        })
+        .catch(function(err) {
+          return;
+        });
     };
     // $scope.data = {
     //   Tour: {
