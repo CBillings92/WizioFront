@@ -1,6 +1,9 @@
 angular.module("ListingPageApp").controller("ListingPageCtrl", [
   "$scope",
-  function($scope) {
+  "$state",
+  "ModalBuilderFct",
+  "WizioConfig",
+  function($scope, $state, ModalBuilderFct, WizioConfig) {
     $scope.isBostonPadsUnit = false;
     $scope.data = {
       Listing: {}
@@ -16,6 +19,21 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
       $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
     });
+
+    $scope.requestShowing = function() {
+      ModalBuilderFct.buildModalWithController({
+        size: "md",
+        templateUrl: WizioConfig.modals.RequestShowingApp.RequestShowingForm.view,
+        controller: WizioConfig.modals.RequestShowingApp.RequestShowingForm.controller,
+        modalData: { agent: $scope.agent, listing: { activeListingPubId: $state.params.listingUUID } }
+      })
+        .then(function(response) {
+          return;
+        })
+        .catch(function(err) {
+          return;
+        });
+    };
     // $scope.data = {
     //   Tour: {
     //     TourId: 1
