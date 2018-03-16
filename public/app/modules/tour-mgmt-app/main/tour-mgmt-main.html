@@ -352,6 +352,11 @@
           <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid black;"></textarea>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-8">
+          <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-disabled="saveChangesInitiated" ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
+        </div>
+      </div>
     </form>
 
   </div>
