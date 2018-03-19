@@ -11,9 +11,9 @@ angular.module("TourPanelApp").controller("TourPanelCtrl", [
     $scope.activelisting = $scope.tour;
     $scope.user = TokenSvc.decode();
     $scope.wizioAdmin = false;
-    if ($scope.user.email.includes("@wizio.co")) {
-      $scope.wizioAdmin = true;
-    }
+    // if ($scope.user.email.includes("@wizio.co")) {
+    //   $scope.wizioAdmin = true;
+    // }
     new Clipboard(".clipboard");
     $scope.windowLocationOrigin = window.location.origin;
     $scope.activeListingURL = window.location.origin + "/tour/" + $scope.activelisting.pubid;

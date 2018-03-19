@@ -13,7 +13,7 @@
               <div class="row">
                 <div class="col-md-12 col-md-pull-1" style="margin-bottom:5px; margin-right:15px;">
                   <div class="col-md-6">
-                    <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.pubid}}" class="btn btn-md btn-outline--orange clipboard form-control">Copy Link</button>
+                    <button data-clipboard-text="{{windowLocationOrigin + '/tour/' + activelisting.pubid}}" class="btn btn-md btn-outline--orange clipboard form-control">Copy Tour Link</button>
                   </div>
                   <div class="col-md-6">
                     <button class="btn btn-md btn-outline--orange form-control" ng-click="openInNewPage(activelisting.pubid)">Open Tour</button>
@@ -29,6 +29,9 @@
                   <!-- <div class="col-md-6" ng-hide="activelisting.isPublic">
                     <button class="btn btn-md btn-outline--orange form-control" ng-click="generatePassword(activelisting, $index)">New Password</button>
                   </div> -->
+                  <div class="col-md-6">
+                    <button data-clipboard-text="{{windowLocationOrigin + '/listing/' + activelisting.pubid}}" class="btn btn-md btn-outline--orange clipboard form-control">Copy Listing Link</button>
+                  </div>
                   <div class="col-md-6">
                     <button data-clipboard-text="<iframe src={{activeListingURL}} height='500px'; width='500px;'></iframe>" class="btn btn-md btn-outline--orange clipboard form-control">Copy iFrame</button>
                   </div>
