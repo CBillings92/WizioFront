@@ -13,5 +13,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-fill--blue" ng-click="buttonAction('cancel')" name="button">Cancel</button>
-  <button type="button" class="btn btn-fill--orange" ng-click="buttonAction('continue')" name="button">Make Assignment</button>
+  <button type="button" class="btn btn-fill--orange" ng-disabled='formSubmitted' ng-click="buttonAction('continue')" name="button">Make Assignment</button>
 </div>
