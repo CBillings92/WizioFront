@@ -3,6 +3,9 @@
         <div class="col-md-6">
             <div><strong>{{activelisting.Apartment.concatAddr}}</strong></div>
             <div><strong>Unit Number: {{activelisting.Apartment.unitNum}}</strong></div>
+            <div ng-if="wizioAdmin">
+              <strong>Assigned To: {{activelisting.UserSubscriptions_Migration.Business.Name}} </strong>
+            </div>
         </div>
         <div class="col-md-6 search-right">
           <div class="" ng-if="currentState !== 'Account.Dashboard.ReassignTours'">
