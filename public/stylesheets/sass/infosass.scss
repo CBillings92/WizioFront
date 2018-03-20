@@ -25,6 +25,11 @@
     height: 500px;
 }
 
+.product-vr-player{
+  height: 100%;
+  width: 80vw;
+}
+
 #product-icon{
   width: 190px;
 }
@@ -246,6 +251,12 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
     line-height: 1.4;
     padding-bottom: 15px;
     margin-top: 5px;
+}
+
+@media (min-width: 1400px) {
+  .product-vr-player{
+    width: 70vw;
+  }
 }
 
 // ------------- Small desktop --------------- //
