@@ -35,7 +35,7 @@
 
         <!--/.container-fluid -->
       </nav>
-    <div class="tour-photos-container" ng-hide="viewFloorPlan">
+    <div class="tour-photos-container" ng-if='media.vrphoto.length > 1' ng-hide="viewFloorPlan">
             <div class="arrow-move pointer-events_all" style=" align-items: center;display:flex;cursor:pointer;" >
                 <i class="fa fa-chevron-left" aria-hidden="true" ng-click="moveSliderBackward()"></i>
             </div>
