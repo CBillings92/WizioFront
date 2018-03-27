@@ -139,63 +139,268 @@
     <!-- List of Photos Container End -->
   </div>
   <br>
-  <div class="row">
-    <form class="">
+
+
+<hr>
+    <form class="listing-data-form">
       <div class="row">
-        <h3>General Unit Information:</h3>
+        <p class= "section-head orange"> Edit Listing Details </p>
       </div>
-      <div class="row">
+
+
+<!-- General Listing Info -->
+      <div class="row col-xs-12">
+        <p class= "subhead-text med-gray"> General Information </p>
+      </div>
+
+
+      <div class="row col-xs-12 form-space">
         <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-        <label for="" class="form-check-label">Listing Is Active</label>
+        <label for="activate-tour" class="form-check-label">Listing Is Active</label>
       </div>
-      <br>
-      <div class="row">
-        <div class="col-md-1">
-          <label for="">Beds</label>
-          <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" name="" value="">
+
+
+
+      <div class="row col-xs-12 form-space">
+        <div class="col-md-4 col-xs-6">
+          <label for="bedrooms">Bedrooms</label>
+          <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" placeholder="Number of Bedroom(s)">
         </div>
-        <div class="col-md-1">
-          <label>Baths</label>
-          <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" name="" value="">
+        <div class="col-md-4 col-xs-6">
+          <label for="bathrooms">Bathrooms</label>
+          <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" placeholder="Number of Bathrooms(s)">
         </div>
-        <div class="col-md-2">
-          <label>Rent</label>
-          <input type="text" ng-model='data.Listing.Rent', ng-change='ListingChange("Rent")' class="form-control" name="" value="">
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("HasFirePlace")'  ng-model="data.Listing.HasFirePlace" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Fire Place</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("HasMicrowave")'  ng-model="data.Listing.HasMicrowave" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Microwave</label>
-        </div>
+      </div>
+
+  <!-- Amenities -->
+
+  <div class="row row-space form-space col-xs-12">
+    <p class= "subhead-text med-gray"> Amenities </p>
+  </div>
+
+  <div class="row form-space col-xs-12">
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasCentralAir")' ng-model="data.Listing.HasCentralAir" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Central Air</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasDishWasher")' ng-model="data.Listing.HasDishWasher" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Dishwasher</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("HasFirePlace")'  ng-model="data.Listing.HasFirePlace" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Fire Place</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasInUnitWasherDryer")' ng-model="data.Listing.HasInUnitWasherDryer" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">In Unit Washer/Dryer</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasSmartLock")' ng-model="data.Listing.HasSmartLock" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">SmartLock</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasPool")' ng-model="data.Listing.HasPool" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Pool</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("HasGym")' ng-model="data.Listing.HasGym" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Fitness Center</label>
+    </div>
+  </div>
+
+  <div class="row col-xs-8 form-space">
+    <div class="col-xs-12 form-group">
+      <label for="">Amenity Description</label>
+      <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
+      <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
+    </div>
+  </div>
+
+  <!--- Pet Specifications --->
+
+  <div class="row form-space col-xs-12">
+    <p class="subhead-text med-gray">Pet Rules </p>
+</div>
+    <div class="row form-space col-xs-12">
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("IsCatFriendly")' ng-model="data.Listing.IsCatFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Cats Only</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("IsDogFriendly")' ng-model="data.Listing.IsDogFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Dogs Only</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("IsDogFriendly")' ng-model="data.Listing.IsDogFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Pet Friendly</label>
+    </div>
+  </div>
+
+<div class="row col-xs-6 form-space">
+    <div class="col-xs-12 form-space">
+      <input class="form-check-input"  ng-change='ListingChange("HasMonthlyPetFee")' ng-model="data.Listing.HasMonthlyPetFee" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Pet Fee?</label>
+    </div>
+
+    <div class="col-xs-6 form-space">
+      <label for="">Pet Fee Amount</label>
+      <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="" placeholder="ex: $30">
+    </div>
+</div>
+
+<div class="row  col-xs-6 form-space">
+    <div class="col-xs-12 form-space">
+      <input class="form-check-input"  ng-change='ListingChange("HasPetWeightLimit")' ng-model="data.Listing.HasPetWeightLimit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Pet Weight Limit</label>
+    </div>
+
+    <div class="col-xs-6 form-space">
+      <label for="">Maximum Pet Weight</label>
+      <input type="text" ng-model='data.Listing.PetWeight' ng-change='ListingChange("PetWeight")' class='form-control' name="" value="" placeholder="ex: 40lbs">
+    </div>
+  </div>
+
+  <!--- Lease Information --->
+
+  <div class="row form-space row-space col-xs-12">
+      <p class="subhead-text med-gray"> Lease Information </p>
+  </div>
+
+  <div class="col-md-4 form-space col-xs-6">
+    <label>Rent</label>
+    <input type="text" ng-model='data.Listing.Rent', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $2400">
+  </div>
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Lease Start Date</label>
+    <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.LeaseStartDate' ng-model='data.Listing.LeaseStartDate' class="form-control" name="" value="">
+  </div>
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label> Lease Length </label>
+    <select class="form-control">
+      <option> 3 Month </option>
+      <option> 6 Month </option>
+      <option> 12 Month </option>
+    </select>
+  </div>
+
+  <!--- Utilities --->
+
+  <div class="row form-space row-space col-xs-12">
+      <p class="subhead-text med-gray"> Utilities Included</p>
+  </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsHeatIncluded")'  ng-model="data.Listing.IsHeatIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Heat</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsGasIncluded")'  ng-model="data.Listing.IsGasIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Gas</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsHotWaterIncluded")'  ng-model="data.Listing.IsHotWaterIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Hot Water </label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input"  ng-change='ListingChange("IsElectricIncluded")' ng-model="data.Listing.IsElectricIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Electric </label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsCableInternetIncluded")' ng-model="data.Listing.IsCableInternetIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Internet/Cable</label>
+    </div>
+
+
+
+  <!-- Due at Signing -->
+  <div class="row form-space row-space col-xs-12">
+      <p class="subhead-text med-gray"> Due at Signing</p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsFirstMonthsRentRequired")'  ng-model="data.Listing.IsFirstMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">First Month's Rent</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsLastMonthsRentRequired")'  ng-model="data.Listing.IsLastMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Last Month's Rent</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsSecurityDepositRequired")'  ng-model="data.Listing.IsSecurityDepositRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Security Deposit</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6" ng-show='data.Listing.IsSecurityDepositRequired'>
+      <label for="">Security Deposit Amount</label>
+      <input type="text" ng-change='ListingChange("SecurityDepositAmount")' ng-model='data.Listing.SecurityDepositAmount' class='form-control' name="" value="">
+    </div>
+
+    <div class="col-md-4 col-xs-6">
+      <input class="form-check-input" ng-change='ListingChange("IsBrokerFeeRequired")'  ng-model="data.Listing.IsBrokerFeeRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Broker's Fee Amount</label>
+    </div>
+
+    <div class="col-md-4 col-xs-6" ng-show="data.Listing.IsBrokerFeeRequired">
+        <label for="">Broker's Fee</label>
+        <input type="text" ng-change='ListingChange("BrokersFeeAmount")'  ng-model='data.Listing.BrokersFeeAmount' name="" value="" class='form-control'>
+    </div>
+
+    <div class="row col-xs-12 row-space">
+      <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-disabled="saveChangesInitiated" ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
+    </div>
+
+</form>
+
+</div>
+<loading-spinner-dir id="TourManagementMainLoad" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir>
+<input type="file" disabled id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
+<input type="file" disabled id="uploadMultiplePhotosInputButton" style="position: absolute; opacity:0; z-index:-100" multiple>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- <div class="col-md-2">
           <input class="form-check-input"  ng-change='ListingChange("HasBathtub")' ng-model="data.Listing.HasBathtub" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Bathtub</label>
         </div> -->
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasCentralAir")' ng-model="data.Listing.HasCentralAir" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Central Air</label>
-        </div>
-      </div>
-      <div class="row">
+
         <!-- <div class="col-md-2">
           <input class="form-check-input"  ng-change='ListingChange("HasRefrigerator")' ng-model="data.Listing.HasRefrigerator" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Refrigerator</label>
         </div> -->
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasDishWasher")' ng-model="data.Listing.HasDishWasher" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Dishwasher</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasInUnitWasherDryer")' ng-model="data.Listing.HasInUnitWasherDryer" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">In Unit Washer/Dryer</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasSmartLock")' ng-model="data.Listing.HasSmartLock" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has SmartLock</label>
-        </div>
+
+
+
         <!-- <div class="col-md-2">
           <input class="form-check-input"  ng-change='ListingChange("WindowFixings")' ng-model="data.Listing.WindowFixings" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Window Fixings</label>
@@ -204,38 +409,8 @@
           <label>Square Footage</label>
           <input type="text" class="form-control" name="" value="">
         </div> -->
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasGarbageDisposal")' ng-model="data.Listing.HasGarbageDisposal" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Garbage Disposal</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("IsCatFriendly")' ng-model="data.Listing.IsCatFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Cat Friendly</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("IsDogFriendly")' ng-model="data.Listing.IsDogFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Dog Friendly</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("IsSmallAnimalFriendly")' ng-model="data.Listing.IsSmallAnimalFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Small Animal Friendly</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasMonthlyPetFee")' ng-model="data.Listing.HasMonthlyPetFee" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Pet Fee?</label>
-        </div>
-        <div class="col-md-2">
-          <label for="">Pet Fee Amount</label>
-          <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="">
-        </div>
 
-      </div>
-      <div class="row">
-        <h3>Lease Information</h3>
-      </div>
-      <div class="row">
+
         <!-- <div class="col-md-3">
           <label for="">Lease Length</label>
           <select class="form-control" id="exampleFormControlSelect1">
@@ -254,113 +429,16 @@
             <option>Month to Month</option>
           </select>
         </div> -->
-        <div class="col-md-2">
-          <label>Lease Start Date</label>
-          <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.LeaseStartDate' ng-model='data.Listing.LeaseStartDate' class="form-control" name="" value="">
-        </div>
-        <div class="col-md-2">
+
+        <!-- <div class="col-md-2">
           <label for="">Lease End Date</label>
           <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.LeaseEndDate' ng-model='data.Listing.LeaseEndDate' class='form-control' name="" value="">
-        </div>
-      </div>
-      <div class="row">
-        <h3>Utilities</h3>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsHeatIncluded")'  ng-model="data.Listing.IsHeatIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Heat Included</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsGasIncluded")'  ng-model="data.Listing.IsGasIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Gas Included</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsHotWaterIncluded")'  ng-model="data.Listing.IsHotWaterIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Hot Water Included</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("IsElectricIncluded")' ng-model="data.Listing.IsElectricIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Electric Included</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsCableInternetIncluded")' ng-model="data.Listing.IsCableInternetIncluded" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Internet/Cable Included</label>
-        </div>
-      </div>
-      <div class="row">
-        <h3>Due at Signing:</h3>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsFirstMonthsRentRequired")'  ng-model="data.Listing.IsFirstMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">First Month's Rent</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsLastMonthsRentRequired")'  ng-model="data.Listing.IsLastMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Last Month's Rent</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsSecurityDepositRequired")'  ng-model="data.Listing.IsSecurityDepositRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Security Deposit</label>
-        </div>
-        <div class="col-md-2" ng-show='data.Listing.IsSecurityDepositRequired'>
-          <label for="">Security Deposit Amount</label>
-          <input type="text" ng-change='ListingChange("SecurityDepositAmount")' ng-model='data.Listing.SecurityDepositAmount' class='form-control' name="" value="">
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("IsBrokerFeeRequired")'  ng-model="data.Listing.IsBrokerFeeRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Broker's Fee Amount</label>
-        </div>
-        <div class="col-md-2" ng-show="data.Listing.IsBrokerFeeRequired">
-            <label for="">Broker's Fee</label>
-            <input type="text" ng-change='ListingChange("BrokersFeeAmount")'  ng-model='data.Listing.BrokersFeeAmount' name="" value="" class='form-control'>
-        </div>
-      </div>
-      <div class="row">
-        <h3>Amenities:</h3>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("HasConcierge")'  ng-model="data.Listing.HasConcierge" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Concierge</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasPool")' ng-model="data.Listing.HasPool" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Pool</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input"  ng-change='ListingChange("HasGym")' ng-model="data.Listing.HasGym" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Gym</label>
-        </div>
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("HasLounge")'  ng-model="data.Listing.HasLounge" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Lounge</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <input class="form-check-input" ng-change='ListingChange("ParkingType")'  ng-model="data.Listing.ParkingType" ng-true-value='1' ng-false-value='0' type="checkbox" value="" id="defaultCheck1">
-          <label for="" class="form-check-label">Has Car Parking</label>
-        </div>
+        </div> -->
+
+
+
+
         <!-- <div class="col-md-2">
           <input class="form-check-input" ng-change='ListingChange("BicycleStorageType")'  ng-model="data.Listing.BicycleStorageType" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
           <label for="" class="form-check-label">Has Bicycle Parking</label>
         </div> -->
-      </div>
-      <div class="row">
-        <div class="col-md-12 form-group">
-          <label for="">Description</label>
-          <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid black;"></textarea>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-8">
-          <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-show="changesMade" ng-disabled="saveChangesInitiated" ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
-        </div>
-      </div>
-    </form>
-
-  </div>
-  <loading-spinner-dir id="TourManagementMainLoad" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir>
-  <input type="file" disabled id='uploadFloorPlanInputButton' style="opacity: 0; z-index: -100; positon: absolute;" name="" value="">
-  <input type="file" disabled id="uploadMultiplePhotosInputButton" style="position: absolute; opacity:0; z-index:-100" multiple>
-</div>

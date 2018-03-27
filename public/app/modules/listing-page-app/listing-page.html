@@ -62,6 +62,49 @@
                  <p class="large-body">Pet Friendly</p>
                </div>
               </div>
+
+              <div ng-if='data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/cat-friendly.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Cat Friendly</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/dog-friendly.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Dog Friendly</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/smartlock.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Smart Lock</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/fireplace.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Fireplace</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/pool.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Pool</p>
+               </div>
+              </div>
+
+              <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div class= "text-center">
+                <img src= "public/viewtemplates/images/listing page/fitness-center.png" style="height: 50px" class="amenity-icon"></img>
+                 <p class="large-body">Fitness Center</p>
+               </div>
+              </div>
+
             </div>
           </div>
 
@@ -69,23 +112,17 @@
             <div class="col-sm-10">
               <p class="listing-sub-section"> Additional Amenities </p>
               <p class="small-body">
-                <span ng-if='data.Listing.HasPool'>Pool,</span>
                 <span ng-if='data.Listing.IsGasIncluded'>Gas Included,</span>
                 <span ng-if='data.Listing.IsElectricIncluded'>Electric Included,</span>
                 <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water Included,</span>
                 <span ng-if='data.Listing.IsHeatIncluded'>Heat Included,</span>
-                <span ng-if='data.Listing.HasSmartLock'>Has Smart Lock,</span>
                 <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet Included,</span>
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.ParkingType'>Parking,</span>
                 <span ng-if='data.Listing.HasLounge'>Building Lounge,</span>
-                <span ng-if='data.Listing.HasFireplace'>Fireplace,</span>
                 <span ng-if='data.Listing.HasRefrigerator'>Refrigerator,</span>
-                <span ng-if='data.Listing.IsCatFriendly'>Cat Friendly,</span>
-                <span ng-if='data.Listing.IsDogFriendly'>Dog Friendly,</span>
                 <span ng-if='data.Listing.IsSmallAnimalFriendly'>Small Animal Friendly,</span>
                 <span ng-if='data.Listing.HasMonthlyPetFee'>Monthly Pet Fee,</span>
-                <span ng-if='data.Listing.HasGym'>Gym,</span>
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
               </p>
