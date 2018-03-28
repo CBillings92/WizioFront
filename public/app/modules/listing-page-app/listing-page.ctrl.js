@@ -16,6 +16,22 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         $scope.isBostonPadsUnit = true;
       }
       $scope.address = data.Apartment;
+      console.dir($scope.address);
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        mapTypeId: "terrain"
+      });
+      var cityCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map: map,
+        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        radius: 300
+      });
       $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
       $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
     });
@@ -34,6 +50,9 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
           return;
         });
     };
+
+    // map();
+
     // $scope.data = {
     //   Tour: {
     //     TourId: 1
