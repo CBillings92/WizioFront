@@ -1,226 +1,87 @@
-$orange-transparancy-hover: 0.9;
-
-.about-wrapper {
-    position: relative;
-    width: 100%;
-    overflow-x: hidden;
+.about-header{
+  background-color: #fff;
+  height: 500px;
+  display: flex;
+  align-items: center;
 }
 
-.about-hero {
-    @media (min-width: $screen-sm-min) {
-        position: relative;
-        width: 100%;
-        /* Maintain Aspect Ratio */
-        padding-bottom: percentage(550 / 1264);
-
-        &-main {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-        }
-    }
-
-    &-main {
-        background: url("/public/viewtemplates/images/aboutimages/hero-image.jpg");
-        color: $white;
-        padding: 100px 0 50px;
-
-        &__heading {
-            max-width: 80%;
-            word-break: keep-all;
-            text-shadow: 0 0 10px rgba(0,0,0,.4);
-        }
-
-        &__subheading {
-            font-size: 20px;
-            text-shadow: 0 0 10px rgba(0,0,0,.4);
-        }
-        @media (min-width: $screen-sm-min) {
-            padding: 90px 0 0;
-
-            &__heading {
-                max-width: none;
-                margin-bottom: 30px;
-            }
-
-            &__subheading {
-                max-width: 50%;
-            }
-        }
-        @media (min-width: $screen-md-min) {
-            .about-hero-main__container {
-                position: absolute;
-                top: 310px;
-                left: 0;
-                right: 0;
-                @include vertical-center-transform();
-            }
-
-            &__subheading {
-                font-size: 27px;
-            }
-        }
-
-        &__quadrangle {
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-        }
-
-        .pin-and-outline {
-            position: absolute;
-            transform-origin: bottom right;
-            right: -250px;
-            @media (max-width: $screen-xs-max) {
-                top: 80px;
-            }
-            @media (min-width: $screen-sm-min) {
-                bottom: 45%;
-                right: 18.49%;
-                transform: scale(1.2) translate(50%, 0);
-            }
-            @media (min-width: $screen-md-min) {
-                transform: scale(2) translate(50%, 0);
-            }
-
-            .pin {
-                fill: rgba($orange, 0.4);
-            }
-
-            .pin-outline {
-                fill: rgba($white, 0.4);
-            }
-        }
-    }
+.about-header__text{
+  font-family: "Roboto";
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
-.about-principles {
-    background: $light-orange;
-    color: $white;
-    padding: 50px 10px;
-    @media (min-width: $screen-sm-min) {
-        padding: 0;
-        margin-top: -10px;
-    }
-
-    h2 {
-        color: $white;
-        @media (min-width: $screen-sm-min) {
-            margin: 10px 0 40px;
-            font-size: 40px;
-        }
-        @media (max-width: $screen-xs-max) {
-            border-bottom: 2px solid $white;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            font-size: 30px;
-        }
-    }
-
-    .about-principles__principle-list {
-        list-style-type: none;
-        counter-reset: ol-counter;
-        padding: 0;
-        @include clearfix() li {
-            position: relative;
-
-            p {
-                text-align: left;
-            }
-
-            h3 {
-                margin: 0;
-            }
-            @media (min-width: $screen-sm-min) {
-                &:before {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    content: counter(ol-counter);
-                    counter-increment: ol-counter;
-                    color: darken($orange, 10%);
-                    font-family: 'Roboto Slab';
-                    font-size: 6rem;
-                }
-
-                h3 {
-                    margin: 0 0 20px;
-                }
-                padding: 0 50px 40px 60px;
-                float: left;
-                width: 50%;
-            }
-            @media (min-width: $screen-md-min) {
-                &:before {
-                    font-size: 12rem;
-                    margin-top: -21px;
-                }
-                padding-left: 80px;
-            }
-        }
-    }
+.about-mission{
+  background-color: #EAEAEA;
+height: 70vh;
+display: flex;
+align-items: center;
+padding-bottom: 70px;
 }
 
-.about-learn-more__link {
-    display: block;
-    background: $orange;
-    color: $white;
-    font-family: "Roboto Slab";
-    font-size: 3rem;
-    padding: 26px ($grid-gutter-width / 2);
-    transition: background-color 0.15s ease-in-out;
-    @media (min-width: $screen-sm-min) {
-        text-align: center;
-    }
-
-    &:active,
-    &:focus,
-    &:hover,
-    &:visited {
-        color: $white;
-        text-decoration: none;
-    }
-
-    &:hover {
-        background: darken($orange, 5%);
-    }
+.about-mission .subhead-text{
+  line-height: 1.4;
+  font-weight: 300;
+  color: $dk-gray;
+  padding-top: 15px;
 }
+
+.about-stats{
+  background-color: $orange;
+  width: 80vw;
+  height: 325px;
+  display: flex;
+  align-items: center;
+  margin-top: -70px;
+}
+
+.about-stats-header{
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.about-space{
+  padding-top: 50px;
+}
+
+.about-stats-callout{
+  font-family: "Roboto";
+  font-size: 34px;
+  font-weight: 400;
+  color: $white;
+
+}
+
+.about-body{
+  font-family: "Roboto";
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.about-contact-box{
+  padding: 40px;
+  border: 2px solid #f1f1f1;
+  box-shadow: 3px 2px 6px 0 hsla(0, 0%, 0%, 0.04);
+  height: 230px;
+
+   button{
+     margin-top: 20px;
+   }
+
+
+}
+
+
 
 .about-team {
-    h2 {
-        margin-top: 30px;
-        color: $orange;
-    }
-    @media (max-width: $screen-xs-max) {
-        .about-team-member {
-            max-width: 350px;
-            margin: 0 auto;
-        }
-    }
 
     &-members {
-        .title,
-        h3 {
-            font-weight: 300;
-            margin-bottom: 5px;
-        }
-
-        h3 {
-            font-family: 'Roboto Slab';
-        }
-
-        .title {
-            margin-bottom: 15px;
-            font-family: 'Roboto';
-        }
-        color: $gray;
-        margin-bottom: 50px;
 
         &-more {
             position: relative;
+            margin-bottom: 10px;
 
             &-overlay {
                 opacity: 0;
@@ -230,7 +91,7 @@ $orange-transparancy-hover: 0.9;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: rgba($orange, $orange-transparancy-hover);
+                background: $blue;
 
                 .outline-btn {
                     display: block;
@@ -258,7 +119,7 @@ $orange-transparancy-hover: 0.9;
             }
 
             &:hover &-overlay {
-                opacity: 1;
+                opacity: .85;
             }
         }
     }
@@ -277,4 +138,118 @@ $orange-transparancy-hover: 0.9;
             fill: #ffffff;
         }
     }
+}
+
+// -------------  --------------- //
+
+
+@media (max-width: 767px) {
+
+
+.about-header__text{
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.about-mission{
+height: 40vh;
+padding-bottom: 40px;
+
+}
+
+.about-stats{
+  width: 90vw;
+  height: 300px;
+  padding: 0 5px;
+  margin-top: -40px;
+
+}
+
+.about-stats-header{
+  font-size: 24px;
+}
+
+.about-space{
+  padding-top: 20px;
+}
+
+.about-stats-callout{
+  font-size: 27px;
+  padding-top: 10px;
+  margin: 0 0 0 0;
+
+}
+
+.about-body{
+  font-size: 18px;
+}
+
+.about-contact-box{
+  padding: 30px;
+  height: 210px;
+  margin: 10px 0px;
+
+}
+
+}
+
+
+
+
+//----phone-----//
+@media (max-width: 426px) {
+
+  .about-header{
+    height: 60vh;
+    margin-top: 30px;
+  }
+.about-header img{
+  margin-top: 10px;
+}
+
+.about-header__text{
+    font-size: 21px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.about-mission{
+height: 50vh;
+padding-bottom: 30px;
+
+}
+
+.about-stats{
+  width: 90vw;
+  height: 300px;
+  padding: 0 5px;
+  margin-top: -30px;
+
+}
+
+.about-stats-header{
+  font-size: 18px;
+}
+
+.about-space{
+  padding-top: 20px;
+}
+
+.about-stats-callout{
+  font-size: 22px;
+  padding-top: 10px;
+  margin: 0 0 0 0;
+
+}
+
+.about-body{
+  font-size: 16px;
+}
+
+.about-contact-box{
+  padding: 30px;
+  height: 210px;
+  margin: 10px 0px;
+
+}
 }
