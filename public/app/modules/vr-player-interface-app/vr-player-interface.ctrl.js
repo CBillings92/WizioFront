@@ -262,7 +262,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
             $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
             $scope.agent.email === "youngone@younghouses.com" ||
             $scope.agent.email === "brian@lmcrealtyboston.com" ||
-            $scope.agent.email === "yuyang@wizio.co"
+            $scope.agent.email === "yuyang@wizio.co" ||
+            $scope.agent.BusinessName === 'HqO'
           ) {
             $scope.isMLSListingAccount = true;
           }

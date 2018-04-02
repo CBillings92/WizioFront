@@ -20,6 +20,21 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       $scope.address = data.Apartment;
       $scope.data.Lease.LeaseStartDate = new Date($scope.data.Lease.LeaseStartDate);
       $scope.data.Lease.LeaseEndDate = new Date($scope.data.Lease.LeaseEndDate);
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        mapTypeId: "terrain"
+      });
+      var cityCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map: map,
+        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        radius: 300
+      });
     });
 
     $scope.requestShowing = function() {
@@ -36,6 +51,9 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
           return;
         });
     };
+
+    // map();
+
     // $scope.data = {
     //   Tour: {
     //     TourId: 1
