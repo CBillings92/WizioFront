@@ -38,6 +38,10 @@ $dk-gray: #4A4A4A;
     font-style: italic;
 }
 
+.light {
+  font-weight: 300;
+}
+
 
 /**
   Mixins
@@ -468,6 +472,12 @@ a:focus {
     text-align: center;
 
 }
+
+.listing-contact-address .large-body{
+  font-size: 16px;
+  text-align: left;
+}
+
 
     h1,
     h2 {
