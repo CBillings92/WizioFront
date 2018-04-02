@@ -11,13 +11,15 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.data.Listing.IsActive = true;
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
-      $scope.agent = data.media[data.media.length - 1];
+      $scope.data.Listing = data.SubscriptionApartment.Listing;
+      $scope.data.Lease = $scope.data.Listing.Lease;
+      $scope.agent = data.User;
       if ($scope.agent.BusinessName === "Boston Pads") {
         $scope.isBostonPadsUnit = true;
       }
       $scope.address = data.Apartment;
-      $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
-      $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
+      $scope.data.Lease.LeaseStartDate = new Date($scope.data.Lease.LeaseStartDate);
+      $scope.data.Lease.LeaseEndDate = new Date($scope.data.Lease.LeaseEndDate);
     });
 
     $scope.requestShowing = function() {

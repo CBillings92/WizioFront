@@ -264,9 +264,9 @@
       <label for="" class="form-check-label">Pet Weight Limit</label>
     </div>
 
-    <div class="col-xs-6 form-space">
+    <div class="col-xs-6 form-space" ng-if="data.Listing.HasPetWeightLimit">
       <label for="">Maximum Pet Weight</label>
-      <input type="text" ng-model='data.Listing.PetWeight' ng-change='ListingChange("PetWeight")' class='form-control' name="" value="" placeholder="ex: 40lbs">
+      <input type="text" ng-model='data.Listing.PetWeight' ng-change='ListingChange("PetWeightLimit")' class='form-control' name="" value="" placeholder="ex: 40lbs">
     </div>
   </div>
 
@@ -286,14 +286,14 @@
     <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.LeaseStartDate' ng-model='data.Listing.LeaseStartDate' class="form-control" name="" value="">
   </div>
 
-  <div class="col-md-4 col-xs-6 form-space">
+  <!-- <div class="col-md-4 col-xs-6 form-space">
     <label> Lease Length </label>
     <select class="form-control">
       <option> 3 Month </option>
       <option> 6 Month </option>
       <option> 12 Month </option>
     </select>
-  </div>
+  </div> -->
 
   <!--- Utilities --->
 

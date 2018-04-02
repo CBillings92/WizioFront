@@ -29,78 +29,78 @@
             <div class="col-xs-12 amenity-list">
               <div class=" col-xs-6 col-sm-3 col-md-2 amenity-item">
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/bedroom.png" style="height: 50px" class="amenity-icon">
+                <img src= "public/viewtemplates/images/listing_page/bedroom.png" style="height: 50px" class="amenity-icon">
                 <p class="large-body"> {{data.Listing.Beds}} Beds</p>
               </div>
               </div>
 
               <div class="col-sm-3 col-xs-6 col-md-2 amenity-item">
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/bathroom.png" style="height: 50px" class="amenity-icon">
+                <img src= "public/viewtemplates/images/listing_page/bathroom.png" style="height: 50px" class="amenity-icon">
                 <p class="large-body"> {{data.Listing.Baths}} Bath</p>
-              </div>
+                </div>
               </div>
 
               <div ng-if='data.Listing.HasDishWasher' class="col-md-2 col-xs-6 col-sm-3 amenity-item" >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/dishwasher.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/dishwasher.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body"> Dish Washer</p>
                </div>
               </div>
 
               <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-md-2 col-xs-6 col-sm-3 amenity-item" >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/laundry.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/laundry.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">In Unit Laundry</p>
                </div>
               </div>
 
 
-              <div ng-if='data.Listing.IsCatFriendly || data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+              <div ng-if='data.Listing.IsCatFriendly && data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/pet-friendly.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/pet-friendly.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Pet Friendly</p>
                </div>
               </div>
 
-              <div ng-if='data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+              <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/cat-friendly.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/cat-friendly.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Cat Friendly</p>
                </div>
               </div>
 
-              <div ng-if='data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+              <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/dog-friendly.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/dog-friendly.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Dog Friendly</p>
                </div>
               </div>
 
               <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/smartlock.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/smartlock.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Smart Lock</p>
                </div>
               </div>
 
               <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/fireplace.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/fireplace.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Fireplace</p>
                </div>
               </div>
 
               <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/pool.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/pool.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Pool</p>
                </div>
               </div>
 
               <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
                 <div class= "text-center">
-                <img src= "public/viewtemplates/images/listing page/fitness-center.png" style="height: 50px" class="amenity-icon"></img>
+                <img src= "public/viewtemplates/images/listing_page/fitness-center.png" style="height: 50px" class="amenity-icon"></img>
                  <p class="large-body">Fitness Center</p>
                </div>
               </div>
@@ -186,10 +186,10 @@
           <div class="col-sm-12 col-md-5">
             <p class="listing-sub-section">Lease Details</p>
             <hr>
-            <p class="small-body"><span class="medium">Rent:</span> {{data.Listing.Rent}} per {{'month'}}</p>
+            <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount}} per {{'month'}}</p>
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}} per {{'month'}}</p>
-            <p class="small-body"><span class="medium">Lease Start:</span> {{data.Listing.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body"><span class="medium">Lease End:</span> {{data.Listing.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body"><span class="medium">Lease End:</span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
             <p class="small-body"><span class="medium">Location:</span> Boston MA  </p>
 
           </div>
@@ -197,44 +197,44 @@
               <p class="listing-sub-section">Due at Signing</p>
               <hr/>
             <div class="col-md-12" style="">
-              <div ng-if="data.Listing.IsFirstMonthsRentRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
+              <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
                 <p class="small-body"> First Month </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
 
 
-              <div ng-if="!data.Listing.IsFirstMonthsRentRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
+              <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
                 <p class="small-body"> First Month </p>
                 <i class="fa fa-close fa-2x blue"></i>
               </div>
 
-              <div ng-if="data.Listing.IsSecurityDepositRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
+              <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
                 <p class="small-body"> Security Deposit </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
 
-              <div ng-if="!data.Listing.IsSecurityDepositRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
+              <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
                 <p class="small-body"> Security Deposit </p>
                 <i class="fa fa-close fa-2x blue"></i>
               </div>
 
-              <div ng-if="data.Listing.IsLastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
+              <div ng-if="data.Lease.IsLastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Last Month </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
 
-              <div ng-if="!data.Listing.IsLastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
+              <div ng-if="!data.Lease.IsLastMonthsRentRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Last Month </p>
                 <i class="fa fa-close fa-2x blue"></i>
               </div>
 
 
-              <div ng-if="data.Listing.IsBrokerFeeRequired" class="text-center col-xs-6 listing-fee">
+              <div ng-if="data.Lease.IsBrokerFeeRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Broker Fee </p>
                 <i class="fa fa-check fa-2x orange"></i>
               </div>
 
-              <div ng-if="!data.Listing.IsBrokerFeeRequired" class="text-center col-xs-6 listing-fee">
+              <div ng-if="!data.Lease.IsBrokerFeeRequired" class="text-center col-xs-6 listing-fee">
                 <p class="small-body"> Broker Fee </p>
                 <i class="fa fa-close fa-2x blue"></i>
               </div>

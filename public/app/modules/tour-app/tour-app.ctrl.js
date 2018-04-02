@@ -15,7 +15,8 @@ angular.module("TourApp").controller("TourCtrl", [
     }
     TourFct.getContent().then(function(apiResponse) {
       $scope.$emit("ListingDataRetrieved", apiResponse);
-      var media = apiResponse.media;
+      console.dir(apiResponse);
+      var media = apiResponse.Media;
       LoadingSpinnerFct.show("vrPlayerLoader");
       var interfaceData = {
         floorplan: false,
