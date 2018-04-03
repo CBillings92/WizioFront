@@ -16,6 +16,12 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         $scope.isBostonPadsUnit = true;
       }
       $scope.address = data.Apartment;
+      $scope.finalAddress = "";
+      if ($scope.address.neighborhood) {
+        $scope.finalAddress = $scope.address.neighborhood + ", ";
+      }
+      $scope.finalAddress =
+        $scope.finalAddress + data.Apartment.concatAddr.substring(data.Apartment.concatAddr.indexOf(",") + 2);
       $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
       $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
     });
