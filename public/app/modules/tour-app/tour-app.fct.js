@@ -1623,7 +1623,6 @@
             requestTourPasswordModal({
               activelistingid: activeListingId
             }).then(function(response) {
-              console.dir(response);
               return resolve(response);
             });
           } else {
@@ -1638,29 +1637,23 @@
      * @param {Object} media   Object of photos organized by type
      * @param {[type]} SubscriptionApartmentPubId CHAR(36) - Public ID for SubscriptionApartment
      */
-    function prepMedia(media) {
+    function prepMedia(media, SubscriptionApartmentPubId, floorplan) {
       var photoIndex;
       var floorplan = false;
       var progressivePhotoUrls;
       var state = $state.current.name;
-      var SubscriptionApartmentPubId = media.vrphoto[0].SubscriptionApartmentPubId;
       var photoUrl;
 
-      if (media.vrphoto[0].Floor_Plan !== null) {
+      if (floorplan !== null) {
         floorplan = buildFloorPlanUrl(SubscriptionApartmentPubId);
       }
 
-      for (var i = 0; i < media.vrphoto.length; i++) {
-        media.vrphoto[i].imageUrls = [
-          WizioConfig.CLOUDFRONT_DISTRO +
-            "800x400/" +
-            SubscriptionApartmentPubId +
-            "/" +
-            media.vrphoto[i].title +
-            ".JPG",
-          WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + media.vrphoto[i].title + ".JPG"
+      for (var i = 0; i < media.length; i++) {
+        media[i].imageUrls = [
+          WizioConfig.CLOUDFRONT_DISTRO + "800x400/" + SubscriptionApartmentPubId + "/" + media[i].title + ".JPG",
+          WizioConfig.CLOUDFRONT_DISTRO + SubscriptionApartmentPubId + "/" + media[i].title + ".JPG"
         ];
-        media.vrphoto[i].floorplan = floorplan;
+        media[i].floorplan = floorplan;
       }
 
       return media;

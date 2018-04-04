@@ -45,7 +45,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.$on("InterfaceDataReceived", function(event, data) {
       LoadingSpinnerFct.show("vrPlayerLoader");
       $scope.data = data;
-      $scope.media = data.Media;
+      $scope.media = data.media;
       $scope.showInterface = data.showInterface;
       $scope.floorplan = data.floorplan;
       document.getElementById("pano").addEventListener("click", onTourClick, false);
@@ -55,15 +55,10 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     });
 
     function createThumbnailURLs() {
-      var SubscriptionApartmentPubId = $scope.media.vrphoto[0].SubscriptionApartmentPubId;
-      for (var i = 0; i < $scope.media.vrphoto.length; i++) {
-        $scope.media.vrphoto[i].thumbnailURL =
-          WizioConfig.CLOUDFRONT_DISTRO +
-          "180x90/" +
-          SubscriptionApartmentPubId +
-          "/" +
-          $scope.media.vrphoto[i].title +
-          ".JPG";
+      var SubscriptionApartmentPubId = $scope.data.SubscriptionApartment.pubid;
+      for (var i = 0; i < $scope.media.length; i++) {
+        $scope.media[i].thumbnailURL =
+          WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media[i].title + ".JPG";
       }
       return;
     }
@@ -82,10 +77,10 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
           console.dir(response.coordClick);
         }
         if (response.object.name) {
-          for (var i = 0; i < $scope.media.vrphoto.length; i++) {
-            if ($scope.media.vrphoto[i].title === response.object.name) {
+          for (var i = 0; i < $scope.media.length; i++) {
+            if ($scope.media[i].title === response.object.name) {
               photoIndex = i;
-              chosenImage = $scope.media.vrphoto[i];
+              chosenImage = $scope.media[i];
               break;
             }
           }
@@ -189,7 +184,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
      */
     $scope.changePhoto = function(photoIndex) {
       LoadingSpinnerFct.show("vrPlayerLoader");
-      wizio.changeImage($scope.media.vrphoto[photoIndex], function(response) {
+      wizio.changeImage($scope.media[photoIndex], function(response) {
         $scope.photoIndex = photoIndex;
 
         /* For cameron to collect coordinates for hard coding navigation onto tours */
