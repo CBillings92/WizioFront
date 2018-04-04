@@ -38,6 +38,10 @@ $dk-gray: #4A4A4A;
     font-style: italic;
 }
 
+.light {
+  font-weight: 300;
+}
+
 
 /**
   Mixins
@@ -447,8 +451,9 @@ a:focus {
 }
 
 
-.header-text{
-    font-size: 26px;
+
+.about-header__text{
+    font-size: 28px;
 }
 
 .subhead-text{
@@ -467,6 +472,12 @@ a:focus {
     text-align: center;
 
 }
+
+.listing-contact-address .large-body{
+  font-size: 16px;
+  text-align: left;
+}
+
 
     h1,
     h2 {
@@ -495,10 +506,7 @@ a:focus {
 
 @media (max-width: 426px) {
 
-
-
-
-.header-text{
+.about-header__text{
     font-size: 26px;
 }
 

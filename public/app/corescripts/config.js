@@ -258,6 +258,12 @@ angular.module("MainApp").constant(
           view: MODULESPATH + "delete-tour-app/delete-tour-modal.html",
           controller: "DeleteTourModalCtrl"
         },
+        RequestShowingApp: {
+          RequestShowingForm: {
+            view: MODULESPATH + "request-showing-app/modal/request-showing.mdl.html",
+            controller: "RequestShowingModalCtrl"
+          }
+        },
         deleteTourConfirm: {
           view: MODULESPATH + "delete-tour-app/delete-tour-confirm.html",
           controller: "DeleteTourConfirmCtrl"

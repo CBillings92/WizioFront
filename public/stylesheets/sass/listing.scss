@@ -2,6 +2,10 @@
   height: 575px;
 }
 
+.listing-container{
+  width: 100%;
+}
+
 #vr-player-listing {
   height: 600px;
   width: 100%;
@@ -18,7 +22,45 @@
   font-family: "Roboto";
   font-weight: 500;
   font-size: 17px;
-  color: $dk-gray;
+}
+
+.listing-contact-address{
+  padding-bottom: 25px;
+}
+
+.listing-contact-street,
+.listing-contact-agent-name{
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+
+.listing-contact-agent-image{
+  height: 75px;
+  border-radius: 50%;
+  float: right !important;
+}
+
+.listing-contact-agent-name{
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 20px;
+  margin-bottom: 3px;
+  text-align:  left;
+  padding-top: 0px;
+}
+
+.agent-business-name,
+.listing-city{
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 300;
+}
+
+
+.listing-contact-agent-number {
+  text-align: left;
 }
 
 .availability-label,
@@ -41,8 +83,9 @@
 }
 
 .contact-box {
-  background-color: $light-gray;
-  padding: 10px 5px;
+  background-color: #fff;
+  border: 1.5px solid $light-gray;
+  padding: 25px 30px;
   height: 100%;
 }
 
@@ -76,4 +119,50 @@
 hr#listing-divider {
   margin-top: 6px;
   margin-bottom: 20px;
+}
+
+
+//---- xl container ---//
+@media (min-width: 1440px) {
+  .listing-container{
+    width: 90%;
+  }
+
+}
+
+//---- xl container ---//
+@media (max-width: 1399px) {
+  .listing-container{
+    width: 100%;
+  }
+
+}
+
+//---- desktop ---//
+@media (min: 768px) {
+  .agent-business-name{
+    text-align: left;
+  }
+
+}
+
+//---- Tablet ---//
+@media (max-width: 767px) {
+  .listing-contact-agent-image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    float: none !important;
+  }
+
+  .listing-contact-agent-name {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .listing-contact-agent-number,
+  .agent-business-name {
+    text-align: center;
+  }
 }

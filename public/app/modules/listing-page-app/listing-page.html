@@ -1,5 +1,5 @@
 
-<div class= "container-fluid product-container">
+<div class= "container-fluid">
     <div class="row listing-hero">
       <div id="vr-player-listing">
          <div style="height:96%;" >
@@ -14,13 +14,20 @@
     </div>
     <hr>
 
+
+
+
+<div class="listing-container center-block">
     <div class="row" id='listing-page'>
-      <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+      <div class="row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1">
         <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.LeaseStartDate | date : 'MM-dd-yyyy'}} </div>
         <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.neighborhood}}, Boston MA </div>
       </div>
+    </div>
 
-      <div class="col-xs-12 col-sm-6 col-sm-offset-1 row-space">
+    <div class = "row">
+      <div class="col-xs-12 col-sm-5 col-sm-offset-1 row-space">
         <div class="row" ng-if="!data.Listing.IsActive">
           <h3>This listing is no longer active.</h3>
         </div>
@@ -65,17 +72,25 @@
             </div>
           </div>
 
+
           <div class="row">
+            <div class="col-sm-10" style='margin-bottom: 10px' ng-if="data.Listing.IsGasIncluded || data.Listing.IsElectricIncluded || data.Listing.IsHotWaterIncluded || data.Listing.IseHeatIncluded || data.Listing.IsCableInternetIncluded">
+              <p class='listing-sub-section dk-gray'>Included Utilities </p>
+              <p class='small-body'>
+                <span ng-if='data.Listing.IsGasIncluded'>Gas,</span>
+                <span ng-if='data.Listing.IsElectricIncluded'>Electric,</span>
+                <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water,</span>
+                <span ng-if='data.Listing.IsHeatIncluded'>Heat,</span>
+                <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
+              </p>
+            </div>
             <div class="col-sm-10">
-              <p class="listing-sub-section"> Additional Amenities </p>
+              <p class="listing-sub-section dk-gray"> Additional Amenities </p>
               <p class="small-body">
                 <span ng-if='data.Listing.HasPool'>Pool,</span>
-                <span ng-if='data.Listing.IsGasIncluded'>Gas Included,</span>
-                <span ng-if='data.Listing.IsElectricIncluded'>Electric Included,</span>
-                <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water Included,</span>
-                <span ng-if='data.Listing.IsHeatIncluded'>Heat Included,</span>
+
                 <span ng-if='data.Listing.HasSmartLock'>Has Smart Lock,</span>
-                <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet Included,</span>
+
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.ParkingType'>Parking,</span>
                 <span ng-if='data.Listing.HasLounge'>Building Lounge,</span>
@@ -88,35 +103,75 @@
                 <span ng-if='data.Listing.HasGym'>Gym,</span>
                 <span ng-if='data.Listing.HasConcierge'>Concierge,</span>
                 <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
-                <span ng-if='data.Listing.ParkingType === 1'>Car Parking,</span>
               </p>
             </div>
           </div>
+        </div>
+
+
+
+
+    <div class="col-xs-10  col-xs-offset-1 col-sm-4 col-sm-offset-1 contact-box">
+      <div class="row col-xs-12 listing-contact-address text-left">
+        <p class= "listing-contact-street dk-gray">{{finalAddress}}</p>
+        <!-- <p class= "listing-city dk-gray ">{{address.neighborhood}}</p> -->
+      </div>
+      <br>
+      <div class="row col-xs-12">
+        <!-- <p class= "small-body">Rent: <span class="light">{{data.Listing.Rent}} per month</span></p>
+        <p class= "small-body">Lease Length: <span class="light">{{data.Listing.LeaseLength}}</span></p>
+        <p class= "small-body">Utilities:
+          <span class="light">
+            <span ng-if='data.Listing.IsGasIncluded'>Gas,</span>
+            <span ng-if='data.Listing.IsElectricIncluded'>Electric,</span>
+            <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water,</span>
+            <span ng-if='data.Listing.IsHeatIncluded'>Heat,</span>
+            <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
+            incl.
+          </span></p> -->
+
+
+          <hr id="listing-divider" style="margin-top:20px;">
       </div>
 
-    <div class=" col-xs-8  col-xs-offset-2 col-sm-3 col-sm-offset-1 contact-box text-center">
+
+
       <div class="row">
-        <div class="col-md-4 col-md-push-4">
-          <h4>Agent Info:</h4>
+        <p class="col-xs-12 text-center large-body italic" style="padding-bottom: 15px;"> Interested in seeing this listing? </p>
+        <div class=" col-xs-12">
+          <!-- <div class="col-sm-4 col-xs-12" ng-if='agent.awsProfilePhotoUrl'>
+            <img src="{{agent.awsProfilePhotoUrl}}" class="listing-contact-agent-image pull-right" alt="Realtor Image">
+          </div> -->
+          <div class="col-sm-4 col-xs-12" ng-if='agent.firstName === "Joe" && agent.lastName === "Parrish"'>
+            <img src="public/viewtemplates/joe.jpg" class="listing-contact-agent-image " alt="RealtorImg">
+          </div>
+          <!-- <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'> -->
+          <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
+            <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" alt="Realtor Image">
+            <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image " alt="RealtorImg">
+          </div>
+
+          <div class="col-sm-8 col-xs-12 listing-agent-info">
+            <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
+            <p class="agent-business-name" ng-if="agent.BusinessName !== 'Boston Pads' && agent.BusinessName !== 'NextGen Realty'"> {{agent.BusinessName}} </p>
+            <p class="agent-business-name" ng-if="agent.BusinessName === 'Boston Pads'"><a href="https://bostonpads.com/">{{agent.BusinessName}}</a></p>
+            <p class="agent-business-name" ng-if="agent.BusinessName === 'NextGen Realty'"><a href="https://www.nextgenrealty.com/">{{agent.BusinessName}}</a></p>
+
+            <p class="small-body listing-contact-agent-number" ng-if='agent.phoneNumber'>Agent Phone: <span class="light" ><a ng-href="tel:617-917-5803"></a> {{agent.phoneNumber}} </span></p>
+            <p class="small-body listing-contact-agent-number" ng-if="agent.BusinessName === 'Boston Pads' || agent.BusinessName === 'NextGen Realty'"> Office Phone: <a href = 'tel:617-208-2121'>617-208-2121</a></p>
+          </div>
+
+
         </div>
       </div>
+
+
+
       <div class="row">
-        <div class="col-md-6" ng-if='agent.awsProfilePhotoUrl'>
-          <img src="{{agent.awsProfilePhotoUrl}}" style="height:175px" alt="RealtorImg">
-        </div>
-        <div class="col-md-6" ng-if='agent.firstName === "Joe" && agent.lastName === "Parrish"'>
-          <img src="public/viewtemplates/joe.jpg" style="height:175px" alt="RealtorImg">
-        </div>
-        <div class="col-md-6" ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'>
-          <img src="public/viewtemplates/portrait_placeholder.png" style="height:175px" alt="RealtorImg">
-        </div>
-        <div class="col-md-4">
-          <p class= "large-body"> {{agent.firstName + ' ' + agent.lastName}} </p>
-          <p class="small-body"><a href="{{agent.email}}">{{agent.email}}</a></p>
-          <p class="small-body" ng-if='agent.phoneNumber'>(Agent) {{agent.phoneNumber}} </p>
-          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads'">(Office) <a href = 'tel:617-208-2121'>617-208-2121</a></p>
-          <p class="small-body" ng-if="agent.BusinessName !== 'Boston Pads'"> {{agent.BusinessName}} </p>
-          <p class="small-body" ng-if="agent.BusinessName === 'Boston Pads'"><a href="https://bostonpads.com/">{{agent.BusinessName}}</a></p>
+        <div class="col-xs-12 row-space">
+          <button  class="btn btn-lg btn-fill--orange center-block" ng-click="requestShowing()" >
+            Request Showing
+          </button>
         </div>
 
       </div>
@@ -140,7 +195,7 @@
       <div class="col-sm-4 col-sm-offset-1">
         <div class="row">
           <div class="col-sm-12 col-md-5">
-            <p class="listing-sub-section">Lease Details</p>
+            <p class="listing-sub-section dk-gray">Lease Details</p>
             <hr>
             <p class="small-body"><span class="medium">Rent:</span> {{data.Listing.Rent}} per {{'month'}}</p>
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}} per {{'month'}}</p>
@@ -150,7 +205,7 @@
 
           </div>
           <div class="col-sm-12 col-md-7">
-              <p class="listing-sub-section">Due at Signing</p>
+              <p class="listing-sub-section dk-gray">Due at Signing</p>
               <hr/>
             <div class="col-md-12" style="">
               <div ng-if="data.Listing.IsFirstMonthsRentRequired" class="text-center col-xs-6 listing-fee" style="padding-top: 0">
@@ -212,7 +267,6 @@
 <div class="row-space"></div>
 
 
-
-
-
+</div>
+</div>
 </div>
