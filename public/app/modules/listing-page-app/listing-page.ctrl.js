@@ -22,7 +22,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       $scope.data.Lease.LeaseEndDate = new Date($scope.data.Lease.LeaseEndDate);
       var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
-        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        center: { lat: $scope.address.Latitude, lng: $scope.address.Longitude },
         mapTypeId: "terrain"
       });
       var cityCircle = new google.maps.Circle({
@@ -32,7 +32,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         fillColor: "#FF0000",
         fillOpacity: 0.35,
         map: map,
-        center: { lat: $scope.address.latitude, lng: $scope.address.longitude },
+        center: { lat: $scope.address.Latitude, lng: $scope.address.Longitude },
         radius: 300
       });
     });

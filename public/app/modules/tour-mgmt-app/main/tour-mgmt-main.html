@@ -278,12 +278,17 @@
 
   <div class="col-md-4 form-space col-xs-6">
     <label>Rent</label>
-    <input type="text" ng-model='data.Listing.Rent', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $2400">
+    <input type="text" ng-model='data.Listing.Lease.RentAmount', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $2400">
   </div>
 
   <div class="col-md-4 col-xs-6 form-space">
     <label>Lease Start Date</label>
-    <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.LeaseStartDate' ng-model='data.Listing.LeaseStartDate' class="form-control" name="" value="">
+    <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
+  </div>
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Lease End Date</label>
+    <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
   </div>
 
   <!-- <div class="col-md-4 col-xs-6 form-space">
@@ -335,33 +340,33 @@
 
   <div class="row">
     <div class="col-md-4 col-xs-6">
-      <input class="form-check-input" ng-change='ListingChange("IsFirstMonthsRentRequired")'  ng-model="data.Listing.IsFirstMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <input class="form-check-input" ng-change='ListingChange("IsFirstMonthsRentRequired")'  ng-model="data.Listing.Lease.IsFirstMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
       <label for="" class="form-check-label">First Month's Rent</label>
     </div>
 
     <div class="col-md-4 col-xs-6">
-      <input class="form-check-input" ng-change='ListingChange("IsLastMonthsRentRequired")'  ng-model="data.Listing.IsLastMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <input class="form-check-input" ng-change='ListingChange("IsLastMonthsRentRequired")'  ng-model="data.Listing.Lease.IsLastMonthsRentRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
       <label for="" class="form-check-label">Last Month's Rent</label>
     </div>
 
     <div class="col-md-4 col-xs-6">
-      <input class="form-check-input" ng-change='ListingChange("IsSecurityDepositRequired")'  ng-model="data.Listing.IsSecurityDepositRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <input class="form-check-input" ng-change='ListingChange("IsSecurityDepositRequired")'  ng-model="data.Listing.Lease.IsSecurityDepositRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
       <label for="" class="form-check-label">Security Deposit</label>
     </div>
 
-    <div class="col-md-4 col-xs-6" ng-show='data.Listing.IsSecurityDepositRequired'>
+    <div class="col-md-4 col-xs-6" ng-show='data.Listing.Lease.IsSecurityDepositRequired'>
       <label for="">Security Deposit Amount</label>
-      <input type="text" ng-change='ListingChange("SecurityDepositAmount")' ng-model='data.Listing.SecurityDepositAmount' class='form-control' name="" value="">
+      <input type="text" ng-change='ListingChange("SecurityDepositAmount")' ng-model='data.Listing.Lease.SecurityDepositAmount' class='form-control' name="" value="">
     </div>
 
     <div class="col-md-4 col-xs-6">
-      <input class="form-check-input" ng-change='ListingChange("IsBrokerFeeRequired")'  ng-model="data.Listing.IsBrokerFeeRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <input class="form-check-input" ng-change='ListingChange("IsBrokerFeeRequired")'  ng-model="data.Listing.Lease.IsBrokerFeeRequired" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
       <label for="" class="form-check-label">Broker's Fee Amount</label>
     </div>
 
-    <div class="col-md-4 col-xs-6" ng-show="data.Listing.IsBrokerFeeRequired">
+    <div class="col-md-4 col-xs-6" ng-show="data.Listing.Lease.IsBrokerFeeRequired">
         <label for="">Broker's Fee</label>
-        <input type="text" ng-change='ListingChange("BrokersFeeAmount")'  ng-model='data.Listing.BrokersFeeAmount' name="" value="" class='form-control'>
+        <input type="text" ng-change='ListingChange("BrokersFeeAmount")'  ng-model='data.Listing.Lease.BrokersFeeAmount' name="" value="" class='form-control'>
     </div>
 
     <div class="row col-xs-12 row-space">
