@@ -14,6 +14,7 @@ angular.module("ListingPageApp").controller("ListingPageDemo1Ctrl", [
         StoveType: "Electric",
         Address: {
           concatAddr: "156 Fisher Ave Boston MA",
+          street: "156 Fisher Ave",
           unitNum: 1,
           Neighborhood: "Mission Hill"
         },
