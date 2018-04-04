@@ -1619,10 +1619,11 @@
           activelistingid: activeListingId
         };
         apiResource.get(query, function(results) {
-          if (results.media[0].pinRequired) {
+          if (results.Media[0].pinRequired) {
             requestTourPasswordModal({
               activelistingid: activeListingId
             }).then(function(response) {
+              console.dir(response);
               return resolve(response);
             });
           } else {

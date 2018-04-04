@@ -11,7 +11,9 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.data.Listing.IsActive = true;
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
-      $scope.agent = data.media[data.media.length - 1];
+      $scope.data.Listing = data.SubscriptionApartment.Listing;
+      $scope.data.Lease = $scope.data.Listing.Lease;
+      $scope.agent = data.User;
       if ($scope.agent.BusinessName === "Boston Pads") {
         $scope.isBostonPadsUnit = true;
       }
@@ -22,8 +24,23 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       }
       $scope.finalAddress =
         $scope.finalAddress + data.Apartment.concatAddr.substring(data.Apartment.concatAddr.indexOf(",") + 2);
-      $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
-      $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
+      $scope.data.Lease.LeaseStartDate = new Date($scope.data.Lease.LeaseStartDate);
+      $scope.data.Lease.LeaseEndDate = new Date($scope.data.Lease.LeaseEndDate);
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: { lat: $scope.address.Latitude, lng: $scope.address.Longitude },
+        mapTypeId: "terrain"
+      });
+      var cityCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map: map,
+        center: { lat: $scope.address.Latitude, lng: $scope.address.Longitude },
+        radius: 300
+      });
     });
 
     $scope.requestShowing = function() {
@@ -40,58 +57,5 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
           return;
         });
     };
-    // $scope.data = {
-    //   Tour: {
-    //     TourId: 1
-    //   },
-    //   Listing: {
-    //     concatAddr: "228 South Street Jamaica Plain MA 02130",
-    //     unitNum: "#2",
-    //     neighborhood: "Back Bay",
-    //     amenitiesDescription:
-    //       "Pet-Friendly, Balcony, Fireplace, Fitness center, Roof Deck, 24 Hour security, remote door bell, maintence team on site",
-    //     amenities: {
-    //       WasherDryer: {
-    //         Description: "In Unit"
-    //       },
-    //       DishWasher: true,
-    //       Pool: {
-    //         Description: ""
-    //       },
-    //       Gym: false,
-    //       SecureEntrance: {
-    //         Description: ""
-    //       },
-    //       PetFriendly: {
-    //         Cats: true,
-    //         Dogs: true
-    //       }
-    //     },
-    //     Bedrooms: "3 Bedrooms",
-    //     Bathrooms: "1.5 Bathrooms",
-    //     rent: "2100",
-    //     availability: "2.17.18",
-    //     rentFrequency: "per month",
-    //     leaseType: "Annual",
-    //     securityDeposit: {
-    //       required: true,
-    //       total: "2100"
-    //     },
-    //     firstMonthRent: {
-    //       required: true,
-    //       total: "2100"
-    //     },
-    //     lastMonthRent: {
-    //       required: true,
-    //       total: "2100"
-    //     },
-    //     brokerFee: {
-    //       required: false,
-    //       total: "2100"
-    //     },
-    //     ListingDetails:
-    //       "Fantastic loft available in Downtown Lowell within a 10-15 minute walk to the commuter rail station! Hop on the T and get to Boston's North Station in 45 minutes. If you drive then it's really close to the Lowell Connector where you can get on 495 and over to Chelmsford, Methuen, or Lawrence very quickly. You are also within walking distance to all the restaurants, conveniences, and nightlife of the downtown! This is a TRUE loft converted from a warehouse."
-    //   }
-    // };
   }
 ]);

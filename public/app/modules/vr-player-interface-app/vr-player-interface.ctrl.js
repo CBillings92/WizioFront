@@ -239,9 +239,9 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
           activelistingid: $stateParams.activelistingid || $stateParams.listingUUID
         },
         function(apiresponse) {
-          var media = apiresponse.media;
+          var media = apiresponse.Media;
           var listing = apiresponse.Listing;
-          $scope.agent = media[media.length - 1];
+          $scope.agent = apiresponse.User;
           /* Check if airbnb listing */
           $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
           $scope.agent.state = $state.current.name;
@@ -263,7 +263,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
             $scope.agent.email === "youngone@younghouses.com" ||
             $scope.agent.email === "brian@lmcrealtyboston.com" ||
             $scope.agent.email === "yuyang@wizio.co" ||
-            $scope.agent.BusinessName === 'HqO'
+            $scope.agent.BusinessName === "HqO"
           ) {
             $scope.isMLSListingAccount = true;
           }

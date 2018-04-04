@@ -81,15 +81,17 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
         $scope.appInitialized = true;
         /* Assign formatted data to scope */
         $scope.data = response.payload;
-        if (!$scope.data.Listing) {
-          $scope.data.Listing = {};
-        }
         console.dir($scope.data.Listing);
-        if ($scope.data.Listing.LeaseStartDate) {
-          $scope.data.Listing.LeaseStartDate = new Date($scope.data.Listing.LeaseStartDate);
+        if (!$scope.data.Listing) {
+          $scope.data.Listing = {
+            Lease: {}
+          };
         }
-        if ($scope.data.Listing.LeaseEndDate) {
-          $scope.data.Listing.LeaseEndDate = new Date($scope.data.Listing.LeaseEndDate);
+        if ($scope.data.Listing.Lease.LeaseStartDate) {
+          $scope.data.Listing.Lease.LeaseStartDate = new Date($scope.data.Listing.Lease.LeaseStartDate);
+        }
+        if ($scope.data.Listing.Lease.LeaseEndDate) {
+          $scope.data.Listing.Lease.LeaseEndDate = new Date($scope.data.Listing.Lease.LeaseEndDate);
         }
 
         /* Set first photo in array as the default selected photo */
