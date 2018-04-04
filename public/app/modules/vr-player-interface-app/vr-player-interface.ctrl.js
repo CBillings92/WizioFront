@@ -45,7 +45,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.$on("InterfaceDataReceived", function(event, data) {
       LoadingSpinnerFct.show("vrPlayerLoader");
       $scope.data = data;
-      $scope.media = data.media;
+      $scope.media = data.Media;
       $scope.showInterface = data.showInterface;
       $scope.floorplan = data.floorplan;
       document.getElementById("pano").addEventListener("click", onTourClick, false);
