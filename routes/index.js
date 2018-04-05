@@ -1,4 +1,4 @@
-var express = require("express");
+.body.SubscriptionApartment.Listing.var express = require("express");
 // var config = require('../config/config.js');
 var router = express.Router();
 var request = require("request");
@@ -25,21 +25,21 @@ router.get("/tour/:tourid", function(req, res, next) {
           encodeURIComponent(body.Media[0].title) +
           ".JPG";
         description = "See virtual reality tour";
-        if (body.Listing.Description && body.Listing.Description !== "") {
-          description = body.Listing.Description;
+        if (body.SubscriptionApartment.Listing.Description && body.SubscriptionApartment.Listing.Description !== "") {
+          description = body.SubscriptionApartment.Listing.Description;
         }
         if (body.Media[body.Media.length - 1].BusinessName) {
           broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
           description = broughtToYouBy + " " + description;
         }
-        title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
+        title = body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
         /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
         if (
-          body.Listing.Beds === 0 &&
-          body.Listing.Baths === 0 &&
-          !body.Listing.LeaseEndDate &&
-          !body.Listing.LeaseStartDate &&
-          body.Listing.Rent == 0
+          body.SubscriptionApartment.Listing.Beds === 0 &&
+          body.SubscriptionApartment.Listing.Baths === 0 &&
+          !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
+          !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
+          body.SubscriptionApartment.Listing.Lease.Rent == 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -53,8 +53,8 @@ router.get("/tour/:tourid", function(req, res, next) {
           title = title + ", " + body.Apartment.locality;
         }
         /* check if we have rent/price data for title */
-        if (body.Listing.Rent !== 0) {
-          title = title + " - $" + body.Listing.Rent;
+        if (body.SubscriptionApartment.Listing.Lease.Rent !== 0) {
+          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.Rent;
         }
       } catch (e) {
         console.dir(e);
@@ -100,20 +100,20 @@ router.get("/listing/:tourid", function(req, res, next) {
           encodeURIComponent(body.Media[0].title) +
           ".JPG";
         description = "See virtual reality tour";
-        if (body.Listing.Description && body.Listing.Description !== "") {
-          description = body.Listing.Description;
+        if (body.SubscriptionApartment.Listing.Description && body.SubscriptionApartment.Listing.Description !== "") {
+          description = body.SubscriptionApartment.Listing.Description;
         }
         if (body.Media[body.Media.length - 1].BusinessName) {
           broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
           description = broughtToYouBy + " " + description;
         }
-        title = body.Listing.Beds + " bed, " + body.Listing.Baths + " bath unit";
+        title = body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
         if (
-          body.Listing.Beds === 0 &&
-          body.Listing.Baths === 0 &&
-          !body.Listing.LeaseEndDate &&
-          !body.Listing.LeaseStartDate &&
-          body.Listing.Rent == 0
+          body.SubscriptionApartment.Listing.Beds === 0 &&
+          body.SubscriptionApartment.Listing.Baths === 0 &&
+          !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
+          !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
+          body.SubscriptionApartment.Listing.Lease.Rent == 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -124,8 +124,8 @@ router.get("/listing/:tourid", function(req, res, next) {
           title = title + ", " + body.Apartment.locality;
         }
         /* check if we have rent/price data for title */
-        if (body.Listing.Rent !== 0) {
-          title = title + " - $" + body.Listing.Rent;
+        if (body.SubscriptionApartment.Listing.Lease.Rent !== 0) {
+          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.Rent;
         }
       } catch (e) {
         console.dir(e);
