@@ -6,7 +6,8 @@
   "$q",
   "$state",
   "ModalBuilderFct",
-  function(WizioConfig, LoadingSpinnerFct, AWSFct, $resource, $q, $state, ModalBuilderFct) {
+  "TokenSvc",
+  function(WizioConfig, LoadingSpinnerFct, AWSFct, $resource, $q, $state, ModalBuilderFct, TokenSvc) {
     var oliverTour1NavPointData = {
       "Living Room": [
         {
@@ -1617,10 +1618,21 @@
           apartmentpubid = $state.params.apartmentpubid;
           listingOrTourView = listingOrTourView + "tour/:activelistingid";
         }
-
-        var apiResource = $resource(WizioConfig.baseAPIURL + listingOrTourView, {
-          activelistingid: "@activelistingid"
-        });
+        console.dir(TokenSvc.getToken());
+        var apiResource = $resource(
+          WizioConfig.baseAPIURL + listingOrTourView,
+          {
+            activelistingid: "@activelistingid"
+          },
+          {
+            get: {
+              method: "GET",
+              headers: {
+                Authorization: "Bearer" + TokenSvc.getToken()
+              }
+            }
+          }
+        );
         var query = {
           activelistingid: activeListingId
         };
