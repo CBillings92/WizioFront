@@ -136,7 +136,9 @@
                   <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
                 </p>
               </div>
-              <div class="col-md-10 col-xs-12" style="position: relative; height: 400px; margin-top:20px;">
+
+              <div class="col-xs-12 listing-map">
+                <p class="listing-sub-section dk-gray"> {{finalAddress}} </p>
                 <div class="" id='map' style="height:100%;"></div>
               </div>
             </div>
@@ -193,6 +195,7 @@
          <button ng-click="agentInfo()" type="button" class="btn btn-md btn-fill--orange"> Contact Agent </button>
         </div> -->
       </div>
+
       <div class="col-sm-4 col-sm-offset-1" style="margin-top:30px;">
         <div class="row">
           <div class="col-sm-12 col-md-5">
