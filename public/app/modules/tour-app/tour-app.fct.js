@@ -1599,22 +1599,28 @@
         var activeListingId;
         var apartmentPubId;
         var currentState = $state.current.name;
-        var apiResource = $resource(WizioConfig.baseAPIURL + "activelisting/:activelistingid", {
-          activelistingid: "@activelistingid"
-        });
+        var listingOrTourView = "activelisting/";
         if (currentState === "LandingPage") {
           activeListingId = WizioConfig.LandingPage.activeListingId();
+          listingOrTourView = listingOrTourView + "tour/:activelistingid";
         } else if (currentState === "Demo" || currentState === "Product") {
           activeListingId = WizioConfig.DemoPage.activeListingId();
+          listingOrTourView = listingOrTourView + "tour/:activelistingid";
         } else if (currentState === "ListingDemo1") {
+          listingOrTourView = listingOrTourView + "listing/:activelistingid";
           activeListingId = "a3885803-1100-450f-931d-fbb53b6ed410";
         } else if (currentState === "Listing") {
+          listingOrTourView = listingOrTourView + "listing/:activelistingid";
           activeListingId = $state.params.listingUUID;
         } else {
           activeListingId = $state.params.apitoken || $state.params.activelistingid;
           apartmentpubid = $state.params.apartmentpubid;
+          listingOrTourView = listingOrTourView + "tour/:activelistingid";
         }
 
+        var apiResource = $resource(WizioConfig.baseAPIURL + listingOrTourView, {
+          activelistingid: "@activelistingid"
+        });
         var query = {
           activelistingid: activeListingId
         };
