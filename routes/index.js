@@ -1,4 +1,4 @@
-.body.SubscriptionApartment.Listing.var express = require("express");
+var express = require("express");
 // var config = require('../config/config.js');
 var router = express.Router();
 var request = require("request");
@@ -32,7 +32,8 @@ router.get("/tour/:tourid", function(req, res, next) {
           broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
           description = broughtToYouBy + " " + description;
         }
-        title = body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
+        title =
+          body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
         /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
         if (
           body.SubscriptionApartment.Listing.Beds === 0 &&
@@ -107,7 +108,8 @@ router.get("/listing/:tourid", function(req, res, next) {
           broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
           description = broughtToYouBy + " " + description;
         }
-        title = body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
+        title =
+          body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
         if (
           body.SubscriptionApartment.Listing.Beds === 0 &&
           body.SubscriptionApartment.Listing.Baths === 0 &&
