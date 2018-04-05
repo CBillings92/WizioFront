@@ -26,8 +26,8 @@
 
       <div class = "row">
         <div class="col-xs-12 col-sm-5 col-sm-offset-1 row-space">
-          <div class="row" ng-if="!data.Listing.IsActive">
-            <h3>This listing is no longer active.</h3>
+          <div ng-if="!data.Listing.IsActive">
+            <p class="section-head">This listing is no longer active.</p>
           </div>
             <div class="row">
 
@@ -136,12 +136,15 @@
                   <span ng-if='data.Listing.HasMicrowave'>Microwave,</span>
                 </p>
               </div>
+            </div>
 
+            <div class="row">
               <div class="col-xs-12 listing-map">
                 <p class="listing-sub-section dk-gray"> {{finalAddress}} </p>
-                <div class="" id='map' style="height:100%;"></div>
+                <div class="" id='map'></div>
               </div>
             </div>
+          </div>
           </div>
           <div class="col-xs-10  col-xs-offset-1 col-sm-4 col-sm-offset-1 contact-box">
         <div class="row col-xs-12 listing-contact-address text-left">

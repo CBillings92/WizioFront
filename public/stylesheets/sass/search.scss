@@ -204,9 +204,9 @@ h2 {
   .apt-grid-view--search.ng-hide:not(.ng-hide-animate) {
     display: block !important;
   }
-  #map {
-    display: none !important;
-  }
+  // #map {
+  //   display: none !important;
+  // }
 }
 @media (min-width: $screen-sm-min) {
   .filter-row {
