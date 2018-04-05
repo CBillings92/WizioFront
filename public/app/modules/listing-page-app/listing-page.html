@@ -18,9 +18,9 @@
         <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-1">
           <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}} </div>
-          <!-- <div ng-if= "address.neighborhood"> -->
+          <div ng-if= "address.neighborhood">
           <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.neighborhood}}, Boston MA </div>
-        <!-- </div> -->
+        </div>
       </div>
       </div>
 
@@ -32,81 +32,81 @@
             <div class="row">
 
               <div class="col-xs-12 amenity-list">
-                <div class=" col-xs-6 col-sm-3 col-md-2 amenity-item">
+                <div class=" col-xs-6 col-sm-3 col-lg-2 amenity-item">
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/bedroom.png" style="height: 50px" class="amenity-icon">
-                  <p class="large-body"> {{data.Listing.Beds}} Beds</p>
+                  <img src= "public/viewtemplates/images/listing_page/bedroom.png"  class="amenity-icon">
+                  <p class="amenity-text"> {{data.Listing.Beds}} Beds</p>
                 </div>
                 </div>
 
-                <div class="col-sm-3 col-xs-6 col-md-2 amenity-item">
+                <div class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/bathroom.png" style="height: 50px" class="amenity-icon">
-                  <p class="large-body"> {{data.Listing.Baths}} Bath</p>
+                  <img src= "public/viewtemplates/images/listing_page/bathroom.png"  class="amenity-icon">
+                  <p class="amenity-text"> {{data.Listing.Baths}} Bath</p>
                   </div>
                 </div>
 
-                <div ng-if='data.Listing.HasDishWasher' class="col-md-2 col-xs-6 col-sm-3 amenity-item" >
+                <div ng-if='data.Listing.HasDishWasher' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/dishwasher.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body"> Dish Washer</p>
+                  <img src= "public/viewtemplates/images/listing_page/dishwasher.png" class="amenity-icon"></img>
+                   <p class="amenity-text"> Dish Washer</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-md-2 col-xs-6 col-sm-3 amenity-item" >
+                <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/laundry.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">In Unit Laundry</p>
+                  <img src= "public/viewtemplates/images/listing_page/laundry.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">In Unit Laundry</p>
                  </div>
                 </div>
 
 
-                <div ng-if='data.Listing.IsCatFriendly && data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.IsCatFriendly && data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/pet-friendly.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Pet Friendly</p>
+                  <img src= "public/viewtemplates/images/listing_page/pet-friendly.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Pet Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/cat-friendly.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Cat Friendly</p>
+                  <img src= "public/viewtemplates/images/listing_page/cat-friendly.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Cat Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/dog-friendly.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Dog Friendly</p>
+                  <img src= "public/viewtemplates/images/listing_page/dog-friendly.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Dog Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-lg-2  amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/smartlock.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Smart Lock</p>
+                  <img src= "public/viewtemplates/images/listing_page/smartlock.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Smart Lock</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-lg-2  amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/fireplace.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Fireplace</p>
+                  <img src= "public/viewtemplates/images/listing_page/fireplace.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Fireplace</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/pool.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Pool</p>
+                  <img src= "public/viewtemplates/images/listing_page/pool.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Pool</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-md-2 amenity-item " >
+                <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
                   <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listing_page/fitness-center.png" style="height: 50px" class="amenity-icon"></img>
-                   <p class="large-body">Fitness Center</p>
+                  <img src= "public/viewtemplates/images/listing_page/fitness-center.png"  class="amenity-icon"></img>
+                   <p class="amenity-text">Fitness Center</p>
                  </div>
                 </div>
 
@@ -164,16 +164,13 @@
         <div class="row">
           <p class="col-xs-12 text-center large-body italic" style="padding-bottom: 15px;"> Interested in seeing this listing? </p>
           <div class=" col-xs-12">
-            <!-- <div class="col-sm-4 col-xs-12" ng-if='agent.awsProfilePhotoUrl'>
-              <img src="{{agent.awsProfilePhotoUrl}}" class="listing-contact-agent-image pull-right" alt="Realtor Image">
-            </div> -->
             <div class="col-sm-4 col-xs-12" ng-if='agent.firstName === "Joe" && agent.lastName === "Parrish"'>
               <img src="public/viewtemplates/joe.jpg" class="listing-contact-agent-image " alt="RealtorImg">
             </div>
             <!-- <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'> -->
             <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
-              <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" alt="Realtor Image">
-              <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image " alt="RealtorImg">
+              <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" alt="AWS image">
+              <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image " alt="Placeholder">
             </div>
             <div class="col-sm-8 col-xs-12 listing-agent-info">
               <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
