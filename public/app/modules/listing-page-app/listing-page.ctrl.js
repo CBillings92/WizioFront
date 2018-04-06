@@ -11,10 +11,11 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
     $scope.data.Listing.IsActive = true;
     $scope.$on("ListingDataRetrieved", function(ev, data) {
       $scope.data = data;
+      $scope.business = data.User.Subscriptions[0].Businesses[0];
       $scope.data.Listing = data.SubscriptionApartment.Listing;
       $scope.data.Lease = $scope.data.Listing.Lease;
       $scope.agent = data.User;
-      if ($scope.agent.BusinessName === "Boston Pads") {
+      if ($scope.business.name === "Boston Pads") {
         $scope.isBostonPadsUnit = true;
       }
       $scope.address = data.Apartment;
