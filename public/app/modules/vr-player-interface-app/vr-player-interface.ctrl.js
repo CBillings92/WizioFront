@@ -213,6 +213,28 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
     $scope.profileUploaded = false;
     $scope.isMLSListingAccount = false;
+    if (
+      $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
+      $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
+    ) {
+      $scope.agent = {
+        firstName: "Gene",
+        lastName: "Blinkov",
+        email: "gene@blinkov.org",
+        awsProfilePhotoUrl: "",
+        phoneNumber: "603-903-2332"
+      };
+    }
+    if (
+      $scope.agent.email === "alex@redtreeboston.com" ||
+      $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
+      $scope.agent.email === "youngone@younghouses.com" ||
+      $scope.agent.email === "brian@lmcrealtyboston.com" ||
+      $scope.agent.email === "yuyang@wizio.co" ||
+      $scope.agent.BusinessName === "HqO"
+    ) {
+      $scope.isMLSListingAccount = true;
+    }
     if ($state.current.name == "Demo" || $state.current.name == "Product") {
       $resource(WizioConfig.baseAPIURL + "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d").query(function(
         response
@@ -226,44 +248,6 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
           state: $state.current.name
         };
       });
-    } else {
-      $resource(WizioConfig.baseAPIURL + "activelisting/:activelistingid", {
-        activelistingid: "@activelistingid"
-      }).get(
-        {
-          activelistingid: $stateParams.activelistingid || $stateParams.listingUUID
-        },
-        function(apiresponse) {
-          var media = apiresponse.Media;
-          var listing = apiresponse.Listing;
-          $scope.agent = apiresponse.User;
-          /* Check if airbnb listing */
-          $scope.profileUploaded = $scope.agent.awsProfilePhotoUrl;
-          $scope.agent.state = $state.current.name;
-          if (
-            $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
-            $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
-          ) {
-            $scope.agent = {
-              firstName: "Gene",
-              lastName: "Blinkov",
-              email: "gene@blinkov.org",
-              awsProfilePhotoUrl: "",
-              phoneNumber: "603-903-2332"
-            };
-          }
-          if (
-            $scope.agent.email === "alex@redtreeboston.com" ||
-            $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
-            $scope.agent.email === "youngone@younghouses.com" ||
-            $scope.agent.email === "brian@lmcrealtyboston.com" ||
-            $scope.agent.email === "yuyang@wizio.co" ||
-            $scope.agent.BusinessName === "HqO"
-          ) {
-            $scope.isMLSListingAccount = true;
-          }
-        }
-      );
     }
 
     $scope.launchAgentProfileModal = function() {

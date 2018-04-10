@@ -64,7 +64,9 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     /* Kick off loading spinner for initialization */
     LoadingSpinnerFct.show("TourManagementMainLoad");
 
-    if (TokenSvc.decode().email.includes("@wizio.co") || user.email === "Esolem@lreadvisors.com") {
+    var userEmail = TokenSvc.decode().email;
+
+    if (userEmail.includes("@wizio.co") || userEmail === "Esolem@lreadvisors.com") {
       $scope.modifyTourAccess = true;
     } else {
       $scope.modifyTourAccess = false;
