@@ -68,9 +68,11 @@
   font-size: 15px;
   font-weight: 400;
   color: #fff;
-  padding: 6px 20px;
+  padding: 8px 20px;
   border-radius: 3px;
-  margin: 5px 10px;
+  margin: 10px 10px;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
 .availability-label {
@@ -89,15 +91,33 @@
 }
 
 .amenity-icon {
-  height: 50px;
+  height: 40px;
+  margin-bottom: 8px;
 }
 
-#amenity-icon {
-  height: 50px;
+.amenity-text{
+  font-family: 'Roboto';
+  font-weight: 300;
+  font-size: 15px;
+  color: $dk-gray;
+  line-height: 1.2;
 }
 
 .amenity-item {
   padding-bottom: 15px;
+}
+
+.listing-map{
+  position: relative;
+  height: 400px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+#map{
+  height: 370px;
+position: relative;
+overflow: hidden;
 }
 
 .medium {
@@ -135,9 +155,12 @@ hr#listing-divider {
 }
 
 //---- xl container ---//
-@media (max-width: 1399px) {
+@media (min-width: 769px) {
   .listing-container {
     width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+
   }
 }
 
@@ -146,6 +169,7 @@ hr#listing-divider {
   .agent-business-name {
     text-align: left;
   }
+
 }
 
 //---- Tablet ---//
@@ -158,6 +182,11 @@ hr#listing-divider {
     float: none !important;
   }
 
+  .listing-container{
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
   .listing-contact-agent-name {
     text-align: center;
     padding-top: 10px;
@@ -166,5 +195,24 @@ hr#listing-divider {
   .listing-contact-agent-number,
   .agent-business-name {
     text-align: center;
+  }
+
+  .availability-label,
+  .neighborhood-label {
+    width: 45%;
+    display:inline-block;
+  }
+}
+
+//------ adjustments for labels ----- //
+
+@media (max-width: 525px) {
+  .availability-label,
+  .neighborhood-label {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
   }
 }
