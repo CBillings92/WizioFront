@@ -29,7 +29,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
 
     $scope.state = $state.current.name;
     $scope.showInterface = true;
-
+    $scope.agent = {};
     if ($state.current.name === "ListingDemo1") {
       $scope.isListingPage = true;
     } else {
@@ -46,6 +46,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
       LoadingSpinnerFct.show("vrPlayerLoader");
       $scope.data = data;
       $scope.media = data.media;
+      $scope.agent = data.User;
       $scope.showInterface = data.showInterface;
       $scope.floorplan = data.floorplan;
       document.getElementById("pano").addEventListener("click", onTourClick, false);
@@ -209,8 +210,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         $scope.actions[0].show = false;
       }
     };
-    $scope.agent = {};
     $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
+    $scope.agent.blankDefault = $scope.blank;
     $scope.profileUploaded = false;
     $scope.isMLSListingAccount = false;
     if (

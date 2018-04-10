@@ -57,6 +57,7 @@ angular.module("TourApp").controller("TourCtrl", [
         interfaceData.hideFloorPlanButton = false;
       }
       interfaceData.SubscriptionApartment.pubid = apiResponse.SubscriptionApartment.pubid;
+      interfaceData.User = apiResponse.User;
       $scope.photoIndex = 0;
       $scope.$broadcast("InterfaceDataReceived", interfaceData);
       $scope.$broadcast("TourDataReceived", preppedMedia[0]);
