@@ -150,12 +150,6 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
         controller: "UploadPageCtrl",
         modalData: {}
       };
-      var uploadTourPageModalConfig = {
-        size: "lg",
-        templateUrl: "public/app/modules/photographerapp/upload-tool/upload-tool-modal.html",
-        controller: "UploadPageNewCtrl",
-        modalData: {}
-      };
       createModal(searchModifyModalConfig).then(function(data) {
         var dataForTourManagement = {
           Apartment: data.Apartment,

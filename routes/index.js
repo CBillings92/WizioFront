@@ -40,7 +40,7 @@ router.get("/tour/:tourid", function(req, res, next) {
           body.SubscriptionApartment.Listing.Baths === 0 &&
           !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
           !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
-          body.SubscriptionApartment.Listing.Lease.Rent == 0
+          body.SubscriptionApartment.Listing.Lease.RentAmount == 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -54,8 +54,8 @@ router.get("/tour/:tourid", function(req, res, next) {
           title = title + ", " + body.Apartment.locality;
         }
         /* check if we have rent/price data for title */
-        if (body.SubscriptionApartment.Listing.Lease.Rent !== 0) {
-          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.Rent;
+        if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
+          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.RentAmount;
         }
       } catch (e) {
         console.dir(e);
@@ -115,7 +115,7 @@ router.get("/listing/:tourid", function(req, res, next) {
           body.SubscriptionApartment.Listing.Baths === 0 &&
           !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
           !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
-          body.SubscriptionApartment.Listing.Lease.Rent == 0
+          body.SubscriptionApartment.Listing.Lease.RentAmount == 0
         ) {
           title = "Real estate virtual tour";
         }
@@ -126,8 +126,8 @@ router.get("/listing/:tourid", function(req, res, next) {
           title = title + ", " + body.Apartment.locality;
         }
         /* check if we have rent/price data for title */
-        if (body.SubscriptionApartment.Listing.Lease.Rent !== 0) {
-          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.Rent;
+        if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
+          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.RentAmount;
         }
       } catch (e) {
         console.dir(e);
