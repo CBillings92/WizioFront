@@ -282,9 +282,20 @@
   </div>
 
   <div class="col-md-4 col-xs-6 form-space">
+    <div>
     <label>Lease Start Date</label>
     <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
   </div>
+  <div class="form-space">
+    <input class="form-check-input" ng-change='ListingChange("IsAvailableNow")'  ng-model="data.Listing.Lease.IsAvailableNow" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+    <label for="" class="form-check-label">Available Now</label>
+  </div>
+  </div>
+
+  <div class="col-md-4 col-xs-6">
+
+  </div>
+
 
   <div class="col-md-4 col-xs-6 form-space">
     <label>Lease End Date</label>

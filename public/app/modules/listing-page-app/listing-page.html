@@ -17,8 +17,21 @@
       <div class="row" id='listing-page'>
         <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+        <div ng-if= "data.Listing.Lease.IsAvailableNow && !data.Listing.Lease.LeaseStartDate">
+          <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+        </div>
+
+        <div ng-if= "data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
+          <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+        </div>
+
+        <div ng-if= "!data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
           <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}} </div>
-          <div ng-if= "address.neighborhood">
+        </div>
+
+
+
+        <div ng-if= "address.neighborhood">
           <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.neighborhood}}, Boston MA </div>
         </div>
       </div>
