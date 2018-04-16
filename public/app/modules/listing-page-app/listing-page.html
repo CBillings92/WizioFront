@@ -218,10 +218,12 @@
             <p class="listing-sub-section dk-gray">Lease Details</p>
             <hr>
             <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount}} per {{'month'}}</p>
-            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}} per {{'month'}}</p>
-            <p class="small-body"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body"><span class="medium">Lease End:</span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body"><span class="medium">Location:</span> Boston MA  </p>
+            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}}</p>
+            <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
+            <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
+            <p class="small-body" ng-if="data.Lease.LeaseStartDate"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>
+
 
           </div>
           <div class="col-sm-12 col-md-7">

@@ -252,11 +252,26 @@
       <label for="" class="form-check-label">Pet Fee?</label>
     </div>
 
-    <div class="col-xs-6 form-space">
+    <div class="col-xs-6 form-space" ng-if="data.Listing.HasMonthlyPetFee">
       <label for="">Pet Fee Amount</label>
-      <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="" placeholder="ex: $30">
+      <p class="small-body med-gray"> ex: $20 per month </p>
+      <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="" placeholder="ex: $30 per month">
     </div>
 </div>
+
+<div class="row col-xs-6 form-space">
+    <div class="col-xs-12 form-space">
+      <input class="form-check-input"  ng-change='ListingChange("HasPetWeightLimit")' ng-model="data.Listing.HasPetWeightLimit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label"> Pet Weight Limit</label>
+    </div>
+
+    <div class="col-xs-6 form-space" ng-if="data.Listing.HasPetWeightLimit">
+      <label for="">Pet Weight</label>
+      <p class="small-body med-gray"> weight in pounds </p>
+      <input type="text" ng-model='data.Listing.MaximumPetWeight' ng-change='ListingChange("MaximumPetWeight")' class='form-control' name="" value="" placeholder="ex: 30">
+    </div>
+</div>
+
 
 <!-- <div class="row  col-xs-6 form-space">
     <div class="col-xs-12 form-space">
@@ -300,6 +315,11 @@
   <div class="col-md-4 col-xs-6 form-space">
     <label>Lease End Date</label>
     <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
+  </div>
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Key Fee</label>
+    <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
   </div>
 
   <!-- <div class="col-md-4 col-xs-6 form-space">
