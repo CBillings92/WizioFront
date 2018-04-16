@@ -173,9 +173,17 @@
 
       <div class="row col-xs-12 form-space">
         <div class="col-md-4 col-xs-6">
+          <div>
           <label for="bedrooms">Bedrooms</label>
           <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" placeholder="Number of Bedroom(s)">
         </div>
+        <div>
+          <input class="form-check-input" ng-change='ListingChange("IsSplitUnit")'  ng-model="data.Listing.IsSplitUnit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="" class="form-check-label">Split Unit</label>
+        </div>
+        </div>
+
+
         <div class="col-md-4 col-xs-6">
           <label for="bathrooms">Bathrooms</label>
           <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" placeholder="Number of Bathrooms(s)">
@@ -228,7 +236,7 @@
 
   <div class="row col-xs-8 form-space">
     <div class="col-xs-12 form-group">
-      <label for="">Amenity Description</label>
+      <label for="">Additional Amenities</label>
       <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
       <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
     </div>
