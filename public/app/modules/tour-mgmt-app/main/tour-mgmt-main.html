@@ -155,8 +155,18 @@
 
 
       <div class="row col-xs-12 form-space">
-        <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-        <label for="activate-tour" class="form-check-label">Listing Is Active</label>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Listing Is Active</label>
+        </div>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsExclusive")'  ng-model="data.Listing.IsExclusive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Exclusive Listing</label>
+        </div>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsRepresentedByOwner")'  ng-model="data.Listing.IsRepresentedByOwner" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Represented by Owner</label>
+        </div>
       </div>
 
 

@@ -192,7 +192,8 @@
             </div>
             <div class="col-sm-8 col-xs-12 listing-agent-info">
               <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
-              <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty'"> {{business.name}} </p>
+              <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty' && !data.Listing.IsRepresentedByOwner"> {{business.name}} </p>
+              <p class="agent-business-name" ng-if="data.Listing.IsRepresentedByOwner"> Self Represented </p>
               <p class="agent-business-name" ng-if="business.name === 'Boston Pads'"><a href="https://bostonpads.com/">{{business.name}}</a></p>
               <p class="agent-business-name" ng-if="business.name === 'NextGen Realty'"><a href="https://www.nextgenrealty.com/">{{business.name}}</a></p>
               <p class="small-body listing-contact-agent-number" ng-if='agent.phoneNumber'>Agent Phone: <span class="light" ><a ng-href="tel:617-917-5803"></a> {{agent.phoneNumber}} </span></p>
