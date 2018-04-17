@@ -49,7 +49,7 @@
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/bedroom.png"  class="amenity-icon">
                   <p class="amenity-text"> {{data.Listing.Beds}} Beds <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
-                  
+
                 </div>
                 </div>
 
@@ -159,16 +159,9 @@
         <br>
         <div class="row col-xs-12">
           <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount}} per {{'month'}} </span></p>
-          <!-- <p class= "small-body">Lease Length: <span class="light">{{data.Listing.LeaseLength}}</span></p> -->
-          <!-- <p class= "small-body">Utilities:
-            <span class="light">
-              <span ng-if='data.Listing.IsGasIncluded'>Gas,</span>
-              <span ng-if='data.Listing.IsElectricIncluded'>Electric,</span>
-              <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water,</span>
-              <span ng-if='data.Listing.IsHeatIncluded'>Heat,</span>
-              <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
-              incl.
-            </span></p> -->
+          <p class= "small-body">Lease Length: <span class="light">{{data.Lease.LeaseLength}}</span></p>
+
+
             <hr id="listing-divider" style="margin-top:20px;">
         </div>
         <div class="row">
@@ -212,7 +205,6 @@
             <hr>
             <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount}} per {{'month'}}</p>
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}}</p>
-            <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
             <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
             <p class="small-body" ng-if="data.Lease.LeaseStartDate"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
             <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>

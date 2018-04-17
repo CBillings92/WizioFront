@@ -44,6 +44,8 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       });
     });
 
+    $scope.leaseLengthOptions = ['12 Month', '6 Month', '3 Month', 'Custom'];
+
     $scope.requestShowing = function() {
       ModalBuilderFct.buildModalWithController({
         size: "md",
