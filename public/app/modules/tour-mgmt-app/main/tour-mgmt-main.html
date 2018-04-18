@@ -155,17 +155,35 @@
 
 
       <div class="row col-xs-12 form-space">
-        <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-        <label for="activate-tour" class="form-check-label">Listing Is Active</label>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsActive")'  ng-model="data.Listing.IsActive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Listing Is Active</label>
+        </div>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsExclusive")'  ng-model="data.Listing.IsExclusive" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Exclusive Listing</label>
+        </div>
+        <div class="col-md-4 col-xs-6">
+          <input class="form-check-input" ng-change='ListingChange("IsRepresentedByOwner")'  ng-model="data.Listing.IsRepresentedByOwner" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="activate-tour" class="form-check-label">Represented by Owner</label>
+        </div>
       </div>
 
 
 
       <div class="row col-xs-12 form-space">
         <div class="col-md-4 col-xs-6">
+          <div>
           <label for="bedrooms">Bedrooms</label>
           <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" placeholder="Number of Bedroom(s)">
         </div>
+        <div>
+          <input class="form-check-input" ng-change='ListingChange("IsSplitUnit")'  ng-model="data.Listing.IsSplitUnit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+          <label for="" class="form-check-label">Split Unit</label>
+        </div>
+        </div>
+
+
         <div class="col-md-4 col-xs-6">
           <label for="bathrooms">Bathrooms</label>
           <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" placeholder="Number of Bathrooms(s)">
@@ -218,7 +236,7 @@
 
   <div class="row col-xs-8 form-space">
     <div class="col-xs-12 form-group">
-      <label for="">Amenity Description</label>
+      <label for="">Additional Amenities</label>
       <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
       <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
     </div>
@@ -252,11 +270,26 @@
       <label for="" class="form-check-label">Pet Fee?</label>
     </div>
 
-    <div class="col-xs-6 form-space">
+    <div class="col-xs-6 form-space" ng-if="data.Listing.HasMonthlyPetFee">
       <label for="">Pet Fee Amount</label>
-      <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="" placeholder="ex: $30">
+      <p class="small-body med-gray"> ex: $20 per month </p>
+      <input type="text" ng-model='data.Listing.MonthlyPetFeeAmount' ng-change='ListingChange("MonthlyPetFeeAmount")' class='form-control' name="" value="" placeholder="ex: $30 per month">
     </div>
 </div>
+
+<div class="row col-xs-6 form-space">
+    <div class="col-xs-12 form-space">
+      <input class="form-check-input"  ng-change='ListingChange("HasPetWeightLimit")' ng-model="data.Listing.HasPetWeightLimit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label"> Pet Weight Limit</label>
+    </div>
+
+    <div class="col-xs-6 form-space" ng-if="data.Listing.HasPetWeightLimit">
+      <label for="">Pet Weight</label>
+      <p class="small-body med-gray"> weight in pounds </p>
+      <input type="text" ng-model='data.Listing.MaximumPetWeight' ng-change='ListingChange("MaximumPetWeight")' class='form-control' name="" value="" placeholder="ex: 30">
+    </div>
+</div>
+
 
 <!-- <div class="row  col-xs-6 form-space">
     <div class="col-xs-12 form-space">
@@ -282,23 +315,35 @@
   </div>
 
   <div class="col-md-4 col-xs-6 form-space">
+    <div>
     <label>Lease Start Date</label>
     <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
   </div>
-
-  <div class="col-md-4 col-xs-6 form-space">
-    <label>Lease End Date</label>
-    <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
+  <div class="form-space">
+    <input class="form-check-input" ng-change='ListingChange("IsAvailableNow")'  ng-model="data.Listing.Lease.IsAvailableNow" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+    <label for="" class="form-check-label">Available Now</label>
+  </div>
   </div>
 
-  <!-- <div class="col-md-4 col-xs-6 form-space">
-    <label> Lease Length </label>
-    <select class="form-control">
-      <option> 3 Month </option>
-      <option> 6 Month </option>
-      <option> 12 Month </option>
-    </select>
-  </div> -->
+  <div class="col-md-4 col-xs-6 form-space">
+    <label for="leaseLengthForm"> Lease Length </label>
+      <select ng-model="selectedLeaseLengthOption" ng-change = 'changeLeaseLength()' ng-options="options for options in leaseLengthOptions">
+      </select>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Key Fee</label>
+    <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
+  </div>
+
+
 
   <!--- Utilities --->
 

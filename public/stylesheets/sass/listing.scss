@@ -58,6 +58,11 @@
   font-weight: 300;
 }
 
+.listing-agent-info a{
+  text-decoration: none;
+  color: #333;
+}
+
 .listing-contact-agent-number {
   text-align: left;
 }
@@ -88,6 +93,13 @@
   border: 1.5px solid $light-gray;
   padding: 25px 30px;
   height: 100%;
+}
+
+.fee-box {
+  background-color: #fff;
+  border: 1.5px solid $orange;
+  padding: 10px 10px;
+  width: 100%;
 }
 
 .amenity-icon {
