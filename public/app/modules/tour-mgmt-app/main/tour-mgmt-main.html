@@ -238,15 +238,15 @@
     <div class="col-xs-12 form-group">
       <label for="">Additional Amenities</label>
       <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
-      <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
+      <textarea class="form-control" maxlength="2000" ng-model='data.Listing.AmenityDescription' ng-change='ListingChange("AmenityDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
     </div>
   </div>
 
   <div class="row col-xs-8 form-space">
     <div class="col-xs-12 form-group">
-      <label for="">Longform Description</label>
+      <label for="">Listing Description</label>
       <p class="small-body med-gray"> max: 500 characters </p>
-      <textarea class="form-control" maxlength="1000" ng-model='data.Listing.LongformDescription' ng-change='ListingChange("LongformDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Describe the listing"></textarea>
+      <textarea class="form-control" maxlength="1000" ng-model='data.Listing.ListingDescription' ng-change='ListingChange("ListingDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Describe the listing"></textarea>
     </div>
   </div>
 
