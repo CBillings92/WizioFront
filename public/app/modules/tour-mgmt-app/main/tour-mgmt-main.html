@@ -329,19 +329,16 @@
   </div>
   </div>
 
-  <div class="col-md-4 col-xs-6 form-space">
+  <!-- <div class="col-md-4 col-xs-6 form-space">
     <label for="leaseLengthForm"> Lease Length </label>
       <select ng-model="selectedLeaseLengthOption" ng-change = 'changeLeaseLength()' ng-options="options for options in leaseLengthOptions">
       </select>
+  </div> -->
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Lease End Date</label>
+    <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
   </div>
-
-
-
-
-
-
-
-
   <div class="col-md-4 col-xs-6 form-space">
     <label>Key Fee</label>
     <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
