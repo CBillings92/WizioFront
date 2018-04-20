@@ -319,14 +319,15 @@
 
   <div class="col-md-4 col-xs-6 form-space">
     <div>
-    <label>Lease Start Date</label>
-    <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
-  </div>
+      <label>Lease Start Date</label>
+      <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
+    </div>
   <div class="form-space">
     <input class="form-check-input" ng-change='ListingChange("IsAvailableNow")'  ng-model="data.Listing.Lease.IsAvailableNow" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
     <label for="" class="form-check-label">Available Now</label>
   </div>
   </div>
+
   <!-- <div class="col-md-4 col-xs-6 form-space">
     <label for="leaseLengthForm"> Lease Length </label>
       <select ng-model="selectedLeaseLengthOption" ng-change = 'changeLeaseLength()' ng-options="options for options in leaseLengthOptions">
@@ -334,13 +335,15 @@
   </div> -->
 
   <div class="col-md-4 col-xs-6 form-space">
-    <label>Key Fee</label>
-    <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
+    <label>Lease End Date</label>
+    <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
   </div>
   <div class="col-md-4 col-xs-6 form-space">
     <label>Key Fee</label>
     <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
   </div>
+
+
 
   <!--- Utilities --->
 
