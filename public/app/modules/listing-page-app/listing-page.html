@@ -144,7 +144,6 @@
                   <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
                 </p>
               </div>
-
               <div class="col-sm-10" ng-if="data.Listing.AmenityDescription" style="margin-top:20px;">
                 <p class="listing-sub-section dk-gray"> Additional Amenities </p>
                 <p class="small-body"> {{data.Listing.AmenityDescription}}</p>
@@ -238,8 +237,6 @@
         <div class="row row-space">
           <div class="col-sm-8 col-sm-offset-1 col-xs-12">
             <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
-
-
             <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee" style="padding-top: 0">
               <p class="small-body"> First Month </p>
               <i class="fa fa-check fa-2x orange"></i>
