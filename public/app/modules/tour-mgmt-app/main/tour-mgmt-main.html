@@ -209,8 +209,8 @@
     </div>
 
     <div class="col-md-4 col-xs-6">
-      <input class="form-check-input" ng-change='ListingChange("HasFirePlace")'  ng-model="data.Listing.HasFirePlace" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-      <label for="" class="form-check-label">Fire Place</label>
+      <input class="form-check-input" ng-change='ListingChange("HasFireplace")'  ng-model="data.Listing.HasFireplace" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+      <label for="" class="form-check-label">Fireplace</label>
     </div>
 
     <div class="col-md-4 col-xs-6">
@@ -238,7 +238,15 @@
     <div class="col-xs-12 form-group">
       <label for="">Additional Amenities</label>
       <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
-      <textarea class="form-control" maxlength="2000" ng-model='data.Listing.Description' ng-change='ListingChange("Description")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
+      <textarea class="form-control" maxlength="2000" ng-model='data.Listing.AmenityDescription' ng-change='ListingChange("AmenityDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
+    </div>
+  </div>
+
+  <div class="row col-xs-8 form-space">
+    <div class="col-xs-12 form-group">
+      <label for="">Listing Description</label>
+      <p class="small-body med-gray"> max: 500 characters </p>
+      <textarea class="form-control" maxlength="1000" ng-model='data.Listing.ListingDescription' ng-change='ListingChange("ListingDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Describe the listing"></textarea>
     </div>
   </div>
 
@@ -250,18 +258,14 @@
     <div class="row form-space col-xs-12">
     <div class="col-md-4 col-xs-6">
       <input class="form-check-input"  ng-change='ListingChange("IsCatFriendly")' ng-model="data.Listing.IsCatFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-      <label for="" class="form-check-label">Cats Only</label>
+      <label for="" class="form-check-label">Cat Friendly</label>
     </div>
 
     <div class="col-md-4 col-xs-6">
       <input class="form-check-input"  ng-change='ListingChange("IsDogFriendly")' ng-model="data.Listing.IsDogFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-      <label for="" class="form-check-label">Dogs Only</label>
+      <label for="" class="form-check-label">Dog Friendly</label>
     </div>
 
-    <div class="col-md-4 col-xs-6">
-      <input class="form-check-input"  ng-change='ListingChange("IsDogFriendly")' ng-model="data.Listing.IsDogFriendly" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
-      <label for="" class="form-check-label">Pet Friendly</label>
-    </div>
   </div>
 
 <div class="row col-xs-6 form-space">
@@ -290,7 +294,6 @@
     </div>
 </div>
 
-
 <!-- <div class="row  col-xs-6 form-space">
     <div class="col-xs-12 form-space">
       <input class="form-check-input"  ng-change='ListingChange("HasPetWeightLimit")' ng-model="data.Listing.HasPetWeightLimit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
@@ -316,28 +319,25 @@
 
   <div class="col-md-4 col-xs-6 form-space">
     <div>
-    <label>Lease Start Date</label>
-    <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
-  </div>
+      <label>Lease Start Date</label>
+      <input type="date" ng-change='ListingChange("LeaseStartDate")' ng-value='data.Listing.Lease.LeaseStartDate' ng-model='data.Listing.Lease.LeaseStartDate' class="form-control" name="" value="">
+    </div>
   <div class="form-space">
     <input class="form-check-input" ng-change='ListingChange("IsAvailableNow")'  ng-model="data.Listing.Lease.IsAvailableNow" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
     <label for="" class="form-check-label">Available Now</label>
   </div>
   </div>
 
-  <div class="col-md-4 col-xs-6 form-space">
+  <!-- <div class="col-md-4 col-xs-6 form-space">
     <label for="leaseLengthForm"> Lease Length </label>
       <select ng-model="selectedLeaseLengthOption" ng-change = 'changeLeaseLength()' ng-options="options for options in leaseLengthOptions">
       </select>
+  </div> -->
+
+  <div class="col-md-4 col-xs-6 form-space">
+    <label>Lease End Date</label>
+    <input type="date" ng-change='ListingChange("LeaseEndDate")' ng-value='data.Listing.Lease.LeaseEndDate' ng-model='data.Listing.Lease.LeaseEndDate' class="form-control" name="" value="">
   </div>
-
-
-
-
-
-
-
-
   <div class="col-md-4 col-xs-6 form-space">
     <label>Key Fee</label>
     <input type="text" ng-model='data.Listing.KeyFee', ng-change='ListingChange("Rent")' class="form-control" name="" value="" placeholder="ex: $20">
