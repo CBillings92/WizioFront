@@ -165,8 +165,8 @@
         </div>
         <br>
         <div class="row col-xs-12">
-          <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount}} per {{'month'}} </span></p>
-          <p class= "small-body">Lease Length: <span class="light">{{data.Lease.LeaseLength}}</span></p>
+          <p class= "small-body">Rent: <span class="light"> ${{data.Lease.RentAmount}} per {{'month'}} </span></p>
+          <!-- <p class= "small-body">Lease Length: <span class="light">{{data.Lease.LeaseLength || '12 Month'}}</span></p> -->
 
 
             <hr id="listing-divider" style="margin-top:20px;">
@@ -210,10 +210,11 @@
           <div class="col-xs-12">
             <p class="listing-sub-section dk-gray">Lease Details</p>
             <hr>
-            <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount}} per {{'month'}}</p>
-            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount}}</p>
+            <p class="small-body"><span class="medium">Rent:</span> ${{data.Lease.RentAmount}} per {{'month'}}</p>
+            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> ${{data.Listing.MonthlyPetFeeAmount}}</p>
             <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
-            <p class="small-body" ng-if="data.Lease.LeaseStartDate"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> Available Now</p>
             <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>
 
 
