@@ -181,20 +181,43 @@
             </div>
           </div>
           <div class="form-group row">
+            <!-- Bedrooms -->
             <div class="col-sm-4">
               <label for="bedrooms">Bedrooms</label>
               <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" placeholder="Number of Bedroom(s)">
             </div>
             <!-- FIXME add margin 30 as class  -->
+            <!-- Split Unit -->
             <div class="col-sm-4" style="margin-top:30px">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" ng-change='ListingChange("IsSplitUnit")'  ng-model="data.Listing.IsSplitUnit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
                 <label for="" class="form-check-label">Split Unit</label>
               </div>
             </div>
+            <!-- Bathrooms -->
             <div class="col-sm-4">
               <label for="bathrooms">Bathrooms</label>
               <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" placeholder="Number of Bathrooms(s)">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" ng-change='ListingChange("WithDen")'  ng-model="data.Listing.WithDen" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+                <label for="" class="form-check-label">With Den</label>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" ng-change='ListingChange("WithLivingRoom")'  ng-model="data.Listing.WithLivingRoom" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+                <label for="" class="form-check-label">With Living Room</label>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" ng-change='ListingChange("WithLoft")'  ng-model="data.Listing.WithLoft" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+                <label for="" class="form-check-label">With Loft</label>
+              </div>
             </div>
           </div>
         </form>
