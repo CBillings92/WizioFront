@@ -6,6 +6,8 @@
   width: 100%;
 }
 
+
+
 #vr-player-listing {
   height: 600px;
   width: 100%;
@@ -165,22 +167,30 @@ hr#listing-divider {
   .listing-container {
     width: 90%;
   }
+
+  .vr-container{
+    width: $container-lg;
+    @include center-block;
+  }
 }
 
-//---- xl container ---//
-@media (min-width: 769px) {
+
+//---- desktop ---//
+@media (min: 768px) {
+  .agent-business-name {
+    text-align: left;
+  }
+
   .listing-container {
     width: 100%;
     padding-left: 0px;
     padding-right: 0px;
 
   }
-}
 
-//---- desktop ---//
-@media (min: 768px) {
-  .agent-business-name {
-    text-align: left;
+  .vr-container{
+    @include container-fixed;
+    width: 100%;
   }
 
 }
