@@ -49,7 +49,9 @@
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/bedroom.png"  class="amenity-icon">
                   <p class="amenity-text"> {{data.Listing.Beds}} Beds <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
-
+                  <div class="">
+                    <p class='amenity-text'>{{data.Listing.WithLoft ? 'With Loft,' : ''}} {{data.Listing.WithDen ? 'With Den,' : ''}} {{ data.Listing.WithLivingRoom ? 'With Living Room,': ''}}</p>
+                  </div>
                 </div>
                 </div>
 
