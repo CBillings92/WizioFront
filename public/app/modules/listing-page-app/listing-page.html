@@ -165,7 +165,7 @@
         </div>
         <br>
         <div class="row col-xs-12">
-          <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}} </span></p>
+          <p class= "small-body">Rent: <span class="light"> 5{{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}} </span></p>
           <!-- <p class= "small-body">Lease Length: <span class="light">{{data.Lease.LeaseLength || '12 Month'}}</span></p> -->
 
 
@@ -240,23 +240,23 @@
         <div class="row row-space">
           <div class="col-sm-8 col-sm-offset-1 col-xs-12">
             <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
-            <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee" style="padding-top: 0">
+            <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> First Month </p>
               <i class="fa fa-check fa-2x orange"></i>
             </div>
 
 
-            <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee" style="padding-top: 0">
+            <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> First Month </p>
               <i class="fa fa-close fa-2x blue"></i>
             </div>
 
-            <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee" style="padding-top: 0">
+            <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> Security Deposit </p>
               <i class="fa fa-check fa-2x orange"></i>
             </div>
 
-            <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee" style="padding-top: 0">
+            <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> Security Deposit </p>
               <i class="fa fa-close fa-2x blue"></i>
             </div>
