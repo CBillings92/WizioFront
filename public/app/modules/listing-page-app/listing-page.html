@@ -211,8 +211,8 @@
             <p class="listing-sub-section dk-gray">Lease Details</p>
             <hr>
             <p class="small-body"><span class="medium">Rent:</span> ${{data.Lease.RentAmount}} per {{'month'}}</p>
-            <p class="small-body" ng-if="data.Lease.SecurityDepositAmount"><span class="medium">Security Deposit:</span> ${{data.Lease.SecurityDepositAmount}} per {{'month'}}</p>
-            <p class="small-body" ng-if="data.Lease.BrokersFeeAmount"><span class="medium">Broker Fee:</span> ${{data.Lease.BrokersFeeAmount}} per {{'month'}}</p>
+            <p class="small-body" ng-if="data.Lease.SecurityDepositAmount"><span class="medium">Security Deposit:</span> ${{data.Lease.SecurityDepositAmount}}</p>
+            <p class="small-body" ng-if="data.Lease.BrokersFeeAmount"><span class="medium">Broker Fee:</span> ${{data.Lease.BrokersFeeAmount}}</p>
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> ${{data.Listing.MonthlyPetFeeAmount}}</p>
             <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
             <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
