@@ -1,5 +1,5 @@
 <div class= "container-fluid">
-  <div class="row listing-hero">
+  <div class="row vr-container listing-hero ">
     <div id="vr-player-listing">
        <div style="height:96%;" >
            <tour-dir show-interface="true"></tour-dir>
@@ -179,9 +179,7 @@
         <br>
         <div class="row col-xs-12">
           <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}} </span></p>
-          <!-- <p class= "small-body">Lease Length: <span class="light">{{data.Lease.LeaseLength || '12 Month'}}</span></p> -->
-
-
+          <p class= "small-body" ng-if='data.Lease.LeaseLength'>Lease Length: <span class="light">{{data.Lease.LeaseLength}} </span></p>
             <hr id="listing-divider" style="margin-top:20px;">
         </div>
         <div class="row">
@@ -229,6 +227,8 @@
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount | currency : '$' : 2}}</p>
             <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
             <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Lease.LeaseEndDate && !data.Lease.LeaseLength"><span class="medium">Lease End:</span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Lease.LeaseLength"><span class="medium">Lease Length:</span> {{data.Lease.LeaseLength}} </p>
             <p class="small-body" ng-if="data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> Available Now</p>
             <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>
 
@@ -249,7 +249,6 @@
         <p class="small-body" style="line-height:1.3">{{data.Listing.ListingDescription}}</p>
         </div>
       </div>
-
         <div class="row row-space">
           <div class="col-sm-8 col-sm-offset-1 col-xs-12">
             <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
@@ -257,18 +256,14 @@
               <p class="small-body"> First Month </p>
               <i class="fa fa-check fa-2x orange"></i>
             </div>
-
-
             <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> First Month </p>
               <i class="fa fa-close fa-2x blue"></i>
             </div>
-
             <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> Security Deposit </p>
               <i class="fa fa-check fa-2x orange"></i>
             </div>
-
             <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
               <p class="small-body"> Security Deposit </p>
               <i class="fa fa-close fa-2x blue"></i>
@@ -316,5 +311,3 @@
 
 
   </div>
-  </div>
-</div>

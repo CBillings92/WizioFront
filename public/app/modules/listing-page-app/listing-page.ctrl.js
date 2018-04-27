@@ -27,6 +27,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         $scope.finalAddress + data.Apartment.concatAddr.substring(data.Apartment.concatAddr.indexOf(",") + 2);
       $scope.data.Lease.LeaseStartDate = new Date($scope.data.Lease.LeaseStartDate);
       $scope.data.Lease.LeaseEndDate = new Date($scope.data.Lease.LeaseEndDate);
+      formatLeaseLength();
       var map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
         center: { lat: $scope.address.Latitude, lng: $scope.address.Longitude },
@@ -44,7 +45,19 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       });
     });
 
-    $scope.leaseLengthOptions = ['12 Month', '6 Month', '3 Month', 'Custom'];
+    function formatLeaseLength() {
+      var stringsToCheck = ["mo", "month", "m"];
+      for (var i = 0; i < stringsToCheck.length; i++) {
+        if ($scope.data.Lease.LeaseLength.toLowerCase().indexOf(stringsToCheck[i])) {
+          var indexOfString = $scope.data.Lease.LeaseLength.toLowerCase().indexOf(stringsToCheck[i]);
+          $scope.data.Lease.LeaseLength = $scope.data.Lease.LeaseLength.substring(0, indexOfString);
+          $scope.data.Lease.LeaseLength = $scope.data.Lease.LeaseLength + "months";
+          break;
+        }
+      }
+    }
+
+    $scope.leaseLengthOptions = ["12 Month", "6 Month", "3 Month", "Custom"];
 
     $scope.requestShowing = function() {
       ModalBuilderFct.buildModalWithController({

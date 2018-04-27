@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.vr-container {
+  width: 100%;
+  @include container-fixed;
+}
+
 #vr-player-listing {
   height: 600px;
   width: 100%;
@@ -58,7 +63,7 @@
   font-weight: 300;
 }
 
-.listing-agent-info a{
+.listing-agent-info a {
   text-decoration: none;
   color: #333;
 }
@@ -107,8 +112,8 @@
   margin-bottom: 8px;
 }
 
-.amenity-text{
-  font-family: 'Roboto';
+.amenity-text {
+  font-family: "Roboto";
   font-weight: 300;
   font-size: 15px;
   color: $dk-gray;
@@ -120,17 +125,17 @@
   padding-bottom: 15px;
 }
 
-.listing-map{
+.listing-map {
   position: relative;
   height: 400px;
   margin-top: 20px;
   margin-bottom: 30px;
 }
 
-#map{
+#map {
   height: 370px;
-position: relative;
-overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .medium {
@@ -165,15 +170,10 @@ hr#listing-divider {
   .listing-container {
     width: 90%;
   }
-}
 
-//---- xl container ---//
-@media (min-width: 769px) {
-  .listing-container {
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-
+  .vr-container {
+    width: $container-lg;
+    @include center-block;
   }
 }
 
@@ -183,6 +183,16 @@ hr#listing-divider {
     text-align: left;
   }
 
+  .listing-container {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .vr-container {
+    @include container-fixed;
+    width: 100%;
+  }
 }
 
 //---- Tablet ---//
@@ -195,7 +205,7 @@ hr#listing-divider {
     float: none !important;
   }
 
-  .listing-container{
+  .listing-container {
     padding-left: 15px;
     padding-right: 15px;
   }
@@ -213,7 +223,7 @@ hr#listing-divider {
   .availability-label,
   .neighborhood-label {
     width: 45%;
-    display:inline-block;
+    display: inline-block;
   }
 }
 
@@ -226,6 +236,5 @@ hr#listing-divider {
     display: block;
     margin-left: auto;
     margin-right: auto;
-
   }
 }
