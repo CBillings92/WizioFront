@@ -181,20 +181,36 @@
             </div>
           </div>
           <div class="form-group row">
+            <!-- Bedrooms -->
             <div class="col-sm-4">
               <label for="bedrooms">Bedrooms</label>
-              <input type="text" ng-model='data.Listing.Beds' ng-change='ListingChange("Beds")' class="form-control" placeholder="Number of Bedroom(s)">
+              <select ng-change="ListingChange('Beds')" ng-options="item as item for item in bedSelect" ng-model="data.Listing.Beds"></select>
+              </select>
             </div>
-            <!-- FIXME add margin 30 as class  -->
-            <div class="col-sm-4" style="margin-top:30px">
+            <div class="col-sm-4">
               <div class="form-check form-check-inline">
                 <input class="form-check-input" ng-change='ListingChange("IsSplitUnit")'  ng-model="data.Listing.IsSplitUnit" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
                 <label for="" class="form-check-label">Split Unit</label>
               </div>
             </div>
+            <!-- Bathrooms -->
             <div class="col-sm-4">
               <label for="bathrooms">Bathrooms</label>
-              <input type="text" ng-model='data.Listing.Baths' ng-change='ListingChange("Baths")' class="form-control" placeholder="Number of Bathrooms(s)">
+              <select ng-change="ListingChange('Bathrooms')" ng-model="data.Listing.Baths" ng-options = "item as item for item in bathSelect"></select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" ng-change='ListingChange("HasDen")'  ng-model="data.Listing.HasDen" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+                <label for="" class="form-check-label">Has Den</label>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" ng-change='ListingChange("HasLoft")'  ng-model="data.Listing.HasLoft" ng-true-value='true' ng-false-value='false' type="checkbox" value="" id="defaultCheck1">
+                <label for="" class="form-check-label">Has Loft</label>
+              </div>
             </div>
           </div>
         </form>

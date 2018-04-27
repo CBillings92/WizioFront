@@ -81,9 +81,25 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
       .mainApp($stateParams)
       .then(function(response) {
         $scope.appInitialized = true;
+
         /* Assign formatted data to scope */
+        $scope.bedSelect = [];
+        $scope.bathSelect = [];
+        /* Set default values for drop down fields */
+        for (var i = 0; i < 21; i++) {
+          if (i === 0) {
+            $scope.bedSelect.push("Studio");
+          } else {
+            $scope.bedSelect.push(i.toString());
+            $scope.bathSelect.push(i.toString());
+            $scope.bathSelect.push(i.toString() + ".5");
+          }
+        }
         $scope.data = response.payload;
-        console.dir($scope.data.Listing);
+        /* failsafe conversion from int to string for drop downs */
+        $scope.data.Listing.Beds = $scope.data.Listing.Beds.toString();
+        /* failsafe conversion from int to string for drop downs */
+        $scope.data.Listing.Baths = $scope.data.Listing.Baths.toString();
         if (!$scope.data.Listing) {
           $scope.data.Listing = {
             Lease: {}
