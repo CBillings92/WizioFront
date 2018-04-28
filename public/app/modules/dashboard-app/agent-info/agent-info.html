@@ -1,13 +1,56 @@
-<div style="margin-bottom:50px">
-    <h2 class="user-info__name"> Update Agent Info: </h2>
-    <p> Upload Photo -- for best results, please use a square photo </p>
-    <input type="file" id="file-chooser" class="form-control" style="border: 1px solid black;" placeholder="" value="">
+<div class="col-xs-12">
+  <div class="agent-profile-form">
+    <h2 class=" row row-space product-section-head orange"> Your Profile </h2>
+
+    <p class="row-space subhead-text orange"> Basic Info</p>
+    <hr id="form-divider"></hr>
+
+
+    <div class="row form-space">
+      <div class="col-sm-6">
+        <label for="AgentFirstName"> First Name </label>
+        <input type="text" ng-model='agent.firstName', class="agent-form-control" name="" placeholder= {{agent.firstName}} >
+      </div>
+
+      <div class="col-sm-6">
+        <label for="AgentLastName"> Last Name </label>
+        <input type="text" ng-model='agent.lastName', class="form-control" name="" placeholder= {{agent.lastName}} >
+      </div>
+    </div>
+
+    <div class="row form-space">
+      <div class="col-sm-6">
+        <label for="AgentEmail"> Email Address </label>
+        <input type="text" ng-model='agent.firstName', class="form-control" name="" placeholder= "{{agent.firstName}}" >
+      </div>
+
+
+      <div class="col-sm-6">
+        <label for="AgentPhone"> Phone Number </label>
+        <input type="text" id="phone-input" ng-model='phoneNumber' class="form-control" ng-attr-placeholder="{{phoneNumber}}" value="">
+      </div>
+    </div>
+
+
+    <p class=" row-space subhead-text orange"> Profile Photo</p>
+    <hr id="form-divider"></hr>
+
+
+    <div class="row form-space">
+
+    <div class= "col-xs-3">
+      <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="AWS image">
+      <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="agent-profile-image img-responsive "  alt="Placeholder">
+    </div>
+
+    <div class= "col-xs-8">
+    <label> Upload New Photo </label>
+    <p class="small-body med-gray"> For best results, upload a square image </p>
+    <input type="file" id="file-chooser" class="form-control"  placeholder="" value="">
     <br>
     <button class="btn btn-outline--blue" ng-click="saveProfilePhoto()">Upload Photo </button>
-    <p>
-        Phone Number
-    </p>
-    <input type="text" id="phone-input" ng-model='phoneNumber' class="form-control" style="border: 1px solid black;" ng-attr-placeholder="{{phoneNumber}}" value="">
-    <br>
-    <button class="btn btn-outline--blue" ng-click="savePhoneNumber()">Save Phone Number</button>
+</div>
+</div>
+
+</div>
 </div>
