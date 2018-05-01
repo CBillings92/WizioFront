@@ -5,23 +5,26 @@
     <p class="row-space subhead-text orange"> Basic Info</p>
     <hr id="form-divider"></hr>
 
+    <p> {{user}} </p>
+    <p> {{user.phoneNumber}} </p>
+
 
     <div class="row form-space">
       <div class="col-sm-6">
         <label for="AgentFirstName"> First Name </label>
-        <input type="text" ng-model='agent.firstName', class="agent-form-control" name="" placeholder= {{agent.firstName}} >
+        <input type="text" ng-change='AgentInfoChange("firstName")' ng-model="user.firstName", class="agent-form-control" name="" placeholder="{{user.firstName}}" required>
       </div>
 
       <div class="col-sm-6">
         <label for="AgentLastName"> Last Name </label>
-        <input type="text" ng-model='agent.lastName', class="form-control" name="" placeholder= {{agent.lastName}} >
+        <input type="text" ng-model='user.lastName', class="agent-form-control" name="" placeholder= "{{user.lastName}}" required>
       </div>
     </div>
 
     <div class="row form-space">
       <div class="col-sm-6">
         <label for="AgentEmail"> Email Address </label>
-        <input type="text" ng-model='agent.firstName', class="form-control" name="" placeholder= "{{agent.firstName}}" >
+        <input type="text" ng-model='user.email', class="form-control" name="" placeholder= "{{user.email}}" required>
       </div>
 
 
@@ -39,7 +42,7 @@
     <div class="row form-space">
 
     <div class= "col-xs-3">
-      <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="AWS image">
+      <img src="{{awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="AWS image">
       <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="agent-profile-image img-responsive "  alt="Placeholder">
     </div>
 
@@ -51,6 +54,8 @@
     <button class="btn btn-outline--blue" ng-click="saveProfilePhoto()">Upload Photo </button>
 </div>
 </div>
-
+<div class="row col-xs-12 row-space">
+  <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
+</div>
 </div>
 </div>

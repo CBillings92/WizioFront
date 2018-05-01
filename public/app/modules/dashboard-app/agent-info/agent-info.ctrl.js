@@ -2,12 +2,16 @@ angular.module('DashboardApp').controller('AgentInfoCtrl', [
     '$scope',
     '$state',
     'AgentInfoFct',
-    function($scope, $state, AgentInfoFct) {
-
+    'TokenSvc',
+    function($scope, $state, AgentInfoFct, TokenSvc) {
         /**
          * Saves profile photo for current user to their profile
          * @return {} [description]
          */
+
+
+        $scope.user = TokenSvc.decode();
+
         $scope.saveProfilePhoto = function() {
 
             var fileChooser = document.getElementById('file-chooser');
@@ -19,11 +23,14 @@ angular.module('DashboardApp').controller('AgentInfoCtrl', [
             });
         }
 
+
+
         /**
          * Save the phone number of the current user to their profilePhotos
          * @return {} [description]
          */
         $scope.savePhoneNumber = function() {
+
             if ($scope.phoneNumber !== '' && $scope.phoneNumber.length >= 7) {
                 AgentInfoFct.savePhoneNumber($scope.phoneNumber)
                     .then(function(response){
