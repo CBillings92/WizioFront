@@ -6,7 +6,7 @@
     <hr id="form-divider"></hr>
 
     <p> {{user}} </p>
-    <p> {{user.phoneNumber}} </p>
+
 
 
     <div class="row form-space">
@@ -30,7 +30,7 @@
 
       <div class="col-sm-6">
         <label for="AgentPhone"> Phone Number </label>
-        <input type="text" id="phone-input" ng-model='phoneNumber' class="form-control" ng-attr-placeholder="{{phoneNumber}}" value="">
+        <input type="text" id="phone-input" ng-model='user.phoneNumber' class="form-control" placeholder="{{user.phoneNumber}}" value="">
       </div>
     </div>
 
@@ -42,8 +42,8 @@
     <div class="row form-space">
 
     <div class= "col-xs-3">
-      <img src="{{awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="AWS image">
-      <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="agent-profile-image img-responsive "  alt="Placeholder">
+      <img src="{{user.awsProfilePhotoURL}}" ng-if="user.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="AWS image">
+      <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!user.awsProfilePhotoUrl" class="agent-profile-image img-responsive "  alt="Placeholder">
     </div>
 
     <div class= "col-xs-8">
@@ -51,11 +51,11 @@
     <p class="small-body med-gray"> For best results, upload a square image </p>
     <input type="file" id="file-chooser" class="form-control"  placeholder="" value="">
     <br>
-    <button class="btn btn-outline--blue" ng-click="saveProfilePhoto()">Upload Photo </button>
+
 </div>
 </div>
 <div class="row col-xs-12 row-space">
-  <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-click="saveChanges()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
+  <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-click="saveProfilePhoto(); savePhoneNumber()" name="button">{{saveChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
 </div>
 </div>
 </div>

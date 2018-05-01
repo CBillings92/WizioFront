@@ -33,9 +33,9 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
               }
             );
           });
-        } else {
-          ModalBuilderFct.buildSimpleModal("", "OK", "Error", "Please select a valid file.").then(function(result) {
-            return resolve();
+         } else {
+           ModalBuilderFct.buildSimpleModal("", "OK", "Error", "Please select a valid file.").then(function(result) {
+              return resolve();
           });
         }
       });

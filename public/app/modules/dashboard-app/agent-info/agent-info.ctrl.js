@@ -15,13 +15,16 @@ angular.module('DashboardApp').controller('AgentInfoCtrl', [
         $scope.saveProfilePhoto = function() {
 
             var fileChooser = document.getElementById('file-chooser');
+            if (fileChooser.files.length > 0){
             //grab the first file in the file array (our floorplan)
             var file = fileChooser.files[0];
             AgentInfoFct.saveProfilePhoto(file)
             .then(function(response){
                 return
+                console.log("photo saved");
             });
         }
+      }
 
 
 
