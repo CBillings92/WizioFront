@@ -34,6 +34,7 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
             );
           });
          } else {
+
            ModalBuilderFct.buildSimpleModal("", "OK", "Error", "Please select a valid file.").then(function(result) {
               return resolve();
           });
@@ -46,16 +47,19 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
         var user = TokenSvc.decode();
         $resource(WizioConfig.baseAPIURL + "user/update-user-phone-number").save(
           {
-            phoneNumber: phoneNumber,
+            phoneNumber: user.phoneNumber,
             id: user.id
           },
           function(response) {
+
             ModalBuilderFct.buildSimpleModal(
               "",
               "OK",
               "Success",
               "Your phone number has been updated to: " + phoneNumber
             ).then(function(result) {
+              console.log("phone then statement");
+
               return;
             });
           }
