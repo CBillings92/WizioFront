@@ -72,8 +72,6 @@ angular.module('DashboardApp').controller('AgentInfoCtrl', [
           if ($scope.user.phoneNumber !== '' && $scope.user.phoneNumber.length >= 7) {
               AgentInfoFct.savePhoneNumber($scope.user.phoneNumber)
                   .then(function(response){
-                    
-                    console.log("all save done");
                       return;
                   })
 

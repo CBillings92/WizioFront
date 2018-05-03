@@ -58,7 +58,7 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
               "Success",
               "Your phone number has been updated to: " + phoneNumber
             ).then(function(result) {
-              console.log("phone then statement");
+
 
               return;
             });
