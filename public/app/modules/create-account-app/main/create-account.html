@@ -51,7 +51,7 @@
                 Terms of Use
             </a>
         </p>
-        <button form="account-create-form" type="submit" class="btn btn-lg btn-outline--orange" ng-disabled="!checked" style="margin-bottom:25px; height:60px; font-size:2em;">Submit and Go To Your Dashboard</button>
+        <button form="account-create-form" type="submit" class="btn btn-lg btn-outline--orange" ng-disabled="!checked || formSubmitted" style="margin-bottom:25px; height:60px; font-size:2em;">{{formSubmitted ? 'Creating Your Account...' : 'Submit and Go To Your Dashboard'}}</button><span><loading-spinner-dir id="register-new-user" size="fa-3x" style="color:#f79739; visibility: hidden;"></loading-spinner-dir></span>
 
 
         <!-- <button type="button" name="button" class="btn btn-outline--orange btn-lg">Pay here!</button> -->
