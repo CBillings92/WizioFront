@@ -654,14 +654,11 @@ angular.module("MainApp").config([
               $rootScope.$emit("siteLoadDone", {});
             }
             if (response.data.token) {
-              console.dir("WRONG SPOT");
               TokenSvc.storeToken(response.data.token);
               $injector.get("$state").reload();
             }
             if (response.data.payload && response.data.payload.token) {
-              console.dir("IN HERE");
               TokenSvc.storeToken(response.data.payload.token);
-              console.dir(TokenSvc.decode());
               $injector.get("$state").reload();
             }
 
