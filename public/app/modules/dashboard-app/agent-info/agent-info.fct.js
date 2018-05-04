@@ -47,7 +47,7 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
         var user = TokenSvc.decode();
         $resource(WizioConfig.baseAPIURL + "user/update-user-phone-number").save(
           {
-            phoneNumber: user.phoneNumber,
+            phoneNumber: phoneNumber,
             id: user.id
           },
           function(response) {
@@ -60,8 +60,8 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
             ).then(function(result) {
 
 
-              return;
-            });
+              return resolve(result)
+            })
           }
         );
       });

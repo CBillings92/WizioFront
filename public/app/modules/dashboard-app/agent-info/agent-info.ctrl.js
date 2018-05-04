@@ -1,9 +1,10 @@
 angular.module('DashboardApp').controller('AgentInfoCtrl', [
     '$scope',
     '$state',
+    '$q',
     'AgentInfoFct',
     'TokenSvc',
-    function($scope, $state, AgentInfoFct, TokenSvc) {
+    function($scope, $state, $q, AgentInfoFct, TokenSvc) {
 
       /**
        * Flag for turning pieces of the form UI off
@@ -68,37 +69,46 @@ angular.module('DashboardApp').controller('AgentInfoCtrl', [
 
         $scope.saveAgentChanges = function() {
           $scope.saveAgentChangesInitiated = true;
-
-          if ($scope.user.phoneNumber !== '' && $scope.user.phoneNumber.length >= 7) {
-              AgentInfoFct.savePhoneNumber($scope.user.phoneNumber)
-                  .then(function(response){
-                      return;
-                  })
-
-          }
-
-          var fileChooser = document.getElementById('file-chooser');
-          if (fileChooser.files.length > 0){
-          console.log("photo save initiated");
-          //grab the first file in the file array (our floorplan)
-          var file = fileChooser.files[0];
-          AgentInfoFct.saveProfilePhoto(file)
+          savePhoneNumber()
           .then(function(response){
-
-              return
-              console.log("photo saved");
-          });
+            return saveAgentImage()
+          })
+          .then(function(response){
+            console.log("does it get here")
+            $scope.saveAgentChangesInitiated = false;
+          })
           }
 
+function savePhoneNumber(){
+return $q(function(resolve,reject){
+  if ($scope.user.phoneNumber !== '' && $scope.user.phoneNumber.length >= 7) {
+      AgentInfoFct.savePhoneNumber($scope.user.phoneNumber)
+          .then(function(response){
+            console.log("phone test")
+              return resolve(response)
+          })
 
+  }
 
+})
+}
 
+function saveAgentImage() {
+  return $q(function(resolve,reject){
+    var fileChooser = document.getElementById('file-chooser');
+    if (fileChooser.files.length > 0){
+    console.log("photo save initiated");
+    //grab the first file in the file array (our floorplan)
+    var file = fileChooser.files[0];
+    AgentInfoFct.saveProfilePhoto(file)
+    .then(function(response){
+        return resolve(response)
+    });
+    }
+    return resolve("no image to upload")
+  })
+}
 
-
-
-
-
-        };
 
 
 // AgentInfo.saveProfilePhoto(file)
