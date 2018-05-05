@@ -33,10 +33,9 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
               }
             );
           });
-         } else {
-
-           ModalBuilderFct.buildSimpleModal("", "OK", "Error", "Please select a valid file.").then(function(result) {
-              return resolve();
+        } else {
+          ModalBuilderFct.buildSimpleModal("", "OK", "Error", "Please select a valid file.").then(function(result) {
+            return resolve();
           });
         }
       });
@@ -51,17 +50,14 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
             id: user.id
           },
           function(response) {
-
             ModalBuilderFct.buildSimpleModal(
               "",
               "OK",
               "Success",
               "Your phone number has been updated to: " + phoneNumber
             ).then(function(result) {
-
-
-              return resolve(result)
-            })
+              return resolve(result);
+            });
           }
         );
       });
