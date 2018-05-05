@@ -5,3 +5,35 @@
     right: 0;
     cursor: pointer;
 }
+
+.agent-profile-form label{
+  font-weight: 400;
+}
+
+.agent-form-control{
+
+}
+
+.agent-profile-form input{
+  border-color:#cccccc;
+  border-width: 1px;
+  border-style: solid;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  background-color: #fff;
+  border-radius: 4px;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.agent-form-control, output {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    display: block;
+}
+
+.agent-profile-image {
+  border-radius: 50%;
+}
