@@ -25,11 +25,7 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
                 id: user.id
               },
               function(response) {
-                ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your profile photo has been updated: ").then(
-                  function(result) {
-                    return resolve();
-                  }
-                );
+                return resolve();
               }
             );
           });
@@ -50,14 +46,7 @@ angular.module("DashboardApp").factory("AgentInfoFct", [
             id: user.id
           },
           function(response) {
-            ModalBuilderFct.buildSimpleModal(
-              "",
-              "OK",
-              "Success",
-              "Your phone number has been updated to: " + phoneNumber
-            ).then(function(result) {
-              return resolve(result);
-            });
+            return resolve(response);
           }
         );
       });

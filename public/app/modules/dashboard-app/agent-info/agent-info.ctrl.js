@@ -38,7 +38,11 @@ angular.module("DashboardApp").controller("AgentInfoCtrl", [
           return saveAgentImage();
         })
         .then(function(response) {
-          $scope.saveAgentChangesInitiated = false;
+          ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your profile information has been updated.").then(
+            function(result) {
+              $scope.saveAgentChangesInitiated = false;
+            }
+          );
         });
     };
 
