@@ -44,7 +44,12 @@ angular.module("DashboardApp").controller("AgentInfoCtrl", [
 
     function savePhoneNumber() {
       return $q(function(resolve, reject) {
-        if ($scope.user.phoneNumber !== "" && $scope.user.phoneNumber.length >= 7) {
+        var userToken = TokenSvc.decode();
+        if (
+          $scope.user.phoneNumber !== "" &&
+          $scope.user.phoneNumber.length >= 7 &&
+          userToken.phoneNumber !== $scope.user.phoneNumber
+        ) {
           AgentInfoFct.savePhoneNumber($scope.user.phoneNumber).then(function(response) {
             return resolve(response);
           });
