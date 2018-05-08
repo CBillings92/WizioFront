@@ -54,6 +54,7 @@ angular.module("DashboardApp").controller("AgentInfoCtrl", [
             return resolve(response);
           });
         }
+        return resolve("Phone number not in need of updating");
       });
     }
 
