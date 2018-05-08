@@ -4,7 +4,8 @@ angular.module("DashboardApp").controller("AgentInfoCtrl", [
   "$q",
   "AgentInfoFct",
   "TokenSvc",
-  function($scope, $state, $q, AgentInfoFct, TokenSvc) {
+  "ModalBuilderFct",
+  function($scope, $state, $q, AgentInfoFct, TokenSvc, ModalBuilderFct) {
     /**
      * Flag for turning pieces of the form UI off
      * @type {Boolean}
