@@ -1618,7 +1618,6 @@
           apartmentpubid = $state.params.apartmentpubid;
           listingOrTourView = listingOrTourView + "tour/:activelistingid";
         }
-        console.dir(TokenSvc.getToken());
         var apiResource = $resource(
           WizioConfig.baseAPIURL + listingOrTourView,
           {

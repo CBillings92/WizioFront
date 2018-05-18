@@ -26,12 +26,25 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     lodash
   ) {
     $scope.modifyTourAllowed = true;
-
+    $scope.appInitialized = false;
     // short hand the factory function for ease of use
     var createModal = ModalBuilderFct.buildModalWithController;
     $state.go("Account.Dashboard.ShareTour");
     $scope.wizioAdmin = false;
     var user = TokenSvc.decode();
+    if (!TokenSvc.isLoggedIn()) {
+      ModalBuilderFct.buildSimpleModal(
+        "",
+        "OK",
+        "Access Denied: Please Log In",
+        "You are not currently logged in. Please login to access the account dashboard."
+      ).then(function(result) {
+        $state.go("LandingPage");
+        return;
+      });
+    } else {
+      $scope.appInitialized = true;
+    }
     $scope.state = "Account.Dashboard.ShareTour";
     if (TokenSvc.decode().Subscriptions[0].id === 3) {
       $scope.wizioAdmin = true;

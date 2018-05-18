@@ -653,10 +653,15 @@ angular.module("MainApp").config([
             if (requestCount === 0) {
               $rootScope.$emit("siteLoadDone", {});
             }
-            if (typeof response.data.token !== "undefined" && response.data.token !== null && response.data.token) {
+            if (response.data.token) {
               TokenSvc.storeToken(response.data.token);
               $injector.get("$state").reload();
             }
+            if (response.data.payload && response.data.payload.token) {
+              TokenSvc.storeToken(response.data.payload.token);
+              $injector.get("$state").reload();
+            }
+
             return response;
           },
           responseError: function(response) {
