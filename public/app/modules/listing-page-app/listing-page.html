@@ -1,17 +1,20 @@
-<div class= "container-fluid">
-  <div class="row vr-container listing-hero ">
+<div class="vr-container listing-hero ">
     <div id="vr-player-listing">
        <div style="height:96%;" >
            <tour-dir show-interface="true"></tour-dir>
        </div>
    </div>
-  </div>
+
   <div class="" style="text-align: center;">
     <a href="#listing-page">
       <i class="fa fa-2x fa-chevron-down"></i>
     </a>
   </div>
+
+</div>
   <hr>
+
+  <div class= "container-fluid">
 
   <div class="listing-container center-block">
       <div class="row" id='listing-page'>
@@ -48,7 +51,7 @@
                 <div class=" col-xs-6 col-sm-3 col-lg-2 amenity-item">
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/bedroom.png"  class="amenity-icon">
-                  <p class="amenity-text"> {{::data.Listing.Beds}} {{::data.Listing.Beds === 'Studio' ? '' : 'Beds'}} <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
+                  <p class="amenity-text"> {{::data.Listing.Beds}} {{data.Listing.Beds === 'Studio' ? '' : 'Beds'}} <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
                 </div>
                 </div>
 
@@ -178,8 +181,8 @@
         </div>
         <br>
         <div class="row col-xs-12">
-          <p class= "small-body">Rent: <span class="light"> {{::data.Lease.RentAmount | currency : '$' : 2}} per {{::'month'}} </span></p>
-          <p class= "small-body" ng-if='data.Lease.LeaseLength'>Lease Length: <span class="light">{{::data.Lease.LeaseLength}} </span></p>
+          <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}} </span></p>
+          <p class= "small-body" ng-if='data.Lease.LeaseLength'>Lease Length: <span class="light">{{data.Lease.LeaseLength}} </span></p>
             <hr id="listing-divider" style="margin-top:20px;">
         </div>
         <div class="row">
@@ -227,7 +230,7 @@
             <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{::data.Listing.MonthlyPetFeeAmount | currency : '$' : 2}}</p>
             <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{::data.Listing.MaximumPetWeight}} pounds</p>
             <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> {{::data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body" ng-if="data.Lease.LeaseEndDate && !data.Lease.LeaseLength"><span class="medium">Lease End:</span> {{::data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
+            <p class="small-body" ng-if="data.Lease.LeaseEndDate && !data.Lease.LeaseLength"><span class="medium">Lease End:</span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
             <p class="small-body" ng-if="data.Lease.LeaseLength"><span class="medium">Lease Length:</span> {{::data.Lease.LeaseLength}} </p>
             <p class="small-body" ng-if="data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> Available Now</p>
             <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{::data.Listing.KeyFee}}</p>
