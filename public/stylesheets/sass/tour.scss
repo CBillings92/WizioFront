@@ -61,7 +61,7 @@ margin-right: auto;
     opacity: .75;
     padding: 4px 0px;
 
-    @media (max-width: $screen-md-min) {
+    @include media-breakpoint-down(sm) {
         background-color: transparent;
 
     }
@@ -112,13 +112,13 @@ margin-right: auto;
     margin: 0 auto;
     left: 0;
 
-    @media (min-width: $screen-md-min) {
+    @include media-breakpoint-up(sm) {
         width: 80%;
 
     }
 
 
-    @media (max-width: $screen-md-min) {
+    @include media-breakpoint-down(sm) {
         width: 100%;
 
     }

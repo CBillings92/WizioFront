@@ -2,7 +2,7 @@
 .subscription-banner-container {
   display: flex;
   cursor:pointer;
-  @media (max-width: $screen-md){
+ @include media-breakpoint-down(sm){
     margin-bottom:8px;
   }
   height: 370px;

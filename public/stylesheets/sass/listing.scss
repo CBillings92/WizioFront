@@ -8,7 +8,6 @@
 
 .vr-container {
   width: 100%;
-  @include container-fixed;
 }
 
 #vr-player-listing {
@@ -165,20 +164,16 @@ hr#listing-divider {
   font-size: 17px;
   font-weight: 400;
 }
-//---- xl container ---//
-@media (min-width: 1440px) {
+
+@include media-breakpoint-up(xl) {
   .listing-container {
     width: 90%;
   }
 
-  .vr-container {
-    width: $container-lg;
-    @include center-block;
-  }
 }
 
 //---- desktop ---//
-@media (min: 768px) {
+@include media-breakpoint-up(md) {
   .agent-business-name {
     text-align: left;
   }
@@ -190,13 +185,12 @@ hr#listing-divider {
   }
 
   .vr-container {
-    @include container-fixed;
     width: 100%;
   }
 }
 
 //---- Tablet ---//
-@media (max-width: 767px) {
+@include media-breakpoint-down(sm) {
   .listing-contact-agent-image {
     display: block;
     margin-left: auto;

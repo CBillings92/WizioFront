@@ -89,7 +89,7 @@
     padding-left: 30px;
     padding-right:30px;
 
-    @media screen and (max-width: $screen-sm-min) {
+     @include media-breakpoint-down(xs) {
         display: none;
     }
 
@@ -116,9 +116,10 @@
 .subscription-banner__container {
   display: flex;
   cursor:pointer;
-  @media (max-width: $screen-md){
+   @include media-breakpoint-down(sm){
     margin-bottom:8px;
   }
+
   height: 370px;
   justify-content: center;
   text-align: center;

@@ -134,7 +134,7 @@
 }
 
 // *** All other screens larger than mobile ***
-@media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
     .transparent_nav {
         #navbar-search input {
             border: 1px solid transparent;
@@ -240,7 +240,7 @@
     }
 }
 
-@media (max-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
 
 .collapsing {
     background-color: $white;

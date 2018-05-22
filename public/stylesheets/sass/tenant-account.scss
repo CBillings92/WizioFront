@@ -190,7 +190,7 @@
   margin: 0 15px 10px 15px;
 }
 
-@media (min-width: $screen-sm-min) {
+ @include media-breakpoint-up(sm) {
   .apt-grid-view {
     .account-grid-view {
       display: block;
@@ -209,12 +209,12 @@
   }
 }
 
-@media (max-width: $screen-md-max) {
+ @include media-breakpoint-down(md) {
   .apt-list__beds-baths {
     display: none;
   }
 }
-@media (max-width: $screen-xs-max) {
+ @include media-breakpoint-down(xs) {
   .account-grid-view {
     display: block;
   }
