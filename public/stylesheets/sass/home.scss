@@ -11,14 +11,10 @@
 
 }
 
+.home-heading{}
 
 .home-hero__text {
-  position: absolute;
-  text-align: center;
-  top: 50%;
   z-index: 100;
-  // have to account for the search bar height too
-  transform: translateY(calc(-50% - 40px));
 }
 
 .home-hero__heading {
@@ -226,12 +222,6 @@
 }
 
 
-.home-blurb {
-  margin-bottom: 20px;
-  margin-top: 7%;
-
-}
-
 
 #home-vr-img{
   margin-top: 0px;
@@ -352,6 +342,3 @@
   }
 
 }
-
-
-

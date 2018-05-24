@@ -119,6 +119,13 @@ p {
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
+.nav-item{
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: 400;
+  padding: 0 10px;
+}
+
 .header-text{
     font-family: "Roboto";
     font-size: 40px;
@@ -192,6 +199,8 @@ a:focus {
     margin-bottom: 0;
     border-radius: 0;
 }
+
+
 
 .form-control:focus {
     border-color: transparent;
@@ -438,13 +447,13 @@ hr#form-divider {
 
 .section-head{
     font-size: 20px;
-    text-align: center;
+    
 
 }
 
 .large-body{
     font-size: 16px;
-    text-align: center;
+
 
 }
 
@@ -472,13 +481,13 @@ hr#form-divider {
 
 .section-head{
     font-size: 20px;
-    text-align: center;
+
 
 }
 
 .large-body{
     font-size: 16px;
-    text-align: center;
+
 
 }
 

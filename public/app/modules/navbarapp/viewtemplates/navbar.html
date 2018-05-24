@@ -2,12 +2,6 @@
 <!-- <nav class="navbar" ng-style="landingPageStyle" ng-hide="onLandingPage" role="navigation"> -->
     <div class="container">
         <div class="navbar-header">
-            <button class="navbar-toggle" data-target="#navbar" data-toggle="collapse" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
 
             <div class="nav-logo">
                 <a class="navbar-brand-white" ng-show="showWhiteLogoFlag" ng-click="goHome()">
@@ -18,53 +12,32 @@
                 </a>
             </div>
 
-        </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+
         <!--navbar header -->
 
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav navbar-left" ng-hide="isActive('/') || isActive('/unit/display')">
-                <!-- <form class="navbar-form navbar-left" id="navbar-search" ng-submit="search()" role="search"> -->
-                    <!-- <div class="form-group"> -->
-                        <!-- <input class="form-control nav-search" ng-model="searchString" placeholder="Search by area" type="text" uib-typeahead-loading="loadingLocations" uib-typeahead-min-length="3" uib-typeahead-no-results="noResults" uib-typeahead="address for address in getLocation($viewValue)"/> -->
-                        <!--               <div ng-show="noResults">
-                  <i class="glyphicon glyphicon-remove"></i> No Results Found
-              </div> -->
-                    <!-- </div> -->
-                    <!-- <button class="btn btn-search" type="submit"> -->
-                        <!-- <i class="fa fa-search"></i> -->
-                    <!-- </button> -->
-                <!-- </form> -->
-            </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{active: false}" ng-click="goAbout()"><a href="">About</a></li>
-                <li>
-                    <a href="/product">Product</a>
-                </li>
-                <li>
-                    <a href="http://blog.wizio.co">Blog</a>
-                </li>
-                <li ng-click="goToLogin()" ng-hide="isLoggedIn">
-                    <a href="">Sign In</a>
-                </li>
-                <li ng-class="{active: false}" ng-click="goAccountDashboard()" ng-show="isLoggedIn">
-                    <a href="">Account</a>
-                </li>
+            <!-- <ul class="nav navbar-nav navbar-left" ng-hide="isActive('/') || isActive('/unit/display')">
 
+            </ul> -->
+
+            <nav class="nav justify-content-end">
+              <a class="nav-item" ng-class="{active: false}" ng-click="goAbout()" href=""> About </a>
+              <a class="nav-item" ng-class="{active: false}" href="/product"> Product </a>
+              <a class="nav-item" ng-class="{active: false}" href="http://blog.wizio.co">Blog</a>
+              <a class="nav-item nav-sign-in" ng-click="goToLogin()" ng-hide= 'isLoggedIn' href="">Sign In</a>
+              <a class= "nav-item" ng-click="goAccountDashboard()" ng-show="isLoggedIn"> Account </a>
+              <a class= "nav-item" ng-click="logout()" ng-show="isLoggedIn">Logout </a>
                 <!-- <li id="" ng-click="signup()" ng-hide="isLoggedIn">
                     <a href="">Sign Up</a>
                 </li> -->
-                <li ng-click="logout()" ng-show="isLoggedIn">
-                    <a href="">Logout</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- close container -->
-</nav>
 
-<div class="collapse" id="searchFiltersCollapse" style="" ui-view="search-filters">
+        </nav>
+
+<!-- <div class="collapse" id="searchFiltersCollapse" style="" ui-view="search-filters">
     <form class="form-inline">
         <div class="form-group">
             <div class="dropdown">
@@ -101,6 +74,6 @@
             <input class="form-control" id="maxPriceFilter" name="name" ng-model="filters.maxPrice" type="text">
         </div>
     </form>
-</div>
+</div> -->
 
 <!--End Navbar-->
