@@ -197,7 +197,7 @@
               <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image "  alt="Placeholder">
             </div>
             <div class="col-sm-8 col-xs-12 listing-agent-info">
-              <p class= "listing-contact-agent-name"> {{::agent.firstName + ' ' + agent.lastName}} </p>
+              <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
               <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty' && !data.Listing.IsRepresentedByOwner"><a href={{::data.Businesses.BusinessURL}}> {{::business.name}} </a></p>
               <p class="agent-business-name" ng-if="data.Listing.IsRepresentedByOwner"> Self Represented </p>
               <p class="agent-business-name" ng-if="business.name === 'Boston Pads'"><a href="https://bostonpads.com/">{{::business.name}}</a></p>
@@ -210,7 +210,7 @@
         <div class="row">
           <div class="col-xs-12 row-space">
             <button  class="btn btn-lg btn-fill--orange center-block" ng-click="requestShowing()" >
-              Request Showing
+              Contact {{agent.firstName}}
             </button>
           </div>
         </div>
