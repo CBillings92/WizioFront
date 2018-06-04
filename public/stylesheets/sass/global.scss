@@ -447,8 +447,12 @@ hr#form-divider {
 
 .section-head{
     font-size: 20px;
-    
 
+
+}
+
+.product-section-head{
+    font-size: 24px;
 }
 
 .large-body{
@@ -468,7 +472,9 @@ hr#form-divider {
     height: 275px;
 }
 
-
+.header-text{
+    font-size: 30px;
+}
 
 .about-header__text{
     font-size: 28px;
@@ -523,6 +529,7 @@ hr#form-divider {
 
 
 @media (max-width: 426px) {
+
 
 .about-header__text{
     font-size: 26px;
