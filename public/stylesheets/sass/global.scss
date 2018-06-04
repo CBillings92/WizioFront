@@ -424,7 +424,13 @@ hr#form-divider {
     }
 }
 
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+.header-text{
+  font-size: 35px;
+}
 
+ }
 
 // ------------- Small desktop --------------- //
 
@@ -437,11 +443,11 @@ hr#form-divider {
 }
 
 .header-text{
-    font-size: 35px;
+    font-size: 30px;
 }
 
 .subhead-text{
-    font-size: 16px;
+    font-size: 18px;
 
 }
 

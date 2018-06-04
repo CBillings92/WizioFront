@@ -10,19 +10,16 @@
     background-color: #EAEAEA;
     display: flex;
     justify-content: flex-end;
-    height: 575px;
+    height: 70vh;
 }
 
 .product-hero-text-container{
-    height:550px;
     width: 100%;
     position: absolute;
-    display: flex;
-    align-items: center;
 }
 .product-hero-image{
     align-self: flex-end;
-    height: 500px;
+    height: 450px;
 }
 
 .product-vr-player{
@@ -133,9 +130,6 @@ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.10), 0 6px 14px 0 rgba(0, 0, 0, 0.08);
   padding: 25px 20px;
 }
 
-#tile-1 .large-body{
-  max-width: 250px;
-}
 
 .subscription-banner__container#tile-2{
   left: 22px;
