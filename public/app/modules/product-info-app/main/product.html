@@ -1,4 +1,4 @@
-<div class= "container-fluid product-container">
+<div class= "container-fluid">
     <div class="row product-hero flex-row-reverse justify-content-between">
         <img src="../../../..//viewtemplates/images/pricing/product-hero.png" class="product-hero-image">
         <div class="product-hero-text-container align-self-md-center ">
@@ -39,7 +39,8 @@
 
     </div>
 
-    <div class="row row-space product-section-head text-center"> Our Demo
+    <div class="row row-space justify-content-center">
+      <div class="product-section-head text-center col-12"> Our Demo </div>
         <div>
          <button ng-click="goToDemo()" type="button" class="btn btn-md btn-fill--orange"> view demo fullscreen </button>
         </div>
@@ -49,16 +50,17 @@
 
 
     <!-- <div ng-show="!onMobile"> -->
-
+<div class="row justify-content-center">
      <div id="vr-player-container" style="height:80vh;">
-        <div class="product-vr-player center-block" >
+        <div class="product-vr-player" >
             <tour-dir show-interface="true"></tour-dir>
         </div>
     </div>
+</div>
 
-    <div class="row pricing-section">
-        <div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 text-center pricing-container " ng-click="launchTypeform('standard')">
-            <!-- A subscription tile (one of those subscription banners) -->
+    <!-- <div class="row pricing-section">
+        <div class="col-sm-10 offset-sm-1 col-xs-12 offset-0 text-center pricing-container " ng-click="launchTypeform('standard')">
+
             <div class="subscription-banner__container col-sm-3 hidden-xs" id="tile-2">
                 <div class="subscription-banner-header">
                     <div class="subscription-banner__header orange"> Included with each tour: </div>
@@ -119,11 +121,11 @@
     <div class="col-sm-12 text-center small-body info-text gray italic">
     Looking to do more than one space? Contact our sales team for special offers
     </div>
-</div>
+</div> -->
 
 
-<div class="row">
-<div class="col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0 partner-logos">
+<div class="row justify-content-around">
+<div class="col-sm-10 col-xs-12 partner-logos">
   <img src="../../../..//viewtemplates/images/partner-logos/boston_pads.png">
   <img src="../../../..//viewtemplates/images/partner-logos/fairfield_realty.png">
   <img src="../../../..//viewtemplates/images/partner-logos/preview_properties.png">
@@ -143,42 +145,43 @@
     </div>
 
     <div class="row row-space ">
-        <div class="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-6">
+      <div class="row col-10 offset-1">
+        <div class="col-6">
         <div class="subhead-text dk-gray"> What does a finished tour look like?  </div>
         <p>Check out our <a href="/demo" target="_blank" class="blue">demo.</a></p>
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-6">
         <div class="subhead-text dk-gray"> What cities can I request tours in?  </div>
         <p>We can now serve the Greater D.C. and Boston markets, and are in the process of expanding</p>
         </div>
-        </div>
+      </div>
+
 
     </div>
 
 
     <div class ="row row-space">
-        <div class="col-sm-10 col-sm-offset-1">
-            <div class=" col-sm-12 section-head text-center orange"> Booking </div>
-        <div class= "col-sm-6">
+        <div class="row col-10 offset-1">
+            <div class=" col-12 section-head text-center orange"> Booking </div>
+        <div class= "col-sm-6 col-12">
             <div class="subhead-text dk-gray"> How can I book a virtual tour? </div>
             <p> We require users to create an account before booking tours. You can do so here, by calling 617-297-7472, or emailing <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co </a>. </p>
         </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
             <div class="subhead-text dk-gray"> How far in advance do I have to book a virtual tour? </div>
             <p> Book a virtual tour for tomorrow or 6 months from now. We work with your schedule to meet your needs.</p>
         </div>
         </div>
 
-        <div class="col-sm-10 col-sm-offset-1">
-        <div class= "col-sm-6">
+        <div class="row col-10 offset-1">
+        <div class= "col-sm-6 col-12">
              <div class="subhead-text dk-gray"> Are there certain hours you are available to film properties? </div>
             <p>Our photographers are available 7 days a week from 7am-8pm!</p>
         </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
           <div class="subhead-text dk-gray">Can I reschedule a tour? </div>
             <p> Yes! Simply choose a new time by modifying your existing booking through the email confirmation.</p>
         </div>
@@ -187,26 +190,26 @@
     </div>
 
     <div class ="row row-space">
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-12 section-head text-center orange">Process</div>
-        <div class= "col-sm-6">
+        <div class ="row col-10 offset-1">
+        <div class="col-12 section-head text-center orange">Process</div>
+        <div class= "col-sm-6 col-12">
            <div class="subhead-text dk-gray"> How long does it take to create a virtual tour?  </div>
         <p> Our photographers typically spend between 30 and 45 minutes per listing. This can vary slightly by the size of the property.  </p>
      </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-126">
         <div class="subhead-text dk-gray"> Do I need to be present while the photographer is filming? </div>
         <p> No. As long as our photographers are given access to the space (given a key or otherwise), you do not need to be present. </p>
         </div>
         </div>
 
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class= "col-sm-6">
+        <div class ="row col-10 offset-1">
+        <div class= "col-sm-6 col-12">
           <div class="subhead-text dk-gray"> When will I receive access to my virtual tour?</div>
         <p> The virtual tour will be delivered to your Wizio account within 24 hours after the photographer has visited the property. </p><br>
          </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray"> Who are your photographers? </div>
         <p> We employ contracted photographers that are trained on using 360-degree equipment and the Wizio platform. </p>
         </div>
@@ -216,22 +219,22 @@
 
 
     <div class ="row row-space">
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-12 section-head text-center orange">Payment and Pricing</div>
+        <div class ="row col-10 offset-1">
+        <div class="col-12 section-head text-center orange">Payment and Pricing</div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
        <div class="subhead-text dk-gray">When will my credit card be charged? </div>
         <p> A hold is put on your credit card at the time of booking. You will be charged after the virtual tour is delivered to you.</p><br>
         </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray"> What is your cancellation policy? </div>
         <p> If you cancel your virtual tour film session, you must do so 24 hours in advance. Inside of 24 hours you will be charged a $50 cancellation fee. You can reschedule by changing the booking in your confirmation email. </p><br>
          </div>
     </div>
 
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class= "col-sm-6">
+        <div class ="row col-10 offset-1">
+        <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray"> Who are your photographers? </div>
         <p> We employ contract photographers that are trained on using 360-degree equipment and the Wizio platform. Our contractors are fully covered by insurance.</p>
         </div>
@@ -239,28 +242,28 @@
     </div>
 
 <div class ="row row-space">
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-12 section-head text-center orange">Product</div>
-    <div class= "col-sm-6">
+        <div class ="row col-10 offset-1">
+        <div class="col-12 section-head text-center orange">Product</div>
+    <div class= "col-sm-6 col-12">
 
         <div class="subhead-text dk-gray">Can you syndicate virtual tours to MLS?    </div>
         <p> Yes! Agents and brokerages relying on MLS Pinnergy will be able to cross-syndicate virtual tours with their listings. Interested in syndicating to another platform? Simply add your tour link in the “Virtual Tour Link” field when updating your MLS listing. Please note: if you have added contact information to the tour you may need to contact us (support@wizio.co) to remove the email and additional information in order to make it MLS-compliant.</p><br>
 
     </div>
 
-    <div class= "col-sm-6">
+    <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray"> Do you offer any additional features?   </div>
         <p> We are developing a suite of premium add-ons that customers can add to their virtual tour experience. Interested in learning more? Contact us at <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co </a></p><br>
     </div>
 </div>
 
- <div class ="col-sm-10 col-sm-offset-1">
-        <div class= "col-sm-6">
+ <div class ="row col-10 offset-1">
+        <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray">Can you “walk around” in tours? </div>
         <p> Yes! We have added a walk-through experience similar to Google Street View. </p><br>
     </div>
 
-    <div class= "col-sm-6">
+    <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray">Does each virtual tour receive a unique URL?    </div>
         <p> Each virtual tour you create has its own unique URL tied to that specific tour. </p><br>
         </div>
@@ -269,14 +272,14 @@
 
 
 <div class="row row-space">
-        <div class ="col-sm-10 col-sm-offset-1">
-        <div class="col-sm-12 section-head text-center orange">Support</div>
-        <div class= "col-sm-6">
+        <div class ="row col-10 offset-1">
+        <div class="col-12 section-head text-center orange">Support</div>
+        <div class= "col-sm-6 col-12">
        <div class="subhead-text dk-gray">If I’m having an issue with my account, who can I contact?   </div>
         <p> Please email <a href="mailto:support@wizio.co" target="_top" class="blue">support@wizio.co</a> or call 617-297-7472. We’re here to help you succeed. </p><br>
         </div>
 
-        <div class= "col-sm-6">
+        <div class= "col-sm-6 col-12">
         <div class="subhead-text dk-gray">I have a question that’s not answered here, who should I send it to?    </div>
         <p> We’re always looking for new questions to add to the FAQ. Email us at <a href="mailto:support@wizio.co" target="_top" class="blue"> support@wizio.co</a>. </p><br>
 
