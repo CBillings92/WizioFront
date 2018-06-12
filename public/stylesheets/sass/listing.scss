@@ -1,14 +1,8 @@
-.listing-hero {
-  height: 575px;
-}
 
-.listing-container {
+#listing-container {
   width: 100%;
 }
 
-.vr-container {
-  width: 100%;
-}
 
 #vr-player-listing {
   height: 600px;
@@ -96,7 +90,6 @@
   background-color: #fff;
   border: 1.5px solid $light-gray;
   padding: 25px 30px;
-  height: 100%;
 }
 
 .fee-box {
@@ -155,6 +148,7 @@
 hr#listing-divider {
   margin-top: 6px;
   margin-bottom: 20px;
+  width: 90%;
 }
 
 //----- managament app css (temp) -----//
@@ -165,11 +159,13 @@ hr#listing-divider {
   font-weight: 400;
 }
 
-@include media-breakpoint-up(xl) {
-  .listing-container {
-    width: 90%;
-  }
 
+//---- xl desktop ---//
+@media (min-width: 1350px){
+  #listing-container{
+    width: 90%;
+    left:5%;
+  }
 }
 
 //---- desktop ---//
