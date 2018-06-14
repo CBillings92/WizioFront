@@ -38,12 +38,12 @@
 
     <div class="row form-space">
 
-    <div class= "col-xs-3">
-      <img src="{{user.awsProfilePhotoURL}}" ng-if="user.awsProfilePhotoUrl" class="agent-profile-image center-block" id= "agentImage" alt="Profile Image">
+    <div class= "col-3">
+      <img src="{{user.awsProfilePhotoURL}}" ng-if="user.awsProfilePhotoUrl" class="agent-profile-image justify-content-center" id= "agentImage" alt="Profile Image">
       <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!user.awsProfilePhotoUrl" class="agent-profile-image img-responsive "  alt="Placeholder">
     </div>
 
-    <div class= "col-xs-8">
+    <div class= "col-8">
     <label> Upload New Photo </label>
     <p class="small-body med-gray"> For best results, upload a square image </p>
     <input type="file" id="file-chooser" class="form-control"  placeholder="" value="">
@@ -51,7 +51,7 @@
 
 </div>
 </div>
-<div class="row col-xs-12 row-space">
+<div class="row col-12 row-space">
   <button type="button" class="btn btn-lg btn-fill--orange" style='line-height: 1.7; text-transform: uppercase; font-weight: 500;' ng-click="saveAgentChanges()" ng-show="saveAgentChangesDone" ng-disabled="saveAgentChangesInitiated" name="button">{{saveAgentChangesInitiated ? 'Saving Changes...' : 'Save Changes'}} </button>
 </div>
 </div>
