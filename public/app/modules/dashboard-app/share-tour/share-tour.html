@@ -1,14 +1,14 @@
 <div style="margin-top:40px;margin-bottom:50px">
     <!-- <button type="button" class="btn btn-lg btn-outline--orange" ng-click="activeToursToggle('showActive')" name="button">Show Active Tours</button>
     <button type="button" class="btn btn-lg btn-outline--orange" ng-click="activeToursToggle('showInactive')" name="button">Show Inactive Tours</button> -->
-    <div class="row">
-        <div class="col-xs-8">
+    <div class="row justify-content-between">
+        <div class="col-5">
           <h2 class="user-info__name">Your Tours</h2>
             <!-- <h2 class="user-info__name">{{viewActiveTours ? 'Your Tours:' : 'Inactive Tours'}}</h2> -->
         </div>
-        <div class="col-xs-4">
-          <div class="input-group col-xs-12">
-            <input type="text" class="form-control" placeholder="Search apartment address..." style="margin-top:5px; float:right; border: 1px solid gray; border-radius: 5px;" name="" value="" ng-model='test'>
+        <div class="col-5 float-right">
+          <div class="input-group ">
+            <input type="text" class="form-control" placeholder="Search apartment address..." style="margin-top:5px; border: 1px solid gray; border-radius: 5px;" name="" value="" ng-model='test'>
           </div>
             <!-- <button type="button" style="margin-top:5px; float:right;" ng-click="changeTourListView()" class="btn btn-fill--orange" name="button">View {{viewActiveTours ? 'Inactive Tours' : 'Active Tours'}}</button> -->
         </div>

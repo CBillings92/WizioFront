@@ -37,56 +37,56 @@
 
 
       <div class="row">
-        <div class="col-12 col-sm-6 offset-sm-1 row-space">
+        <div class="col-12 col-md-5 col-lg-6 offset-sm-1 row-space">
           <div ng-if="!data.Listing.IsActive">
             <p class="section-head">This listing is no longer active.</p>
           </div>
 
 
               <div class="row col-12 amenity-list">
-                <div class=" col-6 col-md-3 col-lg-2 amenity-item">
+                <div class=" col-6 col-md-3 col-xl-2 amenity-item">
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/bedroom.png"  class="amenity-icon">
                   <p class="amenity-text"> {{data.Listing.Beds}} {{data.Listing.Beds === 'Studio' ? '' : 'Beds'}} <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
                 </div>
                 </div>
 
-                <div class="col-6 col-md-3 col-lg-2 amenity-item">
+                <div class="col-6 col-md-3 col-xl-2 amenity-item">
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/bathroom.png"  class="amenity-icon">
                   <p class="amenity-text"> {{data.Listing.Baths}} Bath</p>
                   </div>
                 </div>
 
-                <div ng-if='data.Listing.HasLoft' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasLoft' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/loft.png" class="amenity-icon"></img>
                    <p class="amenity-text"> Loft</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasDenOffice' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasDenOffice' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/den-office.png" class="amenity-icon"></img>
                    <p class="amenity-text"> Den/Office</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasDishWasher' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasDishWasher' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/dishwasher.png" class="amenity-icon"></img>
                    <p class="amenity-text"> Dish Washer</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasCentralAir' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasCentralAir' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/centralair.png" class="amenity-icon"></img>
                    <p class="amenity-text"> Central Air</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/laundry.png"  class="amenity-icon"></img>
                    <p class="amenity-text">In Unit Laundry</p>
@@ -94,49 +94,49 @@
                 </div>
 
 
-                <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/cat-friendly.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Cat Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/dog-friendly.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Dog Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.IsDogFriendly && data.Listing.IsCatFriendly' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.IsDogFriendly && data.Listing.IsCatFriendly' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/pet-friendly.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Pet Friendly</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasSmartLock' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasSmartLock' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/smartlock.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Smart Lock</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasFireplace' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasFireplace' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/fireplace.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Fireplace</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasPool' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasPool' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/pool.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Pool</p>
                  </div>
                 </div>
 
-                <div ng-if='data.Listing.HasGym' class="col-6 col-md-3 col-lg-2 amenity-item" >
+                <div ng-if='data.Listing.HasGym' class="col-6 col-md-3 col-xl-2 amenity-item" >
                   <div class= "text-center">
                   <img src= "public/viewtemplates/images/listingpage/fitness-center.png"  class="amenity-icon"></img>
                    <p class="amenity-text">Fitness Center</p>
@@ -191,11 +191,11 @@
               <img src="public/viewtemplates/joe.jpg" class="listing-contact-agent-image " alt="RealtorImg">
             </div>
             <!-- <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'> -->
-            <div class="col-sm-4 col-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
+            <div class="col-lg-4 col-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
               <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" id= "agentImage" alt="AWS image">
               <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image "  alt="Placeholder">
             </div>
-            <div class="col-sm-8 col-12 listing-agent-info">
+            <div class="col-lg-8 col-12 listing-agent-info">
               <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
               <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty' && !data.Listing.IsRepresentedByOwner"><a href={{data.Businesses.BusinessURL}}> {{business.name}} </a></p>
               <p class="agent-business-name" ng-if="data.Listing.IsRepresentedByOwner"> Self Represented </p>
