@@ -80,28 +80,28 @@
             </div>
             <div class="col-12" style="height:800px; overflow-y:scroll" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
                 <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; border-radius:3px; {{photo.isSelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
-                    <div class="panel panel-default">
+                    <div class="card">
                         <!-- If the photo is new... -->
                         <div class="" ng-if="photo.isNew">
-                            <div class="panel-heading panel-new-photo">
-                                <p class="large-body">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></p>
+                            <div class="card-header panel-new-photo">
+                                <h3 class="card-title subhead-text">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></p>
                             </div>
-                            <div class="panel-body">
+                            <div class="card-body">
                                 <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
                             </div>
-                            <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                            <div class="card-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                               <span>Click and Drag</span>
                             </div>
                         </div>
                         <!-- If the photo is not new and is not flagged to be deleted... -->
                         <div ng-if="!photo.isNew && !photo.IsDeleted">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
+                            <div class="card-header">
+                                <h3 class="card-title subhead-text">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="card-body">
                                 <img src="{{cdnEndPoint + data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
                             </div>
-                            <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                            <div class="card-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
                               <span>Click and Drag</span>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
     <p class= "section-head orange"> Edit Listing Details </p>
   </div>
   <!-- Begin grouping of panels for forms -->
-  <div class="panel-group">
+  <div class="panel-group" id="tour-management-form">
     <!-- General Info Panel -->
     <div class="panel panel-default">
       <!-- Panel Heading -->
@@ -284,14 +284,14 @@
         </div>
         <div class="form-group row">
           <!-- FIXME add margin top to class -->
-          <div class="col-sm-12" style="margin-top:20px;">
+          <div class="col-12" style="margin-top:20px;">
             <label for="">Additional Amenities</label>
             <p class="small-body med-gray"> For example: Concierge, Street Parking, Lounge </p>
             <textarea class="form-control" maxlength="2000" ng-model='data.Listing.AmenityDescription' ng-change='ListingChange("AmenityDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Add amenities here"></textarea>
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-xs-12 form-group">
+          <div class="col-12 form-group">
             <label for="">Listing Description</label>
             <p class="small-body med-gray"> max: 500 characters </p>
             <textarea class="form-control" maxlength="1000" ng-model='data.Listing.ListingDescription' ng-change='ListingChange("ListingDescription")' id="exampleTextarea" rows="3" style="border: 1px solid grey;" placeholder="Describe the listing"></textarea>
