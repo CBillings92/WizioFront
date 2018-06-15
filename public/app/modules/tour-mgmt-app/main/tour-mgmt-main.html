@@ -1,9 +1,9 @@
 <!-- App Container  -->
 <div class="container" style="padding-top:50px;">
   <!-- App Header Row Begin - Contains Tour Address, Unit Number and save button -->
-  <div class="row" style='padding-top:20px'>
-    <div class="col-md-12">
-      <h2>Your Tour</h2>
+  <div class="row row-space" style='padding-top:20px'>
+    <div class="col-sm-12">
+      <h2 class="header-text">Your Tour</h2>
         <h3 style='margin-bottom:3px; display:inline;'  ng-hide="modifyAddressFlag && !data.Apartment.concatAddr" >{{data.Apartment.concatAddr}}</h3><span style="margin-left:10px;cursor:pointer" ng-hide="modifyAddressFlag || true" ng-click="flipModifyAddressFlag()"><i class="fa fa-3x fa-pencil" aria-hidden="true"></i></span>
         <h3 style='margin-top:0px;margin-bottom:5px;' ng-hide="modifyAddressFlag && !data.Apartment.unitNum">Unit: {{data.Apartment.unitNum}}</h3>
         <form class="form col-md-6" ng-show="modifyAddressFlag">
@@ -35,9 +35,9 @@
   <!-- App Body Row Begin -->
   <div class="row" ng-if="modifyTourAccess">
     <!-- Photo for modification container/Floor Plan begin -->
-    <div class="col-md-8" id="photoForModification_Container">
-      <div class="row">
-        <div class="rol-md-12">
+    <div class="row col-8" id="photoForModification_Container">
+
+        <div class="row col-12">
           <div class="" id='photoForModification_Title'>
             <h3>{{photoForModification.title}}</h3>
           </div>
@@ -46,30 +46,78 @@
             <!-- <vr-player-dir></vr-player-dir> -->
             <div class="" ng-click="autoToggleRotate()" id="pano" style="position: relative; height: 100%; width: 100%;"></div>
           </div>
+        </div>
+
+      <div class="row col-12">
           <div class="" id="photoForModification_Actions">
-            <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
+            <button class="col-auto btn btn-lg btn-outline--blue" ng-click="renamePhoto()" style="text-align:center; border-radius:0">
               Rename
             </button>
-            <button  class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
+            <button  class="col-auto btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="movePinForSelectedPhoto()" style="text-align:center; border-radius:0">
               Move Pin
             </button>
-            <button class="col-md-3 btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
+            <button class="col-auto btn btn-lg btn-outline--blue" ng-if='photoForModification.x && photoForModification.y' ng-click="deletePinForSelectedPhoto()" style="text-align:center; border-radius:0">
               Delete Pin
             </button>
-            <button class="col-md-4 btn btn-lg btn-outline--blue" ng-if='data.Apartment.Floor_Plan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
+            <button class="col-auto btn btn-lg btn-outline--blue" ng-if='data.Apartment.Floor_Plan && !photoForModification.x && !photoForModification.y' ng-click="dropPinForSelectedPhoto()" style="text-align:center; border-radius:0">
               Drop Pin
             </button>
-            <button class="{{!data.Apartment.Floor_Plan ? 'col-md-6' : photoForModification.x && photoForModification.y ? 'col-md-3' : 'col-md-4'}} btn btn-lg btn-outline--blue" ng-click="deletePhoto()" style="text-align:center; border-radius:0;">
+            <button class=" col-auto btn btn-lg btn-outline--blue" ng-click="deletePhoto()" style="text-align:center; border-radius:0;">
               Delete Photo
             </button>
           </div>
         </div>
       </div>
+
+      <div class="col-4">
+        <div class="row" style="height:{{ViewportHeight}}" id="currentPhotosContainer">
+            <div class="col-12">
+                <h3>Photos</h3>
+                <p class="large-body"> New photos are marked in orange </p>
+            </div>
+            <div class="col-12" style="margin-bottom:10px;">
+              <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
+            </div>
+            <div class="col-12" style="height:800px; overflow-y:scroll" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
+                <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; border-radius:3px; {{photo.isSelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
+                    <div class="panel panel-default">
+                        <!-- If the photo is new... -->
+                        <div class="" ng-if="photo.isNew">
+                            <div class="panel-heading panel-new-photo">
+                                <p class="large-body">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></p>
+                            </div>
+                            <div class="panel-body">
+                                <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
+                            </div>
+                            <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                              <span>Click and Drag</span>
+                            </div>
+                        </div>
+                        <!-- If the photo is not new and is not flagged to be deleted... -->
+                        <div ng-if="!photo.isNew && !photo.IsDeleted">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
+                            </div>
+                            <div class="panel-body">
+                                <img src="{{cdnEndPoint + data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
+                            </div>
+                            <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
+                              <span>Click and Drag</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+
+
       <!-- Photo for modification container end -->
       <!-- Floor Plan Row Begin -->
-      <div class="row" id='photoForModification_FloorPlan' ng-show='modifyTourAccess' style="margin-top:15px;">
+      <div class="row row-space col-6" id='photoForModification_FloorPlan' ng-show='modifyTourAccess' style="margin-top:15px;">
         <h3>Floor Plan</h3>
-        <div class="row">
+        <div class="row-space col-12">
           <button type="button" class="btn btn-lg btn--cta" ng-if='!data.Apartment.Floor_Plan && !data.TourMedia.floorplan' ng-click="addFloorPlan()" name="button">Add Floor Plan</button>
           <button type="button" class="btn btn-lg btn--cta" ng-if='data.TourMedia.floorplan || data.Apartment.Floor_Plan' ng-click="addFloorPlan()" name="button">Change Floor Plan</button>
         </div>
@@ -91,51 +139,10 @@
             </div>
         </div>
       </div>
-      <!-- Floor Plan Row End -->
-    </div>
+
     <!-- Photo for modification/Floor Plan container End -->
     <!-- List of Photos Container Begin -->
-    <div class="col-md-4">
-      <div class="row" style="height:{{ViewportHeight}}" id="currentPhotosContainer">
-          <div class="col-md-12">
-              <h3>Photos <small>New photos are marked in orange.</small></h3>
-          </div>
-          <div class="col-md-12" style="margin-bottom:10px;">
-            <button class="btn btn-lg btn--cta" style="width:100%;" ng-click="addPhotosForUpload()"><i class="fa fa-plus" style="padding-right:10px;" aria-hidden="true"></i>Add Photos</button>
-          </div>
-          <div class="col-md-12" style="height:800px; overflow-y:scroll" sv-root sv-part="data.TourMedia.photos" sv-on-sort="onOrderChange($item, $partFrom, $partTo, $indexFrom, $indexTo)">
-              <div ng-repeat="photo in data.TourMedia.photos track by $index" style="padding:5px; border-radius:3px; {{photo.isSelected ? 'background-color:#8E9BB2;' : ''}}" ng-if="appInitialized" ng-click="selectPhotoForModification(photo)" sv-element="{containment:'#currentPhotosContainer'}">
-                  <div class="panel panel-default">
-                      <!-- If the photo is new... -->
-                      <div class="" ng-if="photo.isNew">
-                          <div class="panel-heading panel-new-photo">
-                              <h3 class="panel-title">{{photo.title + " (New)"}} <span style="float:right;">{{$index + 1}}</span></h3>
-                          </div>
-                          <div class="panel-body">
-                              <img id="{{'imgPreview' + $index}}" draggable='false' width="100%" alt="">
-                          </div>
-                          <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
-                            <span>Click and Drag</span>
-                          </div>
-                      </div>
-                      <!-- If the photo is not new and is not flagged to be deleted... -->
-                      <div ng-if="!photo.isNew && !photo.IsDeleted">
-                          <div class="panel-heading">
-                              <h3 class="panel-title">{{photo.title}} &nbsp; &nbsp; <span style="float:right;">{{$index + 1}}</span></h3>
-                          </div>
-                          <div class="panel-body">
-                              <img src="{{cdnEndPoint + data.SubscriptionApartment.pubid + '/' + photo.title + '.JPG'}}" style="width:90%" alt="">
-                          </div>
-                          <div class="panel-footer" style="position: relative; text-align:center; cursor:move" sv-handle>
-                            <span>Click and Drag</span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
 
-      </div>
-    </div>
     <!-- List of Photos Container End -->
   </div>
   <br>
