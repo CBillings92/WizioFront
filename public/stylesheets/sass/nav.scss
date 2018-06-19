@@ -8,6 +8,7 @@
     border: none;
 
     .nav-logo {
+      padding: 4px;
 
     }
 
@@ -31,6 +32,9 @@
     #navbarlogo {
         cursor: pointer;
     }
+
+
+
     .navbar-brand-white {
         padding: 9px 0 0 15px;
         img {
@@ -46,27 +50,43 @@
         }
     }
 
+
+
     .nav-item{
       font-family: 'Roboto';
       font-size: 15px;
+      text-decoration: none;
     }
 
-    .nav>a:focus,
-    .nav>a:hover {
+    .navbar .navbar-header,
+    .navbar-header{
+      width: 100%;
+    }
+
+    .navbar-toggler:focus,
+    .navbar-toggler:hover{
+      text-decoration: none;
+      outline: none;
+      opacity: .7;
+    }
+
+    .nav>li>a:focus,
+    .nav>li>a:hover {
         background-color: transparent !important;
     }
     .navbar-nav {
         margin: 0;
     }
-    .navbar-nav > a:hover {
+    .navbar-nav>li a:hover {
         color: $orange;
         background-color: transparent;
     }
-    .navbar-nav > a:active {
+    .navbar-nav>li a:active {
         background-color: transparent;
         color: $orange;
     }
 }
+
 
 // This class is responsible for changing background
 // color of navigation based on page user is on
@@ -119,6 +139,13 @@
     }
 }
 
+@include media-breakpoint-up(md) {
+  .navbar .navbar-header,
+  .navbar-header{
+    width: auto;
+  }
+}
+
 // *** All other screens larger than mobile ***
 @include media-breakpoint-up(sm) {
     .transparent_nav {
@@ -126,6 +153,8 @@
             border: 1px solid transparent;
         }
     }
+
+
     .navbar {
         // padding-bottom: 10px;
         // padding-top: 10px;
