@@ -137,7 +137,9 @@ router.get("/listing/:tourid", function(req, res, next) {
           ogTitle: title,
           ogImageContent: url,
           ogDescription: description,
-          ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+          ogUrl: config.frontendURL + "/tour/" + req.params.tourid,
+          mailchimpPopUpScriptOne:
+            '<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us10.list-manage.com","uuid":"dd1716a846e7e35a09a1562a9","lid":"973bf1b4ca"}) })</script>'
         });
       }
     }

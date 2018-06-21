@@ -22,7 +22,6 @@
   angular.module("SharedFactoryApp", []);
   angular.module("SharedServiceApp", []);
   angular.module("ThumbnailApp", []);
-  angular.module("UnitApp", []);
   angular.module("FooterApp", []);
   angular.module("Models", []);
   angular.module("Directives", []);
@@ -79,7 +78,6 @@
       "ShareTourApp",
       "AWSApp",
       "AgentProfileApp",
-      "UnitApp",
       "FlyOutMenuApp",
       "ProductInfoApp",
       "ListingPageApp",
