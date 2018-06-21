@@ -11,6 +11,19 @@
 
 }
 
+.home-hero button,{
+  pointer-events: all;
+  margin: 30px 15px 0px 15px;
+  font-size: 16px;
+}
+
+
+.home-banner button{
+  margin-top: 20px;
+  pointer-events: all;
+  font-size: 16px;
+}
+
 
 .home-hero__text {
   position: absolute;
@@ -259,7 +272,7 @@
 
 
   .home-hero {
-    height: 75vh;
+    height: 60vh;
   }
 
   .home-hero__heading {
@@ -352,6 +365,3 @@
   }
 
 }
-
-
-
