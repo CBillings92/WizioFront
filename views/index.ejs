@@ -55,7 +55,9 @@
     <!-- Wizio App -->
     <script type="text/javascript" src="../public/build/scripts.js"></script>
     <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
-    <script type="text/javascript" src='../public/internallibraries/ng-drift.js'></script>
+
+    <!-- Start of Async Drift Code -->
+<!-- End of Async Drift Code -->
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> -->
     <script src="https://checkout.stripe.com/checkout.js"></script>
     <script type="text/javascript" src='https://cdn.rawgit.com/showdownjs/showdown/1.8.3/dist/showdown.min.js'></script>
@@ -166,6 +168,53 @@ ga('send', 'pageview');
 
     <script type="text/javascript" src="https://secure.leadforensics.com/js/119832.js" ></script>
 <noscript><img alt="" src="https://secure.leadforensics.com/119832.png" style="display:none;" /></noscript>
+
+<!-- Start of Async Drift Code -->
+<script>
+"use strict";
+
+!(function() {
+  var t = (window.driftt = window.drift = window.driftt || []);
+  if (!t.init) {
+    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+    (t.invoked = !0),
+      (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+      (t.factory = function(e) {
+        return function() {
+          var n = Array.prototype.slice.call(arguments);
+          return n.unshift(e), t.push(n), t;
+        };
+      }),
+      t.methods.forEach(function(e) {
+        t[e] = t.factory(e);
+      }),
+      (t.load = function(t) {
+        var e = 3e5,
+          n = Math.ceil(new Date() / e) * e,
+          o = document.createElement("script");
+        (o.type = "text/javascript"),
+          (o.async = !0),
+          (o.crossorigin = "anonymous"),
+          (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+        var i = document.getElementsByTagName("script")[0];
+        i.parentNode.insertBefore(o, i);
+      });
+  }
+})();
+drift.SNIPPET_VERSION = "0.3.1";
+if (!window.location.href.includes("/tour/") && !window.location.href.includes("demo")) {
+  drift.load("xxagivsgiw52");
+}
+
+if (window.location.href.includes("demo") && document.documentElement.clientWidth < 965) {
+  setTimeout(function() {
+    document.getElementById("drift-widget").style.marginBottom =
+      document.getElementsByClassName("tour-photos-container")[0].offsetHeight + "px";
+  }, 3000);
+}
+</script>
+<!-- End of Async Drift Code -->
+<!-- End of Async Drift Code -->
 
 </body>
 
