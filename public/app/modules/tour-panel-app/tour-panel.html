@@ -6,6 +6,18 @@
             <div ng-if="wizioAdmin">
               <strong>Assigned To: {{activelisting.UserSubscriptions_Migration.Business.Name}} </strong>
             </div>
+            <div class="col-xs-6">
+              Beds: {{activelisting.SubscriptionApartment.Listing.Beds}}
+            </div>
+            <div class="col-xs-6">
+              Baths: {{activelisting.SubscriptionApartment.Listing.Baths}}
+            </div>
+            <div class="col-xs-6">
+              Rent: {{activelisting.SubscriptionApartment.Listing.Rent}}
+            </div>
+            <div class="col-xs-6">
+              IsActive: {{activelisting.SubscriptionApartment.Listing.IsActive}}
+            </div>
         </div>
         <div class="col-md-6 search-right">
           <div class="" ng-if="currentState !== 'Account.Dashboard.ReassignTours'">
