@@ -234,7 +234,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
       $scope.agent.email === "yuyang@wizio.co" ||
       $scope.agent.BusinessName === "HqO" ||
       $scope.agent.BusinessName === "Fairfield Realty" ||
-      $scope.agent.BusinessName === "Charlesgate Realty Group"
+      $scope.agent.BusinessName === "Charlesgate Realty Group" ||
+      $scope.data.SubscriptionApartment.pubid === "afd51d18-b004-49e4-8cbe-50867abff2b7"
     ) {
       $scope.isMLSListingAccount = true;
     }
