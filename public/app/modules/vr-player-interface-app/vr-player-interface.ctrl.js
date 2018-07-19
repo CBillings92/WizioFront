@@ -52,6 +52,35 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
       document.getElementById("pano").addEventListener("click", onTourClick, false);
       createThumbnailURLs();
       $scope.photoIndex = 0;
+      $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
+      $scope.agent.blankDefault = $scope.blank;
+      $scope.profileUploaded = false;
+      $scope.isMLSListingAccount = false;
+      if (
+        $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
+        $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
+      ) {
+        $scope.agent = {
+          firstName: "Gene",
+          lastName: "Blinkov",
+          email: "gene@blinkov.org",
+          awsProfilePhotoUrl: "",
+          phoneNumber: "603-903-2332"
+        };
+      }
+      if (
+        $scope.agent.email === "alex@redtreeboston.com" ||
+        $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
+        $scope.agent.email === "youngone@younghouses.com" ||
+        $scope.agent.email === "brian@lmcrealtyboston.com" ||
+        $scope.agent.email === "yuyang@wizio.co" ||
+        $scope.agent.BusinessName === "HqO" ||
+        $scope.agent.BusinessName === "Fairfield Realty" ||
+        $scope.agent.BusinessName === "Charlesgate Realty Group" ||
+        $scope.data.SubscriptionApartment.pubid === "afd51d18-b004-49e4-8cbe-50867abff2b7"
+      ) {
+        $scope.isMLSListingAccount = true;
+      }
       return;
     });
 
@@ -210,35 +239,7 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         $scope.actions[0].show = false;
       }
     };
-    $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
-    $scope.agent.blankDefault = $scope.blank;
-    $scope.profileUploaded = false;
-    $scope.isMLSListingAccount = false;
-    if (
-      $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
-      $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
-    ) {
-      $scope.agent = {
-        firstName: "Gene",
-        lastName: "Blinkov",
-        email: "gene@blinkov.org",
-        awsProfilePhotoUrl: "",
-        phoneNumber: "603-903-2332"
-      };
-    }
-    if (
-      $scope.agent.email === "alex@redtreeboston.com" ||
-      $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
-      $scope.agent.email === "youngone@younghouses.com" ||
-      $scope.agent.email === "brian@lmcrealtyboston.com" ||
-      $scope.agent.email === "yuyang@wizio.co" ||
-      $scope.agent.BusinessName === "HqO" ||
-      $scope.agent.BusinessName === "Fairfield Realty" ||
-      $scope.agent.BusinessName === "Charlesgate Realty Group" ||
-      $scope.data.SubscriptionApartment.pubid === "afd51d18-b004-49e4-8cbe-50867abff2b7"
-    ) {
-      $scope.isMLSListingAccount = true;
-    }
+
     if ($state.current.name == "Demo" || $state.current.name == "Product") {
       $resource(WizioConfig.baseAPIURL + "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d").query(function(
         response
