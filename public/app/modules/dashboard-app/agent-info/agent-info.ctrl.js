@@ -31,7 +31,6 @@ angular.module("DashboardApp").controller("AgentInfoCtrl", [
      */
 
     $scope.user = TokenSvc.decode();
-
     $scope.saveAgentChanges = function() {
       $scope.saveAgentChangesInitiated = true;
       savePhoneNumber()
