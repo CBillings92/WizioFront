@@ -231,6 +231,7 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
     function buildNewPhotosArr(newPhotoFileList, oldPhotoList, subscriptionApt, apartment) {
       var newMediaArr = [];
       var photoName;
+      var initialBulkUpload = 0;
       for (var i = 0; i < newPhotoFileList.length; i++) {
         photoName = newPhotoFileList[i].name;
         if (newPhotoFileList[i].name.toLowerCase().indexOf(".jpg") >= 0) {
@@ -250,7 +251,14 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
           file: newPhotoFileList[i],
           isNew: true
         };
-        oldPhotoList.photos.unshift(photo);
+
+        // reorder photos. on bulk uploads upload photos left to right (top to bottom)
+        if (initialBulkUpload === 1 || oldPhotoList.length === 0) {
+          initialBulkUpload = 1;
+          oldPhotoList.photos.push(photo);
+        } else {
+          oldPhotoList.photos.unshift(photo);
+        }
       }
       return oldPhotoList.photos;
     }
