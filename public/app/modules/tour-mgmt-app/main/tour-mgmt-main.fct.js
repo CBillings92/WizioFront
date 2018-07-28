@@ -230,14 +230,19 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
 
     function buildNewPhotosArr(newPhotoFileList, oldPhotoList, subscriptionApt, apartment) {
       var newMediaArr = [];
+      var photoName;
       for (var i = 0; i < newPhotoFileList.length; i++) {
+        photoName = newPhotoFileList[i].name;
+        if (newPhotoFileList[i].name.toLowerCase().indexOf(".jpg") >= 0) {
+          photoName = newPhotoFileList[i].name.substring(0, newPhotoFileList[i].name.length - 4);
+        }
         var photo = {
           x: null,
           y: null,
           apartmentpubid: subscriptionApt.pubid,
           isUnit: 0,
           type: "vrphoto",
-          title: newPhotoFileList[i].name,
+          title: photoName,
           awsurl: "https://cdn.wizio.co/" + subscriptionApt.pubid + "/",
           ApartmentId: apartment.id,
           SubscriptionApartmentPubId: subscriptionApt.pubid,
@@ -443,8 +448,8 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
       // hardcoded values account for the size of the rectangle pin image
       // so that the bottom of the pin is where the user clicks (not the
       // top left of the box the pin is in)
-      var x = ((mouseEvent.offsetX - 17) / mouseEvent.target.clientWidth * 100).toFixed(2);
-      var y = ((mouseEvent.offsetY - 35) / mouseEvent.target.clientHeight * 100).toFixed(2);
+      var x = (((mouseEvent.offsetX - 17) / mouseEvent.target.clientWidth) * 100).toFixed(2);
+      var y = (((mouseEvent.offsetY - 35) / mouseEvent.target.clientHeight) * 100).toFixed(2);
 
       return {
         x: x,
