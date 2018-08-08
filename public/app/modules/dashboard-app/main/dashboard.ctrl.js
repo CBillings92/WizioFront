@@ -83,6 +83,7 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
 
     $scope.$on("ActiveListingsUpdated", function(ev, data) {
       DashboardFct.get.activelistings().then(function(tours) {
+        console.dir(tours);
         return parseTours(tours);
       });
     });
