@@ -1,14 +1,14 @@
-angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
-  "$scope",
-  "$state",
-  "$stateParams",
-  "$q",
-  "AWSFct",
-  "LoadingSpinnerFct",
-  "TourMgmtFct",
-  "WizioConfig",
-  "ModalBuilderFct",
-  "TokenSvc",
+angular.module('TourMgmtApp').controller('TourMgmtMainCtrl', [
+  '$scope',
+  '$state',
+  '$stateParams',
+  '$q',
+  'AWSFct',
+  'LoadingSpinnerFct',
+  'TourMgmtFct',
+  'WizioConfig',
+  'ModalBuilderFct',
+  'TokenSvc',
   function(
     $scope,
     $state,
@@ -21,7 +21,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     ModalBuilderFct,
     TokenSvc
   ) {
-    LoadingSpinnerFct.hide("savingChangesSpinner");
+    LoadingSpinnerFct.hide('savingChangesSpinner');
     /**
      * tracks when any changes have been made to the tour. Used to display the
      * Save Changes button on the tour
@@ -48,7 +48,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * Dictates pin dropping functionality as a flag that's set later in app.
      * @type {String}
      */
-    $scope.currentPinAction = "dropPinChoosePhoto";
+    $scope.currentPinAction = 'dropPinChoosePhoto';
     /**
      * Flag for modifying UI when Save Changes is initiated
      * @type {Boolean}
@@ -62,11 +62,14 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     $scope.modifyAddressFlag = false;
 
     /* Kick off loading spinner for initialization */
-    LoadingSpinnerFct.show("TourManagementMainLoad");
+    LoadingSpinnerFct.show('TourManagementMainLoad');
 
     var userEmail = TokenSvc.decode().email;
 
-    if (userEmail.includes("@wizio.co") || userEmail === "Esolem@lreadvisors.com") {
+    if (
+      userEmail.includes('@wizio.co') ||
+      userEmail === 'Esolem@lreadvisors.com'
+    ) {
       $scope.modifyTourAccess = true;
     } else {
       $scope.modifyTourAccess = false;
@@ -88,11 +91,11 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
         /* Set default values for drop down fields */
         for (var i = 0; i < 21; i++) {
           if (i === 0) {
-            $scope.bedSelect.push("Studio");
+            $scope.bedSelect.push('Studio');
           } else {
             $scope.bedSelect.push(i.toString());
             $scope.bathSelect.push(i.toString());
-            $scope.bathSelect.push(i.toString() + ".5");
+            $scope.bathSelect.push(i.toString() + '.5');
           }
         }
         $scope.data = response.payload;
@@ -102,14 +105,18 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
         $scope.data.Listing.Baths = $scope.data.Listing.Baths.toString();
         if (!$scope.data.Listing) {
           $scope.data.Listing = {
-            Lease: {}
+            Lease: {},
           };
         }
         if ($scope.data.Listing.Lease.LeaseStartDate) {
-          $scope.data.Listing.Lease.LeaseStartDate = new Date($scope.data.Listing.Lease.LeaseStartDate);
+          $scope.data.Listing.Lease.LeaseStartDate = new Date(
+            $scope.data.Listing.Lease.LeaseStartDate
+          );
         }
         if ($scope.data.Listing.Lease.LeaseEndDate) {
-          $scope.data.Listing.Lease.LeaseEndDate = new Date($scope.data.Listing.Lease.LeaseEndDate);
+          $scope.data.Listing.Lease.LeaseEndDate = new Date(
+            $scope.data.Listing.Lease.LeaseEndDate
+          );
         }
 
         /* Set first photo in array as the default selected photo */
@@ -117,13 +124,15 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
           $scope.selectPhotoForModification($scope.data.TourMedia.photos[0]);
         }
         /* Hide loading spinner */
-        LoadingSpinnerFct.hide("TourManagementMainLoad");
+        LoadingSpinnerFct.hide('TourManagementMainLoad');
       })
       .catch(function(err) {
         console.dir(err);
-        alert("Could not load data for tour management at this time. Please try again later.");
-        LoadingSpinnerFct.hide("TourManagementMainLoad");
-        $state.go("Account.Dashboard");
+        alert(
+          'Could not load data for tour management at this time. Please try again later.'
+        );
+        LoadingSpinnerFct.hide('TourManagementMainLoad');
+        $state.go('Account.Dashboard');
       });
 
     /**
@@ -139,26 +148,29 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
       deselectPhotoForModificiation(photo);
 
       photo.isSelected = true;
+      console.dir(photo);
       bulidPhotoURL(photo).then(function(photoURL) {
-        var atlasData = {
-          htmlElemId: "pano",
-          photoData: {
-            imageUrls: [photoURL],
-            navpoints: {},
-            title: photo.title
-          }
-        };
-        atlasData.photoData.navpoints[photo.title] = [];
+        photo.src = photoURL;
         $scope.photoForModification = photo;
-        wizio.init("pano", atlasData.photoData, {}, function(response) {
-          LoadingSpinnerFct.hide("vrPlayerLoader");
-          return;
-        });
+        // var atlasData = {
+        //   htmlElemId: "pano",
+        //   photoData: {
+        //     imageUrls: [photoURL],
+        //     navpoints: {},
+        //     title: photo.title
+        //   }
+        // };
+        // atlasData.photoData.navpoints[photo.title] = [];
+        // wizio.init("pano", atlasData.photoData, {}, function(response) {
+        //   LoadingSpinnerFct.hide("vrPlayerLoader");
+        //   return;
+        // });
       });
     };
 
     function bulidPhotoURL(photo) {
       return $q(function(resolve, reject) {
+        console.dir(photo);
         if (photo.file) {
           TourMgmtFct.newPhotos
             .buildImageDataURL(photo.file)
@@ -178,6 +190,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     function deselectPhotoForModificiation(photo) {
       var photos = $scope.data.TourMedia.photos;
       for (var i = 0; i < photos.length; i++) {
+        console.dir('hello');
         photos[i].isSelected = false;
       }
       return;
@@ -185,18 +198,26 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
 
     // Rename media FIXME - Needs new logic. Currently works on old logic
     function renamePhoto() {
-      $scope.photoForModification.SubscriptionApartmentPubId = $scope.data.SubscriptionApartment.pubid;
-      TourMgmtFct.photo.rename($scope.photoForModification, $scope.data.TourMedia.photos).then(function(response) {
-        if (response === "exit") {
-          return;
-        } else {
-          $scope.photoForModification = response.Photo;
-          $scope.changesMade = true;
-          ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Photo renamed successfully.").then(function(result) {
+      $scope.photoForModification.SubscriptionApartmentPubId =
+        $scope.data.SubscriptionApartment.pubid;
+      TourMgmtFct.photo
+        .rename($scope.photoForModification, $scope.data.TourMedia.photos)
+        .then(function(response) {
+          if (response === 'exit') {
             return;
-          });
-        }
-      });
+          } else {
+            $scope.photoForModification = response.Photo;
+            $scope.changesMade = true;
+            ModalBuilderFct.buildSimpleModal(
+              '',
+              'OK',
+              'Success',
+              'Photo renamed successfully.'
+            ).then(function(result) {
+              return;
+            });
+          }
+        });
     }
 
     /**
@@ -207,7 +228,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {[type]} [description]
      */
     $scope.addPhotosForUpload = function() {
-      var elem = document.getElementById("uploadMultiplePhotosInputButton");
+      var elem = document.getElementById('uploadMultiplePhotosInputButton');
       elem.disabled = false;
       elem.onchange = function() {
         var TourMedia = $scope.data.TourMedia;
@@ -227,7 +248,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
         $scope.$apply();
       };
 
-      $("#uploadMultiplePhotosInputButton").trigger("click");
+      $('#uploadMultiplePhotosInputButton').trigger('click');
       elem.disabled = true;
     };
 
@@ -236,7 +257,11 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     /* Abstracts away ugly code to build photo src strings */
     function buildPhotoSrc(photo) {
       var photoSrc =
-        WizioConfig.CLOUDFRONT_DISTRO + $scope.data.SubscriptionApartment.pubid + "/" + photo.title + ".JPG";
+        WizioConfig.CLOUDFRONT_DISTRO +
+        $scope.data.SubscriptionApartment.pubid +
+        '/' +
+        photo.title +
+        '.JPG';
       return photoSrc;
     }
 
@@ -247,20 +272,24 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {[type]} [description]
      */
     $scope.addFloorPlan = function() {
-      var elem = document.getElementById("uploadFloorPlanInputButton");
+      var elem = document.getElementById('uploadFloorPlanInputButton');
       elem.disabled = false;
       elem.onchange = function() {
-        $scope.data.TourMedia.floorplan = TourMgmtFct.floorplan.buildFloorPlanObj(this.files[0], $scope.data);
-        $scope.data.Apartment.Floor_Plan = $scope.data.TourMedia.floorplan.awsurl;
+        $scope.data.TourMedia.floorplan = TourMgmtFct.floorplan.buildFloorPlanObj(
+          this.files[0],
+          $scope.data
+        );
+        $scope.data.Apartment.Floor_Plan =
+          $scope.data.TourMedia.floorplan.awsurl;
         $scope.$apply();
-        var elem = document.getElementById("floorplanImage");
+        var elem = document.getElementById('floorplanImage');
         TourMgmtFct.newPhotos.preview([$scope.data.TourMedia.floorplan], elem);
         $scope.changesMade = true;
         $scope.$apply();
         $scope.data.TourMedia.floorplan.isNew = 1;
       };
       // manually trigger hidden file input
-      $("#uploadFloorPlanInputButton").trigger("click");
+      $('#uploadFloorPlanInputButton').trigger('click');
       elem.disabled = true;
     };
 
@@ -273,7 +302,13 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @param  {[type]} indexTo   [description]
      * @return {[type]}           [description]
      */
-    $scope.onOrderChange = function(item, partFrom, partTo, indexFrom, indexTo) {
+    $scope.onOrderChange = function(
+      item,
+      partFrom,
+      partTo,
+      indexFrom,
+      indexTo
+    ) {
       $scope.$apply();
       TourMgmtFct.newPhotos.preview($scope.data.TourMedia.photos, false);
       for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
@@ -287,7 +322,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {undefined} []
      */
     $scope.dropPinForSelectedPhoto = function() {
-      $scope.currentPinAction = "dropPinForSelectedPhoto";
+      $scope.currentPinAction = 'dropPinForSelectedPhoto';
       return;
     };
 
@@ -306,7 +341,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {undefined} []
      */
     $scope.movePinForSelectedPhoto = function(photo) {
-      $scope.currentPinAction = "dropPinForSelectedPhoto";
+      $scope.currentPinAction = 'dropPinForSelectedPhoto';
       return;
     };
 
@@ -316,7 +351,7 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {null}    []
      */
     $scope.makePinAction = function(ev) {
-      if ($scope.currentPinAction === "dropPinForSelectedPhoto") {
+      if ($scope.currentPinAction === 'dropPinForSelectedPhoto') {
         var pinCoords = TourMgmtFct.calculatePinXandY(ev);
         $scope.photoForModification.x = pinCoords.x;
         $scope.photoForModification.y = pinCoords.y;
@@ -330,22 +365,27 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
      * @return {undefined} []
      */
     $scope.saveChanges = function() {
-      LoadingSpinnerFct.show("savingChangesSpinner");
+      LoadingSpinnerFct.show('savingChangesSpinner');
       $scope.saveChangesInitiated = true;
       TourMgmtFct.saveChanges($scope.data)
         .then(function(response) {
-          LoadingSpinnerFct.hide("savingChangesSpinner");
-          ModalBuilderFct.buildSimpleModal("", "OK", "Success", "Your tour has been saved.").then(function(result) {
+          LoadingSpinnerFct.hide('savingChangesSpinner');
+          ModalBuilderFct.buildSimpleModal(
+            '',
+            'OK',
+            'Success',
+            'Your tour has been saved.'
+          ).then(function(result) {
             TourMgmtFct.rerouteAfterSave();
           });
         })
         .catch(function(err) {
-          LoadingSpinnerFct.hide("savingChangesSpinner");
+          LoadingSpinnerFct.hide('savingChangesSpinner');
           ModalBuilderFct.buildSimpleModal(
-            "",
-            "OK",
-            "Error",
-            "There are no photos to upload. Tours require at least one photo to save."
+            '',
+            'OK',
+            'Error',
+            'There are no photos to upload. Tours require at least one photo to save.'
           ).then(function(result) {
             return;
           });
@@ -363,24 +403,31 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
     $scope.deletePhoto = function() {
       if ($scope.photoForModification.isNew) {
         for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+          console.dir(i);
+          console.dir($scope.data.TourMedia.photos[i]);
           if ($scope.data.TourMedia.photos[i].isSelected) {
             $scope.data.TourMedia.photos.splice(i, 1);
+            console.dir($scope.data.TourMedia.photos[i]);
             $scope.selectPhotoForModification($scope.data.TourMedia.photos[i]);
-          } else {
-            return;
+            $scope.$apply();
+            break;
           }
         }
         return;
       } else {
-        TourMgmtFct.photo.delete($scope.photoForModification).then(function(response) {
-          for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
-            if ($scope.data.TourMedia.photos[i].isSelected) {
-              $scope.data.TourMedia.photos.splice(i, 1);
-              $scope.selectPhotoForModification($scope.data.TourMedia.photos[i]);
+        TourMgmtFct.photo
+          .delete($scope.photoForModification)
+          .then(function(response) {
+            for (var i = 0; i < $scope.data.TourMedia.photos.length; i++) {
+              if ($scope.data.TourMedia.photos[i].isSelected) {
+                $scope.data.TourMedia.photos.splice(i, 1);
+                $scope.selectPhotoForModification(
+                  $scope.data.TourMedia.photos[i]
+                );
+              }
             }
-          }
-          return;
-        });
+            return;
+          });
       }
     };
 
@@ -392,5 +439,5 @@ angular.module("TourMgmtApp").controller("TourMgmtMainCtrl", [
       $scope.modifyAddressFlag = !$scope.modifyAddressFlag;
       return $scope.modifyAddressFlag;
     };
-  }
+  },
 ]);
