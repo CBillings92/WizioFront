@@ -49,8 +49,7 @@ angular.module('MainApp').constant(
           case 'test':
             return 'http://alpha-api.wizio.co/api/';
           case 'prod':
-            // return "https://api.wizio.co/api/";
-            return 'http://34.225.7.132/api/';
+            return 'https://api.wizio.co/';
           default:
             return 'http://localhost:4000/api/';
         }
