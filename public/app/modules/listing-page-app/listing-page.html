@@ -1,9 +1,9 @@
 <div class="vr-container listing-hero ">
-    <div id="vr-player-listing">
-       <div style="height:96%;" >
-           <tour-dir show-interface="true"></tour-dir>
-       </div>
-   </div>
+  <div id="vr-player-listing">
+    <div style="height:96%;">
+      <tour-dir show-interface="true"></tour-dir>
+    </div>
+  </div>
 
   <div class="" style="text-align: center;">
     <a href="#listing-page">
@@ -12,305 +12,330 @@
   </div>
 
 </div>
-  <hr>
+<hr>
 
-  <div class= "container-fluid">
+<div class="container-fluid">
 
   <div class="listing-container center-block">
-      <div class="row" id='listing-page'>
-        <div class="row">
+    <div class="row" id='listing-page'>
+      <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-        <div ng-if= "data.Listing.Lease.IsAvailableNow && !data.Listing.Lease.LeaseStartDate">
-          <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
-        </div>
+          <div ng-if="data.Listing.Lease.IsAvailableNow && !data.Listing.Lease.LeaseStartDate">
+            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+          </div>
 
-        <div ng-if= "data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
-          <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
-        </div>
+          <div ng-if="data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
+            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+          </div>
 
-        <div ng-if= "!data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
-          <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}} </div>
-        </div>
+          <div ng-if="!data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
+            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate
+              | date : 'MM-dd-yyyy'}} </div>
+          </div>
 
 
 
-        <div ng-if= "address.neighborhood">
-          <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.neighborhood}}, Boston MA </div>
+          <div ng-if="address.neighborhood">
+            <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.NeighborhoodLongName}}, {{address.LocalityLongName}}
+              {{address.AdministrativeAreaLevel1ShortName}} </div>
+          </div>
         </div>
       </div>
-      </div>
 
-      <div class = "row">
+      <div class="row">
         <div class="col-xs-12 col-sm-5 col-sm-offset-1 row-space">
           <div ng-if="!data.Listing.IsActive">
             <p class="section-head">This listing is no longer active.</p>
           </div>
-            <div class="row">
+          <div class="row">
 
-              <div class="col-xs-12 amenity-list">
-                <div class=" col-xs-6 col-sm-3 col-lg-2 amenity-item">
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/bedroom.png"  class="amenity-icon">
-                  <p class="amenity-text"> {{data.Listing.Beds}} {{data.Listing.Beds === 'Studio' ? '' : 'Beds'}} <span ng-if="data.Listing.IsSplitUnit"> Split Unit</span></p>
+            <div class="col-xs-12 amenity-list">
+              <div class=" col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/bedroom.png" class="amenity-icon">
+                  <p class="amenity-text"> {{data.Listing.Beds}} {{data.Listing.Beds === 'Studio' ? '' : 'Beds'}} <span ng-if="data.Listing.IsSplitUnit">
+                      Split Unit</span></p>
                 </div>
-                </div>
+              </div>
 
-                <div class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/bathroom.png"  class="amenity-icon">
+              <div class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/bathroom.png" class="amenity-icon">
                   <p class="amenity-text"> {{data.Listing.Baths}} Bath</p>
-                  </div>
                 </div>
-
-                <div ng-if='data.Listing.HasLoft' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/loft.png" class="amenity-icon"></img>
-                   <p class="amenity-text"> Loft</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasDenOffice' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/den-office.png" class="amenity-icon"></img>
-                   <p class="amenity-text"> Den/Office</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasDishWasher' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/dishwasher.png" class="amenity-icon"></img>
-                   <p class="amenity-text"> Dish Washer</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasCentralAir' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/centralair.png" class="amenity-icon"></img>
-                   <p class="amenity-text"> Central Air</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/laundry.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">In Unit Laundry</p>
-                 </div>
-                </div>
-
-
-                <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/cat-friendly.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Cat Friendly</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/dog-friendly.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Dog Friendly</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.IsDogFriendly && data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/pet-friendly.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Pet Friendly</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-lg-2  amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/smartlock.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Smart Lock</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-lg-2  amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/fireplace.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Fireplace</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/pool.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Pool</p>
-                 </div>
-                </div>
-
-                <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-lg-2 amenity-item" >
-                  <div class= "text-center">
-                  <img src= "public/viewtemplates/images/listingpage/fitness-center.png"  class="amenity-icon"></img>
-                   <p class="amenity-text">Fitness Center</p>
-                 </div>
-                </div>
-
               </div>
+
+              <div ng-if='data.Listing.HasLoft' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/loft.png" class="amenity-icon"></img>
+                  <p class="amenity-text"> Loft</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasDenOffice' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/den-office.png" class="amenity-icon"></img>
+                  <p class="amenity-text"> Den/Office</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasDishWasher' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/dishwasher.png" class="amenity-icon"></img>
+                  <p class="amenity-text"> Dish Washer</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasCentralAir' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/centralair.png" class="amenity-icon"></img>
+                  <p class="amenity-text"> Central Air</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasInUnitWasherDryer' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/laundry.png" class="amenity-icon"></img>
+                  <p class="amenity-text">In Unit Laundry</p>
+                </div>
+              </div>
+
+
+              <div ng-if='data.Listing.IsCatFriendly && !data.Listing.IsDogFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/cat-friendly.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Cat Friendly</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.IsDogFriendly && !data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/dog-friendly.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Dog Friendly</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.IsDogFriendly && data.Listing.IsCatFriendly' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/pet-friendly.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Pet Friendly</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasSmartLock' class="col-xs-6 col-sm-3 col-lg-2  amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/smartlock.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Smart Lock</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasFireplace' class="col-xs-6 col-sm-3 col-lg-2  amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/fireplace.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Fireplace</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasPool' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/pool.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Pool</p>
+                </div>
+              </div>
+
+              <div ng-if='data.Listing.HasGym' class="col-xs-6 col-sm-3 col-lg-2 amenity-item">
+                <div class="text-center">
+                  <img src="public/viewtemplates/images/listingpage/fitness-center.png" class="amenity-icon"></img>
+                  <p class="amenity-text">Fitness Center</p>
+                </div>
+              </div>
+
             </div>
-            <div class="row">
-              <div class="col-sm-10" style='margin-bottom: 10px' ng-if="data.Listing.IsGasIncluded || data.Listing.IsElectricIncluded || data.Listing.IsHotWaterIncluded || data.Listing.IseHeatIncluded || data.Listing.IsCableInternetIncluded">
-                <p class='listing-sub-section dk-gray'>Included Utilities </p>
-                <p class='small-body'>
-                  <span ng-if='data.Listing.IsGasIncluded'>Gas,</span>
-                  <span ng-if='data.Listing.IsElectricIncluded'>Electric,</span>
-                  <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water,</span>
-                  <span ng-if='data.Listing.IsHeatIncluded'>Heat,</span>
-                  <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
-                </p>
-              </div>
-              <div class="col-sm-10" ng-if="data.Listing.AmenityDescription" style="margin-top:20px;">
-                <p class="listing-sub-section dk-gray"> Additional Amenities </p>
-                <p class="small-body"> {{data.Listing.AmenityDescription}}</p>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-10" style='margin-bottom: 10px' ng-if="data.Listing.IsGasIncluded || data.Listing.IsElectricIncluded || data.Listing.IsHotWaterIncluded || data.Listing.IseHeatIncluded || data.Listing.IsCableInternetIncluded">
+              <p class='listing-sub-section dk-gray'>Included Utilities </p>
+              <p class='small-body'>
+                <span ng-if='data.Listing.IsGasIncluded'>Gas,</span>
+                <span ng-if='data.Listing.IsElectricIncluded'>Electric,</span>
+                <span ng-if='data.Listing.IsHotWaterIncluded'>Hot Water,</span>
+                <span ng-if='data.Listing.IsHeatIncluded'>Heat,</span>
+                <span ng-if='data.Listing.IsCableInternetIncluded'>Cable/Internet,</span>
+              </p>
             </div>
-
-            <div class="row">
-              <div class="col-xs-12 listing-map">
-                <p class="listing-sub-section dk-gray"> {{finalAddress}} </p>
-                <div class="" id='map'></div>
-              </div>
+            <div class="col-sm-10" ng-if="data.Listing.AmenityDescription" style="margin-top:20px;">
+              <p class="listing-sub-section dk-gray"> Additional Amenities </p>
+              <p class="small-body"> {{data.Listing.AmenityDescription}}</p>
             </div>
           </div>
 
-          <div class="col-xs-10  col-xs-offset-1 col-sm-4 col-sm-offset-1 contact-box">
-        <div class="row col-xs-12 listing-contact-address text-left">
-          <p class= "listing-contact-street dk-gray">{{finalAddress}}</p>
-          <!-- <p class= "listing-city dk-gray ">{{address.neighborhood}}</p> -->
+          <div class="row">
+            <div class="col-xs-12 listing-map">
+              <p class="listing-sub-section dk-gray"> {{address.FullyFormattedAddress}} </p>
+              <div class="" id='map'></div>
+            </div>
+          </div>
         </div>
-        <br>
-        <div class="row col-xs-12">
-          <p class= "small-body">Rent: <span class="light"> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}} </span></p>
-          <p class= "small-body" ng-if='data.Lease.LeaseLength'>Lease Length: <span class="light">{{data.Lease.LeaseLength}} </span></p>
+
+        <div class="col-xs-10  col-xs-offset-1 col-sm-4 col-sm-offset-1 contact-box">
+          <div class="row col-xs-12 listing-contact-address text-left">
+            <p class="listing-contact-street dk-gray">{{address.FullyFormattedAddress}}</p>
+            <!-- <p class= "listing-city dk-gray ">{{address.neighborhood}}</p> -->
+          </div>
+          <br>
+          <div class="row col-xs-12">
+            <p class="small-body">Rent: <span class="light"> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}}
+              </span></p>
+            <p class="small-body" ng-if='data.Lease.LeaseLength'>Lease Length: <span class="light">{{data.Lease.LeaseLength}}
+              </span></p>
             <hr id="listing-divider" style="margin-top:20px;">
-        </div>
-        <div class="row">
-          <p class="col-xs-12 text-center large-body italic" style="padding-bottom: 15px;"> Interested in seeing this listing? </p>
-          <div class=" col-xs-12">
-            <div class="col-sm-4 col-xs-12" ng-if='agent.firstName === "Joe" && agent.lastName === "Parrish"'>
-              <img src="public/viewtemplates/joe.jpg" class="listing-contact-agent-image " alt="RealtorImg">
-            </div>
-            <!-- <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'> -->
-            <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
-              <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" id= "agentImage" alt="AWS image">
-              <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image "  alt="Placeholder">
-            </div>
-            <div class="col-sm-8 col-xs-12 listing-agent-info">
-              <p class= "listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
-              <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty' && !data.Listing.IsRepresentedByOwner"><a href={{data.Businesses.BusinessURL}}> {{business.name}} </a></p>
-              <p class="agent-business-name" ng-if="data.Listing.IsRepresentedByOwner"> Self Represented </p>
-              <p class="agent-business-name" ng-if="business.name === 'Boston Pads'"><a href="https://bostonpads.com/">{{business.name}}</a></p>
-              <p class="agent-business-name" ng-if="business.name === 'NextGen Realty'"><a href="https://www.nextgenrealty.com/">{{business.name}}</a></p>
-              <p class="small-body listing-contact-agent-number" ng-if='agent.phoneNumber'>Agent Phone: <span class="light" ><a ng-href="tel:617-917-5803"></a> {{agent.phoneNumber}} </span></p>
-              <p class="small-body listing-contact-agent-number" ng-if="business.name === 'Boston Pads' || business.name === 'NextGen Realty'"> Office Phone: <a href = 'tel:617-208-2121'>617-208-2121</a></p>
+          </div>
+          <div class="row">
+            <p class="col-xs-12 text-center large-body italic" style="padding-bottom: 15px;"> Interested in seeing this listing?
+            </p>
+            <div class=" col-xs-12">
+              <div class="col-sm-4 col-xs-12" ng-if='agent.firstName === "Joe" && agent.lastName === "Parrish"'>
+                <img src="public/viewtemplates/joe.jpg" class="listing-contact-agent-image " alt="RealtorImg">
+              </div>
+              <!-- <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish" && !agent.awsProfilePhotoUrl'> -->
+              <div class="col-sm-4 col-xs-12 " ng-if='agent.firstName !== "Joe" && agent.lastName !== "Parrish"'>
+                <img src="{{agent.awsProfilePhotoUrl}}" ng-if="agent.awsProfilePhotoUrl" class="listing-contact-agent-image" id="agentImage"
+                  alt="AWS image">
+                <img src="public/viewtemplates/portrait_placeholder.png" ng-if="!agent.awsProfilePhotoUrl" class="listing-contact-agent-image "
+                  alt="Placeholder">
+              </div>
+              <div class="col-sm-8 col-xs-12 listing-agent-info">
+                <p class="listing-contact-agent-name"> {{agent.firstName + ' ' + agent.lastName}} </p>
+                <p class="agent-business-name" ng-if="business.name !== 'Boston Pads' && business.name !== 'NextGen Realty' && !data.Listing.IsRepresentedByOwner"><a
+                    href={{data.Businesses.BusinessURL}}> {{business.name}} </a></p>
+                <p class="agent-business-name" ng-if="data.Listing.IsRepresentedByOwner"> Self Represented </p>
+                <p class="agent-business-name" ng-if="business.name === 'Boston Pads'"><a href="https://bostonpads.com/">{{business.name}}</a></p>
+                <p class="agent-business-name" ng-if="business.name === 'NextGen Realty'"><a href="https://www.nextgenrealty.com/">{{business.name}}</a></p>
+                <p class="small-body listing-contact-agent-number" ng-if='agent.phoneNumber'>Agent Phone: <span class="light"><a
+                      ng-href="tel:617-917-5803"></a> {{agent.phoneNumber}} </span></p>
+                <p class="small-body listing-contact-agent-number" ng-if="business.name === 'Boston Pads' || business.name === 'NextGen Realty'">
+                  Office Phone: <a href='tel:617-208-2121'>617-208-2121</a></p>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 row-space">
-            <button  class="btn btn-lg btn-fill--orange center-block" ng-click="requestShowing()" >
-              Contact {{agent.firstName}}
-            </button>
+          <div class="row">
+            <div class="col-xs-12 row-space">
+              <button class="btn btn-lg btn-fill--orange center-block" ng-click="requestShowing()">
+                Contact {{agent.firstName}}
+              </button>
+            </div>
           </div>
-        </div>
-        <!-- <div>
+          <!-- <div>
          <button ng-click="agentInfo()" type="button" class="btn btn-md btn-fill--orange"> Contact Agent </button>
         </div> -->
-      </div>
+        </div>
 
-      <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1" style="margin-top:30px;">
-        <div class="row">
-          <div class="col-xs-12">
-            <p class="listing-sub-section dk-gray">Lease Details</p>
-            <hr>
-            <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount | currency : '$' : 2}} per {{'month'}}</p>
-            <p class="small-body" ng-if="data.Lease.SecurityDepositAmount"><span class="medium">Security Deposit:</span> {{data.Lease.SecurityDepositAmount | currency : '$' : 2 }}</p>
-            <p class="small-body" ng-if="data.Lease.BrokersFeeAmount"><span class="medium">Broker Fee:</span> {{data.Lease.BrokersFeeAmount | currency : '$' : 2}}</p>
-            <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount | currency : '$' : 2}}</p>
-            <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}} pounds</p>
-            <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body" ng-if="data.Lease.LeaseEndDate && !data.Lease.LeaseLength"><span class="medium">Lease End:</span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
-            <p class="small-body" ng-if="data.Lease.LeaseLength"><span class="medium">Lease Length:</span> {{data.Lease.LeaseLength}} </p>
-            <p class="small-body" ng-if="data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> Available Now</p>
-            <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-1" style="margin-top:30px;">
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="listing-sub-section dk-gray">Lease Details</p>
+              <hr>
+              <p class="small-body"><span class="medium">Rent:</span> {{data.Lease.RentAmount | currency : '$' : 2}} per
+                {{'month'}}
+              </p>
+              <p class="small-body" ng-if="data.Lease.SecurityDepositAmount"><span class="medium">Security Deposit:</span>
+                {{data.Lease.SecurityDepositAmount | currency : '$' : 2 }}</p>
+              <p class="small-body" ng-if="data.Lease.BrokersFeeAmount"><span class="medium">Broker Fee:</span> {{data.Lease.BrokersFeeAmount
+                | currency : '$' : 2}}</p>
+              <p class="small-body" ng-if="data.Listing.HasMonthlyPetFee"><span class="medium">Pet Fee:</span> {{data.Listing.MonthlyPetFeeAmount
+                | currency : '$' : 2}}</p>
+              <p class="small-body" ng-if="data.Listing.MaximumPetWeight"><span class="medium">Max. Pet Weight:</span> {{data.Listing.MaximumPetWeight}}
+                pounds
+              </p>
+              <p class="small-body" ng-if="data.Lease.LeaseStartDate && !data.Lease.IsAvailableNow"><span class="medium">Lease
+                  Start:
+                </span> {{data.Lease.LeaseStartDate | date : 'MM-dd-yyyy'}}</p>
+              <p class="small-body" ng-if="data.Lease.LeaseEndDate && !data.Lease.LeaseLength"><span class="medium">Lease
+                  End:
+                </span> {{data.Lease.LeaseEndDate | date : 'MM-dd-yyyy'}}</p>
+              <p class="small-body" ng-if="data.Lease.LeaseLength"><span class="medium">Lease Length:</span> {{data.Lease.LeaseLength}}
+              </p>
+              <p class="small-body" ng-if="data.Lease.IsAvailableNow"><span class="medium">Lease Start:</span> Available
+                Now
+              </p>
+              <p class="small-body" ng-if="data.Listing.KeyFee"><span class="medium">Key Fee:</span> {{data.Listing.KeyFee}}</p>
 
+
+            </div>
 
           </div>
-
         </div>
-      </div>
 
       </div>
 
-      <p class ="section-head orange col-sm-offset-1 row-space" id="listing-divider"> Listing Details </p>
+      <p class="section-head orange col-sm-offset-1 row-space" id="listing-divider"> Listing Details </p>
       <hr id="listing-divider">
 
 
-      <div class= "row" ng-if="data.Listing.ListingDescription">
+      <div class="row" ng-if="data.Listing.ListingDescription">
         <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-        <p class="small-body" style="line-height:1.3">{{data.Listing.ListingDescription}}</p>
+          <p class="small-body" style="line-height:1.3">{{data.Listing.ListingDescription}}</p>
         </div>
       </div>
-        <div class="row row-space">
-          <div class="col-sm-8 col-sm-offset-1 col-xs-12">
-            <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
-            <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> First Month </p>
-              <i class="fa fa-check fa-2x orange"></i>
-            </div>
-            <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> First Month </p>
-              <i class="fa fa-close fa-2x blue"></i>
-            </div>
-            <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Security Deposit </p>
-              <i class="fa fa-check fa-2x orange"></i>
-            </div>
-            <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Security Deposit </p>
-              <i class="fa fa-close fa-2x blue"></i>
-            </div>
+      <div class="row row-space">
+        <div class="col-sm-8 col-sm-offset-1 col-xs-12">
+          <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
+          <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> First Month </p>
+            <i class="fa fa-check fa-2x orange"></i>
+          </div>
+          <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> First Month </p>
+            <i class="fa fa-close fa-2x blue"></i>
+          </div>
+          <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Security Deposit </p>
+            <i class="fa fa-check fa-2x orange"></i>
+          </div>
+          <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Security Deposit </p>
+            <i class="fa fa-close fa-2x blue"></i>
+          </div>
 
-            <div ng-if="data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Last Month </p>
-              <i class="fa fa-check fa-2x orange"></i>
-            </div>
+          <div ng-if="data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Last Month </p>
+            <i class="fa fa-check fa-2x orange"></i>
+          </div>
 
-            <div ng-if="!data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Last Month </p>
-              <i class="fa fa-close fa-2x blue"></i>
-            </div>
+          <div ng-if="!data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Last Month </p>
+            <i class="fa fa-close fa-2x blue"></i>
+          </div>
 
 
-            <div ng-if="data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Broker Fee </p>
-              <i class="fa fa-check fa-2x orange"></i>
-            </div>
+          <div ng-if="data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Broker Fee </p>
+            <i class="fa fa-check fa-2x orange"></i>
+          </div>
 
-            <div ng-if="!data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
-              <p class="small-body"> Broker Fee </p>
-              <i class="fa fa-close fa-2x blue"></i>
-            </div>
+          <div ng-if="!data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
+            <p class="small-body"> Broker Fee </p>
+            <i class="fa fa-close fa-2x blue"></i>
           </div>
         </div>
       </div>
+    </div>
 
-        <div class="row-space"></div>
-        <div class="row-space"></div>
-        <div class="row-space"></div>
-        <div class="row-space"></div>
-        <div class="row-space"></div>
+    <div class="row-space"></div>
+    <div class="row-space"></div>
+    <div class="row-space"></div>
+    <div class="row-space"></div>
+    <div class="row-space"></div>
 
-        <hr id="listing-divider" style="margin-top:20px;">
-        <div class="col-xs-12 center-block text-center">
-          <img src="public/viewtemplates/fheo.jpg" style="height:35px;" alt="Fair Housing Equal Opportunity Logo">
-          <p class="small-body row-space med-gray"><em>Disclaimer: The terms of this listing are subject to change.</em></p>
-          <p class="small-body med-gray"><em>Disclaimer: This listing may no longer be available for rent.</em></p>
-        </div>
+    <hr id="listing-divider" style="margin-top:20px;">
+    <div class="col-xs-12 center-block text-center">
+      <img src="public/viewtemplates/fheo.jpg" style="height:35px;" alt="Fair Housing Equal Opportunity Logo">
+      <p class="small-body row-space med-gray"><em>Disclaimer: The terms of this listing are subject to change.</em></p>
+      <p class="small-body med-gray"><em>Disclaimer: This listing may no longer be available for rent.</em></p>
+    </div>
 
-      </div>
+  </div>
   <div class="row-space"></div>
 
 
-  </div>
+</div>
