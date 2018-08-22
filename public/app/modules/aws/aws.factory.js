@@ -6,12 +6,6 @@ angular.module ('AWSApp').factory ('AWSFct', [
   '$resource',
   'WizioConfig',
   function ($q, $resource, WizioConfig) {
-    // AWS.config.update({accessKeyId: 'AKIAIPGWV5OFR73P3VLQ', secretAccessKey: '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'});
-    AWS.config.update ({
-      accessKeyId: 'AKIAJKN2QU5DJSYHC7LA',
-      secretAccessKey: '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',
-    });
-
     function getKeys () {
       return $q (function (reject, resolve) {
         $resource (WizioConfig.baseAPIURL + 'aws').get (function (response) {
