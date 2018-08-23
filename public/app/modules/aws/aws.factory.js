@@ -32,6 +32,7 @@ angular.module ('AWSApp').factory ('AWSFct', [
       return $q (function (reject, resolve) {
         getKeys ()
           .then (function (response) {
+            console.dir (response);
             AWS.config.update ({
               accessKeyId: response.accessKey,
               secretAccessKey: response.secretAccessKey,
@@ -41,6 +42,7 @@ angular.module ('AWSApp').factory ('AWSFct', [
               s3BucketEndpoint: true,
               region: region || 'us-east-1',
             });
+            console.dir (S3Object);
             return resolve (S3Object);
           })
           .catch (function (err) {
@@ -190,6 +192,7 @@ angular.module ('AWSApp').factory ('AWSFct', [
           return reject ({status: 'err', message: 'Missing file'});
         }
         createS3Object ().then (function (bucket) {
+          console.dir (bucket);
           var params = {
             Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
             Key: key,
