@@ -7,7 +7,7 @@ angular.module ('AWSApp').factory ('AWSFct', [
   'WizioConfig',
   function ($q, $resource, WizioConfig) {
     function getKeys () {
-      return $q (function (reject, resolve) {
+      return $q (function (resolve, reject) {
         $resource (WizioConfig.baseAPIURL + 'aws').get (function (response) {
           if (response.status === 'success') {
             return resolve (response);
@@ -29,10 +29,9 @@ angular.module ('AWSApp').factory ('AWSFct', [
     }
 
     function createS3Object (endpoint, region) {
-      return $q (function (reject, resolve) {
+      return $q (function (resolve, reject) {
         getKeys ()
           .then (function (response) {
-            console.dir (response);
             AWS.config.update ({
               accessKeyId: response.accessKey,
               secretAccessKey: response.secretAccessKey,
@@ -42,7 +41,6 @@ angular.module ('AWSApp').factory ('AWSFct', [
               s3BucketEndpoint: true,
               region: region || 'us-east-1',
             });
-            console.dir (S3Object);
             return resolve (S3Object);
           })
           .catch (function (err) {
@@ -60,7 +58,7 @@ angular.module ('AWSApp').factory ('AWSFct', [
           the new name and then deletes the old file
         */
     function copyFile (newFileName, oldFileName, fileFolderName) {
-      return $q (function (reject, resolve) {
+      return $q (function (resolve, reject) {
         // create a new S3 object from AWS library
         createS3Object ()
           .then (function (bucket) {
@@ -192,7 +190,6 @@ angular.module ('AWSApp').factory ('AWSFct', [
           return reject ({status: 'err', message: 'Missing file'});
         }
         createS3Object ().then (function (bucket) {
-          console.dir (bucket);
           var params = {
             Bucket: WizioConfig.S3_EQUIRECTPHOTOS_BUCKET,
             Key: key,
