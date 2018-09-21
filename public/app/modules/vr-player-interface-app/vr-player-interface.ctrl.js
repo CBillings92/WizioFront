@@ -49,15 +49,19 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
       $scope.agent = data.User;
       $scope.showInterface = data.showInterface;
       $scope.floorplan = data.floorplan;
-      document.getElementById("pano").addEventListener("click", onTourClick, false);
+      document
+        .getElementById("pano")
+        .addEventListener("click", onTourClick, false);
       createThumbnailURLs();
       $scope.photoIndex = 0;
-      $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
+      $scope.blank =
+        "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
       $scope.agent.blankDefault = $scope.blank;
       $scope.profileUploaded = false;
       $scope.isMLSListingAccount = false;
       if (
-        $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
+        $stateParams.activelistingid ===
+          "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
         $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
       ) {
         $scope.agent = {
@@ -77,7 +81,9 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         $scope.agent.BusinessName === "HqO" ||
         $scope.agent.BusinessName === "Fairfield Realty" ||
         $scope.agent.BusinessName === "Charlesgate Realty Group" ||
-        $scope.data.SubscriptionApartment.pubid === "afd51d18-b004-49e4-8cbe-50867abff2b7"
+        $scope.data.SubscriptionApartment.pubid ===
+          "afd51d18-b004-49e4-8cbe-50867abff2b7" ||
+        $scope.data.BusinessName === "Brix Properties Inc"
       ) {
         $scope.isMLSListingAccount = true;
       }
@@ -88,13 +94,22 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
       var SubscriptionApartmentPubId = $scope.data.SubscriptionApartment.pubid;
       for (var i = 0; i < $scope.media.length; i++) {
         $scope.media[i].thumbnailURL =
-          WizioConfig.CLOUDFRONT_DISTRO + "180x90/" + SubscriptionApartmentPubId + "/" + $scope.media[i].title + ".JPG";
+          WizioConfig.CLOUDFRONT_DISTRO +
+          "180x90/" +
+          SubscriptionApartmentPubId +
+          "/" +
+          $scope.media[i].title +
+          ".JPG";
       }
       return;
     }
 
     window.addEventListener("devicemotion", function(event) {
-      if (event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
+      if (
+        event.rotationRate.alpha ||
+        event.rotationRate.beta ||
+        event.rotationRate.gamma
+      )
         $scope.hasAccelerometer = true;
     });
 
@@ -241,15 +256,17 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
     };
 
     if ($state.current.name == "Demo" || $state.current.name == "Product") {
-      $resource(WizioConfig.baseAPIURL + "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d").query(function(
-        response
-      ) {
+      $resource(
+        WizioConfig.baseAPIURL +
+          "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d"
+      ).query(function(response) {
         $scope.profileUploaded = true;
         $scope.agent = {
           firstName: "Devon",
           lastName: "Grodkiewicz",
           email: "devon@wizio.co",
-          awsProfilePhotoUrl: "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png",
+          awsProfilePhotoUrl:
+            "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png",
           state: $state.current.name
         };
       });
