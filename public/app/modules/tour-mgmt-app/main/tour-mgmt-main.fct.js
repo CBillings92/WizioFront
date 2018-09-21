@@ -1,14 +1,14 @@
-angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
-  '$q',
-  '$resource',
-  '$state',
-  '$stateParams',
-  '$sessionStorage',
-  'AWSFct',
-  'TokenSvc',
-  'WizioConfig',
-  'ModalBuilderFct',
-  function (
+angular.module("TourMgmtApp").factory("TourMgmtFct", [
+  "$q",
+  "$resource",
+  "$state",
+  "$stateParams",
+  "$sessionStorage",
+  "AWSFct",
+  "TokenSvc",
+  "WizioConfig",
+  "ModalBuilderFct",
+  function(
     $q,
     $resource,
     $state,
@@ -21,43 +21,43 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
   ) {
     var API = {
       subscriptionApartment: {
-        media: $resource (
+        media: $resource(
           WizioConfig.baseAPIURL +
-            'subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId',
+            "subscriptionapartment/:SubscriptionPubId/:SubscriptionApartmentPubId",
           {
-            SubscriptionPubId: '@SubscriptionPubId',
-            SubscriptionApartmentPubId: '@SubscriptionApartmentPubId',
+            SubscriptionPubId: "@SubscriptionPubId",
+            SubscriptionApartmentPubId: "@SubscriptionApartmentPubId"
           }
-        ),
+        )
       },
-      media: $resource (WizioConfig.baseAPIURL + 'media'),
-      subscriptionAptMedia: $resource (
-        WizioConfig.baseAPIURL + 'subscriptionaptmedia'
+      media: $resource(WizioConfig.baseAPIURL + "media"),
+      subscriptionAptMedia: $resource(
+        WizioConfig.baseAPIURL + "subscriptionaptmedia"
       ),
       apartment: {
-        chooseParams: $resource (
+        chooseParams: $resource(
           WizioConfig.baseAPIURL +
-            'apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6',
+            "apartment/chooseparams/:param1/:param2/:param3/:param4/:param5/:param6",
           {
-            param1: '@id',
-            param2: '@pubid',
-            param3: '@concatAddr',
-            param4: '@unitNum',
-            param5: '@Floor_Plan',
-            param6: '@subscriptionPubId',
+            param1: "@id",
+            param2: "@pubid",
+            param3: "@concatAddr",
+            param4: "@unitNum",
+            param5: "@Floor_Plan",
+            param6: "@subscriptionPubId"
           }
         ),
-        updateFloorPlan: $resource (
-          WizioConfig.baseAPIURL + 'apartment/update/floorplan',
+        updateFloorPlan: $resource(
+          WizioConfig.baseAPIURL + "apartment/update/floorplan",
           {
-            SubscriptionPubId: '@SubscriptionApartmentPubId',
-            ApartmentId: '@ApartmentId',
+            SubscriptionPubId: "@SubscriptionApartmentPubId",
+            ApartmentId: "@ApartmentId"
           }
-        ),
+        )
       },
-      listing: $resource (WizioConfig.baseAPIURL + 'listing/:ListingId', {
-        ListingId: '@ListingId',
-      }),
+      listing: $resource(WizioConfig.baseAPIURL + "listing/:ListingId", {
+        ListingId: "@ListingId"
+      })
     };
 
     /**
@@ -73,69 +73,70 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {[type]} stateParams [description]
      * @return {[type]}             [description]
      */
-    function init (stateParams) {
-      return $q (function (resolve, reject) {
+    function init(stateParams) {
+      return $q(function(resolve, reject) {
         if (!$sessionStorage.TourMgmtApp) {
           $sessionStorage.TourMgmtApp = {};
         }
 
         // Check to make sure we have base data for app initialization
         if (!stateParams.data && !$sessionStorage.TourMgmtApp.data) {
-          return reject ({
-            status: 'err',
-            message: 'Could not get base tour data for app.',
-            payload: {},
+          return reject({
+            status: "err",
+            message: "Could not get base tour data for app.",
+            payload: {}
           });
         }
 
         // If we have initalization data, get it
-        var data = getBaseDataForState (stateParams);
+        var data = getBaseDataForState(stateParams);
 
         // Check if all data needed from app exists in data
-        if (!dataExistsForApp (data)) {
-          return reject ({
-            status: 'err',
-            message: 'Data is missing from base data',
-            payload: {},
+        if (!dataExistsForApp(data)) {
+          return reject({
+            status: "err",
+            message: "Data is missing from base data",
+            payload: {}
           });
         }
         // If the data is already formatted (from session storage)
         // purge any data that wasn't saved (this is from page refresh)
         if (data.formatted) {
-          purgeDataOnPageRefresh (data);
-          return resolve ({
-            status: 'success',
-            message: 'Formatted data retrieved from Session. Unsaved data purged on page refresh.',
-            payload: data,
+          purgeDataOnPageRefresh(data);
+          return resolve({
+            status: "success",
+            message:
+              "Formatted data retrieved from Session. Unsaved data purged on page refresh.",
+            payload: data
           });
         } else {
           // Save base data to local storage
           $sessionStorage.TourMgmtApp.data = data;
-          fetchTourMediaDataFromApi (data.SubscriptionApartment)
-            .then (function (APIResponseData) {
+          fetchTourMediaDataFromApi(data.SubscriptionApartment)
+            .then(function(APIResponseData) {
               data.TourMedia = {
-                photos: APIResponseData.media,
+                photos: APIResponseData.media
               };
               data.Listing = APIResponseData.Listing;
               if (data.Apartment.Floor_Plan) {
-                data.Apartment.Floor_Plan = buildFloorPlanUrl (
+                data.Apartment.Floor_Plan = buildFloorPlanUrl(
                   data.SubscriptionApartment.pubid
                 );
               }
               data.formatted = 1;
-              data.newTour = data.stateAction === 'ModifyTour' ? 0 : 1;
+              data.newTour = data.stateAction === "ModifyTour" ? 0 : 1;
               $sessionStorage.TourMgmtApp.data = data;
-              return resolve ({
-                status: 'success',
-                message: 'Tour Management App Initialized.',
-                payload: data,
+              return resolve({
+                status: "success",
+                message: "Tour Management App Initialized.",
+                payload: data
               });
             })
-            .catch (function (err) {
-              return reject ({
-                status: 'err',
-                message: 'Could not retrieve data at this time.',
-                payload: {},
+            .catch(function(err) {
+              return reject({
+                status: "err",
+                message: "Could not retrieve data at this time.",
+                payload: {}
               });
             });
         }
@@ -147,7 +148,7 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {object} data object with at least Apartment and SubscriptionApartment
      * @return {[type]}      [description]
      */
-    function dataExistsForApp (data) {
+    function dataExistsForApp(data) {
       if (data.Apartment && data.SubscriptionApartment) {
         return true;
       } else {
@@ -155,18 +156,18 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
       }
     }
 
-    function saveDataToSessionStorage (data) {
+    function saveDataToSessionStorage(data) {
       $sessionStorage.TourMgmtApp.data = data;
-      fetchTourMediaDataFromApi (data)
-        .then (function (TourMediaArr) {
-          data = formatDataForApp (data, TourMediaArr);
+      fetchTourMediaDataFromApi(data)
+        .then(function(TourMediaArr) {
+          data = formatDataForApp(data, TourMediaArr);
           data.TourMedia = {
-            photos: TourMediaArr,
+            photos: TourMediaArr
           };
           if (data.Apartment.Floor_Plan) {
           }
         })
-        .catch (function (err) {});
+        .catch(function(err) {});
     }
 
     /**
@@ -174,21 +175,21 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Array} SubscriptionApartment array of standard photo objects
      * @return {object}                       object of data or response object
      */
-    function fetchTourMediaDataFromApi (SubscriptionApartment) {
-      return $q (function (resolve, reject) {
-        API.subscriptionApartment.media.get (
+    function fetchTourMediaDataFromApi(SubscriptionApartment) {
+      return $q(function(resolve, reject) {
+        API.subscriptionApartment.media.get(
           {
-            SubscriptionPubId: TokenSvc.decode ().Subscriptions[0].pubid,
-            SubscriptionApartmentPubId: SubscriptionApartment.pubid,
+            SubscriptionPubId: TokenSvc.decode().Subscriptions[0].pubid,
+            SubscriptionApartmentPubId: SubscriptionApartment.pubid
           },
-          function (apiResponse) {
-            if (apiResponse.status === 'success') {
-              return resolve (apiResponse.payload);
+          function(apiResponse) {
+            if (apiResponse.status === "success") {
+              return resolve(apiResponse.payload);
             } else {
-              return reject ({
-                status: 'err',
-                message: 'Could not retrieve data at this time',
-                payload: {},
+              return reject({
+                status: "err",
+                message: "Could not retrieve data at this time",
+                payload: {}
               });
             }
           }
@@ -202,7 +203,7 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {object} stateParams stateParams that comes from state transition.
      * @return {object}             data from stateParams or sessionStorage
      */
-    function getBaseDataForState (stateParams) {
+    function getBaseDataForState(stateParams) {
       var data;
       if (stateParams.data) {
         data = stateParams.data;
@@ -219,16 +220,16 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {string} subscriptionApartmentPubId [36 char pubid of SubscriptionApartment]
      * @return {string}                            [URL for floorplan]
      */
-    function buildFloorPlanUrl (subscriptionApartmentPubId) {
-      var key = subscriptionApartmentPubId + '/floorplan.png';
+    function buildFloorPlanUrl(subscriptionApartmentPubId) {
+      var key = subscriptionApartmentPubId + "/floorplan.png";
       var floorPlanUrl = WizioConfig.CLOUDFRONT_DISTRO + key;
       return floorPlanUrl;
     }
 
-    function purgeDataOnPageRefresh (data) {
+    function purgeDataOnPageRefresh(data) {
       for (var i = data.TourMedia.photos.length - 1; i >= 0; i--) {
         if (data.TourMedia.photos[i].isNew) {
-          data.TourMedia.photos.splice (i, 1);
+          data.TourMedia.photos.splice(i, 1);
         }
       }
       data.TourMedia.floorplan = null;
@@ -242,24 +243,24 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {array} photoArray       [description]
      * @return {promise}                  [description]
      */
-    function renamePhoto (photoToBeRenamed, photoArray) {
-      return $q (function (resolve, reject) {
+    function renamePhoto(photoToBeRenamed, photoArray) {
+      return $q(function(resolve, reject) {
         var data = {
           photoToBeRenamed: photoToBeRenamed,
-          photoArray: photoArray,
+          photoArray: photoArray
         };
-        ModalBuilderFct.buildComplexModal (
-          'md',
+        ModalBuilderFct.buildComplexModal(
+          "md",
           WizioConfig.uploadViews.modals.renameMedia,
-          'RenameMediaCtrl',
+          "RenameMediaCtrl",
           data
-        ).then (function (response) {
-          resolve (response);
+        ).then(function(response) {
+          resolve(response);
         });
       });
     }
 
-    function buildNewPhotosArr (
+    function buildNewPhotosArr(
       newPhotoFileList,
       oldPhotoList,
       subscriptionApt,
@@ -270,8 +271,8 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
       var initialBulkUpload = 0;
       for (var i = 0; i < newPhotoFileList.length; i++) {
         photoName = newPhotoFileList[i].name;
-        if (newPhotoFileList[i].name.toLowerCase ().indexOf ('.jpg') >= 0) {
-          photoName = newPhotoFileList[i].name.substring (
+        if (newPhotoFileList[i].name.toLowerCase().indexOf(".jpg") >= 0) {
+          photoName = newPhotoFileList[i].name.substring(
             0,
             newPhotoFileList[i].name.length - 4
           );
@@ -281,22 +282,22 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
           y: null,
           apartmentpubid: subscriptionApt.pubid,
           isUnit: 0,
-          type: 'vrphoto',
+          type: "vrphoto",
           title: photoName,
-          awsurl: 'https://cdn.wizio.co/' + subscriptionApt.pubid + '/',
+          awsurl: "https://cdn.wizio.co/" + subscriptionApt.pubid + "/",
           ApartmentId: apartment.id,
           SubscriptionApartmentPubId: subscriptionApt.pubid,
-          useremail: TokenSvc.decode ().email,
+          useremail: TokenSvc.decode().email,
           file: newPhotoFileList[i],
-          isNew: true,
+          isNew: true
         };
 
         // reorder photos. on bulk uploads upload photos left to right (top to bottom)
         if (initialBulkUpload === 1 || oldPhotoList.length === 0) {
           initialBulkUpload = 1;
-          oldPhotoList.photos.push (photo);
+          oldPhotoList.photos.push(photo);
         } else {
-          oldPhotoList.photos.unshift (photo);
+          oldPhotoList.photos.unshift(photo);
         }
       }
       return oldPhotoList.photos;
@@ -308,15 +309,15 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {DOMElement} htmltag [DOMElement object of the elemnt you want to preview photo in]
      * @return {undefined}         []
      */
-    function previewPhoto (photo, htmltag) {
+    function previewPhoto(photo, htmltag) {
       if (photo) {
-        var reader = new FileReader ();
-        reader.addEventListener ('load', function () {
+        var reader = new FileReader();
+        reader.addEventListener("load", function() {
           htmltag.src = reader.result;
           return;
         });
 
-        reader.readAsDataURL (photo);
+        reader.readAsDataURL(photo);
         return;
       } else {
         return;
@@ -329,13 +330,13 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Function} cb      [description]
      * @return {[type]}           [description]
      */
-    function buildImageDataURL (jpgFile) {
-      return $q (function (resolve, reject) {
-        var reader = new FileReader ();
-        reader.addEventListener ('load', function () {
-          return resolve (reader.result);
+    function buildImageDataURL(jpgFile) {
+      return $q(function(resolve, reject) {
+        var reader = new FileReader();
+        reader.addEventListener("load", function() {
+          return resolve(reader.result);
         });
-        reader.readAsDataURL (jpgFile);
+        reader.readAsDataURL(jpgFile);
       });
     }
 
@@ -345,58 +346,58 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Object} data [Tour app data object]
      * @return {promise}      [promise]
      */
-    function saveChanges (data) {
-      return $q (function (resolve, reject) {
+    function saveChanges(data) {
+      return $q(function(resolve, reject) {
         /* Shorthand variables */
         var photosArr = data.TourMedia.photos;
         var floorplan = data.TourMedia.floorplan;
         var subscriptionAptPubId = data.SubscriptionApartment.pubid;
         if (photosArr.length === 0) {
-          return reject ('No photo to upload.');
+          return reject("No photo to upload.");
         }
         for (var i = 0; i < photosArr.length; i++) {
           photosArr[i].order = i;
         }
-        bulkUploadPhotosToS3 (photosArr, subscriptionAptPubId, floorplan)
-          .then (function (response) {
-            return bulkSavePhotosToWizioAPI (photosArr);
+        bulkUploadPhotosToS3(photosArr, subscriptionAptPubId, floorplan)
+          .then(function(response) {
+            return bulkSavePhotosToWizioAPI(photosArr);
           })
-          .then (function (response) {
-            return updateListing (data.Listing);
+          .then(function(response) {
+            return updateListing(data.Listing);
           })
-          .then (function (response) {
-            return updateFloorPlanData (
+          .then(function(response) {
+            return updateFloorPlanData(
               data.Apartment.id,
               subscriptionAptPubId,
               floorplan
             );
           })
-          .then (function (response) {
-            return resolve ('finished');
+          .then(function(response) {
+            return resolve("finished");
           });
       });
     }
 
-    function updateListing (Listing) {
-      return new Promise (function (resolve, reject) {
-        API.listing.save ({ListingId: Listing.ListingId}, Listing, function (
+    function updateListing(Listing) {
+      return new Promise(function(resolve, reject) {
+        API.listing.save({ ListingId: Listing.ListingId }, Listing, function(
           response
         ) {
-          return resolve (response);
+          return resolve(response);
         });
       });
     }
 
-    function bulkUploadPhotosToS3 (photosArr, subscriptionAptPubId, floorplan) {
-      return $q (function (resolve, reject) {
+    function bulkUploadPhotosToS3(photosArr, subscriptionAptPubId, floorplan) {
+      return $q(function(resolve, reject) {
         var s3PhotoKey = null;
         var s3UploadPromises = [];
         for (var i = 0; i < photosArr.length; i++) {
           if (photosArr[i].isNew) {
             s3PhotoKey =
-              subscriptionAptPubId + '/' + photosArr[i].title + '.JPG';
-            s3UploadPromises.push (
-              AWSFct.s3.equirectPhotos.uploadTourPhoto (
+              subscriptionAptPubId + "/" + photosArr[i].title + ".JPG";
+            s3UploadPromises.push(
+              AWSFct.s3.equirectPhotos.uploadTourPhoto(
                 photosArr[i].file,
                 s3PhotoKey
               )
@@ -405,20 +406,20 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
         }
 
         if (floorplan && floorplan.isNew) {
-          s3PhotoKey = subscriptionAptPubId + '/' + 'floorplan.png';
-          s3UploadPromises.push (
-            AWSFct.s3.equirectPhotos.uploadFloorPlanFile (
+          s3PhotoKey = subscriptionAptPubId + "/" + "floorplan.png";
+          s3UploadPromises.push(
+            AWSFct.s3.equirectPhotos.uploadFloorPlanFile(
               floorplan.file,
               s3PhotoKey
             )
           );
         }
         if (s3UploadPromises.length > 0) {
-          $q.all (s3UploadPromises).then (function (response) {
-            return resolve ();
+          $q.all(s3UploadPromises).then(function(response) {
+            return resolve();
           });
         } else {
-          return resolve ();
+          return resolve();
         }
       });
     }
@@ -429,40 +430,44 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {array} photosArr array of standard photo objects
      * @return {promises}           returs a promise
      */
-    function bulkSavePhotosToWizioAPI (photosArr) {
-      return $q (function (resolve, reject) {
+    function bulkSavePhotosToWizioAPI(photosArr) {
+      return $q(function(resolve, reject) {
         var promisesArr = [];
         for (var i = 0; i < photosArr.length; i++) {
-          promisesArr.push (savePhotoToWizioAPI (photosArr[i]));
+          if (photosArr[i].isNew) {
+            photosArr[i].src =
+              WizioConfig.CLOUDFRONT_DISTRO +
+              photosArr[i].SubscriptionApartmentPubId +
+              "/" +
+              photosArr[i].title +
+              ".JPG";
+          }
+          promisesArr.push(savePhotoToWizioAPI(photosArr[i]));
         }
         if (photosArr.length > 0) {
-          $q.all (promisesArr).then (function (response) {
-            return resolve ();
+          $q.all(promisesArr).then(function(response) {
+            return resolve();
           });
         } else {
-          return resolve ();
+          return resolve();
         }
       });
     }
 
-    function updateFloorPlanData (
-      apartmentId,
-      subscriptionAptPubId,
-      floorplan
-    ) {
-      return $q (function (resolve, reject) {
+    function updateFloorPlanData(apartmentId, subscriptionAptPubId, floorplan) {
+      return $q(function(resolve, reject) {
         if (floorplan && floorplan.isNew) {
-          API.apartment.updateFloorPlan.save (
+          API.apartment.updateFloorPlan.save(
             {
               SubscriptionApartmentPubId: subscriptionAptPubId,
-              ApartmentId: apartmentId,
+              ApartmentId: apartmentId
             },
-            function (response) {
-              return resolve ('Finished');
+            function(response) {
+              return resolve("Finished");
             }
           );
         } else {
-          return resolve ();
+          return resolve();
         }
       });
     }
@@ -476,13 +481,13 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {HTMLElement} elem            [HTMLElement to preview photo in - optional]
      * @return {undefined}                 []
      */
-    function previewNewPhotos (TourMediaPhotos, elem) {
+    function previewNewPhotos(TourMediaPhotos, elem) {
       for (var i = 0; i < TourMediaPhotos.length; i++) {
         if (TourMediaPhotos[i].isNew) {
           var previewElement = elem
             ? elem
-            : document.getElementById ('imgPreview' + i);
-          previewPhoto (TourMediaPhotos[i].file, previewElement);
+            : document.getElementById("imgPreview" + i);
+          previewPhoto(TourMediaPhotos[i].file, previewElement);
         }
       }
       return;
@@ -493,19 +498,20 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {File} file [file comes from file input. An actual file.]
      * @return {Object}      [standard photo object]
      */
-    function buildFloorPlanObj (file, stateData) {
+    function buildFloorPlanObj(file, stateData) {
       var photo = {
         apartmentpubid: stateData.SubscriptionApartment.pubid,
-        title: 'floorplan',
-        awsurl: 'https://cdn.wizio.co/' +
+        title: "floorplan",
+        awsurl:
+          "https://cdn.wizio.co/" +
           stateData.SubscriptionApartment.pubid +
-          '/floorplan.png',
+          "/floorplan.png",
         ApartmentId: stateData.Apartment.id,
         SubscriptionApartmentPubId: stateData.SubscriptionApartment.pubid,
-        useremail: TokenSvc.decode ().email,
+        useremail: TokenSvc.decode().email,
         file: file,
         isNew: true,
-        isFloorPlan: true,
+        isFloorPlan: true
       };
       return photo;
     }
@@ -515,20 +521,22 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Object} mouseEvent [mouse event from JS mouse click event]
      * @return {Object}            [object of pin coords]
      */
-    function calculatePinXandY (mouseEvent) {
+    function calculatePinXandY(mouseEvent) {
       // hardcoded values account for the size of the rectangle pin image
       // so that the bottom of the pin is where the user clicks (not the
       // top left of the box the pin is in)
-      var x = ((mouseEvent.offsetX - 17) /
-        mouseEvent.target.clientWidth *
-        100).toFixed (2);
-      var y = ((mouseEvent.offsetY - 35) /
-        mouseEvent.target.clientHeight *
-        100).toFixed (2);
+      var x = (
+        ((mouseEvent.offsetX - 17) / mouseEvent.target.clientWidth) *
+        100
+      ).toFixed(2);
+      var y = (
+        ((mouseEvent.offsetY - 35) / mouseEvent.target.clientHeight) *
+        100
+      ).toFixed(2);
 
       return {
         x: x,
-        y: y,
+        y: y
       };
     }
 
@@ -537,11 +545,11 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Object} photo [standard photo object]
      * @return {promise}       [returns API request response]
      */
-    function savePhotoToWizioAPI (photo) {
-      return $q (function (resolve, reject) {
+    function savePhotoToWizioAPI(photo) {
+      return $q(function(resolve, reject) {
         // send the object to the API
-        API.media.save (photo, function (response) {
-          return resolve (response);
+        API.media.save(photo, function(response) {
+          return resolve(response);
         });
       });
     }
@@ -551,47 +559,47 @@ angular.module ('TourMgmtApp').factory ('TourMgmtFct', [
      * @param  {Object} photo [standard photo object]
      * @return {[type]}       [description]
      */
-    function deletePhoto (photo) {
-      return $q (function (resolve, reject) {
+    function deletePhoto(photo) {
+      return $q(function(resolve, reject) {
         var data = {
           MediaObject: {
-            id: photo.id,
+            id: photo.id
           },
           UpdatedData: {
-            IsDeleted: 1,
-          },
+            IsDeleted: 1
+          }
         };
-        API.media.delete (data, function (response) {
-          return resolve (response);
+        API.media.delete(data, function(response) {
+          return resolve(response);
         });
       });
     }
 
-    function rerouteAfterSave () {
+    function rerouteAfterSave() {
       $sessionStorage.TourMgmtApp.data = null;
-      $state.go ('Account.Dashboard');
+      $state.go("Account.Dashboard");
       return;
     }
 
     return {
       init: {
-        mainApp: init,
+        mainApp: init
       },
       photo: {
         rename: renamePhoto,
-        delete: deletePhoto,
+        delete: deletePhoto
       },
       newPhotos: {
         add: buildNewPhotosArr,
         preview: previewNewPhotos,
-        buildImageDataURL: buildImageDataURL,
+        buildImageDataURL: buildImageDataURL
       },
       floorplan: {
-        buildFloorPlanObj: buildFloorPlanObj,
+        buildFloorPlanObj: buildFloorPlanObj
       },
       calculatePinXandY: calculatePinXandY,
       saveChanges: saveChanges,
-      rerouteAfterSave: rerouteAfterSave,
+      rerouteAfterSave: rerouteAfterSave
     };
-  },
+  }
 ]);

@@ -153,7 +153,7 @@ angular.module ('TourMgmtApp').controller ('TourMgmtMainCtrl', [
 
       photo.isSelected = true;
 
-      bulidPhotoURL (photo).then (function (photoURL) {
+      buildPhotoURL (photo).then (function (photoURL) {
         photo.src = photoURL;
         $scope.photoForModification = photo;
         // var atlasData = {
@@ -172,7 +172,7 @@ angular.module ('TourMgmtApp').controller ('TourMgmtMainCtrl', [
       });
     };
 
-    function bulidPhotoURL (photo) {
+    function buildPhotoURL (photo) {
       return $q (function (resolve, reject) {
         if (photo.file) {
           TourMgmtFct.newPhotos
