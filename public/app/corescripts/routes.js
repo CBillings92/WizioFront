@@ -4,7 +4,13 @@ angular.module("MainApp").config([
   "$locationProvider",
   "$httpProvider",
   "WizioConfig",
-  function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, WizioConfig) {
+  function(
+    $stateProvider,
+    $urlRouterProvider,
+    $locationProvider,
+    $httpProvider,
+    WizioConfig
+  ) {
     var navbar = {
       templateUrl: WizioConfig.NavbarViewsURL + "navbar.html",
       controller: "NavbarCtrl"
@@ -39,7 +45,9 @@ angular.module("MainApp").config([
             controller: PAGECONFIG.landingPage.main.controller
           },
           "vr-player": {
-            templateUrl: WizioConfig.UnitViewsURL + "transition_vrplayercontainer.view.html"
+            templateUrl:
+              WizioConfig.UnitViewsURL +
+              "transition_vrplayercontainer.view.html"
           }
         },
         data: falseRequiredLogin
@@ -61,7 +69,8 @@ angular.module("MainApp").config([
           navbar: navbar,
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/photographerapp/upload/upload.view.html",
+            templateUrl:
+              "public/app/modules/photographerapp/upload/upload.view.html",
             controller: "UploadPageCtrl"
           }
         }
@@ -117,7 +126,8 @@ angular.module("MainApp").config([
         views: {
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            templateUrl:
+              "public/app/modules/listing-page-app/listing-page.html",
             controller: PAGECONFIG.listingPage.main.controller
           }
         }
@@ -127,7 +137,8 @@ angular.module("MainApp").config([
         views: {
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/listing-page-app/listing-page-demo-one/listing-page.html",
+            templateUrl:
+              "public/app/modules/listing-page-app/listing-page-demo-one/listing-page.html",
             controller: "ListingPageDemo1Ctrl"
           }
         }
@@ -137,7 +148,8 @@ angular.module("MainApp").config([
         views: {
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/listing-page-app/listing-page.html",
+            templateUrl:
+              "public/app/modules/listing-page-app/listing-page.html",
             controller: "ListingPageCtrl"
           }
         }
@@ -147,7 +159,8 @@ angular.module("MainApp").config([
         views: {
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/listing-page-app/listing-page-demo-two/listing-page.html",
+            templateUrl:
+              "public/app/modules/listing-page-app/listing-page-demo-two/listing-page.html",
             controller: "ListingPageDemo2Ctrl"
           }
         }
@@ -167,7 +180,8 @@ angular.module("MainApp").config([
         views: {
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/subscriptionapp/main/subscription.main.view.html",
+            templateUrl:
+              "public/app/modules/subscriptionapp/main/subscription.main.view.html",
             controller: "SubscriptionMainCtrl"
           }
         }
@@ -185,7 +199,9 @@ angular.module("MainApp").config([
         url: "/listing/vr/:apitoken/:apartmentpubid",
         views: {
           maincontent: {
-            templateUrl: WizioConfig.UnitViewsURL + "transition_vrplayercontainer.view.html"
+            templateUrl:
+              WizioConfig.UnitViewsURL +
+              "transition_vrplayercontainer.view.html"
           }
         },
         data: falseRequiredLogin
@@ -227,7 +243,8 @@ angular.module("MainApp").config([
           navbar: navbar,
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/photographerapp/main/photographer-main.view.html"
+            templateUrl:
+              "public/app/modules/photographerapp/main/photographer-main.view.html"
           }
         }
       })
@@ -235,7 +252,8 @@ angular.module("MainApp").config([
         url: "/track",
         views: {
           test: {
-            templateUrl: "public/app/modules/photographerapp/tracker/photographer-track.view.html",
+            templateUrl:
+              "public/app/modules/photographerapp/tracker/photographer-track.view.html",
             controller: "PhotographerTrackCtrl"
           }
         }
@@ -244,7 +262,8 @@ angular.module("MainApp").config([
         url: "/upload/floorplan",
         views: {
           test: {
-            templateUrl: "public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html",
+            templateUrl:
+              "public/app/modules/photographerapp/floorplanupload/floorplanupload.view.html",
             controller: "FloorPlanUploadCtrl"
           }
         }
@@ -255,7 +274,8 @@ angular.module("MainApp").config([
           footer: footer,
           navbar: navbar,
           maincontent: {
-            templateUrl: WizioConfig.AdminPanelAppMainViewsURL + "AdminPanelMain.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppMainViewsURL + "AdminPanelMain.html",
             controller: "AdminPanelMainCtrl"
           }
         }
@@ -264,23 +284,28 @@ angular.module("MainApp").config([
         url: "/wizioadminpanel",
         views: {
           AdminTop: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "AdminSearchUnit.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL + "AdminSearchUnit.html",
             controller: "AdminSearchUnitCtrl"
           },
           AdminLeft: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "AdminUpdateUnit.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL + "AdminUpdateUnit.html",
             controller: "AdminUpdateUnitCtrl"
           },
           AdminRight: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "AdminUpdateAssignment.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL + "AdminUpdateAssignment.html",
             controller: "AdminUpdateAssignmentCtrl"
           },
           AdminBottom: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "admincreateunit.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL + "admincreateunit.html",
             controller: "AdminCreateUnitCtrl"
           },
           AdminSecondBottom: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "admincreateassignment.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL + "admincreateassignment.html",
             controller: "AdminCreateAssignmentCtrl"
           }
         }
@@ -299,7 +324,9 @@ angular.module("MainApp").config([
         url: "/wizioadminpanel/apiaccesstool",
         views: {
           AdminTop: {
-            templateUrl: WizioConfig.AdminPanelAppViewsURL + "adminapiaccesstool.view.html",
+            templateUrl:
+              WizioConfig.AdminPanelAppViewsURL +
+              "adminapiaccesstool.view.html",
             controller: "AdminPanelApiAccessCtrl"
           }
         }
@@ -333,7 +360,8 @@ angular.module("MainApp").config([
           navbar: navbar,
           footer: footer,
           maincontent: {
-            templateUrl: "public/app/modules/change-password-app/change-password-form/change-password.form.view.html",
+            templateUrl:
+              "public/app/modules/change-password-app/change-password-form/change-password.form.view.html",
             controller: "ChangePasswordFormCtrl"
           }
         },
@@ -357,7 +385,8 @@ angular.module("MainApp").config([
         url: "/create",
         views: {
           AccountMain: {
-            templateUrl: WizioConfig.AccountAuthViewsURL + "/AuthCreateAcctForm.html",
+            templateUrl:
+              WizioConfig.AccountAuthViewsURL + "/AuthCreateAcctForm.html",
             controller: "AuthCreateAcctCtrl"
           }
         },
@@ -424,7 +453,8 @@ angular.module("MainApp").config([
         url: "/profile",
         views: {
           AccountMain: {
-            templateUrl: WizioConfig.extProfileMainViewsURL + "extprofilemain.html",
+            templateUrl:
+              WizioConfig.extProfileMainViewsURL + "extprofilemain.html",
             controller: "ExtProfileMainCtrl"
           }
         }
@@ -475,7 +505,8 @@ angular.module("MainApp").config([
           navbar: navbar,
           footer: footer,
           maincontent: {
-            templateUrl: WizioConfig.ApplicationViewsURL + "applicationmain.html"
+            templateUrl:
+              WizioConfig.ApplicationViewsURL + "applicationmain.html"
           }
         },
         abstract: true,
@@ -485,7 +516,8 @@ angular.module("MainApp").config([
         url: "/new",
         views: {
           ApplicationPage: {
-            templateUrl: WizioConfig.ApplicationFormViewsURL + "applicationform.html",
+            templateUrl:
+              WizioConfig.ApplicationFormViewsURL + "applicationform.html",
             controller: "ApplicationFormCtrl"
           }
         }
@@ -494,7 +526,8 @@ angular.module("MainApp").config([
         url: "/edit",
         views: {
           ApplicationPage: {
-            templateUrl: WizioConfig.ApplicationFormViewsURL + "applicationform.html",
+            templateUrl:
+              WizioConfig.ApplicationFormViewsURL + "applicationform.html",
             controller: "ApplicationFormCtrl"
           }
         }
@@ -567,19 +600,28 @@ angular.module("MainApp").config([
       .state("Privacy", {
         url: "/privacy",
         onEnter: function() {
-          window.open("https://drive.google.com/open?id=0B0d2YtuXJgS5UFZBT1NRVUdvM1k", "_self");
+          window.open(
+            "https://drive.google.com/open?id=0B0d2YtuXJgS5UFZBT1NRVUdvM1k",
+            "_self"
+          );
         }
       })
       .state("Terms", {
         url: "/terms",
         onEnter: function() {
-          window.open("https://docs.google.com/document/d/1mazUTtcp2nqhOGhJNoxYA9CmaZR1gtY6Jv8R961fuhM", "_self");
+          window.open(
+            "https://docs.google.com/document/d/1mazUTtcp2nqhOGhJNoxYA9CmaZR1gtY6Jv8R961fuhM",
+            "_self"
+          );
         }
       })
       .state("AcceptableUse", {
         url: "/use",
         onEnter: function() {
-          window.open("https://drive.google.com/open?id=0B0d2YtuXJgS5VlRnV042cTBabEU", "_self");
+          window.open(
+            "https://drive.google.com/open?id=0B0d2YtuXJgS5VlRnV042cTBabEU",
+            "_self"
+          );
         }
       })
       .state("Unit.Display", {
@@ -621,6 +663,17 @@ angular.module("MainApp").config([
           }
         },
         data: trueRequiredPropertyManager
+      })
+      .state("Market", {
+        url: "/market",
+        views: {
+          navbar: navbar,
+          footer: footer,
+          maincontent: {
+            templateUrl: PAGECONFIG.Market.Main.View,
+            controller: PAGECONFIG.Market.Main.Ctrl
+          }
+        }
       });
     $urlRouterProvider.otherwise("/");
 

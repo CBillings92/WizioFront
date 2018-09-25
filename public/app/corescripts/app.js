@@ -40,6 +40,7 @@
   angular.module("EmptyStateApp", []);
   angular.module("ListingPageApp", []);
   angular.module("RequestShowingApp", []);
+  angular.module("MarketApp", []);
 
   //LOAD 'MainApp' ANGULAR module
   //LOAD ALL TOP LEVEL APPLICATIONS INTO MAIN APP
@@ -76,6 +77,7 @@
       "TourPanelApp",
       "TourMgmtApp",
       "ShareTourApp",
+      "MarketApp",
       "AWSApp",
       "AgentProfileApp",
       "FlyOutMenuApp",
