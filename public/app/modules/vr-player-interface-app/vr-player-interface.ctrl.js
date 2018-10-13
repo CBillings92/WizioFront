@@ -83,7 +83,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         $scope.agent.BusinessName === "Charlesgate Realty Group" ||
         $scope.data.SubscriptionApartment.pubid ===
           "afd51d18-b004-49e4-8cbe-50867abff2b7" ||
-        $scope.data.BusinessName === "Brix Properties Inc."
+        $scope.data.BusinessName === "Brix Properties Inc." ||
+        $scope.data.BusinessName === 'Red Tree Real Estate'
       ) {
         $scope.isMLSListingAccount = true;
       }
