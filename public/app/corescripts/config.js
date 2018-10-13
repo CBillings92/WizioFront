@@ -245,7 +245,7 @@ angular.module("MainApp").constant(
         Market: {
           Main: {
             View: MODULESPATH + "market/market.view.html",
-            Ctrl: MODULESPATH + "market/market.ctrl.js"
+            Ctrl: "MarketCtrl"
           }
         }
       },

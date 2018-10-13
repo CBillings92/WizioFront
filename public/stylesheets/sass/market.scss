@@ -1,8 +1,347 @@
-#market-container {
-  margin-top: 75px;
-  margin-bottom: 50px;
+$sm-breakpoint: 600px;
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 320px;
+  &.vh-100 {
+    height: 100vh;
+  }
+  &.vh-98 {
+    height: 98vh;
+  }
+}
+
+.page-background {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  background-size: auto 100%;
+  @media screen and (min-width: 1200px) {
+    background-size: 100% 100%;
+  }
+  background-position: center;
+  &.img-home1 {
+    // background-image: url("https://image.shutterstock.com/z/stock-photo-a-beautiful-brownstone-townhouse-with-a-blue-door-in-a-famous-neighborhood-in-manhattan-new-york-377535112.jpg");
+  }
+  // animation: fadein 5s forwards;
+  // -webkit-animation: fadein 5s forwards;
+}
+
+@keyframes fadein {
+  0% {
+    bottom: 0;
+    top: 0;
+  }
+  99% {
+    bottom: 100%;
+    top: 100%;
+  }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  0% {
+    bottom: 0;
+    top: 0;
+  }
+  99% {
+    bottom: 100%;
+    top: -100%;
+  }
+}
+
+.component-container {
+  padding: 5px;
+}
+
+.component-container--tagline {
+  margin-left: 3%;
+  margin-right: 3%;
+  @extend .component-container;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.search-form {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-input-text {
+  width: 70%;
+  height: 2.5em;
+  float: left;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding-left: 10px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.btn-fill--orange--left-joined {
+  @extend .btn;
+  @extend .btn-fill--orange;
+  height: 2.5em;
+  width: 30%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.component-container--translucent-background {
+  @extend .component-container;
+  padding: 25px;
+  border-radius: 5px;
+  background-color: gray;
+  opacity: 0.6;
+}
+.section {
+  margin: 10px auto 10px auto;
+  width: 95%;
+  @media screen and (min-width: 750px) {
+    width: 85%;
+    padding: 25px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 50%;
+    padding: 25px;
+  }
+}
+
+.section--translucent-background {
+  @extend .section;
+  background-color: rgba(74, 74, 74, 0.7);
+}
+
+#market-search-results {
+  margin: 0 10px 0 10px;
+}
+
+.listing-tile-left {
+  width: 50%;
+  border-right: 1px solid black;
 }
 
 .listing-tile {
-  margin-top: 100px;
+  height: 400px;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px 0 20px 0;
 }
+
+.listing-tile__title {
+  font-size: 1.6em;
+  font-weight: 500;
+  height: 15%;
+}
+
+.listing-tile__top-content {
+  width: 100%;
+  height: 50%;
+  border-right: 1px solid black;
+}
+
+.listing-tile__preview {
+  height: 100%;
+  width: 100%;
+  // background-color: black;
+}
+
+.listing-tile__img {
+  width: 100%;
+  height: 100%;
+}
+
+.listing-tile__bottom-content {
+  padding: 10px;
+  width: 100%;
+  height: 50%;
+}
+
+.listing-tile__data-point {
+  padding: 2px;
+  width: 33%;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 500;
+  float: left;
+  vertical-align: middle;
+}
+
+/* Dead code follows */
+
+// #market-container {
+//   // margin-top: 75px;
+//   // margin-bottom: 50px;
+//   background-image: url("../viewtemplates/images/home/homepage-hero.jpg");
+//   background-position: center;
+//   background-size: 300%;
+//   height: 100vh;
+// }
+
+// .listing-tile {
+//   margin-top: 100px;
+//   width: 33%;
+// }
+
+// .search-tile {
+//   margin: 10px;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   width: 40%;
+//   padding: 0 5px 10px 5px;
+//   font-size: 1.2em;
+//   border: 1px solid #e5e8ee;
+// }
+
+// .search-tile-title {
+//   height: 30px;
+//   font-size: 1.5em;
+//   font-weight: 500;
+//   max-width: 800px;
+//   padding-top: 10px;
+// }
+
+// .search-tile-tour-preview {
+//   height: 0;
+//   width: 40%;
+//   float: left;
+//   background-color: gray;
+//   padding-bottom: 43.75%;
+// }
+
+// .search-tile-metadata {
+//   height: 150px;
+//   width: 60%;
+//   float: left;
+//   padding: 5px 5px 5px 15px;
+// }
+
+// .search-tile-clear {
+//   clear: both;
+// }
+
+// .search-tile-metadata-left {
+//   float: left;
+//   width: 50%;
+// }
+
+// .search-tile-metadata-right {
+//   float: right;
+//   width: 50%;
+// }
+
+// .search-tile-body {
+//   padding-top: 20px;
+// }
+
+// .search-tile {
+//   margin: 15px auto 15px auto;
+//   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 8px 0 rgba(0, 0, 0, 0.19);
+//   width: 95%;
+//   padding: 0px 5px 10px 5px;
+//   font-size: 1.2em;
+// }
+
+// #area-input-container {
+//   float: left;
+//   width: 80%;
+//   margin: 0 0 0 5px;
+//   vertical-align: middle;
+// }
+
+// .area-input-sub-button-left {
+//   height: 1.7em;
+//   width: 45%;
+//   border-left: 1px solid $orange;
+//   border-bottom: 1px solid $orange;
+//   border-right: 1px solid $orange;
+//   float: left;
+//   border-bottom-left-radius: 3px;
+//   vertical-align: middle;
+//   display: table-cell;
+// }
+
+// .area-input-sub-button-center {
+//   height: 1.7em;
+//   width: 25%;
+//   border-left: 1px solid $orange;
+//   border-bottom: 1px solid $orange;
+//   border-right: 1px solid $orange;
+//   float: left;
+//   vertical-align: middle;
+//   display: table-cell;
+// }
+
+// .area-input-sub-button-right {
+//   height: 1.7em;
+//   width: 30%;
+//   border-left: 1px solid $orange;
+//   border-bottom: 1px solid $orange;
+//   border-right: 1px solid $orange;
+//   float: left;
+//   border-bottom-right-radius: 3px;
+//   vertical-align: middle;
+//   display: table-cell;
+// }
+
+// .text-input-medium {
+//   width: 80%;
+//   height: 2.2em;
+//   float: left;
+//   border: none;
+//   font-size: 1.2em;
+//   font-weight: 500;
+//   padding-left: 10px;
+// }
+
+// #search-tiles-container {
+//   clear: both;
+//   margin: 10px 0 0 0;
+// }
+
+// #search-form-container {
+//   overflow: auto;
+//   height: 100vh;
+// }
+
+// .input-btn-left-connected {
+//   height: 2.6em;
+//   width: 20%;
+//   border-top-left-radius: 0;
+//   border-bottom-left-radius: 0;
+// }
+
+// #search-form {
+//   padding-top: 50%;
+//   text-align: center;
+// }
+
+// #tagline-container {
+//   padding-top: 50%;
+//   text-align: center;
+// }
+
+// #tagline {
+//   color: white;
+// }
+
+// .center-elem {
+//   margin-right: 5%;
+//   margin-left: 5%;
+//   margin-top: 20px;
+// }

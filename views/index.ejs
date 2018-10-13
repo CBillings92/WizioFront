@@ -163,7 +163,7 @@
             }
         })();
         drift.SNIPPET_VERSION = "0.3.1";
-        if (!window.location.href.includes("/tour/") && !window.location.href.includes("demo")) {
+        if (!window.location.hostname === "localhost" && !window.location.hostname !== "127.0.0.1" && !window.location.href.includes("/tour/") && !window.location.href.includes("demo")) {
             drift.load("xxagivsgiw52");
         }
 

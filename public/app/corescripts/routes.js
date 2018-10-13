@@ -665,7 +665,7 @@ angular.module("MainApp").config([
         data: trueRequiredPropertyManager
       })
       .state("Market", {
-        url: "/market",
+        url: "/market/:agentid",
         views: {
           navbar: navbar,
           footer: footer,
