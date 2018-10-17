@@ -1,8 +1,8 @@
 <div class="page-container vh-98">
-    <div class="page-background  img-home1"></div>
-    <!-- <section id="market-search-form" class="section--translucent-background">
+    <div class="page-background img-home1" ng-if="!dataLoaded"></div>
+    <section id="market-search-form" ng-if="!dataLoaded" class="section--translucent-background maintain-center">
         <div class=" component-container--tagline ">
-            <p class="tagline" style=" color:white ">Find your next space</p>
+            <div class="tagline" style=" color:white ">Find your next space</div>
         </div>
         <div class="component-container ">
             <form class="search-form ">
@@ -11,29 +11,36 @@
                     ? 'Searching...' : 'Search'}}</button>
             </form>
         </div>
-    </section> -->
-    <section class="section">
-        <div class="component-container listing-tile" ng-repeat="listing in listings track by $index " style="cursor: pointer; "
-            ng-click="viewTour(listing) ">
-            <div class="listing-tile__title">
+    </section>
+    <section ng-if="dataLoaded" class="navbar-spacing">
+        <div style="height:60px; background-color: gray;">This is search space holder</div>
+    </section>
+    <section class="section" ng-if="dataLoaded">
+        <div class="component-container listing-tile" ng-repeat="listing in listings track by $index " style="cursor: pointer; ">
+            <div class="listing-tile__title orange" ng-click="viewTour(listing) ">
                 South Street, Jamaica Plain
             </div>
             <div class="listing-tile__top-content">
                 <div class="listing-tile__map"></div>
                 <div class="listing-tile__preview">
-                    <img class="listing-tile__img" src="https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG" alt="">
+                    <vr-player-dir ng-if="showVRPreviewEnabled && listing.isBeingPreviewed"></vr-player-dir>
+                    <img class="listing-tile__img" ng-if="!showVRPreviewEnabled && !listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)"
+                        src="https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG" alt="">
                 </div>
             </div>
-            <div class="listing-tile__bottom-content">
+            <div class="listing-tile__bottom-content" ng-click="viewTour(listing) ">
                 <div class="listing-tile__metadata">
-                    <div class="listing-tile__data-point">Beds: 4</div>
-                    <div class="listing-tile__data-point">Baths: 2</div>
-                    <div class="listing-tile__data-point">Available: 9/1/18</div>
-                    <div class="listing-tile__data-point">Price: $2200</div>
-                    <div class="listing-tile__data-point">Pets: OK</div>
+                    <div class="listing-tile__data-point--sml">Beds: 4</div>
+                    <div class="listing-tile__data-point--sml">Baths: 2</div>
+                    <div class="listing-tile__data-point--sml">Pets: OK</div>
+                    <div class="listing-tile__data-point--med">Price: $2200</div>
+                    <div class="listing-tile__data-point--med">Available: 9/1/18</div>
                 </div>
             </div>
         </div>
+    </section>
+    <section class="section">
+        <div style=""></div>
     </section>
     <!-- <section id="market-search-results" class="section">
         <div class="listing-tile-container">
