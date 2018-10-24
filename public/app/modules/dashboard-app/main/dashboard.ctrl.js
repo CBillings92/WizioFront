@@ -64,7 +64,10 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     var user = TokenSvc.decode();
 
     $scope.createToursPermitted = false;
-    if (user.email.includes("@wizio.co") || user.email === "Esolem@lreadvisors.com") {
+    if (
+      user.email.includes("@wizio.co") ||
+      user.email === "Esolem@lreadvisors.com"
+    ) {
       $scope.createToursPermitted = true;
     }
     if (user.email === "amcginty@nomadicrealestate.com") {
@@ -111,7 +114,8 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     $scope.phoneNumber = user.phoneNumber;
 
     // get whether the user has access to invite others
-    $scope.inviteAccess = user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;
+    $scope.inviteAccess =
+      user.Subscriptions[0].UserSubscriptions_Migration.subscription_manager;
 
     // create tour functionailty - button click
     $scope.createTour = function() {
@@ -159,7 +163,8 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     $scope.modifyExistingTour = function() {
       var searchModifyModalConfig = {
         size: "lg",
-        templateUrl: "public/app/modules/photographerapp/upload/upload.view.html",
+        templateUrl:
+          "public/app/modules/photographerapp/upload/upload.view.html",
         controller: "UploadPageCtrl",
         modalData: {}
       };
@@ -168,7 +173,9 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
           Apartment: data.Apartment,
           SubscriptionApartment: {
             pubid: data.SubscriptionApartment.pubid,
-            id: data.id
+            id: data.id,
+            PropertyManager: data.PropertyManager,
+            PropertyOwner: data.PropertyOwner
           },
           Listing: data.Listing
         };

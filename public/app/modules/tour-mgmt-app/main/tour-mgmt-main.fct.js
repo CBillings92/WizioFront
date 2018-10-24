@@ -57,7 +57,14 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
       },
       listing: $resource(WizioConfig.baseAPIURL + "listing/:ListingId", {
         ListingId: "@ListingId"
-      })
+      }),
+      updateSubscriptionApartment: $resource(
+        WizioConfig.baseAPIURL +
+          "subscriptionapartment/:SubscriptionApartmentId",
+        {
+          SubscriptionApartmentId: "@SubscriptionApartmentId"
+        }
+      )
     };
 
     /**
@@ -366,6 +373,9 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
             return updateListing(data.Listing);
           })
           .then(function(response) {
+            return updateSubscriptionApartment(data.SubscriptionApartment);
+          })
+          .then(function(response) {
             return updateFloorPlanData(
               data.Apartment.id,
               subscriptionAptPubId,
@@ -375,6 +385,20 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
           .then(function(response) {
             return resolve("finished");
           });
+      });
+    }
+
+    function updateSubscriptionApartment(SubscriptionApartment) {
+      return new Promise(function(resolve, reject) {
+        console.dir(SubscriptionApartment);
+        console.dir(API.updateSubscriptionApartment);
+        API.updateSubscriptionApartment.save(
+          { SubscriptionApartmentId: SubscriptionApartment.id },
+          SubscriptionApartment,
+          function(response) {
+            return resolve(response);
+          }
+        );
       });
     }
 
