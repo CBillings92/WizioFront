@@ -1,0 +1,135 @@
+$sm-mobile-breakpoint: 320px;
+$md-mobile-breakpoint: 500px;
+$lg-mobile-breakpoint: 766px;
+$sm-tablet-breakpoint: 767px;
+$md-tablet-breakpoint: 1000px;
+$lg-tablet-breakpoint: 1023px;
+$sm-laptop-breakpoint: 1024px;
+$md-laptop-breakpoint: 1600px;
+$lg-laptop-breakpoint: 1919px;
+$sm-monitor-breakpoint: 1920px;
+
+.page-container {
+  min-width: 320px;
+  &.vh-100 {
+    height: 100vh;
+  }
+  &.min-height--vh-98 {
+    min-height: 98vh;
+  }
+  &.height--vh-98 {
+    height: 98vh;
+  }
+}
+
+.page-background {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  z-index: -1;
+  background-size: auto 100%;
+  @media screen and (min-width: 1200px) {
+    background-size: 100% 100%;
+  }
+  background-position: center;
+  &.img-home1 {
+    background-image: url("https://image.shutterstock.com/z/stock-photo-a-beautiful-brownstone-townhouse-with-a-blue-door-in-a-famous-neighborhood-in-manhattan-new-york-377535112.jpg");
+  }
+}
+
+.component-container {
+  padding: 5px;
+}
+
+.component-container--tagline {
+  margin-left: 3%;
+  margin-right: 3%;
+  @extend .component-container;
+}
+
+#market-search-form {
+  position: relative;
+  top: 25%;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 500;
+  @media screen and (min-width: 1024px) {
+    font-size: 3.25em;
+  }
+}
+
+.search-form {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.form-input-text {
+  width: 70%;
+  height: 2.5em;
+  float: left;
+  border: none;
+  font-size: 1.2em;
+  font-weight: 500;
+  padding-left: 10px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  @media screen and (min-width: $md-tablet-breakpoint) {
+    height: 2.8em;
+    font-size: 1.5em;
+  }
+}
+
+.btn-fill--orange--left-joined {
+  @extend .btn;
+  @extend .btn-fill--orange;
+  width: 30%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-weight: 500;
+  height: 2.5em;
+  font-size: 1.2em;
+  @media screen and (min-width: $md-tablet-breakpoint) {
+    height: 2.8em;
+    font-size: 1.5em;
+  }
+}
+
+.navbar-spacing {
+  margin-top: 51px;
+}
+
+.section {
+  width: 100%;
+  @media screen and (min-width: $md-mobile-breakpoint) {
+    width: 95%;
+  }
+  @media screen and (min-width: $sm-tablet-breakpoint) {
+    width: 75%;
+    padding: 25px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 50%;
+    padding: 25px;
+  }
+}
+
+.maintain-center {
+  margin: 0 auto;
+}
+
+.section--translucent-background {
+  @extend .section;
+  background-color: rgba(74, 74, 74, 0.95);
+  @media screen and (max-width: $md-mobile-breakpoint) {
+    padding: 20px 0 20px 0;
+  }
+  @media screen and (min-width: $sm-tablet-breakpoint) {
+    padding: 20px 10px 20px 10px;
+  }
+}

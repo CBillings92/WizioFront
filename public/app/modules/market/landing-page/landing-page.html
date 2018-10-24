@@ -1,0 +1,15 @@
+<div class="page-container min-height--vh-98 height--vh-98">
+    <div class="page-background img-home1"></div>
+    <section id="market-search-form" ng-if="!dataLoaded" class="section--translucent-background maintain-center">
+        <div class=" component-container--tagline ">
+            <div class="tagline" style=" color:white ">Find your next space</div>
+        </div>
+        <div class="component-container ">
+            <form class="search-form ">
+                <input type="text " class="form-input-text" ng-model="marketSearch.addressBar" placeholder="Jamaica Plain ">
+                <button type="button" ng-click="submitMarketSearch()" ng-disabled="searchInProgress" class="btn btn-fill--orange--left-joined ">{{searchInProgress
+                    ? 'Searching...' : 'Search'}}</button>
+            </form>
+        </div>
+    </section>
+</div>

@@ -246,6 +246,14 @@ angular.module("MainApp").constant(
           Main: {
             View: MODULESPATH + "market/market.view.html",
             Ctrl: "MarketCtrl"
+          },
+          LandingPage: {
+            View: MODULESPATH + "market/landing-page/landing-page.html",
+            Ctrl: "MarketLandingPageCtrl"
+          },
+          SearchPage: {
+            View: MODULESPATH + "market/search-page/search-page.html",
+            Ctrl: "MarketSearchPageCtrl"
           }
         }
       },

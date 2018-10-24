@@ -670,11 +670,22 @@ angular.module("MainApp").config([
           navbar: navbar,
           footer: footer,
           maincontent: {
-            templateUrl: PAGECONFIG.Market.Main.View,
-            controller: PAGECONFIG.Market.Main.Ctrl
+            templateUrl: PAGECONFIG.Market.LandingPage.View,
+            controller: PAGECONFIG.Market.LandingPage.Ctrl
           }
         }
-      });
+      })
+      .state("SearchMarket", {
+        url: "/search/:area",
+        views: {
+          navbar: navbar,
+          footer: footer,
+          maincontent: {
+            templateUrl: PAGECONFIG.Market.SearchPage.View,
+            controller: PAGECONFIG.Market.SearchPage.Ctrl
+          }
+        }
+      })
     $urlRouterProvider.otherwise("/");
 
     $httpProvider.interceptors.push([

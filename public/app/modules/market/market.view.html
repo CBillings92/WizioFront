@@ -15,7 +15,7 @@
     <section ng-if="dataLoaded" class="navbar-spacing">
         <div style="height:60px; background-color: gray;">This is search space holder</div>
     </section>
-    <section class="section" ng-if="dataLoaded">
+    <section class="section" id="search-results-container" ng-if="dataLoaded">
         <div class="component-container listing-tile" ng-repeat="listing in listings track by $index " style="cursor: pointer; ">
             <div class="listing-tile__title orange" ng-click="viewTour(listing) ">
                 South Street, Jamaica Plain
@@ -39,8 +39,8 @@
             </div>
         </div>
     </section>
-    <section class="section">
-        <div style=""></div>
+    <section class="section" id="market-map-container">
+        <div class="market-map" style="background-color: gray" class="map"></div>
     </section>
     <!-- <section id="market-search-results" class="section">
         <div class="listing-tile-container">
