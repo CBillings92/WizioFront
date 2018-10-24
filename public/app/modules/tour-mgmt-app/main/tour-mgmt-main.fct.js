@@ -390,8 +390,6 @@ angular.module("TourMgmtApp").factory("TourMgmtFct", [
 
     function updateSubscriptionApartment(SubscriptionApartment) {
       return new Promise(function(resolve, reject) {
-        console.dir(SubscriptionApartment);
-        console.dir(API.updateSubscriptionApartment);
         API.updateSubscriptionApartment.save(
           { SubscriptionApartmentId: SubscriptionApartment.id },
           SubscriptionApartment,
