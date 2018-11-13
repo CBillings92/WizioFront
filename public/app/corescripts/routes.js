@@ -679,7 +679,6 @@ angular.module("MainApp").config([
         url: "/search/:area",
         views: {
           navbar: navbar,
-          footer: footer,
           maincontent: {
             templateUrl: PAGECONFIG.Market.SearchPage.View,
             controller: PAGECONFIG.Market.SearchPage.Ctrl

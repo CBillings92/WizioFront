@@ -11,7 +11,8 @@ $sm-monitor-breakpoint: 1920px;
 
 .page-container {
   min-width: 320px;
-  &.vh-100 {
+  padding-top: 1px;
+  &.height--vh-100 {
     height: 100vh;
   }
   &.min-height--vh-98 {
@@ -30,12 +31,14 @@ $sm-monitor-breakpoint: 1920px;
   position: absolute;
   z-index: -1;
   background-size: auto 100%;
+  background-color: #7a7a7a;
+  background-blend-mode: multiply;
   @media screen and (min-width: 1200px) {
     background-size: 100% 100%;
   }
   background-position: center;
   &.img-home1 {
-    background-image: url("https://image.shutterstock.com/z/stock-photo-a-beautiful-brownstone-townhouse-with-a-blue-door-in-a-famous-neighborhood-in-manhattan-new-york-377535112.jpg");
+    background-image: url("../viewtemplates/images/home/homepage-hero.jpg");
   }
 }
 
@@ -44,22 +47,36 @@ $sm-monitor-breakpoint: 1920px;
 }
 
 .component-container--tagline {
-  margin-left: 3%;
+  margin-left: 0;
   margin-right: 3%;
+  width: 100%;
+  @media screen and (min-width: 940px) {
+    width: 80%;
+  }
   @extend .component-container;
 }
 
 #market-search-form {
   position: relative;
   top: 25%;
+  max-width: 750px;
 }
 
 .tagline {
-  text-align: center;
-  font-size: 2em;
+  text-align: left;
+  font-size: 2.5rem;
   font-weight: 500;
-  @media screen and (min-width: 1024px) {
-    font-size: 3.25em;
+  @media screen and (min-width: 350px) {
+    font-size: 2.9rem;
+  }
+  @media screen and (min-width: 390px) {
+    font-size: 3.2rem;
+  }
+  @media screen and (min-width: 460px) {
+    font-size: 3.8rem;
+  }
+  @media screen and (min-width: 800px) {
+    font-size: 4.3rem;
   }
 }
 
@@ -67,18 +84,23 @@ $sm-monitor-breakpoint: 1920px;
   text-align: center;
   max-width: 750px;
   margin: 0 auto;
+  box-shadow: 1px 1px 15px 5px rgba(0, 0, 0, 0.4);
 }
 
 .form-input-text {
-  width: 70%;
+  width: 57%;
   height: 2.5em;
   float: left;
   border: none;
   font-size: 1.2em;
   font-weight: 500;
   padding-left: 10px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+  @media screen and (min-width: 390px) {
+    width: 65%;
+  }
+  @media screen and (min-width: 1400px) {
+    width: 70%;
+  }
   @media screen and (min-width: $md-tablet-breakpoint) {
     height: 2.8em;
     font-size: 1.5em;
@@ -88,12 +110,17 @@ $sm-monitor-breakpoint: 1920px;
 .btn-fill--orange--left-joined {
   @extend .btn;
   @extend .btn-fill--orange;
-  width: 30%;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  width: 43%;
+  border-radius: 0;
   font-weight: 500;
   height: 2.5em;
   font-size: 1.2em;
+  @media screen and (min-width: 390px) {
+    width: 35%;
+  }
+  @media screen and (min-width: 1400px) {
+    width: 30%;
+  }
   @media screen and (min-width: $md-tablet-breakpoint) {
     height: 2.8em;
     font-size: 1.5em;
@@ -109,11 +136,12 @@ $sm-monitor-breakpoint: 1920px;
   @media screen and (min-width: $md-mobile-breakpoint) {
     width: 95%;
   }
-  @media screen and (min-width: $sm-tablet-breakpoint) {
+  @media screen and (min-width: 650px) {
     width: 75%;
     padding: 25px;
   }
   @media screen and (min-width: 1200px) {
+    max-width: 750px;
     width: 50%;
     padding: 25px;
   }
@@ -125,11 +153,13 @@ $sm-monitor-breakpoint: 1920px;
 
 .section--translucent-background {
   @extend .section;
+  border-radius: 5px;
   background-color: rgba(74, 74, 74, 0.95);
   @media screen and (max-width: $md-mobile-breakpoint) {
     padding: 20px 0 20px 0;
   }
   @media screen and (min-width: $sm-tablet-breakpoint) {
     padding: 20px 10px 20px 10px;
+    max-width: 816px;
   }
 }
