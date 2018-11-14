@@ -64,7 +64,9 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     };
 
     $scope.showVRPreview = function(listing, index) {
-      $scope.pagedItems[$scope.currentPage - 1][index].isBeingPreviewed = true;
+      killWizioTourPreview();
+      console.dir(index);
+      listing.isBeingPreviewed = true;
       $scope.showVRPreviewEnabled = true;
       setTimeout(function() {
         $scope.$broadcast("TourDataReceived", {
@@ -154,8 +156,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
     }
 
-    function changePaginationState(changePageValue) {
-      console.dir($scope.pagedItems);
+    function killWizioTourPreview() {
       if ($scope.pagedItems) {
         for (
           var i = 0;
@@ -174,6 +175,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           }
         }
       }
+    }
+
+    function changePaginationState(changePageValue) {
+      killWizioTourPreview();
       if (changePageValue <= $scope.lastPage && changePageValue >= 1) {
         $scope.currentPage = changePageValue;
 
