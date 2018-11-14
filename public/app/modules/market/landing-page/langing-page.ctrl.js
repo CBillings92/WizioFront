@@ -43,6 +43,9 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
       }
 
       function addDataToLocalStore(localStoreKey, newDataKey, newData) {
+        if (!localStorage.getItem(localStoreKey)) {
+          localStorage.setItem(localStoreKey, JSON.stringify({}));
+        }
         var localStore = JSON.parse(localStorage.getItem(localStoreKey));
         localStore[newDataKey] = newData;
         localStorage.setItem(localStoreKey, JSON.stringify(localStore));
