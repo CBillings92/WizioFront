@@ -3,6 +3,25 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   "$state",
   function($scope, $state) {
     var pageCountLimit = 5;
+    var activeBedButtonIndex = 0;
+
+    $scope.filterPanelActive = false;
+    $scope.toggleFilterPanel = function() {
+      $scope.filterPanelActive = !$scope.filterPanelActive;
+    };
+
+    $scope.filter = {
+      minPrice: {
+        value: null
+      },
+      maxPrice: {
+        value: null
+      },
+      minBeds: {
+        value: 0
+      }
+    };
+
     $scope.bedOptions = [
       { text: "Studio", value: 0, isActive: true },
       { text: "1+", value: 1, isActive: false },
@@ -11,13 +30,32 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       { text: "4+", value: 4, isActive: false }
     ];
 
-    $scope.toggleButtonClass = function(button) {
-      console.dir(button);
-      button.isActive = !button.isActive;
-      console.dir(button);
+    $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
+    for (var i = 0; i < $scope.listings.length; i++) {
+      $scope.listings[i].isFiltered = false;
+    }
+    for (var i = 0; i < 100; i++) {
+      $scope.listings.push({
+        SubscriptionApartment: {
+          Listing: {
+            Beds: Math.floor(Math.random() * 6) + 1,
+            Lease: {
+              RentAmount: Math.floor(Math.random() * 10000) + 1000
+            }
+          }
+        }
+      });
+    }
+    console.dir($scope.listings);
+
+    $scope.bedFilterSelection = function(bedOption) {
+      $scope.bedOptions[activeBedButtonIndex].isActive = false;
+      activeBedButtonIndex = bedOption.value;
+      bedOption.isActive = !bedOption.isActive;
+      $scope.filter.minBeds.value = bedOption.value;
+      $scope.filterListings();
     };
 
-    $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
     $scope.showVRPreviewEnabled = false;
 
     // Navigate to a tour page
@@ -26,9 +64,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     };
 
     $scope.showVRPreview = function(listing, index) {
-      $scope.pageCountLimit[$scope.currentPage - 1][
-        index
-      ].isBeingPreviewed = true;
+      $scope.pagedItems[$scope.currentPage - 1][index].isBeingPreviewed = true;
       $scope.showVRPreviewEnabled = true;
       setTimeout(function() {
         $scope.$broadcast("TourDataReceived", {
@@ -39,6 +75,40 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           navpoints: []
         });
       }, 500);
+    };
+
+    $scope.filterListings = function() {
+      var filteredListings = [];
+
+      for (var i = 0; i < $scope.listings.length; i++) {
+        $scope.listings[i].SubscriptionApartment.Listing.Beds = Number(
+          $scope.listings[i].SubscriptionApartment.Listing.Beds
+        )
+          .toFixed(2)
+          .replace(/[.,]00$/, "");
+        $scope.listings[i].SubscriptionApartment.Listing.Baths = Number(
+          $scope.listings[i].SubscriptionApartment.Listing.Baths
+        )
+          .toFixed(2)
+          .replace(/[.,]00$/, "");
+        var listing = $scope.listings[i];
+        var rentAmount =
+          $scope.listings[i].SubscriptionApartment.Listing.Lease.RentAmount;
+        var minPriceFilter = Math.max($scope.filter.minPrice.value, 0);
+        var maxPriceFilter = $scope.filter.maxPrice.value || 100000;
+        var minBedsFilter = $scope.filter.minBeds.value;
+        if (
+          rentAmount >= minPriceFilter &&
+          rentAmount <= maxPriceFilter &&
+          listing.SubscriptionApartment.Listing.Beds >= minBedsFilter
+        ) {
+          filteredListings.push($scope.listings[i]);
+        } else {
+          $scope.listings[i].isFiltered = true;
+        }
+      }
+      initPaging(filteredListings);
+      $scope.filteredListings = filteredListings;
     };
 
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -52,6 +122,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     function changePrevBtnState() {
       if ($scope.currentPage === 1) {
         $scope.prevDisabled = true;
+      } else {
+        $scope.prevDisabled = false;
       }
     }
 
@@ -83,6 +155,25 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function changePaginationState(changePageValue) {
+      console.dir($scope.pagedItems);
+      if ($scope.pagedItems) {
+        for (
+          var i = 0;
+          i < $scope.pagedItems[$scope.currentPage - 1].length;
+          i++
+        ) {
+          if (
+            $scope.pagedItems[$scope.currentPage - 1][i].isBeingPreviewed ===
+            true
+          ) {
+            wizio.kll();
+            $scope.pagedItems[$scope.currentPage - 1][
+              i
+            ].isBeingPreviewed = false;
+            break;
+          }
+        }
+      }
       if (changePageValue <= $scope.lastPage && changePageValue >= 1) {
         $scope.currentPage = changePageValue;
 
@@ -113,17 +204,17 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function initPaging(listings) {
-      // for (var i = 0; i < 100; i++) {
-      //   listings.push({});
-      // }
       $scope.currentPage = 1;
-      var totalPages = Math.floor(listings.count / pageCountLimit);
-      if (listings.count % pageCountLimit > 0) {
+      var totalPages = Math.max(
+        Math.floor(listings.length / pageCountLimit),
+        1
+      );
+      if (listings.length % pageCountLimit > 0) {
         totalPages += 1;
       }
       $scope.pagedItems = [];
 
-      for (var i = 0; i < $scope.listings.length; i++) {
+      for (var i = 0; i < listings.length; i++) {
         if (i % pageCountLimit === 0) {
           $scope.pagedItems[Math.floor(i / pageCountLimit)] = [listings[i]];
         } else {

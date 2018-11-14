@@ -4,13 +4,16 @@
 }
 
 .listing-tiles-pagination-container {
-  height: 8%;
+  height: 6%;
   width: 100%;
   text-align: center;
   vertical-align: middle;
   background-color: white;
   z-index: 100;
   box-shadow: 0 6px 10px 10px rgba(0, 0, 0, 0.33);
+  position: absolute;
+  bottom: 0;
+  padding: 5px 0 5px 0;
 }
 
 .listing-tile {
@@ -147,6 +150,7 @@
   position: relative;
   z-index: 100;
   box-shadow: -5px 0 15px -5px rgba(0, 0, 0, 0.6);
+  display: none;
   @media screen and (min-width: 767px) {
     width: auto;
     overflow: hidden;
@@ -170,7 +174,7 @@
 }
 
 .search-filter-bar__btn {
-  width: 20%;
+  width: 100%;
   float: left;
   border-radius: 0;
   border: 1px solid black;
@@ -277,4 +281,48 @@
 .filter-panel__pet-friendly-btn {
   width: 120px;
   height: 45px;
+}
+
+.toggle--fill-orange {
+  padding: 6px 18px;
+  color: $white;
+  border: none;
+  border: 2px solid $orange;
+  transition: background-color 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
+  background-color: $orange;
+  &:focus {
+    outline: none;
+  }
+}
+
+.toggle--outline-orange {
+  border: 2px solid $orange;
+  padding: 6px 18px;
+  color: $orange;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out;
+  &:active {
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.pagination {
+  margin: 0;
+}
+
+.btn-pagination {
+  margin: 0;
+  border: 1px solid black;
+  border-radius: 0;
+  float: left;
+  padding: 5px 10px;
+}
+
+.pagination-ellipses {
+  margin: 10px 5px 0 5px;
+  font-weight: bold;
 }
