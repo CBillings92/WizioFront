@@ -2,7 +2,7 @@
     <section id="search-filter-bar" class="search-bar-section">
         <div class="filter-tab-container">
             <button class="btn btn-fill--blue search-filter-bar__btn" ng-click="toggleFilterPanel()">
-                <i class="fas fa-filter"></i>
+                <!-- <i class="fas fa-filter"></i> -->Filter
             </button>
         </div>
         <div class="search-bar-container">
@@ -61,13 +61,13 @@
                     <div class="listing-tile__map"></div>
                     <div class="listing-tile__preview">
                         <vr-player-dir ng-if="listing.isBeingPreviewed"></vr-player-dir>
-                        <img class="listing-tile__img" ng-if="!listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)" src="https://d1mze0h82dkhhe.cloudfront.net/6bbc6427-f349-44ac-a15b-5e431d301acd/Kitchen%20(A).JPG"
+                        <img class="listing-tile__img" ng-if="!listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)" src="https://d1mze0h82dkhhe.cloudfront.net/aed455fc-59c0-4401-ab76-6d4f436ba496/Kitchen%20Center.JPG"
                             alt="">
                     </div>
                 </div>
                 <div class="listing-tile__bottom-content" ng-click="viewTour(listing) ">
                     <div class="listing-tile__title light-orange" ng-click="viewTour(listing) ">
-                        South Street, Jamaica Plain
+                        {{listing.Apartment.RouteShortName + ', ' + listing.Apartment.NeighborhoodShortName}}
                     </div>
                     <div class="listing-tile__metadata">
                         <div class="listing-tile__metadata__row">
@@ -81,7 +81,7 @@
                                 {{listing.SubscriptionApartment.Listing.Beds}} Bed
                                 </i></div>
                             <div class="listing-tile__data-point--sml text-align-center"><i class="fa fa-bath fa-lg gray"></i>
-                                2 Bath</div>
+                                {{listing.SubscriptionApartment.Listing.Baths}} Bath</div>
                             <div class="listing-tile__data-point--sml text-align-right">
                                 <i class="fa-lg fa fa-dog gray"></i> <i class="fa fa-lg fa-cat gray"></i> OK
                             </div>

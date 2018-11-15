@@ -9,6 +9,16 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
       agentId: $state.params.agentid
     };
 
+    addEventListener("load", initMarketLandingPage, false);
+
+    function initMarketLandingPage() {
+      var input = document.getElementById("search-bar");
+      console.dir(input);
+      autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ["geocode"]
+      });
+    }
+
     $scope.submitMarketSearch = function() {
       return $q(function(resolve, reject) {
         $scope.searchInProgress = true;

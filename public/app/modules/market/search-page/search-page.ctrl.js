@@ -2,8 +2,9 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   "$scope",
   "$state",
   "$q",
+  "$window",
   "MarketFct",
-  function($scope, $state, $q, MarketFct) {
+  function($scope, $state, $q, $window, MarketFct) {
     var pageCountLimit = 12;
     var activeBedButtonIndex = 0;
 
@@ -83,6 +84,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     // Navigate to a tour page
     $scope.viewTour = function(listing) {
+      killWizioTourPreview();
       return $state.go("Listing", { listingUUID: listing.pubid });
     };
 
@@ -94,7 +96,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.$broadcast("TourDataReceived", {
           title: "preview",
           imageUrls: [
-            "https://d1mze0h82dkhhe.cloudfront.net/6bbc6427-f349-44ac-a15b-5e431d301acd/Kitchen%20(A).JPG"
+            "https://d1mze0h82dkhhe.cloudfront.net/aed455fc-59c0-4401-ab76-6d4f436ba496/Kitchen%20Center.JPG"
           ],
           navpoints: []
         });
@@ -224,6 +226,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         changePrevBtnState();
         changeNextBtnState();
         changeEllipsesState();
+        document.getElementById("listing-tiles-container").scrollTop = 0;
       }
     }
 
@@ -250,6 +253,21 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       $scope.lastPage = $scope.pagedItems.length;
 
+      var markers = listings.map(function(listing, i) {
+        return new google.maps.Marker({
+          position: {
+            lat: listing.Apartment.latitude,
+            lng: listing.Apartment.longitude
+          }
+          // label: labels[i % labels.length]
+        });
+      });
+
+      var markerCluster = new MarkerClusterer(map, markers, {
+        imagePath:
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+      });
+
       changePaginationState(1);
     }
     $scope.changePaginationState = changePaginationState;
@@ -261,6 +279,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       for (var i = 0; i < 100; i++) {
         $scope.listings.push({
+          Apartment: {
+            latitude: 0,
+            longitude: 0
+          },
           SubscriptionApartment: {
             Listing: {
               Beds: Math.floor(Math.random() * 6) + 1,

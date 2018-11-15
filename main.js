@@ -21,8 +21,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
-app.use("/bower_components", express.static(path.join(__dirname, "bower_components")));
-app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+app.use(
+  "/bower_components",
+  express.static(path.join(__dirname, "bower_components"))
+);
+app.use("node_modules", express.static(path.join(__dirname, "node_modules")));
 
 app.use("/", routes);
 // catch 404 and forward to error handler
