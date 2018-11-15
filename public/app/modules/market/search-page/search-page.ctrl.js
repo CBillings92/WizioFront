@@ -96,7 +96,11 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.$broadcast("TourDataReceived", {
           title: "preview",
           imageUrls: [
-            'https://d1mze0h82dkhhe.cloudfront.net/' + listing.SubscriptionApartment.pubid + '/' + listing.SubscriptionApartment.Media[0].title + '.JPG'
+            "https://d1mze0h82dkhhe.cloudfront.net/" +
+              listing.SubscriptionApartment.pubid +
+              "/" +
+              listing.SubscriptionApartment.Media[0].title +
+              ".JPG"
           ],
           navpoints: []
         });
@@ -254,13 +258,17 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       $scope.lastPage = $scope.pagedItems.length;
 
       var markers = listings.map(function(listing, i) {
-        return new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: {
             lat: listing.Apartment.latitude,
             lng: listing.Apartment.longitude
           }
           // label: labels[i % labels.length]
         });
+        marker.addListener("click", function() {
+          $scope.viewTour({ pubid: listing.pubid });
+        });
+        return marker;
       });
 
       var markerCluster = new MarkerClusterer(map, markers, {
