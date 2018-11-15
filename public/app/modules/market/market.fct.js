@@ -48,6 +48,18 @@ angular.module("MarketApp").factory("MarketFct", [
 
     function submitMarketSearch(marketSearch) {
       return $q(function(resolve, reject) {
+        if (!marketSearch.agentId || marketSearch.agentId === "") {
+          return reject({
+            status: "error",
+            function: "submitMarketSearch",
+            message: "No AgentId provided for market search"
+          });
+        }
+
+        if (!marketSearch.addressBar || marketSearch.addressBar === "") {
+          marketSearch.addressBar = "Boston, MA";
+        }
+
         $resource(WizioConfig.baseAPIURL + "marketsearch").save(
           marketSearch,
           function(response) {
@@ -57,9 +69,35 @@ angular.module("MarketApp").factory("MarketFct", [
       });
     }
 
+    function updateLocalStorage(key, data) {
+      if (localStorage.getItem(key)) {
+        localStorage.removeItem(key);
+      }
+
+      localStorage.setItem(key, JSON.stringify(data));
+      return;
+    }
+
+    function getLocalStorageData(key) {
+      return JSON.parse(localStorage.getItem(key));
+    }
+
+    function addDataToLocalStore(localStoreKey, newDataKey, newData) {
+      if (!localStorage.getItem(localStoreKey)) {
+        localStorage.setItem(localStoreKey, JSON.stringify({}));
+      }
+      var localStore = JSON.parse(localStorage.getItem(localStoreKey));
+      localStore[newDataKey] = newData;
+      localStorage.setItem(localStoreKey, JSON.stringify(localStore));
+      return;
+    }
+
     return {
       init: init,
-      submitMarketSearch: submitMarketSearch
+      submitMarketSearch: submitMarketSearch,
+      addDataToLocalStore: addDataToLocalStore,
+      getLocalStorageData: getLocalStorageData,
+      updateLocalStorage: updateLocalStorage
     };
   }
 ]);

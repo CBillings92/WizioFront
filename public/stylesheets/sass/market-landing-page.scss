@@ -133,15 +133,14 @@ $sm-monitor-breakpoint: 1920px;
 
 .section {
   width: 100%;
-  @media screen and (min-width: $md-mobile-breakpoint) {
-    width: 95%;
-  }
+  // @media screen and (min-width: $md-mobile-breakpoint) {
+  //   width: 95%;
+  // }
   @media screen and (min-width: 650px) {
     width: 75%;
     padding: 25px;
   }
   @media screen and (min-width: 1200px) {
-    max-width: 750px;
     width: 50%;
     padding: 25px;
   }

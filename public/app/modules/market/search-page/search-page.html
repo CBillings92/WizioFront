@@ -6,10 +6,24 @@
             </button>
         </div>
         <div class="search-bar-container">
-            <input type="text"></input>
-            <button class="btn btn-fill--orange btn-search">
+            <input type="text" id="search-bar" class="search-bar__input" ng-model="marketSearch.addressBar"></input>
+            <button class="btn btn-fill--orange search-bar__btn" ng-model="marketSearch" ng-click="submitMarketSearch()">
                 Search
             </button>
+        </div>
+        <div class="expanded-filters-container">
+            <div class="expanded-filter">
+                    <div class="filter-title">Beds</div>
+                    <button ng-click="bedFilterSelection(bedOption)" ng-class="{'toggle--fill-orange': bedOption.isActive, 'toggle--outline-orange': !bedOption.isActive}"
+                    ng-repeat="bedOption in bedOptions">{{bedOption.text}}</button>
+            </div>
+            <div class="expanded-filter">
+            <div class="filter-title">Price</div>
+
+                <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings()" ng-model="filter.minPrice.value" placeholder="min">
+                <span class="filter-panel__price-range-dash">-</span>
+                <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings()" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
+            </div>
         </div>
         <!-- <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-bed"></i></button>
             <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-bath"></i></button>
@@ -18,7 +32,7 @@
     <section id="filter-panel" ng-if="filterPanelActive" class="filter-panel">
         <div class="filter-panel__beds">
             <div class="filter-title">Beds</div>
-            <div>
+            <div class="filter__toggle-button-container">
                 <button ng-click="bedFilterSelection(bedOption)" ng-class="{'toggle--fill-orange': bedOption.isActive, 'toggle--outline-orange': !bedOption.isActive}"
                     ng-repeat="bedOption in bedOptions">{{bedOption.text}}</button>
             </div>

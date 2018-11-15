@@ -1,14 +1,23 @@
 angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   "$scope",
   "$state",
-  function($scope, $state) {
-    var pageCountLimit = 5;
+  "$q",
+  "MarketFct",
+  function($scope, $state, $q, MarketFct) {
+    var pageCountLimit = 12;
     var activeBedButtonIndex = 0;
 
     $scope.filterPanelActive = false;
     $scope.toggleFilterPanel = function() {
       $scope.filterPanelActive = !$scope.filterPanelActive;
     };
+
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById("search-bar"),
+      {
+        types: ["geocode"]
+      }
+    );
 
     $scope.filter = {
       minPrice: {
@@ -30,24 +39,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       { text: "4+", value: 4, isActive: false }
     ];
 
-    $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
-    for (var i = 0; i < $scope.listings.length; i++) {
-      $scope.listings[i].isFiltered = false;
-    }
-    for (var i = 0; i < 100; i++) {
-      $scope.listings.push({
-        SubscriptionApartment: {
-          Listing: {
-            Beds: Math.floor(Math.random() * 6) + 1,
-            Lease: {
-              RentAmount: Math.floor(Math.random() * 10000) + 1000
-            }
-          }
-        }
-      });
-    }
-    console.dir($scope.listings);
-
     $scope.bedFilterSelection = function(bedOption) {
       $scope.bedOptions[activeBedButtonIndex].isActive = false;
       activeBedButtonIndex = bedOption.value;
@@ -58,6 +49,38 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     $scope.showVRPreviewEnabled = false;
 
+    $scope.marketSearch = {
+      agentId: "d089b1ff-af8b-40dc-a8ea-9220b18160e9",
+      addressBar: "Jamaica Plain"
+    };
+    $scope.dataLoaded = true;
+    $scope.submitMarketSearch = function() {
+      $scope.dataLoaded = false;
+      return $q(function(resolve, reject) {
+        $scope.searchInProgress = true;
+
+        MarketFct.addDataToLocalStore(
+          "wizio",
+          "lastMarketSearchCriteria",
+          $scope.marketSearch
+        );
+
+        MarketFct.submitMarketSearch($scope.marketSearch)
+          .then(function(response) {
+            $scope.dataLoaded = true;
+            MarketFct.addDataToLocalStore(
+              "wizio",
+              "listings",
+              response.payload
+            );
+            initMarket();
+          })
+          .catch(function(err) {
+            console.error(err);
+          });
+      });
+    };
+
     // Navigate to a tour page
     $scope.viewTour = function(listing) {
       return $state.go("Listing", { listingUUID: listing.pubid });
@@ -65,7 +88,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     $scope.showVRPreview = function(listing, index) {
       killWizioTourPreview();
-      console.dir(index);
       listing.isBeingPreviewed = true;
       $scope.showVRPreviewEnabled = true;
       setTimeout(function() {
@@ -119,8 +141,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       mapTypeId: "roadmap"
     });
 
-    initPaging($scope.listings);
-
     function changePrevBtnState() {
       if ($scope.currentPage === 1) {
         $scope.prevDisabled = true;
@@ -130,8 +150,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function changeNextBtnState() {
-      console.dir($scope.lastPage);
-      console.dir($scope.currentPage);
       if ($scope.lastPage === $scope.currentPage) {
         $scope.nextDisabled = true;
       } else {
@@ -157,7 +175,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function killWizioTourPreview() {
-      if ($scope.pagedItems) {
+      if (
+        $scope.pagedItems &&
+        $scope.pagedItems[$scope.currentPage - 1].length !== 0
+      ) {
         for (
           var i = 0;
           i < $scope.pagedItems[$scope.currentPage - 1].length;
@@ -200,8 +221,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
         $scope.clickablePages[$scope.lastPage] = 1;
 
-        console.dir($scope.clickablePages);
-
         changePrevBtnState();
         changeNextBtnState();
         changeEllipsesState();
@@ -214,24 +233,50 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         Math.floor(listings.length / pageCountLimit),
         1
       );
-      if (listings.length % pageCountLimit > 0) {
+      if (listings.length % pageCountLimit > 0 && listings.length !== 0) {
         totalPages += 1;
       }
       $scope.pagedItems = [];
-
+      console.dir(listings.length);
       for (var i = 0; i < listings.length; i++) {
         if (i % pageCountLimit === 0) {
-          $scope.pagedItems[Math.floor(i / pageCountLimit)] = [listings[i]];
+          $scope.pagedItems.push([]);
+          if (listings.length > 0 && i % pageCountLimit === 0) {
+            $scope.pagedItems[Math.floor(i / pageCountLimit)].push(listings[i]);
+          }
         } else {
           $scope.pagedItems[Math.floor(i / pageCountLimit)].push(listings[i]);
         }
       }
-      console.dir($scope.pagedItems);
       $scope.lastPage = $scope.pagedItems.length;
 
       changePaginationState(1);
     }
     $scope.changePaginationState = changePaginationState;
+
+    function initMarket() {
+      $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
+      for (var i = 0; i < $scope.listings.length; i++) {
+        $scope.listings[i].isFiltered = false;
+      }
+      for (var i = 0; i < 100; i++) {
+        $scope.listings.push({
+          SubscriptionApartment: {
+            Listing: {
+              Beds: Math.floor(Math.random() * 6) + 1,
+              Lease: {
+                RentAmount: Math.floor(Math.random() * 10000) + 1000
+              }
+            }
+          }
+        });
+
+        initPaging($scope.listings);
+        $scope.filterListings();
+      }
+    }
+
+    initMarket();
 
     // var cityCircle = new google.maps.Circle({
     //   strokeColor: "#F79739",
