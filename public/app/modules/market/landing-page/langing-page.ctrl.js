@@ -37,7 +37,7 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
               "listings",
               response.payload
             );
-            $state.go("SearchMarket", { area: "Jamaica-Plain" });
+            $state.go("SearchMarket", { area: $scope.marketSearch.addressBar });
           })
           .catch(function(err) {
             console.error(err);

@@ -96,7 +96,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.$broadcast("TourDataReceived", {
           title: "preview",
           imageUrls: [
-            "https://d1mze0h82dkhhe.cloudfront.net/aed455fc-59c0-4401-ab76-6d4f436ba496/Kitchen%20Center.JPG"
+            'https://d1mze0h82dkhhe.cloudfront.net/' + listing.SubscriptionApartment.pubid + '/' + listing.SubscriptionApartment.Media[0].title + '.JPG'
           ],
           navpoints: []
         });
