@@ -244,7 +244,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         totalPages += 1;
       }
       $scope.pagedItems = [];
-      console.dir(listings.length);
       for (var i = 0; i < listings.length; i++) {
         if (i % pageCountLimit === 0) {
           $scope.pagedItems.push([]);
@@ -285,25 +284,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
       }
-      for (var i = 0; i < 100; i++) {
-        $scope.listings.push({
-          Apartment: {
-            latitude: 0,
-            longitude: 0
-          },
-          SubscriptionApartment: {
-            Listing: {
-              Beds: Math.floor(Math.random() * 6) + 1,
-              Lease: {
-                RentAmount: Math.floor(Math.random() * 10000) + 1000
-              }
-            }
-          }
-        });
-
-        initPaging($scope.listings);
-        $scope.filterListings();
-      }
+      initPaging($scope.listings);
+      $scope.filterListings();
     }
 
     initMarket();
