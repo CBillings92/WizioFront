@@ -5,77 +5,101 @@ var request = require("request");
 var config = require("../config");
 
 router.get("/tour/:tourid", function(req, res, next) {
-  request(config.backendAPIURL + "activelisting/socialshare/" + req.params.tourid, function(err, apires, body) {
-    var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
-    var description = "";
-    var title = "360 Virtual Tour";
-    var neighborhood = "";
-    var locality = "";
-    var broughtToYouBy = "";
-    if (body) {
-      console.dir(body.Media);
-      try {
-        var body = JSON.parse(body);
-        /* Build out dynamic URL */
-        url =
-          config.s3bucketURL +
-          "/1000x500/" +
-          body.SubscriptionApartment.pubid +
-          "/" +
-          encodeURIComponent(body.Media[0].title) +
-          ".JPG";
-        description = "See virtual reality tour";
-        if (body.SubscriptionApartment.Listing.Description && body.SubscriptionApartment.Listing.Description !== "") {
-          description = body.SubscriptionApartment.Listing.Description;
-        }
-        if (body.Media[body.Media.length - 1].BusinessName) {
-          broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
-          description = broughtToYouBy + " " + description;
-        }
-        title =
-          body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
-        /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
-        if (
-          body.SubscriptionApartment.Listing.Beds === 0 &&
-          body.SubscriptionApartment.Listing.Baths === 0 &&
-          !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
-          !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
-          body.SubscriptionApartment.Listing.Lease.RentAmount == 0
-        ) {
-          title = "Real estate virtual tour";
-        }
-        /* Check if we have neighborhood data for the title */
-        if (body.Apartment.neighborhood && body.Apartment.neighborhood !== "") {
-          title = title + " in " + body.Apartment.neighborhood;
-        }
-        /* check if we have city data for the title */
+  request(
+    config.backendAPIURL + "activelisting/socialshare/" + req.params.tourid,
+    function(err, apires, body) {
+      var url =
+        "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
+      var description = "";
+      var title = "360 Virtual Tour";
+      var neighborhood = "";
+      var locality = "";
+      var broughtToYouBy = "";
+      if (body) {
+        console.dir(body.Media);
+        try {
+          var body = JSON.parse(body);
+          /* Build out dynamic URL */
+          url =
+            config.s3bucketURL +
+            "/1000x500/" +
+            body.SubscriptionApartment.pubid +
+            "/" +
+            encodeURIComponent(body.Media[0].title) +
+            ".JPG";
+          description = "See virtual reality tour";
+          if (
+            body.SubscriptionApartment.Listing.Description &&
+            body.SubscriptionApartment.Listing.Description !== ""
+          ) {
+            description = body.SubscriptionApartment.Listing.Description;
+          }
+          if (body.Media[body.Media.length - 1].BusinessName) {
+            broughtToYouBy =
+              "Lisiting By - " +
+              body.Media[body.Media.length - 1].BusinessName +
+              ":";
+            description = broughtToYouBy + " " + description;
+          }
+          title =
+            body.SubscriptionApartment.Listing.Beds +
+            " bed, " +
+            body.SubscriptionApartment.Listing.Baths +
+            " bath unit";
+          /* Check if we have a filled out listing for the title. If no filled out listing make title generic. */
+          if (
+            body.SubscriptionApartment.Listing.Beds === 0 &&
+            body.SubscriptionApartment.Listing.Baths === 0 &&
+            !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
+            !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
+            body.SubscriptionApartment.Listing.Lease.RentAmount == 0
+          ) {
+            title = "Real estate virtual tour";
+          }
+          /* Check if we have neighborhood data for the title */
+          if (
+            body.Apartment.neighborhood &&
+            body.Apartment.neighborhood !== ""
+          ) {
+            title = title + " in " + body.Apartment.neighborhood;
+          }
+          /* check if we have city data for the title */
 
-        if (body.Apartment.locality && body.Apartment.locality !== "") {
-          title = title + ", " + body.Apartment.locality;
+          if (body.Apartment.locality && body.Apartment.locality !== "") {
+            title = title + ", " + body.Apartment.locality;
+          }
+          /* check if we have rent/price data for title */
+          if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
+            title =
+              title +
+              " - $" +
+              body.SubscriptionApartment.Listing.Lease.RentAmount;
+          }
+        } catch (e) {
+          console.dir(e);
+        } finally {
+          res.render("index", {
+            title: "Express",
+            ogTitle: title,
+            ogImageContent: url,
+            ogDescription: description,
+            ogUrl: config.frontendURL + "/tour/" + req.params.tourid
+          });
         }
-        /* check if we have rent/price data for title */
-        if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
-          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.RentAmount;
-        }
-      } catch (e) {
-        console.dir(e);
-      } finally {
-        res.render("index", {
-          title: "Express",
-          ogTitle: title,
-          ogImageContent: url,
-          ogDescription: description,
-          ogUrl: config.frontendURL + "/tour/" + req.params.tourid
-        });
       }
     }
-  });
+  );
 });
 
-router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(req, res, next) {
+router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(
+  req,
+  res,
+  next
+) {
   res.render("index", {
     title: "Express",
-    ogImageContent: "https://cdn.wizio.co/1000x500/a48065f3-6be0-41a5-a23c-b502ccee8c31/Kitchen.JPG",
+    ogImageContent:
+      "https://cdn.wizio.co/1000x500/a48065f3-6be0-41a5-a23c-b502ccee8c31/Kitchen.JPG",
     ogDescription:
       "Fantastic 2 bed 1 bath available in Mission Hill. The unit is easily accessible by the MBTA - just a 10 minute walk to the Green Line E train or a few minutes walk to the 14 Bus Route! Hop on the T and get to downtown Boston in 45 minutes. Local night life, restaurants, super markets and convenience stores can also be found within a quick 10 minute walk. Unit is incredibly spacious with an additional basement room that can be used for storage or as an office. Split level offers unique look and feel. This is an unbeatable price for the size and location of this unit!",
     ogUrl: "https://www.wizio.co/listing/a3885803-1100-450f-931d-fbb53b6ed410",
@@ -84,72 +108,93 @@ router.get("/listing/a3885803-1100-450f-931d-fbb53b6ed410", function(req, res, n
 });
 
 router.get("/listing/:tourid", function(req, res, next) {
-  request(config.backendAPIURL + "activelisting/socialshare/" + req.params.tourid, function(err, apires, body) {
-    var url = "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
-    var description = "";
-    var title = "360 Virtual Tour";
-    var neighborhood = "";
-    var locality = "";
-    if (body) {
-      try {
-        var body = JSON.parse(body);
-        url =
-          config.s3bucketURL +
-          "/1000x500/" +
-          body.Media[0].SubscriptionApartmentPubId +
-          "/" +
-          encodeURIComponent(body.Media[0].title) +
-          ".JPG";
-        description = "See virtual reality tour";
-        if (body.SubscriptionApartment.Listing.Description && body.SubscriptionApartment.Listing.Description !== "") {
-          description = body.SubscriptionApartment.Listing.Description;
+  request(
+    config.backendAPIURL + "activelisting/socialshare/" + req.params.tourid,
+    function(err, apires, body) {
+      var url =
+        "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG";
+      var description = "";
+      var title = "360 Virtual Tour";
+      var neighborhood = "";
+      var locality = "";
+      console.dir(body);
+      if (body) {
+        try {
+          var body = JSON.parse(body);
+          url =
+            config.s3bucketURL +
+            "1000x500/" +
+            body.SubscriptionApartment.pubid +
+            "/" +
+            encodeURIComponent(body.Media[0].title) +
+            ".JPG";
+          description = "See virtual reality tour";
+          if (
+            body.SubscriptionApartment.Listing.Description &&
+            body.SubscriptionApartment.Listing.Description !== ""
+          ) {
+            description = body.SubscriptionApartment.Listing.Description;
+          }
+          if (body.Media[body.Media.length - 1].BusinessName) {
+            broughtToYouBy =
+              "Lisiting By - " +
+              body.Media[body.Media.length - 1].BusinessName +
+              ":";
+            description = broughtToYouBy + " " + description;
+          }
+          title =
+            body.SubscriptionApartment.Listing.Beds +
+            " bed, " +
+            body.SubscriptionApartment.Listing.Baths +
+            " bath unit";
+          if (
+            body.SubscriptionApartment.Listing.Beds === 0 &&
+            body.SubscriptionApartment.Listing.Baths === 0 &&
+            !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
+            !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
+            body.SubscriptionApartment.Listing.Lease.RentAmount == 0
+          ) {
+            title = "Real estate virtual tour";
+          }
+          if (
+            body.Apartment.neighborhood &&
+            body.Apartment.neighborhood !== ""
+          ) {
+            title = title + " in " + body.Apartment.neighborhood;
+          }
+          if (body.Apartment.locality && body.Apartment.locality !== "") {
+            title = title + ", " + body.Apartment.locality;
+          }
+          /* check if we have rent/price data for title */
+          if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
+            title =
+              title +
+              " - $" +
+              body.SubscriptionApartment.Listing.Lease.RentAmount;
+          }
+        } catch (e) {
+          console.dir(e);
+        } finally {
+          res.render("index", {
+            title: "Express",
+            ogTitle: title,
+            ogImageContent: url,
+            ogDescription: description,
+            ogUrl: config.frontendURL + "/tour/" + req.params.tourid,
+            mailchimpPopUpScriptOne:
+              '<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us10.list-manage.com","uuid":"dd1716a846e7e35a09a1562a9","lid":"973bf1b4ca"}) })</script>'
+          });
         }
-        if (body.Media[body.Media.length - 1].BusinessName) {
-          broughtToYouBy = "Lisiting By - " + body.Media[body.Media.length - 1].BusinessName + ":";
-          description = broughtToYouBy + " " + description;
-        }
-        title =
-          body.SubscriptionApartment.Listing.Beds + " bed, " + body.SubscriptionApartment.Listing.Baths + " bath unit";
-        if (
-          body.SubscriptionApartment.Listing.Beds === 0 &&
-          body.SubscriptionApartment.Listing.Baths === 0 &&
-          !body.SubscriptionApartment.Listing.Lease.LeaseEndDate &&
-          !body.SubscriptionApartment.Listing.Lease.LeaseStartDate &&
-          body.SubscriptionApartment.Listing.Lease.RentAmount == 0
-        ) {
-          title = "Real estate virtual tour";
-        }
-        if (body.Apartment.neighborhood && body.Apartment.neighborhood !== "") {
-          title = title + " in " + body.Apartment.neighborhood;
-        }
-        if (body.Apartment.locality && body.Apartment.locality !== "") {
-          title = title + ", " + body.Apartment.locality;
-        }
-        /* check if we have rent/price data for title */
-        if (body.SubscriptionApartment.Listing.Lease.RentAmount !== 0) {
-          title = title + " - $" + body.SubscriptionApartment.Listing.Lease.RentAmount;
-        }
-      } catch (e) {
-        console.dir(e);
-      } finally {
-        res.render("index", {
-          title: "Express",
-          ogTitle: title,
-          ogImageContent: url,
-          ogDescription: description,
-          ogUrl: config.frontendURL + "/tour/" + req.params.tourid,
-          mailchimpPopUpScriptOne:
-            '<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us10.list-manage.com","uuid":"dd1716a846e7e35a09a1562a9","lid":"973bf1b4ca"}) })</script>'
-        });
       }
     }
-  });
+  );
 });
 
 router.get("/*", function(req, res, next) {
   res.render("index", {
     title: "Express",
-    ogImageContent: "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG",
+    ogImageContent:
+      "https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG",
     ogDescription: "VR-based online marketplace and on-demand content service.",
     ogTitle: "Wizio - Virtual Reality Tours for Real Estate",
     ogUrl: config.frontendURL
