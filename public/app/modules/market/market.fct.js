@@ -63,7 +63,13 @@ angular.module("MarketApp").factory("MarketFct", [
         $resource(WizioConfig.baseAPIURL + "marketsearch").save(
           marketSearch,
           function(response) {
-            return resolve(response);
+            console.dir(response);
+            if (response.success) {
+              return resolve(response);
+            } else {
+              alert(response.message);
+              return reject(response);
+            }
           }
         );
       });

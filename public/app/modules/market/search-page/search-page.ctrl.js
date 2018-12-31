@@ -281,11 +281,21 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     function initMarket() {
       $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
+      addTestListings(100);
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
       }
       initPaging($scope.listings);
       $scope.filterListings();
+    }
+
+    function addTestListings(numberOfTestListings) {
+      var actualListingCount = $scope.listings.length;
+      for (var i = 0; i < numberOfTestListings; i++) {
+        $scope.listings.push(
+          $scope.listings[Math.floor(Math.random() * actualListingCount) + 0]
+        );
+      }
     }
 
     initMarket();

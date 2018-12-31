@@ -140,13 +140,14 @@
 }
 
 .search-bar-section {
-  height: 41px;
+  height: 52px;
   margin-top: 45px;
   width: 100%;
   box-shadow: 5px 7px 10px 1px rgba(0, 0, 0, 0.33);
   border-top: 1px solid #e5e8ee;
   position: relative;
   z-index: 100;
+  font-size: 1.2em;
 }
 
 #market-map-container {
@@ -192,21 +193,21 @@
   float: left;
   border-radius: 0;
   height: 42px;
-  font-size: 1.5em;
-  font-weight: 500;
+  font-size: 1.4em;
 }
 
 .search-bar-container {
   width: 85%;
   float: left;
+  height: 100%;
   @media screen and (min-width: 767px) {
     display: inline-block;
-    width: 650px;
+    width: 585px;
   }
   .search-bar__input {
     width: 75%;
     float: left;
-    height: 40px;
+    height: 100%;
     border-radius: 0;
     box-shadow: none;
     border: 1px solid #ccc;
@@ -225,11 +226,23 @@
   .search-bar__btn {
     width: 25%;
     float: left;
-    height: 40px;
+    height: 100%;
     border-radius: 0;
-    font-size: 1.5em;
-    font-weight: 500;
+    font-size: 1.4em;
     max-width: 100px;
+  }
+}
+
+.btn--icon {
+  display: block;
+  @media screen and (min-width: 650px) {
+    display: none;
+  }
+}
+.btn--text {
+  display: none;
+  @media screen and (min-width: 650px) {
+    display: block;
   }
 }
 
@@ -237,7 +250,7 @@
   height: 100%;
   width: 15%;
   float: left;
-  max-width: 75px;
+  max-width: 80px;
   button {
     height: 100%;
     border-radius: 0;
@@ -370,8 +383,8 @@
 
 .expanded-filters-container {
   display: none;
-
-  @media screen and (min-width: 767px) {
+  margin-left: 30px;
+  @media screen and (min-width: 1450px) {
     display: inline-block;
     height: 100%;
   }
@@ -383,6 +396,8 @@
   display: inline-block;
   button {
     height: 100%;
+    -webkit-appearance: button;
+    font-weight: 600;
   }
   .filter-title {
     font-size: 1.3em;

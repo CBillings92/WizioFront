@@ -7,7 +7,10 @@
         </div>
         <div class="search-bar-container">
             <input type="text" id="search-bar" class="search-bar__input" ng-model="marketSearch.addressBar"></input>
-            <button class="btn btn-fill--orange search-bar__btn" ng-model="marketSearch" ng-click="submitMarketSearch()">
+            <button class="btn btn-fill--orange search-bar__btn btn--icon" ng-model="marketSearch" ng-click="submitMarketSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-fill--orange search-bar__btn btn--text" ng-model="marketSearch" ng-click="submitMarketSearch()">
                 Search
             </button>
         </div>
