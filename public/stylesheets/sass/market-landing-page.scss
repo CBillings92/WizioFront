@@ -12,15 +12,16 @@ $sm-monitor-breakpoint: 1920px;
 .page-container {
   min-width: 320px;
   padding-top: 1px;
-  &.height--vh-100 {
-    height: 100vh;
-  }
-  &.min-height--vh-98 {
-    min-height: 98vh;
-  }
-  &.height--vh-98 {
-    height: 98vh;
-  }
+  height: 100%;
+  // &.height--vh-100 {
+  //   height: 100vh;
+  // }
+  // &.min-height--vh-98 {
+  //   min-height: 98vh;
+  // }
+  // &.height--vh-98 {
+  //   height: 98vh;
+  // }
 }
 
 .page-background {
