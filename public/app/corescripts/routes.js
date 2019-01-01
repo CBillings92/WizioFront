@@ -48,7 +48,7 @@ angular.module("MainApp").config([
             templateUrl:
               WizioConfig.UnitViewsURL +
               "transition_vrplayercontainer.view.html"
-          }
+          },
         },
         data: falseRequiredLogin
       })
@@ -684,7 +684,7 @@ angular.module("MainApp").config([
             controller: PAGECONFIG.Market.SearchPage.Ctrl
           }
         }
-      })
+      });
     $urlRouterProvider.otherwise("/");
 
     $httpProvider.interceptors.push([

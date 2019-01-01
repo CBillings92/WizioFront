@@ -48,14 +48,6 @@ angular.module("MarketApp").factory("MarketFct", [
 
     function submitMarketSearch(marketSearch) {
       return $q(function(resolve, reject) {
-        if (!marketSearch.agentId || marketSearch.agentId === "") {
-          return reject({
-            status: "error",
-            function: "submitMarketSearch",
-            message: "No AgentId provided for market search"
-          });
-        }
-
         if (!marketSearch.addressBar || marketSearch.addressBar === "") {
           marketSearch.addressBar = "Boston, MA";
         }
