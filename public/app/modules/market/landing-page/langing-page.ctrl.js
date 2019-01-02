@@ -5,9 +5,7 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
   "MarketFct",
   function($scope, $state, $q, MarketFct) {
     $scope.dataLoaded = false;
-    $scope.marketSearch = {
-      agentId: $state.params.agentid
-    };
+    $scope.marketSearch = {};
 
     addEventListener("load", initMarketLandingPage, false);
 
@@ -22,7 +20,9 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
     $scope.submitMarketSearch = function() {
       return $q(function(resolve, reject) {
         $scope.searchInProgress = true;
-
+        $scope.marketSearch.addressBar = document.getElementById(
+          "search-bar"
+        ).value;
         MarketFct.addDataToLocalStore(
           "wizio",
           "lastMarketSearchCriteria",
