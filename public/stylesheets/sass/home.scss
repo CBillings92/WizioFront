@@ -1,5 +1,3 @@
-
-
 .home-hero {
   position: relative;
   background-image: url("../viewtemplates/images/home/homepage-hero.jpg");
@@ -8,15 +6,13 @@
   background-color: $med-gray;
   background-blend-mode: multiply;
   height: 75vh;
-
 }
 
-.home-banner button{
+.home-banner button {
   margin-top: 20px;
   pointer-events: all;
   font-size: 16px;
 }
-
 
 .home-hero__text {
   position: absolute;
@@ -27,6 +23,18 @@
   transform: translateY(calc(-50% - 40px));
 }
 
+.home-banner button {
+  margin-top: 20px;
+  pointer-events: all;
+  font-size: 16px;
+}
+
+.btn--home-hero {
+  pointer-events: all;
+  margin: 30px 15px 0px 15px;
+  font-size: 16px;
+}
+
 .home-hero__heading {
   margin-bottom: 5px;
 }
@@ -35,234 +43,203 @@
   line-height: 1.2;
 }
 
-
-
-.home-banner{
+.home-banner {
   margin-bottom: 40px;
   position: relative;
   height: 450px;
 
   h2 {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   h3 {
-      font-size: 20px;
-
+    font-size: 20px;
   }
 }
 
-.home-graybanner{
+.home-graybanner {
   background-color: $light-gray;
   height: 350px;
 }
 
-.demo-banner{
+.demo-banner {
   height: 325px;
   background-color: $dk-gray;
 }
 
-
 .home-blurb {
   position: relative;
   top: 0;
-  margin-top: 7%
-
+  margin-top: 7%;
 }
 
 .home-signup-banner-text {
-    margin-left: 15px;
-    margin-top: 15px;
+  margin-left: 15px;
+  margin-top: 15px;
 }
 
-#home-vr-img{
+#home-vr-img {
   margin-top: 30px;
   // width: 250px;
 }
 
-#home-signup-img{
-    background-image: url('../../../../viewtemplates/images/home/WizioStock-004.jpg');
-    background-size: cover;
-    height: 100%;
-    max-width: 100%;
-    background-position: 100%;
+#home-signup-img {
+  background-image: url("../../../../viewtemplates/images/home/WizioStock-004.jpg");
+  background-size: cover;
+  height: 100%;
+  max-width: 100%;
+  background-position: 100%;
 }
 
-#home-drift-img{
+#home-drift-img {
   width: 375px;
 }
 
-#home-drift-container{
+#home-drift-container {
   top: -30px;
 }
 
-#home-ondemand-img{
+#home-ondemand-img {
   width: 450px;
 }
 
-.home-callout-banner .section-head{
+.home-callout-banner .section-head {
   color: $dk-gray;
 }
 
-.home-callout-banner .large-body{
+.home-callout-banner .large-body {
   margin-bottom: 20px;
 }
 
 .home-signup-banner {
-    display: block;
-    background-color: #706F72;
-    color: white;
+  display: block;
+  background-color: #706f72;
+  color: white;
 
-    .mc-field-group {
-        color: #706F72;
-    }
+  .mc-field-group {
+    color: #706f72;
+  }
 }
 
-.home-callout-banner{
+.home-callout-banner {
   margin-bottom: 40px;
 }
-
 
 .home-sign-up {
   margin-top: 20px;
 }
 
-
 .home-signup-banner {
-    input {
-        margin-bottom: 5px;
-        -moz-border-radius:6px; /* Firefox */
-         -webkit-border-radius: 6px; /* Safari, Chrome */
-         -khtml-border-radius: 6px; /* KHTML */
-         border-radius: 6px; /* CSS3 */
-    }
-    select {
-        margin-bottom: 5px;
-    }
-
+  input {
+    margin-bottom: 5px;
+    -moz-border-radius: 6px; /* Firefox */
+    -webkit-border-radius: 6px; /* Safari, Chrome */
+    -khtml-border-radius: 6px; /* KHTML */
+    border-radius: 6px; /* CSS3 */
+  }
+  select {
+    margin-bottom: 5px;
+  }
 }
-
-
-
 
 @media (max-width: 1024px) {
+  .home-banner {
+    margin-bottom: 40px;
+    position: relative;
+    height: 400px;
+  }
 
-
-
-.home-banner{
-  margin-bottom: 40px;
-  position: relative;
-  height: 400px;
-}
-
-.home-graybanner{
-  background-color: $light-gray;
-  height: 300px;
-}
-
-.home-blurb {
-  position: relative;
-  top: 0;
-  bottom: 0;
-  margin-top: 7%;
-
-}
-
-#home-vr-img{
-  margin-top: 20px;
-  // width:150px;
-}
-
-#home-drift-img{
-  width: 310px;
-}
-
-#home-drift-container{
-  top: -20px;
-}
-
-#home-ondemand-img{
-  width: 350px;
-  margin-top: none;
-}
-
-// ------------- UPDATED STYLES 8.24.17 --------------- //
-
-
-
-.home-signup-banner {
-    background-color: #706F72;
-    height: 100%;
-}
-
-#home-signup-img {
+  .home-graybanner {
+    background-color: $light-gray;
     height: 300px;
- }
+  }
 
+  .home-blurb {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    margin-top: 7%;
+  }
+
+  #home-vr-img {
+    margin-top: 20px;
+    // width:150px;
+  }
+
+  #home-drift-img {
+    width: 310px;
+  }
+
+  #home-drift-container {
+    top: -20px;
+  }
+
+  #home-ondemand-img {
+    width: 350px;
+    margin-top: none;
+  }
+
+  // ------------- UPDATED STYLES 8.24.17 --------------- //
+
+  .home-signup-banner {
+    background-color: #706f72;
+    height: 100%;
+  }
+
+  #home-signup-img {
+    height: 300px;
+  }
 }
-
-
 
 // ------------- Tablet --------------- //
 
-
 @media (max-width: 767px) {
+  .home-banner {
+    margin-bottom: 40px;
+    position: relative;
+    height: 65vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
+  .home-graybanner {
+    background-color: $light-gray;
+    height: 60vh;
+  }
 
+  .home-photo-banner {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
 
-.home-banner{
-  margin-bottom: 40px;
-  position: relative;
-  height: 65vh;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  .home-blurb {
+    margin-bottom: 20px;
+    margin-top: 7%;
+  }
 
-}
+  #home-vr-img {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 170px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
 
-.home-graybanner{
-  background-color: $light-gray;
-  height: 60vh;
-}
+  #home-drift-img {
+    width: 300px;
+  }
 
-.home-photo-banner{
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: center;
-}
+  #home-drift-container {
+    top: 0px;
+  }
 
-
-.home-blurb {
-  margin-bottom: 20px;
-  margin-top: 7%;
-
-}
-
-
-#home-vr-img{
-  margin-top: 0px;
-  margin-bottom: 10px;
-  width:170px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-#home-drift-img{
-  width: 300px;
-
-}
-
-#home-drift-container{
-  top: 0px;
-}
-
-#home-ondemand-img{
-  width: 270px;
-  margin-top: 0px;
-
-}
-
+  #home-ondemand-img {
+    width: 270px;
+    margin-top: 0px;
+  }
 
   .home-hero {
     height: 60vh;
@@ -276,85 +253,65 @@
     margin-bottom: 30px;
   }
 
-
-.home-signup-banner {
-    background-color: #706F72;
-}
-
-
+  .home-signup-banner {
+    background-color: #706f72;
+  }
 }
 
 // ------------- Phone --------------- //
 
-
-
 @media (max-width: 426px) {
+  .home-banner {
+    height: 65vh;
+  }
 
+  .home-hero__text {
+    top: 65%;
+  }
 
-.home-banner{
+  .home-graybanner {
+    height: 65vh;
+  }
 
-  height: 65vh;
+  .home-photo-banner {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
 
-}
+  .home-blurb {
+    margin-top: none;
+    margin-bottom: 0px;
+  }
 
-.home-hero__text{
-  top: 65%;
-}
-
-.home-graybanner{
-
- height: 65vh;
-
-}
-
-
-.home-photo-banner{
-  display: flex;
-  flex-wrap: wrap-reverse;
-  justify-content: center;
-}
-
-
-.home-blurb {
-  margin-top: none;
-  margin-bottom: 0px;
-
-
-}
-
-.home-signup-banner {
-    background-color: #706F72;
+  .home-signup-banner {
+    background-color: #706f72;
     height: 105vh;
-}
+  }
 
-// #home-signup-img {
-//     height: 250px;
-// }
+  // #home-signup-img {
+  //     height: 250px;
+  // }
 
-#home-vr-img{
-  width:150px;
-  margin-top: 10px;
-}
+  #home-vr-img {
+    width: 150px;
+    margin-top: 10px;
+  }
 
-#home-drift-img{
-  width: 210px;
+  #home-drift-img {
+    width: 210px;
+  }
 
-}
+  #home-drift-container {
+    top: 0px;
+  }
 
-#home-drift-container{
-  top: 0px;
-}
-
-#home-ondemand-img{
-  width: 220px;
-  margin-top: 40px;
-
-}
-
-
+  #home-ondemand-img {
+    width: 220px;
+    margin-top: 40px;
+  }
 
   .home-hero {
     height: 60vh;
   }
-
 }
