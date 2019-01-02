@@ -282,7 +282,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     function initMarket() {
       $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
-      addTestListings(100);
+      // addTestListings(100);
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
       }
