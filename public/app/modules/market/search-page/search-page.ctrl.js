@@ -235,6 +235,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function initPaging(listings) {
+      console.dir(listings.length);
       $scope.currentPage = 1;
       var totalPages = Math.max(
         Math.floor(listings.length / pageCountLimit),
@@ -290,6 +291,140 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     }
 
     function addTestListings(numberOfTestListings) {
+      if ($scope.listings.length === 0) {
+        $scope.listings.push({
+          pubid: "8716a181-a2d6-4d5d-abc3-38da6100c017",
+          SubscriptionApartment: {
+            id: 286,
+            pubid: "4e98a7b6-2a67-47cb-8721-fdd3c28b63f5",
+            Listing: {
+              ListingId: 3,
+              Pubid: "70bc4cd2-3e9d-4eb1-b006-45dc837e419b",
+              Beds: "2.00",
+              Baths: "1.00",
+              IsHeatIncluded: true,
+              IsHotWaterIncluded: true,
+              IsElectricIncluded: true,
+              IsCableInternetIncluded: true,
+              HasBathtub: true,
+              IsGasIncluded: true,
+              HasFireplace: true,
+              HasRefrigerator: true,
+              HasInUnitWasherDryer: true,
+              HasInBuildingWasherDryer: true,
+              HasSmartLock: true,
+              HasWindowFixings: true,
+              HasGarbageDisposal: true,
+              IsCatFriendly: true,
+              IsDogFriendly: true,
+              IsSmallAnimalFriendly: true,
+              HasMonthlyPetFee: true,
+              MonthlyPetFeeAmount: "25.00",
+              StoveType: 1,
+              PrimaryFlooringType: 1,
+              HasDishWasher: true,
+              HasGym: true,
+              HasCentralAir: true,
+              HasConcierge: true,
+              SquareFootage: "2500",
+              HasMicrowave: true,
+              BicycleStorageType: 1,
+              ParkingType: 1,
+              HasPool: true,
+              HasLounge: true,
+              AmenityDescription: null,
+              ListingDescription: "Fantastic Apartment Trial.",
+              IsActive: true,
+              CreatedAt: "2018-02-10T17:01:22.000Z",
+              UpdatedAt: "2018-02-10T17:01:22.000Z",
+              MaximumPetWeight: null,
+              IsRepresentedByOwner: false,
+              IsExclusive: false,
+              IsSplitUnit: null,
+              ListingType: null,
+              KeyFee: null,
+              HasPetWeightLimit: null,
+              HasDenOffice: false,
+              HasLoft: false,
+              AddressId: null,
+              CreatorUserId: null,
+              LastModifiedByUserId: null,
+              Lease: {
+                LeaseId: 1,
+                LeaseUUID: "5a4986e1-366a-11e8-8dea-0606f96137f0",
+                RentAmount: 2500,
+                IsSecurityDepositRequired: true,
+                IsFirstMonthsRentRequired: true,
+                IsLastMonthsRentRequired: true,
+                IsBrokerFeeRequired: true,
+                BrokersFeeAmount: 2500,
+                SecurityDepositAmount: 2500,
+                LeaseStartDate: "2017-09-01T00:00:00.000Z",
+                LeaseEndDate: "2018-08-31T00:00:00.000Z",
+                IsAvailableNow: false,
+                IsAvailableForLeaseRenewal: false,
+                LeaseRenewalStartDate: null,
+                CreatedAt: "2018-02-10T17:01:22.000Z",
+                UpdatedAt: "2018-02-10T17:01:22.000Z",
+                LeaseType: null,
+                LeaseLength: null,
+                ListingId: 3,
+                LeaseTypeId: 7
+              }
+            },
+            Media: [
+              {
+                id: 6237,
+                link: null,
+                type: "vrphoto",
+                title: "Bathroom 2.JPG",
+                awsurl:
+                  "https://cdn.wizio.co/4e98a7b6-2a67-47cb-8721-fdd3c28b63f5/",
+                apartmentpubid: "4e98a7b6-2a67-47cb-8721-fdd3c28b63f5",
+                isUnit: false,
+                x: null,
+                y: null,
+                order: 0,
+                IsDeleted: false,
+                ApartmentId: 646,
+                UserId: null,
+                SubscriptionAptMedia: {
+                  id: 1609,
+                  pubid: "eb76cba1-1c55-45e8-b1a5-57236352df9e",
+                  CreatedAt: null,
+                  UpdatedAt: null,
+                  SubscriptionApartmentId: 286,
+                  MediaId: 6237
+                }
+              }
+            ]
+          },
+          Apartment: {
+            NeighborhoodLongName: "Jamaica Plain",
+            NeighborhoodShortName: "Jamaica Plain",
+            RouteShortName: "South St",
+            RouteLongName: "South Street",
+            StreetNumber: "228",
+            concatAddr: "228 South St, Jamaica Plain, MA 02130, USA",
+            FullyFormattedAddress: "228 South St, Jamaica Plain, MA 02130, USA",
+            LocalityShortName: "Boston",
+            LocalityLongName: "Boston",
+            AdministrativeAreaLevel1ShortName: "MA",
+            AdministrativeAreaLevel1LongName: "Massachusetts",
+            AdministrativeAreaLevel2ShortName: null,
+            AdministrativeAreaLevel2LongName: null,
+            AdministrativeAreaLevel3ShortName: "Suffolk County",
+            AdministrativeAreaLevel3LongName: "Suffolk County",
+            AdministrativeAreaLevel4ShortName: null,
+            AdministrativeAreaLevel4LongName: null,
+            AdministrativeAreaLevel5ShortName: null,
+            AdministrativeAreaLevel5LongName: null,
+            PostalCode: "02130",
+            latitude: 42.302542,
+            longitude: -71.114451
+          }
+        });
+      }
       var actualListingCount = $scope.listings.length;
       for (var i = 0; i < numberOfTestListings; i++) {
         $scope.listings.push(
