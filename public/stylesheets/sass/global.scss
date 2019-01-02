@@ -1,395 +1,391 @@
 $white: #ffffff;
 $black: #000000;
 $orange: #f79739;
-$light-orange: #F7AA63;
-$red: #BA5125;
-$blue: #7A9DD1;
-$blue-gray: #8E9BB2;
-$light-gray: #F3F3F3;
+$light-orange: #f7aa63;
+$red: #ba5125;
+$blue: #7a9dd1;
+$blue-gray: #8e9bb2;
+$light-gray: #f3f3f3;
 $gray: #706f72;
-$med-gray: #7A7A7A;
-$dk-gray: #4A4A4A;
+$med-gray: #7a7a7a;
+$dk-gray: #4a4a4a;
 
-.white{
-    color: $white;
+.white {
+  color: $white;
 }
 
-.orange{
-    color: $orange;
+.orange {
+  color: $orange;
 }
 
-.dk-gray{
-    color: $dk-gray;
+.light-orange {
+  color: $light-orange;
 }
 
-.med-gray{
-    color: $med-gray;
+.dk-gray {
+  color: $dk-gray;
 }
 
-.gray{
-    color: $gray;
+.med-gray {
+  color: $med-gray;
 }
 
-.blue{
-    color: $blue;
+.gray {
+  color: $gray;
 }
 
-.italic{
-    font-style: italic;
+.blue {
+  color: $blue;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .light {
   font-weight: 300;
 }
 
-
 /**
   Mixins
 **/
 @mixin vertical-center-transform() {
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 @mixin center-transform() {
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
-@mixin button-hover-state($extraSelectors: '') {
-    &.active,
-    &.active.focus,
-    &.active:focus,
-    &.focus,
-    &.hover,
-    &:active,
-    &:active.focus,
-    &:active:focus,
-    &:focus,
-    &:hover,
-    #{$extraSelectors} {
-        @content;
-    }
+@mixin button-hover-state($extraSelectors: "") {
+  &.active,
+  &.active.focus,
+  &.active:focus,
+  &.focus,
+  &.hover,
+  &:active,
+  &:active.focus,
+  &:active:focus,
+  &:focus,
+  &:hover,
+  #{$extraSelectors} {
+    @content;
+  }
 }
 /**
   Styles
 **/
 html {
-    position: relative;
-    min-height: 100%;
+  position: relative;
+  min-height: 100%;
 }
 
 body {
-    font-family: "Roboto";
-    -webkit-font-smoothing: antialiased;
-    margin: 0 auto;
-    height:100%;
-    //padding-bottom: 250px;
+  font-family: "Roboto";
+  -webkit-font-smoothing: antialiased;
+  margin: 0 auto;
+  height: 100%;
+  //padding-bottom: 250px;
 }
 
 h1,
-h2 {}
+h2 {
+}
 
 h3 {
-    font-family: "Roboto";
-    font-size: 28px;
-    font-weight: 500;
-    line-height: 1.3;
+  font-family: "Roboto";
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 h4 {
-    font-family: "Roboto";
-    font-size: 24px;
-    font-weight: 400;
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 400;
 }
 
 h5 {
-    font-family: "Roboto";
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.2;
+  font-family: "Roboto";
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 p {
-    font-family: "Roboto";
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 1.2;
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 // ------------- UPDATED STYLES 8.24.17 --------------- //
 
-.header-text{
-    font-family: "Roboto";
-    font-size: 40px;
-    font-weight: 500;
+.header-text {
+  font-family: "Roboto";
+  font-size: 40px;
+  font-weight: 500;
 }
 
-.subhead-text{
-    font-family: "Roboto";
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.1;
+.subhead-text {
+  font-family: "Roboto";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
 }
 
-.section-head{
-    font-family: "Roboto";
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.3;
-    padding-bottom: 12px;
+.section-head {
+  font-family: "Roboto";
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  padding-bottom: 12px;
 }
 
-.product-section-head{
-    font-size: 30px;
-    font-weight: 400;
+.product-section-head {
+  font-size: 30px;
+  font-weight: 400;
 }
 
-
-.large-body{
-    font-family: "Roboto";
-    font-size: 17px;
-    font-weight: 300;
+.large-body {
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 300;
 }
 
-.small-body{
-    font-family: "Roboto";
-    font-size: 15px;
-    font-weight: 400;
+.small-body {
+  font-family: "Roboto";
+  font-size: 15px;
+  font-weight: 400;
 }
 
-.large-body a{
-    text-decoration: none;
+.large-body a {
+  text-decoration: none;
 }
 
-.large-body a:hover{
-    color: #4E72A7;
+.large-body a:hover {
+  color: #4e72a7;
 }
-
-
-
-
 
 // ---------------------------- //
 
 #site-container {
-    display: flex;
-    flex-direction: column;
-    height:100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 #main-content {
-    flex: 1 0 auto;
+  flex: 1 0 auto;
 }
-
 
 /* override bootstrap */
 a:focus {
-    outline: none;
+  outline: none;
 }
 
 .navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+  margin-bottom: 0;
+  border-radius: 0;
 }
 
-.form-control:focus {
-    border-color: transparent;
-    outline: 0;
-    box-shadow: none;
-}
+// .form-control:focus {
+//     border-color: transparent;
+//     outline: 0;
+//     box-shadow: none;
+// }
 
-.form-control {
-    border: none;
+// .form-control {
+//     border: none;
 
-    &:focus {
-        border-color: none;
-        outline: 0;
-        box-shadow: none;
-    }
-}
+//     &:focus {
+//         border-color: none;
+//         outline: 0;
+//         box-shadow: none;
+//     }
+// }
 
 .dropdown-menu > li > a:focus,
 .dropdown-menu > li > a:hover {
-    background-color: $blue;
+  background-color: $blue;
 }
 
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:focus,
 .dropdown-menu > .active > a:hover {
-    background-color: $blue;
-    background-repeat: repeat-x;
+  background-color: $blue;
+  background-repeat: repeat-x;
 }
 
 .main_container {
-    padding-top: 80px;
+  padding-top: 80px;
 }
 /* buttons */
 .btn {
-    cursor: pointer;
-    @include button-hover-state {
-        outline: none;
-        outline-offset: 0;
-        box-shadow: none;
-    }
+  cursor: pointer;
+  @include button-hover-state {
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
 }
 
-
-
 .btn-xs {
-    padding: 3px 10px;
+  padding: 3px 10px;
 }
 
 .btn-sm {
-    padding: 5px 15px;
+  padding: 5px 15px;
 }
 
 .btn-lg {
-    padding: 6px 30px;
+  padding: 6px 30px;
 }
 
 .btn-md {
-    padding: 6px 26px;
+  padding: 6px 26px;
 }
 
 .btn-block {
-    padding-left: 0;
-    padding-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .btn-fill {
+  color: $white;
+  border: none;
+  transition: background-color 0.15s ease-in-out;
+  @include button-hover-state {
     color: $white;
-    border: none;
-    transition: background-color 0.15s ease-in-out;
-    @include button-hover-state {
-        color: $white;
-    }
+  }
 }
 
 .btn-fill--blue {
-    @extend .btn-fill;
-    background-color: $blue;
-    @include button-hover-state {
-        color: $white;
-        background-color: darken($blue, 5%);
-    }
+  @extend .btn-fill;
+  background-color: $blue;
+  @include button-hover-state {
+    color: $white;
+    background-color: darken($blue, 5%);
+  }
 }
 
 .btn-fill--orange {
-    @extend .btn-fill;
-    background-color: $orange;
-    @include button-hover-state {
-        color: $white;
-        background-color: darken($orange, 5%);
-    }
+  @extend .btn-fill;
+  background-color: $orange;
+  @include button-hover-state {
+    color: $white;
+    background-color: darken($orange, 5%);
+  }
 }
 
 .btn--cta {
-    @extend .btn-fill--blue;
-    font-weight: 500;
-    line-height: 1.7;
-    text-transform: uppercase;
+  @extend .btn-fill--blue;
+  font-weight: 500;
+  line-height: 1.7;
+  text-transform: uppercase;
 }
 
 .btn-outline {
-    @include button-hover-state {
-        outline: none;
-        outline-offset: 0;
-        box-shadow: none;
-    }
-    border: 2px solid $white;
-    color: $white;
-    transition: all 0.15s ease-in-out;
-    @include button-hover-state {
-        color: $orange;
-        border-color: $orange;
-    }
+  @include button-hover-state {
+    outline: none;
+    outline-offset: 0;
+    box-shadow: none;
+  }
+  border: 2px solid $white;
+  color: $white;
+  transition: all 0.15s ease-in-out;
+  @include button-hover-state {
+    color: $orange;
+    border-color: $orange;
+  }
 }
 
 .btn-outline--blue {
-    @extend .btn-outline;
-    color: $blue;
+  @extend .btn-outline;
+  color: $blue;
+  border-color: $blue;
+  background-color: transparent;
+  @include button-hover-state {
+    color: $white;
     border-color: $blue;
-    background-color: transparent;
-    @include button-hover-state {
-        color: $white;
-        border-color: $blue;
-        background-color: $blue;
-    }
+    background-color: $blue;
+  }
 }
 
 .btn-outline--orange {
-    @extend .btn-outline;
-    color: $orange;
+  @extend .btn-outline;
+  color: $orange;
+  border-color: $orange;
+  background-color: transparent;
+  @include button-hover-state {
+    color: $white;
     border-color: $orange;
-    background-color: transparent;
-    @include button-hover-state {
-        color: $white;
-        border-color: $orange;
-        background-color: $orange;
-    }
+    background-color: $orange;
+  }
 }
 
 .btn-outline--white {
-    @extend .btn-outline;
-    color: $white;
+  @extend .btn-outline;
+  color: $white;
+  border-color: $white;
+  background-color: transparent;
+  @include button-hover-state {
+    color: $orange;
     border-color: $white;
-    background-color: transparent;
-    @include button-hover-state {
-        color: $orange;
-        border-color: $white;
-        background-color: $white;
-    }
+    background-color: $white;
+  }
 }
 
 .btn-orange {
-    border: none;
-    background-color: $orange;
-    font-size: 16px;
-    color: $white;
-    border-radius: 30px;
+  border: none;
+  background-color: $orange;
+  font-size: 16px;
+  color: $white;
+  border-radius: 30px;
 
-    &:active,
-    &:active:hover,
-    &:focus,
-    &:hover {
-        color: $white;
-        background-color: darken($orange, 5%);
-    }
+  &:active,
+  &:active:hover,
+  &:focus,
+  &:hover {
+    color: $white;
+    background-color: darken($orange, 5%);
+  }
 }
 
 .modal-backdrop {
-    z-index: 700;
+  z-index: 700;
 }
 
 .modal {
-    z-index: 800;
-    margin-top: 80px;
+  z-index: 800;
+  margin-top: 80px;
 }
 
 .main_container {
-    padding-top: 80px;
+  padding-top: 80px;
 }
 
 .modal-dialog {
-    transform: none !important;
+  transform: none !important;
 }
 
 .panel-new-photo {
-    background-color: $orange !important;
-    border-color: $light-orange !important;
-    color: $white !important;
+  background-color: $orange !important;
+  border-color: $light-orange !important;
+  color: $white !important;
 }
 
 .pointer-events_none {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .pointer-events_all {
-    pointer-events: all;
+  pointer-events: all;
 }
 
-.form-space{
+.form-space {
   padding-top: 15px;
 }
 
@@ -397,151 +393,122 @@ hr#form-divider {
   margin: 5px 0 15px 0;
 }
 
-
-
-
 @media (min-width: 992px) {
-    h1,
-    h2 {
-        font-size: 50px;
-    }
+  h1,
+  h2 {
+    font-size: 50px;
+  }
 
-    h3 {
-        font-size: 24px;
-    }
+  h3 {
+    font-size: 24px;
+  }
 
-    h5 {
-        font-size: 22px;
-    }
+  h5 {
+    font-size: 22px;
+  }
 }
-
-
 
 // ------------- Small desktop --------------- //
 
-
 @media (min-width: 768px) and (max-width: 991px) {
-
-
-.product-hero-image{
+  .product-hero-image {
     height: 375px;
-}
+  }
 
-.header-text{
+  .header-text {
     font-size: 35px;
-}
+  }
 
-.subhead-text{
+  .subhead-text {
     font-size: 16px;
+  }
 
-}
-
-.section-head{
+  .section-head {
     font-size: 20px;
     text-align: center;
+  }
 
-}
-
-.large-body{
+  .large-body {
     font-size: 16px;
     text-align: center;
-
-}
-
-
+  }
 }
 // ------------- Tablet --------------- //
 
-
 @media (max-width: 767px) {
-
-.product-hero-image{
+  .product-hero-image {
     height: 275px;
-}
+  }
 
-.header-text{
-  font-size: 30px;
-}
+  .header-text {
+    font-size: 30px;
+  }
 
-.about-header__text{
+  .about-header__text {
     font-size: 28px;
-}
+  }
 
-.subhead-text{
+  .subhead-text {
     font-size: 16px;
+  }
 
-}
-
-.section-head{
+  .section-head {
     font-size: 20px;
     text-align: center;
+  }
 
-}
-
-.large-body{
+  .large-body {
     font-size: 16px;
     text-align: center;
+  }
 
-}
+  .listing-contact-address .large-body {
+    font-size: 16px;
+    text-align: left;
+  }
 
-.listing-contact-address .large-body{
-  font-size: 16px;
-  text-align: left;
-}
+  h1,
+  h2 {
+    font-size: 40px;
+  }
 
+  h3 {
+    font-size: 20px;
+  }
 
-    h1,
-    h2 {
-        font-size: 40px;
-    }
+  h4 {
+    font-size: 18px;
+  }
 
-    h3 {
-        font-size: 20px;
-    }
-
-    h4 {
-        font-size: 18px;
-    }
-
-    h5 {
-        font-size: 20px;
-    }
-
-
-
+  h5 {
+    font-size: 20px;
+  }
 }
 
 // ------------- Phone --------------- //
 
-
-
 @media (max-width: 426px) {
-
-.about-header__text{
+  .about-header__text {
     font-size: 26px;
-}
+  }
 
-.subhead-text{
+  .subhead-text {
     font-size: 16px;
+  }
 
-}
-
-.section-head{
+  .section-head {
     font-size: 18px;
+  }
 
-}
-
-.large-body{
+  .large-body {
     font-size: 14px;
+  }
 
-}
-
-.small-body{
+  .small-body {
     font-size: 14px;
-}
+  }
 
-.product-section-head{
+  .product-section-head {
     font-size: 20px;
-}
-
+  }
 }

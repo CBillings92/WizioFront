@@ -1,0 +1,126 @@
+<div class="search-page-container min-height--vh-98 height--vh-100">
+    <section id="search-filter-bar" class="search-bar-section">
+        <div class="filter-tab-container">
+            <button class="btn btn-fill--blue search-filter-bar__btn" ng-click="toggleFilterPanel()">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+        <div class="search-bar-container">
+            <input type="text" id="search-bar" class="search-bar__input" ng-model="marketSearch.addressBar"></input>
+            <button class="btn btn-fill--orange search-bar__btn btn--icon" ng-model="marketSearch" ng-click="submitMarketSearch()">
+                <i class="fas fa-search"></i>
+            </button>
+            <button class="btn btn-fill--orange search-bar__btn btn--text" ng-model="marketSearch" ng-click="submitMarketSearch()">
+                Search
+            </button>
+        </div>
+        <div class="expanded-filters-container">
+            <div class="expanded-filter">
+                    <div class="filter-title">Beds</div>
+                    <button ng-click="bedFilterSelection(bedOption)" ng-class="{'toggle--fill-orange': bedOption.isActive, 'toggle--outline-orange': !bedOption.isActive}"
+                    ng-repeat="bedOption in bedOptions">{{bedOption.text}}</button>
+            </div>
+            <div class="expanded-filter">
+            <div class="filter-title">Price</div>
+
+                <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings()" ng-model="filter.minPrice.value" placeholder="min">
+                <span class="filter-panel__price-range-dash">-</span>
+                <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings()" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
+            </div>
+        </div>
+        <!-- <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-bed"></i></button>
+            <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-bath"></i></button>
+            <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-dollar-sign"></i></button> -->
+    </section>
+    <section id="filter-panel" ng-if="filterPanelActive" class="filter-panel">
+        <div class="filter-panel__beds">
+            <div class="filter-title">Beds</div>
+            <div class="filter__toggle-button-container">
+                <button ng-click="bedFilterSelection(bedOption)" ng-class="{'toggle--fill-orange': bedOption.isActive, 'toggle--outline-orange': !bedOption.isActive}"
+                    ng-repeat="bedOption in bedOptions">{{bedOption.text}}</button>
+            </div>
+        </div>
+        <div class="filter-panel__price">
+            <div class="filter-title">Pricing</div>
+
+            <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings()" ng-model="filter.minPrice.value" placeholder="min">
+            <span class="filter-panel__price-range-dash">-</span>
+            <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings()" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
+        </div>
+        <!-- <div class="filter-panel__pets">
+            <div class="filter-title">Pet Friendly</div>
+
+            <button class="filter-panel__pet-friendly-btn btn btn--lg btn-outline--orange">Cat friendly</button>
+            <button class="filter-panel__pet-friendly-btn btn btn--lg btn-outline--orange">Dog friendly</button>
+        </div> -->
+        <div>
+            <button class="btn-lg panel-close-btn" ng-click="toggleFilterPanel()">Filter</button>
+        </div>
+    </section>
+    <section class="section" style="clear:both;" id="search-results-container">
+        <div id="listing-tiles-container" class="listing-tiles-container">
+            <div class="component-container listing-tile" ng-if="listing" ng-repeat="listing in pagedItems[currentPage-1] track by $index " style="cursor: pointer; ">
+                <div class="listing-tile__top-content">
+                    <div class="listing-tile__map"></div>
+                    <div class="listing-tile__preview">
+                        <vr-player-dir ng-if="listing.isBeingPreviewed"></vr-player-dir>
+                        <img class="listing-tile__img" ng-if="!listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)" src="{{'https://d1mze0h82dkhhe.cloudfront.net/' + listing.SubscriptionApartment.pubid + '/' + listing.SubscriptionApartment.Media[0].title + '.JPG'}}"
+                            alt="">
+                    </div>
+                </div>
+                <div class="listing-tile__bottom-content" ng-click="viewTour(listing) ">
+                    <div class="listing-tile__title light-orange" ng-click="viewTour(listing) ">
+                        {{listing.Apartment.RouteShortName + ', ' + listing.Apartment.NeighborhoodShortName}}
+                    </div>
+                    <div class="listing-tile__metadata">
+                        <div class="listing-tile__metadata__row">
+                            <div class="listing-tile__data-point--med text-align-left"><i class="fa fa-md fa-dollar-sign gray"></i>
+                                {{listing.SubscriptionApartment.Listing.Lease.RentAmount}}/mo</div>
+                            <div class="listing-tile__data-point--med text-align-right">For: 9/1/18
+                            </div>
+                        </div>
+                        <div class="listing-tile__metadata__row">
+                            <div class="listing-tile__data-point--sml text-align-left"><i class="fa fa-bed fa-lg gray"></i>
+                                {{listing.SubscriptionApartment.Listing.Beds}} Bed
+                                </i></div>
+                            <div class="listing-tile__data-point--sml text-align-center"><i class="fa fa-bath fa-lg gray"></i>
+                                {{listing.SubscriptionApartment.Listing.Baths}} Bath</div>
+                            <div class="listing-tile__data-point--sml text-align-right">
+                                <i class="fa-lg fa fa-dog gray"></i> <i class="fa fa-lg fa-cat gray"></i> OK
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="listing-tiles-pagination-container" class="listing-tiles-pagination-container">
+            <div class="pagination">
+                <button class="btn btn-sm btn-pagination pagination-prev" ng-click="changePaginationState(currentPage-1)" ng-disabled="prevDisabled">prev</span>
+                <button class="btn btn-sm btn-pagination pagination-firstPage" style="color: {{currentPage === 1 ? 'red' : 'black'}}" ng-disabled="currentPage === 1" ng-click="changePaginationState(1)">{{1}}</button>
+                <span class="pagination-ellipses pagination-left-ellipses" style="float:left;" ng-show="leftEllipsesEnabled">...</span>
+                <button class="btn btn-sm btn-pagination pagination-page" style="color: {{currentPage === $index ? 'red' : 'black'}}" ng-disabled="currentPage === $index" ng-repeat="page in clickablePages track by $index"
+                    ng-click="changePaginationState($index)" ng-if="clickablePages[$index] === 1 && $index > 1 && $index < lastPage">
+                    {{$index}}</button>
+                <span class="pagination-ellipses pagination-right-ellipses" style="float:left;" ng-show="rightEllipsesEnabled">...</span>
+                <button class="btn btn-sm btn-pagination pagination-lastPage" style="color: {{currentPage === lastPage ? 'red' : 'black'}}" ng-disabled="currentPage === lastPage" ng-click="changePaginationState(lastPage)"
+                    ng-if="lastPage !== 1">{{lastPage}}</button>
+                <button class="btn btn-sm btn-pagination pagination-next" style="cursor: pointer;" ng-click="changePaginationState(currentPage+1)" ng-disabled="nextDisabled">next</button>
+                <!-- <ul>
+                    <li ng-class="{disabled: currentPage == 0}">
+                        <a href ng-click="prevPage()">« Prev</a>
+                    </li>
+                    <li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()">
+                        <a href ng-bind="n + 1">1</a>
+                    </li>
+                    <li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+                        <a href ng-click="nextPage()">Next »</a>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </section>
+    <section class="section" id="market-map-container">
+        <div style="background-color: gray" id="map" class="map"></div>
+    </section>
+</div>

@@ -1,0 +1,225 @@
+<div class="page-container vh-98">
+    <div class="page-background img-home1" ng-if="!dataLoaded"></div>
+    <section id="market-search-form" ng-if="!dataLoaded" class="section--translucent-background maintain-center">
+        <div class=" component-container--tagline ">
+            <div class="tagline" style=" color:white ">Find your next space</div>
+        </div>
+        <div class="component-container ">
+            <form class="search-form ">
+                <input type="text " class="form-input-text" ng-model="marketSearch.addressBar" placeholder="Jamaica Plain ">
+                <button type="button" ng-click="submitMarketSearch()" ng-disabled="searchInProgress" class="btn btn-fill--orange--left-joined ">{{searchInProgress
+                    ? 'Searching...' : 'Search'}}</button>
+            </form>
+        </div>
+    </section>
+    <section ng-if="dataLoaded" class="navbar-spacing">
+        <div style="height:60px; background-color: gray;">This is search space holder</div>
+    </section>
+    <section class="section" id="search-results-container" ng-if="dataLoaded">
+        <div class="component-container listing-tile" ng-repeat="listing in listings track by $index " style="cursor: pointer; ">
+            <div class="listing-tile__title orange" ng-click="viewTour(listing) ">
+                South Street, Jamaica Plain
+            </div>
+            <div class="listing-tile__top-content">
+                <div class="listing-tile__map"></div>
+                <div class="listing-tile__preview">
+                    <vr-player-dir ng-if="showVRPreviewEnabled && listing.isBeingPreviewed"></vr-player-dir>
+                    <img class="listing-tile__img" ng-if="!showVRPreviewEnabled && !listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)"
+                        src="https://cdn.wizio.co/cb029dc4-15ce-4d97-96fd-f8c8c84aba15/Living%20Room%201.JPG" alt="">
+                </div>
+            </div>
+            <div class="listing-tile__bottom-content" ng-click="viewTour(listing) ">
+                <div class="listing-tile__metadata">
+                    <div class="listing-tile__data-point--sml">Beds: 4</div>
+                    <div class="listing-tile__data-point--sml">Baths: 2</div>
+                    <div class="listing-tile__data-point--sml">Pets: OK</div>
+                    <div class="listing-tile__data-point--med">Price: $2200</div>
+                    <div class="listing-tile__data-point--med">Available: 9/1/18</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="market-map-container">
+        <div class="market-map" style="background-color: gray" class="map"></div>
+    </section>
+    <!-- <section id="market-search-results" class="section">
+        <div class="listing-tile-container">
+            <div class="listing-tile-left">
+                <div class="listing-tile-preview-img"></div>
+                <div class="listing-tile-map"></div>
+            </div>
+            <div class="listing-tile-right">
+                <div class="listing-tile-metadata">
+                    <div>Beds: 5</div>
+                    <div>Baths: 5</div>
+                    <div>Available: 9/1/18</div>
+                    <div>Price: $2200</div>
+                    <div>Pets: Cats</div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- <div id="search-tiles-container ">
+        <div class="search-tile ">
+            <div class="search-tile-title ">
+                South Street, Jamaica Plain
+            </div>
+            <div class="search-tile-body ">
+                <div class="search-tile-tour-preview "></div>
+                <div class="search-tile-metadata ">
+                    <div class="search-tile-metadata-left ">
+                        <div class="search-tile-metadata-beds ">
+                            Beds: 4
+                        </div>
+                        <div class="search-tile-metadata-availability ">
+                            Available: 09/01/2018
+                        </div>
+                    </div>
+                    <div class="search-tile-metadata-right ">
+                        <div class="search-tile-metadata-baths ">
+                            Baths: 2
+                        </div>
+                        <div class="search-tile-metadata-price ">
+                            Rent: $3300
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-tile-clear "></div>
+        </div>
+        <div class="search-tile ">
+            <div class="search-tile-title ">
+                South Street, Jamaica Plain
+            </div>
+            <div class="search-tile-body ">
+                <div class="search-tile-tour-preview "></div>
+                <div class="search-tile-metadata ">
+                    <div class="search-tile-metadata-left ">
+                        <div class="search-tile-metadata-beds ">
+                            Beds: 4
+                        </div>
+                        <div class="search-tile-metadata-availability ">
+                            Available: 09/01/2018
+                        </div>
+                    </div>
+                    <div class="search-tile-metadata-right ">
+                        <div class="search-tile-metadata-baths ">
+                            Baths: 2
+                        </div>
+                        <div class="search-tile-metadata-price ">
+                            Rent: $3300
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-tile-clear "></div>
+        </div>
+        <div class="search-tile ">
+            <div class="search-tile-title ">
+                South Street, Jamaica Plain
+            </div>
+            <div class="search-tile-body ">
+                <div class="search-tile-tour-preview "></div>
+                <div class="search-tile-metadata ">
+                    <div class="search-tile-metadata-left ">
+                        <div class="search-tile-metadata-beds ">
+                            Beds: 4
+                        </div>
+                        <div class="search-tile-metadata-availability ">
+                            Available: 09/01/2018
+                        </div>
+                    </div>
+                    <div class="search-tile-metadata-right ">
+                        <div class="search-tile-metadata-baths ">
+                            Baths: 2
+                        </div>
+                        <div class="search-tile-metadata-price ">
+                            Rent: $3300
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-tile-clear "></div>
+        </div>
+    </div> -->
+</div>
+
+<!-- <div class="container " id="market-container ">
+    <div class="row " id="search-container ">
+        <form>
+            <div class="form-group row ">
+                <div class="col-md-6 ">
+                    <label for=" " class="control-label ">Address</label>
+                    <input class="form-control input-lg " ng-model="marketSearch.addressBar " type="text " name="address
+        " id=" ">
+                </div>
+                <div class="col-md-2 ">
+                    <label for=" " class="control-label ">Min Price</label>
+                    <div class="input-group ">
+                        <span class="input-group-addon ">$</span>
+                        <input placeholder="0 " type="text " ng-model="marketSearch.minPrice " class="form-control input-lg ">
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <label for=" " class="control-label ">Max Price</label>
+                    <div class="input-group ">
+                        <span class="input-group-addon ">$</span>
+                        <input type="text " placeholder="1000 " ng-model="marketSearch.maxPrice " class="form-control input-lg ">
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <label for=" " class="control-label ">Beds</label>
+                    <input type="text " ng-model="marketSearch.beds " class="form-control input-lg " />
+                </div>
+            </div>
+            <div class="form-group row ">
+                <div class="col-md-3 ">
+                    <button class="btn-lg btn-fill--blue " ng-click="submitMarketSearch() " type="button ">Search</button>
+                </div>
+                <div class="col-md-3 col-md-offset-6 ">
+                    <label class="control-label " for=" ">Sort By</label>
+                    <select class="form-control " ng-options="item as item for item in orderSelect " ng-model="data.Listing.Beds "></select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row " id="search-content-container ">
+        <div ng-repeat="listing in listings track by $index " style="cursor: pointer; " ng-click="viewTour(listing) ">
+            <div class="col-md-5 listing-tile " style="margin-top:2%; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 4px
+        8px 0 rgba(0, 0, 0, 0.19); ">
+                <div class="row ">
+                    <div class="col-md-12 ">
+                        <h3 class="orange ">{{listing.Apartment.NeighborhoodLongName || listing.Apartment.NeighborhoodShortName}}</h3>
+                    </div>
+                </div>
+                <div class="row ">
+                        <div style="height:250px; background-color: gray "></div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <h5>
+                            Beds: {{listing.SubscriptionApartment.Listing.Beds}}
+                        </h5>
+                    </div>
+                    <div class="col-md-6 ">
+                        <h5>
+                            Baths: {{listing.SubscriptionApartment.Listing.Baths}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <h5>Available: {{listing.SubscriptionApartment.Listing.Lease.LeaseStartDate | date : 'yyyy-MM-dd'
+                            : 'UTC'}}
+                        </h5>
+                    </div>
+                    <div class="col-md-6 ">
+                        <h5>Price: {{listing.SubscriptionApartment.Listing.Lease.RentAmount}}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 "></div>
+        </div>
+    </div>
+    <div class=" row " id="pagination-container "></div>
+</div> -->

@@ -1,84 +1,79 @@
 <!DOCTYPE html>
-<html ng-app="MainApp" ng-strict-di style="height: 100%">
+<html lang="en" ng-app="MainApp" ng-strict-di style="height:100%">
 <head>
-    <title>Wizio: On Demand Virtual Reality</title>
-    <!-- mobile friendly browsing! -->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content=<%= ogImageContent %> />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Wizio Descriptiors, Page Title, page configuration -->
+    <title>Wizio: On Demand Virtual Realty</title>
+    <meta name="Wizio, a Boston startup, specializes in virtual reality property tours using 360 VR photography.">
+    <meta name="keywords" content="virtual reality, 360 photography, real estate, Boston" />
+    <base href="/">
+
+    <!-- Social Sharing Content - Serev Side Rendered -->
+    <!-- Image Inforamtion -->
+    <meta property="og:image" content="<%= ogImageContent %>">
     <meta property="og:image:width" content="1000">
     <meta property="og:image:height" content="500">
 
-    <meta name="description" content="Wizio, a Boston startup, specializes in virtual reality property tours using 360 VR photography.">
-
-    <meta name="keywords" content="virtual reality, 360 photography, real estate, Boston">
-
-
-    <meta property="og:description" content="<%= ogDescription %> "/>
-
-    <meta property="og:url"content=<%= ogUrl %> />
-
+    <!-- Property Information -->
+    <meta property="og:description" content="<%= ogDescription %> " />
+    <meta property="og:url" content="<%= ogUrl %>" />
     <meta property="og:title" content="<%= ogTitle %>" />
 
-    <!-- TWITTER SHARING META TAGS -->
+    <!-- Twitter share meta tags -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content=<%= ogUrl %> />
-    <meta name="twitter:title" content="<%= ogTitle %>"  />
+    <meta name="twitter:site" content="<%= ogUrl %>" />
+    <meta name="twitter:title" content="<%= ogTitle %>" />
     <meta name="twitter:description" content="<%= ogDescription %>" />
-    <meta name="twitter:image" content=<%= ogImageContent %> />
-    <!-- set base of the website url to be / without the angular # -->
-    <base href="/">
+    <meta name="twitter:image" content="<%= ogImageContent %>" />
 
     <meta name="google-site-verification" content="1SUqKWKXCg2aAGM1NuFsNFL4l78iunYRpJh7tIkxRwA" />
 
     <!-- Fonts and Font Awesome, respectively -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,500' rel='stylesheet' type='text/css'
+    />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
 
     <!-- Styles -->
-    <link href="../public/build/import.css" rel="stylesheet">
+    <link href="../public/build/import.css" rel="stylesheet" />
 
-    <!-- POLLYFILL FOR IE MISSING FUNCTIONALITY - IE Does NOT include Array.prototype.includes  -->
-    <script type="text/javascript">
-    if (!String.prototype.includes) {
-  String.prototype.includes = function() {
-    "use strict";
-    return String.prototype.indexOf.apply(this, arguments) !== -1;
-  };
-}
-</script>
-<!--GOOGLE API STUFF-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBa_cJXQRkemaNQQIVqrX5j253Mo9ixax0"></script>
-    <!-- <script type="text/javascript" src="../public/internallibraries/EventShim.js"></script> -->
-    <!-- <script type="text/javascript" src="../public/internallibraries/RequestAnimationFrame.js"></script> -->
-    <!-- <script type="text/javascript" src="../public/build/lib2.min.js"></script> -->
+    <!-- Polyfill for String.Includes -->
+    <script> if (!String.prototype.includes) {String.prototype.includes = function () {"use strict"; return String.prototype.indexOf.apply(this, arguments) !== -1}}</script>
+
+    <script>
+        if (window.location.hostname === 'alpha.wizio.co') {
+            $("head").append('<meta name="robots" content="noindex"/>');
+        }
+    </script>
+    <!-- Google Maps API -->
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj4YCqghqM3L2Y7NBdiUlwo-s-DiRWi6k&libraries=places"></script>
+
+    <script type="text/javascript" src='../public/internallibraries/markerclusterer.js'></script>
+
+
+    <!-- Dependencies -->
     <script type="text/javascript" src="../public/build/lib.min.js"></script>
-    <!-- Wizio App -->
+    <!-- Wizio Web Application -->
     <script type="text/javascript" src="../public/build/scripts.js"></script>
+    <!-- Wizio VR Player -->
     <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
+    <!-- Mailchimp -->
+    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false" />
 
-    <!-- Start of Async Drift Code -->
-<!-- End of Async Drift Code -->
-    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script> -->
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-    <script type="text/javascript" src='https://cdn.rawgit.com/showdownjs/showdown/1.8.3/dist/showdown.min.js'></script>
-    <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-
-    <!-- STRIPE -->
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-
-    <script type="text/javascript">
-    Stripe.setPublishableKey("pk_test_mngZell36UYuy8GfSSox4CZ9");
-</script>
-
-    <link rel="apple-touch-icon" sizes="57x57" href="public/viewtemplates/images/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="public/viewtemplates/images/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="public/viewtemplates/images/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="public/viewtemplates/images/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="public/viewtemplates/images/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="public/viewtemplates/images/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="public/viewtemplates/images/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="public/viewtemplates/images/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="public/viewtemplates/images/favicons/apple-touch-icon-180x180.png">
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="public/viewtemplates/images/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="public/viewtemplates/images/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="public/viewtemplates/images/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="public/viewtemplates/images/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="public/viewtemplates/images/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="public/viewtemplates/images/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="public/viewtemplates/images/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="public/viewtemplates/images/favicons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="public/viewtemplates/images/favicons/apple-touch-icon-180x180.png" />
     <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-194x194.png" sizes="194x194">
     <link rel="icon" type="image/png" href="public/viewtemplates/images/favicons/favicon-96x96.png" sizes="96x96">
@@ -91,132 +86,100 @@
     <meta name="msapplication-TileImage" content="public/viewtemplates/images/favicons/mstile-144x144.png">
     <meta name="msapplication-config" content="public/viewtemplates/images/favicons/browserconfig.xml">
     <meta name="theme-color" content="#fa9a29">
-    <script>
-    if (window.location.hostname === "alpha.wizio.co") {
-  $("head").append('<meta name="robots" content="noindex"/>');
-}
-</script>
-    <!-- Facebook Pixel Code -->
-        <script>
-        !(function(f, b, e, v, n, t, s) {
-  if (f.fbq) return;
-  n = f.fbq = function() {
-    n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-  };
-  if (!f._fbq) f._fbq = n;
-  n.push = n;
-  n.loaded = !0;
-  n.version = "2.0";
-  n.queue = [];
-  t = b.createElement(e);
-  t.async = !0;
-  t.src = v;
-  s = b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t, s);
-})(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-fbq("init", "284584225294986");
-fbq("track", "PageView");
-</script>
-        <noscript>
-         <img height="1" width="1"
-        src="https://www.facebook.com/tr?id=284584225294986&ev=PageView
-        &noscript=1"/>
-        </noscript>
-        <!-- Begin SessionStack code -->
-<!-- <script type="text/javascript">
-!function(a,b){var c=window;c.SessionStack=a,c[a]=c[a]||function(){
-c[a].q=c[a].q||[],c[a].q.push(arguments)},c[a].t=b;var d=document.createElement("script");
-d.async=1,d.src="https://cdn.sessionstack.com/sessionstack.js";
-var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(d,e);
-}("sessionstack","5d9e91546ccc42199d2cffab411ec4b2");
-</script> -->
-<!-- End SessionStack Code -->
-<!-- End Facebook Pixel Code -->
-</head>
-<!-- End of Google Analytics Code -->
 
-<!-- <body ng-style="{'margin-bottom': state === 'Externalapi'? 0 : ''}"> -->
+    <!-- Facebook Pixel Code -->
+    <script>
+        !(function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = "2.0";
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s);
+        })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+        fbq("init", "284584225294986");
+        fbq("track", "PageView");
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=284584225294986&ev=PageView
+        &noscript=1" />
+    </noscript>
+
+</head>
 
 <body style="min-height:100%">
-    <script type="text/javascript">
-    $(document).on("click", function() {
-  $(".collapse").collapse("hide");
-});
-</script>
-
     <div class="" id="site-container">
         <div ui-view="navbar"></div>
         <div ui-view="maincontent" id="main-content" class=""></div>
         <div ui-view="footer"></div>
     </div>
-    <!-- <script type="text/javascript" src='../public/internallibraries/detector.js'></script> -->
-    <!-- Start of Google Analytics Code -->
-    <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-69688409-1', 'auto');
-ga('send', 'pageview');
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        
+        ga('create', 'UA-69688409-1', 'auto');
+        ga('send', 'pageview');
 
     </script>
 
-    <%if (typeof mailchimpPopUpScriptOne !== 'undefined') { %>
-    <%- mailchimpPopUpScriptOne %>
-    <% } %>
+    <!-- Start of Async Drift Code -->
+    <script>
+        "use strict";
 
-    <script type="text/javascript" src="https://secure.leadforensics.com/js/119832.js" ></script>
-<noscript><img alt="" src="https://secure.leadforensics.com/119832.png" style="display:none;" /></noscript>
+        !(function () {
+            var t = (window.driftt = window.drift = window.driftt || []);
+            if (!t.init) {
+                if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
+                (t.invoked = !0),
+                    (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
+                    (t.factory = function (e) {
+                        return function () {
+                            var n = Array.prototype.slice.call(arguments);
+                            return n.unshift(e), t.push(n), t;
+                        };
+                    }),
+                    t.methods.forEach(function (e) {
+                        t[e] = t.factory(e);
+                    }),
+                    (t.load = function (t) {
+                        var e = 3e5,
+                            n = Math.ceil(new Date() / e) * e,
+                            o = document.createElement("script");
+                        (o.type = "text/javascript"),
+                            (o.async = !0),
+                            (o.crossorigin = "anonymous"),
+                            (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
+                        var i = document.getElementsByTagName("script")[0];
+                        i.parentNode.insertBefore(o, i);
+                    });
+            }
+        })();
+        drift.SNIPPET_VERSION = "0.3.1";
+        if (!window.location.hostname === "localhost" && !window.location.hostname !== "127.0.0.1" && !window.location.href.includes("/tour/") && !window.location.href.includes("demo")) {
+            drift.load("xxagivsgiw52");
+        }
 
-<!-- Start of Async Drift Code -->
-<script>
-"use strict";
-
-!(function() {
-  var t = (window.driftt = window.drift = window.driftt || []);
-  if (!t.init) {
-    if (t.invoked) return void (window.console && console.error && console.error("Drift snippet included twice."));
-    (t.invoked = !0),
-      (t.methods = ["identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on"]),
-      (t.factory = function(e) {
-        return function() {
-          var n = Array.prototype.slice.call(arguments);
-          return n.unshift(e), t.push(n), t;
-        };
-      }),
-      t.methods.forEach(function(e) {
-        t[e] = t.factory(e);
-      }),
-      (t.load = function(t) {
-        var e = 3e5,
-          n = Math.ceil(new Date() / e) * e,
-          o = document.createElement("script");
-        (o.type = "text/javascript"),
-          (o.async = !0),
-          (o.crossorigin = "anonymous"),
-          (o.src = "https://js.driftt.com/include/" + n + "/" + t + ".js");
-        var i = document.getElementsByTagName("script")[0];
-        i.parentNode.insertBefore(o, i);
-      });
-  }
-})();
-drift.SNIPPET_VERSION = "0.3.1";
-if (!window.location.href.includes("/tour/") && !window.location.href.includes("demo")) {
-  drift.load("xxagivsgiw52");
-}
-
-if (window.location.href.includes("demo") && document.documentElement.clientWidth < 965) {
-  setTimeout(function() {
-    document.getElementById("drift-widget").style.marginBottom =
-      document.getElementsByClassName("tour-photos-container")[0].offsetHeight + "px";
-  }, 3000);
-}
-</script>
-<!-- End of Async Drift Code -->
-<!-- End of Async Drift Code -->
+        if (window.location.href.includes("demo") && document.documentElement.clientWidth < 965) {
+            setTimeout(function () {
+                document.getElementById("drift-widget").style.marginBottom =
+                    document.getElementsByClassName("tour-photos-container")[0].offsetHeight + "px";
+            }, 3000);
+        }
+    </script>
 
 </body>
-
 
 </html>
