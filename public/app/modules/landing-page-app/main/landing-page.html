@@ -1,9 +1,9 @@
 <!-- VR Player Container for Landing Page -->
 <div class="home-hero">
 
-    <market-landing-page-dir></market-landing-page-dir>
+    <market-landing-page-dir ng-if="loggedInUser === 'wizio'"></market-landing-page-dir>
     <!-- VR Player Overlay Text for Landing Page Marketing -->
-    <!-- <div class="container-fluid">
+    <div class="container-fluid" ng-if="loggedInUser !== 'wizio'">
         <div class="row " >
             <div class="home-hero__text col-xs-12 col-sm-8 col-sm-offset-2 col-lg-offset-2 col-lg-8 col-lg-offset-2 " style="pointer-events: none;">
                 <div class="header-text white" style="pointer-events: none;">The next-generation apartment search</div>
@@ -17,7 +17,7 @@
               </a>
             </div>
         </div>
-    </div> -->
+    </div>
 </div>
 
 
