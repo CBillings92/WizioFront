@@ -64,7 +64,7 @@
                     <div class="listing-tile__map"></div>
                     <div class="listing-tile__preview">
                         <vr-player-dir ng-if="listing.isBeingPreviewed"></vr-player-dir>
-                        <img class="listing-tile__img" ng-if="!listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)" src="{{'https://d1mze0h82dkhhe.cloudfront.net/' + listing.SubscriptionApartment.pubid + '/' + listing.SubscriptionApartment.Media[0].title + '.JPG'}}"
+                        <img class="listing-tile__img" ng-if="!listing.isBeingPreviewed" ng-click="showVRPreview(listing, $index)" src="{{wizioCDN + listing.SubscriptionApartment.pubid + '/' + listing.SubscriptionApartment.Media[0].title + '.JPG'}}"
                             alt="">
                     </div>
                 </div>

@@ -4,9 +4,12 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   "$q",
   "$window",
   "MarketFct",
-  function($scope, $state, $q, $window, MarketFct) {
+  "WizioConfig",
+  function($scope, $state, $q, $window, MarketFct, WizioConfig) {
     var pageCountLimit = 12;
     var activeBedButtonIndex = 0;
+
+    $scope.wizioCDN = WizioConfig.CLOUDFRONT_DISTRO;
 
     $scope.filterPanelActive = false;
     $scope.toggleFilterPanel = function() {
