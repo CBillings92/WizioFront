@@ -1,55 +1,15 @@
 angular.module("MarketApp").factory("MarketFct", [
   "$q",
   "$resource",
+  "$state",
   "WizioConfig",
-  function($q, $resource, WizioConfig) {
-    function init() {
-      return $q(function(resolve, reject) {
-        $resource.get(WizioConfig.apiURL + "market", function(apidata) {
-          var data = [
-            {
-              FullyFormattedAddress:
-                "228 South Street Jamaica Plain MA 02130 USA",
-              Neighborhood: "Jamaica Plain",
-              SubscriptionApartmentId: "",
-              photoTitle: "Entry",
-              beds: 3,
-              baths: 2
-            },
-            {
-              FullyFormattedAddress: "360 Huntington Ave Boston MA",
-              Neighborhood: "Boston",
-              SubscriptionApartmentId: "",
-              photoTitle: "Entry",
-              beds: 2,
-              baths: 1
-            },
-            {
-              FullyFormattedAddress: "123 St. Marys St. Boston MA",
-              Neighborhood: "Fenway",
-              SubscriptionApartmentId: "",
-              photoTitle: "Entry",
-              beds: 1,
-              baths: 1
-            },
-            {
-              FullyFormattedAddress: "175 Amory St. Jamaica Plain MA 02130",
-              Neighborhood: "Jamaica Plain",
-              SubscriptionApartmentId: "",
-              photoTitle: "Entry",
-              beds: 5,
-              baths: 2
-            }
-          ];
-          return resolve(data);
-        });
-      });
-    }
-
+  function($q, $resource, $state, WizioConfig) {
     function submitMarketSearch(marketSearch) {
       return $q(function(resolve, reject) {
-        if (!marketSearch.addressBar || marketSearch.addressBar === "") {
-          marketSearch.addressBar = "Boston, MA";
+        console.dir("HELLO IN SUBMIT SEARCH");
+        console.dir(marketSearch);
+        if (!marketSearch.AddressBar || marketSearch.AddressBar === "") {
+          marketSearch.AddressBar = "Boston, MA";
         }
 
         $resource(WizioConfig.baseAPIURL + "marketsearch").save(
@@ -57,6 +17,7 @@ angular.module("MarketApp").factory("MarketFct", [
           function(response) {
             console.dir(response);
             if (response.success) {
+              updateLocalStorage("wizio", response.payload);
               return resolve(response);
             } else {
               alert(response.message);
@@ -90,12 +51,57 @@ angular.module("MarketApp").factory("MarketFct", [
       return;
     }
 
+    function initMarketData(stateParamsArea) {
+      return $q(function(resolve, reject) {
+        // Set default searchTime at least 5 minutes into the past if it doesn't exist
+        // This will trigger a new search to happen
+        var defaultWizioLocalStore = {
+          marketSearch: { AddressBar: "", searchTime: new Date("2015-01-01") },
+          visitor: {},
+          listings: []
+        };
+        var wizioLocalStore = getLocalStorageData("wizio") || {};
+        if (
+          wizioLocalStore === {} ||
+          !wizioLocalStore.hasOwnProperty("marketSearch") ||
+          !wizioLocalStore.hasOwnProperty("listings")
+        ) {
+          alert("update to default wizio local store");
+          updateLocalStorage("wizio", defaultWizioLocalStore);
+        }
+        wizioLocalStore = getLocalStorageData("wizio");
+        var searchArea = wizioLocalStore.marketSearch.AddressBar;
+        var searchTime = wizioLocalStore.marketSearch.searchTime;
+        var urlSearchArea = stateParamsArea || $state.params.area || "";
+        console.dir("searchArea = " + searchArea);
+        console.dir("searchTime = " + searchTime);
+        console.dir("urlSearchArea = " + urlSearchArea);
+        if (
+          searchArea === "" ||
+          searchArea !== $state.params.area ||
+          (new Date() - searchTime) / 1000 >= 60 * 5
+        ) {
+          alert("Market Search Deemed Old");
+          submitMarketSearch({ AddressBar: urlSearchArea })
+            .then(function(response) {
+              updateLocalStorage("wizio", response.payload);
+              return resolve("Success");
+            })
+            .catch(function(err) {
+              return reject(err);
+            });
+        } else {
+          return resolve("Success");
+        }
+      });
+    }
+
     return {
-      init: init,
       submitMarketSearch: submitMarketSearch,
       addDataToLocalStore: addDataToLocalStore,
       getLocalStorageData: getLocalStorageData,
-      updateLocalStorage: updateLocalStorage
+      updateLocalStorage: updateLocalStorage,
+      initMarketData: initMarketData
     };
   }
 ]);

@@ -16,6 +16,15 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       $scope.filterPanelActive = !$scope.filterPanelActive;
     };
 
+    MarketFct.initMarketData($state.params.area)
+      .then(function(response) {
+        console.dir(response);
+        initMarket();
+      })
+      .catch(function(err) {
+        console.dir(err);
+      });
+
     autocomplete = new google.maps.places.Autocomplete(
       document.getElementById("search-bar"),
       {
@@ -55,14 +64,19 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     $scope.marketSearch = {
       agentId: "d089b1ff-af8b-40dc-a8ea-9220b18160e9",
-      addressBar: "Jamaica Plain"
+      AddressBar: $state.params.area
     };
+
     $scope.dataLoaded = true;
     $scope.submitMarketSearch = function() {
       $scope.dataLoaded = false;
       return $q(function(resolve, reject) {
         $scope.searchInProgress = true;
-
+        $scope.marketSearch.AddressBar = document.getElementById(
+          "search-bar"
+        ).value;
+        console.dir("HELLO 2");
+        console.dir($scope.marketSearch);
         MarketFct.addDataToLocalStore(
           "wizio",
           "lastMarketSearchCriteria",
@@ -72,12 +86,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         MarketFct.submitMarketSearch($scope.marketSearch)
           .then(function(response) {
             $scope.dataLoaded = true;
-            MarketFct.addDataToLocalStore(
-              "wizio",
-              "listings",
-              response.payload
-            );
-            initMarket();
+            $state.go("SearchMarket", {
+              area: response.payload.marketSearch.AddressBar
+            });
+            // initMarket();
           })
           .catch(function(err) {
             console.error(err);
@@ -285,6 +297,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     function initMarket() {
       $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
+
       // addTestListings(100);
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
@@ -435,8 +448,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         );
       }
     }
-
-    initMarket();
 
     // var cityCircle = new google.maps.Circle({
     //   strokeColor: "#F79739",

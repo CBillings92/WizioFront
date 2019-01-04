@@ -32,11 +32,8 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
         MarketFct.submitMarketSearch($scope.marketSearch)
           .then(function(response) {
             $scope.dataLoaded = true;
-            MarketFct.addDataToLocalStore(
-              "wizio",
-              "listings",
-              response.payload
-            );
+            response.payload.marketSearch.searchTime = new Date();
+            MarketFct.updateLocalStorage("wizio", response.payload);
             $state.go("SearchMarket", { area: $scope.marketSearch.addressBar });
           })
           .catch(function(err) {
