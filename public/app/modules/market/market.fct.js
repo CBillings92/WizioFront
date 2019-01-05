@@ -6,8 +6,6 @@ angular.module("MarketApp").factory("MarketFct", [
   function($q, $resource, $state, WizioConfig) {
     function submitMarketSearch(marketSearch) {
       return $q(function(resolve, reject) {
-        console.dir("HELLO IN SUBMIT SEARCH");
-        console.dir(marketSearch);
         if (!marketSearch.AddressBar || marketSearch.AddressBar === "") {
           marketSearch.AddressBar = "Boston, MA";
         }
@@ -15,7 +13,6 @@ angular.module("MarketApp").factory("MarketFct", [
         $resource(WizioConfig.baseAPIURL + "marketsearch").save(
           marketSearch,
           function(response) {
-            console.dir(response);
             if (response.success) {
               updateLocalStorage("wizio", response.payload);
               return resolve(response);
@@ -56,32 +53,27 @@ angular.module("MarketApp").factory("MarketFct", [
         // Set default searchTime at least 5 minutes into the past if it doesn't exist
         // This will trigger a new search to happen
         var defaultWizioLocalStore = {
-          marketSearch: { AddressBar: "", searchTime: new Date("2015-01-01") },
+          MarketSearch: { AddressBar: "", searchTime: new Date("2015-01-01") },
           visitor: {},
           listings: []
         };
         var wizioLocalStore = getLocalStorageData("wizio") || {};
         if (
           wizioLocalStore === {} ||
-          !wizioLocalStore.hasOwnProperty("marketSearch") ||
+          !wizioLocalStore.hasOwnProperty("MarketSearch") ||
           !wizioLocalStore.hasOwnProperty("listings")
         ) {
-          alert("update to default wizio local store");
           updateLocalStorage("wizio", defaultWizioLocalStore);
         }
         wizioLocalStore = getLocalStorageData("wizio");
-        var searchArea = wizioLocalStore.marketSearch.AddressBar;
-        var searchTime = wizioLocalStore.marketSearch.searchTime;
+        var searchArea = wizioLocalStore.MarketSearch.AddressBar;
+        var searchTime = wizioLocalStore.MarketSearch.searchTime;
         var urlSearchArea = stateParamsArea || $state.params.area || "";
-        console.dir("searchArea = " + searchArea);
-        console.dir("searchTime = " + searchTime);
-        console.dir("urlSearchArea = " + urlSearchArea);
         if (
           searchArea === "" ||
           searchArea !== $state.params.area ||
           (new Date() - searchTime) / 1000 >= 60 * 5
         ) {
-          alert("Market Search Deemed Old");
           submitMarketSearch({ AddressBar: urlSearchArea })
             .then(function(response) {
               updateLocalStorage("wizio", response.payload);

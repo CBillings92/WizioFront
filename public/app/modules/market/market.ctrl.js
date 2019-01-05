@@ -27,10 +27,8 @@ angular.module("MarketApp").controller("MarketCtrl", [
           $scope.dataLoaded = true;
           $scope.listings = [];
           for (var i = 0; i < 4; i++) {
-            console.dir(response.payload[i]);
             $scope.listings.push(response.payload[i]);
           }
-          console.dir($scope.listings);
           // $scope.listings = response.payload;
           addDataToLocalStore("wizio", "listings", response.payload);
         });

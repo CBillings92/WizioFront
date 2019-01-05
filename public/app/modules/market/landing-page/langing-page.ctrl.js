@@ -11,7 +11,6 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
 
     function initMarketLandingPage() {
       var input = document.getElementById("search-bar");
-      console.dir(input);
       autocomplete = new google.maps.places.Autocomplete(input, {
         types: ["geocode"]
       });
@@ -20,7 +19,7 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
     $scope.submitMarketSearch = function() {
       return $q(function(resolve, reject) {
         $scope.searchInProgress = true;
-        $scope.marketSearch.addressBar = document.getElementById(
+        $scope.marketSearch.AddressBar = document.getElementById(
           "search-bar"
         ).value;
         MarketFct.addDataToLocalStore(
@@ -32,9 +31,9 @@ angular.module("MarketApp").controller("MarketLandingPageCtrl", [
         MarketFct.submitMarketSearch($scope.marketSearch)
           .then(function(response) {
             $scope.dataLoaded = true;
-            response.payload.marketSearch.searchTime = new Date();
+            response.payload.MarketSearch.searchTime = new Date();
             MarketFct.updateLocalStorage("wizio", response.payload);
-            $state.go("SearchMarket", { area: $scope.marketSearch.addressBar });
+            $state.go("SearchMarket", { area: $scope.marketSearch.AddressBar });
           })
           .catch(function(err) {
             console.error(err);

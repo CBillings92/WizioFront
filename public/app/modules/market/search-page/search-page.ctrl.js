@@ -18,7 +18,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     MarketFct.initMarketData($state.params.area)
       .then(function(response) {
-        console.dir(response);
         initMarket();
       })
       .catch(function(err) {
@@ -75,8 +74,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.marketSearch.AddressBar = document.getElementById(
           "search-bar"
         ).value;
-        console.dir("HELLO 2");
-        console.dir($scope.marketSearch);
         MarketFct.addDataToLocalStore(
           "wizio",
           "lastMarketSearchCriteria",
@@ -87,7 +84,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           .then(function(response) {
             $scope.dataLoaded = true;
             $state.go("SearchMarket", {
-              area: response.payload.marketSearch.AddressBar
+              area: response.payload.MarketSearch.AddressBar
             });
             // initMarket();
           })
@@ -248,9 +245,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         document.getElementById("listing-tiles-container").scrollTop = 0;
       }
     }
-
+    var markerCluster; 
     function initPaging(listings) {
-      console.dir(listings.length);
       $scope.currentPage = 1;
       var totalPages = Math.max(
         Math.floor(listings.length / pageCountLimit),
@@ -275,8 +271,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       var markers = listings.map(function(listing, i) {
         var marker = new google.maps.Marker({
           position: {
-            lat: listing.Apartment.latitude,
-            lng: listing.Apartment.longitude
+            lat: Number(listing.Apartment.latitude),
+            lng: Number(listing.Apartment.longitude)
           }
           // label: labels[i % labels.length]
         });
@@ -285,8 +281,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         });
         return marker;
       });
-
-      var markerCluster = new MarkerClusterer(map, markers, {
+      if(markerCluster){
+        markerCluster.setMap(null)
+      }
+      markerCluster = new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
       });
