@@ -23,9 +23,9 @@
             <div class="expanded-filter">
             <div class="filter-title">Price</div>
 
-                <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings()" ng-model="filter.minPrice.value" placeholder="min">
+                <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings('minPrice')" ng-model="filter.minPrice.value" placeholder="min">
                 <span class="filter-panel__price-range-dash">-</span>
-                <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings()" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
+                <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings('maxPrice')" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
             </div>
         </div>
         <!-- <button class="btn btn--lg btn-fill--blue search-filter-bar__btn"><i class="fas fa-2x fa-bed"></i></button>
@@ -43,9 +43,9 @@
         <div class="filter-panel__price">
             <div class="filter-title">Pricing</div>
 
-            <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings()" ng-model="filter.minPrice.value" placeholder="min">
+            <span><i class="fa fa-lg fa-dollar-sign"></i></span><input type="text" class="filter-title__price-input" ng-blur="filterListings('minPrice')" ng-model="filter.minPrice.value" placeholder="min">
             <span class="filter-panel__price-range-dash">-</span>
-            <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings()" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
+            <i class="fa fa-lg fa-dollar-sign"></i><input type="text" ng-blur="filterListings('maxPrice')" ng-model="filter.maxPrice.value" class="filter-title__price-input" placeholder="max">
         </div>
         <!-- <div class="filter-panel__pets">
             <div class="filter-title">Pet Friendly</div>
@@ -96,7 +96,7 @@
         </div>
         <div id="listing-tiles-pagination-container" class="listing-tiles-pagination-container">
             <div class="pagination">
-                <button class="btn btn-sm btn-pagination pagination-prev" ng-click="changePaginationState(currentPage-1)" ng-disabled="prevDisabled">prev</span>
+                <button class="btn btn-sm btn-pagination pagination-prev" ng-click="changePaginationState(currentPage-1)" ng-if="lastPage > 1" ng-disabled="prevDisabled">prev</span>
                 <button class="btn btn-sm btn-pagination pagination-firstPage" style="color: {{currentPage === 1 ? 'red' : 'black'}}" ng-disabled="currentPage === 1" ng-click="changePaginationState(1)">{{1}}</button>
                 <span class="pagination-ellipses pagination-left-ellipses" style="float:left;" ng-show="leftEllipsesEnabled">...</span>
                 <button class="btn btn-sm btn-pagination pagination-page" style="color: {{currentPage === $index ? 'red' : 'black'}}" ng-disabled="currentPage === $index" ng-repeat="page in clickablePages track by $index"
@@ -104,8 +104,8 @@
                     {{$index}}</button>
                 <span class="pagination-ellipses pagination-right-ellipses" style="float:left;" ng-show="rightEllipsesEnabled">...</span>
                 <button class="btn btn-sm btn-pagination pagination-lastPage" style="color: {{currentPage === lastPage ? 'red' : 'black'}}" ng-disabled="currentPage === lastPage" ng-click="changePaginationState(lastPage)"
-                    ng-if="lastPage !== 1">{{lastPage}}</button>
-                <button class="btn btn-sm btn-pagination pagination-next" style="cursor: pointer;" ng-click="changePaginationState(currentPage+1)" ng-disabled="nextDisabled">next</button>
+                    ng-if="lastPage > 1">{{lastPage}}</button>
+                <button class="btn btn-sm btn-pagination pagination-next" style="cursor: pointer;" ng-if="lastPage > 1" ng-click="changePaginationState(currentPage+1)" ng-disabled="nextDisabled">next</button>
                 <!-- <ul>
                     <li ng-class="{disabled: currentPage == 0}">
                         <a href ng-click="prevPage()">« Prev</a>

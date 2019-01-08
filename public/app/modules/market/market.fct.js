@@ -88,12 +88,35 @@ angular.module("MarketApp").factory("MarketFct", [
       });
     }
 
+    function recordFilterListingsEvent(
+      filterType,
+      filteredListings,
+      filterValue
+    ) {
+      return $q(function(resolve, reject) {
+        var marketSearchId = getLocalStorageData("wizio").MarketSearch
+          .MarketSearchId;
+        $resource(WizioConfig.baseAPIURL + "marketfilter").save(
+          {
+            filterType: filterType,
+            filteredListings: filteredListings,
+            filterValue: filterValue,
+            marketSearchId: marketSearchId
+          },
+          function(response) {
+            return resolve(response);
+          }
+        );
+      });
+    }
+
     return {
       submitMarketSearch: submitMarketSearch,
       addDataToLocalStore: addDataToLocalStore,
       getLocalStorageData: getLocalStorageData,
       updateLocalStorage: updateLocalStorage,
-      initMarketData: initMarketData
+      initMarketData: initMarketData,
+      recordFilterListingsEvent: recordFilterListingsEvent
     };
   }
 ]);

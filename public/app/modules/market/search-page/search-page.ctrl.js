@@ -56,7 +56,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       activeBedButtonIndex = bedOption.value;
       bedOption.isActive = !bedOption.isActive;
       $scope.filter.minBeds.value = bedOption.value;
-      $scope.filterListings();
+      $scope.filterListings("minBeds");
     };
 
     $scope.showVRPreviewEnabled = false;
@@ -119,7 +119,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }, 500);
     };
 
-    $scope.filterListings = function() {
+    $scope.filterListings = function(filterType) {
       var filteredListings = [];
 
       for (var i = 0; i < $scope.listings.length; i++) {
@@ -151,6 +151,19 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       initPaging(filteredListings);
       $scope.filteredListings = filteredListings;
+      if (filterType) {
+        MarketFct.recordFilterListingsEvent(
+          filterType,
+          $scope.filteredListings,
+          $scope.filter[filterType].value
+        )
+          .then(function(response) {
+            return;
+          })
+          .catch(function(err) {
+            return;
+          });
+      }
     };
 
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -194,7 +207,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     function killWizioTourPreview() {
       if (
-        $scope.pagedItems &&
+        $scope.pagedItems.length !== 0 &&
         $scope.pagedItems[$scope.currentPage - 1].length !== 0
       ) {
         for (
@@ -245,7 +258,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         document.getElementById("listing-tiles-container").scrollTop = 0;
       }
     }
-    var markerCluster; 
+    var markerCluster;
     function initPaging(listings) {
       $scope.currentPage = 1;
       var totalPages = Math.max(
@@ -281,8 +294,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         });
         return marker;
       });
-      if(markerCluster){
-        markerCluster.setMap(null)
+      if (markerCluster) {
+        markerCluster.setMap(null);
       }
       markerCluster = new MarkerClusterer(map, markers, {
         imagePath:
