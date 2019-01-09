@@ -108,7 +108,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.$broadcast("TourDataReceived", {
           title: "preview",
           imageUrls: [
-            $scope.wizioCDN +
+            $scope.wizioCDN + '/800x400/' + 
               listing.SubscriptionApartment.pubid +
               "/" +
               listing.SubscriptionApartment.Media[0].title +
