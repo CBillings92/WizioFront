@@ -10,7 +10,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     var activeBedButtonIndex = 0;
 
     $scope.wizioCDN = WizioConfig.CLOUDFRONT_DISTRO;
-
+    console.dir($scope.wizioCDN);
     $scope.filterPanelActive = false;
     $scope.toggleFilterPanel = function() {
       $scope.filterPanelActive = !$scope.filterPanelActive;
@@ -44,7 +44,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     };
 
     $scope.bedOptions = [
-      { text: "Studio", value: 0, isActive: true },
+      { text: "Studio+", value: 0, isActive: true },
       { text: "1+", value: 1, isActive: false },
       { text: "2+", value: 2, isActive: false },
       { text: "3+", value: 3, isActive: false },

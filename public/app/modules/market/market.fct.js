@@ -3,7 +3,8 @@ angular.module("MarketApp").factory("MarketFct", [
   "$resource",
   "$state",
   "WizioConfig",
-  function($q, $resource, $state, WizioConfig) {
+  "lodash",
+  function($q, $resource, $state, WizioConfig, lodash) {
     function submitMarketSearch(marketSearch) {
       return $q(function(resolve, reject) {
         if (!marketSearch.AddressBar || marketSearch.AddressBar === "") {
@@ -109,6 +110,21 @@ angular.module("MarketApp").factory("MarketFct", [
         );
       });
     }
+
+    // function orderListings(listings, orderType, firstRankItem){
+    //   var options = ['Studio', '1+ Bed', '2+ Bed', '3+ Bed', '4+ Bed']
+    //   var rank = {}
+    //   var rankCount = 1
+    //   for(var i = 1; i <= options.length; i++){
+    //     if(options[i] === firstRankItem){
+    //       rank[options[i]] = rankCount
+    //       rankCount++
+    //     }
+    //   }
+    //   lodash.sortBy(listings, function(element){
+
+    //   })
+    // }
 
     return {
       submitMarketSearch: submitMarketSearch,
