@@ -8,7 +8,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   function($scope, $state, $q, $window, MarketFct, WizioConfig) {
     var pageCountLimit = 12;
     var activeBedButtonIndex = 0;
-
+    var map;
     $scope.wizioCDN = WizioConfig.CLOUDFRONT_DISTRO;
     console.dir($scope.wizioCDN);
     $scope.filterPanelActive = false;
@@ -108,7 +108,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         $scope.$broadcast("TourDataReceived", {
           title: "preview",
           imageUrls: [
-            $scope.wizioCDN + '/800x400/' + 
+            $scope.wizioCDN +
+              "/800x400/" +
               listing.SubscriptionApartment.pubid +
               "/" +
               listing.SubscriptionApartment.Media[0].title +
@@ -165,12 +166,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           });
       }
     };
-
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 14,
-      center: { lng: -71.12033, lat: 42.30982 },
-      mapTypeId: "roadmap"
-    });
 
     function changePrevBtnState() {
       if ($scope.currentPage === 1) {
@@ -308,7 +303,15 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     function initMarket() {
       $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
-
+      console.dir(map);
+      map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 14,
+        center: {
+          lng: Number(JSON.parse(localStorage.getItem("wizio")).longitude),
+          lat: Number(JSON.parse(localStorage.getItem("wizio")).latitude)
+        },
+        mapTypeId: "roadmap"
+      });
       // addTestListings(100);
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
