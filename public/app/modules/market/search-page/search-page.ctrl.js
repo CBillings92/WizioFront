@@ -3,9 +3,10 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
   "$state",
   "$q",
   "$window",
+  "$compile",
   "MarketFct",
   "WizioConfig",
-  function($scope, $state, $q, $window, MarketFct, WizioConfig) {
+  function($scope, $state, $q, $window, $compile, MarketFct, WizioConfig) {
     var pageCountLimit = 12;
     var activeBedButtonIndex = 0;
     var map;
@@ -284,6 +285,28 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           }
           // label: labels[i % labels.length]
         });
+        // console.dir(
+        //   listing.Apartment.RouteLongName +
+        //     ", " +
+        //     (listing.Apartment.NeighborhoodLongName !== ""
+        //       ? listing.Apartment.NeighborhoodLongName
+        //       : listing.Apartment.LocalityLongName)
+        // );
+        // var contentString =
+        //   "<div>" +
+        //   listing.Apartment.RouteLongName +
+        //   ", " +
+        //   (listing.Apartment.NeighborhoodLongName !== ""
+        //     ? listing.Apartment.NeighborhoodLongName
+        //     : listing.Apartment.LocalityLongName) +
+        //   "</div>";
+
+        // marker.addListener("click", function() {
+        //   new google.maps.InfoWindow({ content: contentString }).open(
+        //     map,
+        //     marker
+        //   );
+        // });
         marker.addListener("click", function() {
           $scope.viewTour({ pubid: listing.pubid });
         });
@@ -299,6 +322,9 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
       changePaginationState(1);
     }
+    $scope.testalert = function(val) {
+      alert(val);
+    };
     $scope.changePaginationState = changePaginationState;
 
     function initMarket() {
@@ -312,6 +338,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         },
         mapTypeId: "roadmap"
       });
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
       // addTestListings(100);
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
