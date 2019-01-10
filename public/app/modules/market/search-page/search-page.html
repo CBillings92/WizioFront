@@ -74,8 +74,8 @@
                     </div>
                     <div class="listing-tile__metadata">
                         <div class="listing-tile__metadata__row">
-                            <div class="listing-tile__data-point--med text-align-left"><i class="fa fa-md fa-dollar-sign gray"></i>
-                                {{listing.SubscriptionApartment.Listing.Lease.RentAmount}}/mo</div>
+                            <div class="listing-tile__data-point--med text-align-left">
+                                {{listing.SubscriptionApartment.Listing.Lease.RentAmount | currency:undefined:0}}/mo</div>
                             <div class="listing-tile__data-point--med text-align-right" ng-if="listing.SubscriptionApartment.Listing.Lease.LeaseStartDate">For: {{listing.SubscriptionApartment.Listing.Lease.LeaseStartDate | date : 'MM-dd-yyyy' }}</div>
                             <div class="listing-tile__data-point--med text-align-right" ng-if="!listing.SubscriptionApartment.Listing.Lease.LeaseStartDate">Available Now</div>
                         </div>
