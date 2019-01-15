@@ -255,6 +255,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
     }
     var markerCluster;
+    var currentlySelectedMarker;
     function initPaging(listings) {
       $scope.currentPage = 1;
       var totalPages = Math.max(
@@ -280,92 +281,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       $scope.lastPage = $scope.pagedItems.length;
 
-      var buildings = {};
-
-      for (var i = 0; i < listings.length; i++) {
-        var building = listings[i].Apartment;
-        var listing = listings[i].SubscriptionApartment;
-        var key = building.latitude + building.longitude;
-        if (buildings[key]) {
-          buildings[key].units.push(listings[i]);
-        } else {
-          buildings[building.latitude + building.longitude] = {
-            address: building.FullyFormattedAddress,
-            latitude: building.latitude,
-            longitude: building.longitude,
-            units: [listings[i]]
-          };
-        }
-      }
-
-      var buildingMarkers = [];
-      for (var i = 0; i < Object.getOwnPropertyNames(buildings).length; i++) {
-        var building = buildings[Object.getOwnPropertyNames(buildings)[i]];
-        buildMarker(building);
-        function buildMarker(data) {
-          var buildingMarker = new google.maps.Marker({
-            position: {
-              lat: Number(data.latitude),
-              lng: Number(data.longitude)
-            },
-            map: map,
-            visible: false,
-            animation: google.maps.Animation.DROP,
-            listings: building.units
-          });
-          var infoWindowContentBody = "";
-          var infoWindow = new google.maps.InfoWindow({
-            maxWidth: 575,
-            maxHeight: 320,
-            content:
-              "<div><h3>" +
-              data.address +
-              "</h3><br><div>Units: " +
-              data.units.length +
-              "</div>" +
-              infoWindowContentBody +
-              "</div>"
-          });
-          google.maps.event.addListener(buildingMarker, "click", function() {
-            initPaging(this.listings);
-          });
-
-          buildingMarkers.push(buildingMarker);
-        }
-      }
-      var markers = listings.map(function(listing, i) {
-        var marker = new google.maps.Marker({
-          position: {
-            lat: Number(listing.Apartment.latitude),
-            lng: Number(listing.Apartment.longitude)
-          }
-        });
-        marker.addListener("click", function() {
-          $scope.viewTour({ pubid: listing.pubid });
-        });
-        return marker;
-      });
-      if (markerCluster) {
-        markerCluster.setMap(null);
-      }
-      markerCluster = new MarkerClusterer(map, markers, {
-        imagePath:
-          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-        maxZoom: 14
-      });
-
-      google.maps.event.clearListeners(map, "zoom_changed");
-      /* Change markers on zoom */
-      google.maps.event.addListener(map, "zoom_changed", function() {
-        var zoom = map.getZoom();
-        // iterate over markers and call setVisible
-        for (i = 0; i < buildingMarkers.length; i++) {
-          buildingMarkers[i].setVisible(zoom >= 15);
-        }
-        for (i = 0; i < markers.length; i++) {
-          markers[i].setVisible(zoom < 15);
-        }
-      });
       changePaginationState(1);
     }
     $scope.changePaginationState = changePaginationState;
@@ -394,6 +309,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       // initPaging($scope.listings);
       $scope.filterListings();
+      configureMap();
     }
 
     function addTestListings(numberOfTestListings) {
@@ -537,6 +453,131 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           $scope.listings[Math.floor(Math.random() * actualListingCount) + 0]
         );
       }
+    }
+
+    function configureMap(listingsForMap) {
+      var listings = listingsForMap || $scope.filteredListings;
+      var buildings = {};
+
+      for (var i = 0; i < listings.length; i++) {
+        var building = listings[i].Apartment;
+        var listing = listings[i].SubscriptionApartment;
+        var key = building.latitude + building.longitude;
+        if (buildings[key]) {
+          buildings[key].units.push(listings[i]);
+        } else {
+          buildings[building.latitude + building.longitude] = {
+            address: building.FullyFormattedAddress,
+            latitude: building.latitude,
+            longitude: building.longitude,
+            units: [listings[i]]
+          };
+        }
+      }
+
+      var buildingMarkers = [];
+      for (var i = 0; i < Object.getOwnPropertyNames(buildings).length; i++) {
+        var building = buildings[Object.getOwnPropertyNames(buildings)[i]];
+        buildMarker(building);
+        function buildMarker(data) {
+          var buildingMarker = new google.maps.Marker({
+            position: {
+              lat: Number(data.latitude),
+              lng: Number(data.longitude)
+            },
+            map: map,
+            visible: false,
+            animation: google.maps.Animation.DROP,
+            listings: building.units
+          });
+          var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 575,
+            maxHeight: 320,
+            content:
+              "<div><h3>" +
+              data.address +
+              "</h3><br><div>Units: " +
+              data.units.length +
+              "</div>"
+          });
+          buildingMarker.infowindow = infoWindow;
+          google.maps.event.addListener(buildingMarker, "click", function() {
+            if (currentlySelectedMarker && currentlySelectedMarker.infowindow) {
+              currentlySelectedMarker.infowindow.close(
+                map,
+                currentlySelectedMarker
+              );
+            }
+            initPaging(this.listings);
+            infoWindow.open(map, this);
+            currentlySelectedMarker = this;
+          });
+          google.maps.event.addListener(infoWindow, "closeclick", function() {
+            initPaging(JSON.parse(localStorage.getItem("wizio")).listings);
+          });
+          buildingMarkers.push(buildingMarker);
+        }
+      }
+      var markers = listings.map(function(listing, i) {
+        var unitMarker = new google.maps.Marker({
+          position: {
+            lat: Number(listing.Apartment.latitude),
+            lng: Number(listing.Apartment.longitude)
+          },
+          listings: [listing]
+        });
+        // marker.addListener("click", function() {
+        //   $scope.viewTour({ pubid: listing.pubid });
+        // });
+        console.dir(listing);
+        var infoWindow = new google.maps.InfoWindow({
+          maxWidth: 575,
+          maxHeight: 320,
+          content:
+            "<div><h3>" +
+            listing.Apartment.FullyFormfattedAddress +
+            "</h3><br><div>Units: 1" +
+            "</div>"
+        });
+        unitMarker.infowindow = infoWindow;
+        google.maps.event.addListener(unitMarker, "click", function() {
+          if (currentlySelectedMarker && currentlySelectedMarker.infowindow) {
+            currentlySelectedMarker.infowindow.close(
+              map,
+              currentlySelectedMarker
+            );
+          }
+          initPaging(this.listings);
+          infoWindow.open(map, this);
+          currentlySelectedMarker = this;
+        });
+        google.maps.event.addListener(infoWindow, "closeclick", function() {
+          initPaging(JSON.parse(localStorage.getItem("wizio")).listings);
+        });
+        return unitMarker;
+      });
+      if (markerCluster) {
+        markerCluster.setMap(null);
+      }
+      markerCluster = new MarkerClusterer(map, markers, {
+        imagePath:
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        maxZoom: 14
+      });
+
+      google.maps.event.clearListeners(map, "zoom_changed");
+
+      /* Change markers on zoom */
+      google.maps.event.addListener(map, "zoom_changed", function() {
+        var zoom = map.getZoom();
+        // iterate over markers and call setVisible
+        for (i = 0; i < buildingMarkers.length; i++) {
+          buildingMarkers[i].setVisible(zoom >= 15);
+        }
+        for (i = 0; i < markers.length; i++) {
+          markers[i].setVisible(zoom < 15);
+        }
+      });
     }
 
     // var cityCircle = new google.maps.Circle({
