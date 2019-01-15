@@ -18,7 +18,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     MarketFct.initMarketData($state.params.area)
       .then(function(response) {
-        alert("once");
         initMarket();
       })
       .catch(function(err) {
