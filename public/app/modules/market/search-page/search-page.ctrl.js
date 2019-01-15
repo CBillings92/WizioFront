@@ -11,7 +11,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
     var activeBedButtonIndex = 0;
     var map;
     $scope.wizioCDN = WizioConfig.CLOUDFRONT_DISTRO;
-    console.dir($scope.wizioCDN);
     $scope.filterPanelActive = false;
     $scope.toggleFilterPanel = function() {
       $scope.filterPanelActive = !$scope.filterPanelActive;
@@ -19,6 +18,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     MarketFct.initMarketData($state.params.area)
       .then(function(response) {
+        alert("once");
         initMarket();
       })
       .catch(function(err) {
@@ -274,39 +274,72 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         } else {
           $scope.pagedItems[Math.floor(i / pageCountLimit)].push(listings[i]);
         }
+        if (!$scope.$$phase) {
+          $scope.$apply();
+        }
       }
       $scope.lastPage = $scope.pagedItems.length;
 
+      var buildings = {};
+
+      for (var i = 0; i < listings.length; i++) {
+        var building = listings[i].Apartment;
+        var listing = listings[i].SubscriptionApartment;
+        var key = building.latitude + building.longitude;
+        if (buildings[key]) {
+          buildings[key].units.push(listings[i]);
+        } else {
+          buildings[building.latitude + building.longitude] = {
+            address: building.FullyFormattedAddress,
+            latitude: building.latitude,
+            longitude: building.longitude,
+            units: [listings[i]]
+          };
+        }
+      }
+
+      var buildingMarkers = [];
+      for (var i = 0; i < Object.getOwnPropertyNames(buildings).length; i++) {
+        var building = buildings[Object.getOwnPropertyNames(buildings)[i]];
+        buildMarker(building);
+        function buildMarker(data) {
+          var buildingMarker = new google.maps.Marker({
+            position: {
+              lat: Number(data.latitude),
+              lng: Number(data.longitude)
+            },
+            map: map,
+            visible: false,
+            animation: google.maps.Animation.DROP,
+            listings: building.units
+          });
+          var infoWindowContentBody = "";
+          var infoWindow = new google.maps.InfoWindow({
+            maxWidth: 575,
+            maxHeight: 320,
+            content:
+              "<div><h3>" +
+              data.address +
+              "</h3><br><div>Units: " +
+              data.units.length +
+              "</div>" +
+              infoWindowContentBody +
+              "</div>"
+          });
+          google.maps.event.addListener(buildingMarker, "click", function() {
+            initPaging(this.listings);
+          });
+
+          buildingMarkers.push(buildingMarker);
+        }
+      }
       var markers = listings.map(function(listing, i) {
         var marker = new google.maps.Marker({
           position: {
             lat: Number(listing.Apartment.latitude),
             lng: Number(listing.Apartment.longitude)
           }
-          // label: labels[i % labels.length]
         });
-        // console.dir(
-        //   listing.Apartment.RouteLongName +
-        //     ", " +
-        //     (listing.Apartment.NeighborhoodLongName !== ""
-        //       ? listing.Apartment.NeighborhoodLongName
-        //       : listing.Apartment.LocalityLongName)
-        // );
-        // var contentString =
-        //   "<div>" +
-        //   listing.Apartment.RouteLongName +
-        //   ", " +
-        //   (listing.Apartment.NeighborhoodLongName !== ""
-        //     ? listing.Apartment.NeighborhoodLongName
-        //     : listing.Apartment.LocalityLongName) +
-        //   "</div>";
-
-        // marker.addListener("click", function() {
-        //   new google.maps.InfoWindow({ content: contentString }).open(
-        //     map,
-        //     marker
-        //   );
-        // });
         marker.addListener("click", function() {
           $scope.viewTour({ pubid: listing.pubid });
         });
@@ -317,24 +350,39 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }
       markerCluster = new MarkerClusterer(map, markers, {
         imagePath:
-          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        maxZoom: 14
       });
 
+      google.maps.event.clearListeners(map, "zoom_changed");
+      /* Change markers on zoom */
+      google.maps.event.addListener(map, "zoom_changed", function() {
+        var zoom = map.getZoom();
+        // iterate over markers and call setVisible
+        for (i = 0; i < buildingMarkers.length; i++) {
+          buildingMarkers[i].setVisible(zoom >= 15);
+        }
+        for (i = 0; i < markers.length; i++) {
+          markers[i].setVisible(zoom < 15);
+        }
+      });
       changePaginationState(1);
     }
-    $scope.testalert = function(val) {
-      alert(val);
-    };
     $scope.changePaginationState = changePaginationState;
 
-    function initMarket() {
-      $scope.listings = JSON.parse(localStorage.getItem("wizio")).listings;
-      console.dir(map);
+    function initMarket(listings, listingsCenterCoordinates) {
+      wizioLocalStorage = JSON.parse(localStorage.getItem("wizio"));
+      if (listings) {
+        $scope.listings = listings;
+      } else {
+        $scope.listings = wizioLocalStorage.listings;
+      }
+      mapCenterCoordinates = listingsCenterCoordinates || wizioLocalStorage;
       map = new google.maps.Map(document.getElementById("map"), {
         zoom: 14,
         center: {
-          lng: Number(JSON.parse(localStorage.getItem("wizio")).longitude),
-          lat: Number(JSON.parse(localStorage.getItem("wizio")).latitude)
+          lng: Number(mapCenterCoordinates.longitude),
+          lat: Number(mapCenterCoordinates.latitude)
         },
         mapTypeId: "roadmap"
       });
@@ -344,7 +392,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].isFiltered = false;
       }
-      initPaging($scope.listings);
+      // initPaging($scope.listings);
       $scope.filterListings();
     }
 
