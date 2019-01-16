@@ -466,6 +466,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         if (buildings[key]) {
           buildings[key].units.push(listings[i]);
         } else {
+          console.dir(building);
+          console.dir(building.FullyFormattedAddress || building.concatAddr);
           buildings[building.latitude + building.longitude] = {
             address: building.FullyFormattedAddress || building.concatAddr,
             latitude: building.latitude,
@@ -508,6 +510,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
                 currentlySelectedMarker
               );
             }
+            console.dir(this.listings)
             initPaging(this.listings);
             infoWindow.open(map, this);
             currentlySelectedMarker = this;
