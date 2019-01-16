@@ -122,6 +122,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
 
     $scope.filterListings = function(filterType) {
       var filteredListings = [];
+      00000;
 
       for (var i = 0; i < $scope.listings.length; i++) {
         $scope.listings[i].SubscriptionApartment.Listing.Beds = Number(
@@ -466,7 +467,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           buildings[key].units.push(listings[i]);
         } else {
           buildings[building.latitude + building.longitude] = {
-            address: building.FullyFormattedAddress,
+            address: building.FullyFormattedAddress || building.concatAddr,
             latitude: building.latitude,
             longitude: building.longitude,
             units: [listings[i]]
@@ -528,7 +529,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         // marker.addListener("click", function() {
         //   $scope.viewTour({ pubid: listing.pubid });
         // });
-        console.dir(listing);
         var infoWindow = new google.maps.InfoWindow({
           maxWidth: 575,
           maxHeight: 320,
