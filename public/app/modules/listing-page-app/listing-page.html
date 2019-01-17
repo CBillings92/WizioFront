@@ -282,40 +282,40 @@
           <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
           <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> First Month </p>
-            <i class="fa fa-check fa-2x orange"></i>
+            <i class="fa fa-check fas fas-times orange"></i>
           </div>
           <div ng-if="!data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> First Month </p>
-            <i class="fas fas-times fa-2x blue"></i>
+            <i class="fas fa-times fas fas-times blue"></i>
           </div>
           <div ng-if="data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Security Deposit </p>
-            <i class="fa fa-check fa-2x orange"></i>
+            <i class="fa fa-check fas fas-times orange"></i>
           </div>
           <div ng-if="!data.Lease.IsSecurityDepositRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Security Deposit </p>
-            <i class="fas fas-times fa-2x blue"></i>
+            <i class="fas fa-times fas fas-times blue"></i>
           </div>
 
           <div ng-if="data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Last Month </p>
-            <i class="fa fa-check fa-2x orange"></i>
+            <i class="fa fa-check fas fas-times orange"></i>
           </div>
 
           <div ng-if="!data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Last Month </p>
-            <i class="fas fas-times fa-2x blue"></i>
+            <i class="fas fa-times fas fas-times blue"></i>
           </div>
 
 
           <div ng-if="data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Broker Fee </p>
-            <i class="fa fa-check fa-2x orange"></i>
+            <i class="fa fa-times fa-3x orange"></i>
           </div>
 
           <div ng-if="!data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Broker Fee </p>
-            <i class="fas fas-times fa-2x blue"></i>
+            <i class="fas fa-times fa-3x blue"></i>
           </div>
         </div>
       </div>
