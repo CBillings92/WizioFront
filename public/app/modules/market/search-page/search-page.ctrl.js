@@ -537,7 +537,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           maxHeight: 320,
           content:
             "<div><h3>" +
-            listing.Apartment.FullyFormfattedAddress +
+            listing.Apartment.FullyFormattedAddress +
             "</h3><br><div>Units: 1" +
             "</div>"
         });
