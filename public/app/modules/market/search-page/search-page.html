@@ -87,7 +87,7 @@
                             <div class="listing-tile__data-point--sml text-align-center"><i class="fa fa-bath fa-lg gray"></i>
                                 {{listing.SubscriptionApartment.Listing.Baths}} Bath</div>
                             <div class="listing-tile__data-point--sml text-align-right">
-                                <i class="fa-lg fa fa-dog gray"></i> <i class="fa fa-lg fa-cat gray"></i> OK
+                                <i ng-if="listing.SubscriptionApartment.Listing.IsDogFriendly" class="fa-lg fa fa-dog gray"></i> <i ng-if="listing.SubscriptionApartment.Listing.IsCatFriendly" class="fa fa-lg fa-cat gray"></i> <span>{{listing.SubscriptionApartment.Listing.IsDogFriendly || listing.SubscriptionApartment.Listing.IsCatFriendly ? 'OK' : 'No Pets Allowed'}}</span>
                             </div>
                         </div>
                     </div>
