@@ -466,8 +466,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
         if (buildings[key]) {
           buildings[key].units.push(listings[i]);
         } else {
-          console.dir(building);
-          console.dir(building.FullyFormattedAddress || building.concatAddr);
           buildings[building.latitude + building.longitude] = {
             address: building.FullyFormattedAddress || building.concatAddr,
             latitude: building.latitude,
@@ -510,7 +508,6 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
                 currentlySelectedMarker
               );
             }
-            console.dir(this.listings)
             initPaging(this.listings);
             infoWindow.open(map, this);
             currentlySelectedMarker = this;
@@ -536,10 +533,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           maxWidth: 575,
           maxHeight: 320,
           content:
-            "<div><h3>" +
-            listing.Apartment.FullyFormattedAddress +
-            "</h3><br><div>Units: 1" +
-            "</div>"
+            "<div><h3>" + listing.Apartment.FullyFormattedAddress ||
+            listing.Apartment.concatAddr + "</h3><br><div>Units: 1" + "</div>"
         });
         unitMarker.infowindow = infoWindow;
         google.maps.event.addListener(unitMarker, "click", function() {
