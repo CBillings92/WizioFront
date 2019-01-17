@@ -14,6 +14,7 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
       $scope.business = data.User.Subscriptions[0].Businesses[0];
       $scope.data.Listing = data.SubscriptionApartment.Listing;
       $scope.data.Lease = $scope.data.Listing.Lease;
+      console.dir($scope.data);
       $scope.agent = data.User;
       if ($scope.business.name === "Boston Pads") {
         $scope.isBostonPadsUnit = true;
