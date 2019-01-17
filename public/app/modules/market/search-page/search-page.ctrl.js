@@ -120,24 +120,31 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
       }, 500);
     };
 
-    $scope.filterListings = function(filterType) {
+    function filterListings(filterType, filterModified) {
+      var listings = [];
+      if (!$scope.pagedItems || !currentlySelectedMarker) {
+        listings = $scope.listings;
+      } else {
+        listings = $scope.pagedItems.flat();
+      }
+
       var filteredListings = [];
       00000;
 
-      for (var i = 0; i < $scope.listings.length; i++) {
-        $scope.listings[i].SubscriptionApartment.Listing.Beds = Number(
-          $scope.listings[i].SubscriptionApartment.Listing.Beds
+      for (var i = 0; i < listings.length; i++) {
+        listings[i].SubscriptionApartment.Listing.Beds = Number(
+          listings[i].SubscriptionApartment.Listing.Beds
         )
           .toFixed(2)
           .replace(/[.,]00$/, "");
-        $scope.listings[i].SubscriptionApartment.Listing.Baths = Number(
-          $scope.listings[i].SubscriptionApartment.Listing.Baths
+        listings[i].SubscriptionApartment.Listing.Baths = Number(
+          listings[i].SubscriptionApartment.Listing.Baths
         )
           .toFixed(2)
           .replace(/[.,]00$/, "");
-        var listing = $scope.listings[i];
+        var listing = listings[i];
         var rentAmount =
-          $scope.listings[i].SubscriptionApartment.Listing.Lease.RentAmount;
+          listings[i].SubscriptionApartment.Listing.Lease.RentAmount;
         var minPriceFilter = Math.max($scope.filter.minPrice.value, 0);
         var maxPriceFilter = $scope.filter.maxPrice.value || 100000;
         var minBedsFilter = $scope.filter.minBeds.value;
@@ -146,9 +153,9 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           rentAmount <= maxPriceFilter &&
           listing.SubscriptionApartment.Listing.Beds >= minBedsFilter
         ) {
-          filteredListings.push($scope.listings[i]);
+          filteredListings.push(listings[i]);
         } else {
-          $scope.listings[i].isFiltered = true;
+          listings[i].isFiltered = true;
         }
       }
       initPaging(filteredListings);
@@ -166,7 +173,9 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
             return;
           });
       }
-    };
+    }
+
+    $scope.filterListings = filterListings;
 
     function changePrevBtnState() {
       if ($scope.currentPage === 1) {
@@ -513,7 +522,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
             currentlySelectedMarker = this;
           });
           google.maps.event.addListener(infoWindow, "closeclick", function() {
-            initPaging(JSON.parse(localStorage.getItem("wizio")).listings);
+            currentlySelectedMarker = null
+            filterListings(JSON.parse(localStorage.getItem("wizio")).listings)
           });
           buildingMarkers.push(buildingMarker);
         }
@@ -549,7 +559,8 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
           currentlySelectedMarker = this;
         });
         google.maps.event.addListener(infoWindow, "closeclick", function() {
-          initPaging(JSON.parse(localStorage.getItem("wizio")).listings);
+          currentlySelectedMarker = null
+          filterListings(JSON.parse(localStorage.getItem("wizio")).listings)
         });
         return unitMarker;
       });
