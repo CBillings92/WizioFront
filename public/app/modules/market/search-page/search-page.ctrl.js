@@ -224,7 +224,7 @@ angular.module("MarketApp").controller("MarketSearchPageCtrl", [
             $scope.pagedItems[$scope.currentPage - 1][i].isBeingPreviewed ===
             true
           ) {
-            wizio.kll();
+            wizio.dispose();
             $scope.pagedItems[$scope.currentPage - 1][
               i
             ].isBeingPreviewed = false;

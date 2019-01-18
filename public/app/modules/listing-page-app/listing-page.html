@@ -4,39 +4,62 @@
       <tour-dir show-interface="true"></tour-dir>
     </div>
   </div>
-
-  <div class="" style="text-align: center;">
-    <a href="#listing-page">
-      <i class="fa fa-2x fa-chevron-down"></i>
-    </a>
-  </div>
-
 </div>
-<hr>
+    <div class="listing-details-link" style="text-align: center;">
+      <a href="#listing-page">
+        <div class="section-head orange row-space" style="font-size:1.5em" id="listing-divider"> Listing Details </div>
+        <i class="fa fa-2x fa-chevron-down"></i>
+      </a>
+    </div>
 
 <div class="container-fluid">
-
   <div class="listing-container center-block">
     <div class="row" id='listing-page'>
+        <hr id="listing-divider">
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-1">
+          <form class="search-form" style="margin: 20px 0 10px 10px;">
+            <input
+            type="text"
+            id="search-bar"
+            class="form-input-text"
+            ng-model="marketSearch.AddressBar"
+            placeholder="Search other listings..."
+            />
+            <button
+            type="button"
+            ng-click="submitMarketSearch()"
+            ng-disabled="searchInProgress || backToSearchLoading"
+            class="btn btn-fill--orange--left-joined "
+            >
+            {{ searchInProgress ? "Searching..." : "Find My Space" }}
+          </button>
+        </form>
+      </div>
+      <div class="col-xs-12 col-sm-1">
+        <button class="btn btn-lg btn-fill--blue" ng-click="backtoSearch()" ng-disabled="backToSearchLoading"
+        style="height:2.8em; font-size:1.5em; margin: 20px 0; border-radius: 3px;">{{backToSearchLoading ? "Loading...  " : "Back to search"}}</button>
+      </div>
+    </div>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-sm-offset-1">
           <div ng-if="data.Listing.Lease.IsAvailableNow && !data.Listing.Lease.LeaseStartDate">
-            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+            <div class="label availability-label col-md-5 col-sm-5 col-xs-12"> Available Now </div>
           </div>
 
           <div ng-if="data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
-            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available Now </div>
+            <div class="label availability-label col-md-5 col-sm-5 col-xs-12"> Available Now </div>
           </div>
 
           <div ng-if="!data.Listing.Lease.IsAvailableNow && data.Listing.Lease.LeaseStartDate">
-            <div class="label availability-label col-md-4 col-sm-6 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate
+            <div class="label availability-label col-md-5 col-sm-5 col-xs-12"> Available: {{data.Listing.Lease.LeaseStartDate
               | date : 'MM-dd-yyyy'}} </div>
           </div>
 
 
 
           <div ng-if="address.neighborhood">
-            <div class="label neighborhood-label col-md-5 col-sm-6 col-xs-12"> {{address.NeighborhoodLongName}}, {{address.LocalityLongName}}
+            <div class="label neighborhood-label col-md-6 col-sm-6 col-xs-12"> {{address.NeighborhoodLongName}}, {{address.LocalityLongName}}
               {{address.AdministrativeAreaLevel1ShortName}} </div>
           </div>
         </div>
@@ -152,7 +175,7 @@
 
             </div>
           </div>
-          <div class="row">
+          <div class="row" style="margin-top:30px;">
             <div class="col-sm-10" style='margin-bottom: 10px' ng-if="data.Listing.IsGasIncluded || data.Listing.IsElectricIncluded || data.Listing.IsHotWaterIncluded || data.Listing.IseHeatIncluded || data.Listing.IsCableInternetIncluded">
               <p class='listing-sub-section dk-gray'>Included Utilities </p>
               <p class='small-body'>
@@ -168,8 +191,9 @@
               <p class="small-body"> {{data.Listing.AmenityDescription}}</p>
             </div>
           </div>
-
+          
           <div class="row">
+            <hr>
             <div class="col-xs-12 listing-map">
               <p class="listing-sub-section dk-gray"> {{address.FullyFormattedAddress}} </p>
               <div class="" id='map'></div>
@@ -267,18 +291,15 @@
         </div>
 
       </div>
-
-      <p class="section-head orange col-sm-offset-1 row-space" id="listing-divider"> Listing Details </p>
-      <hr id="listing-divider">
-
-
+      
       <div class="row" ng-if="data.Listing.ListingDescription">
+        <br>
+        <hr id="listing-divider">
         <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+          <p class="col-xs-12 listing-sub-section dk-gray">Unit Description</p>
           <p class="small-body" style="line-height:1.3">{{data.Listing.ListingDescription}}</p>
         </div>
-      </div>
-      <div class="row row-space">
-        <div class="col-sm-8 col-sm-offset-1 col-xs-12">
+        <div class="col-sm-6 col-xs-12">
           <p class="col-xs-12 listing-sub-section dk-gray">Fee Breakdown</p>
           <div ng-if="data.Lease.IsFirstMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> First Month </p>
@@ -296,28 +317,30 @@
             <p class="small-body"> Security Deposit </p>
             <i class="fas fa-times fa-3x blue"></i>
           </div>
-
+  
           <div ng-if="data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Last Month </p>
             <i class="fa fa-check fa-3x orange"></i>
           </div>
-
+  
           <div ng-if="!data.Lease.IsLastMonthsRentRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Last Month </p>
             <i class="fas fa-times fa-3x blue"></i>
           </div>
-
-
+  
+  
           <div ng-if="data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Broker Fee </p>
             <i class="fa fa-check fa-3x orange"></i>
           </div>
-
+  
           <div ng-if="!data.Lease.IsBrokerFeeRequired" class="text-center col-sm-3 col-xs-6 listing-fee">
             <p class="small-body"> Broker Fee </p>
             <i class="fas fa-times fa-3x blue"></i>
           </div>
         </div>
+      </div>
+      <div class="row row-space">
       </div>
     </div>
 

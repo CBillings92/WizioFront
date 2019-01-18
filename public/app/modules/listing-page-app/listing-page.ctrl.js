@@ -2,8 +2,10 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
   "$scope",
   "$state",
   "ModalBuilderFct",
+  "MarketFct",
   "WizioConfig",
-  function($scope, $state, ModalBuilderFct, WizioConfig) {
+  "$q",
+  function($scope, $state, ModalBuilderFct, MarketFct, WizioConfig, $q) {
     $scope.isBostonPadsUnit = false;
     $scope.data = {
       Listing: {}
@@ -92,6 +94,65 @@ angular.module("ListingPageApp").controller("ListingPageCtrl", [
         .catch(function(err) {
           return;
         });
+    };
+
+    $scope.dataLoaded = false;
+    $scope.marketSearch = {};
+
+    addEventListener("load", initMarketLandingPage, false);
+
+    function initMarketLandingPage() {
+      var input = document.getElementById("search-bar");
+      autocomplete = new google.maps.places.Autocomplete(input, {
+        types: ["geocode"]
+      });
+    }
+
+    $scope.submitMarketSearch = function() {
+      return $q(function(resolve, reject) {
+        $scope.searchInProgress = true;
+        $scope.marketSearch.AddressBar = document.getElementById(
+          "search-bar"
+        ).value;
+        MarketFct.addDataToLocalStore(
+          "wizio",
+          "lastMarketSearchCriteria",
+          $scope.marketSearch
+        );
+
+        MarketFct.submitMarketSearch($scope.marketSearch)
+          .then(function(response) {
+            $scope.dataLoaded = true;
+            response.payload.MarketSearch.searchTime = new Date();
+            MarketFct.updateLocalStorage("wizio", response.payload);
+            $state.go("SearchMarket", { area: $scope.marketSearch.AddressBar });
+          })
+          .catch(function(err) {
+            console.error(err);
+          });
+      });
+    };
+
+    $scope.backToSearchLoading = false;
+    $scope.backtoSearch = function() {
+      $scope.backToSearchLoading = true;
+      var wizioLocalStorage = JSON.parse(localStorage.getItem("wizio")) || {};
+      if (!wizioLocalStorage.MarketSearch) {
+        MarketFct.submitMarketSearch($scope.marketSearch)
+          .then(function(response) {
+            $scope.dataLoaded = true;
+            response.payload.MarketSearch.searchTime = new Date();
+            MarketFct.updateLocalStorage("wizio", response.payload);
+            $state.go("SearchMarket", { area: $scope.marketSearch.AddressBar });
+          })
+          .catch(function(err) {
+            console.error(err);
+          });
+      } else {
+        $state.go("SearchMarket", {
+          area: wizioLocalStorage.MarketSearch.AddressBar
+        });
+      }
     };
   }
 ]);

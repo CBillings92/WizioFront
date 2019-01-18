@@ -24,8 +24,15 @@
 
 .listing-sub-section {
   font-family: "Roboto";
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 1.5em;
+  .small-body {
+    font-size: 1.5em;
+  }
+}
+
+.listing-sub-section + .small-body {
+  font-size: 1.5em;
 }
 
 .listing-contact-address {
@@ -74,12 +81,12 @@
 .availability-label,
 .neighborhood-label {
   font-family: "Roboto";
-  font-size: 15px;
+  font-size: 1.5em;
   font-weight: 400;
   color: #fff;
-  padding: 8px 20px;
+  padding: 12px 20px;
   border-radius: 3px;
-  margin: 10px 10px;
+  margin: 20px 10px;
   display: inline-block;
   box-sizing: border-box;
 }
@@ -107,14 +114,14 @@
 }
 
 .amenity-icon {
-  height: 40px;
+  height: 57px;
   margin-bottom: 8px;
 }
 
 .amenity-text {
   font-family: "Roboto";
   font-weight: 300;
-  font-size: 15px;
+  font-size: 1.4em;
   color: $dk-gray;
   line-height: 1.2;
 }
@@ -144,6 +151,9 @@
 
 .listing-fee {
   padding-top: 15px;
+  .small-body {
+    font-size: 1.5em;
+  }
 }
 
 #listing-divider {
@@ -221,7 +231,7 @@ hr#listing-divider {
 
   .availability-label,
   .neighborhood-label {
-    width: 45%;
+    // width: 45%;
     display: inline-block;
   }
 }
@@ -231,9 +241,15 @@ hr#listing-divider {
 @media (max-width: 525px) {
   .availability-label,
   .neighborhood-label {
-    width: 70%;
+    // width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media (min-width: 525px) {
+  .listing-details-link {
+    display: none;
   }
 }

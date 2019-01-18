@@ -40,14 +40,6 @@
     <!-- Styles -->
     <link href="../public/build/import.css" rel="stylesheet" />
 
-    <!-- Polyfill for String.Includes -->
-    <script> if (!String.prototype.includes) {String.prototype.includes = function () {"use strict"; return String.prototype.indexOf.apply(this, arguments) !== -1}}</script>
-
-    <script>
-        if (window.location.hostname === 'alpha.wizio.co') {
-            $("head").append('<meta name="robots" content="noindex"/>');
-        }
-    </script>
     <!-- Google Maps API -->
     
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj4YCqghqM3L2Y7NBdiUlwo-s-DiRWi6k&libraries=places"></script>
@@ -61,6 +53,9 @@
     <script type="text/javascript" src="../public/build/scripts.js"></script>
     <!-- Wizio VR Player -->
     <script type="text/javascript" src='../public/internallibraries/wiziolibrary/scripts.min.js'></script>
+    <script type="text/javascript" src='../public/internallibraries/wiziolibrary/staging1.min.js'></script>
+    <script type="text/javascript" src='../public/internallibraries/wiziolibrary/staging2.min.js'></script>
+
     <!-- Mailchimp -->
     <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false" />
 
@@ -107,6 +102,14 @@
         })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
         fbq("init", "284584225294986");
         fbq("track", "PageView");
+    </script>
+    <!-- Polyfill for String.Includes -->
+    <script> if (!String.prototype.includes) {String.prototype.includes = function () {"use strict"; return String.prototype.indexOf.apply(this, arguments) !== -1}}</script>
+
+    <script>
+        if (window.location.hostname === 'alpha.wizio.co') {
+            $("head").append('<meta name="robots" content="noindex"/>');
+        }
     </script>
     <noscript>
         <img height="1" width="1" src="https://www.facebook.com/tr?id=284584225294986&ev=PageView

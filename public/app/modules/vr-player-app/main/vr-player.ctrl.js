@@ -13,7 +13,9 @@ angular.module("VrPlayerApp").controller("VrPlayerCtrl", [
       }
     });
     $scope.$on("TourDataReceived", function(event, data) {
+      // LoadingSpinnerFct.show("vrPlayerLoader");
       console.dir(data);
+      console.dir(wizio);
       wizio.init("pano", data, {}, function(response) {
         LoadingSpinnerFct.hide("vrPlayerLoader");
       });
