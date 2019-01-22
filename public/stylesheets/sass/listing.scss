@@ -129,6 +129,9 @@
 .amenity-item {
   height: 110px;
   padding-bottom: 15px;
+  // @media (min-width: 768px) {
+  //   margin: 15px 5px;
+  // }
 }
 
 .listing-map {
@@ -174,35 +177,6 @@ hr#listing-divider {
   font-size: 17px;
   font-weight: 400;
 }
-//---- xl container ---//
-@media (min-width: 1440px) {
-  .listing-container {
-    width: 90%;
-  }
-
-  .vr-container {
-    width: $container-lg;
-    @include center-block;
-  }
-}
-
-//---- desktop ---//
-@media (min: 768px) {
-  .agent-business-name {
-    text-align: left;
-  }
-
-  .listing-container {
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  .vr-container {
-    @include container-fixed;
-    width: 100%;
-  }
-}
 
 //---- Tablet ---//
 @media (max-width: 767px) {
@@ -233,6 +207,36 @@ hr#listing-divider {
   .neighborhood-label {
     // width: 45%;
     display: inline-block;
+  }
+}
+
+//---- desktop ---//
+@media (min-width: 768px) {
+  .agent-business-name {
+    text-align: left;
+  }
+
+  .listing-container {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .vr-container {
+    @include container-fixed;
+    width: 100%;
+  }
+}
+//---- xl container ---//
+@media (min-width: 1440px) {
+  .listing-container {
+    width: 90%;
+  }
+
+  .vr-container {
+    width: 1170px;
+    @include center-block;
+    margin: 0 auto;
   }
 }
 
