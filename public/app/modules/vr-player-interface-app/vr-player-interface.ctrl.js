@@ -78,6 +78,8 @@ angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
         $scope.agent.email === "youngone@younghouses.com" ||
         $scope.agent.email === "brian@lmcrealtyboston.com" ||
         $scope.agent.email === "yuyang@wizio.co" ||
+        $scope.agent.email === 'jess@octagonproperties.net' ||
+        $scope.agent.email === 'hayward@octagonproperties.net' ||
         $scope.agent.BusinessName === "HqO" ||
         $scope.agent.BusinessName === "Fairfield Realty" ||
         $scope.agent.BusinessName === "Charlesgate Realty Group" ||
