@@ -1,16 +1,16 @@
-angular.module("DashboardApp").controller("DashboardCtrl", [
-  "$scope",
-  "$resource",
-  "$q",
-  "TokenSvc",
-  "LoadingSpinnerFct",
-  "WizioConfig",
-  "ModalBuilderFct",
-  "AWSFct",
-  "DashboardFct",
-  "StorageApp",
-  "$state",
-  "lodash",
+angular.module('DashboardApp').controller('DashboardCtrl', [
+  '$scope',
+  '$resource',
+  '$q',
+  'TokenSvc',
+  'LoadingSpinnerFct',
+  'WizioConfig',
+  'ModalBuilderFct',
+  'AWSFct',
+  'DashboardFct',
+  'StorageApp',
+  '$state',
+  'lodash',
   function(
     $scope,
     $resource,
@@ -29,23 +29,23 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     $scope.appInitialized = false;
     // short hand the factory function for ease of use
     var createModal = ModalBuilderFct.buildModalWithController;
-    $state.go("Account.Dashboard.ShareTour");
+    $state.go('Account.Dashboard.ShareTour');
     $scope.wizioAdmin = false;
     var user = TokenSvc.decode();
     if (!TokenSvc.isLoggedIn()) {
       ModalBuilderFct.buildSimpleModal(
-        "",
-        "OK",
-        "Access Denied: Please Log In",
-        "You are not currently logged in. Please login to access the account dashboard."
+        '',
+        'OK',
+        'Access Denied: Please Log In',
+        'You are not currently logged in. Please login to access the account dashboard.'
       ).then(function(result) {
-        $state.go("LandingPage");
+        $state.go('LandingPage');
         return;
       });
     } else {
       $scope.appInitialized = true;
     }
-    $scope.state = "Account.Dashboard.ShareTour";
+    $scope.state = 'Account.Dashboard.ShareTour';
     if (TokenSvc.decode().Subscriptions[0].id === 3) {
       $scope.wizioAdmin = true;
     }
@@ -65,35 +65,37 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
 
     $scope.createToursPermitted = false;
     if (
-      user.email.includes("@wizio.co") ||
-      user.email === "Esolem@lreadvisors.com"
+      user.email.includes('@wizio.co') ||
+      user.email === 'Esolem@lreadvisors.com'
     ) {
       $scope.createToursPermitted = true;
     }
-    if (user.email === "amcginty@nomadicrealestate.com") {
+    if (user.email === 'amcginty@nomadicrealestate.com') {
       $scope.modifyTourAllowed = false;
     }
     var subsid = user.Subscriptions[0].id;
     if (subsid === 6 || subsid === 10 || subsid === 17) {
       TokenSvc.deleteToken();
-      window.location.replace("https://www.wizio.co");
+      window.location.replace('https://www.wizio.co');
     }
     // FIXME: Move ShareTour/ActiveListings/InactiveListings code into own app
     // get active listings for logged in user
-    DashboardFct.get.activelistings().then(function(tours) {
-      return parseTours(tours);
-    });
+    if (user.email !== 'cameron@wizio.co') {
+      DashboardFct.get.activelistings().then(function(tours) {
+        return parseTours(tours);
+      });
+    }
 
-    $scope.$on("ActiveListingsUpdated", function(ev, data) {
+    $scope.$on('ActiveListingsUpdated', function(ev, data) {
       DashboardFct.get.activelistings().then(function(tours) {
         return parseTours(tours);
       });
     });
 
     function parseTours(tours) {
-      StorageApp.store("ActiveListings", tours);
+      StorageApp.store('ActiveListings', tours);
       if (tours.length !== 0) {
-        $scope.orderedTours = lodash.groupBy(tours, "isActive");
+        $scope.orderedTours = lodash.groupBy(tours, 'isActive');
         $scope.inactiveListings = $scope.orderedTours[false];
         $scope.activeListings = $scope.orderedTours[true];
       } else {
@@ -104,8 +106,8 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
       return;
     }
 
-    $scope.$on("ActiveListingRequest", function(ev, data) {
-      $scope.$broadcast("ActiveListingsPayload", $scope.orderedTours);
+    $scope.$on('ActiveListingRequest', function(ev, data) {
+      $scope.$broadcast('ActiveListingsPayload', $scope.orderedTours);
     });
 
     // get the user from session storage
@@ -121,9 +123,9 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     $scope.createTour = function() {
       // accept address modal
       var createUnitModalConfig = {
-        size: "md",
+        size: 'md',
         templateUrl: WizioConfig.PhotographerApp.Views.CreateUnitModal,
-        controller: "CreateUnitModalCtrl",
+        controller: 'CreateUnitModalCtrl',
         modalData: {}
       };
 
@@ -138,16 +140,16 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
               id: data.SubscriptionApartment.Instance.id
             }
           };
-          return $state.go("TourManagement", {
+          return $state.go('TourManagement', {
             data: dataForTourManagement,
-            action: "CreateTour"
+            action: 'CreateTour'
           });
         } else {
           ModalBuilderFct.buildSimpleModal(
-            "",
-            "OK",
-            "Tour Created Already!",
-            "This tour has already been created under your subscription. Please search for this tour and Activate it in your account dashboard."
+            '',
+            'OK',
+            'Tour Created Already!',
+            'This tour has already been created under your subscription. Please search for this tour and Activate it in your account dashboard.'
           ).then(function(result) {
             return;
           });
@@ -156,16 +158,16 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
     };
 
     $scope.changeState = function(state) {
-      $state.go("Account.Dashboard." + state);
-      $scope.state = "Account.Dashboard." + state;
+      $state.go('Account.Dashboard.' + state);
+      $scope.state = 'Account.Dashboard.' + state;
     };
 
     $scope.modifyExistingTour = function() {
       var searchModifyModalConfig = {
-        size: "lg",
+        size: 'lg',
         templateUrl:
-          "public/app/modules/photographerapp/upload/upload.view.html",
-        controller: "UploadPageCtrl",
+          'public/app/modules/photographerapp/upload/upload.view.html',
+        controller: 'UploadPageCtrl',
         modalData: {}
       };
       createModal(searchModifyModalConfig).then(function(data) {
@@ -179,14 +181,14 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
           },
           Listing: data.Listing
         };
-        $state.go("TourManagement", {
+        $state.go('TourManagement', {
           data: dataForTourManagement,
-          action: "ModifyTour"
+          action: 'ModifyTour'
         });
       });
     };
 
-    $scope.$on("Unit-Activated", function(event, results) {
+    $scope.$on('Unit-Activated', function(event, results) {
       $scope.activelistings.push({
         pubid: results.pubid,
         Apartment: {
@@ -198,7 +200,7 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
 
     $scope.supportModal = function() {
       ModalBuilderFct.buildModalWithController({
-        size: "lg",
+        size: 'lg',
         templateUrl: WizioConfig.modals.support.main.view,
         controller: WizioConfig.modals.support.main.controller,
         modalData: {}
@@ -213,7 +215,7 @@ angular.module("DashboardApp").controller("DashboardCtrl", [
 
     $scope.requestTours = function() {
       /* Launch typeform */
-      window.open("https://wiziotour.youcanbook.me/", "_blank");
+      window.open('https://wiziotour.youcanbook.me/', '_blank');
     };
   }
 ]);
