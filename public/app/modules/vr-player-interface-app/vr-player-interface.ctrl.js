@@ -1,15 +1,15 @@
-angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
-  '$scope',
-  '$state',
-  '$resource',
-  'TokenSvc',
-  'lodash',
-  'WizioConfig',
-  'AWSFct',
-  'LoadingSpinnerFct',
-  '$sce',
-  'ModalBuilderFct',
-  '$stateParams',
+angular.module("TourApp").controller("VrPlayerInterfaceCtrl", [
+  "$scope",
+  "$state",
+  "$resource",
+  "TokenSvc",
+  "lodash",
+  "WizioConfig",
+  "AWSFct",
+  "LoadingSpinnerFct",
+  "$sce",
+  "ModalBuilderFct",
+  "$stateParams",
   function(
     $scope,
     $state,
@@ -30,7 +30,7 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
     $scope.state = $state.current.name;
     $scope.showInterface = true;
     $scope.agent = {};
-    if ($state.current.name === 'ListingDemo1') {
+    if ($state.current.name === "ListingDemo1") {
       $scope.isListingPage = true;
     } else {
       $scope.isListingPage = false;
@@ -42,55 +42,51 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
      * @param  {object} data  data for the tour player interface to initialize
      * @return {[type]}       [description]
      */
-    $scope.$on('InterfaceDataReceived', function(event, data) {
-      LoadingSpinnerFct.show('vrPlayerLoader');
+    $scope.$on("InterfaceDataReceived", function(event, data) {
+      LoadingSpinnerFct.show("vrPlayerLoader");
       $scope.data = data;
       $scope.media = data.media;
       $scope.agent = data.User;
       $scope.showInterface = data.showInterface;
       $scope.floorplan = data.floorplan;
-      document
-        .getElementById('pano')
-        .addEventListener('click', onTourClick, false);
+      document.getElementById("pano").addEventListener("click", onTourClick, false);
       createThumbnailURLs();
       $scope.photoIndex = 0;
-      $scope.blank =
-        "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
+      $scope.blank = "https://s3.amazonaws.com/' + WizioConfig.S3_EQUIRECTPHOTOS_BUCKET  + '/blank.png";
       $scope.agent.blankDefault = $scope.blank;
       $scope.profileUploaded = false;
-      $scope.isMLSListingAccount = false;
+      $scope.isMLSListingAccount = true;
       if (
-        $stateParams.activelistingid ===
-          '8e2aa9d6-9281-4832-a5c5-c80a9e44df5d' ||
-        $stateParams.listingUUID === '8e2aa9d6-9281-4832-a5c5-c80a9e44df5d'
+        $stateParams.activelistingid === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d" ||
+        $stateParams.listingUUID === "8e2aa9d6-9281-4832-a5c5-c80a9e44df5d"
       ) {
         $scope.agent = {
-          firstName: 'Gene',
-          lastName: 'Blinkov',
-          email: 'gene@blinkov.org',
-          awsProfilePhotoUrl: '',
-          phoneNumber: '603-903-2332'
+          firstName: "Gene",
+          lastName: "Blinkov",
+          email: "gene@blinkov.org",
+          awsProfilePhotoUrl: "",
+          phoneNumber: "603-903-2332"
         };
       }
       if (
-        $scope.agent.email === 'alex@redtreeboston.com' ||
-        $scope.agent.email === 'bill.patterson@craftrealestateboston.com' ||
-        $scope.agent.email === 'youngone@younghouses.com' ||
-        $scope.agent.email === 'brian@lmcrealtyboston.com' ||
-        $scope.agent.email === 'dave@allaccessboston.com' ||
-        $scope.agent.email === 'yuyang@wizio.co' ||
-        $scope.agent.email === 'jess@octagonproperties.net' ||
-        $scope.agent.email === 'hayward@octagonproperties.net' ||
-        $scope.agent.email === 'devon@wizio.co' ||
-        $scope.agent.BusinessName === 'HqO' ||
-        $scope.agent.BusinessName === 'Fairfield Realty' ||
-        $scope.agent.BusinessName === 'Charlesgate Realty Group' ||
-        $scope.data.SubscriptionApartment.pubid ===
-          'afd51d18-b004-49e4-8cbe-50867abff2b7' ||
-        $scope.data.BusinessName === 'Brix Properties Inc.' ||
-        $scope.data.BusinessName === 'Red Tree Real Estate' ||
-        $scope.data.BusinessName === 'Octagon Properties'
+        $scope.agent.email === "alex@redtreeboston.com" ||
+        $scope.agent.email === "bill.patterson@craftrealestateboston.com" ||
+        $scope.agent.email === "youngone@younghouses.com" ||
+        $scope.agent.email === "brian@lmcrealtyboston.com" ||
+        $scope.agent.email === "dave@allaccessboston.com" ||
+        $scope.agent.email === "yuyang@wizio.co" ||
+        $scope.agent.email === "jess@octagonproperties.net" ||
+        $scope.agent.email === "hayward@octagonproperties.net" ||
+        $scope.agent.email === "devon@wizio.co" ||
+        $scope.agent.BusinessName === "HqO" ||
+        $scope.agent.BusinessName === "Fairfield Realty" ||
+        $scope.agent.BusinessName === "Charlesgate Realty Group" ||
+        $scope.data.SubscriptionApartment.pubid === "afd51d18-b004-49e4-8cbe-50867abff2b7" ||
+        $scope.data.BusinessName === "Brix Properties Inc." ||
+        $scope.data.BusinessName === "Red Tree Real Estate" ||
+        $scope.data.BusinessName === "Octagon Properties"
       ) {
+        console.dir("isMLSListingAccount");
         $scope.isMLSListingAccount = true;
       }
       return;
@@ -100,22 +96,13 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
       var SubscriptionApartmentPubId = $scope.data.SubscriptionApartment.pubid;
       for (var i = 0; i < $scope.media.length; i++) {
         $scope.media[i].thumbnailURL =
-          WizioConfig.CLOUDFRONT_DISTRO +
-          '180x90/' +
-          SubscriptionApartmentPubId +
-          '/' +
-          $scope.media[i].title +
-          '.JPG';
+          WizioConfig.CLOUDFRONT_DISTRO + "120x60/" + SubscriptionApartmentPubId + "/" + $scope.media[i].title + ".JPG";
       }
       return;
     }
 
-    window.addEventListener('devicemotion', function(event) {
-      if (
-        event.rotationRate.alpha ||
-        event.rotationRate.beta ||
-        event.rotationRate.gamma
-      )
+    window.addEventListener("devicemotion", function(event) {
+      if (event.rotationRate.alpha || event.rotationRate.beta || event.rotationRate.gamma)
         $scope.hasAccelerometer = true;
     });
 
@@ -124,7 +111,7 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
         var chosenImage;
         var photoIndex;
         var scrollTo;
-        if (TokenSvc.decode().email === 'cameron@wizio.co') {
+        if (TokenSvc.decode().email === "cameron@wizio.co") {
           console.dir(response.coordClick);
         }
         if (response.object.name) {
@@ -151,18 +138,18 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
     $scope.viewFloorPlan = false;
 
     /* If the state calls for a full screen VR Player, remove body styling and show controls */
-    if ($scope.state === 'Tour' || $scope.state === 'Demo') {
+    if ($scope.state === "Tour" || $scope.state === "Demo") {
       $scope.showcontrols = true;
       $scope.showcontactinfo = true;
       $scope.showpoweredby = true;
-      document.getElementsByTagName('body')[0].style['padding-bottom'] = 0;
-      document.getElementsByTagName('body')[0].style['margin-bottom'] = 0;
-      document.getElementById('main-content').style['height'] = '100%';
+      document.getElementsByTagName("body")[0].style["padding-bottom"] = 0;
+      document.getElementsByTagName("body")[0].style["margin-bottom"] = 0;
+      document.getElementById("main-content").style["height"] = "100%";
     }
 
     $scope.onProductPage = false;
 
-    if ($state.current.name === 'Product') {
+    if ($state.current.name === "Product") {
       $scope.onProductPage = true;
     }
 
@@ -180,8 +167,8 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
     //FIXME don't use JQuery..
     var moveSlider = function(direction, amount) {
       // direction is 1 for forward / -1 for backward
-      width = $('#scrollthis').width();
-      el = $('#scrollthis');
+      width = $("#scrollthis").width();
+      el = $("#scrollthis");
       currentPosition = el.scrollLeft();
       moveWidth = width * 0.5 * direction;
       var moveTo = amount ? amount : currentPosition + moveWidth;
@@ -202,11 +189,11 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
     $scope.sliderCanGoBackward = false;
 
     $scope.canSliderBackward = function() {
-      return $('#scrollthis').scrollLeft() > 0;
+      return $("#scrollthis").scrollLeft() > 0;
     };
 
     $scope.canSliderForward = function() {
-      el = $('#scrollthis');
+      el = $("#scrollthis");
       width = el.outerWidth();
       currentPosition = el.scrollLeft();
       viewportWidth = el.width();
@@ -234,20 +221,20 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
      * @return {[type]}            [description]
      */
     $scope.changePhoto = function(photoIndex) {
-      LoadingSpinnerFct.show('vrPlayerLoader');
+      LoadingSpinnerFct.show("vrPlayerLoader");
       wizio.changeImage($scope.media[photoIndex], function(response) {
         $scope.photoIndex = photoIndex;
 
         /* For cameron to collect coordinates for hard coding navigation onto tours */
         var email = TokenSvc.decode().email;
-        if (email === 'cameron@wizio.co') {
+        if (email === "cameron@wizio.co") {
           wizio.toggleCoordCollection();
           wizio.disableOnMouseMove();
         }
 
         $scope.viewFloorPlan = false;
         $scope.$apply();
-        LoadingSpinnerFct.hide('vrPlayerLoader');
+        LoadingSpinnerFct.hide("vrPlayerLoader");
       });
     };
 
@@ -261,18 +248,16 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
       }
     };
 
-    if ($state.current.name == 'Demo' || $state.current.name == 'Product') {
-      $resource(
-        WizioConfig.baseAPIURL +
-          '/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d'
-      ).query(function(response) {
+    if ($state.current.name == "Demo" || $state.current.name == "Product") {
+      $resource(WizioConfig.baseAPIURL + "/activelisting/0a68e5a9-da00-11e6-85e0-0a8adbb20c4d").query(function(
+        response
+      ) {
         $scope.profileUploaded = true;
         $scope.agent = {
-          firstName: 'Devon',
-          lastName: 'Grodkiewicz',
-          email: 'devon@wizio.co',
-          awsProfilePhotoUrl:
-            'https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png',
+          firstName: "Devon",
+          lastName: "Grodkiewicz",
+          email: "devon@wizio.co",
+          awsProfilePhotoUrl: "https://cdn.wizio.co/profile-photos/Devon_Grodkiewicz_35.png",
           state: $state.current.name
         };
       });
@@ -282,9 +267,9 @@ angular.module('TourApp').controller('VrPlayerInterfaceCtrl', [
       $scope.viewFloorPlan = false;
 
       ModalBuilderFct.buildComplexModal(
-        'md',
-        '/public/app/modules/vr-player-interface-app/modal/agent-profile-modal.view.html',
-        'AgentProfileModalCtrl',
+        "md",
+        "/public/app/modules/vr-player-interface-app/modal/agent-profile-modal.view.html",
+        "AgentProfileModalCtrl",
         $scope.agent
       ).then(function(response) {});
     };
