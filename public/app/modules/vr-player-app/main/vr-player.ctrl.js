@@ -1,23 +1,21 @@
-angular.module("VrPlayerApp").controller("VrPlayerCtrl", [
-  "$scope",
-  "LoadingSpinnerFct",
+angular.module('VrPlayerApp').controller('VrPlayerCtrl', [
+  '$scope',
+  'LoadingSpinnerFct',
   function($scope, LoadingSpinnerFct) {
-    $scope.$on("VrPlayerApp", function(event, data) {
+    $scope.$on('VrPlayerApp', function(event, data) {
       switch (data.action) {
-        case "init":
+        case 'init':
           init(data.data);
           break;
-        case "changePhoto":
+        case 'changePhoto':
           changePhoto(data.data);
         default:
       }
     });
-    $scope.$on("TourDataReceived", function(event, data) {
+    $scope.$on('TourDataReceived', function(event, data) {
       // LoadingSpinnerFct.show("vrPlayerLoader");
-      console.dir(data);
-      console.dir(wizio);
-      wizio.init("pano", data, {}, function(response) {
-        LoadingSpinnerFct.hide("vrPlayerLoader");
+      wizio.init('pano', data, {}, function(response) {
+        LoadingSpinnerFct.hide('vrPlayerLoader');
       });
     });
 
@@ -25,7 +23,7 @@ angular.module("VrPlayerApp").controller("VrPlayerCtrl", [
       wizio.init(initData.htmlElemId, initData.photoData, {}, function(
         response
       ) {
-        LoadingSpinnerFct.hide("vrPlayerLoader");
+        LoadingSpinnerFct.hide('vrPlayerLoader');
       });
     }
 
@@ -39,7 +37,7 @@ angular.module("VrPlayerApp").controller("VrPlayerCtrl", [
      * @return {null}
      */
     $scope.goToWizioSite = function() {
-      window.open("https://www.wizio.co");
+      window.open('https://www.wizio.co');
       return;
     };
 
